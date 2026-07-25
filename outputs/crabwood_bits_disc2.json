@@ -1,0 +1,46 @@
+{
+  "path": "data/images/crabwood_2002_tt_disc2.jpg",
+  "disc": {
+    "cx": 240,
+    "cy": 72,
+    "r": 160,
+    "note": "hough_disc"
+  },
+  "ink_fraction": 0.07326105442176871,
+  "n_bits": 1208,
+  "best_key": "raw_msb1",
+  "best": {
+    "text_preview": "x.@.A...........\".......p|..@...........3.........~E...x........`X>aa.........b.",
+    "ber_red_collie": 0.4644,
+    "ber_vigay": 0.4859,
+    "hamming_rc": 561
+  },
+  "all": {
+    "raw_msb1": {
+      "text_preview": "x.@.A...........\".......p|..@...........3.........~E...x........`X>aa.........b.",
+      "ber_red_collie": 0.4644,
+      "ber_vigay": 0.4859,
+      "hamming_rc": 561
+    },
+    "raw_msb0": {
+      "text_preview": "......p........0D........>...t........o...........~.;.h......x....|.........C.F8",
+      "ber_red_collie": 0.4644,
+      "ber_vigay": 0.4859,
+      "hamming_rc": 561
+    },
+    "inv_msb1": {
+      "text_preview": ".....z.......V...........................w.w........#.......................=...",
+      "ber_red_collie": 0.5356,
+      "ber_vigay": 0.5141,
+      "hamming_rc": 647
+    },
+    "inv_msb0": {
+      "text_preview": "....}^.......j............@.............3...@......]...............yy....?...@..",
+      "ber_red_collie": 0.5356,
+      "ber_vigay": 0.5141,
+      "hamming_rc": 647
+    }
+  },
+  "known_rc_preview": "Beware the bearers of FALSE gifts & their BROKEN PROMISES. M",
+  "caveat": "Web-res discs rarely yield BER<<0.4; use as framework + high-res crop later."
+}

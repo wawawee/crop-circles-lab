@@ -1,0 +1,30 @@
+{
+  "source": "data/images/chualar_2013_nvidia_hoax.png",
+  "n_circles": 15,
+  "stats_detection_order": {
+    "n": 15,
+    "radius_entropy_bits": 1.0363,
+    "ratio_mean": 0.97874,
+    "ratio_std": 0.27761,
+    "ratio_cv": 0.28364,
+    "log_spiral_like": false,
+    "nearest_diatonic_first_ratio": "major 2nd (9:8)"
+  },
+  "stats_radial_order": {
+    "n": 15,
+    "radius_entropy_bits": 1.0363,
+    "ratio_mean": 1.02627,
+    "ratio_std": 0.51612,
+    "ratio_cv": 0.50291,
+    "log_spiral_like": false,
+    "nearest_diatonic_first_ratio": "major 6th (5:3)"
+  },
+  "julia_classification": {
+    "n_circles": 15,
+    "radius_ratio_mean": 0.978744861638,
+    "radius_ratio_cv": 0.28364253584698196,
+    "is_true_julia_set": false,
+    "classification": "irregular finite circle set",
+    "reason": "A finite set of flattened circles cannot be a true z^2+c Julia set (an infinitely detailed fractal boundary). The 1996 Stonehenge formation is ~149-151 circles whose radii shrink geometrically along a logarithmic spiral -- a human-constructable visual approximation (Rod Dickinson confessed to making it overnight in ~2h45m)."
+  }
+}

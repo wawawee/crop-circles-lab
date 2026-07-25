@@ -64,8 +64,8 @@
       },
       "geometry_notes": "Dumbbell-like with wing-like protrusions. No published aerial found online (search noise = desert irrigation circles).",
       "sources": ["https://bltresearch.com/"],
-      "image_files": [],
-      "lab_track": "Rely on BLT biophysical notes; skip CV until an aerial surfaces"
+      "image_files": ["logan_utah_1996.jpg", "blt_logan/photoA.jpg", "blt_logan/photoB.jpg"],
+      "lab_track": "BLT Lab #79 text in data/reports/blt_wayback/logan_lab.txt; field photos in blt_logan/"
     },
     {
       "id": "edmonton-1999",

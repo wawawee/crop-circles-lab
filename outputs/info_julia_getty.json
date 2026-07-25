@@ -1,0 +1,23 @@
+{
+  "source": "data/images/julia_set_1996_getty.png",
+  "n_circles": 9,
+  "stats_detection_order": {
+    "n": 9,
+    "radius_entropy_bits": 1.9977,
+    "ratio_mean": 1.00207,
+    "ratio_std": 0.23991,
+    "ratio_cv": 0.23942,
+    "log_spiral_like": false,
+    "nearest_diatonic_first_ratio": "major 3rd (5:4)"
+  },
+  "stats_radial_order": {
+    "n": 9,
+    "radius_entropy_bits": 1.9977,
+    "ratio_mean": 1.03444,
+    "ratio_std": 0.26559,
+    "ratio_cv": 0.25675,
+    "log_spiral_like": false,
+    "nearest_diatonic_first_ratio": "major 3rd (5:4)"
+  },
+  "julia_classification": null
+}

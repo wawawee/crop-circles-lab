@@ -1,0 +1,13 @@
+{
+  "source": "data/images/julia_set_1996_tt_oh.jpg",
+  "n_circles": 0,
+  "stats_detection_order": {
+    "n": 0,
+    "error": "too_few"
+  },
+  "stats_radial_order": {
+    "n": 0,
+    "error": "too_few"
+  },
+  "julia_classification": null
+}

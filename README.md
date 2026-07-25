@@ -27,6 +27,29 @@ data/catalog/      formation metadata / acquisition status
 outputs/           generated reports & dashboards
 ```
 
+## Deep-dive tools (message / preprocess / lab)
+
+```bash
+# 1) Preprocess → binary mask
+python tools/ccat/preprocess.py data/images/crabwood_2002_tt_disc.jpg --out outputs/mask.png
+
+# 2) Crabwood spiral ASCII sampler (BER vs known plaintext)
+python tools/ccat/crabwood_bits.py data/images/crabwood_2002_tt_disc.jpg --out outputs/crabwood_bits.json
+
+# 3) Chilbolton 23×73 grid sampler
+python tools/ccat/chilbolton_grid.py data/images/chilbolton_message_2001_tt.jpg --out outputs/chilbolton_grid.json
+
+# 4) Radius entropy / log-spiral / diatonic probes
+python tools/ccat/info_theory.py --synthetic-julia
+python tools/ccat/info_theory.py data/images/julia_set_1996_getty.png
+
+# 5) Archive BLT lab reports from Wayback
+python tools/ccat/blt_archive.py --out data/reports/blt_wayback
+```
+
+Findings so far: web-res Crabwood discs give BER≈0.5 (random) — need higher-res disc crop.
+Synthetic Julia confirms log-spiral classification. Logan BLT lab #79 + field photos archived.
+
 ## Licensing / images
 
 Many aerials are © Temporary Temples, Lucy Pringle, Getty, etc.

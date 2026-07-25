@@ -1,0 +1,47 @@
+{
+  "edmonton_labreport": {
+    "url": "https://web.archive.org/web/20101120084111id_/http://bltresearch.com/labreports/edmonton.php",
+    "chars": 18509,
+    "keyword_hits": {
+      "cherhill": 0,
+      "logan": 0,
+      "eltopia": 0,
+      "iron": 0,
+      "node": 37,
+      "expulsion": 13,
+      "microwave": 1,
+      "edmonton": 5
+    },
+    "ok": true
+  },
+  "labreports_index": {
+    "url": "https://web.archive.org/web/20090620211016id_/http://www.bltresearch.com/labreports.php",
+    "chars": 5865,
+    "keyword_hits": {
+      "cherhill": 1,
+      "logan": 1,
+      "eltopia": 0,
+      "iron": 0,
+      "node": 12,
+      "expulsion": 4,
+      "microwave": 0,
+      "edmonton": 1
+    },
+    "ok": true
+  },
+  "published_index": {
+    "url": "https://web.archive.org/web/20090619205918id_/http://www.bltresearch.com/published.php",
+    "chars": 4435,
+    "keyword_hits": {
+      "cherhill": 0,
+      "logan": 0,
+      "eltopia": 0,
+      "iron": 1,
+      "node": 0,
+      "expulsion": 0,
+      "microwave": 0,
+      "edmonton": 0
+    },
+    "ok": true
+  }
+}

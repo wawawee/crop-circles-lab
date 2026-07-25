@@ -14,13 +14,15 @@
 | Known hoax (control) | **`chualar_2013_nvidia_hoax.png`** | Chualar 2013 / NVIDIA Tegra Braille “192” — use as man-made baseline |
 | Typology collage | `lucy_pringle_collage_mystery_fields.png` | Low-res thumbs only |
 
-## Lab-only / no good aerial online
+## Lab-data track (limited / no clean overhead)
 
 | Formation | Status |
 |-----------|--------|
-| **Cherhill 1993 (järnglasyr)** | No confirmed iron-glaze aerial online. Lucy `cherhill_1993_lucy_*` = “Hand of Friendship” pictogram thumbs, not the BLT two-circle ~15 m iron-glaze case. Rely on BLT lab reports (meteoritic glaze, nodes). |
-| **Logan, Utah 1996** | No published aerial found (search noise = irrigation circles / unrelated). Rely on BLT biophysical notes (expulsion cavities, heat). |
+| **Cherhill 1993 (järnglasyr)** | No confirmed iron-glaze aerial online. Lucy thumbs ≠ BLT two-circle case. Cherhill `.php` 404 on Wayback; still listed on labreports index (July 1998). |
+| **Logan, Utah 1996** | BLT Lab #79 text archived + field photos `blt_logan/` → `logan_utah_1996.jpg`. Not a crisp overhead; usable for lab/context. |
 
-## BLT Wayback (Edmonton lab)
+## BLT Wayback
 
-`blt_edmonton/` — node comparison, figs, low-res ed-1/ed-2 (kept as lab context, not primary CV aerial).
+- `blt_edmonton/` + `data/reports/blt_wayback/edmonton_labreport.*`
+- `blt_logan/` + `data/reports/blt_wayback/logan_lab.*` (expulsion/node/microwave language present)
+- Labreports index archived (mentions Cherhill / Logan)
