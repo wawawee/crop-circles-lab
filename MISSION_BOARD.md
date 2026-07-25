@@ -76,7 +76,7 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G11** | 🟢 merged PR #11 — CM STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY. |
 | **Minimax M3** | 🟢 **landed G12 Linear Elamite** — SEQUENCE_STRUCTURE | CLAIM_UNDERDETERMINED on synth; monumental inverse INVERSE_CONTROL_OK; LE↔PE↔Uruk comparator all-pass; language_family_claim_made=false; 31/31 tests. PR awaiting Cursor merge. |
 | **Opencode** | 🟡 on **G16** Meroitic. |
-| **Cursor** | 🟢 merge gate on `main` — watching G12 / G16 |
+| **Cursor** | 🟢 merge gate on `main` — watching G16; **G12 PR open and ready to merge** |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
