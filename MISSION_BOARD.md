@@ -33,7 +33,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **N0** | Hyper + Cursor | Phaistos | z≈−14 + period-3 refrain | 🟢 landed |
 | **B10/B11** | Cursor | ELA + cipher negcontrol | Pillow ELA; Caesar/IC | 🟢 landed |
 | **R1** | Minimax (done) | radio_probe + fetchers | FFT/epoch-fold; Wow blocked; Vela/FRB PARK | 🟢 50/50 tests — **radio closed for Minimax** |
-| **R1++** | **Ozma** | CHIME Cat 2 periods | Recover 16.35 d + scramble null | 🟡 `cat2_fetcher` scaffold only — Ozma wires |
+| **R1++** | **Ozma** | CHIME Cat 2 periods | Recover 16.35 d + scramble null | 🟡 **PR #3** — Cat2 wired + synth known-answer; real path PARKING; merge blocked on conflicts |
 | **G1** | Opencode | Linear A | z≈−73 formulaic STRUCTURE | 🟢 landed + gallery |
 | **G4** | **Opencode** 🟢 | Rongorongo 2D (Spaelti) | Parallel passages + symbolseq; structure ≠ reading | 🟢 **landed** — `tools/scripts/rongorongo_probe.py`, `outputs/rongorongo/run.json` + `NOTES.md`. 5279 glyphs across 6 tablets, z=−42.9 conditional entropy vs shuffle. 240 parallel passages (33 cross-tablet, z=+40.9 vs shuffle). Top cross-tablet formula: `380 001 022f` ×7 across C+E. Verdict: SEQUENCE_STRUCTURE | PARALLEL_EXCESS | CROSS_TABLET_PARALLELS. No decipherment. |
 | **G2** | **Minimax** | Proto-Elamite | CDLI ledger entropy | ⬜ **Minimax next ticket only** (off radio/BLC1/Amazon) |
@@ -41,33 +41,22 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G7** | Opencode | Gorafe megaliths | Orientation STRUCTURE; astro/spatial UNDER | 🟢 v1; G7++ later (sunrise + valley null) |
 | **G8** | queue | Betty Hill × Gaia | Star-map null | ⬜ paused (not tonight) |
 | **G-Amazon** | **Ulfberht** (Geoglyf ej riggad) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY (klustring, ej mening); NN R=0.175 z=−46.7, Ripley L>CSR alla radier; kontroller gröna; Mode B BLOCKED |
-| **G-BLC1** | **Ozma** | BLC1 RFI known-answer | Inherit Minimax synth+no-TB stub; ON/OFF + harmonics | 🟡 bas landad — Ozma äger + granskar |
+| **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟡 **PR #3** — Cursor APPROVE pending rebase onto main |
 
-### Cursor cleanup signal (2026-07-25) — Hyper may start
+### Hyper handoff status (Cursor, 2026-07-25 mid-morning)
 
-**ACCEPTANCE MET** (was mislabeled “Opencode”; Cursor did this):
+Cleanup gate **cleared**; frontier work proceeded. Updates:
 
-1. Board: single **G-BLC1 → Ozma**; Minimax pointed at **G2 only**; Amazon → **Geoglyf**.
-2. `tools/radio/` green: **50/50 PASS** (`python3 tools/radio/tests/test_radio_probe.py`).
-3. Amazon: **no** `data/amazon/`, no probe code — only `.cursor/skills/amazon-earthworks-spatial/` + scout docs. Orört för Geoglyf.
-4. Motto: no fabricated peaks in real paths; `de441.bsp` gitignored (~3.1G local only); no TB mirrors.
+| Item | Reality |
+|------|---------|
+| **Geoglyf** | Never provisioned — G-Amazon reassigned to **Ulfberht** (author). |
+| **G-Amazon** | 🟢 PR #1 merged — `STRUCTURE_ONLY`; Amazon tests PASS; survey-coverage confound in NOTES. |
+| **Reviewer integrity** | Ulfberht authored *and* self-merged #1/#2. Cursor is de-facto 2nd reader after the fact: Amazon science OK; process smell noted. |
+| **G-BLC1 / R1++** | Ozma **PR #3** — Cursor APPROVE on substance (66/66 radio tests; honest `BLOCKED_DATA_TOO_LARGE` on unmeasured path). **Do not merge until rebased** (`mergeable: CONFLICTING` vs main). Prefer Cursor/Captain merge, not Ulfberht alone. |
+| **G4** | Opencode 🟢 Rongorongo landed on main. |
+| **Minimax** | Still G2-only when Captain says go; radio/Amazon/BLC1 closed. |
 
-**Behåll / fixa / skrota (for Ulfberht + Ozma):**
-
-| Verdict | Asset | Note |
-|---------|-------|------|
-| **KEEP** | `blc1_fetcher.py` | Default `NEVER_ATTEMPTED`; bundled CSV only; Sheikh constants |
-| **KEEP** | `radio_probe` BLC1 synth comb + scramble null | Known-answer plant — scope-compatible bas |
-| **KEEP** | G3 Wow beam-fit + outputs | Underdetermined honest; Ozma may deepen NOTES |
-| **KEEP** | `cat2_fetcher.py` + `cat2_real_sources.py` | Scaffold; **not** wired into `analyze()` yet |
-| **KEEP** | Vela/FRB/CHIME honest PARK fetchers | Anti-fabrication tests green |
-| **FIX (Ozma)** | Wire R1++ Cat2 → recover 16.35 d + null | Scaffold waits |
-| **FIX (Ozma)** | Real BLC1 slice path under skill size caps | Or stay synth-only + `BLOCKED_DATA_TOO_LARGE` |
-| **FIX (Ozma)** | ON/OFF + harmonic-family framing in NOTES | Interpretation job |
-| **SKROTA / FORBID** | Minimax further radio/BLC1/Amazon | Closed — G2 only if Captain releases |
-| **SKROTA** | Live TB scrape / silent synth fallback | Already disabled; do not re-enable |
-
-Ulfberht: review/merge frontier PRs. Geoglyf + Ozma: go.
+**Inherited KEEP base (still true):** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
 ---
 
