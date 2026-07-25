@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "description": "Precessed Taurid radiant coordinates for the Göbekli Tepe epoch (~9600 BCE). These values are computed in goebekli_taurid.py via Skyfield DE441 (or fallback precession) and cached here for test reproducibility.",
+    "epoch_year": -9600,
+    "j2000_centre": {"ra_h": 3.50, "dec_deg": 15.0},
+    "precessed_method": "skyfield (preferred) or analytic"
+  },
+  "precessed_radiant": {
+    "declination_range_deg": {
+      "approx_min": 55.0,
+      "approx_max": 75.0,
+      "note": "At 10 000 BCE, precession moves the Taurid radiant declination dramatically toward the north celestial pole. The exact value depends on the precession model and the epoch chosen."
+    }
+  },
+  "site_horizon": {
+    "lat": 37.2231,
+    "lon": 38.9223,
+    "elevation_m": 760,
+    "note": "Horizon profile from astro_probe.horizon_profile() — flat horizon used for geometric calculations"
+  }
+}

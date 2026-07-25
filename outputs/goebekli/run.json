@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-07-25T21:12:49.912048+00:00",
+  "stance": "G\u00f6bekli Tepe \u00d7 Taurid: null-first archaeoastronomy. No positive alignment claim without beating random-azimuth and scrambled-date controls. Apophenia is the default.",
+  "mission": "Hecklefish #5 \u2014 G\u00f6bekli Tepe \u00d7 Taurid",
+  "site": {
+    "lat": 37.2231,
+    "lon": 38.9223,
+    "elevation_m": 760,
+    "epoch_year": -9600
+  },
+  "taurid_radiant": {
+    "j2000": {
+      "ra_h": 3.5,
+      "dec_deg": 15.0
+    },
+    "precessed_to_epoch": {
+      "ra_h": 16.6791,
+      "dec_deg": -24.34,
+      "backend": "analytic"
+    },
+    "azimuth_at_site": {
+      "rise_azimuth_deg": 121.17,
+      "culmination_azimuth_deg": 180.0,
+      "rise_possible": true,
+      "dec_deg": -24.34,
+      "ra_h": 16.6791
+    }
+  },
+  "pillars": {
+    "n_loaded": 14,
+    "mean_azimuth_deg": 215.97,
+    "rayleigh_z": 0.14342659604479113,
+    "file_source": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/data/astro/goebekli/pillars.json"
+  },
+  "alignment": {
+    "n_pillars": 14,
+    "n_hits": 0,
+    "hit_pillars": [],
+    "mean_delta_deg": 48.21,
+    "min_delta_deg": 13.83,
+    "deltas_deg": [
+      23.83,
+      86.17,
+      76.17,
+      13.83,
+      76.17,
+      58.83,
+      31.17,
+      31.17,
+      13.83,
+      86.17,
+      13.83,
+      46.17,
+      58.83,
+      58.83
+    ],
+    "threshold_deg": 10.0
+  },
+  "negative_controls": {
+    "random_azimuth_null": {
+      "n_trials": 1000,
+      "observed_hits": 0,
+      "null_mean_hits": 1.625,
+      "null_sd_hits": 1.192,
+      "null_p2_5": 0.0,
+      "null_p50": 2.0,
+      "null_p97_5": 4.0,
+      "z": -1.3635,
+      "p_empirical": 1.0,
+      "threshold_deg": 10.0
+    },
+    "scrambled_date_null": {
+      "n_trials": 1000,
+      "epoch_range": "[-11000, -7000]",
+      "scrambling": "azimuths shuffled; epoch resampled uniform",
+      "observed_hits": 0,
+      "null_mean_hits": 0.417,
+      "null_sd_hits": 1.038,
+      "null_p2_5": 0.0,
+      "null_p50": 0.0,
+      "null_p97_5": 3.0,
+      "z": -0.4018,
+      "p_empirical": 1.0,
+      "threshold_deg": 10.0
+    }
+  },
+  "forbidden_words_check": {
+    "all_absent": true,
+    "matches": []
+  },
+  "verdict": "NO_SIGNAL",
+  "caveat": "Pillar-Taurid alignment does not beat controls (random-azimuth p=1.0, z=-1.3635; scrambled-date p=1.0, z=-0.4018). Consistent with chance. No signal."
+}

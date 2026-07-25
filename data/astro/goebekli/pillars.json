@@ -1,0 +1,177 @@
+{
+  "meta": {
+    "site": "Göbekli Tepe, Enclosure D",
+    "lat": 37.2231,
+    "lon": 38.9223,
+    "elevation_m": 760,
+    "epoch_year_bce": -9600,
+    "epoch_year_cal_bp": 11550,
+    "enclosure_d_diameter_m": 20,
+    "n_pillars_excavated": 14,
+    "n_in_catalogue": 14,
+    "sources": [
+      "Schmidt 2006; Peters & Schmidt 2004; Notroff et al. 2014",
+      "Sweatman & Tsikritsis 2017 (claim under test, not authority)"
+    ],
+    "caveat": "Pillar face azimuths estimated from published plans (±5°). Enclosure D is not perfectly circular, and centre-points are approximate. Do not treat as survey-grade."
+  },
+  "pillars": [
+    {
+      "id": "P43",
+      "common_name": "Vulture Stone",
+      "face_azimuth_deg": 325,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "vulture, scorpion, fox, disk, ibis/bird",
+      "position_in_enclosure": "NW quadrant",
+      "note": "Primary claim-target for Sweatman & Tsikritsis comet-encoding hypothesis",
+      "references": ["Schmidt 2006", "Sweatman & Tsikritsis 2017"]
+    },
+    {
+      "id": "P18",
+      "common_name": null,
+      "face_azimuth_deg": 215,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "fox",
+      "position_in_enclosure": "SW quadrant",
+      "note": null,
+      "references": ["Peters & Schmidt 2004"]
+    },
+    {
+      "id": "P27",
+      "common_name": null,
+      "face_azimuth_deg": 45,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "aurochs",
+      "position_in_enclosure": "NE quadrant",
+      "note": null,
+      "references": ["Schmidt 2006"]
+    },
+    {
+      "id": "P30",
+      "common_name": null,
+      "face_azimuth_deg": 135,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "crane/bird",
+      "position_in_enclosure": "SE quadrant",
+      "note": null,
+      "references": ["Peters & Schmidt 2004"]
+    },
+    {
+      "id": "P31",
+      "common_name": null,
+      "face_azimuth_deg": 225,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "snake",
+      "position_in_enclosure": "SW quadrant",
+      "note": null,
+      "references": ["Schmidt 2006"]
+    },
+    {
+      "id": "P32",
+      "common_name": null,
+      "face_azimuth_deg": 180,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "quadruped",
+      "position_in_enclosure": "S quadrant",
+      "note": null,
+      "references": ["Notroff et al. 2014"]
+    },
+    {
+      "id": "P33",
+      "common_name": null,
+      "face_azimuth_deg": 270,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "fox / wild ass",
+      "position_in_enclosure": "W quadrant",
+      "note": null,
+      "references": ["Schmidt 2006"]
+    },
+    {
+      "id": "P34",
+      "common_name": null,
+      "face_azimuth_deg": 90,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "wild ass",
+      "position_in_enclosure": "E quadrant",
+      "note": null,
+      "references": ["Schmidt 2006"]
+    },
+    {
+      "id": "P35",
+      "common_name": null,
+      "face_azimuth_deg": 315,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "bird",
+      "position_in_enclosure": "NW quadrant",
+      "note": null,
+      "references": ["Notroff et al. 2014"]
+    },
+    {
+      "id": "P36",
+      "common_name": null,
+      "face_azimuth_deg": 35,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "aurochs",
+      "position_in_enclosure": "NE quadrant",
+      "note": null,
+      "references": ["Schmidt 2006"]
+    },
+    {
+      "id": "P37",
+      "common_name": null,
+      "face_azimuth_deg": 135,
+      "azimuth_uncertainty_deg": 10,
+      "carving_theme": "crane",
+      "position_in_enclosure": "SE quadrant",
+      "note": "Azimuth uncertain — partially reconstructed",
+      "references": ["Peters & Schmidt 2004"]
+    },
+    {
+      "id": "P38",
+      "common_name": null,
+      "face_azimuth_deg": 255,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "fox",
+      "position_in_enclosure": "SW quadrant",
+      "note": null,
+      "references": ["Schmidt 2006"]
+    },
+    {
+      "id": "central_E",
+      "common_name": "Central Pillar East",
+      "face_azimuth_deg": 0,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "none (plain T-pillar)",
+      "position_in_enclosure": "centre, east monolith",
+      "note": "The two central monoliths face N–S",
+      "references": ["Schmidt 2006"]
+    },
+    {
+      "id": "central_W",
+      "common_name": "Central Pillar West",
+      "face_azimuth_deg": 180,
+      "azimuth_uncertainty_deg": 5,
+      "carving_theme": "none (plain T-pillar)",
+      "position_in_enclosure": "centre, west monolith",
+      "note": "Faces south, opposite central E",
+      "references": ["Schmidt 2006"]
+    }
+  ],
+  "taurid_radiant_j2000": {
+    "taurid_complex_centre": {
+      "ra_h": 3.50,
+      "dec_deg": 15.0,
+      "note": "Approximate centre of Taurid complex; used as primary target for alignment tests"
+    },
+    "northern_taurids": {
+      "ra_h": 3.87,
+      "dec_deg": 22.0,
+      "note": "Northern branch at modern epoch"
+    },
+    "southern_taurids": {
+      "ra_h": 3.53,
+      "dec_deg": 14.0,
+      "note": "Southern branch at modern epoch"
+    }
+  }
+}
