@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crop Circles Lab — Status Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e13; --panel:#12171f; --panel2:#161c26; --line:#243040;
+    --ink:#e7ecf3; --muted:#8a97a8; --dim:#5f6b7a;
+    --gold:#e3bd6d; --cyan:#56cfc4; --red:#e0705f; --green:#6fcf8e;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(1200px 600px at 80% -10%, rgba(227,189,109,.06), transparent 60%),
+                     radial-gradient(900px 500px at 0% 10%, rgba(86,207,196,.05), transparent 55%);
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 6vw}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+  code,.mono{font-family:'IBM Plex Mono',monospace}
+  .ey{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+
+  /* hero */
+  header.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .wrap{padding-top:84px;padding-bottom:70px;position:relative;z-index:2}
+  .hero h1{font-size:clamp(2.4rem,6vw,4.3rem);margin:.2em 0 .1em}
+  .hero .lede{font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--muted);max-width:640px}
+  .rings{position:absolute;right:-160px;top:-120px;width:620px;height:620px;opacity:.5;z-index:1}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .badge{font-family:'IBM Plex Mono',monospace;font-size:.76rem;padding:6px 11px;border:1px solid var(--line);
+    border-radius:999px;color:var(--muted);background:rgba(255,255,255,.02)}
+  .badge b{color:var(--ink);font-weight:500}
+
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:0 0 6px}
+  .sub{color:var(--muted);margin:0 0 30px;max-width:720px}
+  .kicker{display:inline-block;margin-bottom:14px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px}
+  .card h3{font-size:1.05rem;margin:0 0 6px}
+  .card p{margin:0;color:var(--muted);font-size:.93rem}
+  .card .tag{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--gold);display:block;margin-bottom:8px}
+  .ok{color:var(--green)} .no{color:var(--red)} .warn{color:var(--gold)}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.split{grid-template-columns:1fr}}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+  .panel.win{border-left:3px solid var(--green)}
+  .panel.cut{border-left:3px solid var(--red)}
+  ul.clean{list-style:none;padding:0;margin:0}
+  ul.clean li{padding:10px 0;border-bottom:1px dashed var(--line);font-size:.95rem;color:var(--muted)}
+  ul.clean li:last-child{border-bottom:0}
+  ul.clean li b{color:var(--ink);font-weight:600}
+  .verdict{font-family:'IBM Plex Mono',monospace;font-size:.72rem;padding:2px 8px;border-radius:6px;margin-right:8px;white-space:nowrap}
+  .v-ok{background:rgba(111,207,142,.12);color:var(--green)}
+  .v-no{background:rgba(224,112,95,.12);color:var(--red)}
+  .v-warn{background:rgba(227,189,109,.12);color:var(--gold)}
+
+  table{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:6px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  td.mono{font-family:'IBM Plex Mono',monospace;color:var(--muted)}
+  tr:hover td{background:rgba(255,255,255,.015)}
+
+  figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  figure img{display:block;width:100%;height:auto;background:#05070a}
+  figcaption{padding:12px 16px;font-size:.82rem;color:var(--muted)}
+  figcaption b{color:var(--ink)}
+  .cc{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--green);border:1px solid rgba(111,207,142,.4);padding:2px 7px;border-radius:6px}
+
+  .timeline{font-family:'IBM Plex Mono',monospace;font-size:.83rem}
+  .timeline div{padding:8px 0;border-bottom:1px dashed var(--line);color:var(--muted)}
+  .timeline b{color:var(--gold)}
+  .timeline span{color:var(--ink)}
+
+  blockquote{margin:0;padding:16px 20px;background:var(--panel2);border-left:3px solid var(--gold);border-radius:8px;color:var(--muted);font-size:.96rem}
+  footer{padding:44px 0 70px;color:var(--dim);font-size:.85rem}
+  footer p{margin:.4em 0}
+  .fish{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="rings" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+    <g stroke="#e3bd6d" stroke-opacity="0.5">
+      <circle cx="300" cy="300" r="60" stroke-width="1"/>
+      <circle cx="300" cy="300" r="120" stroke-width="1"/>
+      <circle cx="300" cy="300" r="185" stroke-width="1"/>
+      <circle cx="300" cy="300" r="250" stroke-width="1"/>
+    </g>
+    <g fill="#56cfc4" fill-opacity="0.7">
+      <circle cx="300" cy="115" r="7"/><circle cx="485" cy="300" r="10"/>
+      <circle cx="300" cy="485" r="6"/><circle cx="150" cy="180" r="5"/>
+      <circle cx="430" cy="430" r="8"/><circle cx="175" cy="420" r="4"/>
+    </g>
+    <g stroke="#e3bd6d" stroke-opacity="0.35" stroke-width="1">
+      <line x1="300" y1="300" x2="300" y2="50"/><line x1="300" y1="300" x2="530" y2="300"/>
+      <line x1="300" y1="300" x2="470" y2="470"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <span class="ey">Crop Circles Lab · private research · status report</span>
+    <h1>Measuring the<br>wheat, not the woo.</h1>
+    <p class="lede">A Friday-night forensic dive into crop formations: after the ~90% that are plank-and-rope hoaxes, is there anything measurable left? We answer with numbers and known-answer tests — and we debunk our own best cases when the data says so.</p>
+    <div class="badges">
+      <span class="badge"><b>16</b> formations catalogued</span>
+      <span class="badge"><b>35</b> known-answer tests passing</span>
+      <span class="badge"><b>2</b> freely-licensed images</span>
+      <span class="badge">repo <b>wawawee/crop-circles-lab</b> · private</span>
+      <span class="badge">updated <b>2026-07-25</b></span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="ey kicker">The stance</span>
+    <h2>Measure first. No claims without validation.</h2>
+    <p class="sub">Every estimator is validated against a known answer before it is trusted on real data. A finding only counts as "interesting" if it clears one of four bars:</p>
+    <div class="grid">
+      <div class="card"><span class="tag">bar 1 · bits</span><h3>Independent bit recovery</h3><p>Recovered message matches published plaintext at BER well below 0.25.</p></div>
+      <div class="card"><span class="tag">bar 2 · geometry</span><h3>Ratios that replicate</h3><p>Diameter/area ratios pass known-answer tests and hold up on perspective-corrected imagery.</p></div>
+      <div class="card"><span class="tag">bar 3 · lab</span><h3>Cited lab metrics</h3><p>Plant/soil numbers transcribed with citations that survive CICAP-style methodology critique.</p></div>
+      <div class="card"><span class="tag">bar 4 · control</span><h3>A control separates</h3><p>A known hoax (Chualar/NVIDIA) cleanly separates on features while candidates don't.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="ey kicker">What we built</span>
+    <h2>A reproducible, local toolkit</h2>
+    <p class="sub">Pure-Python math cores (numpy/Pillow only) plus an OpenCV computer-vision layer. Everything runs offline; every module ships with tests.</p>
+    <div class="grid">
+      <div class="card"><span class="tag">forensics · 23/23</span><h3>Hawkins ratios</h3><p>Diatonic-scale + the five Euclidean crop-circle theorems (4:3, 4:1, 2:1). Validated on synthetic exact ratios.</p></div>
+      <div class="card"><span class="tag">forensics · 4/4</span><h3>Fractal dimension</h3><p>Box-counting + lacunarity, auto linear-region fit. Validated: Koch 1.26, Sierpinski carpet 1.89, square 2.0, line 1.0.</p></div>
+      <div class="card"><span class="tag">forensics · 11/11</span><h3>Encoding verifiers</h3><p>π spiral, Crabwood ASCII, Arecibo/Chilbolton diff, and the Julia-set classifier.</p></div>
+      <div class="card"><span class="tag">ccat · 3/3</span><h3>Mask-first circle extraction</h3><p>Contour+circularity, not raw Hough. Recovers a synthetic 150-circle log-spiral 150/150 (0% error).</p></div>
+      <div class="card"><span class="tag">ccat · 6/6</span><h3>grid_analyze (GLYPH-style)</h3><p>Entropy, 2D-FFT peakiness, periodicity, symmetry, and an "absence signal" z-score vs shuffled grids.</p></div>
+      <div class="card"><span class="tag">ccat · 3/3</span><h3>Preprocess + spatial</h3><p>Perspective rectify, excess-green stubble mask; haversine monument distances + pure-Python lunar phase.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="ey kicker">Findings</span>
+    <h2>What the numbers actually say</h2>
+    <p class="sub">Two columns, because honesty cuts both ways. On the left, what held up. On the right, what we ruled out — including cases we'd hoped were anomalous.</p>
+    <div class="split">
+      <div class="panel win">
+        <h3 style="margin-top:0">✅ Held up / decoded</h3>
+        <ul class="clean">
+          <li><span class="verdict v-ok">VERIFIED</span><b>Barbury Castle π (2008)</b> — the ratcheted spiral decodes to <span class="mono">3.141592654</span>, tenth digit correctly rounded.</li>
+          <li><span class="verdict v-ok">DECODED</span><b>Crabwood (2002)</b> — 8-bit ASCII: <i>"Beware the bearers of FALSE gifts &amp; their BROKEN PROMISES…"</i> (ambiguous word + terminal flagged, not hidden).</li>
+          <li><span class="verdict v-ok">STRUCTURED</span><b>Arecibo / Chilbolton</b> — 1679 = 23×73 semiprime; reply adds silicon (Z=14), triple helix, figure ≈101 cm, planets 3-4-5.</li>
+          <li><span class="verdict v-ok">MATH</span><b>Wilton Windmill (2010)</b> — Euler's identity <span class="mono">e^(iπ)+1=0</span> in ASCII (a debated "h" glyph to re-check).</li>
+        </ul>
+      </div>
+      <div class="panel cut">
+        <h3 style="margin-top:0">🗡️ Ruled out / downgraded</h3>
+        <ul class="clean">
+          <li><span class="verdict v-warn">SUSPICIOUS</span><b>Cherhill "meteoritic iron" (1993)</b> — reportedly iron filings from a hoax/art project ("Fe3"). Source is a blog, not peer-review → <b>unverified, not debunked</b>, but off the priority list.</li>
+          <li><span class="verdict v-no">HUMAN</span><b>Stonehenge "Julia Set" (1996)</b> — <b>not</b> a true z²+c fractal; a ~149–151 circle log-spiral. Rod Dickinson confessed to a ~2h45m overnight build.</li>
+          <li><span class="verdict v-no">NULL</span><b>Logan / Eltopia (C3)</b> — no usable aerial imagery exists publicly; the burned-crop question lives in lab data, not computer vision.</li>
+          <li><span class="verdict v-no">CATEGORY ERROR</span><b>DNA / ancient-script "decoders"</b> — crop circles have no real DNA or symbol corpus; the "DNA helix" is a shape. Skipped as pseudo-science.</li>
+        </ul>
+      </div>
+    </div>
+    <blockquote style="margin-top:20px"><span class="fish">🐟 Hecklefish:</span> "bäääh — the fact that we can debunk our own strongest cases means we're doing science right."</blockquote>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="ey kicker">Freely-licensed evidence</span>
+    <h2>The two images we can actually show</h2>
+    <p class="sub">Most aerials are copyrighted (used privately as analysis input only). These two are Creative-Commons and safe to display — and they're the most information-rich ones we have.</p>
+    <div class="split">
+      <figure>
+        <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Lucy_Pringle_Aerial_Shot_of_Pi_Crop_Circle_-_panoramio.jpg" alt="Barbury Castle Pi crop formation, aerial">
+        <figcaption><b>Barbury Castle, 2008 — π to 10 figures.</b> The 10 radial arcs give the digits 3.141592654. <span class="cc">CC-BY 3.0</span> Lucy Pringle / Panoramio via Wikimedia Commons.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Chilbolton_crop_circle1.png" alt="Chilbolton Arecibo-reply message reconstruction, 23x73 bitmap">
+        <figcaption><b>Chilbolton "Arecibo reply", 2001 — reconstruction.</b> Pixel-accurate 23×73 bitmap of the message panel; our clean input for the grid + encoding checks. <span class="cc">CC-BY-SA 3.0</span> Wikimedia User:Marco94 (diagram, not a photo).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="ey kicker">The catalog</span>
+    <h2>16 formations, one measuring stick</h2>
+    <p class="sub">Nearest ancient monument (great-circle km) and Moon illumination on the date — a sorting aid, not a claim. Note the caveat below the table.</p>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Formation</th><th>Yr</th><th>Location</th><th>Type</th><th>Nearest monument</th><th>Moon</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Julia Set</td><td class="mono">1996</td><td>Stonehenge, Wilts</td><td>fractal</td><td class="mono">Stonehenge · 0.05 km</td><td class="mono">0.65</td><td><span class="no">human</span></td></tr>
+        <tr><td>Cherhill</td><td class="mono">1993</td><td>Cherhill, Wilts</td><td>BLT/iron</td><td class="mono">Windmill Hill · 4.9 km</td><td class="mono">0.08</td><td><span class="warn">suspicious</span></td></tr>
+        <tr><td>Logan Utah</td><td class="mono">1996</td><td>Logan, Utah US</td><td>BLT/heat</td><td class="mono">— · 7650 km</td><td class="mono">0.64</td><td><span class="no">no image</span></td></tr>
+        <tr><td>Edmonton</td><td class="mono">1999</td><td>Alberta, CA</td><td>BLT/xrd</td><td class="mono">— · 6727 km</td><td class="mono">0.21</td><td>lab-track</td></tr>
+        <tr><td>Eltopia</td><td class="mono">1998</td><td>Washington US</td><td>BLT</td><td class="mono">— · 7591 km</td><td class="mono">0.41</td><td>300px only</td></tr>
+        <tr><td>Chualar (NVIDIA)</td><td class="mono">2013</td><td>California US</td><td>known hoax</td><td class="mono">— · 8607 km</td><td class="mono">—</td><td><span class="ok">control</span></td></tr>
+        <tr><td>DNA helix</td><td class="mono">1996</td><td>Alton Barnes, Wilts</td><td>complex</td><td class="mono">Adam's Grave · 0.7 km</td><td class="mono">0.01</td><td>geometry</td></tr>
+        <tr><td>Chilbolton reply</td><td class="mono">2001</td><td>Chilbolton, Hants</td><td>message</td><td class="mono">Chilbolton · 0.0 km</td><td class="mono">0.19</td><td><span class="ok">CC img</span></td></tr>
+        <tr><td>Milk Hill Galaxy</td><td class="mono">2001</td><td>Milk Hill, Wilts</td><td>fractal/409</td><td class="mono">Adam's Grave · 1.7 km</td><td class="mono">0.48</td><td>geometry</td></tr>
+        <tr><td>Barbury Pi</td><td class="mono">2008</td><td>Barbury, Wilts</td><td>math/π</td><td class="mono">Barbury · 0.0 km</td><td class="mono">0.09</td><td><span class="ok">π verified</span></td></tr>
+        <tr><td>The Cube</td><td class="mono">1999</td><td>Allington, Wilts</td><td>3D</td><td class="mono">Adam's Grave · 6.0 km</td><td class="mono">—</td><td>geometry</td></tr>
+        <tr><td>Windmill Hill Triple</td><td class="mono">1996</td><td>Avebury, Wilts</td><td>fractal</td><td class="mono">Windmill Hill · 0.0 km</td><td class="mono">0.97</td><td>geometry</td></tr>
+        <tr><td>Wilton Windmill</td><td class="mono">2010</td><td>Wilton, Wilts</td><td>math/Euler</td><td class="mono">Adam's Grave · 22.8 km</td><td class="mono">0.62</td><td><span class="ok">ASCII</span></td></tr>
+        <tr><td>Poirino "Ea Enki"</td><td class="mono">2011</td><td>Turin, Italy</td><td>message</td><td class="mono">— · 969 km</td><td class="mono">0.84</td><td>ASCII todo</td></tr>
+        <tr><td>Poirino E=mc²</td><td class="mono">2010</td><td>Turin, Italy</td><td>message</td><td class="mono">— · 976 km</td><td class="mono">0.01</td><td>ASCII todo</td></tr>
+        <tr><td>Jellyfish</td><td class="mono">2009</td><td>Oxfordshire</td><td>biomorphic</td><td class="mono">Barbury · 14.9 km</td><td class="mono">0.24</td><td>phi test</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <blockquote style="margin-top:18px">🗡️ <b>Honest caveat:</b> 9 of 16 sit within 30 km of Avebury — but that is <b>selection bias</b>, not signal. Crop circles <i>are</i> concentrated in Wiltshire and our catalog is UK-heavy, so "nearness to a monument" mostly measures where people make and photograph circles. Coordinates are approximate. The column is a sorting aid; it proves nothing on its own.</blockquote>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="ey kicker">Open threads</span>
+    <h2>What's next</h2>
+    <div class="split">
+      <div class="panel">
+        <h3 style="margin-top:0">Local (Cursor) — needs the images / hardware</h3>
+        <ul class="clean">
+          <li><b>B1</b> Crabwood disc crop → drive ASCII BER below 0.4</li>
+          <li><b>B2</b> Chilbolton 73×23 bbox → clean bitmap → grid_analyze</li>
+          <li><b>B6</b> known-hoax vs candidate feature classifier (Chualar control)</li>
+          <li><b>B10</b> stegoVeritas tamper/ELA screen (hoax detection only)</li>
+          <li><b>B11</b> Decipher — classical-cipher negative control</li>
+          <li><b>B8</b> local vision-LLM triage (countable geometry only)</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 style="margin-top:0">Owner / blocked</h3>
+        <ul class="clean">
+          <li><b>C1</b> hi-res Crabwood disc master (paid archive)</li>
+          <li><b>C2</b> Levengood / Physiologia Plantarum PDFs + independent EDS</li>
+          <li><b>C3</b> true overhead Logan / Eltopia — <span class="no">null result</span> so far</li>
+          <li><b>C4</b> public release would need image licences</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="ey kicker">Build log</span>
+    <h2>Commits</h2>
+    <div class="timeline">
+      <div><b>2f3b0ec</b> &nbsp;<span>spatial catalog</span> — formations.csv + coordinates.json + spatial_report.py</div>
+      <div><b>367ddcb</b> &nbsp;<span>B4</span> — mask-first circle_extract (150/150 synthetic)</div>
+      <div><b>2a5549c</b> &nbsp;<span>B3</span> — crop_stubble_mask + perspective CLI</div>
+      <div><b>250ae05</b> &nbsp;<span>B9 + tools triage</span> — grid_analyze + TOOLS_EVAL.md</div>
+      <div><b>7cd0d0c</b> &nbsp;<span>hunt v1</span> — NOTICE.md + hires_sources.json</div>
+      <div><b>7d2d4de</b> &nbsp;<span>hunt v2</span> — Chilbolton CC reconstruction, Milk Hill 2000px, Poirino ×2</div>
+      <div><b>5b4352c</b> &nbsp;<span>+4 formations</span> — Wilton, Poirino ×2, Jellyfish → 16 total</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Working hypothesis:</b> no hidden information beyond the known, human-made encodings — but we prove it with numbers, not vibes.</p>
+    <p>Prior art &amp; sparring partners: Gerald S. Hawkins (diatonic ratios + theorems); the BLT Research Team / Levengood &amp; Talbott (plant biophysics); Richard Taylor (microwave hypothesis); CICAP (skeptical counterpoint, treated as evidence not enemy).</p>
+    <p style="color:var(--muted)">Private, non-commercial research. Copyrighted aerials are analysis input only and are not redistributed; the two images shown are Creative-Commons with attribution. Not affiliated with any of the above. An analysis tool, not a belief system. 🛸</p>
+  </div>
+</footer>
+
+</body>
+</html>
