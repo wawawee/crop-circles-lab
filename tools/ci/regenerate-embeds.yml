@@ -1,0 +1,54 @@
+# ⚠️  ACTIVATION: move this file to .github/workflows/regenerate-embeds.yml
+# It is staged here because the connected GitHub integration lacks the
+# 'workflows' permission scope needed to write under .github/workflows/.
+# In GitHub: New file -> path .github/workflows/regenerate-embeds.yml -> paste -> commit.
+
+name: Regenerate findings embeds
+
+# Keeps reports/findings_data.embed.js and mission_status embeds in sync with
+# outputs/ automatically. Runs only when source data or the generators change.
+# Loop-safe: commits use the default GITHUB_TOKEN, whose pushes do NOT trigger
+# new workflow runs, and the commit message carries [skip ci] as belt-and-suspenders.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'outputs/**'
+      - 'data/catalog/**'
+      - 'data/beyond/**'
+      - 'tools/mission_status.py'
+      - 'tools/build_findings.py'
+      - 'tools/astro/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regenerate-embeds
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Regenerate mission status + findings data
+        run: |
+          python tools/mission_status.py
+          python tools/build_findings.py
+      - name: Commit regenerated embeds if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No embed changes — nothing to commit."
+          else
+            git commit -m "chore(embeds): regenerate mission_status + findings data [skip ci]"
+            git push
+          fi
