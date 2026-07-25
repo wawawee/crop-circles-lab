@@ -41,7 +41,8 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed + **Ozma interpretation pass (PR)** — μ↔(6−μ) one-horn degeneracy, PHL@UPR 2024 natural H-cloud, N=6 gives zero power to infer artificiality; NOTES deepened in `outputs/radio/NOTES.md` |
 | **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟢 **merged** — UNDERDETERMINED (z≈−2.0, <3σ); Big Dipper/Orion KA separate; selection-bias caveat. `outputs/betty_hill/` |
-| **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
+| **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟢 **landed locally** — STRUCTURE_SIGNAL; open PR on `feat/g9-indus-symbolseq` for Cursor merge |
+| **G10** | **Minimax M3** | Voynich morphology (structure-only) | symbolseq + shuffle; 2025 Arabic-ρ claim-under-test | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟢 **landed PR #3** — synth known-answer + honest block on real slice; no TB mirror. `outputs/radio/blc1_*.json` |
@@ -59,9 +60,11 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G7++** | 🟢 merged PR #4 — nulls hardened. |
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
 | **G2++** | 🟢 merged PR #8 — Uruk comparator. |
-| **Minimax M3** | 💤 idle (radio/Amazon/BLC1 closed). |
-| **Opencode** | 🟡 on **G9** Indus. |
-| **Cursor** | 🟢 merge gate on `main` — watching G9 |
+| **G9** | 🟢 Opencode landed locally — awaiting PR. |
+| **G10** | 🟡 M3 assigned — Voynich morphology. |
+| **Minimax M3** | 🟡 on **G10** Voynich. |
+| **Opencode** | 🟡 open **G9** PR (`feat/g9-indus-symbolseq`). |
+| **Cursor** | 🟢 merge gate on `main` — watching G9 / G10 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -71,12 +74,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G9**. **Minimax M3** = idle (G2++ done). **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G9** PR. **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G9 (Opencode). Captain on Gemini/Kimi research trail. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G9 PR (Opencode), G10 (M3). Captain on Gemini/Kimi research trail. |
 
 ---
 
@@ -233,30 +236,47 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > Landed: UNDERDETERMINED (Hill z≈−2.0 <3σ); Big Dipper z≈−3.2 + Orion Belt z≈−2.8 KA separate.
 > Selection-bias (Fish from ~330) uncorrected — honest.
 
-### G9 — Opencode (ASSIGNED 2026-07-25) — Indus script structure
+### G9 — Opencode (🟢 LANDED locally 2026-07-25 — open PR) — Indus script structure
+> Landed: `tools/scripts/indus_probe.py` + 24/24 tests. 179 sequences (1003 signs,
+> 182 distinct Parpola signs) from Mohenjo-daro (mayig CISI digitisation, MIT).
+> z=−22.9 cond-H vs unigram-matched shuffle; z=−27.0 transition-graph density vs
+> degree-preserving (M77-style) positional null. Formulaic segment P122+P385 ×29
+> across 29 sequences. Verdict: STRUCTURE_SIGNAL | CONDITIONAL_STRUCTURE |
+> GRAPH_DEVIATES_FROM_NULL. No decipherment, no language-family claims.
+>
+> **Caveats:** (1) Mohenjo-daro only — Harappa/Kalibangan not yet in open corpus.
+> (2) Avg sequence length 5.6 signs — short seal inscriptions may reflect
+> administrative templates, not natural language. (3) ICIT/Mahadevan corpora
+> require per-request access — not bundled. (4) No published formulaic segment
+> was recovered from literature for known-answer; `P122+P385` emerges empirically
+> from this corpus.
+>
+> **Forbidden phrases enforced in probe.** Branch: `feat/g9-indus-symbolseq` — **open PR for Cursor merge**.
+
+### G10 — Minimax M3 (ASSIGNED 2026-07-25) — Voynich morphology (structure-only)
 > Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
-> Scout: `docs/research_leads_merged_2026-07-25.md` (Indus ASR-net vs M77).
-> **Why you:** G1/G4 were exemplary. Same `symbolseq` stack; Indus is the next undeciphered corpus.
-> Do NOT touch Amazon, BLC1, radio, G2++ (M3), or bio.
+> Scout: `docs/research_leads_merged_2026-07-25.md` (Voynich 2025 Zenodo morphology).
+> Do NOT touch radio, BLC1, Amazon, G9 (Opencode), or Indus files.
 >
-> 1. Ingest **open** Indus sign streams (e.g. ICIT / Mahadevan / Wells corpora as available
->    with clear license — small text/JSON only). Save under `data/scripts/indus/` + README
->    (attribution, encoding, which seal/tablet sets). No huge image dumps.
-> 2. Reuse `tools/forensics/symbolseq.py` (+ thin `tools/scripts/indus_probe.py` if needed).
->    Do **not** fork a second entropy stack.
+> 1. Ingest a **small open** Voynich transcription (EVA / Takahashi / Landini–Zandbergen
+>    or 2025 Zenodo morphology dump). Save under `data/scripts/voynich/` + README
+>    (attribution, encoding, which folios). No multi-GB page images.
+> 2. Reuse `tools/forensics/symbolseq.py` (+ thin `tools/scripts/voynich_probe.py`).
+>    Do NOT fork a second entropy stack.
 > 3. Core tests:
->    - Positional / bigram / conditional entropy vs **unigram-matched shuffle**.
->    - Optional: short “ASR-net”-style co-occurrence / transition graph stats vs
->      degree-preserving null (M77 / random graph baseline — document which).
->    - Known-answer: if a published formulaic Indus segment exists in a citable source,
->      test recovery; else document absence. Optional Linear B / PE-numeral control
->      only as structure calibration (not language claim).
-> 4. Outputs: `outputs/indus/{run.json,NOTES.md}`. Board G9 → 🟢 / 🔴 BLOCKED.
-> 5. Branch `feat/g9-indus-symbolseq`. PR for Cursor merge gate.
-> Forbidden: decipherment, Dravidian/IE/Sumerian language-family claims, “aliens,”
-> or treating any viral “Indus decoded” blog as ground truth.
+>    - Token / glyph stream entropy + bigram / conditional H vs **unigram-matched shuffle**.
+>    - Optional morphology features from Zenodo 2025 if present (glyph-shape clusters) —
+>      structure metrics only.
+>    - **Claim-under-test:** any 2025 “Arabic ρ / translation” claim → run the SAME
+>      pipeline; if it does not beat shuffle nulls, verdict NO_SIGNAL / UNDERDETERMINED.
+>      Never endorse decipherment.
+> 4. Known-answer: planted artificial Voynichese-like bigram structure OR Latin control
+>    of similar length must separate from its own shuffle.
+> 5. Outputs: `outputs/voynich/{run.json,NOTES.md}`. Board G10 → 🟢 / 🔴 BLOCKED.
+> 6. Branch `feat/g10-voynich-morphology`. PR for Cursor merge. No push to main.
+> Forbidden: “Voynich translated,” language ID claims, aliens, treating viral blogs as truth.
 >
-> Prefer STRUCTURE / NO_SIGNAL / UNDERDETERMINED with controls over sprawling incomplete work.
+> Prefer STRUCTURE / NO_SIGNAL / UNDERDETERMINED with controls.
 
 ### N1++ — Cursor (🟢 MERGED PR #6 2026-07-25) — bio_probe hardens
 > Landed: chrom-aware classify + `--seq-chrom`; `bins_status=skipped_seq_too_short`;
