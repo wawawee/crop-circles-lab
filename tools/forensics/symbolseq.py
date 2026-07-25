@@ -116,6 +116,60 @@ def structured_vs_shuffled(tokens, n=1000, seed=0):
             "more_structured_than_chance": obs < mu - 2 * sd}
 
 
+def find_phrase_occurrences(words, phrase):
+    """Return 0-based word indices where `phrase` equals the word (None dropped)."""
+    phrase = list(phrase)
+    hits = []
+    for i, w in enumerate(words):
+        clean = [t for t in w if t is not None] if isinstance(w, (list, tuple)) else [w]
+        if clean == phrase:
+            hits.append(i)
+    return hits
+
+
+def gaps(indices):
+    return [indices[i + 1] - indices[i] for i in range(len(indices) - 1)]
+
+
+def repeat_structure(words, min_len=2, max_len=8, min_count=2):
+    """Find repeated word-phrases and report spacing regularity.
+
+    Returns phrases sorted by (count, regularity). A phrase with constant gap
+    (e.g. every 3rd word-group) is flagged `metrical`.
+    """
+    # normalize words
+    clean_words = []
+    for w in words:
+        if isinstance(w, (list, tuple)):
+            clean_words.append(tuple(t for t in w if t is not None))
+        else:
+            clean_words.append((w,))
+
+    # count identical full word-groups
+    counts = Counter(clean_words)
+    rows = []
+    for phrase, c in counts.items():
+        if c < min_count:
+            continue
+        if not (min_len <= len(phrase) <= max_len):
+            continue
+        idx = [i for i, w in enumerate(clean_words) if w == phrase]
+        g = gaps(idx)
+        regular = bool(g) and len(set(g)) == 1
+        rows.append({
+            "phrase": list(phrase),
+            "count": c,
+            "indices": idx,
+            "gaps": g,
+            "period": g[0] if regular else None,
+            "metrical": regular,
+            "layout_hint": ("metrical / verse-like" if regular
+                            else "clustered / irregular"),
+        })
+    rows.sort(key=lambda r: (r["metrical"], r["count"], -len(r["phrase"])), reverse=True)
+    return rows
+
+
 def analyze(words, n_shuffles=1000, seed=0):
     tokens = flatten(words)
     k = len(set(tokens))
@@ -130,6 +184,7 @@ def analyze(words, n_shuffles=1000, seed=0):
         "lz78_ratio": lz78_ratio(tokens),
         "top_bigrams": [{"pair": list(p), "count": c} for p, c in top_bigrams(tokens)],
         "word_lengths": word_length_stats(words),
+        "repeat_structure": repeat_structure(words),
         "shuffled_control": structured_vs_shuffled(tokens, n=n_shuffles, seed=seed),
         "caveat": ("Necessary-not-sufficient: these statistics distinguish "
                    "'not random noise' from noise, but NOT 'undeciphered language' "

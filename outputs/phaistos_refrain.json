@@ -1,0 +1,120 @@
+{
+  "side": "A",
+  "refrain_phrase": [
+    2,
+    12,
+    31,
+    26
+  ],
+  "occurrences_1based": [
+    16,
+    19,
+    22
+  ],
+  "gaps": [
+    3,
+    3
+  ],
+  "metrical_phrases": [
+    {
+      "phrase": [
+        2,
+        12,
+        31,
+        26
+      ],
+      "count": 3,
+      "indices": [
+        15,
+        18,
+        21
+      ],
+      "gaps": [
+        3,
+        3
+      ],
+      "period": 3,
+      "metrical": true,
+      "layout_hint": "metrical / verse-like"
+    },
+    {
+      "phrase": [
+        28,
+        1
+      ],
+      "count": 2,
+      "indices": [
+        14,
+        20
+      ],
+      "gaps": [
+        6
+      ],
+      "period": 6,
+      "metrical": true,
+      "layout_hint": "metrical / verse-like"
+    },
+    {
+      "phrase": [
+        10,
+        3,
+        38
+      ],
+      "count": 2,
+      "indices": [
+        27,
+        30
+      ],
+      "gaps": [
+        3
+      ],
+      "period": 3,
+      "metrical": true,
+      "layout_hint": "metrical / verse-like"
+    },
+    {
+      "phrase": [
+        2,
+        27,
+        25,
+        10,
+        23,
+        18
+      ],
+      "count": 2,
+      "indices": [
+        13,
+        19
+      ],
+      "gaps": [
+        6
+      ],
+      "period": 6,
+      "metrical": true,
+      "layout_hint": "metrical / verse-like"
+    },
+    {
+      "phrase": [
+        2,
+        12,
+        27,
+        27,
+        35,
+        37,
+        21
+      ],
+      "count": 2,
+      "indices": [
+        16,
+        28
+      ],
+      "gaps": [
+        12
+      ],
+      "period": 12,
+      "metrical": true,
+      "layout_hint": "metrical / verse-like"
+    }
+  ],
+  "interpretation": "Period-3 refrain + recurring couplet in A14\u2013A22 reads as verse/liturgy-like layout, not an administrative ledger. Structure \u2260 decipherment."
+}

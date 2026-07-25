@@ -50,6 +50,27 @@ def test_phaistos_loads_and_is_structured():
     assert rep["shuffled_control"]["observed"] < rep["shuffled_control"]["shuffled_mean"]
 
 
+def test_phaistos_refrain_period_3():
+    """Hyper's night finding: 02 12 31 26 at A16/A19/A22 — exact period 3."""
+    import json
+    p = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "beyond",
+                     "phaistos_sequence.json")
+    data = json.load(open(p))
+    side_a = data["sides"]["A"]
+    phrase = [2, 12, 31, 26]
+    hits = S.find_phrase_occurrences(side_a, phrase)
+    # 1-based A16,A19,A22 → 0-based 15,18,21
+    assert hits == [15, 18, 21], hits
+    assert S.gaps(hits) == [3, 3]
+    rep = S.repeat_structure(side_a)
+    refrain = next(r for r in rep if r["phrase"] == phrase)
+    assert refrain["metrical"] and refrain["period"] == 3
+    # couplet 02 27 25 10 23 18 also repeats with larger spacing in the block
+    couplet = [2, 27, 25, 10, 23, 18]
+    c_hits = S.find_phrase_occurrences(side_a, couplet)
+    assert len(c_hits) >= 2
+
+
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_") and callable(v)]
     ok = 0

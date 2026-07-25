@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T03:20:48.468924+00:00",
+  "generated_at": "2026-07-25T03:47:19.098096+00:00",
   "missions": [
     {
       "id": "N0",
@@ -112,9 +112,19 @@
       "kb": 1.7
     },
     {
+      "path": "outputs/constants/constants_analysis.json",
+      "name": "constants_analysis.json",
+      "kb": 22.0
+    },
+    {
       "path": "outputs/constants/run.json",
       "name": "run.json",
       "kb": 23.7
+    },
+    {
+      "path": "outputs/constants_smoke/constants_analysis.json",
+      "name": "constants_analysis.json",
+      "kb": 17.3
     },
     {
       "path": "outputs/crabwood_bits.json",
@@ -179,7 +189,12 @@
     {
       "path": "outputs/phaistos_analysis.json",
       "name": "phaistos_analysis.json",
-      "kb": 1.4
+      "kb": 3.4
+    },
+    {
+      "path": "outputs/phaistos_refrain.json",
+      "name": "phaistos_refrain.json",
+      "kb": 1.8
     },
     {
       "path": "outputs/priority_batch.json",
@@ -205,6 +220,11 @@
       "path": "outputs/uap/demo.json",
       "name": "demo.json",
       "kb": 1.1
+    },
+    {
+      "path": "outputs/uap/run.json",
+      "name": "run.json",
+      "kb": 4.4
     },
     {
       "path": "outputs/vision/chilbolton_message_2001_tt_qwen.json",
@@ -242,5 +262,5 @@
       "kb": 2.7
     }
   ],
-  "n_outputs": 31
+  "n_outputs": 35
 }

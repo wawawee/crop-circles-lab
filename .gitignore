@@ -7,3 +7,6 @@ __pycache__/
 outputs/debug/
 # Large regenerable / optional local-only
 data/images/_hires/
+data/uap/*.webm
+outputs/local_prep/
+outputs/constants_smoke/

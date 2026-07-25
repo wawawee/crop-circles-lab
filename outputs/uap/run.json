@@ -1,0 +1,105 @@
+{
+  "demo_gentle_curve": {
+    "label": "gentle_curve",
+    "n_points": 30,
+    "duration_s": 2.9,
+    "max_speed_px_s": 34.817,
+    "max_accel_px_s2": 10.0,
+    "range_m": 10000,
+    "fov_deg": 30,
+    "frame_w": 1920,
+    "physical": {
+      "m_per_px": 2.7911,
+      "max_accel_m_s2": 27.911,
+      "max_g": 2.85
+    },
+    "flags": [
+      "NORMAL: Implied |a| \u2248 2.8 g \u2014 within broad aircraft envelope (commercial: 2.5 g, fighter: 7.5 g structural).",
+      "CAVEAT: pixel tracking cannot distinguish object motion from sensor platform motion (aircraft + gimbal slew). Without telemetry metadata, any g-claim is speculative."
+    ],
+    "stance": "UNDERDETERMINED: Without calibrated range + FOV + platform-motion separation, g-claims are not physically meaningful."
+  },
+  "demo_spike": {
+    "label": "spike",
+    "n_points": 25,
+    "duration_s": 1.2,
+    "max_speed_px_s": 1600.0,
+    "max_accel_px_s2": 32000.0,
+    "range_m": 10000,
+    "fov_deg": 30,
+    "frame_w": 1920,
+    "physical": {
+      "m_per_px": 2.7911,
+      "max_accel_m_s2": 89316.397,
+      "max_g": 9107.74
+    },
+    "flags": [
+      "CRITICAL: Implied |a| \u2248 9108 g \u2014 far exceeds known aircraft envelopes. If real, the object violates Newtonian flight. However, this ASSUMES range=10000m, fov=30\u00b0, and NO platform motion \u2014 all unknown in official footage.",
+      "CAVEAT: pixel tracking cannot distinguish object motion from sensor platform motion (aircraft + gimbal slew). Without telemetry metadata, any g-claim is speculative."
+    ],
+    "stance": "UNDERDETERMINED: Without calibrated range + FOV + platform-motion separation, g-claims are not physically meaningful."
+  },
+  "negative_controls": {
+    "synthetic_ballistic_freefall": {
+      "label": "ballistic_freefall",
+      "n_points": 30,
+      "duration_s": 1.45,
+      "max_speed_px_s": 51.923,
+      "max_accel_px_s2": 40.0,
+      "range_m": 5000,
+      "fov_deg": 2.0,
+      "frame_w": 640,
+      "physical": {
+        "m_per_px": 0.2727,
+        "max_accel_m_s2": 10.909,
+        "max_g": 1.11
+      },
+      "flags": [
+        "NORMAL: Implied |a| \u2248 1.1 g \u2014 within broad aircraft envelope (commercial: 2.5 g, fighter: 7.5 g structural).",
+        "CAVEAT: pixel tracking cannot distinguish object motion from sensor platform motion (aircraft + gimbal slew). Without telemetry metadata, any g-claim is speculative."
+      ],
+      "stance": "UNDERDETERMINED: Without calibrated range + FOV + platform-motion separation, g-claims are not physically meaningful."
+    },
+    "synthetic_aircraft_4g_turn": {
+      "label": "aircraft_4g_turn",
+      "n_points": 40,
+      "duration_s": 3.9,
+      "max_speed_px_s": 105.119,
+      "max_accel_px_s2": 64.031,
+      "range_m": 10000,
+      "fov_deg": 2.0,
+      "frame_w": 640,
+      "physical": {
+        "m_per_px": 0.5455,
+        "max_accel_m_s2": 34.927,
+        "max_g": 3.56
+      },
+      "flags": [
+        "NORMAL: Implied |a| \u2248 3.6 g \u2014 within broad aircraft envelope (commercial: 2.5 g, fighter: 7.5 g structural).",
+        "CAVEAT: pixel tracking cannot distinguish object motion from sensor platform motion (aircraft + gimbal slew). Without telemetry metadata, any g-claim is speculative."
+      ],
+      "stance": "UNDERDETERMINED: Without calibrated range + FOV + platform-motion separation, g-claims are not physically meaningful."
+    },
+    "synthetic_jerk_unphysical": {
+      "label": "jerk_(unphysical)",
+      "n_points": 25,
+      "duration_s": 0.96,
+      "max_speed_px_s": 2000.0,
+      "max_accel_px_s2": 48750.0,
+      "range_m": 10000,
+      "fov_deg": 2.0,
+      "frame_w": 640,
+      "physical": {
+        "m_per_px": 0.5455,
+        "max_accel_m_s2": 26591.7,
+        "max_g": 2711.6
+      },
+      "flags": [
+        "CRITICAL: Implied |a| \u2248 2712 g \u2014 far exceeds known aircraft envelopes. If real, the object violates Newtonian flight. However, this ASSUMES range=10000m, fov=2.0\u00b0, and NO platform motion \u2014 all unknown in official footage.",
+        "CAVEAT: pixel tracking cannot distinguish object motion from sensor platform motion (aircraft + gimbal slew). Without telemetry metadata, any g-claim is speculative."
+      ],
+      "stance": "UNDERDETERMINED: Without calibrated range + FOV + platform-motion separation, g-claims are not physically meaningful."
+    }
+  },
+  "verdict": "Demo confirms the pipeline can flag unphysical acceleration (spike => ~9100 g with assumed range/FOV). Real UAP videos cannot be assessed without telemetry metadata."
+}

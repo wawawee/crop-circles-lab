@@ -26,11 +26,11 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | ID | Owner | Mission | Deliverable | Status |
 |----|-------|---------|-------------|--------|
 | **N1** | Hyperagent | DNA/RNA 4-bit + epigenetic layer | `bio_probe`: A/C/G/T→2bit; optional 5mC/5hmC/6mA alphabet; `window_entropy` + `bitstream_probe` on SARS-CoV-2 + tiny human contig; junk vs coding entropy vs shuffle | 🟡 scaffolded — Hyper owns full FASTA runs |
-| **N2** | Opencode | UAP metadata forensics | Original DoD/DNI MPEG/MP4; EXIF/frame stamps; `uap_flight_consistency.py` Newton/G flags | 🟡 scaffolded — needs public original files (OWNER/Opencode) |
-| **N3** | Hermes | Dimensionless constants | α, μ, Ω… + diatonic ratio hunt vs random-magnitude controls | 🟡 scaffolded |
+| **N2** | Opencode | UAP metadata forensics | Original DoD/DNI MPEG/MP4; EXIF/frame stamps; `uap_flight_consistency.py` Newton/G flags | 🟢 **landed** — probe + neg-controls in repo; WebMs gitignored (~42MB, see `data/uap/README.md`); verdict: metadata poverty → g-claims underdetermined (`outputs/uap/run.json`) |
+| **N3** | Hermes | Dimensionless constants | α, μ, Ω… + diatonic ratio hunt vs random-magnitude controls | 🟢 **first probe done** — 30/136 watchlist-excluded diatonic hits within 20c vs Null A (decade) p50=32, Null B (pair-permutation) p50=30 → hit rate at-or-below both null medians. ‘Structure, not signal.’ `outputs/constants/*.csv\|json\|md` |
 | **N4** | Kimi | Archaeoastronomy | `astro_probe`: solstice/eq/moon/stars @ Göbekli/Stonehenge/Giza/Chichén + crop dates | 🟡 scaffolded — needs astropy/skyfield |
 | **N5** | Captain / Cursor | Integration dashboard | One HTML board: agent status, JSON links, mystery heatmap | 🟢 bootstrap landed |
-| **N0** | Hyper (done) | Beyond-vete first rabbit | `symbolseq` + Phaistos (H structured vs shuffle, z≈−14; ≠ message) | 🟢 `1d29eea` |
+| **N0** | Hyper → Cursor land | Beyond-vete first rabbit | `symbolseq` + Phaistos (z≈−14) + **period-3 refrain** `02 12 31 26` @ A16/A19/A22; couplet period-6; 7/7 tests | 🟢 landed locally (Hyper MCP outage; push from Cursor) |
 
 ---
 
@@ -64,9 +64,24 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 
 ### N2 Opencode — UAP
 > Locate official public GIMBAL/GOFAST/FLIR1 releases. Build `tools/uap/uap_flight_consistency.py` + frame EXIF via `exif_probe`. Flag unphysical accel if metadata supports it; else document metadata poverty. Negatives: known aircraft clip / synthetic ballistic. No alien claims.
+>
+> **N2 land (2026-07-25)**
+> - Downloaded all 3 official DoD WebM files from Wikimedia Commons (public domain): GIMBAL (34s, 640×480, 16MB), GOFAST (34s, 640×480, 19MB), FLIR1 (76s, 352×264, 4.8MB)
+> - `ffprobe` + `exiftool` scan: ZERO telemetry metadata (no range, FOV, GPS, platform state) in any official release
+> - OpenCV frame extraction (50+ frames/video): mean entropy 4.5–4.8 bits/pixel across all three
+> - `uap_flight_consistency.py` enhanced with: aircraft envelope comparison (F/A-18 7.5g structural, commercial jet 2.5g, missile 40g), synthetic negative controls (ballistic freefall ~1.1g, fighter turn ~3.6g, unphysical jerk ~2712g → flagged CRITICAL)
+> - Verdict: **metadata poverty → Newton/G claims are underdetermined.** Official releases are NGA-compressed WebM with no telemetry overlay. Original ATFLIR feeds include MIL-STD-1553 telemetry (range, azimuth, elevation) but it is stripped in public releases. GOPAST resolved as parallax by AARO (2025); GIMBAL/FLIR1 remain officially "unidentified" but unanalyzable from public data.
 
 ### N3 Hermes — Constants
 > `tools/astro/constants_probe.py`: table of dimensionless constants; correlation + Hawkins-style diatonic nearest-neighbor via `forensics/ratios`. Control: random constants same log-magnitude. Output `outputs/constants/feature_table.csv`.
+
+**Hermes / N3 — first pass landed (2026-07-25)**  
+- 15 fundamental dimensionless constants (CODATA / PDG / Planck) + Dirac LNH entries under `--set large`.  
+- Two negative-control nulls: **(A)** log-uniform within each constant’s own decade, **(B)** reciprocal-arrangement (pair-permutation, value-permuted, name-fixed).  
+- Hit totals reported **with** and **without** the famous-coincidence watchlist (selection-bias loop explicitly neutralised).  
+- Derived ratios (e.g. `α/α_G`) flagged and excluded from hit counts.  
+- Verdict on the current constant set: real hit rate ≈ random expectation → “structure, not signal.”  
+- Tests: 16/16 passing (`python3 tools/astro/tests/test_constants_probe.py`).
 
 ### N4 Kimi — Astro
 > `tools/astro/astro_probe.py` with skyfield/astropy: solstice/eq at Göbekli, Stonehenge, Giza, Chichén; lunar illum on crop dates from `formations.csv`; optional Sirius/Pleiades/Orion rise at build epochs. Random site/date control mandatory.
