@@ -66,30 +66,47 @@ except ImportError:
 
 BACKENDS = ("skyfield", "astropy", "fallback")
 
+# Deep BCE threshold — proleptic Gregorian calendar labels become unreliable
+DEEP_BCE_THRESHOLD = -2000
+
 # ---------------------------------------------------------------------------
-# site database
+# site database with documented monument axis bearings
 # ---------------------------------------------------------------------------
+# Axis conventions:
+#   - bearing_deg: direction the monument faces (0 = N, 90 = E, 180 = S, 270 = W)
+#   - Line symmetry: an axis at θ also aligns at θ + 180°
+#   - None = no single well-documented astronomical axis
 
 SITES = {
     "gobekli_tepe": {
         "lat": 37.2231, "lon": 38.9223, "elevation_m": 760,
         "epoch_year": -9600,
         "note": "Göbekli Tepe, earliest known temple complex; Enclosure D",
+        "axis_bearing_deg": None,
+        "axis_citation": None,
+        "axis_note": "No single well-documented astronomical axis for Enclosure D. Report sun azimuth only.",
     },
     "stonehenge": {
         "lat": 51.1789, "lon": -1.8262, "elevation_m": 100,
         "epoch_year": -2500,
         "note": "Stonehenge phase 3; heel stone solstice alignment",
+        "axis_bearing_deg": 51.0,
+        "axis_citation": "Ruggles, 'Astronomy in Prehistoric Britain and Ireland' (1999): axis through heel stone ~51° NE, aligned with summer solstice sunrise",
     },
     "giza_khufu": {
         "lat": 29.9792, "lon": 31.1342, "elevation_m": 60,
         "epoch_year": -2560,
         "note": "Great Pyramid of Khufu; shafts align with Orion/Thuban",
+        "axis_bearing_deg": None,
+        "axis_citation": None,
+        "axis_note": "Pyramid faces are cardinal (N-S / E-W); air shafts point to Orion/Thuban but are not a single monument axis.",
     },
     "chichen_itza": {
         "lat": 20.6843, "lon": -88.5678, "elevation_m": 30,
         "epoch_year": 800,
         "note": "El Castillo; equinox serpent shadow",
+        "axis_bearing_deg": 287.0,
+        "axis_citation": "Šprajc, 'Astronomy, Architecture, and Landscape in Prehispanic Mesoamerica' (2018): El Castillo NW staircase ~287°, equinox sunset serpent effect",
     },
 }
 
@@ -180,6 +197,7 @@ if HAS_SKYFIELD:
         """Find solstice/equinox using JPL DE441 (BCE-capable).
         Searches forward from Jan 1 of the epoch year through all four
         ecliptic longitude crossings (0°, 90°, 180°, 270°).
+        Validates each crossing by computing solar longitude at found time.
         """
         targets = [
             ("mar_equinox", 0.0),
@@ -196,13 +214,18 @@ if HAS_SKYFIELD:
             h, mi, s = int(cal[3]), int(cal[4]), int(cal[5])
             jd = _jd(y, mo, d, h + mi / 60 + s / 3600)
             doy = int(_jd(y, mo, d) - _jd(y, 1, 1)) + 1
+            validated_lon = _solar_lon_skyfield(t_found)
             result[name] = {
                 "datetime_utc": t_found.utc_strftime("%Y-%m-%dT%H:%M:%SZ"),
                 "jd": round(jd, 4),
                 "doy": doy,
+                "civil_doy": doy,
+                "validated_solar_lon_deg": round(validated_lon, 4),
             }
             t = _sf_ts.utc(y, mo, max(1, d - 5))
         result["caveat"] = None
+        if year < DEEP_BCE_THRESHOLD:
+            result["calendar_label_unreliable"] = True
         return result
 
     def _sunrise_azimuth_skyfield(lat: float, lon: float, year: int, month: int, day: int) -> dict:
@@ -591,17 +614,19 @@ def analyze_site(
     with_horizon: bool = False,
 ) -> dict:
     b = _resolve_backend(backend)
+    axis_bearing = info.get("axis_bearing_deg")
     s = {
         "name": name, "lat": info["lat"], "lon": info["lon"],
         "elevation_m": info.get("elevation_m", 50),
         "epoch_year": info["epoch_year"],
         "note": info.get("note", ""),
+        "axis_bearing_deg": axis_bearing,
+        "axis_citation": info.get("axis_citation"),
     }
 
     ep = info["epoch_year"]
     s["solstice_eq"] = find_solstice_equinox(ep, backend=backend)
 
-    # Use June 21 / Dec 21 in the epoch year
     s["jun_solstice_sunrise"] = sunrise_azimuth(info["lat"], info["lon"], ep, 6, 21, backend=backend)
     s["dec_solstice_sunrise"] = sunrise_azimuth(info["lat"], info["lon"], ep, 12, 21, backend=backend)
 
@@ -647,32 +672,73 @@ def run_random_controls(n: int = 10, backend: str = "auto") -> list[dict]:
     return [analyze_site("random_control", random_site(), backend=backend) for _ in range(n)]
 
 
-def compare_hits(real_sites: list[dict], random_controls: list[dict]) -> dict:
-    target_azimuths = [50.0, 60.0, 65.0]
+def _angular_delta_deg(a: float, b: float) -> float:
+    """Shortest absolute angular distance between two azimuths (0–360°)."""
+    d = abs(a - b) % 360
+    return min(d, 360 - d)
 
-    def is_hit(site_result: dict, tol: float = 1.5) -> bool:
+
+def _axis_alignment_delta(site: dict) -> dict | None:
+    """Compute Δaz between jun_solstice_sunrise and documented axis bearing.
+    Respects 180° line symmetry. Returns None if no axis bearing known.
+    """
+    bearing = site.get("axis_bearing_deg")
+    if bearing is None:
+        return None
+    try:
+        az = site.get("jun_solstice_sunrise", {}).get("sunrise_az_deg")
+        if az is None or (isinstance(az, float) and math.isnan(az)):
+            return None
+        d0 = _angular_delta_deg(az, bearing)
+        d180 = _angular_delta_deg(az, (bearing + 180) % 360)
+        return {"axis_bearing_deg": bearing, "delta_az_deg": round(min(d0, d180), 2)}
+    except Exception:
+        return None
+
+
+def compare_bearing_alignments(real_sites: list[dict], random_controls: list[dict]) -> dict:
+    """Compare solstice sunrise alignment to documented monument axis bearings.
+    Replaces previous weak 50/60/65° hit proxy.
+    """
+    real_aligned = []
+    real_unknown = []
+    for site in real_sites:
+        d = _axis_alignment_delta(site)
+        if d is not None:
+            real_aligned.append({**d, "name": site.get("name")})
+        else:
+            az = site.get("jun_solstice_sunrise", {}).get("sunrise_az_deg")
+            real_unknown.append({"name": site.get("name"), "sunrise_az_deg": az,
+                                 "note": site.get("axis_note", "No known axis bearing")})
+
+    rand_deltas = []
+    for ctrl in random_controls:
+        rand_bearing = rnd.uniform(0, 180)
         try:
-            az = site_result.get("jun_solstice_sunrise", {}).get("sunrise_az_deg", float("nan"))
-            if math.isnan(az):
-                return False
-            return any(abs(az - t) <= tol for t in target_azimuths)
+            az = ctrl.get("jun_solstice_sunrise", {}).get("sunrise_az_deg")
+            if az is None or (isinstance(az, float) and math.isnan(az)):
+                continue
+            d0 = _angular_delta_deg(az, rand_bearing)
+            d180 = _angular_delta_deg(az, (rand_bearing + 180) % 360)
+            rand_deltas.append(min(d0, d180))
         except Exception:
-            return False
+            continue
 
-    real_hits = sum(1 for r in real_sites if is_hit(r))
-    random_hits = sum(1 for r in random_controls if is_hit(r))
+    real_deltas = [d["delta_az_deg"] for d in real_aligned]
 
     return {
-        "n_real": len(real_sites),
-        "n_real_hits": real_hits,
-        "real_hit_rate": round(real_hits / max(1, len(real_sites)), 3),
+        "method": "axis-bearing alignment (Δaz vs documented monument axis)",
+        "n_real_with_axis": len(real_aligned),
+        "n_real_unknown_axis": len(real_unknown),
+        "real_axis_alignments": real_aligned,
+        "real_unknown_axis_sites": real_unknown,
+        "real_mean_delta_deg": round(sum(real_deltas) / max(1, len(real_deltas)), 2) if real_deltas else None,
         "n_random": len(random_controls),
-        "n_random_hits": random_hits,
-        "random_hit_rate": round(random_hits / max(1, len(random_controls)), 3),
-        "note": "Hit: solstice sunrise azimuth within 1.5° of 50°/60°/65°",
-        "verdict": (
-            "Signal separation" if real_hits > random_hits * 2
-            else "No separation from random — structure, not signal."
+        "random_mean_delta_deg": round(sum(rand_deltas) / max(1, len(rand_deltas)), 2) if rand_deltas else None,
+        "note": (
+            "Small-n descriptive only; no signal claim. Δaz ≤ 5° would indicate plausible alignment."
+            if len(real_aligned) < 5
+            else None
         ),
     }
 
@@ -692,7 +758,7 @@ def run_probe(
     newish = sum(1 for r in lunar if r["lunar_illum"] <= 0.2)
 
     random_ctrl = run_random_controls(random_controls_n, backend=backend)
-    comparison = compare_hits(list(sites.values()), random_ctrl)
+    comparison = compare_bearing_alignments(list(sites.values()), random_ctrl)
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -707,12 +773,15 @@ def run_probe(
             "new_moon_ratio": round(newish / max(1, len(lunar)), 3),
             "note": "Small sample; do not claim lunar preference without larger catalog.",
         },
+        "bearing_alignments": comparison,
         "random_controls": {
             "n": random_controls_n,
-            "comparison": comparison,
             "sample": random_ctrl[:5],
         },
-        "verdict": comparison["verdict"] + " No alien/divine claims. Report geometric facts.",
+        "verdict": (
+            "N4++ axis-bearing alignment — see bearing_alignments for Δaz values. "
+            "No alien/divine claims. Geometry ≠ intent."
+        ),
     }
 
 
@@ -749,7 +818,7 @@ def main() -> None:
         "backend": result.get("backend", "?"),
         "sites": list(result.get("sites", {})) if "sites" in result else ["demo"],
         "crop_lunar_summary": result.get("crop_lunar_summary"),
-        "random_controls_comparison": result.get("random_controls", {}).get("comparison"),
+        "bearing_alignments": result.get("bearing_alignments"),
     }, indent=2))
     print(f"wrote {path}", file=sys.stderr)
 
