@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-25T06:30:10.260462+00:00",
-  "mission": "G7",
+  "generated_at": "2026-07-25T10:49:48.563361+00:00",
+  "mission": "G7++",
   "dataset": {
     "source": "Cabrero et al. 2023, CC BY 4.0",
     "doi": "10.5281/zenodo.10049759",
@@ -50,14 +50,185 @@
       "p": 0.0
     }
   },
+  "per_tomb_solar_alignment": {
+    "epoch_year": -3000,
+    "n_tombs": 108,
+    "dates": {
+      "jun_solstice": {
+        "mean_delta": 60.48,
+        "median_delta": 60.79,
+        "std_delta": 28.46,
+        "min_delta": 3.19,
+        "max_delta": 119.78,
+        "hit_rate_10deg": 0.037,
+        "hit_rate_15deg": 0.0741,
+        "hit_rate_20deg": 0.0926,
+        "mean_sunrise_az": 59.21,
+        "n_valid": 108,
+        "delta_histogram": {
+          "bins": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            30,
+            45,
+            60,
+            90,
+            180
+          ],
+          "counts": [
+            1,
+            3,
+            4,
+            2,
+            7,
+            14,
+            22,
+            38,
+            17
+          ]
+        }
+      },
+      "dec_solstice": {
+        "mean_delta": 27.62,
+        "median_delta": 20.87,
+        "std_delta": 24.7,
+        "min_delta": 0.14,
+        "max_delta": 120.88,
+        "hit_rate_10deg": 0.2685,
+        "hit_rate_15deg": 0.3981,
+        "hit_rate_20deg": 0.463,
+        "mean_sunrise_az": 120.86,
+        "n_valid": 108,
+        "delta_histogram": {
+          "bins": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            30,
+            45,
+            60,
+            90,
+            180
+          ],
+          "counts": [
+            17,
+            12,
+            14,
+            7,
+            17,
+            20,
+            12,
+            5,
+            4
+          ]
+        }
+      },
+      "mar_equinox": {
+        "mean_delta": 36.58,
+        "median_delta": 34.19,
+        "std_delta": 23.88,
+        "min_delta": 1.31,
+        "max_delta": 91.32,
+        "hit_rate_10deg": 0.1574,
+        "hit_rate_15deg": 0.213,
+        "hit_rate_20deg": 0.3056,
+        "mean_sunrise_az": 91.31,
+        "n_valid": 108,
+        "delta_histogram": {
+          "bins": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            30,
+            45,
+            60,
+            90,
+            180
+          ],
+          "counts": [
+            9,
+            8,
+            6,
+            10,
+            14,
+            27,
+            14,
+            18,
+            2
+          ]
+        }
+      }
+    },
+    "null_uniform_bearing": {
+      "n_iterations": 1000,
+      "seed": 42,
+      "jun_solstice": {
+        "mean_delta_uniform": 50.349,
+        "sd_delta_uniform": 3.306,
+        "z_vs_uniform": -3.065
+      },
+      "dec_solstice": {
+        "mean_delta_uniform": 50.4,
+        "sd_delta_uniform": 3.256,
+        "z_vs_uniform": 6.996
+      },
+      "mar_equinox": {
+        "mean_delta_uniform": 44.966,
+        "sd_delta_uniform": 2.476,
+        "z_vs_uniform": 3.387
+      }
+    },
+    "null_shuffled": {
+      "n_iterations": 200,
+      "seed": 42,
+      "note": "Degenerate null \u2014 sunrise azimuth varies <0.5\u00b0 across the site, so bearing permutation does not change the mean \u0394.  Uniform-bearing null is more informative.",
+      "jun_solstice": {
+        "mean_delta_shuffled": 60.478,
+        "sd_delta_shuffled": 0.0,
+        "z_vs_shuffled": 3.3
+      },
+      "dec_solstice": {
+        "mean_delta_shuffled": 27.618,
+        "sd_delta_shuffled": 0.001,
+        "z_vs_shuffled": 2.558
+      },
+      "mar_equinox": {
+        "mean_delta_shuffled": 36.575,
+        "sd_delta_shuffled": 0.0,
+        "z_vs_shuffled": 184.896
+      }
+    },
+    "best_alignment": {
+      "best_date": "dec_solstice",
+      "mean_delta": 27.62,
+      "median_delta": 20.87,
+      "hit_rate_15deg": 0.3981
+    }
+  },
   "spatial_clustering": {
     "n_points": 151,
     "observed_mean_nnd_km": 0.1179,
+    "negative_control_convex_hull": {
+      "n_iterations": 200,
+      "n_hull_vertices": 10,
+      "mean_nnd_km": 0.3649,
+      "sd_nnd_km": 0.0159,
+      "z_vs_convex_hull": -15.572,
+      "note": "Convex hull of tomb locations constrains null to the river-valley corridor, avoiding the biased rectangular-bbox plateau sampling."
+    },
     "negative_control_uniform": {
       "n_iterations": 200,
       "mean_nnd_km": 0.6173,
       "sd_nnd_km": 0.0256,
-      "z_vs_uniform": -19.492
+      "z_vs_uniform": -19.492,
+      "note": "Rectangular-bbox null \u2014 KNOWN BIASED (includes unsuitable high-plateau areas). Retained for reference only."
     }
   },
   "solar_alignment": {
@@ -91,7 +262,7 @@
       "corridor mean 117\u00b0 vs dec solstice 124\u00b0 (\u0394=7\u00b0)"
     ]
   },
-  "verdict": "ORIENTATION_STRUCTURE | SPATIAL_CLUSTER_UNDERDETERMINED | CONTROL_SEPARATED",
-  "interpretation": "Corridor orientations are strongly non-uniform (E/SE dominant, 85/108 \u2248 79%), which is typical for Mediterranean megalithic corridors facing the rising sun.  The corridor circular mean (117\u00b0) is closer to the December solstice sunrise (124\u00b0) than the June solstice (79\u00b0), but this is also consistent with a generic SE bias \u2014 astronomical intent is underdetermined.  The uniform-random control confirms the orientation structure is real (z vs uniform = 17.8), but the interpretation as intentional astronomical alignment requires independent evidence.  Spatial NND is lower than uniform-rectangle expectation (z < -10), but this is expected for a river-valley survey \u2014 the rectangular bbox null includes areas of unsuitable terrain.  Verdict: ORIENTATION_STRUCTURE, astronomical alignment UNDERDETERMINED.",
-  "caveat": "Corridor orientation is only measurable for ~108/151 tombs (those with preserved corridors).  Solar azimuths computed for epoch -3000 with \u00b11\u00b0 ephemeris precision; precession over the megalithic period (~4000\u20132000 BCE) shifts solstice azimuth by <1\u00b0.  The 'alignment' comparison is illustrative, not a claim."
+  "verdict": "ORIENTATION_STRUCTURE | SPATIAL_CLUSTER_UNDERDETERMINED | CONTROL_SEPARATED | PER_TOMB_UNDERDETERMINED",
+  "interpretation": "Corridor orientations are strongly non-uniform (E/SE dominant, 85/108 \u2248 79%), typical for Mediterranean megalithic corridors facing the rising sun.\n\nRayleigh: R=0.8213, z=72.85, p\u22480 \u2014 confirmed orientation structure (z vs uniform circular = 17.8).\n\n--- G7++ per-tomb solar alignment ---\nFavourites: Dec solstice \u2014 mean \u0394=27.62\u00b0, median=20.87\u00b0, hit rate @15\u00b0=40% (108/108 tombs).  Jun solstice: mean \u0394=60.48\u00b0.\nUniform-bearing null (1000\u00d7) vs Dec: null mean \u0394=50.4\u00b0, z=6.996.  The Dec solstice alignment separates from random orientation (z\u22487), but ~60% of tombs miss the 15\u00b0 window \u2014 consistent with a generic SE bias toward the winter sunrise arc rather than precision targeting.\n\n--- G7++ valley-aware spatial null ---\nConvex hull NND: z=-15.57 (vs -19.49 for rectangular bbox).  The convex hull constrains null points to the river-valley corridor traced by the tombs themselves.  z is still negative (tomb spacing denser than hull-uniform expectation) but less extreme than the rectangular null which inflated the bias by sampling high plateau.\nRemaining: slope/aspect filtering within the hull would need a DEM.\n\nVerdict: ORIENTATION_STRUCTURE confirmed.  Per-tomb alignment favours Dec solstice (mean \u0394=27.62\u00b0, z vs uniform = 6.996), but this is largely driven by the SE corridor bias \u2014 PER_TOMB_UNDERDETERMINED.  Convex hull spatial null reduces the exaggerated clustering signal of the rectangular bbox; spatial cluster remains UNDERDETERMINED.",
+  "caveat": "Corridor orientation is only measurable for ~108/151 tombs (those with preserved corridors).  Solar azimuths computed for epoch -3000 with \u00b11\u00b0 ephemeris precision; precession over the megalithic period (~4000\u20132000 BCE) shifts solstice azimuth by <1\u00b0.  The 'alignment' comparison is illustrative, not a claim.  Convex hull null improves on the rectangular bbox but still does not model micro-topographic suitability (slope, aspect) \u2014 a true valley-aware null would require a DEM."
 }
