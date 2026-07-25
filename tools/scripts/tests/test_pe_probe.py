@@ -198,6 +198,101 @@ def test_forbidden_phrases_listed() -> None:
         assert needle in PE.FORBIDDEN_PHRASES, f"missing forbidden phrase: {needle}"
 
 
+# ============================================================================
+# G2++ — Uruk III SFU comparator tests
+# ============================================================================
+
+def test_uruk_synthetic_invariants_pass() -> None:
+    """G2++ Uruk synth uses DIFFERENT sign pool from PE; same 4 invariants
+    should still pass — confirming the invariants describe a SHARED
+    accounting-tablet FORMAT, not a script-specific artefact."""
+    rep = PE.run_uruk_synthetic(seed=0, n_shuffles=500)
+    assert rep["mission"] == "G2++"
+    inv = rep["invariants"]["invariants"]
+    assert inv["header_numeral_void"], "Uruk header should have zero numerals"
+    assert inv["header_fraction_bounded"], "Uruk header fraction must be bounded"
+    assert inv["numeral_block_predictable"], "Uruk numeral blocks should collapse H(next|n)"
+    assert inv["z_lock_vs_shuffle"], "Uruk line cond-H should beat shuffle"
+    assert rep["invariants"]["all_pass"] is True
+
+
+def test_uruk_atf_tokenizer_handles_cuneiform_numerals() -> None:
+    """Uruk III proto-cuneiform numerals share the N-tag system with PE —
+    the G2 NUMERAL_RE must accept them, and parse_pe_atf must drop
+    Sumerian transliteration determiners (e.g. trailing subscript digits)."""
+    # Same parenthesised / clean-form coverage as G2.
+    for tok in ("1(N01)", "2(N04)", "5(N19)", "7(N39)", "8(N46)",
+                "1N01", "2N04", "5N19"):
+        assert PE.is_numeral_sign(tok), f"Uruk cuneiform numeral not recognised: {tok!r}"
+    # Sumerian transliteration: a header line + entries.
+    atf = (
+        "#atf: lang en\n"
+        "@tablet\n"
+        "@obverse\n"
+        "&W 14306,a = Uruk III\n"
+        "1. d lu2 ki sag engar 1(N01) 1(N01) mana 2(N04) gurus 3(N19)\n"
+        "2. urudu tug2 5(N39) se 8(N46)\n"
+    )
+    toks = PE.parse_pe_atf(atf)
+    # Expect ~6 header text signs then numerals + commodities.
+    assert "d" in toks and "lu2" in toks and "ki" in toks, f"Uruk header missing: {toks}"
+    assert "1N01" in toks and "2N04" in toks and "mana" in toks, \
+        f"Uruk line tokens missing: {toks}"
+
+
+def test_uruk_bundled_corpus_user_override() -> None:
+    """USER_OVERRIDE bundled Uruk JSON with ATF text parses + invariants run."""
+    td = Path(tempfile.mkdtemp(prefix="uruk_bundled_"))
+    try:
+        corpus = td / "uruk_corpus.json"
+        corpus.write_text(json.dumps([
+            {"cdli_id": "W 14306,a",
+             "atf": PE.synth_uruk_ledger_atf("W 14306,a")},
+        ]))
+        rep = PE.run_uruk_bundled(corpus, n_shuffles=300, seed=0)
+        assert rep["n_input_tokens"] > 0
+        assert rep["mission"] == "G2++"
+        assert rep["invariants"]["all_pass"] is True, \
+            f"bundled Uruk synth should pass: {rep['invariants']}"
+        assert rep["per_tablet"] == [{"cdli_id": "W 14306,a",
+                                       "n_tokens": rep["n_input_tokens"]}]
+    finally:
+        shutil.rmtree(td, ignore_errors=True)
+
+
+def test_uruk_compare_pe_vs_uruk_no_language_claim() -> None:
+    """Comparison dict MUST exist with both/all_pass, numerical diffs, AND a
+    `language_family_claim_made: False` gate. No banned phrase in the
+    comparison dict (we verify by scanning the rendered Markdown)."""
+    rep = PE.run_compare_pe_vs_uruk_main(seed=0, n_shuffles=300)
+    assert rep["mission"] == "G2++"
+    cmp = rep["compare_pe_vs_uruk"]
+    sh = cmp["shared_ledger_structure"]
+    assert sh["pe_all_pass"] is True
+    assert sh["uruk_all_pass"] is True
+    assert sh["both_pass"] is True
+    assert sh["all_invariants_match"] is True
+    assert cmp["language_family_claim_made"] is False
+    diffs = cmp["numerical_diffs_no_language_claim"]
+    for key in ("header_h1_diff_bits", "line_cond_h_diff_bits",
+                "lz78_ratio_diff", "shuffled_z_diff"):
+        assert key in diffs, f"missing diff field: {key}"
+    # Rendered Markdown must NOT contain any banned phrase.
+    md = PE.write_uruk_notes_md(rep)
+    for phrase in PE.FORBIDDEN_PHRASES:
+        assert phrase not in md, \
+            f"forbidden phrase {phrase!r} leaked into G2++ NOTES.md"
+
+
+def test_uruk_sfu_subset_sum_skipped() -> None:
+    """SFU/subset-sum probe MUST surface SKIPPED_PER_BRIEF_NON_TRIVIAL
+    status (Captain brief: 'Optional SFU/subset-sum only if trivial; else SKIP')."""
+    out = PE.sfu_subset_sum_probe([])
+    assert out["status"] == "SKIPPED_PER_BRIEF_NON_TRIVIAL"
+    assert "Captain brief" in out["note"], "SKIP note must cite the Captain brief"
+    assert "tokens_analyzed" in out
+
+
 # --- main() ----------------------------------------------------------------
 
 if __name__ == "__main__":

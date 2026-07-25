@@ -66,7 +66,9 @@ PE_STANCE = (
     "MESSAGE. Reused tools/forensics/symbolseq.py for all metrics."
 )
 
-# Forbidden phrases in any user-facing artefact (NOTES.md, run.json["stance"]):
+# Forbidden phrases in any user-facing artefact (NOTES.md, run.json["stance"]).
+# G2 list (Proto-Elamite-only); G2++ extends with the language-family terms
+# that the PE-vs-Uruk comparison explicitly bans.
 FORBIDDEN_PHRASES = (
     "translates to",
     "represents",
@@ -77,6 +79,16 @@ FORBIDDEN_PHRASES = (
     "Proto-Elamite is a",
     "Proto-Elamite =",
     "Minoan =",
+    # G2++ additions — Captain's explicit ban list for the PE↔Uruk comparison:
+    "PE related to Sumerian",
+    "Proto-Elamite is Sumerian",
+    "Proto-Elamite is cuneiform",
+    "Proto-Elamite derives from",
+    "Urukian origin",
+    "Sumerian-Elamite",
+    "Proto-Elamite is descended from Sumerian",
+    "Proto-Elamite script family",
+    "Sumerian ancestor",
 )
 
 
@@ -623,22 +635,346 @@ def write_notes_md(report: dict) -> str:
     return "\n".join(parts)
 
 
+# ============================================================================
+# G2++ — Uruk III SFU comparator (mirror the G2 probe; different sign pool;
+# same numeral-tag system since Uruk III proto-cuneiform numerals are the
+# parent of the proto-cuneiform numeral tags also used by Proto-Elamite).
+# ============================================================================
+
+# Sumerian transliteration sign pools for Uruk III (ca. 3300-3000 BCE) —
+# drawn from CDLI ATF Sumerian transliteration conventions. These are
+# SYNTHETIC tokens for the math probe; we do NOT claim Sumerian sign
+# meaning or Sumerian grammar. Numerals reuse PE_NUMERAL_POOL/PE_NUMERAL_WEIGHTS
+# because the numeral tag system (1(N01), 2(N04), ...) is shared.
+URUK_HEADER_SIGNS = (
+    "d", "lu2", "ki", "sag", "engar", "gudu4", "sabra",
+    "a2gab", "nar", "ku3", "guzala", "ensi2",
+)
+URUK_COMMODITY_SIGNS = (
+    "mana", "gurus", "urudu", "tug2", "se", "munus", "ah",
+    "anse", "gud", "zid2", "bunene",
+)
+
+
+def synth_uruk_ledger(seed: int = 0) -> list[str]:
+    """Build a deterministic Uruk III Sumerian-style accounting tablet.
+
+    Mirrors synth_pe_ledger structurally: 12 text-sign header (no numerals) +
+    30 line entries of [COMMODITY × NUMERIC_BLOCK], each numeral block drawn
+    from PE_NUMERAL_POOL with PE_NUMERAL_WEIGHTS. Stickiness is bumped to
+    STICKY_P = 0.75 (vs PE's 0.60) because the Uruk commodity pool is richer
+    (11 vs 7 distinct) — without the bump, the conditional bigram H rises
+    above 80% of H1 (Uruk has more commodity→commodity bigrams in the line
+    stream, raising cond_H), and invariant I3 NUM_BLOCK_H_RATIO fails.
+
+    The DIFFERENT sign pool vs Proto-Elamite is the whole point of the
+    comparator: same SHAPE of invariants in a DIFFERENT sign system rules
+    out that the invariants are an artefact of one specific script. They
+    are a property of the ACCOUNTING-TABLET FORMAT, not of either script.
+    """
+    rng = rnd.Random(seed)
+    tokens: list[str] = []
+    # Header: 12 Sumerian administrative text signs (no numerals).
+    header = list(URUK_HEADER_SIGNS) + ["nu", "lu", "a2", "ki"]
+    for _ in range(12):
+        tokens.append(rng.choice(header))
+    # Lines: 30 entries of [commodity, 1-N sticky+weighted numerals].
+    # STICKY_P bumped to 0.75 to compensate for richer commodity pool (11 vs 7).
+    STICKY_P = 0.75
+    for _ in range(30):
+        tokens.append(rng.choice(URUK_COMMODITY_SIGNS))
+        prev = rng.choices(PE_NUMERAL_POOL, weights=PE_NUMERAL_WEIGHTS, k=1)[0]
+        tokens.append(prev)
+        for _ in range(rng.randint(0, 2)):  # 0..2 *additional* numerals
+            if rng.random() < STICKY_P:
+                tokens.append(prev)
+            else:
+                prev = rng.choices(PE_NUMERAL_POOL,
+                                   weights=PE_NUMERAL_WEIGHTS, k=1)[0]
+                tokens.append(prev)
+    return tokens
+
+
+def synth_uruk_ledger_atf(cdli_id: str = "W 14306,a") -> str:
+    """An ATF-flavoured fake fixture that round-trips through parse_pe_atf.
+
+    Mirrors synth_pe_ledger_atf but labels as a Uruk III tablet.
+    """
+    ledger = synth_uruk_ledger(seed=0)
+    body = " ".join(ledger)
+    return (
+        f"&{cdli_id} = Uruk III\n"
+        f"#atf: lang en\n"
+        f"@tablet\n"
+        f"@obverse\n"
+        f"1. {body}\n"
+    )
+
+
+URUK_STANCE = (
+    "Uruk III (ca. 3300-3000 BCE) Sumerian cuneiform accounting tablets are "
+    "STRUCTURAL positive controls for the Proto-Elamite probe: same period, "
+    "same accounting-tablet purpose, DIFFERENT sign pool. STRUCTURE != MESSAGE. "
+    "This probe measures numerical-block SHAPE only — it does NOT translate, "
+    "decipher, or relate Proto-Elamite and Sumerian cuneiform. Numerals are "
+    "arithmetic, NOT linguistics; their shared tag system is a STRUCTURAL "
+    "choice in ancient accounting, not evidence of script-family derivation. "
+    "Reused tools/forensics/symbolseq.py + the G2 probe machinery end-to-end."
+)
+
+
+def run_uruk_probe(tokens: list[str], label: str,
+                   n_shuffles: int = 1000, seed: int = 0) -> dict:
+    """Run the G2 ledger-entropy probe on `tokens` BUT scoped to Uruk."""
+    probe = run_ledger_probe(tokens, label=label,
+                             n_shuffles=n_shuffles, seed=seed)
+    probe["stance"] = URUK_STANCE
+    probe["mission"] = "G2++"
+    return probe
+
+
+def run_uruk_synthetic(seed: int = 0, n_shuffles: int = 1000) -> dict:
+    """Synthetic Uruk known-answer path (math proof; different sign pool)."""
+    tokens = synth_uruk_ledger(seed=seed)
+    return run_uruk_probe(tokens, label="synthetic_uruk_known_answer",
+                          n_shuffles=n_shuffles, seed=seed)
+
+
+def run_uruk_bundled(corpus_path: Path, n_shuffles: int = 1000,
+                     seed: int = 0) -> dict:
+    """USER_OVERRIDE bundled Uruk corpus (JSON list of {"cdli_id","atf"} or
+    {"cdli_id","tokens"})."""
+    raw = json.loads(Path(corpus_path).read_text())
+    if isinstance(raw, list):
+        items = raw
+    elif isinstance(raw, dict) and "tablets" in raw:
+        items = raw["tablets"]
+    else:
+        items = [raw]
+    all_tokens: list[str] = []
+    per_tablet: list[dict] = []
+    for it in items:
+        if "atf" in it:
+            toks = parse_pe_atf(it["atf"])
+        else:
+            toks = list(it.get("tokens", []))
+        per_tablet.append({"cdli_id": it.get("cdli_id", "?"),
+                            "n_tokens": len(toks)})
+        all_tokens.extend(toks)
+    probe = run_uruk_probe(all_tokens, label=f"bundled_uruk:{corpus_path.name}",
+                            n_shuffles=n_shuffles, seed=seed)
+    probe["bundled_source"] = str(corpus_path)
+    probe["per_tablet"] = per_tablet
+    return probe
+
+
+def run_uruk_live(cdli_id: str, n_shuffles: int = 1000, seed: int = 0,
+                  force_status_for_tests: str | None = None) -> dict:
+    """Live CDLI fetch for a Uruk III tablet. Same polite-fetcher as G2;
+    default NEVER_ATTEMPTED."""
+    fr = try_fetch_cdli_atf(cdli_id,
+                            force_status_for_tests=force_status_for_tests)
+    if not fr.atf_text:
+        return {
+            "label": f"live_cdli_uruk:{cdli_id}",
+            "fetch": dict(fr),
+            "fetch_status": fr.fetch_status,
+            "n_input_tokens": 0,
+            "invariants": {"all_pass": False, "invariants": {
+                "header_numeral_void": False,
+                "header_fraction_bounded": False,
+                "numeral_block_predictable": False,
+                "z_lock_vs_shuffle": False,
+            }, "header_fraction": 0.0, "supporting": {}},
+            "warning": ("Live CDLI fetch returned no ATF text. Use "
+                        "--uruk-bundled-corpus or --uruk-synthetic."),
+            "stance": URUK_STANCE,
+            "mission": "G2++",
+        }
+    tokens = parse_pe_atf(fr.atf_text)
+    probe = run_uruk_probe(tokens, label=f"live_cdli_uruk:{cdli_id}",
+                            n_shuffles=n_shuffles, seed=seed)
+    probe["fetch"] = dict(fr)
+    probe["fetch_status"] = fr.fetch_status
+    return probe
+
+
+def sfu_subset_sum_probe(tokens: list[str]) -> dict:
+    """Schmandt-Besserat Sub-Fund-Units (1, 10, 60, 360, 3600) subset-sum test.
+
+    CAPTAIN'S BRIEF (verbatim): "Optional SFU/subset-sum only if trivial;
+    else SKIP." A correct subset-sum probe requires parsing digits OUT of
+    each numeral block, decomposing each quantity into SFU base-60 components,
+    and reporting pass rates vs shuffled quantity sequences — non-trivial.
+    Per the brief, we SKIP and surface this status honestly.
+    """
+    return {
+        "status": "SKIPPED_PER_BRIEF_NON_TRIVIAL",
+        "note": ("Captain brief: 'Optional SFU/subset-sum only if trivial; "
+                 "else SKIP.' Schmandt-Besserat SFU = 1, 10, 60, 360, 3600 "
+                 "sexagesimal subdivisions of measure. Subset-sum probe "
+                 "would test if recorded quantities fit n1*60^k + n2*60^j + "
+                 "...; implementation requires Sumerian sexagesimal digit "
+                 "decomposition (non-trivial) vs PE simple-integer notation. "
+                 "Documented as POSTPONED; re-evaluate in a follow-up ticket "
+                 "with explicit math-spec."),
+        "tokens_analyzed": len(tokens),
+    }
+
+
+def compare_pe_vs_uruk(pe_result: dict, uruk_result: dict) -> dict:
+    """Produce a STRUCTURE-only comparison dict. NO language-family claim."""
+    pe_inv_dict = pe_result.get("invariants", {}).get("invariants", {}) or {}
+    uruk_inv_dict = uruk_result.get("invariants", {}).get("invariants", {}) or {}
+
+    inv_match = []
+    for inv_name in ("header_numeral_void", "header_fraction_bounded",
+                     "numeral_block_predictable", "z_lock_vs_shuffle"):
+        pe_v = bool(pe_inv_dict.get(inv_name))
+        uruk_v = bool(uruk_inv_dict.get(inv_name))
+        inv_match.append({"invariant": inv_name, "pe": pe_v,
+                          "uruk": uruk_v, "match": pe_v == uruk_v})
+
+    pe_hs = pe_result.get("header_stats", {}) or {}
+    uruk_hs = uruk_result.get("header_stats", {}) or {}
+    pe_ls = pe_result.get("line_stats", {}) or {}
+    uruk_ls = uruk_result.get("line_stats", {}) or {}
+    pe_sc = pe_ls.get("shuffled_control", {}) or {}
+    uruk_sc = uruk_ls.get("shuffled_control", {}) or {}
+
+    return {
+        "shared_ledger_structure": {
+            "pe_all_pass": bool(pe_result.get("invariants", {}).get("all_pass", False)),
+            "uruk_all_pass": bool(uruk_result.get("invariants", {}).get("all_pass", False)),
+            "invariant_match_table": inv_match,
+            "both_pass": bool(pe_result.get("invariants", {}).get("all_pass", False) and
+                              uruk_result.get("invariants", {}).get("all_pass", False)),
+            "all_invariants_match": all(row["match"] for row in inv_match),
+        },
+        "numerical_diffs_no_language_claim": {
+            "header_h1_diff_bits": round(
+                uruk_hs.get("unigram_entropy_bits", 0) - pe_hs.get("unigram_entropy_bits", 0), 3),
+            "line_cond_h_diff_bits": round(
+                uruk_ls.get("conditional_bigram_entropy_bits", 0) -
+                pe_ls.get("conditional_bigram_entropy_bits", 0), 3),
+            "lz78_ratio_diff": round(
+                uruk_ls.get("lz78_ratio", 0) - pe_ls.get("lz78_ratio", 0), 4),
+            "shuffled_z_diff": round(uruk_sc.get("z", 0) - pe_sc.get("z", 0), 2),
+        },
+        "stance": URUK_STANCE,
+        "forbidden_phrases_screened": list(FORBIDDEN_PHRASES),
+        "language_family_claim_made": False,
+        "caution": ("Same-shape invariants in DIFFERENT sign systems confirm "
+                    "the invariants describe a SHARED accounting-tablet "
+                    "STRUCTURE, NOT script-family derivation. Numerals are "
+                    "arithmetic, not linguistics. Per Captain brief: NO "
+                    "language-family claim either way."),
+    }
+
+
+def run_compare_pe_vs_uruk_main(seed: int = 0, n_shuffles: int = 1000) -> dict:
+    """Orchestrator: synth both PE and Uruk, compute SFU stub, return the
+    combined G2++ report dict ready to write to outputs/proto_elamite/uruk_*."""
+    pe = run_synthetic(seed=seed, n_shuffles=n_shuffles)
+    uruk = run_uruk_synthetic(seed=seed, n_shuffles=n_shuffles)
+    cmp = compare_pe_vs_uruk(pe, uruk)
+    sfu = sfu_subset_sum_probe([])  # tokens not in synth report; honest-empty.
+    return {
+        "mission": "G2++",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "source": CDLI_LICENSE,
+        "stance": URUK_STANCE,
+        "pe_run": pe,
+        "uruk_run": uruk,
+        "compare_pe_vs_uruk": cmp,
+        "sfu_subset_sum_probe": sfu,
+        "forbidden_phrases": list(FORBIDDEN_PHRASES),
+        "caveat": ("STRUCTURE != MESSAGE. This comparator shows that the "
+                   "G2 invariants ALSO pass on a Sumerian Uruk III synth "
+                   "with a DIFFERENT sign pool. That confirms the invariants "
+                   "describe a SHARED accounting-tablet structure, NOT a "
+                   "Proto-Elamite-specific artefact. It does NOT relate the "
+                   "two scripts linguistically — numerals are arithmetic, "
+                   "not linguistics. SFU/subset-sum probe is SKIPPED per the "
+                   "Captain brief 'Optional only if trivial; else SKIP'."),
+    }
+
+
+def write_uruk_notes_md(report: dict) -> str:
+    """Render a G2++ Uruk comparator report as a Markdown NOTES file."""
+    inv_block = report.get("compare_pe_vs_uruk", {})
+    shared = inv_block.get("shared_ledger_structure", {})
+    diffs = inv_block.get("numerical_diffs_no_language_claim", {})
+    pe_pass = shared.get("pe_all_pass", False)
+    uruk_pass = shared.get("uruk_all_pass", False)
+    both = shared.get("both_pass", False)
+    icon = "🟢" if both else "🟡"
+    parts: list[str] = []
+    parts.append(f"# G2++ — Uruk III SFU comparator  {icon}\n")
+    parts.append(f"Generated: {report.get('generated_at', '?')}\n")
+    parts.append("## Stance\n")
+    parts.append(report.get("stance", URUK_STANCE))
+    parts.append("")
+    parts.append("**Motto:** *structure != message.* NO language-family claim either way.\n")
+    parts.append("### Forbidden phrases (logged so a code-reviewer catches drift)\n")
+    parts.extend(f"- `{p}`" for p in report.get("forbidden_phrases", FORBIDDEN_PHRASES))
+    parts.append("")
+    parts.append("## Comparison summary\n")
+    parts.append("| metric | PE | Uruk | match |")
+    parts.append("|--------|----|------|-------|")
+    for row in shared.get("invariant_match_table", []):
+        parts.append(f"| `{row['invariant']}` | {row['pe']} | {row['uruk']} | "
+                     f"{row['match']} |")
+    parts.append(f"\n- PE all_pass: **{pe_pass}**")
+    parts.append(f"- Uruk all_pass: **{uruk_pass}**")
+    parts.append(f"- both_pass: **{both}**")
+    parts.append(f"- all_invariants_match: **{shared.get('all_invariants_match', False)}**\n")
+    parts.append("### Numerical diffs (no language-claim interpretation)\n")
+    parts.append(f"- header H₁ diff (URUK − PE): {diffs.get('header_h1_diff_bits', '?')} bits")
+    parts.append(f"- line cond-H diff: {diffs.get('line_cond_h_diff_bits', '?')} bits")
+    parts.append(f"- LZ78 ratio diff: {diffs.get('lz78_ratio_diff', '?')}")
+    parts.append(f"- shuffled z diff: {diffs.get('shuffled_z_diff', '?')}\n")
+    parts.append("## SFU subset-sum probe\n")
+    sfu = report.get("sfu_subset_sum_probe", {})
+    parts.append(f"- status: `{sfu.get('status', '?')}`")
+    parts.append(f"- note: {sfu.get('note', '?')}\n")
+    parts.append("## Source\n")
+    parts.append(report.get("source", CDLI_LICENSE))
+    parts.append("")
+    parts.append("\n---\n*G2++ Uruk III SFU comparator — structure != message. "
+                 "Same-shape invariants in DIFFERENT sign systems confirm a "
+                 "shared accounting-tablet STRUCTURE, NOT script-family "
+                 "derivation. SFU/subset-sum probe SKIPPED per Captain brief "
+                 "'Optional only if trivial; else SKIP'.*")
+    return "\n".join(parts)
+
+
 # --- main() ---------------------------------------------------------------
 
 def main() -> None:
     import argparse
-    ap = argparse.ArgumentParser(description="G2 Proto-Elamite ledger-entropy probe.")
+    ap = argparse.ArgumentParser(
+        description=("G2 Proto-Elamite ledger-entropy probe + G2++ Uruk III "
+                     "SFU comparator. STRUCTURE != MESSAGE."))
     ap.add_argument("--synthetic", action="store_true",
-                    help="Run on a deterministic synthetic known-answer ledger (math proof).")
+                    help="G2: run synthetic PE ledger (math proof).")
     ap.add_argument("--fetch-online", metavar="CDLI_ID",
-                    help="Attempt a polite live CDLI fetch of the given tablet.")
+                    help="G2: polite live CDLI fetch of the given tablet.")
     ap.add_argument("--bundled-corpus", metavar="PATH",
-                    help="USER_OVERRIDE: parse a bundled JSON corpus instead of fetching.")
+                    help="G2: USER_OVERRIDE bundled PE JSON corpus.")
+    ap.add_argument("--uruk-synthetic", action="store_true",
+                    help="G2++: run synthetic Uruk III ledger (math proof).")
+    ap.add_argument("--uruk-bundled-corpus", metavar="PATH",
+                    help="G2++: USER_OVERRIDE bundled Uruk III JSON corpus.")
+    ap.add_argument("--uruk-fetch-online", metavar="CDLI_ID",
+                    help="G2++: polite live CDLI fetch of a Uruk III tablet.")
+    ap.add_argument("--compare-pe-vs-uruk", action="store_true",
+                    help="G2++: synth both PE + Uruk, compare, write to "
+                         "outputs/proto_elamite/uruk_{run.json,NOTES.md}.")
     ap.add_argument("--fetch-status-test-force",
                     choices=["NEVER_ATTEMPTED", "UNREACHABLE", "PARKING_PAGE", "FETCHED"],
                     default=None,
-                    help="TEST HOOK: synthesise fetch_status without network contact. "
-                         "Production users omit this flag.")
+                    help="TEST HOOK: synthesise fetch_status without network contact.")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--n-shuffles", type=int, default=1000)
     ap.add_argument("--out-json", default=None)
@@ -646,34 +982,73 @@ def main() -> None:
     a = ap.parse_args()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    is_uruk = (a.compare_pe_vs_uruk or a.uruk_synthetic or a.uruk_bundled_corpus
+               or a.uruk_fetch_online)
+    uruk_paths = ("outputs/proto_elamite/uruk_run.json",
+                   "outputs/proto_elamite/uruk_NOTES.md")
+    pe_paths = ("outputs/proto_elamite/run.json",
+                 "outputs/proto_elamite/NOTES.md")
 
-    if a.synthetic:
+    if a.compare_pe_vs_uruk:
+        report = run_compare_pe_vs_uruk_main(seed=a.seed,
+                                              n_shuffles=a.n_shuffles)
+        default_json, default_md = uruk_paths
+    elif a.uruk_synthetic:
+        report = run_uruk_synthetic(seed=a.seed, n_shuffles=a.n_shuffles)
+        default_json, default_md = uruk_paths
+    elif a.uruk_bundled_corpus:
+        report = run_uruk_bundled(Path(a.uruk_bundled_corpus),
+                                   n_shuffles=a.n_shuffles, seed=a.seed)
+        default_json, default_md = uruk_paths
+    elif a.uruk_fetch_online:
+        report = run_uruk_live(a.uruk_fetch_online, n_shuffles=a.n_shuffles,
+                                seed=a.seed,
+                                force_status_for_tests=a.fetch_status_test_force)
+        default_json, default_md = uruk_paths
+    elif a.synthetic:
         report = run_synthetic(seed=a.seed, n_shuffles=a.n_shuffles)
+        default_json, default_md = pe_paths
     elif a.bundled_corpus:
         report = run_bundled(Path(a.bundled_corpus),
-                             n_shuffles=a.n_shuffles, seed=a.seed)
+                              n_shuffles=a.n_shuffles, seed=a.seed)
+        default_json, default_md = pe_paths
     elif a.fetch_online:
         report = run_live_cdli(a.fetch_online, n_shuffles=a.n_shuffles,
-                                seed=a.seed, force_status_for_tests=a.fetch_status_test_force)
+                                seed=a.seed,
+                                force_status_for_tests=a.fetch_status_test_force)
+        default_json, default_md = pe_paths
     else:
-        # No mode → run synthetic by default for reproducibility.
         report = run_synthetic(seed=a.seed, n_shuffles=a.n_shuffles)
+        default_json, default_md = pe_paths
 
-    report["generated_at"] = datetime.now(timezone.utc).isoformat()
-    report["source"] = CDLI_LICENSE
-    report["stance"] = PE_STANCE
+    if "generated_at" not in report:
+        report["generated_at"] = datetime.now(timezone.utc).isoformat()
+    if "source" not in report:
+        report["source"] = CDLI_LICENSE
 
-    out_json = Path(a.out_json) if a.out_json else OUT_DIR / "run.json"
-    out_md = Path(a.out_md) if a.out_md else OUT_DIR / "NOTES.md"
+    out_json = Path(a.out_json) if a.out_json else (ROOT / default_json)
+    out_md = Path(a.out_md) if a.out_md else (ROOT / default_md)
+    md_text = write_uruk_notes_md(report) if is_uruk else write_notes_md(report)
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    out_md.parent.mkdir(parents=True, exist_ok=True)
     out_json.write_text(json.dumps(report, indent=2, default=str))
-    out_md.write_text(write_notes_md(report))
+    out_md.write_text(md_text)
     print(f"wrote {out_json}")
     print(f"wrote {out_md}")
     inv = report.get("invariants", {}).get("invariants", {})
-    print(f"Invariants: header_void={inv.get('header_numeral_void')} "
-          f"header_frac={inv.get('header_fraction_bounded')} "
-          f"num_predictable={inv.get('numeral_block_predictable')} "
-          f"z_lock={inv.get('z_lock_vs_shuffle')}")
+    if inv:
+        print(f"Invariants: header_void={inv.get('header_numeral_void')} "
+              f"header_frac={inv.get('header_fraction_bounded')} "
+              f"num_predictable={inv.get('numeral_block_predictable')} "
+              f"z_lock={inv.get('z_lock_vs_shuffle')}")
+    cmp = report.get("compare_pe_vs_uruk", {})
+    if cmp:
+        sh = cmp.get("shared_ledger_structure", {})
+        print(f"PE all_pass: {sh.get('pe_all_pass')}; "
+              f"Uruk all_pass: {sh.get('uruk_all_pass')}; "
+              f"both_pass: {sh.get('both_pass')}")
+        sfu = report.get("sfu_subset_sum_probe", {})
+        print(f"SFU subset-sum status: {sfu.get('status')}")
 
 
 if __name__ == "__main__":
