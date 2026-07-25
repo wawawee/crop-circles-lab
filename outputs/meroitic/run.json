@@ -1,0 +1,554 @@
+{
+  "generated_at": "2026-07-25T13:18:35.534051+00:00",
+  "metadata": {
+    "n_meroitic_inscriptions": 18090,
+    "n_meroitic_tokens": 755335,
+    "n_meroitic_distinct": 1866,
+    "n_egyptian_tokens": 10013,
+    "n_egyptian_distinct": 1213
+  },
+  "groups": [
+    {
+      "label": "meroitic_corpus_ramses",
+      "n_sequences": 18090,
+      "n_tokens": 755335,
+      "n_distinct": 1866,
+      "unigram_entropy_bits": 7.66,
+      "index_of_coincidence": 0.0168,
+      "ioc_over_uniform": 31.386,
+      "conditional_bigram_entropy_bits": 1.497,
+      "lz78_ratio": 0.0595,
+      "top_bigrams": [
+        {
+          "pair": [
+            "yetmdelEwi",
+            "wEmnitX"
+          ],
+          "count": 22060
+        },
+        {
+          "pair": [
+            "yetmdelEwi",
+            "aribet"
+          ],
+          "count": 21812
+        },
+        {
+          "pair": [
+            "yetmdelEwi",
+            "SmlE"
+          ],
+          "count": 9367
+        },
+        {
+          "pair": [
+            "wEmnitX",
+            "Sklte"
+          ],
+          "count": 8462
+        },
+        {
+          "pair": [
+            "aribet",
+            "wetemtr"
+          ],
+          "count": 5136
+        },
+        {
+          "pair": [
+            "wetemtr",
+            "yetmdelEwi"
+          ],
+          "count": 5136
+        },
+        {
+          "pair": [
+            "aribet",
+            "yete"
+          ],
+          "count": 5136
+        },
+        {
+          "pair": [
+            "yete",
+            "kemxr"
+          ],
+          "count": 5136
+        }
+      ],
+      "shuffled_control": {
+        "observed": 1.4973,
+        "shuffled_mean": 7.3218,
+        "shuffled_sd": 0.0005,
+        "z": -11336.3,
+        "more_structured_than_chance": true
+      },
+      "transition_graph": {
+        "n_nodes": 1866,
+        "n_edges": 19659,
+        "density": 0.011298,
+        "avg_out_degree": 10.5354,
+        "reciprocity": 0.2458,
+        "clustering_coefficient": 0.1003
+      },
+      "formulaic_segments": [
+        {
+          "ngram": [
+            "yetmdelEwi",
+            "wEmnitX"
+          ],
+          "total_occurrences": 22060,
+          "n_sequences": 6289
+        },
+        {
+          "ngram": [
+            "yetmdelEwi",
+            "aribet"
+          ],
+          "total_occurrences": 21812,
+          "n_sequences": 6289
+        },
+        {
+          "ngram": [
+            "yetmdelEwi",
+            "SmlE"
+          ],
+          "total_occurrences": 9367,
+          "n_sequences": 6289
+        },
+        {
+          "ngram": [
+            "wEmnitX",
+            "Sklte"
+          ],
+          "total_occurrences": 8462,
+          "n_sequences": 4231
+        },
+        {
+          "ngram": [
+            "aribet",
+            "wetemtr"
+          ],
+          "total_occurrences": 5136,
+          "n_sequences": 5136
+        },
+        {
+          "ngram": [
+            "wetemtr",
+            "yetmdelEwi"
+          ],
+          "total_occurrences": 5136,
+          "n_sequences": 5136
+        },
+        {
+          "ngram": [
+            "aribet",
+            "yete"
+          ],
+          "total_occurrences": 5136,
+          "n_sequences": 5136
+        },
+        {
+          "ngram": [
+            "yete",
+            "kemxr"
+          ],
+          "total_occurrences": 5136,
+          "n_sequences": 5136
+        },
+        {
+          "ngram": [
+            "kemxr",
+            "yetmdelEwi"
+          ],
+          "total_occurrences": 5136,
+          "n_sequences": 5136
+        },
+        {
+          "ngram": [
+            "aribet",
+            "tedeqeli"
+          ],
+          "total_occurrences": 5136,
+          "n_sequences": 5136
+        }
+      ],
+      "invariants": {
+        "conditional_structure_vs_shuffle": true
+      }
+    }
+  ],
+  "known_answer": {
+    "label": "royal_name_ka",
+    "n_sequences": 10357,
+    "n_tokens": 585458,
+    "n_distinct": 1508,
+    "unigram_entropy_bits": 6.928,
+    "index_of_coincidence": 0.0226,
+    "ioc_over_uniform": 34.021,
+    "conditional_bigram_entropy_bits": 1.237,
+    "lz78_ratio": 0.0475,
+    "top_bigrams": [
+      {
+        "pair": [
+          "yetmdelEwi",
+          "wEmnitX"
+        ],
+        "count": 22060
+      },
+      {
+        "pair": [
+          "yetmdelEwi",
+          "aribet"
+        ],
+        "count": 21812
+      },
+      {
+        "pair": [
+          "yetmdelEwi",
+          "SmlE"
+        ],
+        "count": 9367
+      },
+      {
+        "pair": [
+          "wEmnitX",
+          "Sklte"
+        ],
+        "count": 8462
+      },
+      {
+        "pair": [
+          "aribet",
+          "wetemtr"
+        ],
+        "count": 5136
+      },
+      {
+        "pair": [
+          "wetemtr",
+          "yetmdelEwi"
+        ],
+        "count": 5136
+      },
+      {
+        "pair": [
+          "aribet",
+          "yete"
+        ],
+        "count": 5136
+      },
+      {
+        "pair": [
+          "yete",
+          "kemxr"
+        ],
+        "count": 5136
+      }
+    ],
+    "shuffled_control": {
+      "observed": 1.2372,
+      "shuffled_mean": 6.7265,
+      "shuffled_sd": 0.0006,
+      "z": -9467.0,
+      "more_structured_than_chance": true
+    },
+    "transition_graph": {
+      "n_nodes": 1508,
+      "n_edges": 13287,
+      "density": 0.011693,
+      "avg_out_degree": 8.811,
+      "reciprocity": 0.3038,
+      "clustering_coefficient": 0.1178
+    },
+    "formulaic_segments": [
+      {
+        "ngram": [
+          "yetmdelEwi",
+          "wEmnitX"
+        ],
+        "total_occurrences": 22060,
+        "n_sequences": 6289
+      },
+      {
+        "ngram": [
+          "yetmdelEwi",
+          "aribet"
+        ],
+        "total_occurrences": 21812,
+        "n_sequences": 6289
+      },
+      {
+        "ngram": [
+          "yetmdelEwi",
+          "SmlE"
+        ],
+        "total_occurrences": 9367,
+        "n_sequences": 6289
+      },
+      {
+        "ngram": [
+          "wEmnitX",
+          "Sklte"
+        ],
+        "total_occurrences": 8462,
+        "n_sequences": 4231
+      },
+      {
+        "ngram": [
+          "aribet",
+          "wetemtr"
+        ],
+        "total_occurrences": 5136,
+        "n_sequences": 5136
+      },
+      {
+        "ngram": [
+          "wetemtr",
+          "yetmdelEwi"
+        ],
+        "total_occurrences": 5136,
+        "n_sequences": 5136
+      },
+      {
+        "ngram": [
+          "aribet",
+          "yete"
+        ],
+        "total_occurrences": 5136,
+        "n_sequences": 5136
+      },
+      {
+        "ngram": [
+          "yete",
+          "kemxr"
+        ],
+        "total_occurrences": 5136,
+        "n_sequences": 5136
+      },
+      {
+        "ngram": [
+          "kemxr",
+          "yetmdelEwi"
+        ],
+        "total_occurrences": 5136,
+        "n_sequences": 5136
+      },
+      {
+        "ngram": [
+          "aribet",
+          "tedeqeli"
+        ],
+        "total_occurrences": 5136,
+        "n_sequences": 5136
+      }
+    ],
+    "invariants": {
+      "conditional_structure_vs_shuffle": true
+    },
+    "royal_token_stats": {
+      "n_total_tokens": 755335,
+      "n_royal_name_tokens": 19653,
+      "pct_royal_name": 2.6
+    }
+  },
+  "egyptian_control": {
+    "label": "late_egyptian_control",
+    "n_sequences": 1,
+    "n_tokens": 10013,
+    "n_distinct": 1213,
+    "unigram_entropy_bits": 8.02,
+    "index_of_coincidence": 0.0135,
+    "ioc_over_uniform": 16.391,
+    "conditional_bigram_entropy_bits": 3.226,
+    "lz78_ratio": 0.4275,
+    "top_bigrams": [
+      {
+        "pair": [
+          "n",
+          "p\ua723"
+        ],
+        "count": 103
+      },
+      {
+        "pair": [
+          "jmn-r\ua725",
+          "nswt"
+        ],
+        "count": 91
+      },
+      {
+        "pair": [
+          "nswt",
+          "n\u1e6fr.w"
+        ],
+        "count": 91
+      },
+      {
+        "pair": [
+          "p\ua723",
+          "\u1e2br"
+        ],
+        "count": 71
+      },
+      {
+        "pair": [
+          "sw",
+          "10"
+        ],
+        "count": 55
+      },
+      {
+        "pair": [
+          "pr-\ua725\ua723",
+          "\ua725.w.s"
+        ],
+        "count": 51
+      },
+      {
+        "pair": [
+          "\u1e0fd",
+          "n"
+        ],
+        "count": 48
+      },
+      {
+        "pair": [
+          "twj",
+          "\u1e25r"
+        ],
+        "count": 46
+      }
+    ],
+    "shuffled_control": {
+      "observed": 3.2263,
+      "shuffled_mean": 4.6212,
+      "shuffled_sd": 0.0084,
+      "z": -166.51,
+      "more_structured_than_chance": true
+    },
+    "transition_graph": {
+      "n_nodes": 1213,
+      "n_edges": 4767,
+      "density": 0.006485,
+      "avg_out_degree": 3.9299,
+      "reciprocity": 0.1177,
+      "clustering_coefficient": 0.281
+    },
+    "formulaic_segments": [],
+    "invariants": {
+      "conditional_structure_vs_shuffle": true
+    }
+  },
+  "negative_control": {
+    "label": "unigram_shuffle_negative_control",
+    "n_sequences": 1,
+    "n_tokens": 755335,
+    "n_distinct": 1866,
+    "unigram_entropy_bits": 7.66,
+    "index_of_coincidence": 0.0168,
+    "ioc_over_uniform": 31.386,
+    "conditional_bigram_entropy_bits": 7.321,
+    "lz78_ratio": 0.3556,
+    "top_bigrams": [
+      {
+        "pair": [
+          "yetmdelEwi",
+          "yetmdelEwi"
+        ],
+        "count": 7392
+      },
+      {
+        "pair": [
+          "wEmnitX",
+          "yetmdelEwi"
+        ],
+        "count": 2599
+      },
+      {
+        "pair": [
+          "yetmdelEwi",
+          "wEmnitX"
+        ],
+        "count": 2558
+      },
+      {
+        "pair": [
+          "aribet",
+          "yetmdelEwi"
+        ],
+        "count": 2373
+      },
+      {
+        "pair": [
+          "yetmdelEwi",
+          "aribet"
+        ],
+        "count": 2338
+      },
+      {
+        "pair": [
+          "ateqi",
+          "yetmdelEwi"
+        ],
+        "count": 2115
+      },
+      {
+        "pair": [
+          "yetmdelEwi",
+          "ateqi"
+        ],
+        "count": 2092
+      },
+      {
+        "pair": [
+          "belElEke",
+          "yetmdelEwi"
+        ],
+        "count": 1563
+      }
+    ],
+    "shuffled_control": {
+      "observed": 7.3212,
+      "shuffled_mean": 7.3221,
+      "shuffled_sd": 0.0007,
+      "z": -1.41,
+      "more_structured_than_chance": false
+    },
+    "transition_graph": {
+      "n_nodes": 1866,
+      "n_edges": 144260,
+      "density": 0.082906,
+      "avg_out_degree": 77.3098,
+      "reciprocity": 0.602,
+      "clustering_coefficient": 0.8315
+    },
+    "formulaic_segments": [],
+    "invariants": {
+      "conditional_structure_vs_shuffle": false
+    }
+  },
+  "verdict": "STRUCTURE_SIGNAL",
+  "pipeline": {
+    "tool": "tools/scripts/meroitic_probe.py + tools/forensics/symbolseq.py",
+    "parameters": {
+      "n_shuffles": 50,
+      "seed": 0
+    }
+  },
+  "data_source": "Corpus: Joshua-Otten/Meroitic-Corpus (GitHub open, 2025), Otten & Anastasopoulos. No license specified; all rights reserved by default. Sign transliterations scraped from RAMSES Online (ramses.ulg.ac.be). Late Egyptian control: RAMSES Online \u2014 Late Egyptian hieratic texts. Both sourced from the same RAMSES database; writing systems differ.",
+  "stance": "Meroitic script is partially deciphered (the script's syllabic values are mostly known; the language is poorly understood; cf. Rilly 2007, 2010). This probe measures *sign-sequence structure* only \u2014 it does NOT translate, decipher beyond published readings, or make 'Meroitic deciphered' claims. STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py.",
+  "forbidden": [
+    "Meroitic deciphered",
+    "translates to",
+    "represents",
+    "decodes as",
+    "shares roots with",
+    "crank 99.5%",
+    "Ghost License",
+    "Lackadaisical Security",
+    "99.5% decipherment",
+    "aliens wrote"
+  ],
+  "caveat": "Structure != meaning. Entropy and bigram statistics confirm sign-sequence structure distinct from noise, but do NOT constitute decipherment. Meroitic sign values are known; the language remains poorly understood."
+}
