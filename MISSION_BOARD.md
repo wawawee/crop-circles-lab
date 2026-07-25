@@ -33,8 +33,8 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **N0** | Hyper + Cursor | Phaistos structure | z≈−14 + period-3 refrain; metre yes, meaning no | 🟢 `dae0036` |
 | **B10** | **Cursor** | Photo tamper / ELA | Pillow ELA Chualar vs field photos; tamper-only | 🟢 `outputs/forensics/ela/` |
 | **B11** | **Cursor** | Cipher negative control | Native Caesar/IC (Decipher needs Rust bootstrap) | 🟢 no English cipher on Crabwood/Chilbolton |
-| **R1** | Minimax | `radio_probe` scaffold | FFT/autocorr/epoch-fold + Wow blocked + FRB 180916 plant | 🟢 scaffold 17/17 tests |
-| **G1** | **Opencode** (NEXT) | Linear A symbolseq | SigLA open corpus → entropy/IC/Markov vs shuffle; Linear B known-answer | ⬜ **assigned** |
+| **R1** | Minimax | `radio_probe` scaffold | FFT/autocorr/epoch-fold + Wow blocked + FRB 180916 plant | 🟢 scaffold 17/17 tests. **R1+ real-data path also landed:** `tools/radio/chime_frb_fetcher.py` + `frb_real_source s.py` + `--frb-180916-real` CLI flag + `--bundled-mjd-json` override; honest fetch failure surfacing (NEVER fabricates). `outputs/radio/radio_real_stub.json` + `radio_real_notes.md` produced with `fetch_status=UNREACHABLE/PARK` + 🟡 BANNER. |
+| **G1** | **Opencode** | Linear A symbolseq | SigLA open corpus → entropy/IC/Markov vs shuffle; Linear B known-answer (z=−73.34 LA vs z=−3.29 LB); negative control passes (z≈0). `outputs/linear_a/` + `data/scripts/linear_a/`. `tools/scripts/linear_a_probe.py` | 🟢 **landed** — strong accounting-formulaic structure (KU-RO ×36, SA-RA₂ ×20). NOT decipherment. Caveat: genre = ledger, not prose. |
 | **G2** | **Minimax** (queue) | Proto-Elamite ledger entropy | CDLI streams → positional/conditional H vs shuffle | ⬜ after current Minimax job |
 | **G3** | Minimax or Opencode | Wow! horn beam-fit | Fit sidereal transit to 6EQUJ5 intensities; underdetermined OK | ⬜ after G1/G2 |
 | **G-Amazon** | **Hyper Fable 5 / Opus 4.8** | Amazon earthworks spatial | Zenodo site DB + IPP nulls (Mode A); real LIDAR only if verified | ⬜ skill: `amazon-earthworks-spatial` |

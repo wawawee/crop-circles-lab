@@ -1,0 +1,4351 @@
+{
+  "corpus": [
+    {
+      "label": "Linear A (full corpus)",
+      "n_tokens": 5104,
+      "n_distinct": 246,
+      "alphabet_size": 7.943,
+      "unigram_entropy_bits": 6.006,
+      "index_of_coincidence": 0.024,
+      "ioc_over_uniform": 5.896,
+      "conditional_bigram_entropy_bits": 4.128,
+      "lz78_ratio": 0.4014,
+      "top_bigrams": [
+        {
+          "pair": [
+            "KA",
+            "KA"
+          ],
+          "count": 154
+        },
+        {
+          "pair": [
+            "KU",
+            "KU"
+          ],
+          "count": 153
+        },
+        {
+          "pair": [
+            "SI",
+            "SI"
+          ],
+          "count": 98
+        },
+        {
+          "pair": [
+            "RO",
+            "RO"
+          ],
+          "count": 89
+        },
+        {
+          "pair": [
+            "ZE",
+            "ZE"
+          ],
+          "count": 44
+        },
+        {
+          "pair": [
+            "KU",
+            "RO"
+          ],
+          "count": 39
+        },
+        {
+          "pair": [
+            "TE",
+            "TE"
+          ],
+          "count": 28
+        },
+        {
+          "pair": [
+            "I",
+            "I"
+          ],
+          "count": 25
+        }
+      ],
+      "word_lengths": {
+        "n_words": 2667,
+        "min": 1,
+        "max": 19,
+        "mean": 1.91,
+        "hist": {
+          "1": 1426,
+          "2": 537,
+          "3": 410,
+          "4": 180,
+          "5": 66,
+          "6": 33,
+          "7": 8,
+          "8": 4,
+          "9": 1,
+          "10": 1,
+          "19": 1
+        }
+      },
+      "shuffled_control": {
+        "observed": 4.128,
+        "shuffled_mean": 4.8656,
+        "shuffled_sd": 0.0101,
+        "z": -73.34,
+        "more_structured_than_chance": true
+      },
+      "repeat_structure": [
+        {
+          "group": [
+            "KU",
+            "RO"
+          ],
+          "count": 36,
+          "positions": [
+            68,
+            77,
+            93,
+            104,
+            117,
+            189,
+            192,
+            208,
+            329,
+            333,
+            368,
+            455,
+            464,
+            490,
+            537,
+            543,
+            577,
+            590,
+            651,
+            671,
+            682,
+            700,
+            704,
+            756,
+            771,
+            788,
+            795,
+            827,
+            835,
+            845,
+            846,
+            855,
+            876,
+            881,
+            904,
+            2497
+          ],
+          "gaps": [
+            9,
+            16,
+            11,
+            13,
+            72,
+            3,
+            16,
+            121,
+            4,
+            35,
+            87,
+            9,
+            26,
+            47,
+            6,
+            34,
+            13,
+            61,
+            20,
+            11,
+            18,
+            4,
+            52,
+            15,
+            17,
+            7,
+            32,
+            8,
+            10,
+            1,
+            9,
+            21,
+            5,
+            23,
+            1593
+          ],
+          "gap_mean": 69.4,
+          "gap_cv": 3.783,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "SA",
+            "RA₂"
+          ],
+          "count": 20,
+          "positions": [
+            137,
+            229,
+            235,
+            247,
+            267,
+            276,
+            285,
+            546,
+            563,
+            578,
+            630,
+            640,
+            652,
+            658,
+            663,
+            684,
+            722,
+            810,
+            859,
+            901
+          ],
+          "gaps": [
+            92,
+            6,
+            12,
+            20,
+            9,
+            9,
+            261,
+            17,
+            15,
+            52,
+            10,
+            12,
+            6,
+            5,
+            21,
+            38,
+            88,
+            49,
+            42
+          ],
+          "gap_mean": 40.21,
+          "gap_cv": 1.442,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "KI",
+            "RO"
+          ],
+          "count": 16,
+          "positions": [
+            1,
+            124,
+            253,
+            293,
+            315,
+            413,
+            530,
+            572,
+            584,
+            759,
+            838,
+            840,
+            842,
+            844,
+            847,
+            856
+          ],
+          "gaps": [
+            123,
+            129,
+            40,
+            22,
+            98,
+            117,
+            42,
+            12,
+            175,
+            79,
+            2,
+            2,
+            2,
+            3,
+            9
+          ],
+          "gap_mean": 57.0,
+          "gap_cv": 0.985,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "A",
+            "TA",
+            "I",
+            "*301",
+            "WA",
+            "JA"
+          ],
+          "count": 11,
+          "positions": [
+            1622,
+            1630,
+            1637,
+            2043,
+            2232,
+            2287,
+            2290,
+            2294,
+            2297,
+            2304,
+            2326
+          ],
+          "gaps": [
+            8,
+            7,
+            406,
+            189,
+            55,
+            3,
+            4,
+            3,
+            7,
+            22
+          ],
+          "gap_mean": 70.4,
+          "gap_cv": 1.767,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "A",
+            "DU"
+          ],
+          "count": 10,
+          "positions": [
+            482,
+            509,
+            526,
+            553,
+            600,
+            639,
+            914,
+            1747,
+            1802,
+            2348
+          ],
+          "gaps": [
+            27,
+            17,
+            27,
+            47,
+            39,
+            275,
+            833,
+            55,
+            546
+          ],
+          "gap_mean": 207.33,
+          "gap_cv": 1.335,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "I",
+            "RA₂"
+          ],
+          "count": 8,
+          "positions": [
+            961,
+            962,
+            963,
+            964,
+            965,
+            966,
+            967,
+            968
+          ],
+          "gaps": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "gap_mean": 1.0,
+          "gap_cv": 0.0,
+          "layout": "regular/metrical"
+        },
+        {
+          "group": [
+            "JA",
+            "SA",
+            "SA",
+            "RA",
+            "ME"
+          ],
+          "count": 7,
+          "positions": [
+            1624,
+            1636,
+            1640,
+            2262,
+            2273,
+            2328,
+            2659
+          ],
+          "gaps": [
+            12,
+            4,
+            622,
+            11,
+            55,
+            331
+          ],
+          "gap_mean": 172.5,
+          "gap_cv": 1.341,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "KU",
+            "PA₃",
+            "NU"
+          ],
+          "count": 7,
+          "positions": [
+            4,
+            16,
+            384,
+            533,
+            765,
+            822,
+            825
+          ],
+          "gaps": [
+            12,
+            368,
+            149,
+            232,
+            57,
+            3
+          ],
+          "gap_mean": 136.83,
+          "gap_cv": 0.955,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "SI",
+            "RU",
+            "TE"
+          ],
+          "count": 7,
+          "positions": [
+            1627,
+            1651,
+            1654,
+            2049,
+            2296,
+            2331,
+            2368
+          ],
+          "gaps": [
+            24,
+            3,
+            395,
+            247,
+            35,
+            37
+          ],
+          "gap_mean": 123.5,
+          "gap_cv": 1.186,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "I",
+            "PI",
+            "NA",
+            "MA"
+          ],
+          "count": 6,
+          "positions": [
+            1626,
+            1653,
+            2048,
+            2330,
+            2367,
+            2565
+          ],
+          "gaps": [
+            27,
+            395,
+            282,
+            37,
+            198
+          ],
+          "gap_mean": 187.8,
+          "gap_cv": 0.755,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "KA",
+            "PA"
+          ],
+          "count": 6,
+          "positions": [
+            25,
+            59,
+            573,
+            662,
+            683,
+            937
+          ],
+          "gaps": [
+            34,
+            514,
+            89,
+            21,
+            254
+          ],
+          "gap_mean": 182.4,
+          "gap_cv": 1.016,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "DA",
+            "RE"
+          ],
+          "count": 6,
+          "positions": [
+            46,
+            81,
+            87,
+            489,
+            834,
+            2206
+          ],
+          "gaps": [
+            35,
+            6,
+            402,
+            345,
+            1372
+          ],
+          "gap_mean": 432.0,
+          "gap_cv": 1.149,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "SA",
+            "RU"
+          ],
+          "count": 6,
+          "positions": [
+            506,
+            516,
+            589,
+            596,
+            601,
+            841
+          ],
+          "gaps": [
+            10,
+            73,
+            7,
+            5,
+            240
+          ],
+          "gap_mean": 67.0,
+          "gap_cv": 1.346,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "SI",
+            "KA"
+          ],
+          "count": 6,
+          "positions": [
+            969,
+            970,
+            971,
+            972,
+            973,
+            983
+          ],
+          "gaps": [
+            1,
+            1,
+            1,
+            1,
+            10
+          ],
+          "gap_mean": 2.8,
+          "gap_cv": 1.286,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "DI",
+            "NA",
+            "U"
+          ],
+          "count": 5,
+          "positions": [
+            64,
+            76,
+            126,
+            179,
+            182
+          ],
+          "gaps": [
+            12,
+            50,
+            53,
+            3
+          ],
+          "gap_mean": 29.5,
+          "gap_cv": 0.754,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "KU",
+            "NI",
+            "SU"
+          ],
+          "count": 5,
+          "positions": [
+            78,
+            504,
+            514,
+            597,
+            604
+          ],
+          "gaps": [
+            426,
+            10,
+            83,
+            7
+          ],
+          "gap_mean": 131.5,
+          "gap_cv": 1.314,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "MA",
+            "DI"
+          ],
+          "count": 5,
+          "positions": [
+            17,
+            459,
+            501,
+            623,
+            781
+          ],
+          "gaps": [
+            442,
+            42,
+            122,
+            158
+          ],
+          "gap_mean": 191.0,
+          "gap_cv": 0.79,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "DA",
+            "KA"
+          ],
+          "count": 5,
+          "positions": [
+            956,
+            957,
+            958,
+            959,
+            960
+          ],
+          "gaps": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "gap_mean": 1.0,
+          "gap_cv": 0.0,
+          "layout": "regular/metrical"
+        },
+        {
+          "group": [
+            "I",
+            "DA"
+          ],
+          "count": 5,
+          "positions": [
+            2086,
+            2248,
+            2250,
+            2525,
+            2533
+          ],
+          "gaps": [
+            162,
+            2,
+            275,
+            8
+          ],
+          "gap_mean": 111.75,
+          "gap_cv": 1.02,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "U",
+            "NA",
+            "KA",
+            "NA",
+            "SI"
+          ],
+          "count": 4,
+          "positions": [
+            1625,
+            1641,
+            2047,
+            2660
+          ],
+          "gaps": [
+            16,
+            406,
+            613
+          ],
+          "gap_mean": 345.0,
+          "gap_cv": 0.717,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "KI",
+            "RE",
+            "TA",
+            "NA"
+          ],
+          "count": 4,
+          "positions": [
+            7,
+            55,
+            692,
+            803
+          ],
+          "gaps": [
+            48,
+            637,
+            111
+          ],
+          "gap_mean": 265.33,
+          "gap_cv": 0.995,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "TA",
+            "NA",
+            "TI"
+          ],
+          "count": 4,
+          "positions": [
+            45,
+            90,
+            378,
+            633
+          ],
+          "gaps": [
+            45,
+            288,
+            255
+          ],
+          "gap_mean": 196.0,
+          "gap_cv": 0.549,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "QA",
+            "*310",
+            "I"
+          ],
+          "count": 4,
+          "positions": [
+            53,
+            58,
+            502,
+            818
+          ],
+          "gaps": [
+            5,
+            444,
+            316
+          ],
+          "gap_mean": 255.0,
+          "gap_cv": 0.723,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "PA",
+            "JA",
+            "RE"
+          ],
+          "count": 4,
+          "positions": [
+            60,
+            240,
+            534,
+            2449
+          ],
+          "gaps": [
+            180,
+            294,
+            1915
+          ],
+          "gap_mean": 796.33,
+          "gap_cv": 0.995,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "DA",
+            "RI",
+            "DA"
+          ],
+          "count": 4,
+          "positions": [
+            84,
+            483,
+            568,
+            826
+          ],
+          "gaps": [
+            399,
+            85,
+            258
+          ],
+          "gap_mean": 247.33,
+          "gap_cv": 0.519,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "DA",
+            "SI",
+            "*118"
+          ],
+          "count": 4,
+          "positions": [
+            115,
+            486,
+            644,
+            814
+          ],
+          "gaps": [
+            371,
+            158,
+            170
+          ],
+          "gap_mean": 233.0,
+          "gap_cv": 0.419,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "MI",
+            "NU",
+            "TE"
+          ],
+          "count": 4,
+          "positions": [
+            512,
+            595,
+            603,
+            685
+          ],
+          "gaps": [
+            83,
+            8,
+            82
+          ],
+          "gap_mean": 57.67,
+          "gap_cv": 0.609,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "SA",
+            "MA"
+          ],
+          "count": 4,
+          "positions": [
+            40,
+            79,
+            402,
+            2445
+          ],
+          "gaps": [
+            39,
+            323,
+            2043
+          ],
+          "gap_mean": 801.67,
+          "gap_cv": 1.104,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "JE",
+            "DI"
+          ],
+          "count": 4,
+          "positions": [
+            49,
+            307,
+            829,
+            929
+          ],
+          "gaps": [
+            258,
+            522,
+            100
+          ],
+          "gap_mean": 293.33,
+          "gap_cv": 0.593,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "SA",
+            "RO"
+          ],
+          "count": 4,
+          "positions": [
+            61,
+            133,
+            140,
+            343
+          ],
+          "gaps": [
+            72,
+            7,
+            203
+          ],
+          "gap_mean": 94.0,
+          "gap_cv": 0.867,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "A",
+            "SE"
+          ],
+          "count": 4,
+          "positions": [
+            475,
+            561,
+            911,
+            2552
+          ],
+          "gaps": [
+            86,
+            350,
+            1641
+          ],
+          "gap_mean": 692.33,
+          "gap_cv": 0.981,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "DA",
+            "ME"
+          ],
+          "count": 4,
+          "positions": [
+            510,
+            594,
+            602,
+            797
+          ],
+          "gaps": [
+            84,
+            8,
+            195
+          ],
+          "gap_mean": 95.67,
+          "gap_cv": 0.803,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "KU",
+            "PA"
+          ],
+          "count": 4,
+          "positions": [
+            703,
+            1812,
+            2460,
+            2469
+          ],
+          "gaps": [
+            1109,
+            648,
+            9
+          ],
+          "gap_mean": 588.67,
+          "gap_cv": 0.766,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "JA",
+            "SA"
+          ],
+          "count": 4,
+          "positions": [
+            1647,
+            2075,
+            2161,
+            2278
+          ],
+          "gaps": [
+            428,
+            86,
+            117
+          ],
+          "gap_mean": 210.33,
+          "gap_cv": 0.734,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "*28B",
+            "NU",
+            "MA",
+            "RE"
+          ],
+          "count": 3,
+          "positions": [
+            2381,
+            2389,
+            2491
+          ],
+          "gaps": [
+            8,
+            102
+          ],
+          "gap_mean": 55.0,
+          "gap_cv": 0.855,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "DU",
+            "RE",
+            "ZA",
+            "SE"
+          ],
+          "count": 3,
+          "positions": [
+            2439,
+            2441,
+            2510
+          ],
+          "gaps": [
+            2,
+            69
+          ],
+          "gap_mean": 35.5,
+          "gap_cv": 0.944,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "QE",
+            "RA₂",
+            "U"
+          ],
+          "count": 3,
+          "positions": [
+            0,
+            599,
+            606
+          ],
+          "gaps": [
+            599,
+            7
+          ],
+          "gap_mean": 303.0,
+          "gap_cv": 0.977,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "A",
+            "KA",
+            "RU"
+          ],
+          "count": 3,
+          "positions": [
+            6,
+            503,
+            513
+          ],
+          "gaps": [
+            497,
+            10
+          ],
+          "gap_mean": 253.5,
+          "gap_cv": 0.961,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "DA",
+            "QE",
+            "RA"
+          ],
+          "count": 3,
+          "positions": [
+            33,
+            424,
+            796
+          ],
+          "gaps": [
+            391,
+            372
+          ],
+          "gap_mean": 381.5,
+          "gap_cv": 0.025,
+          "layout": "regular/metrical"
+        },
+        {
+          "group": [
+            "PA₃",
+            "NI",
+            "NA"
+          ],
+          "count": 3,
+          "positions": [
+            41,
+            554,
+            569
+          ],
+          "gaps": [
+            513,
+            15
+          ],
+          "gap_mean": 264.0,
+          "gap_cv": 0.943,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "TA",
+            "I",
+            "AROM"
+          ],
+          "count": 3,
+          "positions": [
+            66,
+            75,
+            324
+          ],
+          "gaps": [
+            9,
+            249
+          ],
+          "gap_mean": 129.0,
+          "gap_cv": 0.93,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "U",
+            "*325",
+            "ZA"
+          ],
+          "count": 3,
+          "positions": [
+            82,
+            83,
+            485
+          ],
+          "gaps": [
+            1,
+            402
+          ],
+          "gap_mean": 201.5,
+          "gap_cv": 0.995,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "U",
+            "*34",
+            "SI"
+          ],
+          "count": 3,
+          "positions": [
+            121,
+            928,
+            930
+          ],
+          "gaps": [
+            807,
+            2
+          ],
+          "gap_mean": 404.5,
+          "gap_cv": 0.995,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "KA",
+            "KU",
+            "PA"
+          ],
+          "count": 3,
+          "positions": [
+            125,
+            1595,
+            1597
+          ],
+          "gaps": [
+            1470,
+            2
+          ],
+          "gap_mean": 736.0,
+          "gap_cv": 0.997,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "MA",
+            "RU",
+            "ME"
+          ],
+          "count": 3,
+          "positions": [
+            173,
+            174,
+            176
+          ],
+          "gaps": [
+            1,
+            2
+          ],
+          "gap_mean": 1.5,
+          "gap_cv": 0.333,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "DI",
+            "DE",
+            "RU"
+          ],
+          "count": 3,
+          "positions": [
+            507,
+            598,
+            605
+          ],
+          "gaps": [
+            91,
+            7
+          ],
+          "gap_mean": 49.0,
+          "gap_cv": 0.857,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "QA",
+            "QA",
+            "RU"
+          ],
+          "count": 3,
+          "positions": [
+            564,
+            783,
+            832
+          ],
+          "gaps": [
+            219,
+            49
+          ],
+          "gap_mean": 134.0,
+          "gap_cv": 0.634,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "PA",
+            "SE",
+            "JA"
+          ],
+          "count": 3,
+          "positions": [
+            570,
+            1576,
+            1577
+          ],
+          "gaps": [
+            1006,
+            1
+          ],
+          "gap_mean": 503.5,
+          "gap_cv": 0.998,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "PA",
+            "TA",
+            "NE"
+          ],
+          "count": 3,
+          "positions": [
+            586,
+            823,
+            974
+          ],
+          "gaps": [
+            237,
+            151
+          ],
+          "gap_mean": 194.0,
+          "gap_cv": 0.222,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "SI",
+            "PI",
+            "KI"
+          ],
+          "count": 3,
+          "positions": [
+            2382,
+            2390,
+            2492
+          ],
+          "gaps": [
+            8,
+            102
+          ],
+          "gap_mean": 55.0,
+          "gap_cv": 0.855,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "TE",
+            "TU"
+          ],
+          "count": 3,
+          "positions": [
+            47,
+            112,
+            495
+          ],
+          "gaps": [
+            65,
+            383
+          ],
+          "gap_mean": 224.0,
+          "gap_cv": 0.71,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "PA",
+            "DE"
+          ],
+          "count": 3,
+          "positions": [
+            63,
+            72,
+            821
+          ],
+          "gaps": [
+            9,
+            749
+          ],
+          "gap_mean": 379.0,
+          "gap_cv": 0.976,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "RE",
+            "ZA"
+          ],
+          "count": 3,
+          "positions": [
+            111,
+            528,
+            1901
+          ],
+          "gaps": [
+            417,
+            1373
+          ],
+          "gap_mean": 895.0,
+          "gap_cv": 0.534,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "A",
+            "RA"
+          ],
+          "count": 3,
+          "positions": [
+            524,
+            1889,
+            2578
+          ],
+          "gaps": [
+            1365,
+            689
+          ],
+          "gap_mean": 1027.0,
+          "gap_cv": 0.329,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "I",
+            "GRA+PA"
+          ],
+          "count": 3,
+          "positions": [
+            562,
+            565,
+            802
+          ],
+          "gaps": [
+            3,
+            237
+          ],
+          "gap_mean": 120.0,
+          "gap_cv": 0.975,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "A",
+            "RI"
+          ],
+          "count": 3,
+          "positions": [
+            938,
+            2131,
+            2133
+          ],
+          "gaps": [
+            1193,
+            2
+          ],
+          "gap_mean": 597.5,
+          "gap_cv": 0.997,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "*304+PA",
+            "CYP+D"
+          ],
+          "count": 3,
+          "positions": [
+            979,
+            1598,
+            1605
+          ],
+          "gaps": [
+            619,
+            7
+          ],
+          "gap_mean": 313.0,
+          "gap_cv": 0.978,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "A",
+            "MA"
+          ],
+          "count": 3,
+          "positions": [
+            2054,
+            2408,
+            2642
+          ],
+          "gaps": [
+            354,
+            234
+          ],
+          "gap_mean": 294.0,
+          "gap_cv": 0.204,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "A",
+            "JA"
+          ],
+          "count": 3,
+          "positions": [
+            2068,
+            2107,
+            2293
+          ],
+          "gaps": [
+            39,
+            186
+          ],
+          "gap_mean": 112.5,
+          "gap_cv": 0.653,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "A",
+            "TI",
+            "KA",
+            "A",
+            "DU",
+            "KO",
+            "MI"
+          ],
+          "count": 2,
+          "positions": [
+            2548,
+            2549
+          ],
+          "gaps": [
+            1
+          ],
+          "gap_mean": 1.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "I",
+            "PI",
+            "NA",
+            "MI",
+            "NA"
+          ],
+          "count": 2,
+          "positions": [
+            2219,
+            2229
+          ],
+          "gaps": [
+            10
+          ],
+          "gap_mean": 10.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "WA",
+            "DU",
+            "NI",
+            "MI"
+          ],
+          "count": 2,
+          "positions": [
+            35,
+            500
+          ],
+          "gaps": [
+            465
+          ],
+          "gap_mean": 465.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "A",
+            "RI",
+            "NI",
+            "TA"
+          ],
+          "count": 2,
+          "positions": [
+            183,
+            2414
+          ],
+          "gaps": [
+            2231
+          ],
+          "gap_mean": 2231.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "A",
+            "SI",
+            "JA",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            224,
+            233
+          ],
+          "gaps": [
+            9
+          ],
+          "gap_mean": 9.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "U",
+            "MI",
+            "NA",
+            "SI"
+          ],
+          "count": 2,
+          "positions": [
+            234,
+            760
+          ],
+          "gaps": [
+            526
+          ],
+          "gap_mean": 526.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "PA₃",
+            "NA",
+            "TU"
+          ],
+          "count": 2,
+          "positions": [
+            370,
+            792
+          ],
+          "gaps": [
+            422
+          ],
+          "gap_mean": 422.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "MI",
+            "NA",
+            "QE"
+          ],
+          "count": 2,
+          "positions": [
+            410,
+            1593
+          ],
+          "gaps": [
+            1183
+          ],
+          "gap_mean": 1183.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "MA",
+            "KA",
+            "RI",
+            "TE"
+          ],
+          "count": 2,
+          "positions": [
+            518,
+            758
+          ],
+          "gaps": [
+            240
+          ],
+          "gap_mean": 240.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "A",
+            "PA",
+            "RA",
+            "NE"
+          ],
+          "count": 2,
+          "positions": [
+            608,
+            615
+          ],
+          "gaps": [
+            7
+          ],
+          "gap_mean": 7.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "KU",
+            "SE",
+            "NE"
+          ],
+          "count": 2,
+          "positions": [
+            674,
+            676
+          ],
+          "gaps": [
+            2
+          ],
+          "gap_mean": 2.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PO",
+            "TO",
+            "KU",
+            "RO"
+          ],
+          "count": 2,
+          "positions": [
+            836,
+            910
+          ],
+          "gaps": [
+            74
+          ],
+          "gap_mean": 74.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SA",
+            "SA",
+            "RA",
+            "ME"
+          ],
+          "count": 2,
+          "positions": [
+            2017,
+            2227
+          ],
+          "gaps": [
+            210
+          ],
+          "gap_mean": 210.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "QE",
+            "DE",
+            "MI",
+            "NU"
+          ],
+          "count": 2,
+          "positions": [
+            2053,
+            2055
+          ],
+          "gaps": [
+            2
+          ],
+          "gap_mean": 2.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "MA",
+            "KA",
+            "I",
+            "TA"
+          ],
+          "count": 2,
+          "positions": [
+            2203,
+            2391
+          ],
+          "gaps": [
+            188
+          ],
+          "gap_mean": 188.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "QE",
+            "SI",
+            "ZU",
+            "E"
+          ],
+          "count": 2,
+          "positions": [
+            2380,
+            2487
+          ],
+          "gaps": [
+            107
+          ],
+          "gap_mean": 107.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SA",
+            "MI",
+            "DA",
+            "E"
+          ],
+          "count": 2,
+          "positions": [
+            2388,
+            2494
+          ],
+          "gaps": [
+            106
+          ],
+          "gap_mean": 106.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "I",
+            "PI",
+            "TA"
+          ],
+          "count": 2,
+          "positions": [
+            2419,
+            2438
+          ],
+          "gaps": [
+            19
+          ],
+          "gap_mean": 19.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "I",
+            "DA",
+            "MA",
+            "TE"
+          ],
+          "count": 2,
+          "positions": [
+            2570,
+            2571
+          ],
+          "gaps": [
+            1
+          ],
+          "gap_mean": 1.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "ZU",
+            "NI"
+          ],
+          "count": 2,
+          "positions": [
+            114,
+            487
+          ],
+          "gaps": [
+            373
+          ],
+          "gap_mean": 373.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SI",
+            "DA",
+            "RE"
+          ],
+          "count": 2,
+          "positions": [
+            134,
+            820
+          ],
+          "gaps": [
+            686
+          ],
+          "gap_mean": 686.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RU",
+            "MA",
+            "TA"
+          ],
+          "count": 2,
+          "positions": [
+            239,
+            646
+          ],
+          "gaps": [
+            407
+          ],
+          "gap_mean": 407.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TI",
+            "TI",
+            "KU"
+          ],
+          "count": 2,
+          "positions": [
+            296,
+            2555
+          ],
+          "gaps": [
+            2259
+          ],
+          "gap_mean": 2259.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "RE",
+            "JU"
+          ],
+          "count": 2,
+          "positions": [
+            325,
+            778
+          ],
+          "gaps": [
+            453
+          ],
+          "gap_mean": 453.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "I",
+            "QA",
+            "*118"
+          ],
+          "count": 2,
+          "positions": [
+            352,
+            907
+          ],
+          "gaps": [
+            555
+          ],
+          "gap_mean": 555.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KI",
+            "DA",
+            "RO"
+          ],
+          "count": 2,
+          "positions": [
+            374,
+            777
+          ],
+          "gaps": [
+            403
+          ],
+          "gap_mean": 403.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RI",
+            "SU",
+            "MA"
+          ],
+          "count": 2,
+          "positions": [
+            477,
+            735
+          ],
+          "gaps": [
+            258
+          ],
+          "gap_mean": 258.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KI",
+            "RE",
+            "TA₂"
+          ],
+          "count": 2,
+          "positions": [
+            492,
+            896
+          ],
+          "gaps": [
+            404
+          ],
+          "gap_mean": 404.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DI",
+            "KI",
+            "SE"
+          ],
+          "count": 2,
+          "positions": [
+            521,
+            779
+          ],
+          "gaps": [
+            258
+          ],
+          "gap_mean": 258.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DI",
+            "RI",
+            "NA"
+          ],
+          "count": 2,
+          "positions": [
+            557,
+            667
+          ],
+          "gaps": [
+            110
+          ],
+          "gap_mean": 110.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PA",
+            "I",
+            "TO"
+          ],
+          "count": 2,
+          "positions": [
+            620,
+            806
+          ],
+          "gaps": [
+            186
+          ],
+          "gap_mean": 186.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KI",
+            "RI",
+            "TA₂"
+          ],
+          "count": 2,
+          "positions": [
+            721,
+            808
+          ],
+          "gaps": [
+            87
+          ],
+          "gap_mean": 87.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PA",
+            "RA",
+            "NE"
+          ],
+          "count": 2,
+          "positions": [
+            731,
+            739
+          ],
+          "gaps": [
+            8
+          ],
+          "gap_mean": 8.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "QA",
+            "NU",
+            "MA"
+          ],
+          "count": 2,
+          "positions": [
+            755,
+            1908
+          ],
+          "gaps": [
+            1153
+          ],
+          "gap_mean": 1153.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TA",
+            "NI",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            1579,
+            1581
+          ],
+          "gaps": [
+            2
+          ],
+          "gap_mean": 2.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "WA",
+            "DI",
+            "NI"
+          ],
+          "count": 2,
+          "positions": [
+            1585,
+            1586
+          ],
+          "gaps": [
+            1
+          ],
+          "gap_mean": 1.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "ZU",
+            "DI",
+            "RA"
+          ],
+          "count": 2,
+          "positions": [
+            1590,
+            1591
+          ],
+          "gaps": [
+            1
+          ],
+          "gap_mean": 1.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DI",
+            "NA"
+          ],
+          "count": 2,
+          "positions": [
+            9,
+            1854
+          ],
+          "gaps": [
+            1845
+          ],
+          "gap_mean": 1845.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "MU",
+            "RU"
+          ],
+          "count": 2,
+          "positions": [
+            12,
+            367
+          ],
+          "gaps": [
+            355
+          ],
+          "gap_mean": 355.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TE",
+            "*301"
+          ],
+          "count": 2,
+          "positions": [
+            52,
+            635
+          ],
+          "gaps": [
+            583
+          ],
+          "gap_mean": 583.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "QE",
+            "PU"
+          ],
+          "count": 2,
+          "positions": [
+            65,
+            74
+          ],
+          "gaps": [
+            9
+          ],
+          "gap_mean": 9.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "A",
+            "RU"
+          ],
+          "count": 2,
+          "positions": [
+            67,
+            383
+          ],
+          "gaps": [
+            316
+          ],
+          "gap_mean": 316.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "ME",
+            "ZA"
+          ],
+          "count": 2,
+          "positions": [
+            85,
+            498
+          ],
+          "gaps": [
+            413
+          ],
+          "gap_mean": 413.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "I"
+          ],
+          "count": 2,
+          "positions": [
+            108,
+            1769
+          ],
+          "gaps": [
+            1661
+          ],
+          "gap_mean": 1661.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TE",
+            "KI"
+          ],
+          "count": 2,
+          "positions": [
+            113,
+            817
+          ],
+          "gaps": [
+            704
+          ],
+          "gap_mean": 704.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PU",
+            "VIN"
+          ],
+          "count": 2,
+          "positions": [
+            118,
+            839
+          ],
+          "gaps": [
+            721
+          ],
+          "gap_mean": 721.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PA",
+            "SE"
+          ],
+          "count": 2,
+          "positions": [
+            135,
+            218
+          ],
+          "gaps": [
+            83
+          ],
+          "gap_mean": 83.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KA",
+            "NA"
+          ],
+          "count": 2,
+          "positions": [
+            151,
+            852
+          ],
+          "gaps": [
+            701
+          ],
+          "gap_mean": 701.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "I",
+            "TI"
+          ],
+          "count": 2,
+          "positions": [
+            191,
+            1649
+          ],
+          "gaps": [
+            1458
+          ],
+          "gap_mean": 1458.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TA",
+            "TI"
+          ],
+          "count": 2,
+          "positions": [
+            193,
+            627
+          ],
+          "gaps": [
+            434
+          ],
+          "gap_mean": 434.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "JA",
+            "*21F"
+          ],
+          "count": 2,
+          "positions": [
+            225,
+            237
+          ],
+          "gaps": [
+            12
+          ],
+          "gap_mean": 12.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PU",
+            "RA₂"
+          ],
+          "count": 2,
+          "positions": [
+            236,
+            750
+          ],
+          "gaps": [
+            514
+          ],
+          "gap_mean": 514.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KA",
+            "KI"
+          ],
+          "count": 2,
+          "positions": [
+            311,
+            316
+          ],
+          "gaps": [
+            5
+          ],
+          "gap_mean": 5.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "RE"
+          ],
+          "count": 2,
+          "positions": [
+            328,
+            409
+          ],
+          "gaps": [
+            81
+          ],
+          "gap_mean": 81.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "ZU",
+            "DU"
+          ],
+          "count": 2,
+          "positions": [
+            399,
+            645
+          ],
+          "gaps": [
+            246
+          ],
+          "gap_mean": 246.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SI",
+            "RU"
+          ],
+          "count": 2,
+          "positions": [
+            415,
+            2230
+          ],
+          "gaps": [
+            1815
+          ],
+          "gap_mean": 1815.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SA",
+            "RA"
+          ],
+          "count": 2,
+          "positions": [
+            432,
+            2279
+          ],
+          "gaps": [
+            1847
+          ],
+          "gap_mean": 1847.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KA",
+            "RU"
+          ],
+          "count": 2,
+          "positions": [
+            465,
+            617
+          ],
+          "gaps": [
+            152
+          ],
+          "gap_mean": 152.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "NU",
+            "TI"
+          ],
+          "count": 2,
+          "positions": [
+            481,
+            2422
+          ],
+          "gaps": [
+            1941
+          ],
+          "gap_mean": 1941.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PA₃",
+            "NI"
+          ],
+          "count": 2,
+          "positions": [
+            484,
+            664
+          ],
+          "gaps": [
+            180
+          ],
+          "gap_mean": 180.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "QE",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            493,
+            708
+          ],
+          "gaps": [
+            215
+          ],
+          "gap_mean": 215.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "I",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            548,
+            670
+          ],
+          "gaps": [
+            122
+          ],
+          "gap_mean": 122.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TE",
+            "RI"
+          ],
+          "count": 2,
+          "positions": [
+            550,
+            2621
+          ],
+          "gaps": [
+            2071
+          ],
+          "gap_mean": 2071.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KI",
+            "RA"
+          ],
+          "count": 2,
+          "positions": [
+            677,
+            2410
+          ],
+          "gaps": [
+            1733
+          ],
+          "gap_mean": 1733.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SA",
+            "VIN"
+          ],
+          "count": 2,
+          "positions": [
+            724,
+            2486
+          ],
+          "gaps": [
+            1762
+          ],
+          "gap_mean": 1762.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "MI",
+            "TU"
+          ],
+          "count": 2,
+          "positions": [
+            762,
+            918
+          ],
+          "gaps": [
+            156
+          ],
+          "gap_mean": 156.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PI",
+            "SA"
+          ],
+          "count": 2,
+          "positions": [
+            849,
+            1699
+          ],
+          "gaps": [
+            850
+          ],
+          "gap_mean": 850.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "U",
+            "*49"
+          ],
+          "count": 2,
+          "positions": [
+            868,
+            2442
+          ],
+          "gaps": [
+            1574
+          ],
+          "gap_mean": 1574.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PA",
+            "RA"
+          ],
+          "count": 2,
+          "positions": [
+            882,
+            2126
+          ],
+          "gaps": [
+            1244
+          ],
+          "gap_mean": 1244.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SI",
+            "CYP"
+          ],
+          "count": 2,
+          "positions": [
+            905,
+            1757
+          ],
+          "gaps": [
+            852
+          ],
+          "gap_mean": 852.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RU",
+            "DI"
+          ],
+          "count": 2,
+          "positions": [
+            939,
+            2558
+          ],
+          "gaps": [
+            1619
+          ],
+          "gap_mean": 1619.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SI",
+            "TU"
+          ],
+          "count": 2,
+          "positions": [
+            975,
+            2513
+          ],
+          "gaps": [
+            1538
+          ],
+          "gap_mean": 1538.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "NU",
+            "RO"
+          ],
+          "count": 2,
+          "positions": [
+            1659,
+            2658
+          ],
+          "gaps": [
+            999
+          ],
+          "gap_mean": 999.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "I",
+            "SI"
+          ],
+          "count": 2,
+          "positions": [
+            1738,
+            2276
+          ],
+          "gaps": [
+            538
+          ],
+          "gap_mean": 538.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "A",
+            "PA"
+          ],
+          "count": 2,
+          "positions": [
+            1976,
+            2581
+          ],
+          "gaps": [
+            605
+          ],
+          "gap_mean": 605.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "JA",
+            "SI"
+          ],
+          "count": 2,
+          "positions": [
+            2006,
+            2109
+          ],
+          "gaps": [
+            103
+          ],
+          "gap_mean": 103.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RE",
+            "TI"
+          ],
+          "count": 2,
+          "positions": [
+            2058,
+            2081
+          ],
+          "gaps": [
+            23
+          ],
+          "gap_mean": 23.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "A",
+            "MI"
+          ],
+          "count": 2,
+          "positions": [
+            2158,
+            2646
+          ],
+          "gaps": [
+            488
+          ],
+          "gap_mean": 488.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "A",
+            "NE"
+          ],
+          "count": 2,
+          "positions": [
+            2236,
+            2316
+          ],
+          "gaps": [
+            80
+          ],
+          "gap_mean": 80.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RE",
+            "JA"
+          ],
+          "count": 2,
+          "positions": [
+            2247,
+            2332
+          ],
+          "gaps": [
+            85
+          ],
+          "gap_mean": 85.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "JA",
+            "JA"
+          ],
+          "count": 2,
+          "positions": [
+            2251,
+            2305
+          ],
+          "gaps": [
+            54
+          ],
+          "gap_mean": 54.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KA",
+            "DI"
+          ],
+          "count": 2,
+          "positions": [
+            2384,
+            2496
+          ],
+          "gaps": [
+            112
+          ],
+          "gap_mean": 112.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "I",
+            "SE"
+          ],
+          "count": 2,
+          "positions": [
+            2393,
+            2397
+          ],
+          "gaps": [
+            4
+          ],
+          "gap_mean": 4.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "RA"
+          ],
+          "count": 2,
+          "positions": [
+            2516,
+            2588
+          ],
+          "gaps": [
+            72
+          ],
+          "gap_mean": 72.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SI",
+            "TE"
+          ],
+          "count": 2,
+          "positions": [
+            2535,
+            2644
+          ],
+          "gaps": [
+            109
+          ],
+          "gap_mean": 109.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        }
+      ],
+      "caveat": "Structure != meaning. These metrics distinguish structured from random, not 'language' from 'structured template' at small corpus sizes."
+    },
+    {
+      "label": "Linear B (known-answer: deciphered syllabary)",
+      "n_tokens": 1520,
+      "n_distinct": 69,
+      "alphabet_size": 6.109,
+      "unigram_entropy_bits": 5.526,
+      "index_of_coincidence": 0.0264,
+      "ioc_over_uniform": 1.824,
+      "conditional_bigram_entropy_bits": 4.195,
+      "lz78_ratio": 0.4763,
+      "top_bigrams": [
+        {
+          "pair": [
+            "RO",
+            "A"
+          ],
+          "count": 16
+        },
+        {
+          "pair": [
+            "KA",
+            "TA"
+          ],
+          "count": 9
+        },
+        {
+          "pair": [
+            "A",
+            "TA"
+          ],
+          "count": 8
+        },
+        {
+          "pair": [
+            "PA",
+            "JA"
+          ],
+          "count": 8
+        },
+        {
+          "pair": [
+            "KI",
+            "RI"
+          ],
+          "count": 7
+        },
+        {
+          "pair": [
+            "DA",
+            "RO"
+          ],
+          "count": 6
+        },
+        {
+          "pair": [
+            "KE",
+            "TA"
+          ],
+          "count": 6
+        },
+        {
+          "pair": [
+            "PI",
+            "TA"
+          ],
+          "count": 6
+        }
+      ],
+      "word_lengths": {
+        "n_words": 659,
+        "min": 2,
+        "max": 4,
+        "mean": 2.31,
+        "hist": {
+          "2": 465,
+          "3": 186,
+          "4": 8
+        }
+      },
+      "shuffled_control": {
+        "observed": 4.1947,
+        "shuffled_mean": 4.2557,
+        "shuffled_sd": 0.0186,
+        "z": -3.29,
+        "more_structured_than_chance": true
+      },
+      "repeat_structure": [],
+      "caveat": "Structure != meaning. These metrics distinguish structured from random, not 'language' from 'structured template' at small corpus sizes."
+    }
+  ],
+  "controls": [],
+  "negative": [
+    {
+      "label": "Linear A — unigram-matched shuffle (negative control)",
+      "n_tokens": 5104,
+      "n_distinct": 246,
+      "alphabet_size": 7.943,
+      "unigram_entropy_bits": 6.006,
+      "index_of_coincidence": 0.024,
+      "ioc_over_uniform": 5.896,
+      "conditional_bigram_entropy_bits": 4.871,
+      "lz78_ratio": 0.4428,
+      "top_bigrams": [
+        {
+          "pair": [
+            "KU",
+            "KU"
+          ],
+          "count": 27
+        },
+        {
+          "pair": [
+            "KA",
+            "KA"
+          ],
+          "count": 23
+        },
+        {
+          "pair": [
+            "KA",
+            "KU"
+          ],
+          "count": 17
+        },
+        {
+          "pair": [
+            "KA",
+            "TE"
+          ],
+          "count": 15
+        },
+        {
+          "pair": [
+            "I",
+            "RO"
+          ],
+          "count": 15
+        },
+        {
+          "pair": [
+            "SI",
+            "KU"
+          ],
+          "count": 15
+        },
+        {
+          "pair": [
+            "RO",
+            "KA"
+          ],
+          "count": 15
+        },
+        {
+          "pair": [
+            "A",
+            "SI"
+          ],
+          "count": 14
+        }
+      ],
+      "word_lengths": {
+        "n_words": 2667,
+        "min": 1,
+        "max": 19,
+        "mean": 1.91,
+        "hist": {
+          "1": 1426,
+          "2": 537,
+          "3": 410,
+          "4": 180,
+          "5": 66,
+          "6": 33,
+          "7": 8,
+          "8": 4,
+          "9": 1,
+          "10": 1,
+          "19": 1
+        }
+      },
+      "shuffled_control": {
+        "observed": 4.8708,
+        "shuffled_mean": 4.8664,
+        "shuffled_sd": 0.0102,
+        "z": 0.43,
+        "more_structured_than_chance": false
+      },
+      "repeat_structure": [
+        {
+          "group": [
+            "KA",
+            "KU"
+          ],
+          "count": 4,
+          "positions": [
+            406,
+            1601,
+            1717,
+            2133
+          ],
+          "gaps": [
+            1195,
+            116,
+            416
+          ],
+          "gap_mean": 575.67,
+          "gap_cv": 0.79,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "RO",
+            "KA"
+          ],
+          "count": 4,
+          "positions": [
+            530,
+            1662,
+            2410,
+            2516
+          ],
+          "gaps": [
+            1132,
+            748,
+            106
+          ],
+          "gap_mean": 662.0,
+          "gap_cv": 0.639,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "I",
+            "RO"
+          ],
+          "count": 3,
+          "positions": [
+            46,
+            791,
+            1990
+          ],
+          "gaps": [
+            745,
+            1199
+          ],
+          "gap_mean": 972.0,
+          "gap_cv": 0.234,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "TA",
+            "PA"
+          ],
+          "count": 3,
+          "positions": [
+            86,
+            827,
+            2353
+          ],
+          "gaps": [
+            741,
+            1526
+          ],
+          "gap_mean": 1133.5,
+          "gap_cv": 0.346,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "SA",
+            "SI"
+          ],
+          "count": 3,
+          "positions": [
+            430,
+            868,
+            2621
+          ],
+          "gaps": [
+            438,
+            1753
+          ],
+          "gap_mean": 1095.5,
+          "gap_cv": 0.6,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "¹⁄₅",
+            "KA"
+          ],
+          "count": 3,
+          "positions": [
+            614,
+            636,
+            1699
+          ],
+          "gaps": [
+            22,
+            1063
+          ],
+          "gap_mean": 542.5,
+          "gap_cv": 0.959,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "SI",
+            "SI"
+          ],
+          "count": 3,
+          "positions": [
+            842,
+            981,
+            1712
+          ],
+          "gaps": [
+            139,
+            731
+          ],
+          "gap_mean": 435.0,
+          "gap_cv": 0.68,
+          "layout": "irregular/clustered"
+        },
+        {
+          "group": [
+            "TU",
+            "KU"
+          ],
+          "count": 2,
+          "positions": [
+            1,
+            622
+          ],
+          "gaps": [
+            621
+          ],
+          "gap_mean": 621.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SU",
+            "SI"
+          ],
+          "count": 2,
+          "positions": [
+            9,
+            2170
+          ],
+          "gaps": [
+            2161
+          ],
+          "gap_mean": 2161.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "RU"
+          ],
+          "count": 2,
+          "positions": [
+            12,
+            1812
+          ],
+          "gaps": [
+            1800
+          ],
+          "gap_mean": 1800.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RA",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            23,
+            861
+          ],
+          "gaps": [
+            838
+          ],
+          "gap_mean": 838.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TI",
+            "KU"
+          ],
+          "count": 2,
+          "positions": [
+            25,
+            1997
+          ],
+          "gaps": [
+            1972
+          ],
+          "gap_mean": 1972.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KI",
+            "SI"
+          ],
+          "count": 2,
+          "positions": [
+            39,
+            929
+          ],
+          "gaps": [
+            890
+          ],
+          "gap_mean": 890.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "I",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            40,
+            2645
+          ],
+          "gaps": [
+            2605
+          ],
+          "gap_mean": 2605.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "ZU",
+            "SI"
+          ],
+          "count": 2,
+          "positions": [
+            49,
+            2422
+          ],
+          "gaps": [
+            2373
+          ],
+          "gap_mean": 2373.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TE",
+            "ME"
+          ],
+          "count": 2,
+          "positions": [
+            63,
+            2192
+          ],
+          "gaps": [
+            2129
+          ],
+          "gap_mean": 2129.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "PI"
+          ],
+          "count": 2,
+          "positions": [
+            65,
+            2466
+          ],
+          "gaps": [
+            2401
+          ],
+          "gap_mean": 2401.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TA",
+            "I"
+          ],
+          "count": 2,
+          "positions": [
+            104,
+            678
+          ],
+          "gaps": [
+            574
+          ],
+          "gap_mean": 574.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RU",
+            "SA"
+          ],
+          "count": 2,
+          "positions": [
+            124,
+            561
+          ],
+          "gaps": [
+            437
+          ],
+          "gap_mean": 437.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "PI"
+          ],
+          "count": 2,
+          "positions": [
+            137,
+            1985
+          ],
+          "gaps": [
+            1848
+          ],
+          "gap_mean": 1848.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KA",
+            "SI"
+          ],
+          "count": 2,
+          "positions": [
+            162,
+            2642
+          ],
+          "gaps": [
+            2480
+          ],
+          "gap_mean": 2480.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "I",
+            "TA"
+          ],
+          "count": 2,
+          "positions": [
+            229,
+            2612
+          ],
+          "gaps": [
+            2383
+          ],
+          "gap_mean": 2383.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "A",
+            "PA"
+          ],
+          "count": 2,
+          "positions": [
+            237,
+            2530
+          ],
+          "gaps": [
+            2293
+          ],
+          "gap_mean": 2293.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SI",
+            "SE"
+          ],
+          "count": 2,
+          "positions": [
+            259,
+            2581
+          ],
+          "gaps": [
+            2322
+          ],
+          "gap_mean": 2322.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KA",
+            "I"
+          ],
+          "count": 2,
+          "positions": [
+            271,
+            572
+          ],
+          "gaps": [
+            301
+          ],
+          "gap_mean": 301.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "NA",
+            "JA"
+          ],
+          "count": 2,
+          "positions": [
+            276,
+            2316
+          ],
+          "gaps": [
+            2040
+          ],
+          "gap_mean": 2040.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "TI"
+          ],
+          "count": 2,
+          "positions": [
+            284,
+            2385
+          ],
+          "gaps": [
+            2101
+          ],
+          "gap_mean": 2101.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TE",
+            "RO"
+          ],
+          "count": 2,
+          "positions": [
+            307,
+            959
+          ],
+          "gaps": [
+            652
+          ],
+          "gap_mean": 652.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KI",
+            "A"
+          ],
+          "count": 2,
+          "positions": [
+            311,
+            969
+          ],
+          "gaps": [
+            658
+          ],
+          "gap_mean": 658.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SA",
+            "KU"
+          ],
+          "count": 2,
+          "positions": [
+            315,
+            762
+          ],
+          "gaps": [
+            447
+          ],
+          "gap_mean": 447.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TA",
+            "SI"
+          ],
+          "count": 2,
+          "positions": [
+            390,
+            611
+          ],
+          "gaps": [
+            221
+          ],
+          "gap_mean": 221.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "MA",
+            "RI"
+          ],
+          "count": 2,
+          "positions": [
+            396,
+            565
+          ],
+          "gaps": [
+            169
+          ],
+          "gap_mean": 169.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SI",
+            "MI"
+          ],
+          "count": 2,
+          "positions": [
+            413,
+            2574
+          ],
+          "gaps": [
+            2161
+          ],
+          "gap_mean": 2161.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "PA",
+            "RA₂"
+          ],
+          "count": 2,
+          "positions": [
+            415,
+            759
+          ],
+          "gaps": [
+            344
+          ],
+          "gap_mean": 344.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KA",
+            "A"
+          ],
+          "count": 2,
+          "positions": [
+            449,
+            578
+          ],
+          "gaps": [
+            129
+          ],
+          "gap_mean": 129.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SA",
+            "NA"
+          ],
+          "count": 2,
+          "positions": [
+            489,
+            972
+          ],
+          "gaps": [
+            483
+          ],
+          "gap_mean": 483.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RO",
+            "RU"
+          ],
+          "count": 2,
+          "positions": [
+            516,
+            596
+          ],
+          "gaps": [
+            80
+          ],
+          "gap_mean": 80.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "NA",
+            "KU"
+          ],
+          "count": 2,
+          "positions": [
+            546,
+            627
+          ],
+          "gaps": [
+            81
+          ],
+          "gap_mean": 81.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "OLE"
+          ],
+          "count": 2,
+          "positions": [
+            562,
+            1989
+          ],
+          "gaps": [
+            1427
+          ],
+          "gap_mean": 1427.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RE",
+            "RE"
+          ],
+          "count": 2,
+          "positions": [
+            584,
+            973
+          ],
+          "gaps": [
+            389
+          ],
+          "gap_mean": 389.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "TA"
+          ],
+          "count": 2,
+          "positions": [
+            589,
+            2527
+          ],
+          "gaps": [
+            1938
+          ],
+          "gap_mean": 1938.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RE",
+            "A"
+          ],
+          "count": 2,
+          "positions": [
+            658,
+            2497
+          ],
+          "gaps": [
+            1839
+          ],
+          "gap_mean": 1839.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TA",
+            "JU"
+          ],
+          "count": 2,
+          "positions": [
+            661,
+            2098
+          ],
+          "gaps": [
+            1437
+          ],
+          "gap_mean": 1437.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "RU",
+            "PI"
+          ],
+          "count": 2,
+          "positions": [
+            663,
+            859
+          ],
+          "gaps": [
+            196
+          ],
+          "gap_mean": 196.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "DA"
+          ],
+          "count": 2,
+          "positions": [
+            672,
+            961
+          ],
+          "gaps": [
+            289
+          ],
+          "gap_mean": 289.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "A",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            704,
+            2199
+          ],
+          "gaps": [
+            1495
+          ],
+          "gap_mean": 1495.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "JA"
+          ],
+          "count": 2,
+          "positions": [
+            756,
+            2557
+          ],
+          "gaps": [
+            1801
+          ],
+          "gap_mean": 1801.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TA",
+            "A"
+          ],
+          "count": 2,
+          "positions": [
+            772,
+            958
+          ],
+          "gaps": [
+            186
+          ],
+          "gap_mean": 186.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "MI",
+            "I"
+          ],
+          "count": 2,
+          "positions": [
+            797,
+            839
+          ],
+          "gaps": [
+            42
+          ],
+          "gap_mean": 42.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "RE"
+          ],
+          "count": 2,
+          "positions": [
+            810,
+            1616
+          ],
+          "gaps": [
+            806
+          ],
+          "gap_mean": 806.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "NU"
+          ],
+          "count": 2,
+          "positions": [
+            855,
+            2663
+          ],
+          "gaps": [
+            1808
+          ],
+          "gap_mean": 1808.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KA",
+            "RO"
+          ],
+          "count": 2,
+          "positions": [
+            882,
+            2533
+          ],
+          "gaps": [
+            1651
+          ],
+          "gap_mean": 1651.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TE",
+            "KU"
+          ],
+          "count": 2,
+          "positions": [
+            918,
+            2025
+          ],
+          "gaps": [
+            1107
+          ],
+          "gap_mean": 1107.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SA",
+            "RO"
+          ],
+          "count": 2,
+          "positions": [
+            1600,
+            1769
+          ],
+          "gaps": [
+            169
+          ],
+          "gap_mean": 169.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SI",
+            "KU"
+          ],
+          "count": 2,
+          "positions": [
+            1658,
+            2405
+          ],
+          "gaps": [
+            747
+          ],
+          "gap_mean": 747.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "SA",
+            "I"
+          ],
+          "count": 2,
+          "positions": [
+            1659,
+            2057
+          ],
+          "gaps": [
+            398
+          ],
+          "gap_mean": 398.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KI",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            1757,
+            2258
+          ],
+          "gaps": [
+            501
+          ],
+          "gap_mean": 501.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KA",
+            "QE"
+          ],
+          "count": 2,
+          "positions": [
+            1815,
+            1927
+          ],
+          "gaps": [
+            112
+          ],
+          "gap_mean": 112.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "MI",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            1824,
+            2006
+          ],
+          "gaps": [
+            182
+          ],
+          "gap_mean": 182.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "DI"
+          ],
+          "count": 2,
+          "positions": [
+            1830,
+            2200
+          ],
+          "gaps": [
+            370
+          ],
+          "gap_mean": 370.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "DA",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            1982,
+            2293
+          ],
+          "gaps": [
+            311
+          ],
+          "gap_mean": 311.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "MI",
+            "KU"
+          ],
+          "count": 2,
+          "positions": [
+            2058,
+            2397
+          ],
+          "gaps": [
+            339
+          ],
+          "gap_mean": 339.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "KU",
+            "KA"
+          ],
+          "count": 2,
+          "positions": [
+            2363,
+            2653
+          ],
+          "gaps": [
+            290
+          ],
+          "gap_mean": 290.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        },
+        {
+          "group": [
+            "TI",
+            "RA"
+          ],
+          "count": 2,
+          "positions": [
+            2383,
+            2599
+          ],
+          "gaps": [
+            216
+          ],
+          "gap_mean": 216.0,
+          "gap_cv": 0.0,
+          "layout": "single-gap"
+        }
+      ],
+      "caveat": "Structure != meaning. These metrics distinguish structured from random, not 'language' from 'structured template' at small corpus sizes."
+    }
+  ],
+  "metadata": {
+    "pipeline": {
+      "tool": "tools/scripts/linear_a_probe.py + tools/forensics/symbolseq.py",
+      "analyze_params": {
+        "n_shuffles": 1000,
+        "seed": 0
+      }
+    },
+    "data_sources": [
+      "SigLA (sigla.phis.me) — Ester Salgarella & Simon Castellan, CC BY-NC-SA 4.0",
+      "lineara.xyz / mwenge — GORILA compilations (Godart & Olivier + Douros)"
+    ],
+    "stance": "structure != meaning. No decipherment claims.",
+    "forbidden": "decipherment, language-family claims, 'Minoan = X'"
+  }
+}
