@@ -1,0 +1,222 @@
+{
+  "generated_at": "2026-07-25T19:26:59.388508+00:00",
+  "metadata": {
+    "n_ch_rows": 397,
+    "ch_is_synthetic": true,
+    "ch_source": "synthetic_evans_inventory",
+    "n_linear_a_rows": 2667,
+    "n_linear_a_distinct": 246,
+    "n_linear_b_rows": 659,
+    "n_linear_b_distinct": 69
+  },
+  "groups": [
+    {
+      "label": "cretan_hieroglyphic_corpus",
+      "n_rows": 397,
+      "n_tokens": 1886,
+      "n_distinct": 159,
+      "unigram_entropy_bits": 6.396,
+      "index_of_coincidence": 0.0165,
+      "conditional_bigram_entropy_bits": 4.017,
+      "lz78_ratio": 0.5085,
+      "shuffled_control": {
+        "observed": 4.017,
+        "shuffled_mean": 4.0698,
+        "shuffled_sd": 0.0196,
+        "z": -2.7,
+        "more_structured_than_chance": true
+      },
+      "bipartite_network": {
+        "n_signs": 159,
+        "n_rows": 397,
+        "n_edges": 1743,
+        "density": 0.027613,
+        "avg_sign_degree_norm": 0.027613,
+        "avg_row_degree_norm": 0.027613,
+        "admin_motif_count": 191,
+        "admin_motif_fraction": 0.481108,
+        "degree_skew_gini": 0.579093
+      },
+      "invariants": {
+        "conditional_structure_vs_shuffle": false,
+        "rows_few_enough_to_be_underdetermined": false
+      }
+    },
+    {
+      "label": "linear_a_admin_ka",
+      "n_rows": 2667,
+      "n_tokens": 5104,
+      "n_distinct": 246,
+      "unigram_entropy_bits": 6.006,
+      "index_of_coincidence": 0.024,
+      "conditional_bigram_entropy_bits": 4.128,
+      "lz78_ratio": 0.4014,
+      "shuffled_control": {
+        "observed": 4.128,
+        "shuffled_mean": 4.8699,
+        "shuffled_sd": 0.0068,
+        "z": -108.61,
+        "more_structured_than_chance": true
+      },
+      "bipartite_network": {
+        "n_signs": 246,
+        "n_rows": 2667,
+        "n_edges": 5005,
+        "density": 0.007629,
+        "avg_sign_degree_norm": 0.007629,
+        "avg_row_degree_norm": 0.007629,
+        "admin_motif_count": 49,
+        "admin_motif_fraction": 0.018373,
+        "degree_skew_gini": 0.794991
+      },
+      "invariants": {
+        "conditional_structure_vs_shuffle": true,
+        "rows_few_enough_to_be_underdetermined": false
+      }
+    },
+    {
+      "label": "linear_b_admin_ka",
+      "n_rows": 659,
+      "n_tokens": 1520,
+      "n_distinct": 69,
+      "unigram_entropy_bits": 5.526,
+      "index_of_coincidence": 0.0264,
+      "conditional_bigram_entropy_bits": 4.195,
+      "lz78_ratio": 0.4763,
+      "shuffled_control": {
+        "observed": 4.1947,
+        "shuffled_mean": 4.2593,
+        "shuffled_sd": 0.0152,
+        "z": -4.25,
+        "more_structured_than_chance": true
+      },
+      "bipartite_network": {
+        "n_signs": 69,
+        "n_rows": 659,
+        "n_edges": 1506,
+        "density": 0.03312,
+        "avg_sign_degree_norm": 0.03312,
+        "avg_row_degree_norm": 0.03312,
+        "admin_motif_count": 12,
+        "admin_motif_fraction": 0.018209,
+        "degree_skew_gini": 0.491791
+      },
+      "invariants": {
+        "conditional_structure_vs_shuffle": true,
+        "rows_few_enough_to_be_underdetermined": false
+      }
+    },
+    {
+      "label": "unigram_shuffle_negative_control",
+      "n_rows": 1,
+      "n_tokens": 1886,
+      "n_distinct": 159,
+      "unigram_entropy_bits": 6.396,
+      "index_of_coincidence": 0.0165,
+      "conditional_bigram_entropy_bits": 4.044,
+      "lz78_ratio": 0.5101,
+      "shuffled_control": {
+        "observed": 4.0439,
+        "shuffled_mean": 4.0629,
+        "shuffled_sd": 0.0165,
+        "z": -1.15,
+        "more_structured_than_chance": false
+      },
+      "bipartite_network": {
+        "n_signs": 159,
+        "n_rows": 1,
+        "n_edges": 159,
+        "density": 1.0,
+        "avg_sign_degree_norm": 1.0,
+        "avg_row_degree_norm": 1.0,
+        "admin_motif_count": 1,
+        "admin_motif_fraction": 1.0,
+        "degree_skew_gini": 0.0
+      },
+      "invariants": {
+        "conditional_structure_vs_shuffle": false,
+        "rows_few_enough_to_be_underdetermined": true
+      }
+    },
+    {
+      "label": "random_bipartite_network_null",
+      "n_rows": 395,
+      "n_tokens": 1713,
+      "n_distinct": 159,
+      "unigram_entropy_bits": 7.241,
+      "index_of_coincidence": 0.0063,
+      "conditional_bigram_entropy_bits": 3.359,
+      "lz78_ratio": 0.54,
+      "shuffled_control": {
+        "z": 0.0,
+        "more_structured_than_chance": false
+      },
+      "bipartite_network": {
+        "n_signs": 159,
+        "n_rows": 395,
+        "n_edges": 1713,
+        "density": 0.027275,
+        "avg_sign_degree_norm": 0.027275,
+        "avg_row_degree_norm": 0.027275,
+        "admin_motif_count": 0,
+        "admin_motif_fraction": 0.0,
+        "degree_skew_gini": 0.175337
+      },
+      "invariants": {
+        "conditional_structure_vs_shuffle": false,
+        "rows_few_enough_to_be_underdetermined": false
+      }
+    }
+  ],
+  "bipartite_distance_to_linear_a_admin": {
+    "distance": 0.717,
+    "iso_like_linear_a": false
+  },
+  "bipartite_distance_to_linear_b_admin": {
+    "distance": 0.4542,
+    "iso_like_linear_a": false
+  },
+  "bipartite_distance_to_random_null": {
+    "distance": 0.5453,
+    "iso_like_linear_a": false
+  },
+  "verdict": "UNDERDETERMINED",
+  "data_source": "Loader attempts data/scripts/cretan_hieroglyphic/corpus.json first. If absent OR forced via --synthetic, uses a run-time Evans-shaped synthetic corpus (~130 inscriptions with admin motif structure). The synthetic is structurally transparent (Evans sign inventory CH_001..CH_096 + arithmogram numerics 01..99 + SEP slot delimiters); it can never masquerade as real CHIC transcriptions. The known-answer comparators reuse data/scripts/linear_a/{linear_a_corpus.json, linearb_corpus.json} (SigLA / mwenge dumps; LA has 5104 tokens / 246 distinct signs; LB has 1520 tokens / 69 signs) as STRUCTURAL COMPARATORS ONLY - never as a CH decipherment.",
+  "stance": "Cretan Hieroglyphic (ca. 2000-1700 BCE, Knossos / Phaistos / Malia) is undeciphered. CHIC (Corpus Hieroglyphicarum Inscriptionum Cretae, Godart & Olivier 1996) is the catalogue, NOT a reading. This probe measures sign-sequence structure and bipartite admin-network isomorphism ONLY. It does NOT translate CH, claim a phonetic reading, place CH in any linguistic grouping, or endorse any 2025-2026 viral-decrypt-blog CH claim. STRUCTURE != MEANING. Reused tools/forensics/symbolseq.py.",
+  "forbidden_phrases": [
+    "Cretan Hieroglyphic deciphered",
+    "CH deciphered",
+    "reads as",
+    "translates to",
+    "transcribed as",
+    "phonetic values",
+    "Glottocode",
+    "Indo-European",
+    "Semitic",
+    "language family",
+    "99% deciphered",
+    "100% deciphered",
+    "alphabet decoded",
+    "we decoded",
+    "aliens wrote",
+    "we can now read",
+    "Greek dialect",
+    "Faure reading",
+    "Isidori reading",
+    "Best sounding"
+  ],
+  "caveats": [
+    "CHIC (Godart & Olivier 1996) is NOT licensed for redistribution as a machine-readable corpus (verified 2026-07-25); the corpus is the run-time Evans-shaped synthetic fallback unless a real local corpus.json is dropped in and not committed.",
+    "Linear A and Linear B are used ONLY as STRUCTURE COMPARATORS. Their entropy profile is compared to that of CH via the bipartite admin-network signature; this does NOT mean Cretan Hieroglyphic is Linear A or B, or shares a language.",
+    "Bipartite distance is in normalized feature space over 5 invariants (density, avg_sign_degree_norm, avg_row_degree_norm, admin_motif_fraction, degree_skew_gini). The threshold 0.15 is calibrated against Linear A's admin shape; do NOT cite as 'isomorphic' - SHAPE COMPARATOR only.",
+    "Verdict tags are structure-only - NEVER substitutable for decipherment, language ID, or 'reading' claims."
+  ],
+  "pipeline": {
+    "tool": "tools/scripts/cretan_hieroglyphic_probe.py + tools/forensics/symbolseq.py",
+    "parameters": {
+      "n_shuffles": 20,
+      "seed": 0,
+      "synthetic": true
+    }
+  }
+}
