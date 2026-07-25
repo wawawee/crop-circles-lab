@@ -225,10 +225,11 @@
     /* ---------- Phaistos ---------- */
     .phaistos-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 1.1rem;
       align-items: stretch;
     }
+    .phaistos-grid .panel:first-child svg { max-width: 820px; margin-inline: auto; }
     #phaistos .panel { display: flex; flex-direction: column; }
     .fact-no {
       font-family: "IBM Plex Mono", monospace;
@@ -687,7 +688,7 @@
     // Fact 1: conditional entropy — Gaussian shuffle null + observed line + z bracket
     // -------------------------------------------------------
     function buildEntropyChart(e) {
-      var W = 560, H = 340;
+      var W = 600, H = 340;
       var m = { l: 30, r: 26, t: 30, b: 58 };
       var x0 = m.l, x1 = W - m.r, y0 = H - m.b, y1 = m.t;
       var s = svg(W, H);
@@ -729,18 +730,18 @@
       var pts = [];
       var N = 120;
       for (var i = 0; i <= N; i++) {
-        var v = mean - 4.2 * sd + (8.4 * sd) * (i / N);
+        var v = mean - 3.6 * sd + (7.2 * sd) * (i / N);
         pts.push([X(v), Y(pdf(v))]);
       }
-      var dPath = "M " + X(mean - 4.2 * sd) + " " + y0;
+      var dPath = "M " + X(mean - 3.6 * sd) + " " + y0;
       pts.forEach(function (p) { dPath += " L " + p[0].toFixed(2) + " " + p[1].toFixed(2); });
-      dPath += " L " + X(mean + 4.2 * sd) + " " + y0 + " Z";
+      dPath += " L " + X(mean + 3.6 * sd) + " " + y0 + " Z";
       s.appendChild(node("path", { d: dPath, fill: "var(--bad)", "fill-opacity": 0.13, stroke: "var(--bad)",
         "stroke-width": 1.4, "stroke-dasharray": "5 3", "stroke-opacity": 0.75 }));
 
       // control label on the bell
-      s.appendChild(txt(X(mean + 1.7 * sd), plotTop + 30, "NEGATIVE CONTROL", { "font-size": 9.5, fill: "var(--bad)", "letter-spacing": "0.1em", "text-anchor": "start" }));
-      s.appendChild(txt(X(mean + 1.7 * sd), plotTop + 43, "shuffle distribution", { "font-size": 9.5, fill: "var(--bad)", "text-anchor": "start", opacity: 0.85 }));
+      s.appendChild(txt(X(mean), plotTop + 30, "NEGATIVE CONTROL", { "font-size": 9.5, fill: "var(--bad)", "letter-spacing": "0.1em", "text-anchor": "middle" }));
+      s.appendChild(txt(X(mean), plotTop + 43, "shuffle distribution", { "font-size": 9.5, fill: "var(--bad)", "text-anchor": "middle", opacity: 0.85 }));
 
       // ---- shuffle mean line ----
       s.appendChild(node("line", { x1: X(mean), y1: Y(pdf(mean)) - 6, x2: X(mean), y2: y0,
