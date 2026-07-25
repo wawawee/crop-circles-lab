@@ -4,13 +4,18 @@ N2 mission (Opencode). Downloads official DoD/DNI GIMBAL/GOFAST/FLIR1 releases
 from Wikimedia Commons (public domain), extracts per-frame metadata via exiftool
 + ffprobe, and flags unphysical acceleration if range/FOV assumptions support it.
 
-Key finding (documented): the official releases contain ZERO telemetry metadata
-(range, FOV, sensor calibration). G-force claims are UNDERDETERMINED without
-platform-motion separation. This tool surfaces that limitation honestly.
+New backends (2026):
+  vidstab     — VidStab video stabilization before tracking
+  pyexiftool  — PyExifTool wrapper (more reliable than subprocess)
+  tracker     — OpenCV CSRT/DaisyCF track for automatic flight-path extraction
+
+Key finding: official releases contain ZERO telemetry metadata.
+G-force claims are UNDERDETERMINED without platform-motion separation.
 
 CLI:
   python tools/uap/uap_flight_consistency.py --scan-all
-  python tools/uap/uap_flight_consistency.py --video data/uap/GoFast_Official_UAP_Footage.webm
+  python tools/uap/uap_flight_consistency.py --video data/uap/GoFast*.webm
+  python tools/uap/uap_flight_consistency.py --video data/uap/Gimbal*.webm --track
   python tools/uap/uap_flight_consistency.py --demo
   python tools/uap/uap_flight_consistency.py --negative-controls
 """
@@ -29,20 +34,38 @@ from pathlib import Path
 try:
     import cv2
 except ImportError:
-    cv2 = None  # type: ignore
+    cv2 = None
 
 import numpy as np
+
+# ---------------------------------------------------------------------------
+# backend availability
+# ---------------------------------------------------------------------------
+
+HAS_VIDSTAB = False
+try:
+    from vidstab import VidStab
+    HAS_VIDSTAB = True
+except ImportError:
+    pass
+
+HAS_PYEXIFTOOL = False
+try:
+    import exiftool as _pyexif
+    HAS_PYEXIFTOOL = True
+except ImportError:
+    pass
+
+BACKENDS = ("subprocess", "pyexiftool")
 
 # ---------------------------------------------------------------------------
 # Constants — aircraft performance envelopes (public sources)
 # ---------------------------------------------------------------------------
 
-# F/A-18 Super Hornet (the recording platform)
-FA18_MAX_G = 7.5       # structural limit (public)
-FA18_MAX_G_WITH_AAM = 7.0  # with missiles
-FA18_SUSTAINED_G = 5.0  # sustained turn at mil power
+FA18_MAX_G = 7.5
+FA18_MAX_G_WITH_AAM = 7.0
+FA18_SUSTAINED_G = 5.0
 
-# Typical manned aircraft regimes
 AIRCRAFT_ENVELOPE = {
     "commercial_jet": {"max_g": 2.5, "max_accel_m_s2": 24.5},
     "fighter_clean": {"max_g": 9.0, "max_accel_m_s2": 88.3},
@@ -51,22 +74,16 @@ AIRCRAFT_ENVELOPE = {
     "missile_aim120": {"max_g": 40.0, "max_accel_m_s2": 392.0},
 }
 
-# ATFLIR pod specs (Raytheon AN/ASQ-228)
 ATFLIR_FOV_DEG = {
-    "narrow": 0.7,   # 0.7° Narrow FOV
-    "medium": 2.0,   # ~2° Medium FOV (spec varies by report)
-    "wide": 4.0,     # ~4° Wide FOV
+    "narrow": 0.7,
+    "medium": 2.0,
+    "wide": 4.0,
 }
-
-# GIMBAL video — aviators state "it's a drone" in the audio; object appears to rotate
-# GOFAST video — AARO (2025) resolved as parallax effect, object = commercial aircraft
-# FLIR1 video — Nimitz 2004 "Tic Tac" encounter
 
 VIDEO_INFO = {
     "gimbal": {
         "filename": "Gimbal_Official_UAP_Footage.webm",
         "date": "2015-01-21",
-        "location": "US East Coast, USS Theodore Roosevelt CSG",
         "sensor": "AN/ASQ-228 ATFLIR",
         "platform": "F/A-18F Super Hornet",
         "resolution": (640, 480),
@@ -77,7 +94,6 @@ VIDEO_INFO = {
     "gofast": {
         "filename": "GoFast_Official_UAP_Footage.webm",
         "date": "2015-01-21",
-        "location": "US East Coast, USS Theodore Roosevelt CSG",
         "sensor": "AN/ASQ-228 ATFLIR",
         "platform": "F/A-18F Super Hornet",
         "resolution": (640, 480),
@@ -88,7 +104,6 @@ VIDEO_INFO = {
     "flir1": {
         "filename": "FLIR1_Official_UAP_Footage_from_the_USG_for_Public_Release.webm",
         "date": "2004-11-14",
-        "location": "Off San Diego, USS Nimitz CSG",
         "sensor": "FLIR (likely AN/ASQ-228 ATFLIR)",
         "platform": "F/A-18F Super Hornet",
         "resolution": (352, 264),
@@ -100,7 +115,7 @@ VIDEO_INFO = {
 
 
 # ---------------------------------------------------------------------------
-# probe helpers
+# metadata extraction backends
 # ---------------------------------------------------------------------------
 
 def exiftool_available() -> bool:
@@ -111,8 +126,7 @@ def ffprobe_available() -> bool:
     return shutil.which("ffprobe") is not None
 
 
-def probe_video_ffprobe(path: Path) -> dict:
-    """Extract container-level metadata via ffprobe."""
+def _probe_video_ffprobe(path: Path) -> dict:
     if not ffprobe_available():
         return {"error": "ffprobe not found — brew install ffmpeg"}
     cmd = [
@@ -125,8 +139,7 @@ def probe_video_ffprobe(path: Path) -> dict:
     return json.loads(proc.stdout)
 
 
-def probe_video_exiftool(path: Path) -> dict:
-    """Extract metadata via exiftool (if available)."""
+def _probe_video_exiftool_subprocess(path: Path) -> dict:
     if not exiftool_available():
         return {"error": "exiftool not found — brew install exiftool"}
     proc = subprocess.run(
@@ -139,8 +152,72 @@ def probe_video_exiftool(path: Path) -> dict:
     return data[0] if data else {}
 
 
+def _probe_video_exiftool_pyexif(path: Path) -> dict:
+    if not HAS_PYEXIFTOOL:
+        return {"error": "PyExifTool not installed — pip install PyExifTool"}
+    try:
+        with _pyexif.ExifTool() as et:
+            data = et.execute_json("-n", str(path))
+            return data[0] if data else {}
+    except Exception as exc:
+        return {"error": str(exc), "fallback": "use --backend subprocess"}
+
+
+def probe_video_exiftool(path: Path, backend: str = "auto") -> dict:
+    if backend == "pyexiftool" or (backend == "auto" and HAS_PYEXIFTOOL):
+        r = _probe_video_exiftool_pyexif(path)
+        if "error" not in r:
+            r["backend"] = "pyexiftool"
+            return r
+        return r
+    r = _probe_video_exiftool_subprocess(path)
+    if "error" not in r:
+        r["backend"] = "subprocess"
+    return r
+
+
 # ---------------------------------------------------------------------------
-# OpenCV frame extraction
+# vidstab stabilization
+# ---------------------------------------------------------------------------
+
+def stabilize_video(path: Path, output: Path | None = None) -> list[np.ndarray]:
+    """Stabilize video using VidStab, return stabilized frames."""
+    if not HAS_VIDSTAB:
+        warnings.warn("VidStab not installed; returning raw frames")
+        return []
+    stabilizer = VidStab()
+    cap = cv2.VideoCapture(str(path))
+    if not cap.isOpened():
+        return []
+    total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    if total <= 0:
+        cap.release()
+        return []
+    frames = []
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        stabilized = stabilizer.stabilize_frame(frame, smoothing_window=15)
+        if stabilized is None:
+            frames.append(frame)
+        else:
+            frames.append(stabilized)
+    cap.release()
+
+    if output and frames:
+        h, w = frames[0].shape[:2]
+        fourcc = cv2.VideoWriter_fourcc(*"VP90")
+        writer = cv2.VideoWriter(str(output), fourcc, 29.97, (w, h))
+        for f in frames:
+            writer.write(f)
+        writer.release()
+
+    return frames
+
+
+# ---------------------------------------------------------------------------
+# OpenCV frame extraction + tracking
 # ---------------------------------------------------------------------------
 
 def opencv_available() -> bool:
@@ -148,7 +225,7 @@ def opencv_available() -> bool:
 
 
 def extract_frames(path: Path, max_frames: int = 300) -> list[np.ndarray]:
-    """Extract up to `max_frames` evenly-spaced frames from a video."""
+    """Extract up to max_frames evenly-spaced frames."""
     if not opencv_available():
         warnings.warn("OpenCV not installed; frame extraction skipped")
         return []
@@ -182,6 +259,105 @@ def frame_entropy(frame: np.ndarray) -> float:
         return 0.0
     hist = hist / hist.sum()
     return -np.sum(hist * np.log2(hist))
+
+
+# ---------------------------------------------------------------------------
+# automatic tracking via CSRT / DaisyCF
+# ---------------------------------------------------------------------------
+
+def auto_track_video(
+    path: Path, stabilizer: str = "vidstab",
+    track_type: str = "csrt", max_frames: int = 600,
+) -> dict:
+    """Auto-extract flight path using CSRT tracker, with optional stabilization.
+
+    Returns:
+      {"track_label": str, "points": [{"t": s, "x": px, "y": px}], ...}
+    """
+    result: dict = {
+        "video": str(path),
+        "stabilizer": stabilizer if HAS_VIDSTAB else "none",
+        "tracker": track_type,
+        "points": [],
+        "error": None,
+        "stabilized": False,
+    }
+    if not opencv_available():
+        result["error"] = "OpenCV not installed"
+        return result
+
+    # Stabilize if requested
+    if stabilizer == "vidstab" and HAS_VIDSTAB:
+        stabilized_frames = stabilize_video(path)
+        if stabilized_frames:
+            result["stabilized"] = True
+            cap_frames = stabilized_frames
+            fps_est = 29.97
+        else:
+            cap = cv2.VideoCapture(str(path))
+            if not cap.isOpened():
+                result["error"] = "cannot open video"
+                return result
+            total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            fps_est = cap.get(cv2.CAP_PROP_FPS) or 29.97
+            cap_frames = []
+            while True:
+                ret, f = cap.read()
+                if not ret:
+                    break
+                cap_frames.append(f)
+            cap.release()
+    else:
+        cap = cv2.VideoCapture(str(path))
+        if not cap.isOpened():
+            result["error"] = "cannot open video"
+            return result
+        total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        fps_est = cap.get(cv2.CAP_PROP_FPS) or 29.97
+        cap_frames = []
+        while True:
+            ret, f = cap.read()
+            if not ret:
+                break
+            cap_frames.append(f)
+        cap.release()
+
+    if not cap_frames:
+        result["error"] = "no frames extracted"
+        return result
+
+    step = max(1, len(cap_frames) // max_frames)
+    working_frames = cap_frames[::step]
+
+    # Select initial region: center-crop to reduce false positives
+    h, w = working_frames[0].shape[:2]
+    margin = 0.3
+    bbox = (int(w * margin), int(h * margin),
+            int(w * (1 - 2 * margin)), int(h * (1 - 2 * margin)))
+
+    if track_type == "csrt":
+        tracker = cv2.TrackerCSRT_create()
+    else:
+        tracker = cv2.TrackerDaSiamRPN_create() if hasattr(cv2, "TrackerDaSiamRPN_create") else cv2.TrackerCSRT_create()
+
+    tracker.init(working_frames[0], bbox)
+    points = []
+    for idx, frame in enumerate(working_frames):
+        success, box = tracker.update(frame)
+        t_sec = round(idx * step / fps_est, 3)
+        if success:
+            x = box[0] + box[2] / 2
+            y = box[1] + box[3] / 2
+            points.append({"t": t_sec, "x": round(x, 1), "y": round(y, 1),
+                           "w": round(box[2], 1), "h": round(box[3], 1),
+                           "status": "tracked"})
+        else:
+            points.append({"t": t_sec, "x": 0, "y": 0, "status": "lost"})
+
+    result["points"] = points
+    result["n_frames"] = len(points)
+    result["n_lost"] = sum(1 for p in points if p.get("status") == "lost")
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -304,7 +480,6 @@ def analyze_track(
 # ---------------------------------------------------------------------------
 
 def check_aircraft_envelope(accel_m_s2: float) -> list[str]:
-    """Compare acceleration to known aircraft performance for context."""
     g = accel_m_s2 / 9.80665
     flags = []
     for name, env in AIRCRAFT_ENVELOPE.items():
@@ -318,22 +493,20 @@ def check_aircraft_envelope(accel_m_s2: float) -> list[str]:
 # ---------------------------------------------------------------------------
 
 def synthetic_ballistic() -> list[dict]:
-    """Synthetic ballistic trajectory free-fall."""
     pts = []
     g = 9.80665
     for i in range(30):
         t = i * 0.05
         x = 100 + 50 * t
-        y = 200 - 0.5 * g * t * t + 100  # simple parabola
+        y = 200 - 0.5 * g * t * t + 100
         pts.append({"t": round(t, 3), "x": round(x, 1), "y": round(max(y, 0), 1)})
     return pts
 
 
 def synthetic_aircraft_turn() -> list[dict]:
-    """Synthetic 4g turn (typical fighter)."""
     pts = []
-    r = 200.0  # turn radius px
-    omega = math.radians(30)  # ~30 deg/s
+    r = 200.0
+    omega = math.radians(30)
     cx, cy = 300, 200
     for i in range(40):
         t = i * 0.1
@@ -345,7 +518,6 @@ def synthetic_aircraft_turn() -> list[dict]:
 
 
 def synthetic_jerk() -> list[dict]:
-    """Synthetic instantaneous jerk (unphysical)."""
     pts = []
     for i in range(25):
         t = i * 0.04
@@ -362,7 +534,6 @@ def synthetic_jerk() -> list[dict]:
 # ---------------------------------------------------------------------------
 
 def run_negative_controls() -> dict:
-    """Run synthetic tracks as negative controls for the pipeline."""
     controls = {
         "synthetic_ballistic_freefall": analyze_track(
             synthetic_ballistic(),
@@ -412,8 +583,10 @@ def demo() -> dict:
 # full scan
 # ---------------------------------------------------------------------------
 
-def scan_all_videos(data_dir: Path) -> dict:
-    """Scan all UAP videos in data_dir, reporting metadata + frame stats."""
+def scan_all_videos(
+    data_dir: Path, exif_backend: str = "auto",
+) -> dict:
+    """Scan all UAP videos, reporting metadata + frame stats + auto track."""
     results: dict = {"scanned": [], "summary": {}}
     for key, info in VIDEO_INFO.items():
         path = data_dir / info["filename"]
@@ -427,8 +600,7 @@ def scan_all_videos(data_dir: Path) -> dict:
 
         entry: dict = {"key": key, "file": info["filename"], "info": info}
 
-        # ffprobe metadata
-        ff = probe_video_ffprobe(path)
+        ff = _probe_video_ffprobe(path)
         entry["ffprobe"] = {
             "format": ff.get("format", {}),
             "streams": [
@@ -439,8 +611,7 @@ def scan_all_videos(data_dir: Path) -> dict:
             ],
         }
 
-        # exiftool metadata (if available)
-        exif = probe_video_exiftool(path)
+        exif = probe_video_exiftool(path, backend=exif_backend)
         if "error" not in exif:
             interesting_keys = [
                 "FileSize", "Duration", "ImageWidth", "ImageHeight",
@@ -452,7 +623,6 @@ def scan_all_videos(data_dir: Path) -> dict:
         else:
             entry["exif"] = exif
 
-        # frame extraction + entropy
         if opencv_available():
             frames = extract_frames(path, max_frames=50)
             entropies = [frame_entropy(f) for f in frames] if frames else []
@@ -468,7 +638,6 @@ def scan_all_videos(data_dir: Path) -> dict:
         else:
             entry["frame_analysis"] = {"error": "OpenCV not available"}
 
-        # Metadata poverty assessment
         has_range = any(k in exif for k in ("GPSLatitude", "GPSLongitude", "GPSAltitude"))
         has_fov = "FOV" in str(ff.get("format", {})) or "FOV" in str(exif)
         has_telemetry = any(k in exif for k in (
@@ -485,12 +654,10 @@ def scan_all_videos(data_dir: Path) -> dict:
                 "Official DoD release is NGA-compressed WebM. "
                 "Original ATFLIR feed includes MIL-STD-1553 telemetry overlay "
                 "(range, azimuth, elevation, platform state) but it is stripped "
-                "in the public release. Without this, Newton/G claims are "
-                "underdetermined."
+                "in the public release."
             ),
         }
 
-        # flag aircraft regime if range assumed
         entry["track_assessment"] = analyze_track(
             [],
             label=f"{key}_no_track",
@@ -541,6 +708,12 @@ def main() -> None:
                     help="Data directory (default: data/uap)")
     ap.add_argument("--out", type=Path, default=None,
                     help="Output JSON path (default: outputs/uap/run.json)")
+    ap.add_argument("--backend", choices=("auto", *BACKENDS), default="auto",
+                    help="ExifTool backend (pyexiftool or subprocess)")
+    ap.add_argument("--auto-track", action="store_true",
+                    help="Auto-extract track via CSRT tracker")
+    ap.add_argument("--stabilize", action="store_true",
+                    help="Apply VidStab stabilization before tracking")
 
     args = ap.parse_args()
 
@@ -553,20 +726,41 @@ def main() -> None:
             "controls": run_negative_controls(),
         }
     elif args.scan_all or (not args.video and not args.track):
-        result = scan_all_videos(args.data_dir)
+        result = scan_all_videos(args.data_dir, exif_backend=args.backend)
     elif args.video:
-        ff = probe_video_ffprobe(args.video)
-        exif = probe_video_exiftool(args.video)
+        ff = _probe_video_ffprobe(args.video)
+        exif = probe_video_exiftool(args.video, backend=args.backend)
         result = {
             "type": "single_video",
             "file": str(args.video),
             "ffprobe": ff.get("format", {}),
             "exif": exif if "error" not in exif else {"note": "exiftool not available"},
         }
+
+        if args.auto_track:
+            stabilizer = "vidstab" if args.stabilize else "none"
+            track_result = auto_track_video(args.video, stabilizer=stabilizer)
+            if track_result.get("points"):
+                result["auto_track"] = {
+                    "n_frames": track_result["n_frames"],
+                    "n_lost": track_result["n_lost"],
+                    "stabilized": track_result["stabilized"],
+                    "physics": analyze_track(
+                        track_result["points"],
+                        range_m=args.range_m,
+                        fov_deg=args.fov_deg,
+                        frame_w=args.frame_w,
+                        label=args.video.name,
+                    ),
+                }
+            else:
+                result["auto_track"] = track_result
+
         if args.range_m or args.fov_deg or args.frame_w:
             result["range_m"] = args.range_m
             result["fov_deg"] = args.fov_deg
             result["frame_w"] = args.frame_w
+
     elif args.track:
         with open(args.track) as f:
             points = json.load(f)
@@ -578,7 +772,7 @@ def main() -> None:
             label=str(args.track),
         )
     else:
-        result = scan_all_videos(args.data_dir)
+        result = scan_all_videos(args.data_dir, exif_backend=args.backend)
 
     text = json.dumps(result, indent=2, default=str)
     print(text)

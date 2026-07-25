@@ -28,12 +28,15 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **N1** | **Minimax M3** (local free) | DNA/RNA 4-bit + epigenetic layer | bio_probe: SARS-CoV-2 4kb head (NC_045512.2) + chr22 3kb (NT_187395.1); **N1+ annotation-aware** per-bin shuffle control via BED4 (max-overlap classifier) → `outputs/bio/{sars_run.json, sars_notes.md, human_chr22_*.json,*.md, n1_plus_sars/{run.json,notes.md}, n1_plus_chr22/{run.json,notes.md}}` | 🟢 **landed** — whole-genome Δ_window_mean_H ≤ 0 on both (biology, NOT signal). **N1+ also landed**: BED files at `data/bio/annotations/{NC_045512.2,NT_187395.1}_regions.bed`; per-bin shuffle control (Fisher-Yates within each bin). SARS: Δ on `coding` (37 w) + `untranslated` (2 w; too_few_windows flagged honestly). chr22: BED is empty by design (ALT contig lacks curated gene models) → all 59 windows routed to `intergenic`. NO claim of hidden message. |
 | **N2** | Opencode | UAP metadata forensics | Original DoD/DNI MPEG/MP4; EXIF/frame stamps; `uap_flight_consistency.py` Newton/G flags | 🟢 **landed** — WebMs gitignored; metadata poverty → g underdetermined |
 | **N3** | Hermes 💤→🐛 | Dimensionless constants | α, μ, Ω… + diatonic vs nulls (decade + permutation) | 🟢 **core landed** + CKM/PMNS + 10c stress sweep + scale-invariant gap_z + `--calibrate` bootstrap per-tol floors (`outputs/constants/stress_sweep_notes.md`); **Null B (reciprocal-arrangement) is MATHEMATICALLY DEGENERATE on canonical core+mixings sets** (std(hits) = 0 across N=200 trials × 7 tols × 2 seeds) → Null B adds ZERO discrimination beyond Null A → NO defensible pair-cell signal |
-| **N4** | **Opencode / Deepseek v4** (local free) | Archaeoastronomy | Flesh `astro_probe` (skyfield or documented fallback); 4 sites + crop lunar + **random site/date control** | 🟢 **landed** — astropy-backed; solstice/eq, star rise (Sirius/Pleiades/Orion), lunar from `formations.csv`, 100× random site/date controls → real 75% hit vs random 57% = no signal. `outputs/astro/run.json` |
+| **N4** | **Opencode** | Archaeoastronomy | skyfield + DE441; 4 sites + crop lunar + random controls | 🟢 landed — **Captain caveat:** deep-BCE calendar labels shaky; control hit-def weak/vacuous; see `outputs/astro/NOTES.md` |
 | **N5** | Captain / Cursor | Integration dashboard | Agent status + JSON links | 🟢 bootstrap landed |
 | **N0** | Hyper + Cursor | Phaistos structure | z≈−14 + period-3 refrain; metre yes, meaning no | 🟢 `dae0036` |
 | **B10** | **Cursor** | Photo tamper / ELA | Pillow ELA Chualar vs field photos; tamper-only | 🟢 `outputs/forensics/ela/` |
 | **B11** | **Cursor** | Cipher negative control | Native Caesar/IC (Decipher needs Rust bootstrap) | 🟢 no English cipher on Crabwood/Chilbolton |
-| **R1** | Minimax follow-up | `radio_probe` scaffold | FFT/epoch-fold stub; Wow! honesty; FRB **180916** (not 121102) | ⬜ after N1 |
+| **R1** | Minimax | `radio_probe` scaffold | FFT/autocorr/epoch-fold + Wow blocked + FRB 180916 plant | 🟢 scaffold 17/17 tests |
+| **G1** | **Opencode** (NEXT) | Linear A symbolseq | SigLA open corpus → entropy/IC/Markov vs shuffle; Linear B known-answer | ⬜ **assigned** |
+| **G2** | **Minimax** (queue) | Proto-Elamite ledger entropy | CDLI streams → positional/conditional H vs shuffle | ⬜ after current Minimax job |
+| **G3** | Minimax or Opencode | Wow! horn beam-fit | Fit sidereal transit to 6EQUJ5 intensities; underdetermined OK | ⬜ after G1/G2 |
 
 ---
 
@@ -125,21 +128,43 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 > 2. Add a permutation-of-tols null (after Bonferroni correction) so the “lab-internal follow-up” branch fires only when 4+/7 tols have p(B) < 0.0071, not naive 0.05.
 > 3. Consider adding a Jarlskog invariant J_CKM as a proper row + re-sample the famous coincidences against the strict > bar at 10c.
 
-### N4 — Opencode (DONE)
-> `tools/astro/astro_probe.py` landed with:
-> - astropy-backed solstice/equinox computation for years 0–3000 CE; fallback for BCE/early CE years (analytic precession + obliquity)
-> - Sunrise azimuth at solstices for Göbekli Tepe, Stonehenge, Giza, Chichén Itzá
-> - Star rise info (Sirius, Pleiades/Orion) with precession to epoch
-> - Lunar illumination from `formations.csv` (11 dated formations: 1 near full moon, 3 near new moon)
-> - **Random site/date control**: 100 random (lat, lon, epoch_year) pairs → 57% hit rate vs 75% real — **no separation from random**
-> - Verdict: geometric structure (solstice alignments at mid-latitudes are common), not intentional signal
+### N4 — Opencode (DONE — Captain caveats)
+> skyfield + DE441 (~3.3GB **gitignored**). Crop lunar + random controls → “no separation.”
+> **Caveats:** deep-BCE equinox *calendar labels* in JSON look wrong; hit-definition for random
+> controls is weak. See `outputs/astro/NOTES.md`. Do not claim ancient almanac precision yet.
 
-### R1 — Minimax follow-up (after N1)
-> Scaffold `tools/radio/radio_probe.py`: FFT + autocorr + epoch-fold stub; plant known periodic train as known-answer; pulsar note as negative. Wow! = only 6 samples (say so). Use **FRB 180916** for 16.35-d cycle, not 121102. See `docs/scout_briefs.md`.
+### G1 — Opencode (NEXT) — Linear A positional entropy
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
+> See `docs/gemini_research_leads_2026-07-25.md`.
+>
+> 1. Fetch **open** Linear A sign streams (SigLA https://sigla.phis.me / JSON mirrors such as
+>    mwenge/lineara.xyz or documented GitHub dumps). Save small corpus under `data/scripts/linear_a/`
+>    with README + license/attribution. No huge image dumps.
+> 2. Reuse `tools/forensics/symbolseq.py` (analyze + shuffled_control + repeat_structure).
+>    Add thin loader `tools/scripts/linear_a_probe.py` if needed — do NOT fork a second entropy stack.
+> 3. **Known-answer:** Linear B sample (same pipeline) must show clear structure vs its own shuffle
+>    (and/or recoverable category-ish bigram regularity — document what you can measure honestly).
+> 4. **Negative:** unigram-matched shuffle of Linear A; optional random alphabet same length.
+> 5. Outputs: `outputs/linear_a/run.json` + `NOTES.md`. Update MISSION_BOARD G1 → 🟢.
+> 6. Forbidden: claiming decipherment, language family, or “Minoan = X”.
 
-### N2 Opencode — UAP (DONE)
-> Already landed — do not redo unless extending telemetry hunt.
+### G2 — Minimax (QUEUE when free) — Proto-Elamite combinatorial syntax
+> Same stance. CDLI Proto-Elamite open transcriptions → `data/scripts/proto_elamite/`.
+> symbolseq + window entropy; separate header/number blocks if trivial; shuffle null.
+> Known-answer: isolate low-entropy numeric blocks if present. `outputs/proto_elamite/`.
+> No decipherment claims. Ledger-vs-prose structure only.
+
+### G3 — Wow! beam-fit (after G1 or G2)
+> Extend `tools/radio/radio_probe.py` or tiny `wow_beam_fit.py`: intensities [6,14,26,30.5,19.5,5.5]
+> (document source). Fit single Gaussian/sinc sidereal transit; report r² + underdetermined caveat
+> (one horn). No ET claim. `outputs/radio/wow_beam_fit.json`.
+
+### R1 — Minimax (DONE scaffold)
+> See status block below / `outputs/radio/`. Real CHIME fetch = R1+ later.
+
+### N2 Opencode — UAP (DONE + enhanced)
+> Metadata poverty still holds. New: PyExifTool, vidstab, CSRT `--auto-track`. WebMs stay gitignored.
 
 ---
 
-*Captain Sloth / Cursor bootstrap — foliehatt → nattmössa. Hecklefish out.* 🐠
+*Captain Sloth / Cursor — foliehatt → nattmössa. Hecklefish out.* 🐠
