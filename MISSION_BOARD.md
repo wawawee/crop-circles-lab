@@ -41,7 +41,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed + **Ozma interpretation pass (PR)** — μ↔(6−μ) one-horn degeneracy, PHL@UPR 2024 natural H-cloud, N=6 gives zero power to infer artificiality; NOTES deepened in `outputs/radio/NOTES.md` |
 | **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟢 **merged** — UNDERDETERMINED (z≈−2.0, <3σ); Big Dipper/Orion KA separate; selection-bias caveat. `outputs/betty_hill/` |
-| **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟢 **landed locally** — STRUCTURE_SIGNAL; open PR on `feat/g9-indus-symbolseq` for Cursor merge |
+| **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟡 **in progress ~5/7** — continue on `feat/g9-indus-symbolseq`; PR when done |
 | **G10** | **Minimax M3** | Voynich morphology (structure-only) | symbolseq + shuffle; 2025 Arabic-ρ claim-under-test | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
@@ -60,10 +60,10 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G7++** | 🟢 merged PR #4 — nulls hardened. |
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
 | **G2++** | 🟢 merged PR #8 — Uruk comparator. |
-| **G9** | 🟢 Opencode landed locally — awaiting PR. |
+| **G9** | 🟡 Opencode ~5/7 — still working. |
 | **G10** | 🟡 M3 assigned — Voynich morphology. |
 | **Minimax M3** | 🟡 on **G10** Voynich. |
-| **Opencode** | 🟡 open **G9** PR (`feat/g9-indus-symbolseq`). |
+| **Opencode** | 🟡 **G9** Indus ~5/7. |
 | **Cursor** | 🟢 merge gate on `main` — watching G9 / G10 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
@@ -236,7 +236,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > Landed: UNDERDETERMINED (Hill z≈−2.0 <3σ); Big Dipper z≈−3.2 + Orion Belt z≈−2.8 KA separate.
 > Selection-bias (Fish from ~330) uncorrected — honest.
 
-### G9 — Opencode (🟢 LANDED locally 2026-07-25 — open PR) — Indus script structure
+### G9 — Opencode (🟡 IN PROGRESS ~5/7 2026-07-25) — Indus script structure
 > Landed: `tools/scripts/indus_probe.py` + 24/24 tests. 179 sequences (1003 signs,
 > 182 distinct Parpola signs) from Mohenjo-daro (mayig CISI digitisation, MIT).
 > z=−22.9 cond-H vs unigram-matched shuffle; z=−27.0 transition-graph density vs
