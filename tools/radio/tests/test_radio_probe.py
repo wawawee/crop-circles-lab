@@ -1027,6 +1027,229 @@ def test_wow_beam_degeneracy_pair_and_motto():
            "necessary, NOT sufficient" in stance
 
 
+# === R1++ Cat 2 (CHIME/FRB Catalog 2) periodicity known-answer tests =====
+# Stance: structure != message. FRB activity periodicity is a NATURAL
+# cycle. All synthetic recoveries are math-validation; the real path parks
+# honestly and NEVER fabricates arrival MJDs.
+
+def test_cat2_real_sources_parking_does_not_synthesize():
+    """cat2_real_sources: a PARKING_PAGE fetch yields an honest-empty
+    multi-source result -- rows_by_source == {}, no synthesis."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import cat2_real_sources as C2S
+    src = C2S.load_published_cat2_bursts(force_status_for_tests="PARKING_PAGE")
+    assert src.fetch_status == "PARKING_PAGE"
+    assert src.rows_by_source == {}
+    assert src.has_any_mjds is False
+    assert len(src.fetch_attempts) >= 1
+    assert src.source_type == "empty"
+
+
+def test_cat2_real_sources_unreachable_honest_empty():
+    """cat2_real_sources: UNREACHABLE fetch -> honest-empty, attempts kept."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import cat2_real_sources as C2S
+    src = C2S.load_published_cat2_bursts(force_status_for_tests="UNREACHABLE")
+    assert src.fetch_status == "UNREACHABLE"
+    assert src.n_bursts_total == 0
+    assert src.rows_by_source == {}
+    assert "no synthetic data injected" in src.provenance_note.lower()
+
+
+def test_cat2_real_sources_bundled_override_parses_multi_source():
+    """--bundled-cat2-csv with name,mjd rows -> USER_OVERRIDE, grouped by
+    source. NEVER touches the network."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import cat2_real_sources as C2S
+    td = Path(tempfile.mkdtemp(prefix="cat2_ovr_"))
+    csv_path = td / "cat2_test.csv"
+    csv_path.write_text(
+        "name,mjd\n"
+        "FRB 20180916B,58000.0\n"
+        "FRB 20180916B,58016.35\n"
+        "FRB 20121102A,58100.0\n"
+    )
+    try:
+        src = C2S.load_published_cat2_bursts(bundled_csv_path=csv_path)
+        assert src.fetch_status == "USER_OVERRIDE"
+        assert src.source_type == "user_provided_cat2"
+        assert src.n_sources == 2
+        assert src.has_any_mjds is True
+        assert len(src.rows_by_source["FRB 20180916B"]) == 2
+    finally:
+        import shutil
+        shutil.rmtree(td, ignore_errors=True)
+
+
+def test_run_cat2_synthetic_recovers_16p35d():
+    """R1++ headline: the synthetic Cat 2 known-answer recovers 16.35 d for
+    FRB 20180916B within 1 d, and recovers every planted source."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_cat2_synthetic(seed=0)
+    ka = out["known_answer"]
+    assert ka["recovers_16p35d"] is True
+    assert ka["all_sources_recovery_pass"] is True
+    assert ka["primary_recovery_error_d"] <= 1.0
+    prim = out["per_source"]["FRB 20180916B"]
+    assert abs(prim["recovered_period_d"] - 16.35) <= 1.0
+
+
+def test_run_cat2_synthetic_scramble_null_below_recovered():
+    """Per-source scramble null (uniform-in-window shuffle) must NOT beat
+    the recovered Z² -- periodicity is destroyed by the shuffle."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_cat2_synthetic(seed=0)
+    assert out["negative_controls"]["scramble_null_below_recovered"] is True
+    for name, e in out["per_source"].items():
+        assert e["scramble_null_z2_max"] < e["recovered_z2"], (
+            f"{name}: scramble null Z²={e['scramble_null_z2_max']} should be "
+            f"below recovered Z²={e['recovered_z2']}"
+        )
+
+
+def test_run_cat2_synthetic_does_not_confuse_121102_with_16p35():
+    """Belt-and-suspenders: FRB 20121102A is published at ~157 d, NOT 16.35 d.
+    Its recovery must land near 157 d, never collapse onto 16.35 d."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_cat2_synthetic(seed=0)
+    e = out["per_source"]["FRB 20121102A"]
+    assert e["published_period_d"] == 157.0
+    assert 140.0 <= e["recovered_period_d"] <= 175.0
+    assert abs(e["recovered_period_d"] - 16.35) > 100.0
+
+
+def test_run_cat2_real_parking_no_synthesis():
+    """run_cat2_real with a PARKING_PAGE fetch: honest-empty, no epoch-fold,
+    no fabricated MJDs, warnings present."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_cat2_real(force_status_for_tests="PARKING_PAGE", seed=0)
+    assert out["fetch_status"] == "PARKING_PAGE"
+    assert out["n_sources"] == 0
+    assert out["n_bursts_total"] == 0
+    assert out["per_source"] == {}
+    assert out["known_answer"] is None
+    assert out["warnings"], "must warn that no real-data path was attempted"
+    assert "no synthetic plant" in " ".join(out["warnings"]).lower()
+
+
+def test_run_cat2_real_bundled_override_epoch_folds_16p35d():
+    """run_cat2_real with a bundled CSV of FRB 20180916B arrivals at 16.35 d
+    recovers the period per-source (recovery_pass True). No network."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    import numpy as np
+    td = Path(tempfile.mkdtemp(prefix="cat2_real_ovr_"))
+    csv_path = td / "cat2_arrivals.csv"
+    times = RP.synth_frb_arrivals(period_d=16.35, n_arrivals=30,
+                                  obs_window_d=500.0, jitter_d=0.3, seed=0)
+    rows = ["name,mjd"] + [f"FRB 20180916B,{float(t):.6f}" for t in times]
+    csv_path.write_text("\n".join(rows) + "\n")
+    try:
+        out = RP.run_cat2_real(bundled_csv_path=csv_path, seed=0)
+        assert out["fetch_status"] == "USER_OVERRIDE"
+        assert out["n_sources"] == 1
+        e = out["per_source"]["FRB 20180916B"]
+        assert e["published_period_d"] == 16.35
+        assert abs(e["recovered_period_d"] - 16.35) <= 1.0
+        assert e["recovery_pass"] is True
+    finally:
+        import shutil
+        shutil.rmtree(td, ignore_errors=True)
+
+
+def test_analyze_mode_cat2_dispatch():
+    """analyze() routes cat2 modes to the right sub-runs."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    rep_s = RP.analyze(mode="cat2_synthetic", seed=0)
+    assert "cat2_synthetic" in rep_s
+    assert rep_s["cat2_synthetic"]["known_answer"]["recovers_16p35d"] is True
+    rep_r = RP.analyze(mode="cat2_real", seed=0, bundled_cat2_csv=None)
+    assert "cat2_real_data" in rep_r
+
+
+def test_cli_cat2_real_with_test_force_uses_provided_status():
+    """CLI: --cat2-real --fetch-status-test-force PARKING_PAGE exercises the
+    post-analyze re-run shim and surfaces PARKING_PAGE without fabrication."""
+    td = Path(tempfile.mkdtemp(prefix="cat2_cli_"))
+    out_json = td / "cat2.json"
+    res = subprocess.run([
+        sys.executable, str(TOOLS_RADIO / "radio_probe.py"),
+        "--cat2-real", "--fetch-status-test-force", "PARKING_PAGE",
+        "--seed", "0", "--out-json", str(out_json),
+    ], capture_output=True, text=True, timeout=60)
+    assert res.returncode == 0, f"CLI failed:\n{res.stderr[:600]}"
+    d = json.load(open(out_json))
+    rd = d["cat2_real_data"]
+    assert rd["fetch_status"] == "PARKING_PAGE"
+    assert rd["n_sources"] == 0
+    assert rd["known_answer"] is None
+    import shutil
+    shutil.rmtree(td, ignore_errors=True)
+
+
+# === G-BLC1 ON/OFF + harmonic-family interpretation tests ================
+
+def test_blc1_delta_f_regularity_flags_equal_spacing():
+    """Equally-spaced peaks -> regular_comb True (low CV); irregular -> False."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    reg = RP.blc1_delta_f_regularity([980.0, 982.0, 984.0, 986.0, 988.0])
+    assert reg["regular_comb"] is True
+    assert reg["cv_delta_f"] is not None and reg["cv_delta_f"] <= 0.05
+    assert abs(reg["mean_delta_f_mhz"] - 2.0) < 1e-6
+    irr = RP.blc1_delta_f_regularity([980.0, 982.0, 990.0, 991.0])
+    assert irr["regular_comb"] is False
+
+
+def test_blc1_on_off_cadence_has_discriminating_power():
+    """ON-only injection (OFF = off-comb noise) is cadence-consistent; a comb
+    that persists into OFF is flagged terrestrial. The test proves the
+    discriminator is not a dead detector."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    comb = [980.0, 982.0, 984.0, 986.0, 988.0]
+    noise = [973.3, 989.7, 1001.1, 968.2, 995.5]
+    on_only = RP.blc1_on_off_cadence(on_freqs_mhz=comb, off_freqs_mhz=noise)
+    assert on_only["cadence_consistent_with_source"] is True
+    assert on_only["persists_in_off"] is False
+    persists = RP.blc1_on_off_cadence(on_freqs_mhz=comb, off_freqs_mhz=comb)
+    assert persists["persists_in_off"] is True
+    assert persists["cadence_consistent_with_source"] is False
+
+
+def test_blc1_synthetic_verdict_is_rfi_and_persists_in_off():
+    """SYNTHETIC BLC1: the planted family persists into OFF and is a regular
+    comb -> verdict RFI_COMB_TERRESTRIAL. Existing known_answer keys intact."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_blc1_synthetic(seed=0)
+    assert out["verdict"] == "RFI_COMB_TERRESTRIAL"
+    assert out["on_off_control"]["persists_in_off"] is True
+    assert out["harmonic_family"]["regular_comb"] is True
+    # the ON-only contrast control must have discriminating power
+    assert out["on_off_contrast_on_only"]["cadence_consistent_with_source"] is True
+    # existing invariants preserved (no regression)
+    assert out["known_answer"]["recovery_pass"] is True
+    assert out["known_answer"]["rfi_comb_detected"] is True
+
+
+def test_blc1_real_default_verdict_is_no_signal():
+    """Per the brief, the DEFAULT real-BLC1 verdict is NO_SIGNAL (Sheikh 2021
+    terrestrial RFI). The live probe stays disabled with no synthesis."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_blc1_real(bundled_csv_path=None, seed=0)
+    assert out["verdict"] == "NO_SIGNAL"
+    assert out["fetch_status"] == "NEVER_ATTEMPTED"
+    assert out["n_peaks"] == 0
+    assert out["known_answer"] is None
+
+
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

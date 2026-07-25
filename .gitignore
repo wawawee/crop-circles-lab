@@ -19,3 +19,9 @@ outputs/forensics/ela/_pytest_tmp/
 
 # G-Amazon raw data (fetched locally by data/amazon/fetch_data.py; never committed)
 data/amazon/raw/
+
+# BLC1 / radio raw binaries (G-BLC1: no TB mirror, never git-add multi-GB)
+data/radio/blc1/raw/
+*.fil
+*.h5
+data/radio/cache/

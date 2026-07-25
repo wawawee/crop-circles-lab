@@ -66,6 +66,10 @@ try:
     import blc1_fetcher as BLC  # noqa: E402
 except ImportError:  # pragma: no cover
     BLC = None
+try:
+    import cat2_real_sources as C2S  # noqa: E402
+except ImportError:  # pragma: no cover
+    C2S = None
 
 
 # --- module constants ------------------------------------------------------
@@ -940,6 +944,106 @@ def _blc1_run_peak_detector(
     }
 
 
+def blc1_delta_f_regularity(freqs_mhz) -> dict:
+    """Harmonic-family test: are the lookalike peaks equally spaced in freq?
+
+    Sheikh et al. 2021 killed BLC1 not by the ON/OFF cadence alone but by
+    the *lookalike* analysis: a family of signals-of-interest whose
+    frequencies form an equally-spaced comb (Δf ≈ constant) is the
+    signature of intermodulation between local-oscillator clocks — i.e.
+    terrestrial electronics, NOT an astrophysical/ET source.
+
+    Given the sorted peak frequencies, compute the successive spacings
+    Δf_i = f_{i+1} - f_i and report their mean, std and coefficient of
+    variation (CV = std/mean). A LOW CV (regular comb) is the RFI
+    fingerprint. This is a *descriptive* structure statistic — structure
+    ≠ message: a regular comb is evidence FOR terrestrial RFI, never for
+    ET.
+    """
+    f = np.asarray(sorted(float(x) for x in freqs_mhz), dtype=float)
+    if len(f) < 3:
+        return {
+            "n_peaks": int(len(f)),
+            "delta_f_mhz": [float(d) for d in np.diff(f)] if len(f) >= 2 else [],
+            "mean_delta_f_mhz": float(np.diff(f).mean()) if len(f) >= 2 else None,
+            "std_delta_f_mhz": None,
+            "cv_delta_f": None,
+            "regular_comb": None,
+            "note": "need >=3 peaks to test Δf regularity",
+        }
+    dfs = np.diff(f)
+    mean_df = float(dfs.mean())
+    std_df = float(dfs.std(ddof=0))
+    cv = float(std_df / mean_df) if mean_df != 0 else None
+    # CV <= 0.05 => spacings agree to ~5% => regular intermodulation comb.
+    regular = bool(cv is not None and cv <= 0.05)
+    return {
+        "n_peaks": int(len(f)),
+        "delta_f_mhz": [round(float(d), 6) for d in dfs],
+        "mean_delta_f_mhz": round(mean_df, 6),
+        "std_delta_f_mhz": round(std_df, 6),
+        "cv_delta_f": None if cv is None else round(cv, 6),
+        "regular_comb": regular,
+        "note": (
+            "LOW CV => equally-spaced comb => intermodulation RFI family "
+            "(terrestrial). Structure != message: regularity is evidence "
+            "for RFI, never for ET."
+        ),
+    }
+
+
+def blc1_on_off_cadence(on_freqs_mhz, off_freqs_mhz,
+                        clock_guess_mhz: float = BLC1_CLOCK_MHZ,
+                        tolerance_mhz: float = BLC1_COMB_TOLERANCE_MHZ,
+                        seed: int = 0) -> dict:
+    """ON/OFF discrimination — the first-line SETI cadence test.
+
+    A genuine celestial source is present when the telescope points at
+    the target (ON) and ABSENT when it nods off-source (OFF). Terrestrial
+    RFI leaks into both. This helper runs the comb detector on the ON and
+    OFF peak lists and reports:
+
+      - `on_hits`, `off_hits`  : clock-comb hits in each pointing
+      - `persists_in_off`      : True if the comb is still present in OFF
+      - `cadence_consistent_with_source` : True only if ON has the comb
+                                           and OFF does NOT (i.e. ON-only)
+
+    BLC1's lookalikes appeared in OFF pointings too (Sheikh 2021) ->
+    `persists_in_off=True` -> terrestrial. The ON-only *contrast* control
+    below shows the discriminator has real power (it would pass an
+    ON-only injection), so a NEGATIVE result here is meaningful, not a
+    dead detector. We never claim ET from an ON-only pass — cadence is
+    necessary, NOT sufficient.
+    """
+    on_rows = [type("R", (), {"raw_freq_mhz": float(x)})() for x in on_freqs_mhz]
+    off_rows = [type("R", (), {"raw_freq_mhz": float(x)})() for x in off_freqs_mhz]
+    on_detect = _blc1_run_peak_detector(
+        on_rows, clock_guess_mhz=clock_guess_mhz,
+        tolerance_mhz=tolerance_mhz, scramble_seed=seed,
+    )
+    off_detect = _blc1_run_peak_detector(
+        off_rows, clock_guess_mhz=clock_guess_mhz,
+        tolerance_mhz=tolerance_mhz, scramble_seed=seed,
+    )
+    on_hits = int(on_detect["hits_at_clock"])
+    off_hits = int(off_detect["hits_at_clock"])
+    persists_in_off = bool(off_hits >= 2)
+    cadence_ok = bool(on_hits >= 2 and off_hits < 2)
+    return {
+        "on_hits_at_clock": on_hits,
+        "off_hits_at_clock": off_hits,
+        "persists_in_off": persists_in_off,
+        "cadence_consistent_with_source": cadence_ok,
+        "verdict": ("RFI_PRESENT_IN_OFF" if persists_in_off
+                    else "ON_ONLY_would_pass_cadence"),
+        "note": (
+            "ON/OFF cadence is necessary, NOT sufficient. BLC1's lookalike "
+            "family appeared in OFF pointings (Sheikh 2021) -> terrestrial. "
+            "An ON-only pass would NOT prove ET."
+        ),
+    }
+
+
 def run_blc1_synthetic(
     seed: int = 0,
     f_center_mhz: float = BLC1_FREQ_MHZ,
@@ -982,9 +1086,47 @@ def run_blc1_synthetic(
             2, int(0.5 * detect["n_peaks"])
         ) and detect["hits_at_clock"] > detect["scramble_null_hits"]
     )
+    # --- interpretation controls (Ozma, G-BLC1) -----------------------
+    # (1) Harmonic-family Δf regularity on the planted comb frequencies.
+    plant_freqs = [float(p.raw_freq_mhz) for p in peaks]
+    harmonic_family = blc1_delta_f_regularity(plant_freqs)
+    # (2) ON/OFF cadence. RFI is local -> the SAME comb family leaks into
+    #     the OFF pointing. We model that here: OFF carries the comb too.
+    #     A separate ON-only *contrast* control shows the discriminator
+    #     has power (it would flag an ON-only injection as cadence-OK).
+    rng_off = np.random.default_rng(scramble_seed + 101)
+    on_off = blc1_on_off_cadence(
+        on_freqs_mhz=plant_freqs,
+        off_freqs_mhz=plant_freqs,  # RFI persists into OFF -> terrestrial
+        clock_guess_mhz=f_clock_mhz,
+        tolerance_mhz=BLC1_COMB_TOLERANCE_MHZ,
+        seed=scramble_seed,
+    )
+    # Contrast: a hypothetical ON-only source (OFF = off-comb noise). This
+    # is NOT a claim of ET; it demonstrates the cadence test can separate.
+    off_noise = list(rng_off.uniform(min(plant_freqs) - 5.0,
+                                     max(plant_freqs) + 5.0, size=len(peaks)))
+    on_off_contrast = blc1_on_off_cadence(
+        on_freqs_mhz=plant_freqs, off_freqs_mhz=off_noise,
+        clock_guess_mhz=f_clock_mhz, tolerance_mhz=BLC1_COMB_TOLERANCE_MHZ,
+        seed=scramble_seed,
+    )
+    # Verdict: BLC1's real family persists in OFF AND is a regular comb ->
+    # terrestrial RFI. For the real BLC1 path the honest verdict is
+    # NO_SIGNAL; here (synthetic) we report the RFI classification the
+    # controls produce.
+    verdict = (
+        "RFI_COMB_TERRESTRIAL"
+        if (on_off["persists_in_off"] and bool(harmonic_family["regular_comb"]))
+        else "INCONCLUSIVE_SYNTH"
+    )
     return {
         "label": "blc1_synthetic",
         "method": "blc1_synthetic_comb_detector",
+        "verdict": verdict,
+        "on_off_control": on_off,
+        "on_off_contrast_on_only": on_off_contrast,
+        "harmonic_family": harmonic_family,
         "plant": {
             "f_center_mhz": float(f_center_mhz),
             "f_clock_mhz": float(f_clock_mhz),
@@ -1071,6 +1213,7 @@ def run_blc1_real(
             return {
                 "label": "blc1_real_data",
                 "method": "blc1_comb_detector",
+                "verdict": "NO_SIGNAL",  # Sheikh 2021: terrestrial RFI (default)
                 "data_source": f"bundled_csv={bundled_csv_path}",
                 "source_type": "bundled_attempt",
                 "fetch_status": "USER_OVERRIDE_INVALID",
@@ -1096,6 +1239,7 @@ def run_blc1_real(
             return {
                 "label": "blc1_real_data",
                 "method": "blc1_comb_detector",
+                "verdict": "NO_SIGNAL",  # Sheikh 2021: terrestrial RFI (default)
                 "data_source": str(bundled_csv_path),
                 "source_type": "bundled_override",
                 "fetch_status": "USER_OVERRIDE",
@@ -1136,6 +1280,7 @@ def run_blc1_real(
         return {
             "label": "blc1_real_data",
             "method": "blc1_comb_detector",
+            "verdict": "NO_SIGNAL",  # Sheikh 2021: terrestrial RFI (default)
             "data_source": "Berkeley SETI opendata (NOT scraped)",
             "source_type": "empty",
             "fetch_status": result.fetch_status,
@@ -1177,6 +1322,7 @@ def run_blc1_real(
     return {
         "label": "blc1_real_data",
         "method": "blc1_comb_detector",
+        "verdict": "NO_SIGNAL",  # Sheikh 2021: BLC1 = terrestrial RFI (default)
         "data_source": result.fetched_from or "Berkeley SETI opendata",
         "source_type": result.fetch_status.lower(),
         "fetch_status": result.fetch_status,
@@ -1221,6 +1367,7 @@ def _blc1_module_missing() -> dict:
     return {
         "label": "blc1_(synthetic|real)",
         "method": "blc1_comb_detector",
+        "verdict": "NO_SIGNAL",  # Sheikh 2021: terrestrial RFI (default)
         "data_source": "(no source obtained)",
         "source_type": "empty",
         "fetch_status": "MODULE_MISSING",
@@ -1998,19 +2145,318 @@ def run_frb_180916(seed: int = 0,
     }
 
 
+# --- Cat2 (CHIME/FRB Catalog 2) periodicity known-answer (R1++) ----------
+# The Second CHIME/FRB Catalog (CHIME/FRB Collab. 2026, ApJS 283 34; AAS
+# Open Access) lists 83 known repeaters. Two have well-published activity
+# periods we treat as PUBLIC-DOMAIN FACTS (NOT fabricated arrival arrays):
+#   FRB 20180916B ~ 16.35 d  (CHIME/FRB 2020; Pastor-Marazuela 2020)
+#   FRB 20121102A ~ 157 d    (Rajwade 2020; Cruces 2021)
+# run_cat2_synthetic plants recoverable multi-source schedules and asserts
+# per-source epoch-fold recovery + a per-source scramble null.
+# run_cat2_real parks honestly when the Cat 2 portal is offline; it NEVER
+# fabricates MJDs. FRB activity periodicity is a NATURAL cycle, not a
+# message: periodicity is necessary, NOT sufficient, for artificiality.
+
+CAT2_BIBCODE = "2026ApJS..283...34C"
+CAT2_REFERENCE_URL = "https://iopscience.iop.org/article/10.3847/1538-4365/ae3828"
+CAT2_KNOWN_REPEATERS_D: dict = {
+    "FRB 20180916B": 16.35,
+    "FRB 20121102A": 157.0,
+}
+CAT2_TOLERANCE_D = 1.0
+# Per-source synthetic-plant params: (n_arrivals, obs_window_d, jitter_d,
+# grid_lo_d, grid_hi_d). Validated offline to recover the period within
+# CAT2_TOLERANCE_D across seeds.
+_CAT2_SYNTH_PARAMS: dict = {
+    "FRB 20180916B": (30, 500.0, 0.3, 10.0, 30.0),
+    "FRB 20121102A": (24, 4000.0, 0.5, 140.0, 175.0),
+}
+
+
+def _cat2_motto_stance() -> str:
+    return (
+        "Structure != message. The Second CHIME/FRB Catalog (CHIME/FRB "
+        "Collab. 2026, ApJS 283 34) periodic repeaters have NATURAL "
+        "activity cycles (e.g. FRB 20180916B ~16.35 d). Recovering a "
+        "period is a math-validation outcome, NOT evidence of "
+        "artificiality. We do NOT fabricate arrival MJDs; on a failed "
+        "fetch the run reports fetch_status + attempts and stops. "
+        "Periodicity is necessary, NOT sufficient, for artificiality."
+    )
+
+
+def _cat2_module_missing() -> dict:
+    return {
+        "label": "cat2_real_data",
+        "method": "real_cat2_multisource_epoch_fold_z2",
+        "data_source": "(no source obtained)",
+        "source_type": "empty",
+        "fetch_status": "MODULE_MISSING",
+        "ref_bibcode": CAT2_BIBCODE,
+        "ref_url": CAT2_REFERENCE_URL,
+        "fetched_from": None,
+        "fetch_attempts": [],
+        "n_sources": 0,
+        "n_bursts_total": 0,
+        "provenance_note": (
+            "cat2_real_sources module not importable in this environment; "
+            "Cat 2 real-data path disabled. Synthetic Cat 2 known-answer "
+            "remains as a math-validation tool."
+        ),
+        "plant": {
+            "known_repeater_periods_d": dict(CAT2_KNOWN_REPEATERS_D),
+            "tolerance_d": CAT2_TOLERANCE_D,
+        },
+        "per_source": {},
+        "known_answer": None,
+        "negative_controls": None,
+        "warnings": [
+            "no real-data path attempted because the Cat 2 source module "
+            "is unavailable. NO synthetic plant was used."
+        ],
+        "stance": _cat2_motto_stance(),
+    }
+
+
+def _cat2_match_known_period(name: str):
+    """Return the published period (d) if `name` matches a known repeater.
+
+    Matches on the numeric core so 'FRB20180916B', 'FRB 20180916B',
+    'J0158+65' variants etc. still line up with the published entry.
+    """
+    digits = "".join(ch for ch in str(name) if ch.isdigit())
+    for kname, kper in CAT2_KNOWN_REPEATERS_D.items():
+        kdigits = "".join(ch for ch in kname if ch.isdigit())
+        if kdigits and kdigits in digits:
+            return kper
+    return None
+
+
+def _cat2_grid_for_period(period_d: float) -> tuple:
+    """A ±40% search window around a known period (floored at 2 d)."""
+    return (max(2.0, period_d * 0.6), period_d * 1.4)
+
+
+def run_cat2_synthetic(seed: int = 0, grid_step: float = 0.05) -> dict:
+    """SYNTHETIC Cat 2 multi-source periodicity known-answer.
+
+    Plants recoverable burst schedules for the two CHIME/FRB repeaters
+    with published activity periods, runs a per-source epoch-fold and a
+    per-source scramble null (uniform-in-window shuffle destroys the
+    periodicity). A pass proves the epoch-fold + scramble-null math for
+    the Cat 2 multi-source layer; it says NOTHING about the real FRBs.
+    """
+    per_source: dict = {}
+    all_pass = True
+    null_ok = True
+    for i, (name, period) in enumerate(CAT2_KNOWN_REPEATERS_D.items()):
+        n, window, jitter, glo, ghi = _CAT2_SYNTH_PARAMS[name]
+        times = synth_frb_arrivals(
+            period_d=period, n_arrivals=n, obs_window_d=window,
+            jitter_d=jitter, seed=seed + i,
+        )
+        grid = np.arange(glo, ghi + 1e-9, grid_step)
+        fold = epoch_fold(times, grid)
+        rng = np.random.default_rng(seed + 7 + i)
+        shuf = rng.uniform(0.0, window, size=len(times))
+        shuf_fold = epoch_fold(shuf, grid)
+        err = abs(fold["best_period"] - period)
+        src_pass = bool(err <= CAT2_TOLERANCE_D
+                        and fold["best_z2"] > shuf_fold["best_z2"])
+        all_pass = all_pass and src_pass
+        null_ok = null_ok and bool(shuf_fold["best_z2"] < fold["best_z2"])
+        per_source[name] = {
+            "published_period_d": float(period),
+            "n_bursts": int(len(times)),
+            "recovered_period_d": fold["best_period"],
+            "recovered_z2": fold["best_z2"],
+            "recovered_p_value": fold["best_p_value"],
+            "recovery_error_d": round(err, 5),
+            "recovery_pass": src_pass,
+            "scramble_null_z2_max": shuf_fold["best_z2"],
+            "scramble_null_best_period_d": shuf_fold["best_period"],
+            "period_grid_d": [float(glo), float(ghi), float(grid_step)],
+        }
+    primary = per_source["FRB 20180916B"]
+    return {
+        "label": "cat2_synthetic",
+        "method": "cat2_multisource_epoch_fold_z2",
+        "n_sources": len(per_source),
+        "per_source": per_source,
+        "known_answer": {
+            "primary_source": "FRB 20180916B",
+            "primary_published_period_d": 16.35,
+            "primary_recovered_period_d": primary["recovered_period_d"],
+            "primary_recovery_error_d": primary["recovery_error_d"],
+            "recovers_16p35d": bool(primary["recovery_pass"]),
+            "all_sources_recovery_pass": bool(all_pass),
+        },
+        "negative_controls": {
+            "method": "per-source uniform-in-window shuffle of arrival MJDs",
+            "scramble_null_below_recovered": bool(null_ok),
+        },
+        "reference_bibcode": CAT2_BIBCODE,
+        "reference_url": CAT2_REFERENCE_URL,
+        "stance": (
+            "SCAFFOLD / KNOWN-ANSWER. Multi-source arrival schedules are "
+            "SYNTHESIZED around the published activity periods of two "
+            "CHIME/FRB repeaters (FRB 20180916B ~16.35 d, Pastor-Marazuela "
+            "2020; FRB 20121102A ~157 d, Cruces 2021). A pass proves the "
+            "epoch-fold + scramble-null math for the Cat 2 multi-source "
+            "layer; it says NOTHING about the real FRBs. FRB periodicity is "
+            "a NATURAL activity cycle, not a message. Structure != message; "
+            "periodicity is necessary, NOT sufficient, for artificiality."
+        ),
+    }
+
+
+def run_cat2_real(
+    bundled_csv_path: Path | None = None,
+    seed: int = 0,
+    grid_step: float = 0.05,
+    force_status_for_tests: str | None = None,
+    use_cat2_fetcher: bool = True,
+) -> dict:
+    """REAL-DATA Cat 2 path. Loads published multi-source burst MJDs via
+    cat2_real_sources and runs a per-source epoch-fold + scramble null on
+    the ACTUAL arrivals. NO synthetic plant injection -- if no MJDs are
+    available (portal offline / parking), returns an honest-empty result
+    with the full fetch history and no epoch-fold attempt.
+    """
+    if C2S is None:
+        return _cat2_module_missing()
+    src = C2S.load_published_cat2_bursts(
+        bundled_csv_path=bundled_csv_path,
+        use_cat2_fetcher=use_cat2_fetcher,
+        force_status_for_tests=force_status_for_tests,
+    )
+    base_plant = {
+        "known_repeater_periods_d": dict(CAT2_KNOWN_REPEATERS_D),
+        "tolerance_d": CAT2_TOLERANCE_D,
+    }
+    if not src.has_any_mjds:
+        return {
+            "label": "cat2_real_data",
+            "method": "real_cat2_multisource_epoch_fold_z2",
+            "data_source": src.source_name,
+            "source_type": src.source_type,
+            "fetch_status": src.fetch_status,
+            "ref_bibcode": src.reference_bibcode,
+            "ref_url": src.reference_url,
+            "fetched_from": src.fetched_from,
+            "fetch_attempts": src.fetch_attempts,
+            "n_sources": 0,
+            "n_bursts_total": 0,
+            "provenance_note": src.provenance_note,
+            "plant": base_plant,
+            "per_source": {},
+            "known_answer": None,
+            "negative_controls": None,
+            "warnings": [
+                "no real-data path attempted because the Cat 2 source "
+                "returned zero MJDs across all sources. NO synthetic plant "
+                "was used.",
+                "to populate: (a) wait for the CHIME/FRB Cat 2 portal to "
+                "come back online and rerun; or (b) pass --bundled-cat2-csv "
+                "with a CSV of `name,mjd` rows transcribed from the "
+                "published Second CHIME/FRB Catalog.",
+            ],
+            "stance": _cat2_motto_stance(),
+        }
+    # Have MJDs -> per-source epoch-fold pipeline.
+    per_source: dict = {}
+    n_bursts_total = 0
+    for name, mjds in src.rows_by_source.items():
+        arr = np.asarray(sorted(float(m) for m in mjds), dtype=float)
+        n_bursts_total += int(len(arr))
+        if len(arr) < 3:
+            per_source[name] = {
+                "n_bursts": int(len(arr)),
+                "recovered_period_d": None,
+                "note": "need >=3 bursts to epoch-fold; source skipped",
+            }
+            continue
+        known = _cat2_match_known_period(name)
+        glo, ghi = _cat2_grid_for_period(known) if known is not None \
+            else (2.0, 400.0)
+        grid = np.arange(glo, ghi + 1e-9, grid_step)
+        fold = epoch_fold(arr, grid)
+        rng = np.random.default_rng(seed + len(name))
+        lo, hi = float(arr.min()), float(arr.max())
+        shuf = rng.uniform(lo, hi if hi > lo else lo + 1.0, size=len(arr))
+        shuf_fold = epoch_fold(shuf, grid)
+        entry = {
+            "n_bursts": int(len(arr)),
+            "recovered_period_d": fold["best_period"],
+            "recovered_z2": fold["best_z2"],
+            "recovered_p_value": fold["best_p_value"],
+            "scramble_null_z2_max": shuf_fold["best_z2"],
+            "period_grid_d": [float(glo), float(ghi), float(grid_step)],
+        }
+        if known is not None:
+            err = abs(fold["best_period"] - known)
+            entry["published_period_d"] = float(known)
+            entry["recovery_error_d"] = round(err, 5)
+            entry["recovery_pass"] = bool(
+                err <= CAT2_TOLERANCE_D
+                and fold["best_z2"] > shuf_fold["best_z2"]
+            )
+        per_source[name] = entry
+    recognised = {k: v for k, v in per_source.items()
+                  if "recovery_pass" in v}
+    return {
+        "label": "cat2_real_data",
+        "method": "real_cat2_multisource_epoch_fold_z2",
+        "data_source": src.source_name,
+        "source_type": src.source_type,
+        "fetch_status": src.fetch_status,
+        "ref_bibcode": src.reference_bibcode,
+        "ref_url": src.reference_url,
+        "fetched_from": src.fetched_from,
+        "fetch_attempts": src.fetch_attempts,
+        "n_sources": int(len(per_source)),
+        "n_bursts_total": int(n_bursts_total),
+        "provenance_note": src.provenance_note,
+        "plant": base_plant,
+        "per_source": per_source,
+        "negative_controls": {
+            "method": "per-source uniform-in-window shuffle of arrival MJDs",
+        },
+        "known_answer": {
+            "n_recognised_repeaters": int(len(recognised)),
+            "recognised_recovery_pass": {
+                k: bool(v.get("recovery_pass")) for k, v in recognised.items()
+            },
+        } if recognised else None,
+        "warnings": [],
+        "stance": (
+            f"Real-data Cat 2 path executed with N_sources="
+            f"{len(per_source)} ({n_bursts_total} bursts) from "
+            f"`{src.source_name}` (source_type={src.source_type}, "
+            f"fetch_status={src.fetch_status}). Any recovered activity "
+            f"cycle is a NATURAL FRB phenomenon, NOT a message. "
+            f"Structure != message."
+        ),
+    }
+
+
 def analyze(
     mode: str = "all",
     seed: int = 0,
     bundled_real_json: Path | None = None,
     bundled_pulsar_csv: Path | None = None,
     bundled_blc1_csv: Path | None = None,
+    bundled_cat2_csv: Path | None = None,
 ) -> dict:
     """Orchestrator: returns a single dict containing all sub-runs.
 
     `mode ∈ {'all', 'known_train', 'wow', 'frb_180916',
              'frb_180916_real', 'pulsar_vela_synthetic',
              'pulsar_vela_real', 'pulsar_vela',
-             'blc1_synthetic', 'blc1_real', 'blc1'}`.
+             'blc1_synthetic', 'blc1_real', 'blc1',
+             'cat2_synthetic', 'cat2_real', 'cat2',
+             'wow_beam_fit', 'wow_beam_fit_synthetic',
+             'wow_beam_fit_real'}`.
 
     `bundled_real_json` is forwarded to `run_frb_180916_real` when mode
     includes 'frb_180916_real'.
@@ -2083,6 +2529,23 @@ def analyze(
             )
         else:
             out["blc1_synthetic"] = run_blc1_synthetic(seed=seed)
+    if mode == "cat2_synthetic":
+        out["cat2_synthetic"] = run_cat2_synthetic(seed=seed)
+    if mode == "cat2_real":
+        out["cat2_real_data"] = run_cat2_real(
+            bundled_csv_path=bundled_cat2_csv,
+            seed=seed,
+        )
+    if mode == "cat2":
+        # Fall-through: prefer real-data if a CSV override was given,
+        # else default to the synthetic multi-source known-answer.
+        if bundled_cat2_csv is not None:
+            out["cat2_real_data"] = run_cat2_real(
+                bundled_csv_path=bundled_cat2_csv,
+                seed=seed,
+            )
+        else:
+            out["cat2_synthetic"] = run_cat2_synthetic(seed=seed)
     return out
 
 
@@ -2437,6 +2900,38 @@ def write_notes_markdown(report: dict) -> str:
             "permute the peak freqs uniformly and the comb-hit "
             "should DROP to noise.",
             "",
+            "### ON/OFF cadence + harmonic-family (Sheikh 2021 interpretation)",
+            "",
+            (
+                lambda oo, ha, vd: "\n".join([
+                    f"- **verdict: `{vd}`** — the planted family persists in "
+                    f"OFF and is a regular comb → terrestrial RFI. (The real "
+                    f"BLC1 path defaults to `NO_SIGNAL`.)",
+                    f"- ON/OFF cadence: ON hits_at_clock = "
+                    f"**{oo.get('on_hits_at_clock')}**, OFF hits_at_clock = "
+                    f"**{oo.get('off_hits_at_clock')}** → "
+                    f"persists_in_off = **{oo.get('persists_in_off')}**. A "
+                    f"genuine celestial source is ON-only; RFI leaks into "
+                    f"OFF. Cadence is necessary, NOT sufficient.",
+                    f"- ON-only *contrast* control (OFF = off-comb noise): "
+                    f"cadence_consistent_with_source = "
+                    f"**{report['blc1_synthetic'].get('on_off_contrast_on_only', {}).get('cadence_consistent_with_source')}** "
+                    f"— shows the discriminator has real power (it is not a "
+                    f"dead detector), yet an ON-only pass still would NOT "
+                    f"prove ET.",
+                    f"- harmonic-family Δf: mean = "
+                    f"**{ha.get('mean_delta_f_mhz')} MHz**, "
+                    f"CV = **{ha.get('cv_delta_f')}** → regular_comb = "
+                    f"**{ha.get('regular_comb')}**. Equal spacing is the "
+                    f"intermodulation fingerprint of local-oscillator "
+                    f"clocks — the analysis that ultimately killed BLC1.",
+                ])
+            )(
+                bs.get("on_off_control") or {},
+                bs.get("harmonic_family") or {},
+                bs.get("verdict", "?"),
+            ),
+            "",
             "_stance:_ Structure != message. BLC1 = clock-oscillator RFI "
             "per Sheikh 2021, NOT a confirmed technosignature. Periodicity "
             "(comb structure) IS NECESSARY, NOT SUFFICIENT, FOR "
@@ -2511,6 +3006,71 @@ def write_notes_markdown(report: dict) -> str:
                 f"_stance:_ {rd.get('stance', '')}",
                 "",
             ]
+    if "cat2_synthetic" in report:
+        cs = report["cat2_synthetic"]
+        ka = cs.get("known_answer") or {}
+        nc = cs.get("negative_controls") or {}
+        lines += [
+            "## CHIME/FRB Catalog 2 — R1++ multi-source periodicity known-answer (SYNTHETIC)",
+            "",
+            f"- sources: **{cs.get('n_sources')}** synthetic repeater "
+            "schedules (no live fetch; portal offline at probe time)",
+            f"- primary: **FRB 20180916B** published **16.35 d** → recovered "
+            f"**{ka.get('primary_recovered_period_d')} d** "
+            f"(err {ka.get('primary_recovery_error_d')} d); "
+            f"recovers_16p35d = **{ka.get('recovers_16p35d')}**",
+            f"- all-sources recovery_pass = "
+            f"**{ka.get('all_sources_recovery_pass')}**; scramble-null "
+            f"below recovered = **{nc.get('scramble_null_below_recovered')}** "
+            "(per-source uniform-in-window shuffle destroys the periodicity)",
+        ]
+        for name, e in (cs.get("per_source") or {}).items():
+            lines.append(
+                f"  - `{name}`: N={e.get('n_bursts')}, "
+                f"published {e.get('published_period_d')} d → recovered "
+                f"{e.get('recovered_period_d')} d "
+                f"(err {e.get('recovery_error_d')} d, "
+                f"Z²={e.get('recovered_z2'):.1f} vs null "
+                f"{e.get('scramble_null_z2_max'):.1f}) "
+                f"→ {'PASS' if e.get('recovery_pass') else 'FAIL'}"
+            )
+        lines += [
+            "",
+            f"_stance:_ {cs.get('stance', '')}",
+            "",
+        ]
+    if "cat2_real_data" in report:
+        rd = report["cat2_real_data"]
+        lines += [
+            "## CHIME/FRB Catalog 2 — R1++ REAL-DATA path",
+            "",
+            f"- data source: **{rd.get('data_source', '?')}** "
+            f"(source_type=`{rd.get('source_type', '?')}`, "
+            f"fetch_status=`{rd.get('fetch_status', '?')}`)",
+            f"- n_sources = **{rd.get('n_sources')}**, "
+            f"n_bursts_total = **{rd.get('n_bursts_total')}**",
+            f"- reference: bibcode=`{rd.get('ref_bibcode') or '-'}`, "
+            f"url=`{rd.get('ref_url') or '-'}`",
+            "",
+        ]
+        if rd.get("warnings"):
+            lines += ["### 🟡 YELLOW BANNER — Cat 2 portal offline / no data; "
+                      "NO synthetic fallback", ""]
+            for w in rd["warnings"]:
+                lines.append(f"  - {w}")
+            note = (rd.get("provenance_note") or "")[:600]
+            lines += ["", f"_provenance:_ {note}", ""]
+        else:
+            for name, e in (rd.get("per_source") or {}).items():
+                lines.append(
+                    f"  - `{name}`: N={e.get('n_bursts')}, recovered "
+                    f"{e.get('recovered_period_d')} d"
+                    + (f" (published {e.get('published_period_d')} d, err "
+                       f"{e.get('recovery_error_d')} d, "
+                       f"{'PASS' if e.get('recovery_pass') else 'FAIL'})"
+                       if 'recovery_pass' in e else "")
+                )
+            lines += ["", f"_stance:_ {rd.get('stance', '')}", ""]
     lines += [
         "---",
         "",
@@ -2610,6 +3170,26 @@ def main() -> None:
                           "`freq_mhz,snr_db,drift_hz_per_s,t_start_mjd,"
                           "t_end_mjd,label`. Only honoured when combined "
                           "with --blc1*.")
+    ap.add_argument("--cat2", action="store_true",
+                     help="R1++ Cat 2 default mode: synthetic multi-source "
+                          "periodicity known-answer (recover 16.35 d + "
+                          "scramble null) UNLESS --bundled-cat2-csv is "
+                          "given (then real-data path).")
+    ap.add_argument("--cat2-synthetic", action="store_true",
+                     help="R1++ SYNTHETIC: plant CHIME/FRB Cat 2 repeater "
+                          "schedules (FRB 20180916B ~16.35 d; FRB 20121102A "
+                          "~157 d) and recover each period per-source with a "
+                          "per-source scramble null. Math-validation only.")
+    ap.add_argument("--cat2-real", action="store_true",
+                     help="R1++ REAL-DATA path: load published Cat 2 burst "
+                          "MJDs (live/cached fetch OR --bundled-cat2-csv) and "
+                          "epoch-fold per source. If no MJDs can be obtained "
+                          "(portal offline), reports fetch_status and exits "
+                          "without fabrication.")
+    ap.add_argument("--bundled-cat2-csv", type=Path, default=None,
+                     help="Override the Cat 2 live fetch with a CSV of "
+                          "`name,mjd` rows (multi-source). Only honoured "
+                          "when combined with --cat2*.")
     ap.add_argument("--wow-beam-fit", action="store_true",
                      help="G3: fit a Gaussian + sinc sidereal transit to "
                           "the 6EQUJ5 intensity table [6.5, 14.5, 26.5, "
@@ -2657,6 +3237,12 @@ def main() -> None:
         mode = "blc1_synthetic"
     elif args.blc1:
         mode = "blc1"
+    elif args.cat2_real:
+        mode = "cat2_real"
+    elif args.cat2_synthetic:
+        mode = "cat2_synthetic"
+    elif args.cat2:
+        mode = "cat2"
     elif args.wow_beam_fit_real:
         mode = "wow_beam_fit_real"
     elif args.wow_beam_fit_synthetic:
@@ -2696,6 +3282,9 @@ def main() -> None:
         bundled_blc1_csv=args.bundled_blc1_csv
         if mode in ("blc1", "blc1_real", "blc1_synthetic")
         else None,
+        bundled_cat2_csv=args.bundled_cat2_csv
+        if mode in ("cat2", "cat2_real", "cat2_synthetic")
+        else None,
     )
     if mode == "frb_180916_real" and args.fetch_status_test_force:
         # Re-run with the test hook applied to the real-data path layer.
@@ -2731,6 +3320,18 @@ def main() -> None:
             report["blc1_real_data"] = run_blc1_real(
                 bundled_csv_path=args.bundled_blc1_csv
                 if mode == "blc1_real" else None,
+                seed=args.seed,
+                force_status_for_tests=args.fetch_status_test_force,
+            )
+    if mode == "cat2_real" and args.fetch_status_test_force:
+        # Same thin-shim pattern: re-run the Cat 2 real path with the
+        # fetch-status test hook so production users never touch
+        # force_status_for_tests. In production the portal is offline, so
+        # this only fires for the deterministic UNREACHABLE/PARKING tests.
+        if C2S is not None and "cat2_real_data" in report:
+            report["cat2_real_data"] = run_cat2_real(
+                bundled_csv_path=args.bundled_cat2_csv
+                if mode == "cat2_real" else None,
                 seed=args.seed,
                 force_status_for_tests=args.fetch_status_test_force,
             )

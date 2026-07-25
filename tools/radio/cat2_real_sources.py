@@ -5,18 +5,21 @@ Second CHIME/FRB Catalog was published 2026-03 (CHIME/FRB Collaboration
 et al. 2026, ApJS 283, 34; AAS Open Access). 4,539 FRBs across 3,641
 unique sources; 981 bursts from 83 known REPEATING sources.
 
-NOTE: this module is currently a STUB. The full R1++ wiring (live fetch
-integration, multi-source scramble-null, write_notes_markdown BLC1 block,
-test suite) was deferred to a future turn when the user pivoted to G-BLC1.
-What remains here is:
+R1++ wiring (Ozma, 2026-07-25): `load_published_cat2_bursts` now mirrors
+`frb_real_sources.load_published_frb_180916_bursts` exactly, but keyed by
+source (Cat 2 has 83 known repeaters, not a single FRB):
 
   - dataclass PublishedCat2BurstSource  (multi-source row group + provenance)
-  - stub load_published_cat2_bursts() returning an honest-empty source
+  - load_published_cat2_bursts() resolving, in order:
+      1. `--bundled-cat2-csv` override via cat2_fetcher.load_bundled_cat2_csv
+      2. live/cached probe via cat2_fetcher.try_fetch_chime_frb_catalog_2_csv
+      3. honest-empty (DISABLED / MODULE_MISSING) fallback
+    It NEVER fabricates arrival MJDs; on fetch failure it returns
+    rows_by_source={} plus the full attempt history and fetch_status.
 
-This is sufficient for `import cat2_real_sources` to succeed; downstream
-orchestration that wants live Cat 2 data should use `--bundled-cat2-csv`
-with `cat2_fetcher.load_bundled_cat2_csv()` directly (which is fully
-implemented in `cat2_fetcher.py`).
+The synthetic periodicity known-answer (recover 16.35 d + scramble null)
+lives in `radio_probe.run_cat2_synthetic`; this module is the honest
+real-data layer only.
 
 Lab motto compliance (preserve across the R1++ completion pass):
   - NO silent fallback to synthetic data when the canonical mirror is
@@ -108,33 +111,147 @@ def load_published_cat2_bursts(
     use_cat2_fetcher: bool = True,
     force_status_for_tests: Optional[str] = None,
 ) -> PublishedCat2BurstSource:
-    """STUB: honest-empty until the full R1++ wiring lands.
+    """Resolve CHIME/FRB Catalog 2 burst MJDs (multi-source) from the most
+    authoritative source available. Mirrors
+    `frb_real_sources.load_published_frb_180916_bursts` but keyed by source.
 
-    For now this returns an honest-empty source with a clear "deferred"
-    provenance_note. When the user pivots back to R1++, this function
-    will be expanded to mirror `frb_real_sources.load_published_frb_180916_bursts`
-    exactly: (1) bundled override, (2) live cat2_fetcher probe, (3) honest-empty.
+    Resolution order:
+      1. `bundled_csv_path` exists and parses -> ``user_provided_cat2``
+      2. `use_cat2_fetcher=True` and (live/cached) -> ``chime_csv_fetch_cat2``
+      3. otherwise -> honest-empty (``DISABLED`` / ``MODULE_MISSING``)
 
-    Until then, callers wanting live Cat 2 data should use the bundled
-    override via `cat2_fetcher.load_bundled_cat2_csv(path)` directly.
+    We NEVER fabricate arrival MJDs. On any fetch failure the returned
+    source has ``rows_by_source == {}`` plus the full ``fetch_attempts``
+    history and the underlying ``fetch_status`` so callers can never
+    mistake "no data yet" for "data exists".
     """
+    # --- 1. bundled override path --------------------------------------
+    if bundled_csv_path is not None and Path(bundled_csv_path).exists():
+        if load_bundled_cat2_csv is None:  # pragma: no cover
+            return PublishedCat2BurstSource(
+                rows_by_source={},
+                source_name=str(Path(bundled_csv_path).name),
+                source_type="module_missing",
+                reference_bibcode=CAT2_BIBCODE,
+                reference_url=CAT2_REFERENCE_URL,
+                fetched_from=None,
+                provenance_note=(
+                    "cat2_fetcher module not importable; cannot parse the "
+                    f"--bundled-cat2-csv {bundled_csv_path}. No data loaded."
+                ),
+                fetch_attempts=[],
+                fetch_status="MODULE_MISSING",
+            )
+        bundle = load_bundled_cat2_csv(Path(bundled_csv_path))
+        if bundle.error is not None:
+            return PublishedCat2BurstSource(
+                rows_by_source={},
+                source_name=str(Path(bundled_csv_path).name),
+                source_type="empty",
+                reference_bibcode=CAT2_BIBCODE,
+                reference_url=CAT2_REFERENCE_URL,
+                fetched_from=None,
+                provenance_note=(
+                    f"User-provided --bundled-cat2-csv {bundled_csv_path} "
+                    f"failed to parse: {bundle.error}. Falling back to empty "
+                    f"source. No synthetic data injected."
+                ),
+                fetch_attempts=[],
+                fetch_status="USER_OVERRIDE_INVALID",
+            )
+        return PublishedCat2BurstSource(
+            rows_by_source=bundle.rows_by_source,
+            source_name=str(Path(bundled_csv_path).name),
+            source_type="user_provided_cat2",
+            reference_bibcode="USER_PROVIDED",
+            reference_url=f"file://{Path(bundled_csv_path).resolve()}",
+            fetched_from=str(bundled_csv_path),
+            provenance_note=(
+                f"Cat 2 burst MJDs supplied via --bundled-cat2-csv "
+                f"{bundled_csv_path} ({bundle.n_sources} sources, "
+                f"{bundle.n_rows} rows). The caller is responsible for "
+                f"verifying the source paper / table provenance. We do NOT "
+                f"validate the values independently."
+            ),
+            fetch_attempts=[],
+            fetch_status="USER_OVERRIDE",
+        )
+
+    # --- 2. live/cached cat2_fetcher probe -----------------------------
+    if use_cat2_fetcher:
+        if try_fetch_chime_frb_catalog_2_csv is None:  # pragma: no cover
+            return PublishedCat2BurstSource(
+                rows_by_source={},
+                source_name="CHIME/FRB Catalog 2",
+                source_type="module_missing",
+                reference_bibcode=CAT2_BIBCODE,
+                reference_url=CAT2_REFERENCE_URL,
+                fetched_from=None,
+                provenance_note=(
+                    "cat2_fetcher module not importable; live Cat 2 probe "
+                    "disabled. Pass --bundled-cat2-csv to inject data. No "
+                    "synthetic data injected."
+                ),
+                fetch_attempts=[],
+                fetch_status="MODULE_MISSING",
+            )
+        result = try_fetch_chime_frb_catalog_2_csv(
+            attempt_urls=attempt_urls,
+            timeout_s=fetch_timeout_s,
+            use_cache=True,
+            force_status_for_tests=force_status_for_tests,
+        )
+        attempts = [a if isinstance(a, dict) else a.to_dict()
+                    for a in result.attempts]
+        if result.fetch_status in ("FETCHED", "CACHED") and result.rows_by_source:
+            return PublishedCat2BurstSource(
+                rows_by_source=result.rows_by_source,
+                source_name="CHIME/FRB Catalog 2",
+                source_type="chime_csv_fetch_cat2",
+                reference_bibcode=result.reference_bibcode,
+                reference_url=result.reference_url,
+                fetched_from=result.fetched_from,
+                provenance_note=result.provenance_note,
+                fetch_attempts=attempts,
+                fetch_status=result.fetch_status,
+            )
+        # Live fetch failed OR returned zero rows -> honest-empty with the
+        # EXACT failure history. NEVER synthesize.
+        return PublishedCat2BurstSource(
+            rows_by_source={},
+            source_name="CHIME/FRB Catalog 2",
+            source_type="empty",
+            reference_bibcode=result.reference_bibcode,
+            reference_url=result.reference_url,
+            fetched_from=None,
+            provenance_note=(
+                f"Live CHIME/FRB Catalog 2 fetch returned "
+                f"{result.fetch_status}. No MJDs obtained from the network. "
+                f"The Cat 2 data portal mirrors the Cat 1 offline/parking "
+                f"state at probe time (2026-07-25). To populate today, pass "
+                f"--bundled-cat2-csv with a CSV of `name,mjd` rows "
+                f"transcribed from the published catalog. No synthetic data "
+                f"injected."
+            ),
+            fetch_attempts=attempts,
+            fetch_status=result.fetch_status,
+        )
+
+    # --- 3. honest-empty default ---------------------------------------
     return PublishedCat2BurstSource(
         rows_by_source={},
-        source_name=str(Path(bundled_csv_path).name) if bundled_csv_path
-        else "(deferred)",
-        source_type="deferred",
-        reference_bibcode=None if CAT2_BIBCODE is None else CAT2_BIBCODE,
-        reference_url=None if CAT2_REFERENCE_URL is None else CAT2_REFERENCE_URL,
+        source_name="(none)",
+        source_type="empty",
+        reference_bibcode=CAT2_BIBCODE,
+        reference_url=CAT2_REFERENCE_URL,
         fetched_from=None,
         provenance_note=(
-            "cat2_real_sources.load_published_cat2_bursts is a STUB "
-            "until the full R1++ wiring lands. The CHIME/FRB Cat 2 "
-            "fetch module (`cat2_fetcher.py`) IS fully implemented "
-            "and can be used via `cat2_fetcher.load_bundled_cat2_csv(path)` "
-            "with `--bundled-cat2-csv`. No synthetic data injected."
+            "Real-data path disabled (use_cat2_fetcher=False). Use a live/"
+            "cached Cat 2 fetch or pass --bundled-cat2-csv. No synthetic "
+            "data injected."
         ),
         fetch_attempts=[],
-        fetch_status="DEFERRED",
+        fetch_status="DISABLED",
     )
 
 

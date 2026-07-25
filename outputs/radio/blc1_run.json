@@ -1,0 +1,80 @@
+{
+  "label": "radio_probe",
+  "mode": "blc1_synthetic",
+  "seed": 0,
+  "stance": "Structure != message. Pulsars are the universe's most precise natural clocks -- periodicity is necessary, NOT sufficient, for artificiality. All scaffolds here are math-validation plants; none are claims about real Wow! or real FRBs.",
+  "blc1_synthetic": {
+    "label": "blc1_synthetic",
+    "method": "blc1_synthetic_comb_detector",
+    "verdict": "RFI_COMB_TERRESTRIAL",
+    "on_off_control": {
+      "on_hits_at_clock": 5,
+      "off_hits_at_clock": 5,
+      "persists_in_off": true,
+      "cadence_consistent_with_source": false,
+      "verdict": "RFI_PRESENT_IN_OFF",
+      "note": "ON/OFF cadence is necessary, NOT sufficient. BLC1's lookalike family appeared in OFF pointings (Sheikh 2021) -> terrestrial. An ON-only pass would NOT prove ET."
+    },
+    "on_off_contrast_on_only": {
+      "on_hits_at_clock": 5,
+      "off_hits_at_clock": 0,
+      "persists_in_off": false,
+      "cadence_consistent_with_source": true,
+      "verdict": "ON_ONLY_would_pass_cadence",
+      "note": "ON/OFF cadence is necessary, NOT sufficient. BLC1's lookalike family appeared in OFF pointings (Sheikh 2021) -> terrestrial. An ON-only pass would NOT prove ET."
+    },
+    "harmonic_family": {
+      "n_peaks": 5,
+      "delta_f_mhz": [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "mean_delta_f_mhz": 2.0,
+      "std_delta_f_mhz": 0.0,
+      "cv_delta_f": 0.0,
+      "regular_comb": true,
+      "note": "LOW CV => equally-spaced comb => intermodulation RFI family (terrestrial). Structure != message: regularity is evidence for RFI, never for ET."
+    },
+    "plant": {
+      "f_center_mhz": 982.002,
+      "f_clock_mhz": 2.0,
+      "drift_hz_per_s": -0.26,
+      "harmonics": 5,
+      "snr_base_db": 25.0,
+      "snr_decay_db": 3.0,
+      "rfi_conclusion": "Sheikh 2021 (Nat. Astron. 5 1169, DOI 10.1038/s41550-021-01508-8) concluded BLC1 was clock-oscillator intermodulation RFI, NOT ET. The synthetic plant mimics this signature for math-validation only."
+    },
+    "n_peaks": 5,
+    "comb_detection": {
+      "clock_guess_mhz": 2.0,
+      "tolerance_mhz": 0.01,
+      "n_peaks": 5,
+      "hits_at_clock": 5,
+      "hits_at_clock_fraction": 1.0,
+      "peaks_at_known_rfi": 1,
+      "peaks_at_known_rfi_label": [
+        982.002
+      ],
+      "scramble_null_hits": 0,
+      "scramble_null_p_value": 0.0,
+      "rfi_comb_detected": true
+    },
+    "negative_controls": {
+      "scramble_null_hits": 0,
+      "scramble_null_p_value": 0.0,
+      "scramble_null_band_mhz_lo": 978.002,
+      "scramble_null_band_mhz_hi": 986.002
+    },
+    "known_answer": {
+      "recovered_clock_mhz": 2.0,
+      "hits_at_clock": 5,
+      "rfi_comb_detected": true,
+      "scramble_null_drop": true,
+      "recovery_pass": true
+    },
+    "warnings": [],
+    "stance": "SYNTHETIC BLC1 clock-comb plant. Scaffolds detection math; tells us NOTHING about the real BLC1. Sheikh 2021 concluded BLC1 was clock-oscillator RFI; a positive comb-hit here is labeled RFI, NOT a technosignature. Lab motto: structure != message. Periodicity is necessary, NOT sufficient, for artificiality."
+  }
+}

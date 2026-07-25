@@ -1,0 +1,88 @@
+{
+  "label": "radio_probe",
+  "mode": "blc1_real",
+  "seed": 0,
+  "stance": "Structure != message. Pulsars are the universe's most precise natural clocks -- periodicity is necessary, NOT sufficient, for artificiality. All scaffolds here are math-validation plants; none are claims about real Wow! or real FRBs.",
+  "blc1_real_data": {
+    "label": "blc1_real_data",
+    "method": "blc1_comb_detector",
+    "verdict": "NO_SIGNAL",
+    "data_source": "Berkeley SETI opendata (NOT scraped)",
+    "source_type": "empty",
+    "fetch_status": "NEVER_ATTEMPTED",
+    "ref_bibcode": "2021NatAs...5.1169S",
+    "ref_url": "https://doi.org/10.1038/s41550-021-01508-8",
+    "fetched_from": null,
+    "fetch_attempts": [
+      {
+        "url": "https://seti.berkeley.edu/opendata/blc1/",
+        "role": "Berkeley SETI BLC1 landing page (NOT scraped: unresolved archive)",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NEVER_ATTEMPTED",
+        "error": "live G-BLC1 probe disabled (no TB mirror)",
+        "elapsed_s": 0.0
+      },
+      {
+        "url": "https://seti.berkeley.edu/blc1/blc1_candidate.h5",
+        "role": "Berkeley SETI HDF5 raw peak file (NOT scraped)",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NEVER_ATTEMPTED",
+        "error": "live G-BLC1 probe disabled (no TB mirror)",
+        "elapsed_s": 0.0
+      },
+      {
+        "url": "https://seti.berkeley.edu/opendata/blc1/blc1_supplementary.csv",
+        "role": "Sheikh 2021 supplementary CSV (NOT scraped: candidates only)",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NEVER_ATTEMPTED",
+        "error": "live G-BLC1 probe disabled (no TB mirror)",
+        "elapsed_s": 0.0
+      },
+      {
+        "url": "https://www.atnf.csiro.au/research/pulsar/psrcat/proc_form.php?version=2.8.1&JNAME=J0835-4510&submit=Submit",
+        "role": "ATNF psrcat formation page (NOT scraped: irrelevant to BLC1 band)",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NEVER_ATTEMPTED",
+        "error": "live G-BLC1 probe disabled (no TB mirror)",
+        "elapsed_s": 0.0
+      },
+      {
+        "url": "https://www.parkes.atnf.csiro.au/people/sar049/rfi/parkes_rfi.html",
+        "role": "Parkes RFI characterisation page (cited reference, NOT scraped)",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NEVER_ATTEMPTED",
+        "error": "live G-BLC1 probe disabled (no TB mirror)",
+        "elapsed_s": 0.0
+      }
+    ],
+    "n_peaks": 0,
+    "license": "CC BY 4.0 (Sheikh 2021 supplementary tables)",
+    "provenance_note": "Live probe disabled per user brief ('no TB mirror'). No MJDs/peak-rows obtained. NO synthetic plant used.",
+    "plant": {
+      "f_center_mhz": 982.002,
+      "f_clock_mhz": 2.0,
+      "drift_hz_per_s": -0.26,
+      "rfi_conclusion": "Sheikh 2021: BLC1 = clock-oscillator RFI, NOT ET.",
+      "license": "CC BY 4.0 (Sheikh 2021 supplementary tables)"
+    },
+    "comb_detection": null,
+    "negative_controls": null,
+    "known_answer": null,
+    "warnings": [
+      "no real-data path attempted because the G-BLC1 live probe is DISABLED by design (no TB mirror).",
+      "fetch_status: NEVER_ATTEMPTED; see fetch_attempts[] for the 5 admin URLs that were NOT contacted.",
+      "to populate: pass --bundled-blc1-csv with a CSV header `freq_mhz,snr_db,drift_hz_per_s,t_start_mjd,t_end_mjd,label` of peaks manually transcribed from Sheikh 2021 supplementary tables."
+    ],
+    "stance": "Structure != message. BLC1 (Breakthrough Listen Candidate 1) is NOT a confirmed technosignature per Sheikh et al. 2021 (Nature Astronomy 5 1169, DOI 10.1038/s41550-021-01508-8); it was an intermodulation product of clock-oscillator RFI at Parkes. We test period/peak-detection math against BLC1 for RFI comb detection, NOT for ET claims. Live probe DISABLED per user brief ('no TB mirror'); bundled-override only. PERIODICITY/COMB-HIT IS NECESSARY, NOT SUFFICIENT, FOR ARTIFICIALITY. We do NOT fabricate peak lists."
+  }
+}

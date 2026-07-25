@@ -1,0 +1,60 @@
+{
+  "label": "radio_probe",
+  "mode": "cat2_synthetic",
+  "seed": 0,
+  "stance": "Structure != message. Pulsars are the universe's most precise natural clocks -- periodicity is necessary, NOT sufficient, for artificiality. All scaffolds here are math-validation plants; none are claims about real Wow! or real FRBs.",
+  "cat2_synthetic": {
+    "label": "cat2_synthetic",
+    "method": "cat2_multisource_epoch_fold_z2",
+    "n_sources": 2,
+    "per_source": {
+      "FRB 20180916B": {
+        "published_period_d": 16.35,
+        "n_bursts": 30,
+        "recovered_period_d": 16.35000000000009,
+        "recovered_z2": 59.48018751124525,
+        "recovered_p_value": 1.213504498592938e-13,
+        "recovery_error_d": 0.0,
+        "recovery_pass": true,
+        "scramble_null_z2_max": 11.108361154134945,
+        "scramble_null_best_period_d": 11.850000000000026,
+        "period_grid_d": [
+          10.0,
+          30.0,
+          0.05
+        ]
+      },
+      "FRB 20121102A": {
+        "published_period_d": 157.0,
+        "n_bursts": 24,
+        "recovered_period_d": 157.00000000000387,
+        "recovered_z2": 47.992687548852764,
+        "recovered_p_value": 3.788962551496169e-11,
+        "recovery_error_d": 0.0,
+        "recovery_pass": true,
+        "scramble_null_z2_max": 3.6694776339249486,
+        "scramble_null_best_period_d": 145.55000000000126,
+        "period_grid_d": [
+          140.0,
+          175.0,
+          0.05
+        ]
+      }
+    },
+    "known_answer": {
+      "primary_source": "FRB 20180916B",
+      "primary_published_period_d": 16.35,
+      "primary_recovered_period_d": 16.35000000000009,
+      "primary_recovery_error_d": 0.0,
+      "recovers_16p35d": true,
+      "all_sources_recovery_pass": true
+    },
+    "negative_controls": {
+      "method": "per-source uniform-in-window shuffle of arrival MJDs",
+      "scramble_null_below_recovered": true
+    },
+    "reference_bibcode": "2026ApJS..283...34C",
+    "reference_url": "https://iopscience.iop.org/article/10.3847/1538-4365/ae3828",
+    "stance": "SCAFFOLD / KNOWN-ANSWER. Multi-source arrival schedules are SYNTHESIZED around the published activity periods of two CHIME/FRB repeaters (FRB 20180916B ~16.35 d, Pastor-Marazuela 2020; FRB 20121102A ~157 d, Cruces 2021). A pass proves the epoch-fold + scramble-null math for the Cat 2 multi-source layer; it says NOTHING about the real FRBs. FRB periodicity is a NATURAL activity cycle, not a message. Structure != message; periodicity is necessary, NOT sufficient, for artificiality."
+  }
+}
