@@ -1,0 +1,137 @@
+{
+  "label": "indus_corpus_mohenjodaro_mayig",
+  "n_sequences": 179,
+  "n_tokens": 1003,
+  "n_distinct": 182,
+  "unigram_entropy_bits": 6.286,
+  "index_of_coincidence": 0.0255,
+  "ioc_over_uniform": 4.632,
+  "conditional_bigram_entropy_bits": 2.758,
+  "lz78_ratio": 0.5135,
+  "shuffled_control": {
+    "observed": 2.7577,
+    "shuffled_mean": 3.2668,
+    "shuffled_sd": 0.0222,
+    "z": -22.94
+  },
+  "transition_graph": {
+    "n_nodes": 182,
+    "n_edges": 551,
+    "density": 0.033453,
+    "avg_out_degree": 3.0275,
+    "reciprocity": 0.1016,
+    "clustering_coefficient": 0.2759
+  },
+  "graph_degree_preserving_null": {
+    "observed_density": 0.033453,
+    "null_mean_density": 0.04276,
+    "z_density": -27.0,
+    "observed_clustering": 0.2759,
+    "null_mean_clustering": 0.3093,
+    "observed_reciprocity": 0.1016,
+    "null_mean_reciprocity": 0.1701
+  },
+  "formulaic_segments": [
+    {
+      "ngram": [
+        "P122",
+        "P385"
+      ],
+      "total_occurrences": 29,
+      "n_sequences": 29
+    },
+    {
+      "ngram": [
+        "P147",
+        "P316"
+      ],
+      "total_occurrences": 10,
+      "n_sequences": 10
+    },
+    {
+      "ngram": [
+        "P324",
+        "P332"
+      ],
+      "total_occurrences": 10,
+      "n_sequences": 10
+    },
+    {
+      "ngram": [
+        "P062",
+        "P060"
+      ],
+      "total_occurrences": 9,
+      "n_sequences": 9
+    },
+    {
+      "ngram": [
+        "P364",
+        "P122"
+      ],
+      "total_occurrences": 9,
+      "n_sequences": 9
+    },
+    {
+      "ngram": [
+        "P013",
+        "P324"
+      ],
+      "total_occurrences": 9,
+      "n_sequences": 9
+    },
+    {
+      "ngram": [
+        "P050",
+        "P145"
+      ],
+      "total_occurrences": 8,
+      "n_sequences": 8
+    },
+    {
+      "ngram": [
+        "P120",
+        "P256"
+      ],
+      "total_occurrences": 7,
+      "n_sequences": 7
+    },
+    {
+      "ngram": [
+        "P145",
+        "P122"
+      ],
+      "total_occurrences": 7,
+      "n_sequences": 7
+    },
+    {
+      "ngram": [
+        "P217",
+        "P050"
+      ],
+      "total_occurrences": 6,
+      "n_sequences": 6
+    }
+  ],
+  "has_formulaic_repeated_ngrams": true,
+  "invariants": {
+    "conditional_structure_vs_shuffle": true,
+    "graph_deviates_from_positional_null": true
+  },
+  "stance": "Indus script is undeciphered (ca. 2600-1900 BCE, Indus Valley). This probe measures *sign-sequence structure* only \u2014 it does NOT translate, decipher, or place Indus in a language family (Dravidian, Indo-European, or otherwise). STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py for all metrics.",
+  "forbidden_phrases": [
+    "translates to",
+    "represents",
+    "decodes as",
+    "shares roots with",
+    "is related to Dravidian",
+    "is related to Sumerian",
+    "Indus script is a",
+    "Indus script =",
+    "Dravidian =",
+    "aliens wrote"
+  ],
+  "caveat": "Structure != message. These statistics confirm sign-sequence structure distinct from noise, but do NOT confirm Indus is a natural language, do NOT identify the script's language family, and do NOT enable reading.",
+  "generated_at": "2026-07-25T11:30:44.340792+00:00",
+  "source": "Corpus: mayig/indus-valley-script-corpus (MIT / Apache 2.0), digitised from Parpola et al. Corpus of Indus Seals and Inscriptions (CISI). Sign encoding: Parpola sign numbers (P001-Pxxx)."
+}
