@@ -1,0 +1,28 @@
+{
+  "formation_id": "edmonton-1999",
+  "source_image": "data/images/edmonton_1999.png",
+  "corners": [
+    [
+      180,
+      90
+    ],
+    [
+      490,
+      95
+    ],
+    [
+      505,
+      265
+    ],
+    [
+      160,
+      255
+    ]
+  ],
+  "order": "TL,TR,BR,BL",
+  "out_size": [
+    800,
+    700
+  ],
+  "note": "Manual mid box around 7-circle cluster; excludes caption overlays."
+}

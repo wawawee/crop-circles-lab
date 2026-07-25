@@ -75,7 +75,7 @@
 
 **Result (2026-07-25, local):** Manual bbox `[22,28,275,572]`; bits PNG+JSON. Fill≈0.5 at web-res. See `outputs/chilbolton_b2_notes.md`.
 
-### B3 — Finish preprocess: perspective + crop/stubble helpers — scaffold DONE ✅ (Edmonton ortho left to local)
+### B3 — Finish preprocess: perspective + crop/stubble helpers — DONE ✅
 **Goal:** Implement remaining hyperagent stubs properly.  
 **Work:**
 1. CLI for `perspective_correct` with 4 clicked/JSON corners (tramline rectangle).
@@ -85,9 +85,10 @@
 
 **Acceptance:** Ortho image + mask; short note in `outputs/preprocess_edmonton.md`.
 
-**Result (2026-07-25, Hyperagent/finasteos):** `perspective_correct` already existed; added `crop_stubble_mask` (excess-green ExG = 2G−R−B, Otsu split laid-vs-standing) and a `--corners-json` + `--stubble` CLI to `tools/ccat/preprocess.py`. Tests `tools/ccat/tests/test_preprocess.py` (3/3): rectification fills frame >0.9; ExG splits green/tan >0.8 vs <0.2; corner-JSON loader. Edmonton ortho intentionally left to LOCAL — needs hand-picked corners: create `data/catalog/edmonton_corners.json` `{"corners":[[x,y] TL,TR,BR,BL]}` then `python tools/ccat/preprocess.py data/images/edmonton_1999.png --corners-json data/catalog/edmonton_corners.json --stubble`.
+**Result (2026-07-25, Hyperagent/finasteos):** scaffold — `crop_stubble_mask` + `--corners-json` CLI; tests 3/3.  
+**Result (2026-07-25, local):** `data/catalog/edmonton_corners.json` + `data/images/edmonton_1999_ortho.png` + stubble mask. Notes: `outputs/preprocess_edmonton.md`.
 
-### B4 — Circle extraction that survives wheat texture — DONE ✅ (scaffold, Hyperagent/finasteos)
+### B4 — Circle extraction that survives wheat texture — DONE ✅
 **Goal:** Julia Set ~151 circles measurable (today Hough under-detects on 800px).  
 **Work:**
 1. Mask-first blob/contour pipeline (not raw Hough on gray).
@@ -97,7 +98,8 @@
 
 **Acceptance:** Synthetic pass; real Julia count reported with uncertainty.
 
-**Result (2026-07-25, Hyperagent/finasteos):** `tools/ccat/circle_extract.py` — mask-first extractor (binarize → external contours → circularity+radius filter → `minEnclosingCircle`), NOT raw Hough. Tests `tools/ccat/tests/test_circle_extract.py` (3/3): synthetic log-spiral of 150 non-overlapping shrinking circles recovered **150/150 (0% err)**; 3 clean circles → correct radii; random salt texture → <40 blobs (no Hough-explosion). Steps 3–4 (run on real `julia_set_1996_tt_oh.jpg`/Getty → `outputs/julia_circles.json`, feed radii to `is_true_julia_set`) left for LOCAL where images are on disk: `python tools/ccat/circle_extract.py data/images/julia_set_1996_tt_oh.jpg --out outputs/julia_circles.json`.
+**Result (2026-07-25, Hyperagent/finasteos):** scaffold — synthetic **150/150**.  
+**Result (2026-07-25, local):** TT OH adaptive → **152 circles** (claimed 151, err ~0.7%); Getty over-segments (465). `is_true_julia_set` → log-spiral approx (radius-ratio CV≈0.022), not true z²+c. See `outputs/julia_circles.json`, `outputs/julia_b4_notes.md`.
 
 ### B5 — Parse BLT lab texts → structured tables — DONE ✅
 **Goal:** Machine-readable biophysics for Logan / Edmonton (Cherhill if found).  
@@ -110,7 +112,7 @@
 
 **Result (2026-07-25):** `tools/ccat/parse_blt_labs.py` → `data/catalog/blt_lab_metrics.json` (`blt_lab_metrics.v1`) + `outputs/blt_lab_summary.md`. Logan #79 (KS-03-131): node expansion 15–65%, expulsion cavities, diameters 30.4/58 ft. Edmonton #122 (KS-04-176): 7-circle, bent nodes 40–120°, magnetic particles, microwave heating claim. Cherhill metrics pulled from archived JSE/BLT semi-molten page (lab #104 HTML still 404). Caveat baked into JSON: BLT claims, not independent remeasurement.
 
-### B6 — Known-hoax vs candidate classifier (lightweight) — **LOCAL NEXT** (free corpus on disk)
+### B6 — Known-hoax vs candidate classifier (lightweight) — DONE ✅ (exploratory)
 **Goal:** Features that separate Chualar (known marketing hoax) from BLT-priority cases.  
 **Work:**
 1. Feature vector: edge ratio, symmetry, fractal D, circle/line ratio, entropy (+ B3/B4: blob count, circularity, stubble fraction).
@@ -118,7 +120,8 @@
 3. Simple sklearn baseline (logistic / RF) — **report as exploratory only**.
 
 **Acceptance:** CSV + short caveats (tiny N, no claim of authenticity).
-**Note (2026-07-25, Hyperagent):** Bulk image fetch via MCP impractical → run **locally** (images already on disk). Free/OS only — no paid imagery.
+
+**Result (2026-07-25, local):** `tools/ccat/feature_table.py` → `outputs/feature_table.csv` (12 rows) + `outputs/feature_classifier_summary.md`. One hoax control; train-fit anecdotal (N tiny). Entropy weighted toward Chualar in logistic coef — **not** an authenticity oracle.
 
 ### B7 — Spatial / temporal stub → real catalog CSV — DONE ✅
 **Goal:** Make `spatial.py` ideas real.  
@@ -227,4 +230,4 @@ When finishing a task: update the status line for that ID in this file, commit, 
 
 ---
 
-*Last updated: 2026-07-25 — Pulled Hyper B3/B4 scaffold (`2a5549c`). Restored local B1/B2/B8 DONE. C1 parked (no budget). Free local next: **B6**, Edmonton corners, real Julia `circle_extract`.*
+*Last updated: 2026-07-25 — Local B3/B4/B6 done: Edmonton ortho; Julia **152/151**; feature_table.csv (exploratory). Free/OS only; C1 parked.*
