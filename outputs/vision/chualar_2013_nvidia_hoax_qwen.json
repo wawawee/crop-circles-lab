@@ -1,0 +1,7 @@
+{
+  "backend": "lmstudio",
+  "model": "qwen/qwen2.5-vl-7b",
+  "response": "1) Motif class: face-pictogram\n2) Countable elements: approximately 30 circles and rings forming the structure.\n3) Tramlines: present, forming grid-like patterns that align with the motif's structure.\n4) Image quality: high resolution, oblique view, watermark visible in bottom right corner, good contrast.\n5) CV pipeline should focus on analyzing the alignment of tramlines to enhance structural understanding.",
+  "path": "data/images/chualar_2013_nvidia_hoax.png",
+  "prompt_mode": "geometry_only"
+}

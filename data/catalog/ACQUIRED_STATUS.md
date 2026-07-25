@@ -9,7 +9,8 @@
 | Eltopia 1998 | **`eltopia_1998_iccra.png`** (300×227) | ICCRA WA / Pasco–Franklin County grab |
 | Allington Cube 1999 | `allington_cube_1999_lucy.png` + TT | Lucy drop |
 | Milk Hill Galaxy 2001 | `milk_hill_galaxy_2001_tt_oh.jpg` | |
-| Chilbolton 2001 | `chilbolton_message_2001_tt.jpg` etc. | |
+| Chilbolton 2001 | `chilbolton_message_2001_tt.jpg` etc. | Manual bbox → `data/catalog/chilbolton_bbox.json` |
+| Crabwood / Sparsholt 2002 | `crabwood_2002_tt_oh2.jpg` + **`crabwood_2002_disc_crop.png`** | Use oh2 for face+CD. **`crabwood_*_disc.jpg` / `disc2.jpg` look mislabeled** (tufted / Julia) — do not use for ASCII spiral |
 | Wiltshire spiral (misc.) | `wiltshire_spiral_aerial.png` | **Not** Cherhill 1993 — later Wiltshire spiral (often miscited) |
 | Known hoax (control) | **`chualar_2013_nvidia_hoax.png`** | Chualar 2013 / NVIDIA Tegra Braille “192” — use as man-made baseline |
 | Typology collage | `lucy_pringle_collage_mystery_fields.png` | Low-res thumbs only |

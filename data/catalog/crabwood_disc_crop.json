@@ -1,0 +1,20 @@
+{
+  "source": "data/images/crabwood_2002_tt_oh2.jpg",
+  "absolute_xyxy": [
+    523,
+    247,
+    769,
+    493
+  ],
+  "disc_cx_cy_r_in_crop": [
+    123,
+    123,
+    120.5
+  ],
+  "hough_r": 114.8,
+  "size": [
+    246,
+    246
+  ],
+  "note": "Cropped from oh2. crabwood_*_disc.jpg / disc2.jpg look mislabeled (tufted circle / Julia) \u2014 do not use for B1."
+}

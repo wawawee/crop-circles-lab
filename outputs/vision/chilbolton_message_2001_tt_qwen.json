@@ -1,0 +1,7 @@
+{
+  "backend": "lmstudio",
+  "model": "qwen/qwen2.5-vl-7b",
+  "response": "1) Motif class: Grid-bitmap\n2) Countable elements: Approximately 30 circles and 6 rows/columns of grid.\n3) Tramlines: Present, forming a cross pattern within the structure.\n4) Image quality: Low resolution, oblique angle, watermark visible, low contrast.\n5) CV pipeline should focus on enhancing image clarity and removing obstructions for better analysis.",
+  "path": "data/images/chilbolton_message_2001_tt.jpg",
+  "prompt_mode": "geometry_only"
+}

@@ -74,12 +74,32 @@ def row_occupancy(bits: np.ndarray) -> list[float]:
     return [float(row.mean()) for row in bits]
 
 
-def analyze(path: Path) -> dict:
+def load_bbox(path: Path | None) -> tuple[int, int, int, int] | None:
+    """Load {x0,y0,x1,y1} or {bbox:[x0,y0,x1,y1]} from JSON."""
+    if path is None or not path.exists():
+        return None
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if "bbox" in data:
+        x0, y0, x1, y1 = data["bbox"]
+    else:
+        x0, y0, x1, y1 = data["x0"], data["y0"], data["x1"], data["y1"]
+    return int(x0), int(y0), int(x1), int(y1)
+
+
+def bits_to_image(bits: np.ndarray, scale: int = 8) -> np.ndarray:
+    """Render 73×23 bitmap as a readable PNG (white=1)."""
+    img = (bits.astype(np.uint8) * 255)
+    return cv2.resize(img, (bits.shape[1] * scale, bits.shape[0] * scale), interpolation=cv2.INTER_NEAREST)
+
+
+def analyze(path: Path, bbox: tuple[int, int, int, int] | None = None) -> dict:
     bgr = cv2.imread(str(path), cv2.IMREAD_COLOR)
     if bgr is None:
         raise FileNotFoundError(path)
     gray = to_grayscale(bgr)
-    bbox = auto_message_bbox(gray)
+    bbox_src = "manual" if bbox is not None else "auto"
+    if bbox is None:
+        bbox = auto_message_bbox(gray)
     grid = sample_grid(gray, bbox)
     bits = binarize_grid(grid)
     bits_inv = 1 - bits
@@ -98,15 +118,18 @@ def analyze(path: Path) -> dict:
     ch = E.verify_chilbolton_reply()
     return {
         "path": str(path),
-        "bbox_xyxy": bbox,
+        "bbox_xyxy": list(bbox),
+        "bbox_source": bbox_src,
         "grid_checks": checks,
+        "bits": bits.tolist(),
+        "bits_inv": bits_inv.tolist(),
         "published_reply_diff": {
             "silicon": ch["silicon_atomic_number"],
             "helix": ch["helix_change"],
             "height_cm_original": round(ch["height_original"]["cm"], 1),
             "height_cm_reply": round(ch["height_reply"]["cm"], 1),
         },
-        "caveat": "Auto-bbox is crude on oblique/low-res TT shots; refine bbox manually for real decode.",
+        "caveat": "Low-res TT panel; cell sampling is nearest-neighbor — treat as structural probe vs published diffs.",
         "bits_preview_top5_rows": bits[:5].tolist(),
     }
 
@@ -115,11 +138,14 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("image")
     ap.add_argument("--out", type=Path, default=None)
+    ap.add_argument("--bbox-json", type=Path, default=None, help="manual {x0,y0,x1,y1}")
     ap.add_argument("--save-overlay", type=Path, default=None)
+    ap.add_argument("--save-bits-png", type=Path, default=None)
     args = ap.parse_args()
     path = Path(args.image)
-    result = analyze(path)
-    print(json.dumps(result, indent=2))
+    bbox = load_bbox(args.bbox_json)
+    result = analyze(path, bbox=bbox)
+    print(json.dumps({k: v for k, v in result.items() if k not in ("bits", "bits_inv")}, indent=2))
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(json.dumps(result, indent=2))
@@ -129,6 +155,12 @@ def main() -> None:
         cv2.rectangle(bgr, (x0, y0), (x1, y1), (0, 255, 0), 2)
         args.save_overlay.parent.mkdir(parents=True, exist_ok=True)
         cv2.imwrite(str(args.save_overlay), bgr)
+    if args.save_bits_png:
+        bits = np.asarray(result["bits"], dtype=np.uint8)
+        args.save_bits_png.parent.mkdir(parents=True, exist_ok=True)
+        cv2.imwrite(str(args.save_bits_png), bits_to_image(bits))
+        inv_path = args.save_bits_png.with_name(args.save_bits_png.stem + "_inv" + args.save_bits_png.suffix)
+        cv2.imwrite(str(inv_path), bits_to_image(1 - bits))
 
 
 if __name__ == "__main__":

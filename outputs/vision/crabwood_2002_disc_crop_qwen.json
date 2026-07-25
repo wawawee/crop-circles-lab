@@ -1,0 +1,7 @@
+{
+  "backend": "lmstudio",
+  "model": "qwen/qwen2.5-vl-7b",
+  "response": "1) Motif class: Spiral\n2) Countable elements: Approximately 3 concentric circles with detailed inner patterns.\n3) Tramlines: Present, forming straight lines that cross the circle and align vertically.\n4) Image quality: High resolution, slightly oblique angle, no visible watermark or contrast issues.\n5) Next step for a CV pipeline: Implement edge detection to better analyze the intricate inner patterns.",
+  "path": "data/images/crabwood_2002_disc_crop.png",
+  "prompt_mode": "geometry_only"
+}

@@ -1,0 +1,19 @@
+{
+  "formation_id": "chilbolton-arecibo-2001",
+  "source_image": "data/images/chilbolton_message_2001_tt.jpg",
+  "x0": 22,
+  "y0": 28,
+  "x1": 275,
+  "y1": 572,
+  "bbox": [
+    22,
+    28,
+    275,
+    572
+  ],
+  "note": "Manual frame around TT message panel (295\u00d7600). Photo aspect ~2.0 \u2260 true 73:23 \u2014 sampler stretches into 73\u00d723.",
+  "expected_grid": {
+    "rows": 73,
+    "cols": 23
+  }
+}

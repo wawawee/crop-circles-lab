@@ -49,7 +49,7 @@
 
 ## B. READY — pick up / delegate
 
-### B1 — Manual Crabwood disc crop + parameter sweep
+### B1 — Manual Crabwood disc crop + parameter sweep — DONE ✅ (resolution floor)
 **Goal:** Drive BER well below ~0.4 vs Red Collie / Vigay plaintexts.  
 **Why blocked before:** Auto spiral on ~600px TT disc = random bits.  
 **Work:**
@@ -61,7 +61,9 @@
 
 **Acceptance:** Documented best BER; if still ≥0.4, note resolution floor and stop.
 
-### B2 — Chilbolton message panel: manual bbox + cell OCR
+**Result (2026-07-25, local):** Crop from `oh2` → `crabwood_2002_disc_crop.png` (246×246) + `data/catalog/crabwood_disc_crop.json`. Sweep 4992 configs → **BER floor 0.4495** (still random). Sampler default fixed to center→outward CCW. Note: `crabwood_*_disc.jpg` / `disc2.jpg` look **mislabeled** (not the CD). Further gains → **C1**. See `outputs/crabwood_b1_notes.md`.
+
+### B2 — Chilbolton message panel: manual bbox + cell OCR — DONE ✅ (structural probe)
 **Goal:** Reliable 73×23 bitmap from `chilbolton_message_2001_tt.jpg` (or better OH).  
 **Work:**
 1. Draw/record bbox JSON: `data/catalog/chilbolton_bbox.json` `{x0,y0,x1,y1}`.
@@ -70,6 +72,8 @@
 4. Diff structural regions vs published Arecibo reply (Si / helix / figure height) — cite `forensics.encoding`.
 
 **Acceptance:** Stable grid across slight bbox jitter; overlay committed.
+
+**Result (2026-07-25, local):** Manual bbox `[22,28,275,572]`; `--bbox-json` + bits PNG export in `chilbolton_grid.py`. Grid 73×23 OK; fill≈0.5 at web-res. Published diffs recorded (Si/helix/height). Notes: `outputs/chilbolton_b2_notes.md`.
 
 ### B3 — Finish preprocess: perspective + crop/stubble helpers
 **Goal:** Implement remaining hyperagent stubs properly.  
@@ -123,7 +127,7 @@
 
 **Result (2026-07-25, Hyperagent/finasteos):** Landed `data/catalog/formations.csv` (12 formations), `data/catalog/coordinates.json` (approx coords, precision-flagged), and `tools/ccat/spatial_report.py`. Nearest-monument via inline haversine (no geopy). Moon illumination via a pure-Python synodic approximation (dropped astropy: 5.3 breaks on numpy 2 under py3.9, and 6.x needs py3.10 — the approximation runs anywhere and was validated: Windmill Hill Triple Julia 1996-07-29 → 0.97 near full [full moon 30 Jul 1996 ✓]; DNA 1996-06-17 → 0.01 near new [new moon 15 Jun 1996 ✓]). Wiltshire cluster = 7/12 within 30 km of Avebury; 4 non-UK sites (Logan/Edmonton/Eltopia/Chualar) have no monument in our set. NOTE: coords are approximate — verify `allington-cube-1999` before leaning on its distance.
 
-### B8 — Vision LLM triage hook (local)
+### B8 — Vision LLM triage hook (local) — DONE ✅
 **Goal:** Use BAMBAM models via LM Studio.  
 **Work:**
 1. Document load steps for `Qwen2.5-VL-7B` / `GLM-4.6V-Flash` in `data/catalog/VISION_MODELS.md`.
@@ -131,6 +135,8 @@
 3. Prompt must ask for countable geometry only (no alien claims).
 
 **Acceptance:** ≥3 vision JSON outputs committed.
+
+**Result (2026-07-25, local):** LM Studio `qwen/qwen2.5-vl-7b` on disc crop / Chilbolton message / Chualar → `outputs/vision/*_qwen.json` (geometry-only prompt). Qualitative triage only.
 
 ---
 
@@ -204,10 +210,13 @@ python tools/ccat/info_theory.py --synthetic-julia
 python tools/ccat/blt_archive.py --out data/reports/blt_wayback
 python tools/ccat/spatial_report.py
 python tools/ccat/parse_blt_labs.py
+python tools/ccat/crabwood_bits.py data/images/crabwood_2002_disc_crop.png --cx 123 --cy 123 --r 110 --sweep --out outputs/crabwood_sweep.json
+python tools/ccat/chilbolton_grid.py data/images/chilbolton_message_2001_tt.jpg --bbox-json data/catalog/chilbolton_bbox.json --out outputs/chilbolton_bits_73x23.json --save-bits-png outputs/chilbolton_bits_73x23.png
+python tools/ccat/vision_probe.py data/images/chualar_2013_nvidia_hoax.png --backend lmstudio --model qwen/qwen2.5-vl-7b --out outputs/vision/chualar.json
 ```
 
 When finishing a task: update the status line for that ID in this file, commit, push.
 
 ---
 
-*Last updated: 2026-07-25 — Parallel split: remote = B6 + B4/B3 scaffold (+ optional C3/C2); local = B1, B2, B8, Edmonton corners. Open READY: B1–B4, B6, B8.*
+*Last updated: 2026-07-25 — Local B1/B2/B8 done (Crabwood BER floor 0.45; Chilbolton bbox; Qwen vision×3). Open READY: B3, B4, B6 (remote primary).*

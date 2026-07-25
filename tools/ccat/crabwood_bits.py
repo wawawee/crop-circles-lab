@@ -1,11 +1,11 @@
 """Crabwood / Sparsholt 2002 — spiral disc ASCII bit reader.
 
-Published decode (Red Collie / Paul Vigay) is reproduced in forensics.encoding.
-This module attempts to *sample* bits from an aerial of the disc:
-  polar unwrap → ring × angle bins → threshold → 8-bit ASCII.
+Published decode (Red Collie / Paul Vigay) is in forensics.encoding.
+Sampling: Archimedean spiral, default **center → outward, CCW** (CD-like),
+matching the published read direction.
 
-Web-resolution Temporary Temples discs (~600px) are marginal; treat output as
-hypothesis + bit-error vs known plaintext, not as a fresh independent decrypt.
+Web-resolution Temporary Temples discs are marginal; treat BER as a resolution
+floor probe, not a fresh independent decrypt.
 """
 
 from __future__ import annotations
@@ -22,7 +22,6 @@ try:
 except ImportError:
     from preprocess import pipeline, to_grayscale
 
-# Import known plaintexts from forensics
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "forensics"))
@@ -45,7 +44,6 @@ def find_disc_circle(gray: np.ndarray) -> tuple[int, int, int] | None:
     )
     if circles is None:
         return None
-    # pick largest
     c = max(circles[0], key=lambda x: x[2])
     return int(c[0]), int(c[1]), int(c[2])
 
@@ -54,29 +52,32 @@ def sample_spiral_bits(
     gray: np.ndarray,
     cx: int,
     cy: int,
-    r_outer: int,
+    r_outer: float,
     r_inner: float | None = None,
-    n_bits: int = 1208,  # ~151 chars * 8
+    n_bits: int = 1208,
+    turns: float = 12.0,
     ccw: bool = True,
+    outward: bool = True,
+    theta0: float = 0.0,
 ) -> np.ndarray:
-    """Sample n_bits along a log-ish spiral from outer toward center (CD-like).
+    """Sample n_bits along an Archimedean spiral.
 
-    Returns float samples in [0,1] (1 = bright/flattened).
+    outward=True: center → rim (published Crabwood direction).
     """
     if r_inner is None:
-        r_inner = r_outer * 0.15
-    # Archimedean-ish: constant dθ, r decreases linearly with bit index
-    bits = []
+        r_inner = r_outer * 0.12
+    bits: list[float] = []
+    sign = 1.0 if ccw else -1.0
     for i in range(n_bits):
         t = i / max(n_bits - 1, 1)
-        r = r_outer * (1 - t) + r_inner * t
-        # several turns: ~n_bits / samples_per_turn
-        turns = 12.0  # heuristic for Crabwood disc density
-        theta = (1 if ccw else -1) * (t * turns * 2 * np.pi)
+        if outward:
+            r = r_inner * (1 - t) + r_outer * t
+        else:
+            r = r_outer * (1 - t) + r_inner * t
+        theta = theta0 + sign * (t * turns * 2 * np.pi)
         x = int(round(cx + r * np.cos(theta)))
         y = int(round(cy + r * np.sin(theta)))
         if 0 <= x < gray.shape[1] and 0 <= y < gray.shape[0]:
-            # local average
             y0, y1 = max(0, y - 1), min(gray.shape[0], y + 2)
             x0, x1 = max(0, x - 1), min(gray.shape[1], x + 2)
             bits.append(float(gray[y0:y1, x0:x1].mean()) / 255.0)
@@ -99,58 +100,205 @@ def hamming(a: str, b: str) -> tuple[int, float]:
     return err, err / n
 
 
-def analyze_disc(path: Path, n_chars: int = 151) -> dict:
+def score_config(
+    gray: np.ndarray,
+    cx: int,
+    cy: int,
+    r: float,
+    n_bits: int,
+    known_rc: str,
+    known_vg: str,
+    turns: float,
+    r_inner_frac: float,
+    ccw: bool,
+    outward: bool,
+    theta0: float,
+    invert: bool,
+    msb: bool,
+) -> dict:
+    samples = sample_spiral_bits(
+        gray,
+        cx,
+        cy,
+        r,
+        r_inner=r * r_inner_frac,
+        n_bits=n_bits,
+        turns=turns,
+        ccw=ccw,
+        outward=outward,
+        theta0=theta0,
+    )
+    bitstr = bits_to_bool(samples)
+    if invert:
+        bitstr = "".join("1" if b == "0" else "0" for b in bitstr)
+    text = E.bits_to_text(bitstr, msb_first=msb)
+    _, ber_rc = hamming(bitstr, known_rc)
+    _, ber_vg = hamming(bitstr, known_vg)
+    return {
+        "turns": turns,
+        "r_inner_frac": r_inner_frac,
+        "ccw": ccw,
+        "outward": outward,
+        "theta0_deg": round(np.degrees(theta0), 1),
+        "invert": invert,
+        "msb": msb,
+        "ber_red_collie": round(ber_rc, 4),
+        "ber_vigay": round(ber_vg, 4),
+        "ber_best": round(min(ber_rc, ber_vg), 4),
+        "text_preview": "".join(ch if 32 <= ord(ch) < 127 else "." for ch in text[:80]),
+    }
+
+
+def analyze_disc(
+    path: Path,
+    n_chars: int | None = None,
+    cx: int | None = None,
+    cy: int | None = None,
+    r: float | None = None,
+    turns: float = 12.0,
+    r_inner_frac: float = 0.12,
+    theta0_deg: float = 0.0,
+    outward: bool = True,
+    ccw: bool = True,
+) -> dict:
     bgr = cv2.imread(str(path), cv2.IMREAD_COLOR)
     if bgr is None:
         raise FileNotFoundError(path)
     gray = to_grayscale(bgr)
     prep = pipeline(bgr, method="otsu", open_px=1, close_px=1)
-    # use gray for sampling (more dynamic range than binary)
-    circ = find_disc_circle(gray)
-    if circ is None:
-        h, w = gray.shape
-        circ = (w // 2, h // 2, min(h, w) // 3)
-        note = "hough_failed_using_center_fallback"
+
+    if cx is None or cy is None or r is None:
+        circ = find_disc_circle(gray)
+        if circ is None:
+            h, w = gray.shape
+            circ = (w // 2, h // 2, min(h, w) // 3)
+            note = "hough_failed_using_center_fallback"
+        else:
+            note = "hough_disc"
+        cx, cy, r = circ
     else:
-        note = "hough_disc"
+        note = "manual_params"
 
-    cx, cy, r = circ
+    rc = E.CRABWOOD_REDCOLLIE
+    vg = E.CRABWOOD_VIGAY
+    if n_chars is None:
+        n_chars = max(len(rc), len(vg))
     n_bits = n_chars * 8
-    samples = sample_spiral_bits(gray, cx, cy, r, n_bits=n_bits, ccw=True)
-    bitstr = bits_to_bool(samples)
-    # also inverted polarity
-    bitstr_inv = "".join("1" if b == "0" else "0" for b in bitstr)
-
-    known = E.text_to_bits(E.CRABWOOD_REDCOLLIE[:n_chars])
-    known_v = E.text_to_bits(E.CRABWOOD_VIGAY[:n_chars] if False else E.CRABWOOD_REDCOLLIE[:n_chars])
-    # Vigay text differs — encode both full known strings truncated to n_bits
-    known_rc = E.text_to_bits(E.CRABWOOD_REDCOLLIE)[:n_bits]
-    known_vg = E.text_to_bits(E.CRABWOOD_VIGAY)[:n_bits]
+    known_rc = E.text_to_bits(rc)[:n_bits]
+    known_vg = E.text_to_bits(vg)[:n_bits]
 
     results = {}
-    for label, bits in [("raw", bitstr), ("inv", bitstr_inv)]:
+    for invert in (False, True):
         for msb in (True, False):
-            text = E.bits_to_text(bits, msb_first=msb)
-            err_rc, ber_rc = hamming(bits, known_rc)
-            err_vg, ber_vg = hamming(bits, known_vg)
-            results[f"{label}_msb{int(msb)}"] = {
-                "text_preview": "".join(ch if 32 <= ord(ch) < 127 else "." for ch in text[:80]),
-                "ber_red_collie": round(ber_rc, 4),
-                "ber_vigay": round(ber_vg, 4),
-                "hamming_rc": err_rc,
-            }
+            key = f"{'inv' if invert else 'raw'}_msb{int(msb)}"
+            results[key] = score_config(
+                gray,
+                int(cx),
+                int(cy),
+                float(r),
+                n_bits,
+                known_rc,
+                known_vg,
+                turns=turns,
+                r_inner_frac=r_inner_frac,
+                ccw=ccw,
+                outward=outward,
+                theta0=np.radians(theta0_deg),
+                invert=invert,
+                msb=msb,
+            )
 
-    best = min(results.items(), key=lambda kv: min(kv[1]["ber_red_collie"], kv[1]["ber_vigay"]))
+    best = min(results.items(), key=lambda kv: kv[1]["ber_best"])
     return {
         "path": str(path),
-        "disc": {"cx": cx, "cy": cy, "r": r, "note": note},
+        "disc": {"cx": int(cx), "cy": int(cy), "r": float(r), "note": note},
         "ink_fraction": prep["ink_fraction"],
         "n_bits": n_bits,
+        "spiral": {
+            "turns": turns,
+            "r_inner_frac": r_inner_frac,
+            "theta0_deg": theta0_deg,
+            "outward": outward,
+            "ccw": ccw,
+        },
         "best_key": best[0],
         "best": best[1],
         "all": results,
-        "known_rc_preview": E.CRABWOOD_REDCOLLIE[:60],
+        "known_rc_preview": rc[:60],
         "caveat": "Web-res discs rarely yield BER<<0.4; use as framework + high-res crop later.",
+    }
+
+
+def sweep_disc(
+    path: Path,
+    cx: int | None = None,
+    cy: int | None = None,
+    r: float | None = None,
+    turns_range: range | None = None,
+    theta_steps: int = 8,
+) -> dict:
+    """Parameter sweep over turns, polarity, MSB, direction, start angle."""
+    bgr = cv2.imread(str(path), cv2.IMREAD_COLOR)
+    if bgr is None:
+        raise FileNotFoundError(path)
+    gray = to_grayscale(bgr)
+    if cx is None or cy is None or r is None:
+        circ = find_disc_circle(gray)
+        if circ is None:
+            h, w = gray.shape
+            circ = (w // 2, h // 2, min(h, w) // 3)
+        cx, cy, r = circ
+
+    rc, vg = E.CRABWOOD_REDCOLLIE, E.CRABWOOD_VIGAY
+    n_bits = max(len(rc), len(vg)) * 8
+    known_rc = E.text_to_bits(rc)[:n_bits]
+    known_vg = E.text_to_bits(vg)[:n_bits]
+    if turns_range is None:
+        turns_range = range(8, 21)
+
+    trials: list[dict] = []
+    for turns in turns_range:
+        for r_inner_frac in (0.08, 0.12, 0.18):
+            for outward in (True, False):
+                for ccw in (True, False):
+                    for ti in range(theta_steps):
+                        theta0 = 2 * np.pi * ti / theta_steps
+                        for invert in (False, True):
+                            for msb in (True, False):
+                                trials.append(
+                                    score_config(
+                                        gray,
+                                        int(cx),
+                                        int(cy),
+                                        float(r),
+                                        n_bits,
+                                        known_rc,
+                                        known_vg,
+                                        turns=float(turns),
+                                        r_inner_frac=r_inner_frac,
+                                        ccw=ccw,
+                                        outward=outward,
+                                        theta0=theta0,
+                                        invert=invert,
+                                        msb=msb,
+                                    )
+                                )
+
+    trials.sort(key=lambda d: d["ber_best"])
+    top = trials[:25]
+    best = trials[0]
+    return {
+        "path": str(path),
+        "disc": {"cx": int(cx), "cy": int(cy), "r": float(r)},
+        "n_trials": len(trials),
+        "best": best,
+        "top25": top,
+        "ber_floor": best["ber_best"],
+        "interesting": best["ber_best"] < 0.40,
+        "caveat": (
+            "If ber_floor ≥ 0.4 across the sweep, web-res is below the sampling Nyquist "
+            "for ~1200 spiral bits — need C1 high-res disc master."
+        ),
     }
 
 
@@ -158,8 +306,40 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("image")
     ap.add_argument("--out", type=Path, default=None)
+    ap.add_argument("--cx", type=int, default=None)
+    ap.add_argument("--cy", type=int, default=None)
+    ap.add_argument("--r", type=float, default=None)
+    ap.add_argument("--turns", type=float, default=12.0)
+    ap.add_argument("--r-inner", type=float, default=0.12, dest="r_inner")
+    ap.add_argument("--theta0", type=float, default=0.0, help="start angle degrees")
+    ap.add_argument("--inward", action="store_true", help="sample outer→center (non-default)")
+    ap.add_argument("--cw", action="store_true", help="clockwise (default CCW)")
+    ap.add_argument("--sweep", action="store_true")
+    ap.add_argument("--turns-min", type=int, default=8)
+    ap.add_argument("--turns-max", type=int, default=20)
     args = ap.parse_args()
-    result = analyze_disc(Path(args.image))
+
+    path = Path(args.image)
+    if args.sweep:
+        result = sweep_disc(
+            path,
+            cx=args.cx,
+            cy=args.cy,
+            r=args.r,
+            turns_range=range(args.turns_min, args.turns_max + 1),
+        )
+    else:
+        result = analyze_disc(
+            path,
+            cx=args.cx,
+            cy=args.cy,
+            r=args.r,
+            turns=args.turns,
+            r_inner_frac=args.r_inner,
+            theta0_deg=args.theta0,
+            outward=not args.inward,
+            ccw=not args.cw,
+        )
     text = json.dumps(result, indent=2)
     print(text)
     if args.out:
