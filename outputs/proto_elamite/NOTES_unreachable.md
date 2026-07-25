@@ -1,6 +1,6 @@
 # G2 — Proto-Elamite ledger-entropy probe  🟡
 
-Generated: 2026-07-25T10:47:39.455507+00:00
+Generated: 2026-07-25T11:20:24.094038+00:00
 
 ## Stance
 
@@ -19,6 +19,15 @@ Proto-Elamite is undeciphered (ca. 3100-2900 BCE, Susa). This probe measures *nu
 - `Proto-Elamite is a`
 - `Proto-Elamite =`
 - `Minoan =`
+- `PE related to Sumerian`
+- `Proto-Elamite is Sumerian`
+- `Proto-Elamite is cuneiform`
+- `Proto-Elamite derives from`
+- `Urukian origin`
+- `Sumerian-Elamite`
+- `Proto-Elamite is descended from Sumerian`
+- `Proto-Elamite script family`
+- `Sumerian ancestor`
 
 ## Source
 

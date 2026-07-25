@@ -1,6 +1,6 @@
-# G2++ — Uruk III SFU comparator  🟡
+# G2++ — Uruk III SFU comparator  🟢
 
-Generated: 2026-07-25T11:04:45.172039+00:00
+Generated: 2026-07-25T11:19:14.523201+00:00
 
 ## Stance
 
@@ -33,23 +33,27 @@ Uruk III (ca. 3300-3000 BCE) Sumerian cuneiform accounting tablets are STRUCTURA
 
 | metric | PE | Uruk | match |
 |--------|----|------|-------|
+| `header_numeral_void` | True | True | True |
+| `header_fraction_bounded` | True | True | True |
+| `numeral_block_predictable` | True | True | True |
+| `z_lock_vs_shuffle` | True | True | True |
 
-- PE all_pass: **False**
-- Uruk all_pass: **False**
-- both_pass: **False**
-- all_invariants_match: **False**
+- PE all_pass: **True**
+- Uruk all_pass: **True**
+- both_pass: **True**
+- all_invariants_match: **True**
 
 ### Numerical diffs (no language-claim interpretation)
 
-- header H₁ diff (URUK − PE): ? bits
-- line cond-H diff: ? bits
-- LZ78 ratio diff: ?
-- shuffled z diff: ?
+- header H₁ diff (URUK − PE): 0.366 bits
+- line cond-H diff: -0.936 bits
+- LZ78 ratio diff: 0.0283
+- shuffled z diff: -1.72
 
 ## SFU subset-sum probe
 
-- status: `?`
-- note: ?
+- status: `SKIPPED_PER_BRIEF_NON_TRIVIAL`
+- note: Captain brief: 'Optional SFU/subset-sum only if trivial; else SKIP.' Schmandt-Besserat SFU = 1, 10, 60, 360, 3600 sexagesimal subdivisions of measure. Subset-sum probe would test if recorded quantities fit n1*60^k + n2*60^j + ...; implementation requires Sumerian sexagesimal digit decomposition (non-trivial) vs PE simple-integer notation. Documented as POSTPONED; re-evaluate in a follow-up ticket with explicit math-spec.
 
 ## Source
 

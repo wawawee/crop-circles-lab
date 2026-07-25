@@ -1,6 +1,6 @@
 {
   "mission": "G2++",
-  "generated_at": "2026-07-25T11:04:44.935950+00:00",
+  "generated_at": "2026-07-25T11:19:14.523201+00:00",
   "source": "Open data via Cuneiform Digital Library Initiative (CDLI), https://cdli.mpiwg-berlin.mpg.de \u2014 ATF transcriptions released under the CDLI open-data terms. Per-tablet attribution by `cdli_id`.",
   "stance": "Uruk III (ca. 3300-3000 BCE) Sumerian cuneiform accounting tablets are STRUCTURAL positive controls for the Proto-Elamite probe: same period, same accounting-tablet purpose, DIFFERENT sign pool. STRUCTURE != MESSAGE. This probe measures numerical-block SHAPE only \u2014 it does NOT translate, decipher, or relate Proto-Elamite and Sumerian cuneiform. Numerals are arithmetic, NOT linguistics; their shared tag system is a STRUCTURAL choice in ancient accounting, not evidence of script-family derivation. Reused tools/forensics/symbolseq.py + the G2 probe machinery end-to-end.",
   "pe_run": {
@@ -69,7 +69,7 @@
   },
   "uruk_run": {
     "label": "synthetic_uruk_known_answer",
-    "n_input_tokens": 102,
+    "n_input_tokens": 101,
     "header_stats": {
       "n_tokens": 13,
       "n_numerals": 0,
@@ -78,34 +78,34 @@
       "lz78_ratio": 0.8462
     },
     "line_stats": {
-      "n_tokens": 89,
-      "n_numeral_signs": 60,
+      "n_tokens": 88,
+      "n_numeral_signs": 59,
       "n_numeral_blocks": 30,
-      "unigram_entropy_bits": 2.099,
-      "conditional_bigram_entropy_bits": 1.771,
-      "cond_h_over_h1_ratio": 0.8435,
-      "index_of_coincidence": 0.1203,
-      "lz78_ratio": 0.5169,
+      "unigram_entropy_bits": 2.129,
+      "conditional_bigram_entropy_bits": 0.623,
+      "cond_h_over_h1_ratio": 0.2926,
+      "index_of_coincidence": 0.1134,
+      "lz78_ratio": 0.5114,
       "shuffled_control": {
-        "observed": 2.2062,
-        "shuffled_mean": 2.2331,
-        "shuffled_sd": 0.0755,
-        "z": -0.36
+        "observed": 1.894,
+        "shuffled_mean": 2.2807,
+        "shuffled_sd": 0.0767,
+        "z": -5.04
       }
     },
     "invariants": {
       "invariants": {
         "header_numeral_void": true,
         "header_fraction_bounded": true,
-        "numeral_block_predictable": false,
-        "z_lock_vs_shuffle": false
+        "numeral_block_predictable": true,
+        "z_lock_vs_shuffle": true
       },
-      "all_pass": false,
-      "header_fraction": 0.1275,
+      "all_pass": true,
+      "header_fraction": 0.1287,
       "supporting": {
         "header_n_numerals": 0,
-        "line_cond_h_over_h1": 0.8435,
-        "line_shuffled_z": -0.36
+        "line_cond_h_over_h1": 0.2926,
+        "line_shuffled_z": -5.04
       }
     },
     "stance": "Uruk III (ca. 3300-3000 BCE) Sumerian cuneiform accounting tablets are STRUCTURAL positive controls for the Proto-Elamite probe: same period, same accounting-tablet purpose, DIFFERENT sign pool. STRUCTURE != MESSAGE. This probe measures numerical-block SHAPE only \u2014 it does NOT translate, decipher, or relate Proto-Elamite and Sumerian cuneiform. Numerals are arithmetic, NOT linguistics; their shared tag system is a STRUCTURAL choice in ancient accounting, not evidence of script-family derivation. Reused tools/forensics/symbolseq.py + the G2 probe machinery end-to-end.",
@@ -135,7 +135,7 @@
   "compare_pe_vs_uruk": {
     "shared_ledger_structure": {
       "pe_all_pass": true,
-      "uruk_all_pass": false,
+      "uruk_all_pass": true,
       "invariant_match_table": [
         {
           "invariant": "header_numeral_void",
@@ -152,24 +152,24 @@
         {
           "invariant": "numeral_block_predictable",
           "pe": true,
-          "uruk": false,
-          "match": false
+          "uruk": true,
+          "match": true
         },
         {
           "invariant": "z_lock_vs_shuffle",
           "pe": true,
-          "uruk": false,
-          "match": false
+          "uruk": true,
+          "match": true
         }
       ],
-      "both_pass": false,
-      "all_invariants_match": false
+      "both_pass": true,
+      "all_invariants_match": true
     },
     "numerical_diffs_no_language_claim": {
       "header_h1_diff_bits": 0.366,
-      "line_cond_h_diff_bits": 0.212,
-      "lz78_ratio_diff": 0.0338,
-      "shuffled_z_diff": 2.96
+      "line_cond_h_diff_bits": -0.936,
+      "lz78_ratio_diff": 0.0283,
+      "shuffled_z_diff": -1.72
     },
     "stance": "Uruk III (ca. 3300-3000 BCE) Sumerian cuneiform accounting tablets are STRUCTURAL positive controls for the Proto-Elamite probe: same period, same accounting-tablet purpose, DIFFERENT sign pool. STRUCTURE != MESSAGE. This probe measures numerical-block SHAPE only \u2014 it does NOT translate, decipher, or relate Proto-Elamite and Sumerian cuneiform. Numerals are arithmetic, NOT linguistics; their shared tag system is a STRUCTURAL choice in ancient accounting, not evidence of script-family derivation. Reused tools/forensics/symbolseq.py + the G2 probe machinery end-to-end.",
     "forbidden_phrases_screened": [
