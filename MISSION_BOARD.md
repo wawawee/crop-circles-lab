@@ -37,8 +37,11 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G1** | **Opencode** | Linear A symbolseq | SigLA open corpus → entropy/IC/Markov vs shuffle; Linear B known-answer (z=−73.34 LA vs z=−3.29 LB); negative control passes (z≈0). `outputs/linear_a/` + `data/scripts/linear_a/`. `tools/scripts/linear_a_probe.py` | 🟢 **landed** — strong accounting-formulaic structure (KU-RO ×36, SA-RA₂ ×20). NOT decipherment. Caveat: genre = ledger, not prose. |
 | **G2** | **Minimax** (queue) | Proto-Elamite ledger entropy | CDLI streams → positional/conditional H vs shuffle | ⬜ after current Minimax job |
 | **G3** | Minimax or Opencode | Wow! horn beam-fit | Fit sidereal transit to 6EQUJ5 intensities; underdetermined OK | ⬜ after G1/G2 |
-| **G-Amazon** | **Hyper Fable 5 / Opus 4.8** | Amazon earthworks spatial | Zenodo site DB + IPP nulls (Mode A); real LIDAR only if verified | ⬜ skill: `amazon-earthworks-spatial` |
+| **G-Amazon** | **Hyper Fable 5 / Opus 4.8** | Amazon earthworks spatial | Zenodo + **jqjacobs geoglyph CSV/KML** Mode A; real LIDAR only if verified | ⬜ skill: `amazon-earthworks-spatial` |
 | **G-BLC1** | **Hyper Fable 5 / Opus 4.8** | BLC1 RFI known-answer | Scoped slice or synthetic comb; Sheikh RFI; no TB mirror | ⬜ skill: `blc1-rfi-known-answer` |
+| **G7** | Opencode / Minimax (next free) | Gorafe megalith landscape | CC BY CSV JOAD 2023 — orientation + spatial null in same DEM box | ⬜ Kimi complement |
+| **R1++** | Hyper radio (after viz) | CHIME/FRB Catalog 2 periods | Recover 16.35 d on 180916; scramble null on Cat 2 repeaters | ⬜ Kimi complement |
+| **G8** | queue | Betty Hill × Gaia DR3 | Star-map network null; expect `NO_SIGNAL` | ⬜ Kimi complement |
 
 ---
 

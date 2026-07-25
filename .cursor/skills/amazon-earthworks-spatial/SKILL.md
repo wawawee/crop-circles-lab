@@ -20,6 +20,10 @@ Zenodo **10.5281/zenodo.7750985** (Peripato et al., Science 2023, DOI 10.1126/sc
 
 It is **NOT** a basin-wide raw canopy LIDAR point-cloud dump. Do not invent LAZ tiles.
 
+**Enrichment (Kimi scout):** Also ingest **jqjacobs** Amazon geoglyph coordinate dumps (~1,370 features, KML/CSV/Excel) from
+https://www.jqjacobs.net/archaeology/geoglyph.html — cite and attribute in README. Prefer these
+point/polygon coords for network/NN/orientation nulls alongside Zenodo site tables.
+
 ## Mission modes (pick ONE; prefer A)
 
 ### Mode A — Spatial point-process + ratio screen (DEFAULT, Effort M)
