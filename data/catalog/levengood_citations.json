@@ -1,0 +1,110 @@
+{
+  "schema": "levengood_primary_sources.v1",
+  "updated": "2026-07-25",
+  "status": "partial_verified",
+  "notes": [
+    "Cherhill labreport PHP (#104) remains 404 on Wayback; JSE 1995 article text archived via BLT published page.",
+    "Physiologia Plantarum PDFs are paywalled; DOIs resolved via Crossref (metadata only \u2014 no piracy).",
+    "Fe2O3/Fe3O4 glaze claims are as stated by Levengood/Burke/BLT \u2014 not independently verified here.",
+    "2001 Physiologia Plantarum published opinions/comments on the 1999 dispersion paper \u2014 useful for methodology critique."
+  ],
+  "papers": [
+    {
+      "short": "anatomical_anomalies_1994",
+      "title": "Anatomical anomalies in crop formation plants",
+      "authors": [
+        "W.C. Levengood"
+      ],
+      "venue": "Physiologia Plantarum",
+      "year": 1994,
+      "volume_issue": "92: 356\u2013363",
+      "doi": "10.1034/j.1399-3054.1994.920223.x",
+      "doi_alt": "10.1111/j.1399-3054.1994.tb05348.x",
+      "issn": "0031-9317",
+      "access": "paywalled; BLT HTML mirror archived",
+      "local_archive": "data/reports/blt_wayback/anatomical_anomalies_blt.{html,txt}",
+      "status": "doi_verified",
+      "claims_of_interest": [
+        "node length / expansion differences formation vs control",
+        "expulsion cavities in plant nodes",
+        "proposed electromagnetic / microwave heating mechanism"
+      ]
+    },
+    {
+      "short": "semi_molten_meteoric_iron_jse_1995",
+      "title": "Semi-Molten Meteoric Iron Associated with a Crop Formation",
+      "authors": [
+        "W.C. Levengood",
+        "John Burke"
+      ],
+      "venue": "Journal of Scientific Exploration",
+      "year": 1995,
+      "volume_issue": "Vol 9, No. 2, pp. 191\u2013199",
+      "issn": "0892-3310",
+      "doi": null,
+      "access": "BLT published page archived via Wayback (not indexed in Crossref this pass)",
+      "local_archive": "data/reports/blt_wayback/semi_molten_iron_blt.{html,txt}",
+      "formation": "Cherhill, Wiltshire, 1993",
+      "status": "text_archived",
+      "claims_of_interest": [
+        "iron-rich coating / glaze on plant stems and soil",
+        "hematite (Fe2O3) and magnetite (Fe3O4) oxides fused",
+        "semi-molten / meteoritic iron association",
+        "timing near Perseid meteor shower (claim)"
+      ]
+    },
+    {
+      "short": "dispersion_energies_1999",
+      "title": "Dispersion of energies in worldwide crop formations",
+      "authors": [
+        "W.C. Levengood",
+        "N.P. Talbott"
+      ],
+      "venue": "Physiologia Plantarum",
+      "year": 1999,
+      "doi": "10.1034/j.1399-3054.1999.105404.x",
+      "access": "paywalled; DOI verified via Crossref",
+      "local_archive": null,
+      "status": "doi_verified_pdf_not_archived"
+    },
+    {
+      "short": "comments_on_dispersion_2001",
+      "title": "Opinions and comments on Levengood WC, Talbott NP (1999) Dispersion of energies\u2026",
+      "authors": [
+        "various (Physiol. Plant. comment section)"
+      ],
+      "venue": "Physiologia Plantarum",
+      "year": 2001,
+      "dois": [
+        "10.1034/j.1399-3054.2001.1110117.x",
+        "10.1034/j.1399-3054.2001.1110116.x"
+      ],
+      "note": "Peer commentary useful for CICAP-style methodology notes",
+      "status": "doi_verified"
+    }
+  ],
+  "fe_claim_inventory": {
+    "formation_id": "cherhill-1993",
+    "primary_source": "JSE 1995 / BLT semi-molten page",
+    "oxides_named_in_blt_text": [
+      "hematite_Fe2O3",
+      "magnetite_Fe3O4"
+    ],
+    "verification_posture": "suspicious_not_debunked \u2014 needs independent EDS/XRD if material available; do not treat JSE as settled science",
+    "snippets": [
+      "adherent coatings consisting of the commingled iron oxides, hematite (Fe203) and magnetite (Fe304) fused into a heterogeneous mass, and having the properties of a \"magn",
+      "nt film on the soil chunks were very thin walled tubules of hematite which appeared to rise up through the glaze and solidify into a hollow dome. In many cases the roun",
+      "verely charred, but, such is not the case, only a faint red hematite stain remains. The high water content of the plant cells would insure the rapid formation of an ins",
+      "which may immediately cool, or become partially oxidized to hematite (Buddhue, 1957). The congealed droplets drift to Earth several days after a major shower (Buddhue,",
+      "y (Mason, 1962), while others have shown both magnetite and hematite (Buddhue, 1957). In this context, it should be noted that we are aware of only one similar incident",
+      "cles present and in air would also oxidize a portion to the hematite form. Internal heating may explain why the hematite-magnetite mixture was still semi-rigid on impac",
+      "sisting of the commingled iron oxides, hematite (Fe203) and magnetite (Fe304) fused into a heterogeneous mass, and having the properties of a \"magnetic-glaze\". The makeu",
+      "uces a \"fusion crust\". This external coating is composed of magnetite, much of which is ablated as molten droplets which may immediately cool, or become partially oxidiz"
+    ]
+  },
+  "lab_reports": {
+    "logan_79": "data/reports/blt_wayback/logan_lab.txt",
+    "edmonton_122": "data/reports/blt_wayback/edmonton_labreport.txt",
+    "cherhill_104_html": "404_on_wayback"
+  }
+}

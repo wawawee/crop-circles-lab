@@ -1,0 +1,136 @@
+{
+  "schema": "blt_lab_metrics.v1",
+  "caveat": "Extracted from Wayback HTML\u2192text; percentages/ranges are as stated by BLT, not independently remeasured. CICAP and others have criticized methodology \u2014 treat as claims with citations, not established physics.",
+  "cases": [
+    {
+      "id": "logan-utah-1996",
+      "lab_report": 79,
+      "lab_code": "KS-03-131",
+      "location": "Logan, Utah, USA",
+      "crop": "barley (Hordeum vulgare)",
+      "source_file": "data/reports/blt_wayback/logan_lab.txt",
+      "metrics": {
+        "node_expansion_pct_range": [
+          15,
+          65
+        ],
+        "circle_diameters_ft": [
+          30.4,
+          58.0
+        ],
+        "overall_length_ft": 190.0,
+        "expulsion_cavities_reported": true,
+        "date_discovered": "August 15, 1996",
+        "date_sampled": "August 25, 1996",
+        "date_occurred": "First or second"
+      },
+      "notes": [
+        "crop_lay_more_radial_than_spiral",
+        "triangular_holes_in_centers",
+        "microwave_mentioned_in_lab_context",
+        "addendum_BOL_witness_account"
+      ],
+      "snippets": {
+        "node_expansion": [
+          "Node expansion levels were found",
+          "circle we find (see Table 1) that the overall node expansion is",
+          "the opposite situation: that is, a low node expansion and a high"
+        ],
+        "expulsion": [
+          "Expulsion cavity incidence found",
+          "we examined the plant nodes for the presence of expulsion cavities.",
+          "have termed \"expulsion cavities\" (see Fig. 4), an effect which is"
+        ],
+        "microwave": [
+          "exposing control soil to microwaves.",
+          "A third aliquot was microwaved for two minutes on \"high\" to",
+          "aliquots heated to 287 C and microwaved, the KI was observed"
+        ]
+      }
+    },
+    {
+      "id": "edmonton-1999",
+      "lab_report": 122,
+      "lab_code": "KS-04-176",
+      "location": "Edmonton, Alberta, Canada",
+      "crop": "barley (Hordeum vulgare), thistle-infested field",
+      "source_file": "data/reports/blt_wayback/edmonton_labreport.txt",
+      "metrics": {
+        "overall_length_ft": 191,
+        "circle_count": 7,
+        "center_diameter_ft": 100.0,
+        "satellite_diameter_ft_range": [
+          36.0,
+          19.0
+        ],
+        "bent_node_degrees_range": [
+          40,
+          120
+        ],
+        "expulsion_cavities_reported": true,
+        "apical_node_elongation_reported": true,
+        "date_discovered": "September",
+        "date_sampled": "September",
+        "date_occurred": "Around"
+      },
+      "notes": [
+        "ccw_perimeter_ring_under_radial_lay",
+        "magnetic_particles_in_soils",
+        "cellphone_battery_failure_inside",
+        "authors_conclude_not_manual",
+        "heating_component_probably_microwaves",
+        "clay_mineral_or_XRD_discussed"
+      ],
+      "snippets": {
+        "expulsion": [
+          "Visible apical node elongation and multiple expulsion cavities in",
+          "in which we observed many expulsion cavities.",
+          "Expulsion cavities"
+        ],
+        "magnetic": [
+          "in volume of magnetic particles was found in the formation soils",
+          "intervals) of magnetic particles in the soil in the large center",
+          "inside the circle)--and since the volume of magnetic material"
+        ],
+        "microwave": [
+          "rmation plants to the heating component [probably microwaves]"
+        ],
+        "manual": [
+          "that this crop event was manually created."
+        ]
+      }
+    },
+    {
+      "id": "cherhill-1993",
+      "lab_report": null,
+      "publication": "Semi-Molten Meteoric Iron Associated with a Crop Formation (BLT published page)",
+      "location": "Cherhill, Wiltshire, UK",
+      "source_file": "data/reports/blt_wayback/semi_molten_iron_blt.txt",
+      "metrics": {
+        "circle_diameter_m": 15.0,
+        "oxides_claimed": [
+          "hematite_Fe2O3",
+          "magnetite_Fe3O4"
+        ]
+      },
+      "notes": [
+        "magnetite_mentioned",
+        "associated_with_Perseid_shower_timing_claim",
+        "meteoritic_origin_claimed",
+        "semi_molten_iron_glaze_claimed"
+      ],
+      "snippets": {
+        "iron_glaze": [
+          "Meteoric Iron Associated with a Crop Formation Journal of Scientific Exploration , Vol 9, No. 2,",
+          "Meteoric Iron Associated with a Crop Formation &nbsp; W.C. LEVENGOOD Pinelandia Biophysical Labo",
+          "e report the unusual discovery of a natural iron \"glaze"
+        ],
+        "formation": [
+          "1993. Physical and chemical characteristics as well as spatial distributions indicated reheati",
+          "ic regions within a 1993, wheat crop formation in Cherhill",
+          "grams (not to scale) showing lay of wheat crop at Cherhill"
+        ]
+      }
+    }
+  ]
+}

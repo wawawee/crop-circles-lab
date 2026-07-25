@@ -91,7 +91,7 @@
 
 **Acceptance:** Synthetic pass; real Julia count reported with uncertainty.
 
-### B5 — Parse BLT lab texts → structured tables
+### B5 — Parse BLT lab texts → structured tables — DONE ✅
 **Goal:** Machine-readable biophysics for Logan / Edmonton (Cherhill if found).  
 **Work:**
 1. Parse `data/reports/blt_wayback/logan_lab.txt` + `edmonton_labreport.txt`.
@@ -99,6 +99,8 @@
 3. One-page summary `outputs/blt_lab_summary.md`.
 
 **Acceptance:** JSON schema documented; numbers cite source line snippets.
+
+**Result (2026-07-25):** `tools/ccat/parse_blt_labs.py` → `data/catalog/blt_lab_metrics.json` (`blt_lab_metrics.v1`) + `outputs/blt_lab_summary.md`. Logan #79 (KS-03-131): node expansion 15–65%, expulsion cavities, diameters 30.4/58 ft. Edmonton #122 (KS-04-176): 7-circle, bent nodes 40–120°, magnetic particles, microwave heating claim. Cherhill metrics pulled from archived JSE/BLT semi-molten page (lab #104 HTML still 404). Caveat baked into JSON: BLT claims, not independent remeasurement.
 
 ### B6 — Known-hoax vs candidate classifier (lightweight)
 **Goal:** Features that separate Chualar (known marketing hoax) from BLT-priority cases.  
@@ -136,14 +138,16 @@
 | ID | Item | Blocker |
 |----|------|---------|
 | C1 | High-res Crabwood disc master | Temporary Temples purchase / higher scan — **OWNER** |
-| C2 | Cherhill 1993 iron-glaze lab HTML + micrographs | Wayback 404 on cherhill.php; published paper hunt — **READY to search**, asset may not exist public |
+| C2 | Cherhill 1993 iron-glaze lab HTML + micrographs | Lab #104 PHP still 404; **partial DONE** — JSE 1995 text archived + Physiol. Plant. DOIs (1994/1999) in `levengood_citations.json`. PDF/EDS still OWNER |
 | C3 | True overhead Logan / Eltopia hi-res | Not found public; ICCRA Eltopia is 300×227 only |
 | C4 | Public release of TT/Lucy/Getty images | Must stay private / attributed — **OWNER** legal |
 
-### C2 subtasks (if picking up)
-- Search Semantic Scholar / Sci-Hub-accessible metadata for Levengood “semi-molten meteoric iron” / Physiologia Plantarum crop circle papers.
-- Archive PDFs under `data/reports/papers/` with citation file (no piracy instructions in-repo; user handles access).
-- Extract iron sphere size / node % tables into `blt_lab_metrics.json`.
+### C2 — progress (2026-07-25, partial)
+- ✅ Wayback: `semi_molten_iron_blt` + `anatomical_anomalies_blt` under `data/reports/blt_wayback/`.
+- ✅ Crossref DOIs: Levengood 1994 `10.1034/j.1399-3054.1994.920223.x` (Physiol. Plant. 92:356–363); Levengood & Talbott 1999 `10.1034/j.1399-3054.1999.105404.x`; 2001 comment DOIs logged.
+- ✅ Fe claim inventory: hematite Fe₂O₃ + magnetite Fe₃O₄ glaze language in JSE/BLT text → `data/catalog/levengood_citations.json`, memo `outputs/levengood_cherhill_sources.md`.
+- ⏳ OWNER: PDFs into `data/reports/papers/`; independent EDS/XRD if material exists.
+- Lab #104 HTML: still missing public.
 
 ---
 
@@ -153,7 +157,7 @@
 |-----------------|-------|
 | **CV engineer** | B3, B4 |
 | **Crypto / encoding** | B1, B2 |
-| **Data wrangler** | B5, C2 search (B7 ✅) |
+| **Data wrangler** | B5 ✅, C2 partial (B7 ✅) — next: B6 or image tasks |
 | **ML lite** | B6 |
 | **Local vision** | B8 |
 | **Captain (human)** | C1, C4, prioritize which READY next |
@@ -186,10 +190,11 @@ python tools/ccat/chilbolton_grid.py data/images/chilbolton_message_2001_tt.jpg 
 python tools/ccat/info_theory.py --synthetic-julia
 python tools/ccat/blt_archive.py --out data/reports/blt_wayback
 python tools/ccat/spatial_report.py
+python tools/ccat/parse_blt_labs.py
 ```
 
 When finishing a task: update the status line for that ID in this file, commit, push.
 
 ---
 
-*Last updated: 2026-07-25 — B7 landed (spatial catalog, Hyperagent/finasteos). Open READY: B1–B6, B8.*
+*Last updated: 2026-07-25 — B5 DONE + C2 partial (Levengood DOIs / Fe inventory). Open READY: B1–B4, B6, B8.*
