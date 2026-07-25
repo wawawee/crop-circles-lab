@@ -1,0 +1,90 @@
+{
+  "n_tokens": 241,
+  "n_distinct": 45,
+  "max_entropy_bits": 5.492,
+  "unigram_entropy_bits": 4.988,
+  "index_of_coincidence": 0.0361,
+  "ioc_over_uniform": 1.626,
+  "conditional_bigram_entropy_bits": 2.072,
+  "lz78_ratio": 0.5394,
+  "top_bigrams": [
+    {
+      "pair": [
+        2,
+        12
+      ],
+      "count": 13
+    },
+    {
+      "pair": [
+        45,
+        7
+      ],
+      "count": 6
+    },
+    {
+      "pair": [
+        13,
+        1
+      ],
+      "count": 5
+    },
+    {
+      "pair": [
+        31,
+        26
+      ],
+      "count": 5
+    },
+    {
+      "pair": [
+        12,
+        27
+      ],
+      "count": 4
+    },
+    {
+      "pair": [
+        23,
+        18
+      ],
+      "count": 4
+    },
+    {
+      "pair": [
+        35,
+        2
+      ],
+      "count": 3
+    },
+    {
+      "pair": [
+        27,
+        25
+      ],
+      "count": 3
+    }
+  ],
+  "word_lengths": {
+    "n_words": 61,
+    "min": 2,
+    "max": 7,
+    "mean": 3.95,
+    "hist": {
+      "2": 6,
+      "3": 16,
+      "4": 22,
+      "5": 12,
+      "6": 2,
+      "7": 3
+    }
+  },
+  "shuffled_control": {
+    "observed": 2.0717,
+    "shuffled_mean": 2.641,
+    "shuffled_sd": 0.0403,
+    "z": -14.11,
+    "more_structured_than_chance": true
+  },
+  "caveat": "Necessary-not-sufficient: these statistics distinguish 'not random noise' from noise, but NOT 'undeciphered language' from 'structured non-linguistic template' at small corpus sizes."
+}
