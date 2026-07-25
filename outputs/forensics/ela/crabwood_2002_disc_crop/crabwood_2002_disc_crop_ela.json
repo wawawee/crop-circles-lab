@@ -1,0 +1,19 @@
+{
+  "source": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/data/images/crabwood_2002_disc_crop.png",
+  "quality": 90,
+  "stats": {
+    "mean": 3.9623,
+    "std": 2.2735,
+    "max": 17.6667,
+    "p95": 8.3333,
+    "p99": 10.6667,
+    "block_mean_std": 0.6906,
+    "n_pixels": 60516
+  },
+  "verdict": "MILDLY ELEVATED vs control \u2014 inspect heatmap; may be compression/scale",
+  "ela_png": "outputs/forensics/ela/crabwood_2002_disc_crop/crabwood_2002_disc_crop_ela_q90.png",
+  "pair_png": "outputs/forensics/ela/crabwood_2002_disc_crop/crabwood_2002_disc_crop_pair_q90.png",
+  "caveat": "ELA flags compression inconsistency / possible splice \u2014 NOT a message decoder. Web-resaved Temporary Temples JPEGs often look 'edited' because they are multi-generation.",
+  "role": "field_or_candidate",
+  "calibrated_against": "chualar"
+}

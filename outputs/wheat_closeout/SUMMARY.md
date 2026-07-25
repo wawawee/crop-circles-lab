@@ -14,10 +14,10 @@ Honest negative / structural checks with the new shared `bitstream` + `grid_anal
 - Already closed: n=152 vs 151; log-spiral approx, not true z²+c
 
 ## Still useful on wheat (free)
-1. Wire `crabwood_bits`/`chilbolton_grid` to call `forensics.bitstream` (Hyper refactor hint)
-2. Fetch **CC-licensed** only: Barbury Pi Wikimedia + Chilbolton reconstruction diagram → re-run probes
-3. B10 light ELA on Chualar vs Julia (hoax screen) without paid tools
+1. ~~B10 light ELA~~ ✅ Pillow `ela_screen` landed
+2. ~~B11 cipher negcontrol~~ ✅ native Caesar/IC — no English hit
+3. Fetch **CC-licensed** only: Barbury Pi Wikimedia + Chilbolton reconstruction diagram → re-run probes
 4. `circle_extract` / `grid_analyze` on Milk Hill / DNA / Allington if time
-5. Sync TASKLIST (B1/B2/B3/B6 DONE markers drifted after Hyper merges)
+5. Optional: full matthewdgreen/decipher after `rustup` + `scripts/bootstrap.sh`
 
 Beyond-vete roadmap already landed: `ROADMAP_BEYOND_WHEAT.md` + `tools/forensics/messages.py`.

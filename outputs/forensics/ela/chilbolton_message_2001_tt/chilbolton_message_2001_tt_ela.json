@@ -1,0 +1,19 @@
+{
+  "source": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/data/images/chilbolton_message_2001_tt.jpg",
+  "quality": 90,
+  "stats": {
+    "mean": 7.4582,
+    "std": 3.9415,
+    "max": 38.3333,
+    "p95": 15.0,
+    "p99": 19.3333,
+    "block_mean_std": 0.309,
+    "n_pixels": 177000
+  },
+  "verdict": "MILDLY ELEVATED vs control \u2014 inspect heatmap; may be compression/scale",
+  "ela_png": "outputs/forensics/ela/chilbolton_message_2001_tt/chilbolton_message_2001_tt_ela_q90.png",
+  "pair_png": "outputs/forensics/ela/chilbolton_message_2001_tt/chilbolton_message_2001_tt_pair_q90.png",
+  "caveat": "ELA flags compression inconsistency / possible splice \u2014 NOT a message decoder. Web-resaved Temporary Temples JPEGs often look 'edited' because they are multi-generation.",
+  "role": "field_or_candidate",
+  "calibrated_against": "chualar"
+}

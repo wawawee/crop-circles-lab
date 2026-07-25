@@ -1,0 +1,19 @@
+{
+  "source": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/data/images/julia_set_1996_tt_oh.jpg",
+  "quality": 90,
+  "stats": {
+    "mean": 7.6257,
+    "std": 3.9675,
+    "max": 38.3333,
+    "p95": 15.0,
+    "p99": 19.6667,
+    "block_mean_std": 0.5577,
+    "n_pixels": 426400
+  },
+  "verdict": "MILDLY ELEVATED vs control \u2014 inspect heatmap; may be compression/scale",
+  "ela_png": "outputs/forensics/ela/julia_set_1996_tt_oh/julia_set_1996_tt_oh_ela_q90.png",
+  "pair_png": "outputs/forensics/ela/julia_set_1996_tt_oh/julia_set_1996_tt_oh_pair_q90.png",
+  "caveat": "ELA flags compression inconsistency / possible splice \u2014 NOT a message decoder. Web-resaved Temporary Temples JPEGs often look 'edited' because they are multi-generation.",
+  "role": "field_or_candidate",
+  "calibrated_against": "chualar"
+}

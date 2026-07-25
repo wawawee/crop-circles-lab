@@ -146,6 +146,7 @@ def score_config(
         "ber_vigay": round(ber_vg, 4),
         "ber_best": round(min(ber_rc, ber_vg), 4),
         "text_preview": "".join(ch if 32 <= ord(ch) < 127 else "." for ch in text[:80]),
+        "bits": bitstr,
     }
 
 
@@ -209,6 +210,10 @@ def analyze_disc(
             )
 
     best = min(results.items(), key=lambda kv: kv[1]["ber_best"])
+    # Keep full bitstring only on best (all[] would 4× bloat JSON)
+    all_slim = {
+        k: {kk: vv for kk, vv in v.items() if kk != "bits"} for k, v in results.items()
+    }
     return {
         "path": str(path),
         "disc": {"cx": int(cx), "cy": int(cy), "r": float(r), "note": note},
@@ -223,7 +228,7 @@ def analyze_disc(
         },
         "best_key": best[0],
         "best": best[1],
-        "all": results,
+        "all": all_slim,
         "known_rc_preview": rc[:60],
         "caveat": "Web-res discs rarely yield BER<<0.4; use as framework + high-res crop later.",
     }

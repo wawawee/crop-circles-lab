@@ -10,3 +10,9 @@ data/images/_hires/
 data/uap/*.webm
 outputs/local_prep/
 outputs/constants_smoke/
+
+# Ephemeris / huge downloads (astro agents)
+*.bsp
+*.bsp.download
+outputs/forensics/ela/_selftest/
+outputs/forensics/ela/_pytest_tmp/

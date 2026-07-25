@@ -1,0 +1,246 @@
+{
+  "caveat": null,
+  "crabwood_disc_crop": {
+    "label": "crabwood_disc_crop",
+    "n_bits": 1304,
+    "candidates": [
+      {
+        "label": "crabwood_disc_crop|inv=False|msb=True",
+        "n_chars": 163,
+        "n_letters": 21,
+        "printable_ratio": 0.209,
+        "ic": 0.0571,
+        "ic_vs_english": 0.866,
+        "chi2_raw": 263.42,
+        "english_like_raw": false,
+        "english_like_best_caesar": false,
+        "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+        "bit_opts": {
+          "invert": false,
+          "msb_first": true
+        },
+        "preview": "....p......S....N..p.y.b`......0.....f..._............w...D4@.....ww....$......=",
+        "caesar_best": {
+          "shift": 22,
+          "chi2": 69.45,
+          "preview": "TWRTCFJAHAAKULKHSGUTT"
+        }
+      },
+      {
+        "label": "crabwood_disc_crop|inv=False|msb=False",
+        "n_chars": 163,
+        "n_letters": 6,
+        "printable_ratio": 0.202,
+        "ic": 0.0667,
+        "ic_vs_english": 1.01,
+        "chi2_raw": 44.63,
+        "english_like_raw": false,
+        "english_like_best_caesar": false,
+        "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+        "bit_opts": {
+          "invert": false,
+          "msb_first": false
+        },
+        "preview": "?.........3....or.8...9F......'...@.3f..........  ........\",..(.........$.. ....",
+        "caesar_best": {
+          "shift": 14,
+          "chi2": 24.66,
+          "preview": "ADRRBI"
+        }
+      },
+      {
+        "label": "crabwood_disc_crop|inv=True|msb=True",
+        "n_chars": 163,
+        "n_letters": 15,
+        "printable_ratio": 0.178,
+        "ic": 0.0667,
+        "ic_vs_english": 1.01,
+        "chi2_raw": 443.79,
+        "english_like_raw": false,
+        "english_like_best_caesar": false,
+        "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+        "bit_opts": {
+          "invert": true,
+          "msb_first": true
+        },
+        "preview": "........8x3...........c.............3.p@.....O....'..@.P.......'.~..@.........Z.",
+        "caesar_best": {
+          "shift": 21,
+          "chi2": 40.98,
+          "preview": "CHUTUEUEGMKBTTW"
+        }
+      },
+      {
+        "label": "crabwood_disc_crop|inv=True|msb=False",
+        "n_chars": 163,
+        "n_letters": 11,
+        "printable_ratio": 0.166,
+        "ic": 0.0364,
+        "ic_vs_english": 0.551,
+        "chi2_raw": 615.21,
+        "english_like_raw": false,
+        "english_like_best_caesar": false,
+        "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+        "bit_opts": {
+          "invert": true,
+          "msb_first": false
+        },
+        "preview": "..8........5.0.......a....@@. ................?....g.... ......._~...@......_.ZC",
+        "caesar_best": {
+          "shift": 8,
+          "chi2": 22.1,
+          "preview": "SYRUMRTTGIF"
+        }
+      }
+    ],
+    "best_candidate": {
+      "label": "crabwood_disc_crop|inv=False|msb=True",
+      "n_chars": 163,
+      "n_letters": 21,
+      "printable_ratio": 0.209,
+      "ic": 0.0571,
+      "ic_vs_english": 0.866,
+      "chi2_raw": 263.42,
+      "english_like_raw": false,
+      "english_like_best_caesar": false,
+      "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+      "bit_opts": {
+        "invert": false,
+        "msb_first": true
+      },
+      "preview": "....p......S....N..p.y.b`......0.....f..._............w...D4@.....ww....$......=",
+      "caesar_best": {
+        "shift": 22,
+        "chi2": 69.45,
+        "preview": "TWRTCFJAHAAKULKHSGUTT"
+      }
+    },
+    "any_english_like": false,
+    "lab_verdict": "NO classical English cipher detected (expected for noise / bitmap / bad crop)"
+  },
+  "chilbolton": {
+    "label": "chilbolton",
+    "n_bits": 1679,
+    "candidates": [
+      {
+        "label": "chilbolton|inv=True|msb=False",
+        "n_chars": 209,
+        "n_letters": 26,
+        "printable_ratio": 0.306,
+        "ic": 0.0615,
+        "ic_vs_english": 0.932,
+        "chi2_raw": 114.45,
+        "english_like_raw": false,
+        "english_like_best_caesar": false,
+        "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+        "bit_opts": {
+          "invert": true,
+          "msb_first": false
+        },
+        "preview": "......:P.@...._...........y..P.~..?.....O=....3..i..4g~..?1..@.O?....K......+~..",
+        "caesar_best": {
+          "shift": 3,
+          "chi2": 61.13,
+          "preview": "MVMLFDLHLLMEYTCBRVNYMSRIHL"
+        }
+      },
+      {
+        "label": "chilbolton|inv=False|msb=False",
+        "n_chars": 209,
+        "n_letters": 26,
+        "printable_ratio": 0.258,
+        "ic": 0.0554,
+        "ic_vs_english": 0.839,
+        "chi2_raw": 69.7,
+        "english_like_raw": false,
+        "english_like_best_caesar": false,
+        "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+        "bit_opts": {
+          "invert": false,
+          "msb_first": false
+        },
+        "preview": "...........@.o..+`..Xc.\\d.......A..uD`.0...8......?........c..!...hs..9.6y.;....",
+        "caesar_best": {
+          "shift": 0,
+          "chi2": 69.7,
+          "preview": "OXCDAUDCHSYSWWYPWOYTFOOTUP"
+        }
+      },
+      {
+        "label": "chilbolton|inv=True|msb=True",
+        "n_chars": 209,
+        "n_letters": 17,
+        "printable_ratio": 0.254,
+        "ic": 0.0441,
+        "ic_vs_english": 0.668,
+        "chi2_raw": 138.89,
+        "english_like_raw": false,
+        "english_like_best_caesar": false,
+        "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+        "bit_opts": {
+          "invert": true,
+          "msb_first": true
+        },
+        "preview": "......\\.........+....9....._?..~}P.Q...............?,.~....9..{....1..c..a?#.~..",
+        "caesar_best": {
+          "shift": 24,
+          "chi2": 80.42,
+          "preview": "RSECIGEDGEHRFQHLW"
+        }
+      },
+      {
+        "label": "chilbolton|inv=False|msb=True",
+        "n_chars": 209,
+        "n_letters": 21,
+        "printable_ratio": 0.23,
+        "ic": 0.0429,
+        "ic_vs_english": 0.649,
+        "chi2_raw": 565.19,
+        "english_like_raw": false,
+        "english_like_best_caesar": false,
+        "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+        "bit_opts": {
+          "invert": false,
+          "msb_first": true
+        },
+        "preview": "............0....._8...:&.a.........\"....Cx.8p3..i......?.s..........-. l...+...",
+        "caesar_best": {
+          "shift": 15,
+          "chi2": 72.6,
+          "preview": "LNIATDWHIRIQELBPFWFOI"
+        }
+      }
+    ],
+    "best_candidate": {
+      "label": "chilbolton|inv=True|msb=False",
+      "n_chars": 209,
+      "n_letters": 26,
+      "printable_ratio": 0.306,
+      "ic": 0.0615,
+      "ic_vs_english": 0.932,
+      "chi2_raw": 114.45,
+      "english_like_raw": false,
+      "english_like_best_caesar": false,
+      "verdict": "NEGATIVE CONTROL PASS: no classical Caesar/English hit \u2014 stream does not behave like a monoalphabetic cipher of English",
+      "bit_opts": {
+        "invert": true,
+        "msb_first": false
+      },
+      "preview": "......:P.@...._...........y..P.~..?.....O=....3..i..4g~..?1..@.O?....K......+~..",
+      "caesar_best": {
+        "shift": 3,
+        "chi2": 61.13,
+        "preview": "MVMLFDLHLLMEYTCBRVNYMSRIHL"
+      }
+    },
+    "any_english_like": false,
+    "lab_verdict": "NO classical English cipher detected (expected for noise / bitmap / bad crop)"
+  },
+  "self_test": {
+    "caesar_known_answer": true,
+    "noise_negative": true,
+    "planted_ascii_detectable": true,
+    "pass": true,
+    "caesar_best_shift": 3
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "source": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/data/images/chualar_2013_nvidia_hoax.png",
+  "quality": 90,
+  "stats": {
+    "mean": 0.291,
+    "std": 0.5218,
+    "max": 5.3333,
+    "p95": 1.3333,
+    "p99": 2.0,
+    "block_mean_std": 0.2034,
+    "n_pixels": 699392
+  },
+  "verdict": "LOW/UNIFORM residual \u2014 consistent with single-pass compress (weak negative for splice)",
+  "ela_png": "outputs/forensics/ela/chualar_2013_nvidia_hoax/chualar_2013_nvidia_hoax_ela_q90.png",
+  "pair_png": "outputs/forensics/ela/chualar_2013_nvidia_hoax/chualar_2013_nvidia_hoax_pair_q90.png",
+  "caveat": "ELA flags compression inconsistency / possible splice \u2014 NOT a message decoder. Web-resaved Temporary Temples JPEGs often look 'edited' because they are multi-generation.",
+  "role": "known_hoax_digital_control"
+}

@@ -1,0 +1,43 @@
+{
+  "n": 5,
+  "quality": 90,
+  "control_block_std": 0.2034,
+  "rows": [
+    {
+      "file": "chualar_2013_nvidia_hoax.png",
+      "role": "known_hoax_digital_control",
+      "block_mean_std": 0.2034,
+      "p99": 2.0,
+      "verdict": "LOW/UNIFORM residual \u2014 consistent with single-pass compress (weak negative for splice)"
+    },
+    {
+      "file": "julia_set_1996_tt_oh.jpg",
+      "role": "field_or_candidate",
+      "block_mean_std": 0.5577,
+      "p99": 19.6667,
+      "verdict": "MILDLY ELEVATED vs control \u2014 inspect heatmap; may be compression/scale"
+    },
+    {
+      "file": "crabwood_2002_tt_oh2.jpg",
+      "role": "field_or_candidate",
+      "block_mean_std": 0.7684,
+      "p99": 10.3333,
+      "verdict": "MILDLY ELEVATED vs control \u2014 inspect heatmap; may be compression/scale"
+    },
+    {
+      "file": "chilbolton_message_2001_tt.jpg",
+      "role": "field_or_candidate",
+      "block_mean_std": 0.309,
+      "p99": 19.3333,
+      "verdict": "MILDLY ELEVATED vs control \u2014 inspect heatmap; may be compression/scale"
+    },
+    {
+      "file": "crabwood_2002_disc_crop.png",
+      "role": "field_or_candidate",
+      "block_mean_std": 0.6906,
+      "p99": 10.6667,
+      "verdict": "MILDLY ELEVATED vs control \u2014 inspect heatmap; may be compression/scale"
+    }
+  ],
+  "reading": "Chualar is born-digital marketing art \u2014 ELA may look 'busy' for different reasons than a camera JPEG. Field TT web JPEGs are multi-generation; elevated ELA vs a clean camera original is expected and NOT proof of formation fakery. Use ELA to catch crude Photoshop splices in stills, not to authenticate circles."
+}
