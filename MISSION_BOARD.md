@@ -41,7 +41,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
 | **G2++** | **Minimax M3** | Uruk SFU comparator | PE vs Uruk numeral structure | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
-| **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟡 **in PR** `feat/n1pp-bio-hardens` — 33/33 tests |
+| **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟢 **landed PR #3** — synth known-answer + honest block on real slice; no TB mirror. `outputs/radio/blc1_*.json` |
 
@@ -59,7 +59,7 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
 | **Minimax M3** | 🟡 on **G2++** Uruk SFU; radio/Amazon/BLC1 closed. |
 | **Opencode** | 🟡 on **G8** Betty Hill × Gaia. |
-| **Cursor** | 🟡 on **N1++** bio hardens + merge gate. |
+| **Cursor** | 🟢 merge gate on `main` — watching G2++ / G8 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -69,12 +69,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G8**. **Minimax M3** = **G2++**. **Cursor** = **N1++** + merge gate. **Geoglyf** = retired. **Captain** = assigner. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G8**. **Minimax M3** = **G2++**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | No next ticket until Captain assigns. Active: G2++ (M3), G8 (Opencode), N1++ (Cursor). |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active agents: G2++ (M3), G8 (Opencode). Captain on Gemini/Kimi research trail. |
 
 ---
 
@@ -258,9 +258,9 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > Forbidden: “Zeta Reticuli confirmed,” alien navigation claims, cherry-picked star IDs
 > without citing the map edition you used.
 
-### N1++ — Cursor (ASSIGNED 2026-07-25) — bio_probe hardens
-> See deferred list under N1 status. Chrom-match classify, short-seq status,
-> intronic bin when models exist, numpy shuffle speed. Branch `feat/n1pp-bio-hardens`.
+### N1++ — Cursor (🟢 MERGED PR #6 2026-07-25) — bio_probe hardens
+> Landed: chrom-aware classify + `--seq-chrom`; `bins_status=skipped_seq_too_short`;
+> intronic known-answer; NumPy Fisher–Yates. 33/33 tests. Cursor now merge-gate only.
 
 ### G3 — Wow! beam-fit (after G1 or G2)
 > Extend `tools/radio/radio_probe.py` or tiny `wow_beam_fit.py`: intensities [6,14,26,30.5,19.5,5.5]
