@@ -25,22 +25,48 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 
 | ID | Owner | Mission | Deliverable | Status |
 |----|-------|---------|-------------|--------|
-| **N1** | Minimax | DNA/RNA bio_probe | SARS + chr22 slices + BED bins | 🟢 landed — biology ≠ message |
+| **N1** | Minimax | DNA/RNA bio_probe | SARS + chr22 + BED bins | 🟢 landed — biology ≠ message |
 | **N2** | Opencode | UAP flight consistency | Official WebMs; metadata poverty | 🟢 landed |
 | **N3** | Hermes 💤 | Dimensionless constants | Nulls ≈ chance; Null B degenerate | 🟢 landed |
 | **N4** | Opencode | Archaeoastronomy | skyfield; lunar/random controls | 🟢 landed (BCE caveat) |
 | **N5** | Captain | Mission dashboard | HTML + embeds | 🟢 landed |
 | **N0** | Hyper + Cursor | Phaistos | z≈−14 + period-3 refrain | 🟢 landed |
 | **B10/B11** | Cursor | ELA + cipher negcontrol | Pillow ELA; Caesar/IC | 🟢 landed |
-| **R1** | Minimax | radio_probe + fetchers | FFT/epoch-fold; Wow blocked; Vela/FRB honest PARK | 🟢 50/50 tests; README polish |
-| **R1++** | **HOLD** | CHIME Cat 2 periods | Recover 16.35 d + scramble null | 🟡 fetcher scaffold only — no more wiring until Captain |
-| **G1** | Opencode | Linear A | z≈−73 formulaic STRUCTURE; null validates | 🟢 landed + gallery |
-| **G2** | Minimax | Proto-Elamite | CDLI ledger entropy | ⬜ **paused** — wait for Captain |
-| **G3** | Minimax | Wow! beam-fit | Gaussian/sinc on 6EQUJ5; underdetermined | 🟢 landed — not ET |
-| **G7** | Opencode | Gorafe megaliths | Orientation STRUCTURE; astro/spatial UNDERDETERMINED | 🟢 v1; G7++ = sunrise + valley null |
-| **G8** | queue | Betty Hill × Gaia | Star-map null | ⬜ **paused** |
-| **G-Amazon** | **Hyper** | Amazon Mode A | Zenodo + jqjacobs; skill | ⬜ Hyper owns |
-| **G-BLC1** | **Hyper** (+ Minimax synth stub) | BLC1 RFI known-answer | Hyper: scoped skill. Minimax: synth comb + no-TB stub | 🟡 scaffold OK; Hyper finishes real path |
+| **R1** | Minimax (done) | radio_probe + fetchers | FFT/epoch-fold; Wow blocked; Vela/FRB PARK | 🟢 50/50 tests — **radio closed for Minimax** |
+| **R1++** | **Ozma** | CHIME Cat 2 periods | Recover 16.35 d + scramble null | 🟡 `cat2_fetcher` scaffold only — Ozma wires |
+| **G1** | Opencode | Linear A | z≈−73 formulaic STRUCTURE | 🟢 landed + gallery |
+| **G2** | **Minimax** | Proto-Elamite | CDLI ledger entropy | ⬜ **Minimax next ticket only** (off radio/BLC1/Amazon) |
+| **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed — Ozma inherits for interpretation pass |
+| **G7** | Opencode | Gorafe megaliths | Orientation STRUCTURE; astro/spatial UNDER | 🟢 v1; G7++ later (sunrise + valley null) |
+| **G8** | queue | Betty Hill × Gaia | Star-map null | ⬜ paused (not tonight) |
+| **G-Amazon** | **Geoglyf** | Amazon Mode A | Zenodo + jqjacobs; NN/Ripley vs CSR | ⬜ skill ready; **data/code untouched** |
+| **G-BLC1** | **Ozma** | BLC1 RFI known-answer | Inherit Minimax synth+no-TB stub; ON/OFF + harmonics | 🟡 bas landad — Ozma äger + granskar |
+
+### Cursor cleanup signal (2026-07-25) — Hyper may start
+
+**ACCEPTANCE MET** (was mislabeled “Opencode”; Cursor did this):
+
+1. Board: single **G-BLC1 → Ozma**; Minimax pointed at **G2 only**; Amazon → **Geoglyf**.
+2. `tools/radio/` green: **50/50 PASS** (`python3 tools/radio/tests/test_radio_probe.py`).
+3. Amazon: **no** `data/amazon/`, no probe code — only `.cursor/skills/amazon-earthworks-spatial/` + scout docs. Orört för Geoglyf.
+4. Motto: no fabricated peaks in real paths; `de441.bsp` gitignored (~3.1G local only); no TB mirrors.
+
+**Behåll / fixa / skrota (for Ulfberht + Ozma):**
+
+| Verdict | Asset | Note |
+|---------|-------|------|
+| **KEEP** | `blc1_fetcher.py` | Default `NEVER_ATTEMPTED`; bundled CSV only; Sheikh constants |
+| **KEEP** | `radio_probe` BLC1 synth comb + scramble null | Known-answer plant — scope-compatible bas |
+| **KEEP** | G3 Wow beam-fit + outputs | Underdetermined honest; Ozma may deepen NOTES |
+| **KEEP** | `cat2_fetcher.py` + `cat2_real_sources.py` | Scaffold; **not** wired into `analyze()` yet |
+| **KEEP** | Vela/FRB/CHIME honest PARK fetchers | Anti-fabrication tests green |
+| **FIX (Ozma)** | Wire R1++ Cat2 → recover 16.35 d + null | Scaffold waits |
+| **FIX (Ozma)** | Real BLC1 slice path under skill size caps | Or stay synth-only + `BLOCKED_DATA_TOO_LARGE` |
+| **FIX (Ozma)** | ON/OFF + harmonic-family framing in NOTES | Interpretation job |
+| **SKROTA / FORBID** | Minimax further radio/BLC1/Amazon | Closed — G2 only if Captain releases |
+| **SKROTA** | Live TB scrape / silent synth fallback | Already disabled; do not re-enable |
+
+Ulfberht: review/merge frontier PRs. Geoglyf + Ozma: go.
 
 ---
 
@@ -152,7 +178,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 > 5. Outputs: `outputs/linear_a/run.json` + `NOTES.md`. Update MISSION_BOARD G1 → 🟢.
 > 6. Forbidden: claiming decipherment, language family, or “Minoan = X”.
 
-### G2 — Minimax (QUEUE when free) — Proto-Elamite combinatorial syntax
+### G2 — Minimax (ONLY open ticket when Captain says go) — Proto-Elamite
 > Same stance. CDLI Proto-Elamite open transcriptions → `data/scripts/proto_elamite/`.
 > symbolseq + window entropy; separate header/number blocks if trivial; shuffle null.
 > Known-answer: isolate low-entropy numeric blocks if present. `outputs/proto_elamite/`.
