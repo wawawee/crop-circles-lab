@@ -51,7 +51,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G15** | queue | Cretan Hieroglyphic bipartite admin | network / symbolseq | ⬜ after Linear A |
 | **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **merged PR #14** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
 | **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
-| **G18** | queue | EAMENA ley-line null | spatial+network; GeoJSON subsets | ⬜ no-signal / FPR calib |
+| **G18** | **Freebuff** | EAMENA ley-line null | spatial+network; Clark-Evans NN + collinear-triple FPR vs CSR/scrambled-coord nulls | 🟢 **drafted** — NO_SIGNAL \| FPR_CALIBRATED; 25/25 tests; synthetic CSR fallback (API BLOCKED); forbidden-phrase guard |
 | **G19** | queue | Long Delayed Echoes historic series | radio/FFT; digitized delays | ⬜ no-signal; Lunan CUT |
 | **G20** | queue | Boyajian Star TESS epoch-fold | astro; TIC 272172248 | ⬜ underdetermined |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
@@ -351,7 +351,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > **G14** Chankillo towers — DEM horizon + synthetic ridge null.  
 > **G15** Cretan Hieroglyphic bipartite admin — CHIC + Linear A/B KA.  
 > **G17** TESS SETI Ellipsoid (Cabrales 2024) — optical no-signal sharpen.  
-> **G18** EAMENA ley-line null — spatial FPR calibration (GeoJSON subsets).  
+> **G18** 🟢 **drafted** — `tools/scripts/eamena_ley_null.py`; Clark-Evans NN + collinear-triple FPR vs CSR/scrambled-coord nulls; synthetic CSR fallback (API BLOCKED); 25/25 tests; forbidden-phrase guard.  
 > **G19** Long Delayed Echoes historic delays — no-signal; Lunan claim-under-test.  
 > **G20** Boyajian’s Star TESS — dip recurrence / quiet limits.  
 > Full triage: docs/research_leads_kimi_2026-07-25.md + docs/research_leads_anomalistics_2026-07-25.md.

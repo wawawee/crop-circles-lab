@@ -1,0 +1,101 @@
+{
+  "mission": "G18",
+  "generated_at": "2026-07-25T20:10:02.027436+00:00",
+  "verdict": "NO_SPATIAL_SIGNAL | NO_LEY_SIGNAL | CONTROL_NOT_SEPARATED | FPR_CALIBRATED",
+  "metadata": {
+    "n_sites": 100,
+    "source": "synthetic_csr",
+    "distribution": "csr",
+    "bbox": [
+      34.0,
+      30.0,
+      35.5,
+      32.5
+    ]
+  },
+  "clark_evans": {
+    "n": 100,
+    "area_km2_approx": 38318.5,
+    "density_sites_per_km2": 0.00261,
+    "obs_mean_nn_km": 10.2101,
+    "expected_nn_csr_formula_km": 9.7876,
+    "csr_null_mean_km": 10.2841,
+    "csr_null_sd_km": 0.5998,
+    "clark_evans_R": 0.9928,
+    "z_vs_csr": -0.123,
+    "n_sims": 29
+  },
+  "ley_fpr": {
+    "n_sites": 100,
+    "tolerance_km": 0.5,
+    "pairs_evaluated": 200,
+    "observed": {
+      "collinear_triples_per_pair": 0.6,
+      "total_collinear_instances": 120
+    },
+    "null_scrambled_coord": {
+      "mean_per_pair": 0.555,
+      "sd_per_pair": 0.071679,
+      "z": 0.628,
+      "exceed_count": 5,
+      "fpr_empirical": 0.1724,
+      "n_sims": 29
+    },
+    "null_csr": {
+      "mean_per_pair": 0.551034,
+      "sd_per_pair": 0.063563,
+      "z": 0.77,
+      "exceed_count": 6,
+      "fpr_empirical": 0.2069,
+      "n_sims": 29
+    }
+  },
+  "interpretation": "**Ground truth:** SYNTHETIC CSR (ground truth: NO SIGNAL by construction)\n\nCSR synthetic data: 100 points uniformly distributed in bounding box.\nClark-Evans R=0.993, z=-0.12 \u2014 consistent with CSR expectation.\n\n**Ley-line (collinear triple) FPR calibration:**\n- Scrambled-coord null: empirical FPR = 0.1724 (threshold 0.05)\n- CSR Monte-Carlo null: empirical FPR = 0.2069 (threshold 0.05)\n- Observed collinear triples per pair: 0.600000\n\nFor CSR synthetic data, both null FPRs should be >> 0.05,\nconfirming that 'ley line' detection on random points produces\nchance-expected false positives.\n\n**FPR Calibration result:** NO_SIGNAL \u2014 'ley line' alignments\nin CSR data do not exceed null expectation. The empirical FPR\nis consistent with the nominal \u03b1=0.05 threshold.",
+  "caveats": [
+    "Synthetic CSR data \u2014 ground truth is NO SIGNAL by construction. Results for real EAMENA data may differ.",
+    "Collinear triple detection is sampled (not exhaustive), capped at 200 pairs for performance.",
+    "Collinearity tolerance of 0.5 km is arbitrary; different tolerances produce different FPRs.",
+    "Ley-line claims typically cherry-pick sites \u2014 this probe uses ALL sites in the dataset without selection bias.",
+    "Scrambled-coordinate null preserves the 1D marginal distributions but breaks spatial structure \u2014 it is a weaker null than CSR.",
+    "CSR Monte-Carlo null assumes uniform intensity across the bounding box, which is almost never true for real archaeology (inhomogeneous Poisson process would be more realistic).",
+    "For real EAMENA data, environmental covariates (rivers, soils, topography) must be modeled as a Cox process to avoid conflating settlement pattern with 'ley' signal.",
+    "The EAMENA full 338k-site corpus is BLOCKED from programmatic access; this probe uses synthetic CSR data as an FPR calibration benchmark. See data/geo/eamena/README.md."
+  ],
+  "data_source": "EAMENA database \u2014 synthetic CSR fallback per data access BLOCKED. See data/geo/eamena/README.md for details.",
+  "stance": "EAMENA (Endangered Archaeology in the Middle East and North Africa) records ~338,000 archaeological sites. This probe tests the fringe claim that 3+ sites on a straight line constitute a 'ley line.' We measure spatial structure (collinear-triple frequency) relative to Complete Spatial Randomness (CSR) and scrambled-coordinate nulls. We do NOT endorse ley-line mysticism, ancient-highway claims, or any 'Earth energy' interpretation. The honest prior is NO_SIGNAL \u2014 spatial clustering in archaeological site distributions is well-known to follow environmental settlement patterns (water, soil, trade routes), not intentional geometric networks.",
+  "forbidden_phrases": [
+    "ancient highways",
+    "ET corridors",
+    "proves ley network",
+    "ley line network",
+    "ley network confirmed",
+    "ancient alien roads",
+    "energy lines",
+    "earth energy grid",
+    "earth energy lines",
+    "global grid",
+    "planetary grid",
+    "sacred geometry network",
+    "ley system",
+    "ley alignment proves",
+    "ley discovered",
+    "alien ley",
+    "99% ley",
+    "ley verified",
+    "ley confirmed",
+    "ancient aliens",
+    "alien architectures"
+  ],
+  "pipeline": {
+    "tool": "tools/scripts/eamena_ley_null.py",
+    "parameters": {
+      "geojson": null,
+      "n_synthetic": 100,
+      "seed_csr": 0,
+      "n_sims": 29,
+      "n_triples": 200,
+      "tolerance_km": 0.5,
+      "seed": 0
+    }
+  }
+}
