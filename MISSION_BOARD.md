@@ -51,7 +51,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G15** | queue | Cretan Hieroglyphic bipartite admin | network / symbolseq | ⬜ after Linear A |
 | **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **merged PR #14** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
 | **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
-| **G18** | **Freebuff** | EAMENA ley-line null | spatial+network; Clark-Evans NN + collinear-triple FPR vs CSR/scrambled-coord nulls | 🟢 **drafted** — NO_SIGNAL \| FPR_CALIBRATED; 25/25 tests; synthetic CSR fallback (API BLOCKED); forbidden-phrase guard |
+| **G18** | **Freebuff** | EAMENA ley-line null + G18++ real subset comparison | spatial+network; Clark-Evans NN + collinear-triple FPR vs CSR/scrambled-coord nulls | 🟢 **PR #18** — NO_SIGNAL \| FPR_CALIBRATED; 44/44 tests; real Bani Walid subset `outputs/eamena/comparison_g18pp.json`; reusable `tools/ccat/spatial_pattern.py` (22 module tests) |
 | **G19** | queue | Long Delayed Echoes historic series | radio/FFT; digitized delays | ⬜ no-signal; Lunan CUT |
 | **G20** | queue | Boyajian Star TESS epoch-fold | astro; TIC 272172248 | ⬜ underdetermined |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
