@@ -102,7 +102,7 @@
 
 **Result (2026-07-25):** `tools/ccat/parse_blt_labs.py` → `data/catalog/blt_lab_metrics.json` (`blt_lab_metrics.v1`) + `outputs/blt_lab_summary.md`. Logan #79 (KS-03-131): node expansion 15–65%, expulsion cavities, diameters 30.4/58 ft. Edmonton #122 (KS-04-176): 7-circle, bent nodes 40–120°, magnetic particles, microwave heating claim. Cherhill metrics pulled from archived JSE/BLT semi-molten page (lab #104 HTML still 404). Caveat baked into JSON: BLT claims, not independent remeasurement.
 
-### B6 — Known-hoax vs candidate classifier (lightweight)
+### B6 — Known-hoax vs candidate classifier (lightweight) — **REMOTE PRIMARY**
 **Goal:** Features that separate Chualar (known marketing hoax) from BLT-priority cases.  
 **Work:**
 1. Feature vector: edge ratio, symmetry, fractal D, circle/line ratio, entropy.
@@ -110,6 +110,7 @@
 3. Simple sklearn baseline (logistic / RF) — **report as exploratory only**.
 
 **Acceptance:** CSV + short caveats (tiny N, no claim of authenticity).
+**Delegate:** Yes — tracked images in repo include Chualar + priority set.
 
 ### B7 — Spatial / temporal stub → real catalog CSV — DONE ✅
 **Goal:** Make `spatial.py` ideas real.  
@@ -151,16 +152,28 @@
 
 ---
 
-## D. Suggested delegation batches
+## D. Parallel split — remote vs local (2026-07-25)
 
-| Agent / session | Tasks |
-|-----------------|-------|
-| **CV engineer** | B3, B4 |
-| **Crypto / encoding** | B1, B2 |
-| **Data wrangler** | B5 ✅, C2 partial (B7 ✅) — next: B6 or image tasks |
-| **ML lite** | B6 |
-| **Local vision** | B8 |
-| **Captain (human)** | C1, C4, prioritize which READY next |
+> **Note:** Main image corpus (~60 files under `data/images/`) **is** in the private GitHub repo. Only `data/images/_hires/` is local-only. Remote agents can run CV/ML on tracked images.
+
+### Remote-ready batch (copy-paste for hyperagent)
+
+> **B6 full** (`outputs/feature_table.csv` + exploratory sklearn; Chualar = known-hoax control; caveats on tiny N).  
+> **In parallel: B4 scaffold** — mask/blob circle extractor + synthetic log-spiral unit test (N≈150 ±10%); run on tracked Julia if time.  
+> **If time left: B3 scaffold** — `perspective_correct` CLI + Lab crop/stubble mask + unit tests on synthetic + Chualar. **Do not** invent Edmonton corner points — leave ortho for local corner-JSON.  
+> **Optional: B1/B2 CLI-prep** — wire `--cx/--cy/--r/--turns` sweep + `chilbolton_bbox.json` into readers (no manual crop/bbox).  
+> **Optional research:** C3 public overhead hunt (Logan/Eltopia); C2 tail (more tables from archived JSE/anatomical text + 2001 Physiol. Plant. comment memo).  
+> Commit per task ID; update this file; push `main`.
+
+| Agent / session | Tasks | Where |
+|-----------------|-------|-------|
+| **Remote — ML + CV scaffold** | **B6** (primary), **B4** synthetic+attempt, **B3** CLI/tests (no Edmonton ortho) | Hyperagent / GitHub |
+| **Remote — encoding prep** | B1/B2 CLI flags + bbox JSON schema only | Hyperagent |
+| **Remote — research** | C3 hunt; C2 tail (text/DOI memo) | Hyperagent |
+| **Local Cursor — encoding** | **B1** manual disc crop + BER sweep; **B2** manual Chilbolton bbox | Here (judgment) |
+| **Local Cursor — vision** | **B8** LM Studio / BAMBAM models | Here (hardware) |
+| **Local Cursor — finish B3** | Edmonton corner-JSON → ortho once CLI lands | Here |
+| **Captain (human)** | C1 (TT master), C4 (legal), PDF OWNER for C2 | Human only |
 
 ---
 
@@ -197,4 +210,4 @@ When finishing a task: update the status line for that ID in this file, commit, 
 
 ---
 
-*Last updated: 2026-07-25 — B5 DONE + C2 partial (Levengood DOIs / Fe inventory). Open READY: B1–B4, B6, B8.*
+*Last updated: 2026-07-25 — Parallel split: remote = B6 + B4/B3 scaffold (+ optional C3/C2); local = B1, B2, B8, Edmonton corners. Open READY: B1–B4, B6, B8.*
