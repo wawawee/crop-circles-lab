@@ -1,0 +1,74 @@
+FIELD			EXPLANATION					CONTENT																				
+Id			Identification number of the dolmen
+
+Coor_X			Coordinate X
+
+Coor_Y			Coordinate Y
+
+Area			Subgroup											1 = Haza del Toril	2 = Llano de la Ermita	3 = Loma de la Raja															4 = Cuesta de la Sabina	5 = Llano de la	Sabina	6 = 	Castellones															7 = Cuesta del Almial	8 = Puntal del Cuervo	9 = Cuesta de Guadix															10 = Llano del Instituto	11 = 	Llano del Cocon	12 = Llano 															de Olivares	13 = Umbria del Conquin	14 = Conquin Bajo	15 = 															Conquin Alto	16 = Llano	del Cerrillo de las Liebres	17 = 															Tollo Estrecho	18 = Gabiarra	19 = Cuevas de Melendez	20 = La 															Torrecilla	21 = Puntal de la Rambla
+
+Necrop			Necropolis											1 = Baños de Alicun	2 = Sabina	3 = Majadillas	4 = Llano de 															la Cuesta de Guadix	5 = Llano de Olivares	6 = Hoyas del 																Conquín 7 = Llano del Cerrillo de las Liebres	8 = Gabiarra	9 = 															Llano de Carrascosa	10 = La 	Torrecilla	11 = Baul
+										
+Muni			Municipality											1 = Villanueva de las Torres	2 = Gorafe	3 = Guadix	4 = 															Gor	5 = Baza																
+Grid10			Sheet of the cartographic grid 10000 of the Topographic Map of Andalousia																					
+Grid50			Sheet of the cartographic grid 50000 of the National Geographic Institute																					
+Cad_Ref			Cadastral reference																					
+Cad_Pol			Cadastral polygon																					
+Cad_Par			Cadastral parcel																					
+														
+Ort_Cham		Conserved orthostates of the chamber																					
+Ort_Cov			Conserved orthostates of the coverage																					
+Corridor		Presence or not of corridor									1 = yes     0 = no																			
+Typo2019		Typology in 2019										1 = trapezoidal	2 = rectangular	 3 = polygonal	4 = quadrangular																	
+Typo1959		Typology in 1959										1 = trapezoidal	2 = rectangular	 3 = polygonal	4 = quadrangular															5 = pentagonal	6 = special					
+Cham_Len59		Length of the chamber in 1959																					
+Cham_Wid59		Width of the chamber in 1959																					
+Cham_Hei59		Height of the chamber in 1959																					
+Surface59		Surface of the chamber in 1959																					
+Volume59		Volume of the chamber in 1959																					
+Corr_Len59		Length of the corridor in 1959																					
+Corr_Wid59		Width of the corridor in 1959																					
+Cham_Len19		Length of the chamber in 2019																					
+Cham_Wid19		Width of the chamber in 2019																					
+Cham_Hei19		Height of the chamber in 2019																					
+Surface19		Surface of the chamber in 2019																					
+Volume19		Volume of the chamber in 2019																					
+Corr_Len19		Length of the corridor in 2019																					
+Corr_Wid19		Width of the corridor in 2019																
+										
+Viewshed_M		Viewshed for a radius of 3km around the dolmen, in meters																					
+Viewshed_Km		Viewshed for a radius of 3km around the dolmen, in kilometers																					
+Slope			Slope of the pixel in which the dolmen is located, in degrees																					
+Slope_Av30		Average slope of the terrain around the anomaly with a radius of 30m, in degrees																					
+Slope_Min30		Minimum slope of the terrain around the anomaly with a radius of 30m, in degrees																				
+Slope_Max30		Maximum slope of the terrain around the anomaly with a radius of 30m, in degrees																					
+Slope_Av50		Average slope of the terrain around the anomaly with a radius of 50m, in degrees																					
+Slope_Min50		Minimum slope of the terrain around the anomaly with a radius of 50m, in degrees																					
+Slope_Max50		Maximum slope of the terrain around the anomaly with a radius of 50m, in degrees																					
+Height			Height of the pixel in which the dolmen is located (Coor_Z)																					
+Height_Av30		Average height of the terrain around the anomaly with a radius of 30m																					
+Height_Min30		Minimum height of the terrain around the anomaly with a radius of 30m																					
+Height_Max30		Maximum height of the terrain around the anomaly with a radius of 30m																					
+Height_Av50		Average height of the terrain around the anomaly with a radius of 50m																					
+Height_Min50		Minimum height of the terrain around the anomaly with a radius of 50m																					
+Height_Max50		Maximum height of the terrain around the anomaly with a radius of 50m																					
+Ori_Corr		Orientation of the corridor									1= N	2 = NE	3 = E	4 = SE	5 = S																
+Ori_Corr2		Orientation of the corridor, in degrees																					
+Ori_Terr		Orientation of the terrain (considering the pixel in which the dolmen is located)		1 = N	2 = NE	3 = E	4 = SE	5 = S 	6 = SW	7 = W	8 = NW													
+Ori_Terr2		Orientation of the terrain, in degrees																					
+Dis_Water		Distance to the closer body of water, in meters																					
+Dis_Gor			Minimum distance to the Gor River, in meters																					
+Dis_Fardes		Minimum distance to the Fardes River, in meters																					
+Dis_Baul		Minimum distance to the Baul River, in meters	
+
+Topo_Terr		Located in the high plateau or in the ravins							1 = high plateau	2 = ravins																			
+Riverside		Riverside in which the dolmen is located							1 = right	2 = left																												
+Use1870			Land use in 1870										1 = rainfed, esparto grass	2 = rainfed, wheat, barley and rye															3 = eventually irrigated, wheat, barley and rye	4 = non cultivated													
+Use1956			Land use in 1956										1 = dry woody crops	2 = dry herbaceous crops	  3 = 																grassland	4 = other sparsely vegetated areas	5 = mosaic 															of herbaceous and woody crops	6 = grassland with quercineas	7= 															olive groves   8 = dense scrub 	9 = dense coppice of other 																broadleaved trees and mixtures
+
+Conserv			Conservation status										1 = good 	2 = medium 	3 = bad						
+Geo			Geology												2 = middle sub-Baetic	2 = ancient terraces	3 = recent alluvial																		
+Litho			Lithology											1 = clay domain 	2 = limestone domain																			
+Gull_Ero		Presence of gully erosion									1 = yes  	0 = no 																			
+Aeol_Ero		Presence of aeolian erosion									1 = yes  	0 = no																	
+					

@@ -1,0 +1,97 @@
+{
+  "generated_at": "2026-07-25T06:30:10.260462+00:00",
+  "mission": "G7",
+  "dataset": {
+    "source": "Cabrero et al. 2023, CC BY 4.0",
+    "doi": "10.5281/zenodo.10049759",
+    "n_dolmens": 151,
+    "n_with_coordinates": 151,
+    "n_with_corridor_orientation": 108,
+    "bbox_approx": {
+      "lon_min": -3.111,
+      "lon_max": -2.9338,
+      "lat_min": 37.3881,
+      "lat_max": 37.5118
+    }
+  },
+  "corridor_orientation": {
+    "n": 108,
+    "circular_mean_deg": 117.2,
+    "categorical_distribution": {
+      "N": 3,
+      "NE": 7,
+      "E": 34,
+      "SE": 51,
+      "S": 15
+    },
+    "rayleigh_test": {
+      "n": 108,
+      "R": 0.8213,
+      "z": 72.8493,
+      "p": 0.0
+    },
+    "dominant_sector": "SE",
+    "dominant_ratio": 0.472,
+    "negative_control_uniform_random": {
+      "n_iterations": 200,
+      "observed_R": 0.8213,
+      "uniform_mean_R": 0.0838,
+      "uniform_sd_R": 0.0415,
+      "z_vs_uniform": 17.773
+    }
+  },
+  "terrain_aspect": {
+    "n": 151,
+    "circular_mean_deg": 340.3,
+    "rayleigh_test": {
+      "n": 151,
+      "R": 0.3672,
+      "z": 20.3561,
+      "p": 0.0
+    }
+  },
+  "spatial_clustering": {
+    "n_points": 151,
+    "observed_mean_nnd_km": 0.1179,
+    "negative_control_uniform": {
+      "n_iterations": 200,
+      "mean_nnd_km": 0.6173,
+      "sd_nnd_km": 0.0256,
+      "z_vs_uniform": -19.492
+    }
+  },
+  "solar_alignment": {
+    "centre_lat": 37.4644,
+    "centre_lon": -3.0433,
+    "epoch_year": -3000,
+    "solstice_equinox_azimuths": {
+      "jun": {
+        "hour_utc": 4,
+        "alt_deg": 25.72,
+        "az_deg": 78.52
+      },
+      "dec": {
+        "hour_utc": 5,
+        "alt_deg": 3.75,
+        "az_deg": 124.35
+      },
+      "mar": {
+        "hour_utc": 4,
+        "alt_deg": 8.55,
+        "az_deg": 97.94
+      },
+      "sep": {
+        "hour_utc": 4,
+        "alt_deg": 10.43,
+        "az_deg": 98.32
+      }
+    },
+    "alignment_notes": [
+      "corridor mean 117\u00b0 vs jun solstice 79\u00b0 (\u0394=39\u00b0)",
+      "corridor mean 117\u00b0 vs dec solstice 124\u00b0 (\u0394=7\u00b0)"
+    ]
+  },
+  "verdict": "ORIENTATION_STRUCTURE | SPATIAL_CLUSTER_UNDERDETERMINED | CONTROL_SEPARATED",
+  "interpretation": "Corridor orientations are strongly non-uniform (E/SE dominant, 85/108 \u2248 79%), which is typical for Mediterranean megalithic corridors facing the rising sun.  The corridor circular mean (117\u00b0) is closer to the December solstice sunrise (124\u00b0) than the June solstice (79\u00b0), but this is also consistent with a generic SE bias \u2014 astronomical intent is underdetermined.  The uniform-random control confirms the orientation structure is real (z vs uniform = 17.8), but the interpretation as intentional astronomical alignment requires independent evidence.  Spatial NND is lower than uniform-rectangle expectation (z < -10), but this is expected for a river-valley survey \u2014 the rectangular bbox null includes areas of unsuitable terrain.  Verdict: ORIENTATION_STRUCTURE, astronomical alignment UNDERDETERMINED.",
+  "caveat": "Corridor orientation is only measurable for ~108/151 tombs (those with preserved corridors).  Solar azimuths computed for epoch -3000 with \u00b11\u00b0 ephemeris precision; precession over the megalithic period (~4000\u20132000 BCE) shifts solstice azimuth by <1\u00b0.  The 'alignment' comparison is illustrative, not a claim."
+}

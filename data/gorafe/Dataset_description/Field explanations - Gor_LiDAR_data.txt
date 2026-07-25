@@ -1,0 +1,49 @@
+FIELD			EXPLANATION											CONTENT							
+
+Id			Identification number of the anomaly/possible megalithic structure								
+
+Coor_X			Coordinate X						
+
+Coor_Y			Coordinate Y					
+
+Class			Visual classification of the anomaly, in comparison to the actually preserved dolmens		1 = clear	2 = probable	3 = possible			
+
+Viewshed_M		Viewshed for a radius of 3km around the dolmen, in meters								
+
+Viewshed_Km		Viewshed for a radius of 3km around the dolmen, in kilometers								
+
+Slope			Slope of the pixel in which the anomaly is located, in degrees								
+
+Slope_Av30		Average slope of the terrain around the anomaly with a radius of 30m, in degrees								
+
+Slope_Min30		Minimum slope of the terrain around the anomaly with a radius of 30m, in degrees								
+
+Slope_Max30		Maximum slope of the terrain around the anomaly with a radius of 30m, in degrees								
+
+Slope_Av50		Average slope of the terrain around the anomaly with a radius of 50m, in degrees								
+
+Slope_Min50		Minimum slope of the terrain around the anomaly with a radius of 50m, in degrees								
+
+Slope_Max50		Maximum slope of the terrain around the anomaly with a radius of 50m, in degrees								
+
+Height			Height of the pixel in which the anomaly is located (Coor_Z)								
+
+Height_Av30		Average height of the terrain around the anomaly with a radius of 30m								
+
+Height_Min30		Minimum height of the terrain around the anomaly with a radius of 30m								
+
+Height_Max30		Maximum height of the terrain around the anomaly with a radius of 30m								
+
+Height_Av50		Average height of the terrain around the anomaly with a radius of 50m								
+
+Height_Min50		Minimum height of the terrain around the anomaly with a radius of 50m								
+
+Height_Max50		Maximum height of the terrain around the anomaly with a radius of 50m								
+
+Ori_Terr		Orientation of the terrain (considering the pixel in which the anomaly is located)		1 = N	2 = NE	3 = E	4 = SE	5 = S 	6 = SW	7 = w	8 = NW
+
+Ori_Terr2		Orientation of the terrain (considering the pixel in which the anomaly is located), in degrees								
+
+Dis_Water		Distance to the closer body of water, in meters								
+
+Dis_Gor			Minimum distance to the Gor River, in meters							
