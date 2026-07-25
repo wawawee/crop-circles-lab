@@ -212,21 +212,14 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > Prefer shipping a clean STRUCTURE / NO_SIGNAL / UNDERDETERMINED verdict with controls
 > over a sprawling incomplete pipeline. Gallery panel optional if Hyper’s embed CI is calm.
 
-### G2 — Minimax M3 (ASSIGNED 2026-07-25) — Proto-Elamite
-> Same stance. CDLI Proto-Elamite open transcriptions → `data/scripts/proto_elamite/`.
-> symbolseq + window entropy; separate header/number blocks if trivial; shuffle null.
-> Known-answer: isolate low-entropy numeric blocks if present; optional Uruk/SFU numeral notes.
-> `outputs/proto_elamite/`. Branch `feat/g2-proto-elamite`. PR for Cursor/Captain merge.
-> No decipherment claims. Ledger-vs-prose structure only. Off radio/BLC1/Amazon.
+### G2 — Minimax M3 (🟢 MERGED 2026-07-25) — Proto-Elamite
+> Landed: `tools/scripts/proto_elamite_probe.py` + 15/15 tests. Synth 4/4 invariants;
+> CDLI default NEVER_ATTEMPTED; Uruk SFU POSTPONED. Idle until Captain assigns next.
 
-### G7++ — Opencode (ASSIGNED 2026-07-25) — Gorafe sunrise + valley null
-> G7 v1 already: ORIENTATION_STRUCTURE; astro/spatial UNDER (`outputs/gorafe/NOTES.md`).
-> Deepen nulls — do not rewrite the probe.
-> 1. Per-tomb sunrise azimuth (skyfield) vs corridor bearing — hit rate + Δ distribution.
-> 2. Replace rectangular-bbox NND with valley/terrain-aware control (or document BLOCKED).
-> 3. Keep orientation STRUCTURE; UNDER → CONTROL_SEPARATED or still UNDER with honest reason.
-> 4. Extend `outputs/gorafe/`; branch `feat/g7pp-gorafe-nulls`; PR for merge gate.
-> Forbidden: intentional-astronomy claims without control separation.
+### G7++ — Opencode (🟢 MERGED PR #4 2026-07-25) — Gorafe sunrise + valley null
+> Landed: per-tomb Dec hit@15°≈40% z≈7; convex-hull NND z−15.6; DEM null BLOCKED.
+> Verdict: ORIENTATION_STRUCTURE | CONTROL_SEPARATED | SPATIAL_CLUSTER_UNDERDETERMINED | PER_TOMB_UNDERDETERMINED.
+> Idle until Captain assigns next.
 
 ### G3 — Wow! beam-fit (after G1 or G2)
 > Extend `tools/radio/radio_probe.py` or tiny `wow_beam_fit.py`: intensities [6,14,26,30.5,19.5,5.5]
