@@ -195,6 +195,64 @@ def build_constants(root: Path) -> dict:
     }
 
 
+def build_linear_a(root: Path) -> dict:
+    """G1 Linear A — textbook control lesson for the gallery.
+
+    Real LA beats token-permutation null (z≈−73) → formulaic SEQUENCE structure.
+    Linear B known-answer also beats its null (z≈−3.3).
+    The 'negative' row is shuffled-AS-data (must NOT light up) — null validation,
+    not 'LA has no structure beyond unigrams'. Permutation already preserves unigrams.
+    """
+    run = load_json(root / "outputs" / "linear_a" / "run.json")
+    la = next(c for c in run["corpus"] if c["label"].startswith("Linear A"))
+    lb = next(c for c in run["corpus"] if c["label"].startswith("Linear B"))
+    neg = run["negative"][0]
+    sc_la = la["shuffled_control"]
+    sc_lb = lb["shuffled_control"]
+    sc_neg = neg["shuffled_control"]
+    return {
+        "n_tokens_la": la["n_tokens"],
+        "n_distinct_la": la["n_distinct"],
+        "n_tokens_lb": lb["n_tokens"],
+        "la": {
+            "observed": sc_la["observed"],
+            "shuffled_mean": sc_la["shuffled_mean"],
+            "shuffled_sd": sc_la["shuffled_sd"],
+            "z": sc_la["z"],
+            "verdict": "STRUCTURE",
+        },
+        "lb_known_answer": {
+            "observed": sc_lb["observed"],
+            "shuffled_mean": sc_lb["shuffled_mean"],
+            "shuffled_sd": sc_lb["shuffled_sd"],
+            "z": sc_lb["z"],
+            "verdict": "STRUCTURE",
+        },
+        "null_validation": {
+            "label": "Shuffled Linear A as data (must not light up)",
+            "observed": sc_neg["observed"],
+            "shuffled_mean": sc_neg["shuffled_mean"],
+            "shuffled_sd": sc_neg["shuffled_sd"],
+            "z": sc_neg["z"],
+            "verdict": "NO SIGNAL",
+        },
+        "top_bigrams": la.get("top_bigrams", [])[:5],
+        "verdict": "STRUCTURE",
+        "genre": "accounting / formulaic ledger",
+        "caveat": (
+            "Token permutation already preserves unigram frequencies. "
+            "z≈−73 is real sequence structure (KU-RO totals, KA-KA repeats) — "
+            "NOT decipherment. The negative row validates the null (shuffled data → z≈0); "
+            "it does not cancel the LA result. Structure ≠ meaning."
+        ),
+        "method_lesson": (
+            "Always pair dramatic raw z with (1) known-answer, (2) null validation. "
+            "Do not re-label a null-validation row as 'unigram-matched kills the signal' "
+            "when the primary null was already a frequency-preserving permutation."
+        ),
+    }
+
+
 def build_archaeo(root: Path) -> dict:
     """Fold the archaeoastronomy probe (lunar-phase test + monument readout +
     formations scatter) into FINDINGS_DATA. Verdict comes straight from the
@@ -218,6 +276,7 @@ def build_domains_missions(root: Path) -> tuple:
         "crop_circles": "#wheat",
         "constants": "#constants",
         "archaeoastronomy": "#archaeo",
+        "linear_a": "#linear-a",
     }
 
     domains_list = []
@@ -314,6 +373,9 @@ def main() -> None:
     print("Building constants section...")
     constants = build_constants(root)
 
+    print("Building linear_a section...")
+    linear_a = build_linear_a(root)
+
     print("Building archaeo section...")
     archaeo = build_archaeo(root)
 
@@ -326,6 +388,7 @@ def main() -> None:
         "generated_at": generated_at,
         "ethos": "We measure structure, always run controls, never claim meaning we didn't earn.",
         "phaistos": phaistos,
+        "linear_a": linear_a,
         "wheat_closeout": wheat_closeout,
         "constants": constants,
         "archaeo": archaeo,
@@ -370,6 +433,10 @@ def main() -> None:
     print(f"archaeo.lunar.exact: obs {archaeo['lunar']['exact']['observed_mean']} n {archaeo['lunar']['exact']['n_used']} z {archaeo['lunar']['exact']['z']} p {archaeo['lunar']['exact']['p']}")
     print(f"archaeo.scatter len: {len(archaeo['scatter'])} (expect 16)")
     print(f"archaeo.monument: mean {archaeo['monument']['mean_km']} median {archaeo['monument']['median_km']} within5 {archaeo['monument']['within_5km']}")
+    print(f"linear_a.la.z: {linear_a['la']['z']} (expect ~-73)")
+    print(f"linear_a.lb.z: {linear_a['lb_known_answer']['z']} (expect ~-3.3)")
+    print(f"linear_a.null_validation.z: {linear_a['null_validation']['z']} (expect ~0)")
+    print(f"linear_a.verdict: {linear_a['verdict']}")
 
 
 if __name__ == "__main__":

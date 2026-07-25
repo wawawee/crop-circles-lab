@@ -1,0 +1,17 @@
+# NC_045512.2_regions.bed — SARS-CoV-2 (Wuhan-Hu-1) head 1..4000 bp
+# Source: NCBI E-utilities feature table pulled on 2026-07-25:
+#   https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+#     ?db=nucleotide&id=NC_045512.2&rettype=ft&retmode=text&seq_start=1&seq_stop=4000
+# Local mirror: data/bio/annotations/NC_045512.2_features_first4000.txt
+# Format: BED4 (0-based, half-open intervals; type ∈ one of our 4 bins).
+# Bins used by bio_probe.py:
+#   coding         — CDS / ORF body
+#   untranslated   — UTR (5' or 3')
+#   intronic       — gene/mRNA span minus annotated CDS/UTR
+#   intergenic     — outside any gene feature
+# Coordinate conversion: NCBI feature table is 1-based inclusive.
+#   NCBI 1..265 (5'UTR)  -> BED [0, 265)
+#   NCBI 266..>4000 (CDS ORF1ab) -> BED [265, 4000)  (capped at slice end)
+
+NC_045512.2	0	265	untranslated
+NC_045512.2	265	4000	coding

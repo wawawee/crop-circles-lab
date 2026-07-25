@@ -1,8 +1,8 @@
 # Hermes / N3 -- Dimensionless Constants Pattern Hunt
 
-Constant set: `large` (19 total constants, 17 after dropping derived rows, 136/171 hit-countable pairs)  
+Constant set: `mixings` (22 total constants, 22 after dropping derived rows, 231/231 hit-countable pairs)  
 Diatonic tolerance: +/- 20 cents (Hawkins bar)  
-Trials per null: **2000**  Seed: 20260725  
+Trials per null: **300**  Seed: 20260725  
 
 ## Top 8 pairs by |cents error|
 
@@ -10,12 +10,12 @@ Trials per null: **2000**  Seed: 20260725
 |---|---|------:|------:|------------------|------:|:----:|-----------|
 | m_τ/m_μ | Ω_m | 53.34 | 1.727 | major 6th (5:3) | +0.10 | YES | **160/3** |
 | m_τ/m_μ | α | 2305 | 3.363 | major 2nd (9:8) | +0.40 | YES | 34568/15 |
+| m_μ/m_e | sin²θ₁₂_ν | 682.4 | 2.834 | perfect 4th (4:3) | -0.67 | YES | **3412/5** |
 | m_τ/m_μ | Ω_b | 341.1 | 2.533 | perfect 4th (4:3) | -1.10 | YES | **5799/17** |
-| α_s(M_Z) | α_G | 1.996e+37 | 37.300 | major 7th (15:8) | +2.11 | YES | 19962749746020996242134122997009612800 |
-| Ω_m | α_s(M_Z) | 2.674 | 0.427 | perfect 4th (4:3) | +4.95 | YES | **8/3** |
-| Ω_Λ | ΔT/T | 1.369e+04 | 4.137 | major 6th (5:3) | +5.15 | YES | 13694 |
-| N_H | 1/(H_0 t_P) | 2.299e+19 | 19.362 | major 3rd (5:4) | -5.26 | YES | 22988505747126435840 |
-| N_H | Ω_m | 3.172e+80 | 80.501 | perfect 4th (4:3) | +5.30 | YES | 317158261972724364971852831914235127087331315138144593807335730964399526162464768 |
+| η | α | 47.96 | 1.681 | perfect 5th (3:2) | -1.35 | YES | **959/20** |
+| m_τ/m_μ | η | 48.05 | 1.682 | perfect 5th (3:2) | +1.75 | YES | **961/20** |
+| ρ | ε_K | 71.81 | 1.856 | major 2nd (9:8) | -4.50 | YES | **1149/16** |
+| sin²θ₂₃_ν | ε_K | 256.7 | 2.409 | unison (1:1) | +4.95 | YES | **3851/15** |
 
 ## Famous coincidences (watchlist -- TAINTED by selection bias)
 
@@ -23,7 +23,6 @@ These pairs are the famous coincidences Dirac / Eddington / cosmic / lepton ladd
 
 - **m_p/m_e / α**: Eddington coincidence (m_p/m_e ~ 6*(1/alpha) ~ 6*137)  `ratio=2.516e+05` `log10=5.401` `cents=+40.79` `.`
 - **n_s / α**: Harrison-Zel'dovich / scalar index vs fine-structure  `ratio=132.2` `log10=2.121` `cents=+56.23` `.`
-- **α / α_G**: Dirac LNH: gravitational vs EM coupling (~10^36)  `ratio=1.236e+36` `log10=36.092` `cents=-14.74` `YES`
 - **α_s(M_Z) / ε_K**: Kaon CP violation vs strong coupling  `ratio=52.92` `log10=1.724` `cents=-13.55` `YES`
 - **m_p/m_e / m_μ/m_e**: Proton vs muon mass (factor ~ 8.9)  `ratio=8.88` `log10=0.948` `cents=-23.19` `.`
 - **m_τ/m_e / m_p/m_e**: Tau vs proton mass (~ 1.9)  `ratio=1.894` `log10=0.277` `cents=+17.19` `YES`
@@ -35,23 +34,23 @@ These pairs are the famous coincidences Dirac / Eddington / cosmic / lepton ladd
 Two nulls, two different questions:
 
 **Null A -- log-uniform within decade**
-- Trials: **2000** (seed 20260725)
+- Trials: **300** (seed 20260725)
 - Each constant replaced by a log-uniform sample within its own order of magnitude (preserves decade, randomises exact value).
-- Hits per random trial -- mean `31.82` std `4.93` 50th `32.0` 95th `40.0` 99th `45.0` max `52`
+- Hits per random trial -- mean `54.00` std `6.35` 50th `53.0` 95th `64.1` 99th `71.0` max `75`
 
 **Null B -- pair-permutation (reciprocal-arrangement)**
-- Trials: **2000** (seed 20260726)
+- Trials: **300** (seed 20260726)
 - Real values preserved, identities randomly permuted (reciprocal-arrangement null). Tests whether the SPECIFIC pair cells matter.
-- Hits per random trial -- mean `30.00` std `0.00` 50th `30.0` 95th `30.0` 99th `30.0` max `30`
+- Hits per random trial -- mean `49.00` std `0.00` 50th `49.0` 95th `49.0` 99th `49.0` max `49`
 
 ## Interpretation
 
-Real constants -- all pairs: 39/171 diatonic hits within 20 cents (22.81%).
-Real constants -- excluding watchlist (Dirac/Eddington/cosmic/lepton ladder): 30/136 hits (22.06%). This is the bar the p-values below are judged against -- the watchlist is what motivated the search, so hits there are biased to inflate.
+Real constants -- all pairs: 49/231 diatonic hits within 20 cents (21.21%).
+Real constants -- excluding watchlist (Dirac/Eddington/cosmic/lepton ladder): 49/231 hits (21.21%). This is the bar the p-values below are judged against -- the watchlist is what motivated the search, so hits there are biased to inflate.
 
-Null A (log-uniform-within-decade, 2000 trials): mean 31.82 std 4.93 50th 32.0 95th 40.0 99th 45.0 max 52.
-Null B (pair-permutation, 2000 trials): mean 30.00 std 0.00 50th 30.0 95th 30.0 99th 30.0 max 30.
-p(decade-null >= filtered-real) = 0.6710.
+Null A (log-uniform-within-decade, 300 trials): mean 54.00 std 6.35 50th 53.0 95th 64.1 99th 71.0 max 75.
+Null B (pair-permutation, 300 trials): mean 49.00 std 0.00 50th 49.0 95th 49.0 99th 49.0 max 49.
+p(decade-null >= filtered-real) = 0.8033.
 p(permutation-null >= filtered-real) = 1.0000.
 
 INTERPRETATION -- necessary, not sufficient:

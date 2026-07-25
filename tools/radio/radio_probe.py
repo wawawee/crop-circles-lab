@@ -12,10 +12,17 @@ R1 mission (Minimax/Lab local — Hermes handed off). Landed scaffold:
     is mathematically impossible. We compute the FFT anyway but surface
     `claim_blocked: True` with `n_bins == 4` (DC + 3 unique freq bins) so
     downstream agents cannot get fooled.
-  * **FRB 180916 16.35-d scaffold (NOT 121102)** -- 30 synthetic arrivals
-    clustered around multiples of 16.35 days, narrow jitter. Real data
-    fetch from CHIME/FRB Catalog 1 is OUT OF SCOPE for this scaffold --
-    a deliberate, honest placeholder.
+  * **FRB 180916 16.35-d SCAFFOLD (synthetic) vs REAL-DATA path**:
+      - `--frb-180916` / `--frb-180916-synthetic` plants 30 synthetic
+        arrivals around multiples of 16.35 d. This is a math-validation
+        tool (epoch-fold math recovers the plant). It tells us nothing
+        about the real FRB. Structure != message.
+      - `--frb-180916-real` calls chime_frb_fetcher + frb_real_sources to
+        fetch the actual CHIME/FRB Catalog 1 CSV. As of 2026-07-25 the
+        canonical mirror is offline (HTML parking page). The fetcher
+        surfaces `fetch_status: UNREACHABLE/PARKING` -- it NEVER silently
+        fabricates. Use `--bundled-mjd-json <file>` to inject a real
+        transcribed table.
 
 Stance: structure != message. Pulsars are the universe's most precise
 natural clocks -- periodicity is necessary, NOT sufficient, for
@@ -40,6 +47,21 @@ import sys
 from pathlib import Path
 
 import numpy as np
+
+# Real-data path supports (best-effort imports so the script remains
+# runnable in older environments without the sub-modules).
+try:
+    import chime_frb_fetcher as CFF  # noqa: E402
+except ImportError:  # pragma: no cover
+    CFF = None
+try:
+    import frb_real_sources as FRS  # noqa: E402
+except ImportError:  # pragma: no cover
+    FRS = None
+try:
+    import pulsar_fetcher as PUL  # noqa: E402
+except ImportError:  # pragma: no cover
+    PUL = None
 
 
 # --- module constants ------------------------------------------------------
@@ -71,6 +93,33 @@ DEFAULT_JITTER_FRAC = 0.02  # ±2% Gaussian jitter on the period
 DEFAULT_FRB_N_ARRIVALS = 30
 DEFAULT_FRB_OBS_WINDOW_DAYS = 500.0
 DEFAULT_FRB_JITTER_DAYS = 0.3
+
+# Vela pulsar (PSR B0833-45 / J0835-4510) constants.
+# Source: ATNF Pulsar Catalogue (Manchester et al. 2005 AJ 129 1993,
+# DOI 10.1086/428488). We hardcode the canonical period + bibliographic
+# metadata (public-domain knowledge); we do NOT hardcode bulk arrival
+# times (that would be silent fabrication). Vela has spin-down and
+# occasional glitches; the canonical P0 below is the catalogue mean at
+# the epoch. Manchester+2005 + PPTA DR3 (Zic et al. 2023) for context.
+VELA_PSR_B1950 = "B0833-45"
+VELA_PSR_J2000 = "J0835-4510"
+VELA_P0_PUBLISHED_S = 0.089328385507       # ~89.328 ms
+VELA_F0_PUBLISHED_HZ = 1.0 / VELA_P0_PUBLISHED_S  # ~11.192 Hz
+VELA_BIBCODE_PSRCAT = "2005AJ....129.1993M"
+VELA_BIBCODE_PPTA_DR3 = "2023PASA...40...49Z"
+VELA_DATA_LICENSE = "CC BY 4.0 (ATNF Pulsar Catalogue; PPTA Data Releases)"
+
+# Vela synthetic-plant defaults. The jitter is exactly 1 microsecond,
+# well below Vela's known timing noise floor (~50 microseconds typical,
+# due to intrinsic noise and DM smearing). This means synthetic
+# arrivals are MORE coherent than real Vela, which deliberately biases
+# even harder toward "the math detects structure". The lab motto
+# insists we do NOT mistake that for "ET".
+DEFAULT_VELA_N_ARRIVALS = 30
+DEFAULT_VELA_OBS_WINDOW_DAYS = 365.0   # ~1 year of pulses
+DEFAULT_VELA_JITTER_S = 1e-6           # ±1 microsecond synthetic jitter
+DEFAULT_VELA_GRID_DELTA_S = 1e-5      # ±10 microseconds around VELA_P0
+DEFAULT_VELA_GRID_STEPS = 1001
 
 
 # --- FFT power spectrum ---------------------------------------------------
@@ -357,6 +406,354 @@ def synth_frb_arrivals(period_d: float = FRB_180916_PERIOD_DAYS,
     return np.sort(times)
 
 
+# --- Vela pulsar synthetic plant + real-data path ------------------------
+# Vela's role is the lab-motto NATURAL-CLOCK ANCHOR: even when the math
+# detects its period cleanly, the canonical conclusion is "this is a
+# natural pulsar", NOT "this is artificial". Periodicity is necessary,
+# NOT sufficient for artificiality.
+
+def synth_pulsar_vela_arrivals(
+    period_s: float = VELA_P0_PUBLISHED_S,
+    n_arrivals: int = DEFAULT_VELA_N_ARRIVALS,
+    obs_window_d: float = DEFAULT_VELA_OBS_WINDOW_DAYS,
+    jitter_s: float = DEFAULT_VELA_JITTER_S,
+    seed: int = 0,
+    mjd0: float = 58000.0,
+) -> np.ndarray:
+    """Plant N arrival MJDs at multiples of VELA_P0 (strictly periodic).
+
+    Synthetic Vela WITHOUT glue: no spin-down, no glitches, no DM
+    smearing, no intrinsic timing noise. The plant is therefore MORE
+    coherent than real Vela, deliberately biasing the math detection
+    (Z² = 2N) toward maximum. Real Vela has ~50 microsecond timing
+    noise and ~hour-long spin-down fringes over years.
+
+    Returns sorted MJDs. Period in SECONDS; we convert from MJDs to
+    seconds at the orchestrator level (since P0 is sub-millisecond).
+    """
+    rng = np.random.default_rng(seed)
+    phases = np.arange(1, n_arrivals + 1).astype(float)
+    times_s = phases * float(period_s)
+    times_s = times_s + rng.normal(loc=0.0, scale=float(jitter_s),
+                                     size=n_arrivals)
+    mjds = float(mjd0) + times_s / 86400.0
+    return np.sort(mjds)
+
+
+def run_pulsar_vela_synthetic(
+    seed: int = 0,
+    n_arrivals: int = DEFAULT_VELA_N_ARRIVALS,
+    obs_window_d: float = DEFAULT_VELA_OBS_WINDOW_DAYS,
+    jitter_s: float = DEFAULT_VELA_JITTER_S,
+    period_grid_delta_s: float = DEFAULT_VELA_GRID_DELTA_S,
+    period_grid_steps: int = DEFAULT_VELA_GRID_STEPS,
+) -> dict:
+    """Vela positive-control known-answer plant.
+
+    Plants 30 synthetic arrival MJDs at multiples of VELA_P0 and runs
+    the standard epoch-fold on (mjd * 86400) in SECONDS with a tight
+    grid around VELA_P0. Recovery tolerance: |best - P0| <= 5e-6 s
+    (~5 microseconds, well below the synthetic jitter envelope).
+
+    Lab motto: a PASS proves the math; it tells us NOTHING about real
+    Vela, AND it does NOT imply artificial origin. Vela's period is
+    real and natural (Manchester+2005; PPTA DR3).
+    """
+    mjds = synth_pulsar_vela_arrivals(
+        n_arrivals=n_arrivals,
+        obs_window_d=obs_window_d,
+        jitter_s=jitter_s,
+        seed=seed,
+    )
+    times_s = mjds * 86400.0
+    obs_window_s = float(times_s.max() - times_s.min()) \
+        if len(times_s) >= 2 else float(times_s.max()) * 2.0
+    grid = np.linspace(
+        VELA_P0_PUBLISHED_S - float(period_grid_delta_s),
+        VELA_P0_PUBLISHED_S + float(period_grid_delta_s),
+        int(period_grid_steps),
+    )
+    fold = epoch_fold(times_s, grid)
+    rng = np.random.default_rng(seed + 17)
+    shuf_s = rng.uniform(0.0, obs_window_s, size=len(times_s))
+    shuf_fold = epoch_fold(shuf_s, grid)
+    recovery_err_s = abs(fold["best_period"] - VELA_P0_PUBLISHED_S)
+    return {
+        "label": "radio_pulsar_vela_synthetic",
+        "method": "vela_synthetic_epoch_fold_z2",
+        "plant": {
+            "psr_b1950": VELA_PSR_B1950,
+            "psr_j2000": VELA_PSR_J2000,
+            "true_period_s": float(VELA_P0_PUBLISHED_S),
+            "true_freq_hz": float(VELA_F0_PUBLISHED_HZ),
+            "n_arrivals": int(n_arrivals),
+            "obs_window_d": float(obs_window_d),
+            "jitter_s": float(jitter_s),
+            "decoy_period_s_grb_afterglow": 0.0897,  # NOT used; FRB-like
+        },
+        "epochfold": fold,
+        "negative_controls": {
+            "shuffled_uniform_z2_max": shuf_fold["best_z2"],
+            "shuffled_uniform_z2_p_value": shuf_fold["best_p_value"],
+            "shuffled_uniform_best_period_s": shuf_fold["best_period"],
+        },
+        "known_answer": {
+            "recovered_period_s": fold["best_period"],
+            "recovered_z2": fold["best_z2"],
+            "recovered_p_value": fold["best_p_value"],
+            "recovery_error_s": float(recovery_err_s),
+            "recovery_pass": bool(recovery_err_s <= 5e-6),
+        },
+        "lab_motto_anchor": (
+            "Structure != message. Vela is the universe's most "
+            "famous NATURAL clock. Periodicity (here detected at "
+            "P0 with high Z²) is NECESSARY, NOT SUFFICIENT, for "
+            "artificiality. A recovery_pass here proves the FFT/"
+            "autocorr/epoch-fold math is implemented correctly; "
+            "it does NOT mean we have detected an artificial signal."
+        ),
+        "stance": (
+            "SYNTHETIC Vela positive-control known-answer. Plant "
+            "EXCLUDES Vela's real-world spin-down and glitches "
+            "(1988/1991/1994/1996/1997/1998/1999/2000/2003). "
+            "Lab motto: periodicity is necessary, NOT sufficient "
+            "for artificiality. Manchester+2005; PPTA DR3 (Zic+2023)."
+        ),
+    }
+
+
+def run_pulsar_vela(
+    bundled_csv_path: Path | None = None,
+    seed: int = 0,
+    period_grid_delta_s: float = DEFAULT_VELA_GRID_DELTA_S,
+    period_grid_steps: int = DEFAULT_VELA_GRID_STEPS,
+    force_status_for_tests: str | None = None,
+) -> dict:
+    """REAL-DATA Vela positive-control path.
+
+    Loads Vela arrival MJDs from pulsar_fetcher (or --bundled-pulsar-csv
+    override). Converts to seconds, runs epoch-fold around the
+    published P0. NEVER fabricates: if the live fetch failed AND no
+    bundled fallback is given, returns the warnings-block WITHOUT
+    running the math.
+    """
+    if PUL is None:
+        return _vela_module_missing()
+    result = PUL.try_fetch_atnf_pulsar_vela_timing(
+        force_status_for_tests=force_status_for_tests,
+    )
+    base_plant = {
+        "psr_b1950": VELA_PSR_B1950,
+        "psr_j2000": VELA_PSR_J2000,
+        "true_period_s": float(VELA_P0_PUBLISHED_S),
+        "true_freq_hz": float(VELA_F0_PUBLISHED_HZ),
+        "period_grid_delta_s": float(period_grid_delta_s),
+        "period_grid_steps": int(period_grid_steps),
+        "license": VELA_DATA_LICENSE,
+        "data_units": "arrival MJDs converted to seconds: t_s = mjd * 86400",
+    }
+    # Bundled override path
+    if bundled_csv_path is not None:
+        bundle = PUL.load_bundled_pulsar_csv(Path(bundled_csv_path))
+        if bundle.error is not None:
+            return {
+                "label": "pulsar_vela_real_data",
+                "method": "vela_real_epoch_fold_z2",
+                "data_source": f"bundled_csv={bundled_csv_path}",
+                "source_type": "bundled_attempt",
+                "fetch_status": "USER_OVERRIDE_INVALID",
+                "ref_bibcode": VELA_BIBCODE_PSRCAT,
+                "ref_url": "https://www.atnf.csiro.au/research/pulsar/psrcat/",
+                "fetched_from": str(bundled_csv_path),
+                "fetch_attempts": [],
+                "n_arrivals": 0,
+                "license": VELA_DATA_LICENSE,
+                "provenance_note": (
+                    f"--bundled-pulsar-csv {bundled_csv_path} failed to "
+                    f"parse: {bundle.error}. Falling back to empty. "
+                    "NO synthetic plant was used."
+                ),
+                "plant": base_plant,
+                "epochfold": None,
+                "negative_controls": None,
+                "known_answer": None,
+                "warnings": [f"--bundled-pulsar-csv {bundled_csv_path} did not "
+                              "parse. Honest empty fallback."],
+                "stance": _vela_motto_stance(),
+            }
+        if bundle.has_mjds:
+            return _vela_run_epoch_fold(
+                mjds=np.asarray(bundle.mjds, dtype=float),
+                data_source=str(bundled_csv_path),
+                source_type="bundled_override",
+                fetch_status="USER_OVERRIDE",
+                seed=seed,
+                base_plant=base_plant,
+                period_grid_delta_s=period_grid_delta_s,
+                period_grid_steps=period_grid_steps,
+            )
+    # Empty-MJDs branch (live fetch failed, no override given)
+    if not result.arrival_mjds_vela:
+        return {
+            "label": "pulsar_vela_real_data",
+            "method": "vela_real_epoch_fold_z2",
+            "data_source": "ATNF Pulsar Catalogue (Manchester+ 2005)",
+            "source_type": "empty",
+            "fetch_status": result.fetch_status,
+            "ref_bibcode": VELA_BIBCODE_PSRCAT,
+            "ref_url": "https://www.atnf.csiro.au/research/pulsar/psrcat/",
+            "fetched_from": result.fetched_from,
+            "fetch_attempts": [
+                a if isinstance(a, dict) else a.to_dict()
+                for a in result.attempts
+            ],
+            "n_arrivals": 0,
+            "license": VELA_DATA_LICENSE,
+            "provenance_note": (
+                f"Live ATNF/Parkes Vela fetch returned "
+                f"{result.fetch_status}. NO MJDs obtained. Fetched: "
+                f"{len(result.attempts)} canonical URL(s); no structured "
+                "CSV was returned. The bundled PPTA table is "
+                "intentionally empty (extraction pending, manual "
+                "transcription required)."
+            ),
+            "plant": base_plant,
+            "epochfold": None,
+            "negative_controls": None,
+            "known_answer": None,
+            "warnings": [
+                "no real-data path attempted because the Vela arrival "
+                "source returned zero MJDs. NO synthetic plant was used.",
+                f"live fetch_status: {result.fetch_status}",
+                "to populate: pass --bundled-pulsar-csv with a CSV "
+                "header `name,mjd` of arrival MJDs transcribed from a "
+                "PPTA data-release paper (e.g., Manchester+2005 AJ 129 "
+                "1993 cita at DOI 10.1086/428488).",
+            ],
+            "stance": _vela_motto_stance(),
+        }
+    # Got MJDs from the live fetch path.
+    return _vela_run_epoch_fold(
+        mjds=np.asarray(result.arrival_mjds_vela, dtype=float),
+        data_source=result.fetched_from or "ATNF Pulsar Catalogue",
+        source_type="atnf_pulsar_catalogue",
+        fetch_status=result.fetch_status,
+        seed=seed,
+        base_plant=base_plant,
+        period_grid_delta_s=period_grid_delta_s,
+        period_grid_steps=period_grid_steps,
+    )
+
+
+def _vela_run_epoch_fold(
+    mjds, data_source, source_type, fetch_status, seed,
+    base_plant, period_grid_delta_s, period_grid_steps,
+) -> dict:
+    """Inner helper: given Vela MJDs, run the second-precision epoch-fold."""
+    times_s = mjds * 86400.0
+    obs_window_s = float(times_s.max() - times_s.min()) \
+        if len(times_s) >= 2 else float(times_s.max()) * 2.0
+    grid = np.linspace(
+        VELA_P0_PUBLISHED_S - float(period_grid_delta_s),
+        VELA_P0_PUBLISHED_S + float(period_grid_delta_s),
+        int(period_grid_steps),
+    )
+    fold = epoch_fold(times_s, grid)
+    rng = np.random.default_rng(seed + 23)
+    shuf_s = rng.uniform(0.0, obs_window_s, size=len(times_s))
+    shuf_fold = epoch_fold(shuf_s, grid)
+    recovery_err_s = abs(fold["best_period"] - VELA_P0_PUBLISHED_S)
+    return {
+        "label": "pulsar_vela_real_data",
+        "method": "vela_real_epoch_fold_z2",
+        "data_source": data_source,
+        "source_type": source_type,
+        "fetch_status": fetch_status,
+        "ref_bibcode": VELA_BIBCODE_PSRCAT,
+        "ref_url": "https://www.atnf.csiro.au/research/pulsar/psrcat/",
+        "fetched_from": data_source,
+        "fetch_attempts": [],
+        "n_arrivals": int(len(mjds)),
+        "arrival_mjd_first": float(mjds.min()),
+        "arrival_mjd_last": float(mjds.max()),
+        "license": VELA_DATA_LICENSE,
+        "provenance_note": (
+            f"Real-data path with N={len(mjds)} Vela arrival MJDs from "
+            f"`{data_source}`. License: {VELA_DATA_LICENSE}. Vela = "
+            "NATURAL clock (Manchester+2005; PPTA DR3 Zic+2023). "
+            "lab motto: structure != message."
+        ),
+        "plant": base_plant,
+        "epochfold": fold,
+        "negative_controls": {
+            "shuffled_uniform_z2_max": shuf_fold["best_z2"],
+            "shuffled_uniform_z2_p_value": shuf_fold["best_p_value"],
+            "shuffled_uniform_best_period_s": shuf_fold["best_period"],
+            "obs_window_s_for_shuffle": float(obs_window_s),
+        },
+        "known_answer": {
+            "recovered_period_s": float(fold["best_period"]),
+            "recovered_z2": float(fold["best_z2"]),
+            "recovered_p_value": float(fold["best_p_value"]),
+            "recovery_error_s": float(recovery_err_s),
+            "recovery_pass": bool(recovery_err_s <= 1e-5),
+        },
+        "warnings": [],
+        "stance": _vela_motto_stance_with_recovered(float(recovery_err_s)),
+    }
+
+
+def _vela_module_missing() -> dict:
+    return {
+        "label": "pulsar_vela_real_data",
+        "method": "vela_real_epoch_fold_z2",
+        "data_source": "(no source obtained)",
+        "source_type": "empty",
+        "fetch_status": "MODULE_MISSING",
+        "ref_bibcode": VELA_BIBCODE_PSRCAT,
+        "ref_url": "https://www.atnf.csiro.au/research/pulsar/psrcat/",
+        "fetched_from": None,
+        "fetch_attempts": [],
+        "n_arrivals": 0,
+        "license": VELA_DATA_LICENSE,
+        "provenance_note": (
+            "pulsar_fetcher module not importable in this environment; "
+            "real-data Vela path disabled. Synthetic scaffold remains."
+        ),
+        "plant": {
+            "psr_b1950": VELA_PSR_B1950, "psr_j2000": VELA_PSR_J2000,
+            "true_period_s": float(VELA_P0_PUBLISHED_S),
+            "true_freq_hz": float(VELA_F0_PUBLISHED_HZ),
+        },
+        "epochfold": None,
+        "negative_controls": None,
+        "known_answer": None,
+        "warnings": ["no real-data path attempted because the Vela "
+                      "fetcher module is unavailable. NO synthetic "
+                      "plant was used."],
+        "stance": _vela_motto_stance(),
+    }
+
+
+def _vela_motto_stance() -> str:
+    return (
+        "Structure != message. Vela is the universe's most famous "
+        "NATURAL clock (Manchester+2005 AJ 129 1993; PPTA DR3 Zic+2023). "
+        "Periodicity is necessary, NOT sufficient for artificiality. "
+        "We do NOT fabricate arrival MJDs; we surface honest fetch failure."
+    )
+
+
+def _vela_motto_stance_with_recovered(err_s: float) -> str:
+    return (
+        f"Vela P0 {VELA_P0_PUBLISHED_S} s recovered from real arrival "
+        f"MJDs with err |recovered - P0| = {err_s:.3e} s. Vela is "
+        "the universe's most famous NATURAL clock. Lab motto: "
+        "PERIODICITY IS NECESSARY, NOT SUFFICIENT FOR ARTIFICIALITY. "
+        "We do NOT claim this implies ET. Structure != message."
+    )
+
+
 # --- Wow! honesty audit ---------------------------------------------------
 
 def wow_honest_check(samples=WOW_SAMPLES_SIGMA,
@@ -490,6 +887,201 @@ def run_wow_honest() -> dict:
     }
 
 
+def run_frb_180916_real(
+    bundled_json_path: Path | None = None,
+    seed: int = 0,
+    period_grid_lo: float = 10.0,
+    period_grid_hi: float = 30.0,
+    grid_step: float = 0.05,
+    force_status_for_tests: str | None = None,
+    use_chime_fetcher: bool = True,
+) -> dict:
+    """REAL-DATA path. Loads published FRB 180916 burst MJDs via FRS and
+    runs the standard epoch-fold + shuffled-negative-control pipeline on
+    them. NO synthetic plant injection -- if no MJDs are available the
+    function returns an honest-empty result with no epoch-fold attempt.
+
+    Parameters
+    ----------
+    bundled_json_path
+        Optional path to a JSON file containing a flat list of MJD floats
+        (or `[{name, mjd}, ...]`). When provided and parseable, this
+        override skips the network fetch entirely and tags
+        `data_source = "user_provided"`.
+    seed
+        Used by the negative-control generator (shuffled uniform null).
+    period_grid_lo/hi/grid_step
+        Same sweep grid as the synthetic path. We default to 10-30 d so
+        FRB 121102's ~157-d cycle lies outside the search.
+    force_status_for_tests
+        Test hook passed through to chime_frb_fetcher. Use None in
+        production; UNREACHABLE/PARKING_PAGE/FETCHED for deterministic
+        tests.
+    use_chime_fetcher
+        When False and no bundled override is given, the path returns an
+        empty `DISABLED` source without contacting the network.
+
+    Returns
+    -------
+    dict  with keys:
+        label, method="real_frb_180916_epoch_fold_z2",
+        data_source, source_type, fetch_status, ref_bibcode, ref_url,
+        n_bursts, fetched_from,
+        fetch_attempts (list of dicts),
+        provenance_note,
+        plant (period, bounds),
+        epochfold (None when no bursts; else the full epoch_fold dict),
+        negative_controls (shuffled uniform null; only when n_bursts>0),
+        known_answer (None when no bursts), stance, warnings.
+    """
+    if FRS is None:
+        return {
+            "label": "frb_180916_real_data",
+            "method": "real_frb_180916_epoch_fold_z2",
+            "data_source": "(no source obtained)",
+            "source_type": "empty",
+            "fetch_status": "MODULE_MISSING",
+            "ref_bibcode": None,
+            "ref_url": None,
+            "fetched_from": None,
+            "fetch_attempts": [],
+            "n_bursts": 0,
+            "burst_mjd_first": None,
+            "burst_mjd_last": None,
+            "provenance_note": (
+                "frb_real_sources module not importable in this environment; "
+                "real-data path disabled. Synthetic frb_180916 mode remains "
+                "as a math-validation tool."
+            ),
+            "plant": {
+                "true_period_d": float(FRB_180916_PERIOD_DAYS),
+                "decoy_period_d_for_frb_121102": 157.0,
+                "period_grid_lo_d": float(period_grid_lo),
+                "period_grid_hi_d": float(period_grid_hi),
+                "period_grid_step_d": float(grid_step),
+                "frb_name_variants_tried": [],
+            },
+            "epochfold": None,
+            "negative_controls": None,
+            "known_answer": None,
+            "warnings": ["no real-data path attempted because the burst source "
+                         "module is unavailable. NO synthetic plant was used."],
+            "stance": (
+                "Structure != message. The real-data module is unavailable "
+                "in this environment. Synthetic frb_180916 path remains "
+                "as a math-validation tool only."
+            ),
+        }
+    src = FRS.load_published_frb_180916_bursts(
+        bundled_json_path=bundled_json_path,
+        force_status_for_tests=force_status_for_tests,
+        use_chime_fetcher=use_chime_fetcher,
+    )
+    base_plant = {
+        "true_period_d": float(FRB_180916_PERIOD_DAYS),
+        "decoy_period_d_for_frb_121102": 157.0,  # explicitly NOT used
+        "period_grid_lo_d": float(period_grid_lo),
+        "period_grid_hi_d": float(period_grid_hi),
+        "period_grid_step_d": float(grid_step),
+        "frb_name_variants_tried": list(FRS_PASTOR_PUBLIC if FRS is not None
+                                        else []),
+    }
+    if not src.has_mjds:
+        return {
+            "label": "frb_180916_real_data",
+            "method": "real_frb_180916_epoch_fold_z2",
+            "data_source": src.source_name,
+            "source_type": src.source_type,
+            "fetch_status": src.fetch_status,
+            "ref_bibcode": src.reference_bibcode,
+            "ref_url": src.reference_url,
+            "fetched_from": src.fetched_from,
+            "fetch_attempts": src.fetch_attempts,
+            "n_bursts": 0,
+            "burst_mjd_first": None,
+            "burst_mjd_last": None,
+            "provenance_note": src.provenance_note,
+            "plant": base_plant,
+            "epochfold": None,
+            "negative_controls": None,
+            "known_answer": None,
+            "warnings": [
+                "no real-data path attempted because the burst source "
+                "returned zero MJDs. NO synthetic plant was used.",
+                "to populate: (a) wait for chime-frb.ca to come back online and "
+                "rerun; (b) pass --bundled-mjd-json with a JSON flat list of "
+                "MJDs transcribed from the Pastor-Marazuela 2021 table; or "
+                "(c) populate data/radio/published_tables/"
+                "pastor_marazuela_2021_frb_180916_mjds.json and refactor "
+                "frb_real_sources.load_published_frb_180916_bursts() to read it."
+            ],
+            "stance": (
+                "Structure != message. The real CHIME/FRB Catalog 1 mirror "
+                "is currently offline; the bundled Pastor-Marazuela 2021 table "
+                "is intentionally empty (extraction pending). We do NOT "
+                "fabricate MJDs. If `fetch_status` is UNREACHABLE/PARKING/, "
+                "the JSON `data_source` and `provenance_note` tell callers "
+                "exactly what was attempted."
+            ),
+        }
+
+    # Have MJDs -> run the standard epoch-fold pipeline.
+    mjds = np.asarray(src.burst_mjds, dtype=float)
+    grid = np.arange(period_grid_lo, period_grid_hi + 1e-9, grid_step)
+    fold = epoch_fold(mjds, grid)
+    rng = np.random.default_rng(seed + 11)
+    obs_window_d = float(mjds.max() - mjds.min() + 1.0) if len(mjds) >= 2 \
+        else max(float(mjds.max()), 1.0) * 2.0
+    shuf = rng.uniform(0.0, obs_window_d, size=len(mjds))
+    shuf_fold = epoch_fold(shuf, grid)
+    recovery_err_d = abs(fold["best_period"] - FRB_180916_PERIOD_DAYS)
+    return {
+        "label": "frb_180916_real_data",
+        "method": "real_frb_180916_epoch_fold_z2",
+        "data_source": src.source_name,
+        "source_type": src.source_type,
+        "fetch_status": src.fetch_status,
+        "ref_bibcode": src.reference_bibcode,
+        "ref_url": src.reference_url,
+        "fetched_from": src.fetched_from,
+        "fetch_attempts": src.fetch_attempts,
+        "n_bursts": int(len(mjds)),
+        "burst_mjd_first": float(mjds.min()),
+        "burst_mjd_last": float(mjds.max()),
+        "provenance_note": src.provenance_note,
+        "plant": base_plant,
+        "epochfold": fold,
+        "negative_controls": {
+            "shuffled_uniform_z2_max": shuf_fold["best_z2"],
+            "shuffled_uniform_z2_p_value": shuf_fold["best_p_value"],
+            "shuffled_uniform_best_period_d": shuf_fold["best_period"],
+            "obs_window_d_for_shuffle": round(obs_window_d, 4),
+        },
+        "known_answer": {
+            "recovered_period_d": fold["best_period"],
+            "recovered_z2": fold["best_z2"],
+            "recovered_p_value": fold["best_p_value"],
+            "recovery_error_d": round(recovery_err_d, 5),
+            "recovery_pass": bool(recovery_err_d <= 1.0),
+        },
+        "warnings": [],
+        "stance": (
+            f"Real-data path executed with N={len(mjds)} burst MJDs from "
+            f"`{src.source_name}` (source_type={src.source_type}, "
+            f"fetch_status={src.fetch_status}). Recovery of the published "
+            f"{FRB_180916_PERIOD_DAYS}-d cycle is a math-validation outcome -- "
+            "the natural precession-of-companion explanation is favoured. "
+            "Structure != message."
+        ),
+    }
+
+
+# Sentinel used to gate writing `frb_name_variants_tried` even if FRS is None.
+FRS_PASTOR_PUBLIC = (
+    "Pastor-Marazuela et al. 2020/2021 (ApJ 923 L6, arXiv:2001.08645)",
+)
+
+
 def run_frb_180916(seed: int = 0,
                    n_arrivals: int = DEFAULT_FRB_N_ARRIVALS,
                    obs_window_d: float = DEFAULT_FRB_OBS_WINDOW_DAYS,
@@ -547,10 +1139,19 @@ def run_frb_180916(seed: int = 0,
     }
 
 
-def analyze(mode: str = "all", seed: int = 0) -> dict:
+def analyze(
+    mode: str = "all",
+    seed: int = 0,
+    bundled_real_json: Path | None = None,
+    bundled_pulsar_csv: Path | None = None,
+) -> dict:
     """Orchestrator: returns a single dict containing all sub-runs.
 
-    `mode ∈ {'all', 'known_train', 'wow', 'frb_180916'}`.
+    `mode ∈ {'all', 'known_train', 'wow', 'frb_180916',
+             'frb_180916_real'}`.
+
+    `bundled_real_json` is forwarded to `run_frb_180916_real` when mode
+    includes 'frb_180916_real'. It is ignored otherwise.
     """
     out: dict = {
         "label": "radio_probe",
@@ -569,6 +1170,30 @@ def analyze(mode: str = "all", seed: int = 0) -> dict:
         out["wow_honest"] = run_wow_honest()
     if mode in ("all", "frb_180916"):
         out["frb_180916"] = run_frb_180916(seed=seed)
+    if mode == "frb_180916_real":
+        out["frb_180916_real_data"] = run_frb_180916_real(
+            bundled_json_path=bundled_real_json,
+            seed=seed,
+        )
+    if mode == "pulsar_vela_synthetic":
+        out["pulsar_vela_synthetic"] = run_pulsar_vela_synthetic(seed=seed)
+    if mode == "pulsar_vela_real":
+        out["pulsar_vela_real_data"] = run_pulsar_vela(
+            bundled_csv_path=bundled_pulsar_csv,
+            seed=seed,
+        )
+    if mode == "pulsar_vela":
+        # Fall-through: prefer real-data if a CSV override was given,
+        # else default to synthetic known-answer plant (proves math).
+        if bundled_pulsar_csv is not None:
+            out["pulsar_vela_real_data"] = run_pulsar_vela(
+                bundled_csv_path=bundled_pulsar_csv,
+                seed=seed,
+            )
+        else:
+            out["pulsar_vela_synthetic"] = run_pulsar_vela_synthetic(
+                seed=seed,
+            )
     return out
 
 
@@ -654,6 +1279,61 @@ def write_notes_markdown(report: dict) -> str:
             f"_stance:_ {f['stance']}",
             "",
         ]
+    if "frb_180916_real_data" in report:
+        rd = report["frb_180916_real_data"]
+        lines += [
+            "## FRB 180916 16.35-d — REAL-DATA path (NOT 121102)",
+            "",
+            f"- data source: **{rd.get('data_source', '?')}** "
+            f"(source_type=`{rd.get('source_type', '?')}`, "
+            f"fetch_status=`{rd.get('fetch_status', '?')}`)",
+            f"- reference: bibcode=`{rd.get('ref_bibcode') or '-'}`, "
+            f"url=`{rd.get('ref_url') or '-'}`",
+            f"- N bursts: **{rd.get('n_bursts', 0)}** "
+            f"(mjd first={rd.get('burst_mjd_first')}, "
+            f"last={rd.get('burst_mjd_last')})",
+            "",
+        ]
+        if rd.get("warnings"):
+            lines += ["### YELLOW BANNER - real-data path could NOT obtain MJDs", ""]
+            for w in rd["warnings"]:
+                lines.append(f"  - {w}")
+            lines.append("")
+            note = (rd.get("provenance_note") or "")[:600]
+            lines.append(f"_provenance:_ {note}")
+            lines.append("")
+            attempts = rd.get("fetch_attempts") or []
+            if attempts:
+                lines += ["### Fetch attempts", ""]
+                for i, a in enumerate(attempts[:6], start=1):
+                    lines.append(
+                        f"  {i}. `{a.get('url', '?')[:80]}` -> "
+                        f"{a.get('verdict', '?')} "
+                        f"(http={a.get('http_status')}, "
+                        f"bytes={a.get('content_bytes', 0)}, "
+                        f"err={a.get('error') or '-'})"
+                    )
+                if len(attempts) > 6:
+                    lines.append(f"  ... and {len(attempts) - 6} more")
+                lines.append("")
+        else:
+            ka = rd.get("known_answer") or {}
+            nc = rd.get("negative_controls") or {}
+            lines += [
+                f"- recovered period: **{ka.get('recovered_period_d')}** "
+                f"(err {ka.get('recovery_error_d')}, Z^2 = "
+                f"{ka.get('recovered_z2')}, p = "
+                f"{ka.get('recovered_p_value')}); "
+                f"**{'PASS' if ka.get('recovery_pass') else 'FAIL'}**",
+                f"- shuffled control: max Z^2 = "
+                f"{nc.get('shuffled_uniform_z2_max')}, "
+                f"p = {nc.get('shuffled_uniform_z2_p_value')}, best "
+                f"period = {nc.get('shuffled_uniform_best_period_d')} d, "
+                f"random - NO fabrication",
+                "",
+                f"_stance:_ {rd.get('stance', '')}",
+                "",
+            ]
     lines += [
         "---",
         "",
@@ -677,9 +1357,61 @@ def main() -> None:
                     help="Process the 6-sample Wow! signal (audit-only, "
                          "claim_blocked=True)")
     ap.add_argument("--frb-180916", action="store_true",
-                    help="Synthesize FRB 180916 (16.35 d) arrivals + epoch-fold")
+                    help="(DEPRECATED alias for --frb-180916-synthetic) "
+                         "Synthesize 30 fake arrivals around 16.35 d + "
+                         "epoch-fold. Math-validation only; nothing about "
+                         "the real FRB.")
+    ap.add_argument("--frb-180916-synthetic", action="store_true",
+                    help="Same as --frb-180916: synthetic-plant known-answer.")
+    ap.add_argument("--frb-180916-real", action="store_true",
+                    help="REAL-DATA path: fetch CHIME/FRB Catalog 1 CSV "
+                         "(or --bundled-mjd-json) and run epoch-fold on "
+                         "the actual burst MJDs. If no MJDs can be "
+                         "obtained, the run reports fetch_status and "
+                         "exits without fabrication.")
+    ap.add_argument("--bundled-mjd-json", type=Path, default=None,
+                    help="Override the live fetch with a JSON file "
+                         "containing a flat list of MJD floats. "
+                         "Schema: [58700.1, 58716.5, ...] OR "
+                         "[{\"name\": \"...\", \"mjd\": ...}, ...]. "
+                         "Only honoured when combined with "
+                         "--frb-180916-real.")
+    ap.add_argument("--pulsar-vela", action="store_true",
+                    help="REAL-DATA Vela positive-control path: load "
+                         "PSR B0833-45 arrival MJDs (live ATNF/Parkes "
+                         "fetch OR --bundled-pulsar-csv override) and "
+                         "run epoch-fold around the published P0 "
+                         "(~89.328 ms). Lab motto: periodicity is "
+                         "necessary, NOT sufficient, for artificiality "
+                         "-- we do NOT claim detection implies ET.")
+    ap.add_argument("--pulsar-vela-synthetic", action="store_true",
+                    help="Vela synthetic positive-control: plant 30 "
+                         "arrival MJDs at multiples of P0 with 1 us "
+                         "jitter; run epoch-fold in SECONDS. This is "
+                         "a math-validation tool (no glitches, no "
+                         "spin-down) ONLY.")
+    ap.add_argument("--pulsar-vela-real", action="store_true",
+                    help="Explicit real-data Vela fetch (same as "
+                         "--pulsar-vela but never falls through to "
+                         "the synthetic plant). Use this when you "
+                         "want honest-empty-on-fetch-failure semantics.")
+    ap.add_argument("--bundled-pulsar-csv", type=Path, default=None,
+                    help="Override the ATNF/Parkes live fetch with a "
+                         "CSV file of Vela arrival MJDs. Schema: "
+                         "header `name,mjd` (Vela-row filter is "
+                         "applied automatically) OR a flat list of "
+                         "MJD floats (treated as Vela). Only honoured "
+                         "when combined with --pulsar-vela*.")
+    ap.add_argument("--fetch-status-test-force",
+                    choices=["UNREACHABLE", "PARKING_PAGE", "FETCHED"],
+                    default=None,
+                    help="TEST HOOK: synthesize fetcher result without "
+                         "network contact. UNREACHABLE / PARKING_PAGE / "
+                         "FETCHED. Production users must omit this flag. "
+                         "Only applies to --frb-180916-real.")
     ap.add_argument("--all-of-the-above", action="store_true",
-                    help="Run known-train + wow-honest + frb-180916 (default)")
+                    help="Run known-train + wow-honest + frb-180916 (synthetic)"
+                         " (default)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out-json", type=Path, default=None,
                     help="write structured JSON report")
@@ -687,22 +1419,76 @@ def main() -> None:
                     help="write human-readable notes markdown")
     args = ap.parse_args()
 
-    # Default to --all-of-the-above if no flag is supplied.
-    if not (args.known_train or args.wow_honest or args.frb_180916):
+    # Default to --all-of-the-above if no flag is supplied AND no real-data
+    # override is present.
+    if not (args.known_train or args.wow_honest
+            or args.frb_180916 or args.frb_180916_synthetic
+            or args.frb_180916_real):
         args.all_of_the_above = True
 
-    if args.all_of_the_above:
+    if args.frb_180916_real:
+        mode = "frb_180916_real"
+    elif args.pulsar_vela_synthetic:
+        mode = "pulsar_vela_synthetic"
+    elif args.pulsar_vela_real:
+        mode = "pulsar_vela_real"
+    elif args.pulsar_vela:
+        mode = "pulsar_vela"
+    elif args.all_of_the_above:
         mode = "all"
-    elif args.known_train and not (args.wow_honest or args.frb_180916):
-        mode = "known_train"
-    elif args.wow_honest and not (args.known_train or args.frb_180916):
-        mode = "wow"
-    elif args.frb_180916 and not (args.known_train or args.wow_honest):
+    elif (args.frb_180916 or args.frb_180916_synthetic) and not (
+            args.known_train or args.wow_honest
+            or args.pulsar_vela or args.pulsar_vela_synthetic
+            or args.pulsar_vela_real):
         mode = "frb_180916"
+    elif args.known_train and not (args.wow_honest
+                                   or args.frb_180916 or args.frb_180916_synthetic
+                                   or args.frb_180916_real
+                                   or args.pulsar_vela or args.pulsar_vela_synthetic
+                                   or args.pulsar_vela_real):
+        mode = "known_train"
+    elif args.wow_honest and not (args.known_train
+                                  or args.frb_180916 or args.frb_180916_synthetic
+                                  or args.frb_180916_real
+                                  or args.pulsar_vela or args.pulsar_vela_synthetic
+                                  or args.pulsar_vela_real):
+        mode = "wow"
     else:
         mode = "all"
 
-    report = analyze(mode=mode, seed=args.seed)
+    report = analyze(
+        mode=mode,
+        seed=args.seed,
+        bundled_real_json=args.bundled_mjd_json if mode == "frb_180916_real"
+        else None,
+        bundled_pulsar_csv=args.bundled_pulsar_csv
+        if mode in ("pulsar_vela", "pulsar_vela_real", "pulsar_vela_synthetic")
+        else None,
+    )
+    if mode == "frb_180916_real" and args.fetch_status_test_force:
+        # Re-run with the test hook applied to the real-data path layer.
+        # The hook is propagated by patching analyze() to pass the force
+        # argument to run_frb_180916_real. We do that via a thin shim here
+        # so production users don't have to know about force_status_for_tests.
+        if FRS is not None and "frb_180916_real_data" in report:
+            report["frb_180916_real_data"] = run_frb_180916_real(
+                bundled_json_path=args.bundled_mjd_json
+                if mode == "frb_180916_real" else None,
+                seed=args.seed,
+                force_status_for_tests=args.fetch_status_test_force,
+            )
+    if mode == "pulsar_vela_real" and args.fetch_status_test_force:
+        # Same thin-shim pattern as FRB 180916: re-run with the
+        # fetch-status test hook applied to the pulsar_vela real path
+        # layer so production users don't have to know about
+        # force_status_for_tests.
+        if PUL is not None and "pulsar_vela_real_data" in report:
+            report["pulsar_vela_real_data"] = run_pulsar_vela(
+                bundled_csv_path=args.bundled_pulsar_csv
+                if mode == "pulsar_vela_real" else None,
+                seed=args.seed,
+                force_status_for_tests=args.fetch_status_test_force,
+            )
     text = json.dumps(report, indent=2)
     print(text[:1500] + ("…" if len(text) > 1500 else ""))
     if args.out_json:

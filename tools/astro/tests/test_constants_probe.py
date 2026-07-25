@@ -272,6 +272,45 @@ def test_main_runs_end_to_end_with_small_control() -> None:
         assert len(report["interpretation"]) >= 6
 
 
+# ---------------------------------------------------------------------------
+# Mixings set (CKM + PMNS) -- entered 2026-07-25 per Hermes follow-up
+# ---------------------------------------------------------------------------
+def test_get_table_supports_mixings_set() -> None:
+    """The 'mixings' set should be CORE + MIXINGS, no derived rows.
+    Same shape invariant as 'core' but adds 7 mixing parameters."""
+    t = CP.get_table("mixings")
+    assert len(t) == len(CP.CONSTANTS_CORE) + len(CP.CONSTANTS_MIXINGS), (
+        f"expected core+{len(CP.CONSTANTS_MIXINGS)} mixings, got {len(t)}"
+    )
+    for c in t:
+        assert not c.get("derived", False), f"mixings leak: {c['name']} derived=True"
+    nm_mixings = {c["name"] for c in CP.CONSTANTS_MIXINGS}
+    seen_mixings = {c["name"] for c in t} & nm_mixings
+    assert seen_mixings == nm_mixings, f"missing mixings: {nm_mixings - seen_mixings}"
+
+
+def test_mixings_constants_not_on_watchlist() -> None:
+    """CKM + PMNS were measured long AFTER the famous coincidences that
+    motivate the watchlist. Placing them there would silently re-introduce
+    the selection-bias loop we removed in round 1."""
+    watch_names = {n for row in CP.WATCHLIST for n in (row[0], row[1])}
+    nm_mixings = {c["name"] for c in CP.CONSTANTS_MIXINGS}
+    assert watch_names & nm_mixings == set(), (
+        f"watchlist unexpectedly contains mixing constants: "
+        f"{watch_names & nm_mixings}"
+    )
+
+
+def test_everything_set_combines_all_three_layers() -> None:
+    """`everything` = core + mixings + Dirac LNH. Derived rows from LNH
+    (ratio_LNDirac, ratio_age_Hubble) must be present so filter_for_hits
+    actually has to do work."""
+    t = CP.get_table("everything")
+    derived = {c["name"] for c in t if c.get("derived", False)}
+    assert "ratio_LNDirac" in derived
+    assert "ratio_age_Hubble" in derived
+
+
 if __name__ == "__main__":
     import json
     fns = [v for k, v in sorted(globals().items())

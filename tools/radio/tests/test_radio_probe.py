@@ -313,6 +313,496 @@ def test_cli_all_of_above_writes_both_files():
     assert "known-answer" in md_text.lower()
 
 
+# --- real-data fetch-path tests ------------------------------------------
+
+def test_chime_fetcher_unreachable_does_not_synthesize():
+    """When ALL candidate URLs are unreachable, the fetcher MUST surface
+    UNREACHABLE and an empty mjds list -- it MUST NOT synthesize data."""
+    import chime_frb_fetcher as CFF
+    # Use a deliberately invalid URL (low port on localhost) so the test
+    # fails fast and never accidentally contacts the canonical mirror.
+    res = CFF.try_fetch_chime_frb_catalog_1_csv(
+        attempt_urls=[("http://127.0.0.1:1/nope", "deliberate_invalid",
+                        "text/csv")],
+        timeout_s=2.0,
+        use_cache=False,
+    )
+    assert res.fetch_status in ("UNREACHABLE", "PARKING_PAGE"), (
+        f"fetch_status should be UNREACHABLE/PARKING_PAGE, got "
+        f"{res.fetch_status}; an HTML response on canonical mirrors is "
+        f"classified PARKING_PAGE."
+    )
+    assert res.mjds == [], (
+        "mjds must be empty when fetch fails; we never silently synthesize"
+    )
+    assert len(res.attempts) >= 1
+    att0 = res.attempts[0]
+    assert att0.verdict in ("NETWORK_ERROR", "TIMEOUT",
+                            "4XX", "5XX", "HTML_PARKING"), (
+        f"verdict should be a real failure mode, got {att0.verdict}"
+    )
+
+
+def test_chime_fetcher_html_response_classified_as_parking():
+    """An HTTP 200 with content-type text/html is a parking page -- it
+    MUST NOT be silently treated as an empty CSV."""
+    import chime_frb_fetcher as CFF
+    res = CFF.try_fetch_chime_frb_catalog_1_csv(
+        force_status_for_tests="PARKING_PAGE",
+    )
+    assert res.fetch_status == "PARKING_PAGE"
+    assert res.mjds == []
+    assert res.attempts, "attempts list must be populated"
+    for att in res.attempts:
+        assert att.verdict == "HTML_PARKING", (
+            f"all attempts should be classified HTML_PARKING when the "
+            f"site returns an HTML parking page; got {att.verdict}"
+        )
+
+
+def test_chime_fetcher_test_force_unreachable_includes_attempts():
+    """force_status_for_tests=UNREACHABLE synthesises one attempt per URL
+    WITHOUT contacting the network -- useful for deterministic tests."""
+    import chime_frb_fetcher as CFF
+    res = CFF.try_fetch_chime_frb_catalog_1_csv(
+        force_status_for_tests="UNREACHABLE",
+    )
+    assert res.fetch_status == "UNREACHABLE"
+    assert res.mjds == []
+    # Each canonical URL must be in the attempts list.
+    assert len(res.attempts) >= 5, (
+        f"expected >=5 canonical URL attempts, got {len(res.attempts)}"
+    )
+    for att in res.attempts:
+        assert att.verdict == "NETWORK_ERROR", (
+            f"all attempts should be NETWORK_ERROR in test-force mode; "
+            f"got {att.verdict}"
+        )
+        assert att.error and "force_status_for_tests" in att.error, (
+            f"attempt error must surface the test hook; got {att.error!r}"
+        )
+
+
+def test_chime_fetcher_cached_catalog_parses_csv_header():
+    """If a cached CSV is provided with a parseable header, the fetcher
+    should return CACHED + parsed rows + 0 MJDs for FRB 180916 (since
+    the test fixture won't include real burst data)."""
+    import json
+    import chime_frb_fetcher as CFF
+    td = Path(tempfile.mkdtemp(prefix="chime_cached_"))
+    cache_path = td / "chime_frb_catalog1.csv"
+    # Minimal CSV with the documented schema. Names that DON'T match
+    # any FRB 180916 variant -> 0 mjds in result.
+    cache_path.write_text(
+        "tns_name,mjd,ra,dec\n"
+        "FRB 20220610A,59744.5,180.0,-30.0\n"
+        "FRB 20220612B,59746.7,200.0,40.0\n"
+    )
+    res = CFF.try_fetch_chime_frb_catalog_1_csv(
+        use_cache=True,
+        cache_path=cache_path,
+        # We bypass force_status_for_tests so the CACHED path is taken
+        # BEFORE any URL probe.
+        force_status_for_tests=None,
+    )
+    assert res.fetch_status == "CACHED", (
+        f"cached fixture should return CACHED; got {res.fetch_status}"
+    )
+    assert res.csv_path == str(cache_path)
+    assert res.n_rows_total == 2
+    assert res.mjds == [], (
+        "no FRB 180916 rows in fixture -> empty mjds; we never claim "
+        "the fixture contains real burst MJDs"
+    )
+
+
+def test_frb_real_sources_returns_empty_with_honest_provenance():
+    """Default load (live fetch fails today) returns an empty PublishedBurstSource
+    with a non-empty provenance note that explains the absence."""
+    import frb_real_sources as FRS
+    src = FRS.load_published_frb_180916_bursts(
+        force_status_for_tests="UNREACHABLE",
+    )
+    assert src.burst_mjds == []
+    assert src.source_type == "empty"
+    assert src.fetch_status in ("UNREACHABLE", "PARKING_PAGE")
+    assert src.provenance_note
+    # The provenance must surface the empty state honestly.
+    pn = src.provenance_note.lower()
+    assert any(kw in pn for kw in (
+        "no mjds", "honest", "intentionally", "extraction",
+        "fabricat", "paste",
+    )), f"provenance_note must surface the empty-empty state: " \
+        f"{src.provenance_note!r}"
+    # fetch_attempts must include at least one UNREACHABLE entry.
+    assert src.fetch_attempts, "fetch_attempts must be populated"
+    assert any("URL" in str(a) or "url" in str(a)
+                for a in src.fetch_attempts), (
+        "fetch_attempts must contain URL info per attempt"
+    )
+
+
+def test_frb_real_sources_accepts_user_provided_override_json(tmp_path):
+    """When --bundled-mjd-json points at a parseable JSON flat list of
+    MJD floats, the loader uses them and flags source_type='user_provided'."""
+    import json
+    import frb_real_sources as FRS
+    fixture = tmp_path / "bursts.json"
+    # These MJDs are TEST-ONLY fixture values; never claim they are real
+    # bursts from any paper.
+    fixture.write_text(json.dumps([59000.0, 59016.35, 59032.7]))
+    src = FRS.load_published_frb_180916_bursts(
+        bundled_json_path=fixture,
+    )
+    assert src.burst_mjds == [59000.0, 59016.35, 59032.7]
+    assert src.source_type == "user_provided"
+    assert src.fetch_status == "USER_OVERRIDE"
+    assert src.provenance_note.startswith("Burst MJDs supplied via")
+
+
+def test_run_frb_180916_real_default_returns_empty_warning():
+    """Without a bundled-override JSON and with the CHIME fetch forced
+    UNREACHABLE, run_frb_180916_real MUST return an honest-empty shape
+    with top-level warnings and NO epoch-fold attempt."""
+    out = RP.run_frb_180916_real(force_status_for_tests="UNREACHABLE")
+    assert out["epochfold"] is None, (
+        "epochfold MUST be None when no MJDs available; we never"
+        "fall back to a synthetic plant"
+    )
+    assert out["known_answer"] is None
+    assert out["n_bursts"] == 0
+    assert "warnings" in out and len(out["warnings"]) >= 1
+    # The warning text must convey the empty state explicitly.
+    warning_text = " ".join(out["warnings"]).lower()
+    assert "no real-data path" in warning_text or \
+           "no synthetic plant" in warning_text or \
+           "no mjds" in warning_text, (
+        f"warning text must surface the empty state: {out['warnings']}"
+    )
+    assert out["fetch_status"] == "UNREACHABLE"
+    # Anti-fabrication: no synthetic-plant fingerprint.
+    s = json.dumps(out)
+    for banned in ("synth_seed", "synth_period_d",
+                    "synth_period_d_for_frb_121102",
+                    "_synth_arrivals"):
+        assert banned not in s, (
+            f"banned synthetic-keyword {banned!r} found in real-data "
+            f"output (would indicate silent synthesis): {s[:400]}"
+        )
+
+
+def test_run_frb_180916_real_user_override_runs_epoch_fold(tmp_path):
+    """When --bundled-mjd-json is provided and parseable, run_frb_180916_real
+    MUST run epoch-fold and return the non-empty shape."""
+    import json
+    fixt = tmp_path / "mjds.json"
+    # 30 MJDs at multiples of 16.35 d starting ~58700. TEST fixture;
+    # never claim these are real-world bursts from the Pastor-Marazuela
+    # paper -- the test is verifying the wiring only.
+    mjds = [58700.0 + 16.35 * (i + 1) + 0.1 for i in range(30)]
+    fixt.write_text(json.dumps(mjds))
+    out = RP.run_frb_180916_real(bundled_json_path=fixt)
+    assert out["epochfold"] is not None
+    assert out["fetch_status"] == "USER_OVERRIDE"
+    assert out["data_source"].endswith("bursts.json"), (
+        f"data_source should name the user-provided JSON file; "
+        f"got {out['data_source']!r}"
+    )
+    assert out["n_bursts"] == 30
+    assert out["known_answer"]["recovery_pass"] is True
+    # The honest-empty warnings MUST NOT be present.
+    assert out["warnings"] == [], (
+        f"warnings must be empty when MJDs are user-provided; "
+        f"got {out['warnings']}"
+    )
+
+
+def test_run_frb_180916_real_parking_page_does_not_synthesize():
+    """When the CHIME mirror returns an HTML parking page (force test hook),
+    the real-data path MUST return the honest-empty shape without planting."""
+    out = RP.run_frb_180916_real(force_status_for_tests="PARKING_PAGE")
+    assert out["epochfold"] is None
+    assert out["fetch_status"] == "PARKING_PAGE"
+    assert out["n_bursts"] == 0
+    s = json.dumps(out)
+    # Specifically: no derived synthetic key indicators.
+    for banned in ("plant_period_d", "jitter_d", "obs_window_d",
+                    "_synth_arrivals"):
+        # 'plant_period_d' *is* allowed inside the static base_plant
+        # block (it documents the published 16.35 d). It must NOT appear
+        # inside epochfold or known_answer (which would mean we ran).
+        if banned == "plant_period_d":
+            assert "epochfold" not in out or out["epochfold"] is None
+            continue
+        assert banned not in s, (
+            f"banned fabrication-marker {banned!r} found in {s[:400]}"
+        )
+
+
+def test_run_frb_180916_real_writes_lab_motto_in_stance():
+    """The lab motto must surface in every real-data run, even on failures."""
+    out_failed = RP.run_frb_180916_real(force_status_for_tests="UNREACHABLE")
+    assert "Structure != message" in out_failed["stance"], (
+        f"lab motto missing from stance: {out_failed['stance']!r}"
+    )
+
+
+def test_analyze_mode_frb_180916_real_is_supported():
+    """analyze(mode='frb_180916_real') must dispatch to run_frb_180916_real."""
+    import json as _json
+    out = RP.analyze(mode="frb_180916_real", seed=0,
+                       bundled_real_json=None)
+    assert "frb_180916_real_data" in out
+    rd = out["frb_180916_real_data"]
+    # Will land in UNREACHABLE on the canonical net; honest-empty shape.
+    assert rd["epochfold"] is None
+    assert rd["fetch_status"] in ("UNREACHABLE", "PARKING_PAGE")
+    s = _json.dumps(out)
+    for banned in ("synth_seed", "_synth_arrivals"):
+        assert banned not in s
+
+
+# --- markdown notes & end-to-end CLI for the real-data path -------------
+
+def test_write_notes_markdown_for_real_data_path_surfaces_banner():
+    """When the real-data path returns warnings, write_notes_markdown
+    must surface a yellow 🟡 BANNER. (We use the emoji-style unicode
+    banner-text in the markdown for cross-platform safety.)"""
+    import json
+    out = RP.run_frb_180916_real(force_status_for_tests="UNREACHABLE")
+    report = {"label": "radio_probe_real_only",
+                "mode": "frb_180916_real",
+                "seed": 0,
+                "stance": "test",
+                "frb_180916_real_data": out}
+    md = RP.write_notes_markdown(report)
+    assert "REAL-DATA path" in md
+    assert "fetch_status=UNREACHABLE" in md or "UNREACHABLE" in md
+    assert "Fetch attempts" in md or "no real-data path" in md
+
+
+def test_cli_frb_180916_real_with_test_force_uses_provided_status():
+    """End-to-end CLI: --frb-180916-real + --fetch-status-test-force=UNREACHABLE
+    must produce a JSON whose fetch_status reports UNREACHABLE."""
+    td = Path(tempfile.mkdtemp(prefix="radio_real_"))
+    out_json = td / "real.json"
+    res = subprocess.run([
+        sys.executable, str(TOOLS_RADIO / "radio_probe.py"),
+        "--frb-180916-real",
+        "--fetch-status-test-force", "UNREACHABLE",
+        "--seed", "0",
+        "--out-json", str(out_json),
+    ], capture_output=True, text=True, timeout=60)
+    assert res.returncode == 0, (
+        f"CLI --frb-180916-real failed:\\nSTDOUT: {res.stdout[:600]}\\n"
+        f"STDERR: {res.stderr[:600]}"
+    )
+    d = json.load(open(out_json))
+    rd = d["frb_180916_real_data"]
+    assert rd["fetch_status"] == "UNREACHABLE"
+    assert rd["epochfold"] is None
+    assert rd["n_bursts"] == 0
+    assert "warnings" in rd and len(rd["warnings"]) >= 1
+
+
+def test_cli_frb_180916_real_with_user_override_json(tmp_path):
+    """End-to-end CLI: --frb-180916-real + --bundled-mjd-json with a parseable
+    JSON file MUST use the override and run the epoch-fold."""
+    import json
+    fixt = tmp_path / "override.json"
+    mjds = [58700.0 + 16.35 * (i + 1) + 0.1 for i in range(30)]
+    fixt.write_text(json.dumps(mjds))
+    out_json = tmp_path / "real_user.json"
+    res = subprocess.run([
+        sys.executable, str(TOOLS_RADIO / "radio_probe.py"),
+        "--frb-180916-real",
+        "--bundled-mjd-json", str(fixt),
+        "--seed", "0",
+        "--out-json", str(out_json),
+    ], capture_output=True, text=True, timeout=60)
+    assert res.returncode == 0, (
+        f"CLI --frb-180916-real --bundled failed:\\n"
+        f"STDOUT: {res.stdout[:600]}\\nSTDERR: {res.stderr[:600]}"
+    )
+    d = json.load(open(out_json))
+    rd = d["frb_180916_real_data"]
+    assert rd["fetch_status"] == "USER_OVERRIDE"
+    assert rd["n_bursts"] == 30
+    assert rd["known_answer"]["recovery_pass"] is True
+
+
+# --- Vela pulsar positive-control tests -----------------------------------
+
+def test_vela_constants_published_in_module():
+    """Vela constants must surface and the published period must be
+    ~89.328 ms (lab-motto positive-control anchor)."""
+    import math
+    assert RP.VELA_PSR_B1950 == "B0833-45"
+    assert RP.VELA_PSR_J2000 == "J0835-4510"
+    assert math.isclose(RP.VELA_P0_PUBLISHED_S, 0.089328385507, rel_tol=1e-9)
+    assert math.isclose(RP.VELA_F0_PUBLISHED_HZ,
+                          1.0 / RP.VELA_P0_PUBLISHED_S, rel_tol=1e-9)
+    assert "1993M" in RP.VELA_BIBCODE_PSRCAT
+    assert "CC BY 4.0" in RP.VELA_DATA_LICENSE
+
+
+def test_synth_pulsar_vela_arrivals_returns_periodic_mjds():
+    """The synthetic Vela plant must produce 30 arrival MJDs that fall
+    on multiples of P0 (within the synthetic jitter envelope)."""
+    import math
+    mjds = RP.synth_pulsar_vela_arrivals(seed=0)
+    assert len(mjds) == RP.DEFAULT_VELA_N_ARRIVALS
+    # Convert to seconds and confirm the differences are close to P0 * N.
+    times_s = mjds * 86400.0
+    diffs_s = np.diff(times_s)
+    P0 = RP.VELA_P0_PUBLISHED_S
+    # Each diff should equal +/- a small number of periods; the cleanest
+    # is diff[i] / P0 ~ (i+1) - i = 1 (consecutive multiples).
+    ratios = diffs_s / P0
+    assert np.allclose(ratios, 1.0, atol=1e-4), (
+        f"synthetic Vela plant does not plant at multiples of P0: "
+        f"diffs_s/P0 = {ratios[:5]}"
+    )
+
+
+def test_run_pulsar_vela_synthetic_recovers_p0_with_z2_dominant():
+    """The synthetic Vela plant must recover P0 within 5e-6 s with
+    Z^2 well above the shuffled-uniform null."""
+    out = RP.run_pulsar_vela_synthetic(seed=0)
+    ka = out["known_answer"]
+    assert ka["recovery_pass"] is True, (
+        f"recovery_pass should be True; recovered_period_s="
+        f"{ka['recovered_period_s']}, recovery_error_s="
+        f"{ka['recovery_error_s']}"
+    )
+    # Z^2 should be close to 2*N = 60 for tight clustering.
+    assert ka["recovered_z2"] > 30.0, (
+        f"Z^2 = {ka['recovered_z2']} below expected ~60 for N=30 tight"
+    )
+    # Shuffled null is well below the plant.
+    assert out["negative_controls"]["shuffled_uniform_z2_max"] < \
+        ka["recovered_z2"], (
+        "shuffled null Z^2 must NOT outperform the plant"
+    )
+
+
+def test_run_pulsar_vela_synthetic_includes_stance_with_motto():
+    """The synthetic-Vela stance string MUST surface the lab motto
+    (structure != message AND period = necessary NOT sufficient)."""
+    out = RP.run_pulsar_vela_synthetic(seed=0)
+    stance = (out["stance"] + " " + out.get("lab_motto_anchor", "")).lower()
+    assert "structure" in stance and "message" in stance, (
+        f"stance must surface 'Structure != message': {out['stance']!r}"
+    )
+    assert "necessary" in stance and "sufficient" in stance, (
+        f"stance must surface 'necessary, NOT sufficient': {out['stance']!r}"
+    )
+
+
+def test_run_pulsar_vela_real_default_returns_empty_no_synthesis():
+    """Without overrides and with the live fetch forced UNREACHABLE,
+    run_pulsar_vela MUST return honest-empty shape WITHOUT synthesizing."""
+    out = RP.run_pulsar_vela(force_status_for_tests="UNREACHABLE")
+    assert out["epochfold"] is None, (
+        "epochfold MUST be None when no MJDs available; "
+        "we never fall back to a synthetic plant in the real-data path"
+    )
+    assert out["known_answer"] is None
+    assert out["n_arrivals"] == 0
+    warning_text = " ".join(out.get("warnings", [])).lower()
+    assert "no real-data path" in warning_text or \
+        "no synthetic plant" in warning_text or \
+        "no mjds" in warning_text, (
+        f"warning text must surface the empty state: {out['warnings']}"
+    )
+    assert out["fetch_status"] in ("UNREACHABLE", "PARKING_PAGE",
+                                     "MODULE_MISSING")
+    s = json.dumps(out)
+    for banned in ("_synth_arrivals", "decoy_real_spin_period_s"):
+        assert banned not in s, (
+            f"banned fabrication-marker {banned!r} found in real-data "
+            f"output: {s[:400]}"
+        )
+
+
+def test_pulsar_fetcher_unreachable_does_not_synthesize():
+    """When all canonical URLs are unreachable, the fetcher MUST surface
+    UNREACHABLE -- never fabricate arrival MJDs."""
+    import pulsar_fetcher as PUL
+    res = PUL.try_fetch_atnf_pulsar_vela_timing(
+        attempt_urls=[("http://127.0.0.1:1/nope", "deliberate_invalid",
+                        "text/csv")],
+        timeout_s=2.0,
+        use_cache=False,
+    )
+    assert res.fetch_status in ("UNREACHABLE", "PARKING_PAGE")
+    assert res.arrival_mjds == []
+    assert res.arrival_mjds_vela == []
+    assert len(res.attempts) >= 1
+    att0 = res.attempts[0]
+    assert att0.verdict in ("NETWORK_ERROR", "TIMEOUT", "4XX",
+                              "5XX", "HTML_PARKING")
+
+
+def test_analyze_mode_pulsar_vela_synthetic_and_real_dispatch():
+    """analyze() must dispatch 'pulsar_vela_synthetic' to the synthetic
+    plant and 'pulsar_vela_real' to the real-data path (which, under
+    the network/canonical-mirror-unreachable state, returns empty)."""
+    out_syn = RP.analyze(mode="pulsar_vela_synthetic", seed=0)
+    assert "pulsar_vela_synthetic" in out_syn
+    assert out_syn["pulsar_vela_synthetic"]["known_answer"]["recovery_pass"] is True
+    out_real = RP.analyze(mode="pulsar_vela_real", seed=0)
+    assert "pulsar_vela_real_data" in out_real
+    rd = out_real["pulsar_vela_real_data"]
+    assert rd["source_type"] == "empty"
+    # Even though MODULE_MISSING or fetch_status may vary by env,
+    # the warnings must surface the empty state.
+    assert len(rd.get("warnings", [])) >= 1
+
+
+def test_cli_pulsar_vela_real_with_test_force_uses_provided_status():
+    """End-to-end CLI: --pulsar-vela-real --fetch-status-test-force UNREACHABLE
+    must produce a JSON whose real-data path is honest-empty."""
+    td = Path(tempfile.mkdtemp(prefix="vela_real_"))
+    out_json = td / "vela_real.json"
+    res = subprocess.run([
+        sys.executable, str(TOOLS_RADIO / "radio_probe.py"),
+        "--pulsar-vela-real",
+        "--fetch-status-test-force", "UNREACHABLE",
+        "--seed", "0",
+        "--out-json", str(out_json),
+    ], capture_output=True, text=True, timeout=60)
+    assert res.returncode == 0, (
+        f"CLI --pulsar-vela-real failed:\nSTDOUT: {res.stdout[:600]}\n"
+        f"STDERR: {res.stderr[:600]}"
+    )
+    d = json.load(open(out_json))
+    rd = d["pulsar_vela_real_data"]
+    assert rd["fetch_status"] == "UNREACHABLE"
+    assert rd["epochfold"] is None
+    assert rd["n_arrivals"] == 0
+
+
+def test_cli_pulsar_vela_synthetic_recovers_p0_pass():
+    """End-to-end CLI: --pulsar-vela-synthetic must run the math and
+    return recovery_pass=True."""
+    td = Path(tempfile.mkdtemp(prefix="vela_syn_"))
+    out_json = td / "vela_syn.json"
+    res = subprocess.run([
+        sys.executable, str(TOOLS_RADIO / "radio_probe.py"),
+        "--pulsar-vela-synthetic",
+        "--seed", "0",
+        "--out-json", str(out_json),
+    ], capture_output=True, text=True, timeout=60)
+    assert res.returncode == 0, (
+        f"CLI --pulsar-vela-synthetic failed:\n"
+        f"STDOUT: {res.stdout[:600]}\nSTDERR: {res.stderr[:600]}"
+    )
+    d = json.load(open(out_json))
+    out = d["pulsar_vela_synthetic"]
+    assert out["known_answer"]["recovery_pass"] is True
+
+
 # --- Standalone runner ----------------------------------------------------
 
 if __name__ == "__main__":

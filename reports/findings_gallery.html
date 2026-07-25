@@ -545,6 +545,48 @@
     root.appendChild(psec);
 
     // ============================================================
+    // A2. LINEAR A — control lesson (G1)
+    // ============================================================
+    var LA = D.linear_a;
+    if (LA) {
+      var lasec = el("section", "rise");
+      lasec.id = "linear-a";
+      lasec.innerHTML =
+        '<div class="sec-h"><h2><span class="num">A2</span>Linear A — textbook control lesson</h2>' +
+        '<span class="aside">n=' + esc(LA.n_tokens_la) + ' tokens · genre: ' + esc(LA.genre) + '</span></div>' +
+        '<p class="starnote">Dramatic raw z is real sequence structure (ledger formulas). ' +
+        'The “negative” row validates the null — it does not cancel the LA hit. Structure ≠ meaning.</p>';
+      var lagrid = el("div", "phaistos-grid");
+
+      var la1 = el("div", "panel");
+      la1.innerHTML =
+        '<div class="panel-h"><span class="fact-no">Linear A vs token permutation</span>' + tag(LA.la.verdict) + "</div>" +
+        '<div class="panel-h"><span class="lbl">H(next|prev) z = <b>' + fmt(LA.la.z, 2) + '</b></span>' +
+          controlTag("Freq-preserving shuffle") + "</div>" +
+        '<p class="caption">observed ' + fmt(LA.la.observed, 3) + ' · shuffle ' + fmt(LA.la.shuffled_mean, 3) +
+          '±' + fmt(LA.la.shuffled_sd, 4) + ' · top bigrams: ' +
+          esc((LA.top_bigrams || []).slice(0, 3).map(function (b) {
+            return (b.pair || []).join("-") + "×" + b.count;
+          }).join(", ")) + "</p>" +
+        '<p class="caveat">' + esc(LA.caveat) + "</p>";
+      lagrid.appendChild(la1);
+
+      var la2 = el("div", "panel");
+      la2.innerHTML =
+        '<div class="panel-h"><span class="fact-no">Controls</span></div>' +
+        '<p class="caption"><b>Known-answer Linear B:</b> z = ' + fmt(LA.lb_known_answer.z, 2) + " " +
+          tag(LA.lb_known_answer.verdict) + " — probe lights up on a real syllabary.</p>" +
+        '<p class="caption"><b>Null validation (shuffled LA as data):</b> z = ' +
+          fmt(LA.null_validation.z, 2) + " " + tag(LA.null_validation.verdict) +
+          " — shuffled data must not falsely signal.</p>" +
+        '<p class="caveat">' + esc(LA.method_lesson) + "</p>";
+      lagrid.appendChild(la2);
+
+      lasec.appendChild(lagrid);
+      root.appendChild(lasec);
+    }
+
+    // ============================================================
     // C. WHEAT CLOSEOUT
     // ============================================================
     var wsec = el("section", "rise");
@@ -573,7 +615,7 @@
     var PRETTY = {
       crop_circles: "Crop circles", phaistos: "Phaistos", dna_epigenetics: "DNA / epigenetics",
       uap_video: "UAP video", constants: "Constants", archaeoastronomy: "Archaeoastronomy",
-      nazca: "Nazca lines", wow_frb: "Wow! / FRB"
+      nazca: "Nazca lines", wow_frb: "Wow! / FRB", linear_a: "Linear A"
     };
     var dsec = el("section", "rise");
     dsec.id = "domains";

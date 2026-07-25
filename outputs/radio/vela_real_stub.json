@@ -1,0 +1,90 @@
+{
+  "label": "radio_probe",
+  "mode": "pulsar_vela_real",
+  "seed": 0,
+  "stance": "Structure != message. Pulsars are the universe's most precise natural clocks -- periodicity is necessary, NOT sufficient, for artificiality. All scaffolds here are math-validation plants; none are claims about real Wow! or real FRBs.",
+  "pulsar_vela_real_data": {
+    "label": "pulsar_vela_real_data",
+    "method": "vela_real_epoch_fold_z2",
+    "data_source": "ATNF Pulsar Catalogue (Manchester+ 2005)",
+    "source_type": "empty",
+    "fetch_status": "UNREACHABLE",
+    "ref_bibcode": "2005AJ....129.1993M",
+    "ref_url": "https://www.atnf.csiro.au/research/pulsar/psrcat/",
+    "fetched_from": null,
+    "fetch_attempts": [
+      {
+        "url": "https://www.atnf.csiro.au/research/pulsar/psrcat/proc_form.php?version=2.8.1&JNAME=J0835-4510&F0=on&PEPOCH=on&submit=Submit",
+        "role": "ATNF psrcat (J2000 ID) single-pulsar processor",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE (no network call)",
+        "elapsed_s": 0.0
+      },
+      {
+        "url": "https://www.atnf.csiro.au/research/pulsar/psrcat/proc_form.php?version=2.8.1&JNAME=B0833-45&F0=on&PEPOCH=on&submit=Submit",
+        "role": "ATNF psrcat (B1950 ID) single-pulsar processor",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE (no network call)",
+        "elapsed_s": 0.0
+      },
+      {
+        "url": "https://atoa.atnf.csiro.au/",
+        "role": "ATOA main archive (requires search interface, no direct file)",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE (no network call)",
+        "elapsed_s": 0.0
+      },
+      {
+        "url": "https://data.csiro.au/collection/csiro:40790",
+        "role": "PPTA DR1 (CSIRO Data Portal) landing page",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE (no network call)",
+        "elapsed_s": 0.0
+      },
+      {
+        "url": "https://data.csiro.au/collection/csiro:59374",
+        "role": "PPTA DR3 (Zic et al. 2023) landing page",
+        "http_status": null,
+        "content_type": null,
+        "content_bytes": 0,
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE (no network call)",
+        "elapsed_s": 0.0
+      }
+    ],
+    "n_arrivals": 0,
+    "license": "CC BY 4.0 (ATNF Pulsar Catalogue; PPTA Data Releases)",
+    "provenance_note": "Live ATNF/Parkes Vela fetch returned UNREACHABLE. NO MJDs obtained. Fetched: 5 canonical URL(s); no structured CSV was returned. The bundled PPTA table is intentionally empty (extraction pending, manual transcription required).",
+    "plant": {
+      "psr_b1950": "B0833-45",
+      "psr_j2000": "J0835-4510",
+      "true_period_s": 0.089328385507,
+      "true_freq_hz": 11.194649878919368,
+      "period_grid_delta_s": 1e-05,
+      "period_grid_steps": 1001,
+      "license": "CC BY 4.0 (ATNF Pulsar Catalogue; PPTA Data Releases)",
+      "data_units": "arrival MJDs converted to seconds: t_s = mjd * 86400"
+    },
+    "epochfold": null,
+    "negative_controls": null,
+    "known_answer": null,
+    "warnings": [
+      "no real-data path attempted because the Vela arrival source returned zero MJDs. NO synthetic plant was used.",
+      "live fetch_status: UNREACHABLE",
+      "to populate: pass --bundled-pulsar-csv with a CSV header `name,mjd` of arrival MJDs transcribed from a PPTA data-release paper (e.g., Manchester+2005 AJ 129 1993 cita at DOI 10.1086/428488)."
+    ],
+    "stance": "Structure != message. Vela is the universe's most famous NATURAL clock (Manchester+2005 AJ 129 1993; PPTA DR3 Zic+2023). Periodicity is necessary, NOT sufficient for artificiality. We do NOT fabricate arrival MJDs; we surface honest fetch failure."
+  }
+}

@@ -106,6 +106,30 @@ CONSTANTS_CORE = [
 ]
 
 
+# "mixings" set adds the quark + lepton mixing angles. These are
+# dimensionless parameters but were *measured* (not theorised) long after the
+# famous numerical coincidences that motivate the watchlist. They are
+# intentionally NOT on the watchlist -- any hit there is uncorrelated with
+# prior search bias. Sources: Wolfenstein CKM (PDG 2022, TreeFit), NuFit 5.2
+# for PMNS (2022, normal hierarchy, best-fit).
+CONSTANTS_MIXINGS = [
+    {"name": "CKM_lambda",    "symbol": "λ",            "value": 0.22500,
+     "category": "mixing", "source": "PDG 2022 Wolfenstein λ"},
+    {"name": "CKM_A",         "symbol": "A",            "value": 0.833,
+     "category": "mixing", "source": "PDG 2022 Wolfenstein A"},
+    {"name": "CKM_rho",       "symbol": "ρ",            "value": 0.160,
+     "category": "mixing", "source": "PDG 2022 Wolfenstein ρ"},
+    {"name": "CKM_eta",       "symbol": "η",            "value": 0.350,
+     "category": "mixing", "source": "PDG 2022 Wolfenstein η (CP-violating)"},
+    {"name": "PMNS_sin2_12",  "symbol": "sin²θ₁₂_ν",    "value": 0.303,
+     "category": "mixing", "source": "NuFit 5.2 (2022) best-fit, NH"},
+    {"name": "PMNS_sin2_23",  "symbol": "sin²θ₂₃_ν",    "value": 0.572,
+     "category": "mixing", "source": "NuFit 5.2 (2022) best-fit, NH"},
+    {"name": "PMNS_sin2_13",  "symbol": "sin²θ₁₃_ν",    "value": 0.02203,
+     "category": "mixing", "source": "NuFit 5.2 (2022) best-fit, NH"},
+]
+
+
 # "large" set adds Dirac Large Number candidates. alpha_G(proton) is an
 # INDEPENDENT constant (no pair of others derives it). The two `derived=True`
 # rows below are included for *narrative* completeness only -- the analysis
@@ -145,7 +169,22 @@ def get_table(set_name: str = "core") -> list[dict]:
         out = [dict(c, derived=False) for c in CONSTANTS_CORE]
         out.extend(CONSTANTS_LARGE_EXTRA)
         return out
-    raise ValueError(f"unknown constant-set: {set_name!r} (use 'core' or 'large')")
+    if name in ("mixings", "mixing", "ckm_pmns", "all_mixings"):
+        # core (15) + mixings (7) = 22 fundamental dimensionless, NO derived.
+        out = [dict(c, derived=False) for c in CONSTANTS_CORE]
+        out.extend(CONSTANTS_MIXINGS)
+        return out
+    if name in ("everything", "big", "all"):
+        # core + mixings + Dirac LNH. Three sources combined. Derived rows
+        # are tagged with `derived=True` and excluded from hit counts.
+        out = [dict(c, derived=False) for c in CONSTANTS_CORE]
+        out.extend(CONSTANTS_MIXINGS)
+        out.extend(CONSTANTS_LARGE_EXTRA)
+        return out
+    raise ValueError(
+        f"unknown constant-set: {set_name!r} "
+        f"(use 'core', 'large', 'mixings', or 'everything')"
+    )
 
 
 # Famous coincidences / watchlist pairs -- tagged for human-readable narrative.
@@ -493,7 +532,8 @@ def _safe_relpath(p: Path, root: Path) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--set", default="core", help="constant set: core | large")
+    ap.add_argument("--set", default="core",
+                    help="constant set: core | large | mixings | everything")
     ap.add_argument("--trials", type=int, default=1000,
                     help="trials per null model (default 1000)")
     ap.add_argument("--small-control", action="store_true",

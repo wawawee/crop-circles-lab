@@ -1,0 +1,22 @@
+# NT_187395.1_regions.bed — Homo sapiens chromosome 22 ALT contig slice 1..3000 bp
+# Source: NCBI E-utilities feature table pulled on 2026-07-25:
+#   https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+#     ?db=nucleotide&id=NT_187395.1&rettype=ft&retmode=text&seq_start=1&seq_stop=3000
+# Local mirror: data/bio/annotations/NT_187395.1_features_first3000.txt
+# (GFF3 fetch also attempted at NT_187395.1_full.gff3 — same empty result.)
+#
+# !! IMPORTANT — empty file is the GENUINE annotation state for this slice. !!
+# NT_187395.1 is an ALT (alternate) locus scaffold in GRCh38.p14; the curated
+# RefSeq / GENCODE gene models do NOT cover this ALT contig, so the feature
+# table comes back with no gene calls. Do NOT fabricate annotations to make
+# the per-bin analysis look populated.
+#
+# Behavioral consequence: when bio_probe.py is run with this annotation file,
+# every window will be tagged "intergenic" by the max-overlap classifier
+# (no intersecting features). The bin dict will contain a single
+# "intergenic" entry covering all windows, and its delta_window_H_mean will
+# be computed against the composition-preserving shuffle of the pooled
+# intergenic bases. That is the correct, honest signal.
+#
+# Format: BED4 (0-based, half-open intervals; type ∈ one of our 4 bins).
+# (No body rows — there are no annotated features for this slice.)
