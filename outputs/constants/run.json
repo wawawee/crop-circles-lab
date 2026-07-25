@@ -1,0 +1,542 @@
+{
+  "constants": {
+    "alpha_fine_structure": 0.0072973525692838015,
+    "mu_proton_electron_mass": 1836.15267343,
+    "proton_electron_charge_abs": 1.0,
+    "approx_dirac_large_1e40": 1e+40,
+    "approx_edington_1e39": 1e+39,
+    "omega_matter_planck18": 0.315,
+    "omega_lambda_planck18": 0.685,
+    "n_e_fine_inv": 137.035999084
+  },
+  "pairwise_real": [
+    {
+      "a": "alpha_fine_structure",
+      "b": "mu_proton_electron_mass",
+      "raw_ratio": 3.9742624210284656e-06,
+      "log10_ratio": -5.4007,
+      "octave_folded": 1.919701,
+      "nearest_diatonic": "major 7th (15:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.9197007451952943, folded=1.9197007451952943, note='major 7th (15:8)', target=1.875, cents_error=40.78900398574659, within_tol=False)"
+    },
+    {
+      "a": "alpha_fine_structure",
+      "b": "proton_electron_charge_abs",
+      "raw_ratio": 0.0072973525692838015,
+      "log10_ratio": -2.1368,
+      "octave_folded": 1.070594,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.07059374284375, folded=1.07059374284375, note='major 2nd (9:8)', target=1.125, cents_error=-85.81665069495935, within_tol=False)"
+    },
+    {
+      "a": "alpha_fine_structure",
+      "b": "approx_dirac_large_1e40",
+      "raw_ratio": 7.297352569283801e-43,
+      "log10_ratio": -42.1368,
+      "octave_folded": 1.96637,
+      "nearest_diatonic": "octave (2:1)",
+      "diatonic_detail": "DiatonicMatch(measured=1.9663701511539327, folded=1.9663701511539327, note='octave (2:1)', target=2.0, cents_error=-29.358094370791747, within_tol=False)"
+    },
+    {
+      "a": "alpha_fine_structure",
+      "b": "approx_edington_1e39",
+      "raw_ratio": 7.297352569283802e-42,
+      "log10_ratio": -41.1368,
+      "octave_folded": 1.573096,
+      "nearest_diatonic": "perfect 5th (3:2)",
+      "diatonic_detail": "DiatonicMatch(measured=1.573096120923146, folded=1.573096120923146, note='perfect 5th (3:2)', target=1.5, cents_error=82.37319089898574, within_tol=False)"
+    },
+    {
+      "a": "alpha_fine_structure",
+      "b": "omega_matter_planck18",
+      "raw_ratio": 0.02316619863264699,
+      "log10_ratio": -1.6351,
+      "octave_folded": 1.348948,
+      "nearest_diatonic": "perfect 4th (4:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.348948115983125, folded=1.348948115983125, note='perfect 4th (4:3)', target=1.3333333333333333, cents_error=20.156832371433214, within_tol=False)"
+    },
+    {
+      "a": "alpha_fine_structure",
+      "b": "omega_lambda_planck18",
+      "raw_ratio": 0.010653069444209929,
+      "log10_ratio": -1.9725,
+      "octave_folded": 1.466713,
+      "nearest_diatonic": "perfect 5th (3:2)",
+      "diatonic_detail": "DiatonicMatch(measured=1.4667134276959375, folded=1.4667134276959375, note='perfect 5th (3:2)', target=1.5, cents_error=-38.850578006609425, within_tol=False)"
+    },
+    {
+      "a": "alpha_fine_structure",
+      "b": "n_e_fine_inv",
+      "raw_ratio": 5.3251354520432896e-05,
+      "log10_ratio": -4.2737,
+      "octave_folded": 1.146171,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.1461709622161893, folded=1.1461709622161893, note='major 2nd (9:8)', target=1.125, cents_error=32.27670034085598, within_tol=False)"
+    },
+    {
+      "a": "mu_proton_electron_mass",
+      "b": "proton_electron_charge_abs",
+      "raw_ratio": 1836.15267343,
+      "log10_ratio": 3.2639,
+      "octave_folded": 1.793118,
+      "nearest_diatonic": "major 7th (15:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.7931178451464844, folded=1.7931178451464844, note='major 7th (15:8)', target=1.875, cents_error=-77.30434705006896, within_tol=False)"
+    },
+    {
+      "a": "mu_proton_electron_mass",
+      "b": "approx_dirac_large_1e40",
+      "raw_ratio": 1.83615267343e-37,
+      "log10_ratio": -36.7361,
+      "octave_folded": 1.024311,
+      "nearest_diatonic": "unison (1:1)",
+      "diatonic_detail": "DiatonicMatch(measured=1.0243107713925956, folded=1.0243107713925956, note='unison (1:1)', target=1.0, cents_error=41.58418691323943, within_tol=False)"
+    },
+    {
+      "a": "mu_proton_electron_mass",
+      "b": "approx_edington_1e39",
+      "raw_ratio": 1.8361526734300002e-36,
+      "log10_ratio": -35.7361,
+      "octave_folded": 1.638897,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.638897234228153, folded=1.638897234228153, note='major 6th (5:3)', target=1.6666666666666667, cents_error=-29.088239951042915, within_tol=False)"
+    },
+    {
+      "a": "mu_proton_electron_mass",
+      "b": "omega_matter_planck18",
+      "raw_ratio": 5829.056106126985,
+      "log10_ratio": 3.7656,
+      "octave_folded": 1.423109,
+      "nearest_diatonic": "perfect 5th (3:2)",
+      "diatonic_detail": "DiatonicMatch(measured=1.4231094009099083, folded=1.4231094009099083, note='perfect 5th (3:2)', target=1.5, cents_error=-91.09911365546414, within_tol=False)"
+    },
+    {
+      "a": "mu_proton_electron_mass",
+      "b": "omega_lambda_planck18",
+      "raw_ratio": 2680.5148517226276,
+      "log10_ratio": 3.4282,
+      "octave_folded": 1.308845,
+      "nearest_diatonic": "perfect 4th (4:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.3088451424426892, folded=1.3088451424426892, note='perfect 4th (4:3)', target=1.3333333333333333, cents_error=-32.09170327742174, within_tol=False)"
+    },
+    {
+      "a": "mu_proton_electron_mass",
+      "b": "n_e_fine_inv",
+      "raw_ratio": 13.399053429051731,
+      "log10_ratio": 1.1271,
+      "octave_folded": 1.674882,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.6748816786314664, folded=1.6748816786314664, note='major 6th (5:3)', target=1.6666666666666667, cents_error=8.512303644890489, within_tol=True)"
+    },
+    {
+      "a": "proton_electron_charge_abs",
+      "b": "approx_dirac_large_1e40",
+      "raw_ratio": 1e-40,
+      "log10_ratio": -40.0,
+      "octave_folded": 1.83671,
+      "nearest_diatonic": "major 7th (15:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.8367099231598243, folded=1.8367099231598243, note='major 7th (15:8)', target=1.875, cents_error=-35.72016013682958, within_tol=False)"
+    },
+    {
+      "a": "proton_electron_charge_abs",
+      "b": "approx_edington_1e39",
+      "raw_ratio": 1.0000000000000001e-39,
+      "log10_ratio": -39.0,
+      "octave_folded": 1.469368,
+      "nearest_diatonic": "perfect 5th (3:2)",
+      "diatonic_detail": "DiatonicMatch(measured=1.4693679385278593, folded=1.4693679385278593, note='perfect 5th (3:2)', target=1.5, cents_error=-35.72016013682958, within_tol=False)"
+    },
+    {
+      "a": "proton_electron_charge_abs",
+      "b": "omega_matter_planck18",
+      "raw_ratio": 3.1746031746031744,
+      "log10_ratio": 0.5017,
+      "octave_folded": 1.587302,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.5873015873015872, folded=1.5873015873015872, note='major 6th (5:3)', target=1.6666666666666667, cents_error=-84.46719346967762, within_tol=False)"
+    },
+    {
+      "a": "proton_electron_charge_abs",
+      "b": "omega_lambda_planck18",
+      "raw_ratio": 1.4598540145985401,
+      "log10_ratio": 0.1643,
+      "octave_folded": 1.459854,
+      "nearest_diatonic": "perfect 5th (3:2)",
+      "diatonic_detail": "DiatonicMatch(measured=1.4598540145985401, folded=1.4598540145985401, note='perfect 5th (3:2)', target=1.5, cents_error=-46.96607268834978, within_tol=False)"
+    },
+    {
+      "a": "proton_electron_charge_abs",
+      "b": "n_e_fine_inv",
+      "raw_ratio": 0.0072973525692838015,
+      "log10_ratio": -2.1368,
+      "octave_folded": 1.070594,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.07059374284375, folded=1.07059374284375, note='major 2nd (9:8)', target=1.125, cents_error=-85.81665069495935, within_tol=False)"
+    },
+    {
+      "a": "approx_dirac_large_1e40",
+      "b": "approx_edington_1e39",
+      "raw_ratio": 10.000000000000002,
+      "log10_ratio": 1.0,
+      "octave_folded": 1.25,
+      "nearest_diatonic": "major 3rd (5:4)",
+      "diatonic_detail": "DiatonicMatch(measured=1.2500000000000002, folded=1.2500000000000002, note='major 3rd (5:4)', target=1.25, cents_error=3.8441118045779003e-13, within_tol=True)"
+    },
+    {
+      "a": "approx_dirac_large_1e40",
+      "b": "omega_matter_planck18",
+      "raw_ratio": 3.174603174603175e+40,
+      "log10_ratio": 40.5017,
+      "octave_folded": 1.457706,
+      "nearest_diatonic": "perfect 5th (3:2)",
+      "diatonic_detail": "DiatonicMatch(measured=1.4577062882220828, folded=1.4577062882220828, note='perfect 5th (3:2)', target=1.5, cents_error=-49.51492674222468, within_tol=False)"
+    },
+    {
+      "a": "approx_dirac_large_1e40",
+      "b": "omega_lambda_planck18",
+      "raw_ratio": 1.45985401459854e+40,
+      "log10_ratio": 40.1643,
+      "octave_folded": 1.340664,
+      "nearest_diatonic": "perfect 4th (4:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.3406641774889227, folded=1.3406641774889227, note='perfect 4th (4:3)', target=1.3333333333333333, cents_error=9.492483635817724, within_tol=True)"
+    },
+    {
+      "a": "approx_dirac_large_1e40",
+      "b": "n_e_fine_inv",
+      "raw_ratio": 7.297352569283801e+37,
+      "log10_ratio": 37.8632,
+      "octave_folded": 1.715599,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.7155993442303228, folded=1.7155993442303228, note='major 6th (5:3)', target=1.6666666666666667, cents_error=50.09649055812966, within_tol=False)"
+    },
+    {
+      "a": "approx_edington_1e39",
+      "b": "omega_matter_planck18",
+      "raw_ratio": 3.1746031746031743e+39,
+      "log10_ratio": 39.5017,
+      "octave_folded": 1.166165,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.166165030577666, folded=1.166165030577666, note='major 2nd (9:8)', target=1.125, cents_error=62.21635852755272, within_tol=False)"
+    },
+    {
+      "a": "approx_edington_1e39",
+      "b": "omega_lambda_planck18",
+      "raw_ratio": 1.45985401459854e+39,
+      "log10_ratio": 39.1643,
+      "octave_folded": 1.072531,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.0725313419911382, folded=1.0725313419911382, note='major 2nd (9:8)', target=1.125, cents_error=-82.68623282517945, within_tol=False)"
+    },
+    {
+      "a": "approx_edington_1e39",
+      "b": "n_e_fine_inv",
+      "raw_ratio": 7.297352569283801e+36,
+      "log10_ratio": 36.8632,
+      "octave_folded": 1.372479,
+      "nearest_diatonic": "perfect 4th (4:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.3724794753842582, folded=1.3724794753842582, note='perfect 4th (4:3)', target=1.3333333333333333, cents_error=50.096490558130036, within_tol=False)"
+    },
+    {
+      "a": "omega_matter_planck18",
+      "b": "omega_lambda_planck18",
+      "raw_ratio": 0.45985401459854014,
+      "log10_ratio": -0.3374,
+      "octave_folded": 1.087302,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.0873015873015874, folded=1.0873015873015874, note='major 2nd (9:8)', target=1.125, cents_error=-59.00741037804224, within_tol=False)"
+    },
+    {
+      "a": "omega_matter_planck18",
+      "b": "n_e_fine_inv",
+      "raw_ratio": 0.0022986660593243974,
+      "log10_ratio": -2.6385,
+      "octave_folded": 1.699355,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.6993551473710318, folded=1.6993551473710318, note='major 6th (5:3)', target=1.6666666666666667, cents_error=33.626157566138154, within_tol=False)"
+    },
+    {
+      "a": "omega_lambda_planck18",
+      "b": "n_e_fine_inv",
+      "raw_ratio": 0.004998686509959404,
+      "log10_ratio": -2.3011,
+      "octave_folded": 1.562911,
+      "nearest_diatonic": "perfect 5th (3:2)",
+      "diatonic_detail": "DiatonicMatch(measured=1.5629105734945254, folded=1.5629105734945254, note='perfect 5th (3:2)', target=1.5, cents_error=71.1272783474655, within_tol=False)"
+    }
+  ],
+  "pairwise_random_control": [
+    {
+      "a": "rand_0_alpha_",
+      "b": "rand_1_mu_pro",
+      "raw_ratio": 27434333.20470394,
+      "log10_ratio": 7.4383,
+      "octave_folded": 1.635214,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.6352136853160821, folded=1.6352136853160821, note='major 6th (5:3)', target=1.6666666666666667, cents_error=-32.983702350011896, within_tol=False)"
+    },
+    {
+      "a": "rand_0_alpha_",
+      "b": "rand_2_proton",
+      "raw_ratio": 8.602536958206227e-15,
+      "log10_ratio": -14.0654,
+      "octave_folded": 1.651938,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.6519376533042185, folded=1.6519376533042185, note='major 6th (5:3)', target=1.6666666666666667, cents_error=-15.367627122704587, within_tol=True)"
+    },
+    {
+      "a": "rand_0_alpha_",
+      "b": "rand_3_approx",
+      "raw_ratio": 64572642761.845474,
+      "log10_ratio": 10.81,
+      "octave_folded": 1.879311,
+      "nearest_diatonic": "major 7th (15:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.8793112470839834, folded=1.8793112470839834, note='major 7th (15:8)', target=1.875, cents_error=3.9761120138104467, within_tol=True)"
+    },
+    {
+      "a": "rand_0_alpha_",
+      "b": "rand_4_approx",
+      "raw_ratio": 7.618732100658633e-10,
+      "log10_ratio": -9.1181,
+      "octave_folded": 1.222412,
+      "nearest_diatonic": "major 3rd (5:4)",
+      "diatonic_detail": "DiatonicMatch(measured=1.2224115014294392, folded=1.2224115014294392, note='major 3rd (5:4)', target=1.25, cents_error=-38.637686763911915, within_tol=False)"
+    },
+    {
+      "a": "rand_0_alpha_",
+      "b": "rand_5_omega_",
+      "raw_ratio": 0.01585570147845947,
+      "log10_ratio": -1.7998,
+      "octave_folded": 1.9709,
+      "nearest_diatonic": "octave (2:1)",
+      "diatonic_detail": "DiatonicMatch(measured=1.970899871093955, folded=1.970899871093955, note='octave (2:1)', target=2.0, cents_error=-25.374619115880982, within_tol=False)"
+    },
+    {
+      "a": "rand_0_alpha_",
+      "b": "rand_6_omega_",
+      "raw_ratio": 269683963624.55298,
+      "log10_ratio": 11.4309,
+      "octave_folded": 1.962209,
+      "nearest_diatonic": "octave (2:1)",
+      "diatonic_detail": "DiatonicMatch(measured=1.9622090885572323, folded=1.9622090885572323, note='octave (2:1)', target=2.0, cents_error=-33.025463921980844, within_tol=False)"
+    },
+    {
+      "a": "rand_0_alpha_",
+      "b": "rand_7_n_e_fi",
+      "raw_ratio": 1.2737152854800869e-08,
+      "log10_ratio": -7.8949,
+      "octave_folded": 1.169897,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.1698973360621272, folded=1.1698973360621272, note='major 2nd (9:8)', target=1.125, cents_error=67.7483168574367, within_tol=False)"
+    },
+    {
+      "a": "rand_1_mu_pro",
+      "b": "rand_2_proton",
+      "raw_ratio": 3.1356829028857975e-22,
+      "log10_ratio": -21.5037,
+      "octave_folded": 1.350636,
+      "nearest_diatonic": "perfect 4th (4:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.3506355289859957, folded=1.3506355289859957, note='perfect 4th (4:3)', target=1.3333333333333333, cents_error=22.321097391566067, within_tol=False)"
+    },
+    {
+      "a": "rand_1_mu_pro",
+      "b": "rand_3_approx",
+      "raw_ratio": 2353.7165011458615,
+      "log10_ratio": 3.3718,
+      "octave_folded": 1.149276,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.1492756353251277, folded=1.1492756353251277, note='major 2nd (9:8)', target=1.125, cents_error=36.959814363822304, within_tol=False)"
+    },
+    {
+      "a": "rand_1_mu_pro",
+      "b": "rand_4_approx",
+      "raw_ratio": 2.777079378532996e-17,
+      "log10_ratio": -16.5564,
+      "octave_folded": 1.998904,
+      "nearest_diatonic": "octave (2:1)",
+      "diatonic_detail": "DiatonicMatch(measured=1.9989040162251983, folded=1.9989040162251983, note='octave (2:1)', target=2.0, cents_error=-0.9489622496417277, within_tol=True)"
+    },
+    {
+      "a": "rand_1_mu_pro",
+      "b": "rand_5_omega_",
+      "raw_ratio": 5.779510425914352e-10,
+      "log10_ratio": -9.2381,
+      "octave_folded": 1.611421,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.6114212208002685, folded=1.6114212208002685, note='major 6th (5:3)', target=1.6666666666666667, cents_error=-58.35832146589305, within_tol=False)"
+    },
+    {
+      "a": "rand_1_mu_pro",
+      "b": "rand_6_omega_",
+      "raw_ratio": 9830.162869725316,
+      "log10_ratio": 3.9926,
+      "octave_folded": 1.199971,
+      "nearest_diatonic": "major 3rd (5:4)",
+      "diatonic_detail": "DiatonicMatch(measured=1.1999710534332662, folded=1.1999710534332662, note='major 3rd (5:4)', target=1.25, cents_error=-70.71418843625122, within_tol=False)"
+    },
+    {
+      "a": "rand_1_mu_pro",
+      "b": "rand_7_n_e_fi",
+      "raw_ratio": 4.64277836088137e-16,
+      "log10_ratio": -15.3332,
+      "octave_folded": 1.913032,
+      "nearest_diatonic": "major 7th (15:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.913032134343618, folded=1.913032134343618, note='major 7th (15:8)', target=1.875, cents_error=34.76461450742512, within_tol=False)"
+    },
+    {
+      "a": "rand_2_proton",
+      "b": "rand_3_approx",
+      "raw_ratio": 7.506232530654533e+24,
+      "log10_ratio": 24.8754,
+      "octave_folded": 1.552253,
+      "nearest_diatonic": "perfect 5th (3:2)",
+      "diatonic_detail": "DiatonicMatch(measured=1.5522525056680698, folded=1.5522525056680698, note='perfect 5th (3:2)', target=1.5, cents_error=59.28091175538791, within_tol=False)"
+    },
+    {
+      "a": "rand_2_proton",
+      "b": "rand_4_approx",
+      "raw_ratio": 88563.78226182323,
+      "log10_ratio": 4.9473,
+      "octave_folded": 1.351376,
+      "nearest_diatonic": "perfect 4th (4:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.3513760721103398, folded=1.3513760721103398, note='perfect 4th (4:3)', target=1.3333333333333333, cents_error=23.270059641207848, within_tol=False)"
+    },
+    {
+      "a": "rand_2_proton",
+      "b": "rand_5_omega_",
+      "raw_ratio": 1843142500345.1133,
+      "log10_ratio": 12.2656,
+      "octave_folded": 1.676328,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.676328338676388, folded=1.676328338676388, note='major 6th (5:3)', target=1.6666666666666667, cents_error=10.006991993176198, within_tol=True)"
+    },
+    {
+      "a": "rand_2_proton",
+      "b": "rand_6_omega_",
+      "raw_ratio": 3.1349352514817513e+25,
+      "log10_ratio": 25.4962,
+      "octave_folded": 1.620724,
+      "nearest_diatonic": "major 6th (5:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.6207235385217218, folded=1.6207235385217218, note='major 6th (5:3)', target=1.6666666666666667, cents_error=-48.39309104468564, within_tol=False)"
+    },
+    {
+      "a": "rand_2_proton",
+      "b": "rand_7_n_e_fi",
+      "raw_ratio": 1480627.5075227085,
+      "log10_ratio": 6.1704,
+      "octave_folded": 1.412036,
+      "nearest_diatonic": "perfect 4th (4:3)",
+      "diatonic_detail": "DiatonicMatch(measured=1.4120364260890088, folded=1.4120364260890088, note='perfect 4th (4:3)', target=1.3333333333333333, cents_error=99.28776815391848, within_tol=False)"
+    },
+    {
+      "a": "rand_3_approx",
+      "b": "rand_4_approx",
+      "raw_ratio": 1.179869953403916e-20,
+      "log10_ratio": -19.9282,
+      "octave_folded": 1.148646,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.1486458416005818, folded=1.1486458416005818, note='major 2nd (9:8)', target=1.125, cents_error=36.01085211418014, within_tol=False)"
+    },
+    {
+      "a": "rand_3_approx",
+      "b": "rand_5_omega_",
+      "raw_ratio": 2.4554828175358883e-13,
+      "log10_ratio": -12.6099,
+      "octave_folded": 1.851967,
+      "nearest_diatonic": "major 7th (15:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.8519671473116213, folded=1.8519671473116213, note='major 7th (15:8)', target=1.875, cents_error=-21.39850710207063, within_tol=False)"
+    },
+    {
+      "a": "rand_3_approx",
+      "b": "rand_6_omega_",
+      "raw_ratio": 4.176443027416298,
+      "log10_ratio": 0.6208,
+      "octave_folded": 1.044111,
+      "nearest_diatonic": "unison (1:1)",
+      "diatonic_detail": "DiatonicMatch(measured=1.0441107568540744, folded=1.0441107568540744, note='unison (1:1)', target=1.0, cents_error=74.72970933398666, within_tol=False)"
+    },
+    {
+      "a": "rand_3_approx",
+      "b": "rand_7_n_e_fi",
+      "raw_ratio": 1.9725308288492362e-19,
+      "log10_ratio": -18.705,
+      "octave_folded": 1.099301,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.0993006107975734, folded=1.0993006107975734, note='major 2nd (9:8)', target=1.125, cents_error=-40.00685639853024, within_tol=False)"
+    },
+    {
+      "a": "rand_4_approx",
+      "b": "rand_5_omega_",
+      "raw_ratio": 20811470.03067447,
+      "log10_ratio": 7.3183,
+      "octave_folded": 1.24046,
+      "nearest_diatonic": "major 3rd (5:4)",
+      "diatonic_detail": "DiatonicMatch(measured=1.2404602784320395, folded=1.2404602784320395, note='major 3rd (5:4)', target=1.25, cents_error=-13.263067648031203, within_tol=True)"
+    },
+    {
+      "a": "rand_4_approx",
+      "b": "rand_6_omega_",
+      "raw_ratio": 3.539748609893226e+20,
+      "log10_ratio": 20.549,
+      "octave_folded": 1.199313,
+      "nearest_diatonic": "major 3rd (5:4)",
+      "diatonic_detail": "DiatonicMatch(measured=1.1993134790308688, folded=1.1993134790308688, note='major 3rd (5:4)', target=1.25, cents_error=-71.66315068589303, within_tol=False)"
+    },
+    {
+      "a": "rand_4_approx",
+      "b": "rand_7_n_e_fi",
+      "raw_ratio": 16.718205452715356,
+      "log10_ratio": 1.2232,
+      "octave_folded": 1.044888,
+      "nearest_diatonic": "unison (1:1)",
+      "diatonic_detail": "DiatonicMatch(measured=1.0448878407947098, folded=1.0448878407947098, note='unison (1:1)', target=1.0, cents_error=76.01770851271085, within_tol=False)"
+    },
+    {
+      "a": "rand_5_omega_",
+      "b": "rand_6_omega_",
+      "raw_ratio": 17008642852599.625,
+      "log10_ratio": 13.2307,
+      "octave_folded": 1.933659,
+      "nearest_diatonic": "major 7th (15:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.933658819848418, folded=1.933658819848418, note='major 7th (15:8)', target=1.875, cents_error=53.3312022319158, within_tol=False)"
+    },
+    {
+      "a": "rand_5_omega_",
+      "b": "rand_7_n_e_fi",
+      "raw_ratio": 8.03316893428193e-07,
+      "log10_ratio": -6.0951,
+      "octave_folded": 1.187171,
+      "nearest_diatonic": "major 3rd (5:4)",
+      "diatonic_detail": "DiatonicMatch(measured=1.1871707469469484, folded=1.1871707469469484, note='major 3rd (5:4)', target=1.25, cents_error=-89.28077616074192, within_tol=False)"
+    },
+    {
+      "a": "rand_6_omega_",
+      "b": "rand_7_n_e_fi",
+      "raw_ratio": 4.7229923068518836e-20,
+      "log10_ratio": -19.3258,
+      "octave_folded": 1.147792,
+      "nearest_diatonic": "major 2nd (9:8)",
+      "diatonic_detail": "DiatonicMatch(measured=1.1477915927500004, folded=1.1477915927500004, note='major 2nd (9:8)', target=1.125, cents_error=34.72285293545595, within_tol=False)"
+    }
+  ],
+  "diatonic_hist_real": {
+    "major 7th (15:8)": 3,
+    "major 2nd (9:8)": 6,
+    "octave (2:1)": 1,
+    "perfect 5th (3:2)": 7,
+    "perfect 4th (4:3)": 4,
+    "unison (1:1)": 1,
+    "major 6th (5:3)": 5,
+    "major 3rd (5:4)": 1
+  },
+  "diatonic_hist_control": {
+    "major 6th (5:3)": 5,
+    "major 7th (15:8)": 4,
+    "major 3rd (5:4)": 5,
+    "octave (2:1)": 3,
+    "major 2nd (9:8)": 5,
+    "perfect 4th (4:3)": 3,
+    "perfect 5th (3:2)": 1,
+    "unison (1:1)": 2
+  },
+  "interpretation": "If real hist \u2248 control hist, Dirac-style 'musical' coupling is not evidenced beyond numerology. Report histograms; do not claim physics.",
+  "stance": "N3 scaffold \u2014 Hermes may extend constant set + proper CODATA citations."
+}

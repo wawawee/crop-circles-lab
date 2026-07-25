@@ -252,4 +252,4 @@ See **`data/catalog/TOOLS_EVAL.md`** for the full honest triage of the proposed 
 
 ---
 
-*Last updated: 2026-07-25 — Merged `tools/signal/` (A10, L20 entropy 0.9991). Hyper: B9 + TOOLS_EVAL + B10/B11 queued. Open READY: B10, B11 (+ image-hunt follow-ups).*
+*Last updated: 2026-07-25 — Night-shift bootstrap: `MISSION_BOARD.md` + Captain dashboard; scaffolds N1–N4 (`bio`/`uap`/`astro`). Hyper: Phaistos `symbolseq` DONE. See mission board for owners.*

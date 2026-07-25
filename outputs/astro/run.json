@@ -1,0 +1,166 @@
+{
+  "generated_at": "2026-07-25T03:20:17.608707+00:00",
+  "sites": {
+    "gobekli_tepe": {
+      "lat": 37.2231,
+      "lon": 38.9223,
+      "epoch_build_ybp": 11000,
+      "solstice_eq": {
+        "year": 2026,
+        "mar_equinox_doy": 79,
+        "jun_solstice_doy": 171,
+        "sep_equinox_doy": 265,
+        "dec_solstice_doy": 355,
+        "caveat": "Civil DOY placeholders \u2014 replace with skyfield/astropy for N4 DONE."
+      },
+      "jun_sunrise_az_toy": {
+        "season": "jun",
+        "approx_sunrise_az_deg": 60.03,
+        "lat": 37.2231
+      },
+      "dec_sunrise_az_toy": {
+        "season": "dec",
+        "approx_sunrise_az_deg": 119.97,
+        "lat": 37.2231
+      },
+      "random_control_note": "Compare to random lat/lon + random year before claiming alignment."
+    },
+    "stonehenge": {
+      "lat": 51.1789,
+      "lon": -1.8262,
+      "epoch_build_ybp": 4500,
+      "solstice_eq": {
+        "year": 2026,
+        "mar_equinox_doy": 79,
+        "jun_solstice_doy": 171,
+        "sep_equinox_doy": 265,
+        "dec_solstice_doy": 355,
+        "caveat": "Civil DOY placeholders \u2014 replace with skyfield/astropy for N4 DONE."
+      },
+      "jun_sunrise_az_toy": {
+        "season": "jun",
+        "approx_sunrise_az_deg": 50.61,
+        "lat": 51.1789
+      },
+      "dec_sunrise_az_toy": {
+        "season": "dec",
+        "approx_sunrise_az_deg": 129.39,
+        "lat": 51.1789
+      },
+      "random_control_note": "Compare to random lat/lon + random year before claiming alignment."
+    },
+    "giza_khufu": {
+      "lat": 29.9792,
+      "lon": 31.1342,
+      "epoch_build_ybp": 4500,
+      "solstice_eq": {
+        "year": 2026,
+        "mar_equinox_doy": 79,
+        "jun_solstice_doy": 171,
+        "sep_equinox_doy": 265,
+        "dec_solstice_doy": 355,
+        "caveat": "Civil DOY placeholders \u2014 replace with skyfield/astropy for N4 DONE."
+      },
+      "jun_sunrise_az_toy": {
+        "season": "jun",
+        "approx_sunrise_az_deg": 62.66,
+        "lat": 29.9792
+      },
+      "dec_sunrise_az_toy": {
+        "season": "dec",
+        "approx_sunrise_az_deg": 117.34,
+        "lat": 29.9792
+      },
+      "random_control_note": "Compare to random lat/lon + random year before claiming alignment."
+    },
+    "chichen_itza": {
+      "lat": 20.6843,
+      "lon": -88.5678,
+      "epoch_build_ybp": 1200,
+      "solstice_eq": {
+        "year": 2026,
+        "mar_equinox_doy": 79,
+        "jun_solstice_doy": 171,
+        "sep_equinox_doy": 265,
+        "dec_solstice_doy": 355,
+        "caveat": "Civil DOY placeholders \u2014 replace with skyfield/astropy for N4 DONE."
+      },
+      "jun_sunrise_az_toy": {
+        "season": "jun",
+        "approx_sunrise_az_deg": 64.84,
+        "lat": 20.6843
+      },
+      "dec_sunrise_az_toy": {
+        "season": "dec",
+        "approx_sunrise_az_deg": 115.16,
+        "lat": 20.6843
+      },
+      "random_control_note": "Compare to random lat/lon + random year before claiming alignment."
+    }
+  },
+  "crop_lunar": [
+    {
+      "id": "stonehenge-julia-1996",
+      "date": "1996-07-07",
+      "lunar_illum": 0.585
+    },
+    {
+      "id": "logan-utah-1996",
+      "date": "1996-08-23",
+      "lunar_illum": 0.697
+    },
+    {
+      "id": "eltopia-1998",
+      "date": "1998-06-18",
+      "lunar_illum": 0.347
+    },
+    {
+      "id": "alton-barnes-dna-1996",
+      "date": "1996-06-17",
+      "lunar_illum": 0.02
+    },
+    {
+      "id": "milk-hill-galaxy-2001",
+      "date": "2001-08-12",
+      "lunar_illum": 0.418
+    },
+    {
+      "id": "barbury-pi-2008",
+      "date": "2008-06-01",
+      "lunar_illum": 0.053
+    },
+    {
+      "id": "windmill-hill-triple-julia-1996",
+      "date": "1996-07-29",
+      "lunar_illum": 0.99
+    },
+    {
+      "id": "wilton-windmill-2010",
+      "date": "2010-05-22",
+      "lunar_illum": 0.677
+    },
+    {
+      "id": "poirino-2011",
+      "date": "2011-06-20",
+      "lunar_illum": 0.795
+    },
+    {
+      "id": "poirino-2010",
+      "date": "2010-06-13",
+      "lunar_illum": 0.027
+    },
+    {
+      "id": "jellyfish-2009",
+      "date": "2009-05-29",
+      "lunar_illum": 0.3
+    }
+  ],
+  "crop_lunar_summary": {
+    "n": 11,
+    "n_illum_ge_0.8": 1,
+    "n_illum_le_0.2": 3,
+    "note": "Tiny N; do not claim lunar preference without larger dated catalog + season controls."
+  },
+  "backend": "scaffold_pure_python",
+  "upgrade": "pip install skyfield astropy for proper rise/set & epoch precession"
+}

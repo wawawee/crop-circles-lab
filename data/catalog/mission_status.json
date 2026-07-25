@@ -1,0 +1,246 @@
+{
+  "generated_at": "2026-07-25T03:20:48.468924+00:00",
+  "missions": [
+    {
+      "id": "N0",
+      "owner": "Hyper",
+      "title": "Phaistos symbolseq",
+      "status": "done",
+      "href": "outputs/phaistos_analysis.json"
+    },
+    {
+      "id": "N1",
+      "owner": "Hyper",
+      "title": "DNA/RNA bio_probe",
+      "status": "scaffolded",
+      "href": "tools/bio/bio_probe.py"
+    },
+    {
+      "id": "N2",
+      "owner": "Opencode",
+      "title": "UAP flight consistency",
+      "status": "scaffolded",
+      "href": "tools/uap/uap_flight_consistency.py"
+    },
+    {
+      "id": "N3",
+      "owner": "Hermes",
+      "title": "Dimensionless constants",
+      "status": "scaffolded",
+      "href": "tools/astro/constants_probe.py"
+    },
+    {
+      "id": "N4",
+      "owner": "Kimi",
+      "title": "Archaeoastronomy",
+      "status": "scaffolded",
+      "href": "tools/astro/astro_probe.py"
+    },
+    {
+      "id": "N5",
+      "owner": "Captain/Cursor",
+      "title": "Mission dashboard",
+      "status": "done",
+      "href": "reports/mission_dashboard.html"
+    },
+    {
+      "id": "W1",
+      "owner": "Cursor",
+      "title": "Wheat closeout scans",
+      "status": "done",
+      "href": "outputs/wheat_closeout/SUMMARY.md"
+    }
+  ],
+  "domains": {
+    "crop_circles": {
+      "covered": true,
+      "notes": "B1\u2013B9 + signal + wheat closeout"
+    },
+    "phaistos": {
+      "covered": true,
+      "notes": "symbolseq structured vs shuffle"
+    },
+    "dna_epigenetics": {
+      "covered": false,
+      "notes": "scaffold only"
+    },
+    "uap_video": {
+      "covered": false,
+      "notes": "needs official media"
+    },
+    "constants": {
+      "covered": false,
+      "notes": "scaffold demo runnable"
+    },
+    "archaeoastronomy": {
+      "covered": false,
+      "notes": "scaffold + lunar on formations.csv"
+    },
+    "nazca": {
+      "covered": false,
+      "notes": "scout brief only"
+    },
+    "wow_frb": {
+      "covered": false,
+      "notes": "scout brief only"
+    }
+  },
+  "outputs": [
+    {
+      "path": "outputs/astro/run.json",
+      "name": "run.json",
+      "kb": 4.3
+    },
+    {
+      "path": "outputs/batch_table.json",
+      "name": "batch_table.json",
+      "kb": 2.6
+    },
+    {
+      "path": "outputs/bio/demo.json",
+      "name": "demo.json",
+      "kb": 14.7
+    },
+    {
+      "path": "outputs/chilbolton_bits_73x23.json",
+      "name": "chilbolton_bits_73x23.json",
+      "kb": 33.0
+    },
+    {
+      "path": "outputs/chilbolton_grid.json",
+      "name": "chilbolton_grid.json",
+      "kb": 1.7
+    },
+    {
+      "path": "outputs/constants/run.json",
+      "name": "run.json",
+      "kb": 23.7
+    },
+    {
+      "path": "outputs/crabwood_bits.json",
+      "name": "crabwood_bits.json",
+      "kb": 1.4
+    },
+    {
+      "path": "outputs/crabwood_bits_disc2.json",
+      "name": "crabwood_bits_disc2.json",
+      "kb": 1.4
+    },
+    {
+      "path": "outputs/crabwood_sweep.json",
+      "name": "crabwood_sweep.json",
+      "kb": 9.5
+    },
+    {
+      "path": "outputs/feature_table.json",
+      "name": "feature_table.json",
+      "kb": 5.7
+    },
+    {
+      "path": "outputs/info_chualar.json",
+      "name": "info_chualar.json",
+      "kb": 1.1
+    },
+    {
+      "path": "outputs/info_julia_getty.json",
+      "name": "info_julia_getty.json",
+      "kb": 0.6
+    },
+    {
+      "path": "outputs/info_julia_tt.json",
+      "name": "info_julia_tt.json",
+      "kb": 0.2
+    },
+    {
+      "path": "outputs/info_julia_tt_nomask.json",
+      "name": "info_julia_tt_nomask.json",
+      "kb": 0.8
+    },
+    {
+      "path": "outputs/info_synthetic_julia.json",
+      "name": "info_synthetic_julia.json",
+      "kb": 1.1
+    },
+    {
+      "path": "outputs/julia_circles.json",
+      "name": "julia_circles.json",
+      "kb": 21.7
+    },
+    {
+      "path": "outputs/julia_tt_oh_clusters.json",
+      "name": "julia_tt_oh_clusters.json",
+      "kb": 0.2
+    },
+    {
+      "path": "outputs/kimi_batch_analysis_results.json",
+      "name": "kimi_batch_analysis_results.json",
+      "kb": 3.0
+    },
+    {
+      "path": "outputs/phaistos_analysis.json",
+      "name": "phaistos_analysis.json",
+      "kb": 1.4
+    },
+    {
+      "path": "outputs/priority_batch.json",
+      "name": "priority_batch.json",
+      "kb": 2.8
+    },
+    {
+      "path": "outputs/signal/chilbolton_window_entropy.json",
+      "name": "chilbolton_window_entropy.json",
+      "kb": 3.2
+    },
+    {
+      "path": "outputs/signal/chualar_lsb.json",
+      "name": "chualar_lsb.json",
+      "kb": 1.0
+    },
+    {
+      "path": "outputs/signal/multiplex_l20.json",
+      "name": "multiplex_l20.json",
+      "kb": 1.7
+    },
+    {
+      "path": "outputs/uap/demo.json",
+      "name": "demo.json",
+      "kb": 1.1
+    },
+    {
+      "path": "outputs/vision/chilbolton_message_2001_tt_qwen.json",
+      "name": "chilbolton_message_2001_tt_qwen.json",
+      "kb": 0.5
+    },
+    {
+      "path": "outputs/vision/chualar_2013_nvidia_hoax_qwen.json",
+      "name": "chualar_2013_nvidia_hoax_qwen.json",
+      "kb": 0.6
+    },
+    {
+      "path": "outputs/vision/crabwood_2002_disc_crop_qwen.json",
+      "name": "crabwood_2002_disc_crop_qwen.json",
+      "kb": 0.6
+    },
+    {
+      "path": "outputs/wheat_closeout/chilbolton_bitstream_scan.json",
+      "name": "chilbolton_bitstream_scan.json",
+      "kb": 3.7
+    },
+    {
+      "path": "outputs/wheat_closeout/chilbolton_grid_analyze.json",
+      "name": "chilbolton_grid_analyze.json",
+      "kb": 0.4
+    },
+    {
+      "path": "outputs/wheat_closeout/crabwood_bitstream_scan.json",
+      "name": "crabwood_bitstream_scan.json",
+      "kb": 4.3
+    },
+    {
+      "path": "outputs/wheat_closeout/crabwood_signal_probe.json",
+      "name": "crabwood_signal_probe.json",
+      "kb": 2.7
+    }
+  ],
+  "n_outputs": 31
+}

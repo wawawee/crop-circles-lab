@@ -1,0 +1,37 @@
+{
+  "gentle_assumed_10km": {
+    "n_points": 30,
+    "duration_s": 2.9000000000000004,
+    "max_speed_px_s": 34.817,
+    "max_accel_px_s2": 10.0,
+    "range_m": 10000,
+    "fov_deg": 30,
+    "physical": {
+      "m_per_px": 2.7911,
+      "max_accel_m_s2": 27.911,
+      "max_g": 2.85
+    },
+    "flags": [
+      "Implied |a| \u2248 2.8 g \u2014 within broad aircraft envelope under these assumptions."
+    ],
+    "stance": "Without calibrated range + FOV + platform motion, g-claims are underdetermined."
+  },
+  "spike_assumed_10km": {
+    "n_points": 25,
+    "duration_s": 1.2000000000000002,
+    "max_speed_px_s": 1600.0,
+    "max_accel_px_s2": 32000.0,
+    "range_m": 10000,
+    "fov_deg": 30,
+    "physical": {
+      "m_per_px": 2.7911,
+      "max_accel_m_s2": 89316.397,
+      "max_g": 9107.74
+    },
+    "flags": [
+      "Implied |a| \u2248 9108 g with ASSUMED range/FOV \u2014 check platform motion / bad range."
+    ],
+    "stance": "Without calibrated range + FOV + platform motion, g-claims are underdetermined."
+  },
+  "negative_control": "Compare official UAP track to known jet clip + synthetic ballistic; metadata poverty \u2192 no claim."
+}

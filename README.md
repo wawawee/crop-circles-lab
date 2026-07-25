@@ -1,6 +1,6 @@
 # Crop Circles Lab — local geometry / fractal / forensic toolkit
 
-> **Agents: read [`TASKLIST.md`](TASKLIST.md) first** — open READY tasks, acceptance criteria, and delegation batches live there.
+> **Agents: read [`TASKLIST.md`](TASKLIST.md) + [`MISSION_BOARD.md`](MISSION_BOARD.md) first** — night-shift domains beyond wheat live on the mission board / [`reports/mission_dashboard.html`](reports/mission_dashboard.html).
 >
 > **Images:** see [`NOTICE.md`](NOTICE.md) + `data/images/ATTRIBUTION.txt` — private research use; no commercial redistribution of aerials.
 

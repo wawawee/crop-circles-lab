@@ -1,0 +1,718 @@
+{
+  "demo_mixed": {
+    "label": "synthetic_mixed",
+    "n_bases": 366,
+    "n_bits": 732,
+    "symbol_entropy": 1.9616,
+    "symbol_entropy_shuffled": 1.9616,
+    "bitstream": {
+      "n_bits": 732,
+      "shannon_entropy": 1.0,
+      "p1": 0.4986,
+      "bit_balance_abs": 0.0014,
+      "run_density": 0.3871,
+      "lz76_phrases": 10,
+      "lz76_normalized": 0.0137,
+      "autocorr": {
+        "peak_lag": 24,
+        "peak_corr": 0.8115,
+        "strong_peak": true,
+        "lags_top": [
+          {
+            "lag": 24,
+            "corr": 0.8115
+          },
+          {
+            "lag": 3,
+            "corr": 0.6325
+          },
+          {
+            "lag": 9,
+            "corr": 0.6052
+          },
+          {
+            "lag": 12,
+            "corr": 0.5847
+          },
+          {
+            "lag": 15,
+            "corr": 0.5669
+          }
+        ]
+      },
+      "reshape_top": [
+        {
+          "shape": "61x12",
+          "rows": 61,
+          "cols": 12,
+          "col_entropy_std": 0.1379,
+          "row_entropy_std": 0.4412,
+          "mean_fill": 0.4986
+        },
+        {
+          "shape": "244x3",
+          "rows": 244,
+          "cols": 3,
+          "col_entropy_std": 0.0528,
+          "row_entropy_std": 0.4431,
+          "mean_fill": 0.4986
+        },
+        {
+          "shape": "122x6",
+          "rows": 122,
+          "cols": 6,
+          "col_entropy_std": 0.0528,
+          "row_entropy_std": 0.4389,
+          "mean_fill": 0.4986
+        },
+        {
+          "shape": "366x2",
+          "rows": 366,
+          "cols": 2,
+          "col_entropy_std": 0.0,
+          "row_entropy_std": 0.4867,
+          "mean_fill": 0.4986
+        },
+        {
+          "shape": "183x4",
+          "rows": 183,
+          "cols": 4,
+          "col_entropy_std": 0.0423,
+          "row_entropy_std": 0.4046,
+          "mean_fill": 0.4986
+        },
+        {
+          "shape": "12x61",
+          "rows": 12,
+          "cols": 61,
+          "col_entropy_std": 0.0237,
+          "row_entropy_std": 0.3716,
+          "mean_fill": 0.4986
+        }
+      ],
+      "ascii_msb": {
+        "n_bytes": 91,
+        "printable_fraction": 0.1209,
+        "looks_like_text": false,
+        "preview": "9..m..m..m..m..m..m..m..m..m..o................................................."
+      },
+      "ascii_lsb": {
+        "n_bytes": 91,
+        "printable_fraction": 0.1099,
+        "looks_like_text": false,
+        "preview": ".m..m..m..m..m..m..m..m..m..m..................................................."
+      },
+      "math_curiosity": {
+        "window_trials": 5082,
+        "prime_hits": 581,
+        "fib_hits": 418,
+        "prime_hit_rate": 0.1143,
+        "note": "Anecdotal \u2014 random bits also hit small primes."
+      },
+      "interpretation": [
+        "Near-max entropy + near-perfect balance \u2192 crypto, compression, or balanced synthetic bits (human/algorithm). Unlikely natural language.",
+        "Autocorr peak at lag 24 \u2192 periodic/framed structure."
+      ]
+    },
+    "window_entropy_bits": {
+      "kind": "bits",
+      "n_bits": 732,
+      "window": 64,
+      "step": 8,
+      "n_windows": 84,
+      "entropy_mean": 0.7352,
+      "entropy_min": 0.0,
+      "entropy_max": 1.0,
+      "low_entropy_windows": [
+        {
+          "offset": 232,
+          "entropy": 0.6962
+        },
+        {
+          "offset": 240,
+          "entropy": 0.4489
+        },
+        {
+          "offset": 248,
+          "entropy": 0.0
+        },
+        {
+          "offset": 256,
+          "entropy": 0.0
+        },
+        {
+          "offset": 264,
+          "entropy": 0.0
+        },
+        {
+          "offset": 272,
+          "entropy": 0.0
+        },
+        {
+          "offset": 280,
+          "entropy": 0.0
+        },
+        {
+          "offset": 288,
+          "entropy": 0.0
+        },
+        {
+          "offset": 296,
+          "entropy": 0.0
+        },
+        {
+          "offset": 304,
+          "entropy": 0.0
+        },
+        {
+          "offset": 312,
+          "entropy": 0.0
+        },
+        {
+          "offset": 320,
+          "entropy": 0.0
+        },
+        {
+          "offset": 328,
+          "entropy": 0.0
+        },
+        {
+          "offset": 336,
+          "entropy": 0.0
+        },
+        {
+          "offset": 344,
+          "entropy": 0.0
+        },
+        {
+          "offset": 352,
+          "entropy": 0.3373
+        },
+        {
+          "offset": 360,
+          "entropy": 0.6962
+        },
+        {
+          "offset": 400,
+          "entropy": 0.6962
+        },
+        {
+          "offset": 408,
+          "entropy": 0.3373
+        },
+        {
+          "offset": 416,
+          "entropy": 0.0
+        }
+      ],
+      "profile_sample": [
+        {
+          "offset": 0,
+          "entropy": 0.9422
+        },
+        {
+          "offset": 16,
+          "entropy": 0.913
+        },
+        {
+          "offset": 32,
+          "entropy": 0.913
+        },
+        {
+          "offset": 48,
+          "entropy": 0.9284
+        },
+        {
+          "offset": 64,
+          "entropy": 0.913
+        },
+        {
+          "offset": 80,
+          "entropy": 0.913
+        },
+        {
+          "offset": 96,
+          "entropy": 0.9284
+        },
+        {
+          "offset": 112,
+          "entropy": 0.913
+        },
+        {
+          "offset": 128,
+          "entropy": 0.913
+        },
+        {
+          "offset": 144,
+          "entropy": 0.9284
+        },
+        {
+          "offset": 160,
+          "entropy": 0.913
+        },
+        {
+          "offset": 176,
+          "entropy": 0.913
+        },
+        {
+          "offset": 192,
+          "entropy": 0.9745
+        },
+        {
+          "offset": 208,
+          "entropy": 0.9887
+        },
+        {
+          "offset": 224,
+          "entropy": 0.8351
+        },
+        {
+          "offset": 240,
+          "entropy": 0.4489
+        },
+        {
+          "offset": 256,
+          "entropy": 0.0
+        },
+        {
+          "offset": 272,
+          "entropy": 0.0
+        },
+        {
+          "offset": 288,
+          "entropy": 0.0
+        },
+        {
+          "offset": 304,
+          "entropy": 0.0
+        },
+        {
+          "offset": 320,
+          "entropy": 0.0
+        },
+        {
+          "offset": 336,
+          "entropy": 0.0
+        },
+        {
+          "offset": 352,
+          "entropy": 0.3373
+        },
+        {
+          "offset": 368,
+          "entropy": 0.896
+        },
+        {
+          "offset": 384,
+          "entropy": 0.9887
+        },
+        {
+          "offset": 400,
+          "entropy": 0.6962
+        },
+        {
+          "offset": 416,
+          "entropy": 0.0
+        },
+        {
+          "offset": 432,
+          "entropy": 0.273
+        },
+        {
+          "offset": 448,
+          "entropy": 0.662
+        },
+        {
+          "offset": 464,
+          "entropy": 0.8774
+        },
+        {
+          "offset": 480,
+          "entropy": 0.9823
+        },
+        {
+          "offset": 496,
+          "entropy": 1.0
+        },
+        {
+          "offset": 512,
+          "entropy": 1.0
+        },
+        {
+          "offset": 528,
+          "entropy": 1.0
+        },
+        {
+          "offset": 544,
+          "entropy": 1.0
+        },
+        {
+          "offset": 560,
+          "entropy": 1.0
+        },
+        {
+          "offset": 576,
+          "entropy": 1.0
+        },
+        {
+          "offset": 592,
+          "entropy": 1.0
+        },
+        {
+          "offset": 608,
+          "entropy": 1.0
+        },
+        {
+          "offset": 624,
+          "entropy": 1.0
+        }
+      ]
+    },
+    "epigenetic_symbols_seen": [],
+    "negative_control": {
+      "rule": "shuffled same composition must not look more structured than real seq",
+      "delta_symbol_H": 0.0,
+      "note": "For real genomes, compare coding vs intergenic windows vs shuffle (Hyper)."
+    }
+  },
+  "demo_junk_only": {
+    "label": "synthetic_low_H",
+    "n_bases": 120,
+    "n_bits": 240,
+    "symbol_entropy": 0.9183,
+    "symbol_entropy_shuffled": 0.9183,
+    "bitstream": {
+      "n_bits": 240,
+      "shannon_entropy": 0.9183,
+      "p1": 0.3333,
+      "bit_balance_abs": 0.1667,
+      "run_density": 0.0042,
+      "lz76_phrases": 3,
+      "lz76_normalized": 0.0125,
+      "autocorr": {
+        "peak_lag": 1,
+        "peak_corr": 0.9854,
+        "strong_peak": true,
+        "lags_top": [
+          {
+            "lag": 1,
+            "corr": 0.9854
+          },
+          {
+            "lag": 2,
+            "corr": 0.9708
+          },
+          {
+            "lag": 3,
+            "corr": 0.9562
+          },
+          {
+            "lag": 4,
+            "corr": 0.9417
+          },
+          {
+            "lag": 5,
+            "corr": 0.9271
+          }
+        ]
+      },
+      "reshape_top": [
+        {
+          "shape": "4x60",
+          "rows": 4,
+          "cols": 60,
+          "col_entropy_std": 0.089,
+          "row_entropy_std": 0.3976,
+          "mean_fill": 0.3333
+        },
+        {
+          "shape": "5x48",
+          "rows": 5,
+          "cols": 48,
+          "col_entropy_std": 0.1174,
+          "row_entropy_std": 0.3673,
+          "mean_fill": 0.3333
+        },
+        {
+          "shape": "8x30",
+          "rows": 8,
+          "cols": 30,
+          "col_entropy_std": 0.0675,
+          "row_entropy_std": 0.3037,
+          "mean_fill": 0.3333
+        },
+        {
+          "shape": "10x24",
+          "rows": 10,
+          "cols": 24,
+          "col_entropy_std": 0.0423,
+          "row_entropy_std": 0.2755,
+          "mean_fill": 0.3333
+        },
+        {
+          "shape": "16x15",
+          "rows": 16,
+          "cols": 15,
+          "col_entropy_std": 0.0275,
+          "row_entropy_std": 0.2223,
+          "mean_fill": 0.3333
+        },
+        {
+          "shape": "20x12",
+          "rows": 20,
+          "cols": 12,
+          "col_entropy_std": 0.0249,
+          "row_entropy_std": 0.2001,
+          "mean_fill": 0.3333
+        },
+        {
+          "shape": "40x6",
+          "rows": 40,
+          "cols": 6,
+          "col_entropy_std": 0.0115,
+          "row_entropy_std": 0.1434,
+          "mean_fill": 0.3333
+        },
+        {
+          "shape": "80x3",
+          "rows": 80,
+          "cols": 3,
+          "col_entropy_std": 0.006,
+          "row_entropy_std": 0.102,
+          "mean_fill": 0.3333
+        }
+      ],
+      "ascii_msb": {
+        "n_bytes": 30,
+        "printable_fraction": 0.0,
+        "looks_like_text": false,
+        "preview": ".............................."
+      },
+      "ascii_lsb": {
+        "n_bytes": 30,
+        "printable_fraction": 0.0,
+        "looks_like_text": false,
+        "preview": ".............................."
+      },
+      "math_curiosity": {
+        "window_trials": 1638,
+        "prime_hits": 95,
+        "fib_hits": 14,
+        "prime_hit_rate": 0.058,
+        "note": "Anecdotal \u2014 random bits also hit small primes."
+      },
+      "interpretation": [
+        "Autocorr peak at lag 1 \u2192 periodic/framed structure."
+      ]
+    },
+    "window_entropy_bits": {
+      "kind": "bits",
+      "n_bits": 240,
+      "window": 32,
+      "step": 8,
+      "n_windows": 27,
+      "entropy_mean": 0.0971,
+      "entropy_min": 0.0,
+      "entropy_max": 1.0,
+      "low_entropy_windows": [
+        {
+          "offset": 0,
+          "entropy": 0.0
+        },
+        {
+          "offset": 8,
+          "entropy": 0.0
+        },
+        {
+          "offset": 16,
+          "entropy": 0.0
+        },
+        {
+          "offset": 24,
+          "entropy": 0.0
+        },
+        {
+          "offset": 32,
+          "entropy": 0.0
+        },
+        {
+          "offset": 40,
+          "entropy": 0.0
+        },
+        {
+          "offset": 48,
+          "entropy": 0.0
+        },
+        {
+          "offset": 56,
+          "entropy": 0.0
+        },
+        {
+          "offset": 64,
+          "entropy": 0.0
+        },
+        {
+          "offset": 72,
+          "entropy": 0.0
+        },
+        {
+          "offset": 80,
+          "entropy": 0.0
+        },
+        {
+          "offset": 88,
+          "entropy": 0.0
+        },
+        {
+          "offset": 96,
+          "entropy": 0.0
+        },
+        {
+          "offset": 104,
+          "entropy": 0.0
+        },
+        {
+          "offset": 112,
+          "entropy": 0.0
+        },
+        {
+          "offset": 120,
+          "entropy": 0.0
+        },
+        {
+          "offset": 128,
+          "entropy": 0.0
+        },
+        {
+          "offset": 160,
+          "entropy": 0.0
+        },
+        {
+          "offset": 168,
+          "entropy": 0.0
+        },
+        {
+          "offset": 176,
+          "entropy": 0.0
+        }
+      ],
+      "profile_sample": [
+        {
+          "offset": 0,
+          "entropy": 0.0
+        },
+        {
+          "offset": 8,
+          "entropy": 0.0
+        },
+        {
+          "offset": 16,
+          "entropy": 0.0
+        },
+        {
+          "offset": 24,
+          "entropy": 0.0
+        },
+        {
+          "offset": 32,
+          "entropy": 0.0
+        },
+        {
+          "offset": 40,
+          "entropy": 0.0
+        },
+        {
+          "offset": 48,
+          "entropy": 0.0
+        },
+        {
+          "offset": 56,
+          "entropy": 0.0
+        },
+        {
+          "offset": 64,
+          "entropy": 0.0
+        },
+        {
+          "offset": 72,
+          "entropy": 0.0
+        },
+        {
+          "offset": 80,
+          "entropy": 0.0
+        },
+        {
+          "offset": 88,
+          "entropy": 0.0
+        },
+        {
+          "offset": 96,
+          "entropy": 0.0
+        },
+        {
+          "offset": 104,
+          "entropy": 0.0
+        },
+        {
+          "offset": 112,
+          "entropy": 0.0
+        },
+        {
+          "offset": 120,
+          "entropy": 0.0
+        },
+        {
+          "offset": 128,
+          "entropy": 0.0
+        },
+        {
+          "offset": 136,
+          "entropy": 0.8113
+        },
+        {
+          "offset": 144,
+          "entropy": 1.0
+        },
+        {
+          "offset": 152,
+          "entropy": 0.8113
+        },
+        {
+          "offset": 160,
+          "entropy": 0.0
+        },
+        {
+          "offset": 168,
+          "entropy": 0.0
+        },
+        {
+          "offset": 176,
+          "entropy": 0.0
+        },
+        {
+          "offset": 184,
+          "entropy": 0.0
+        },
+        {
+          "offset": 192,
+          "entropy": 0.0
+        },
+        {
+          "offset": 200,
+          "entropy": 0.0
+        },
+        {
+          "offset": 208,
+          "entropy": 0.0
+        }
+      ]
+    },
+    "epigenetic_symbols_seen": [],
+    "negative_control": {
+      "rule": "shuffled same composition must not look more structured than real seq",
+      "delta_symbol_H": 0.0,
+      "note": "For real genomes, compare coding vs intergenic windows vs shuffle (Hyper)."
+    }
+  },
+  "stance": "Scaffold only \u2014 replace with SARS-CoV-2 + human contig FASTA for N1."
+}
