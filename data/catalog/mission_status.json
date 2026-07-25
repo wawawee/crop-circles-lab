@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T03:47:19.098096+00:00",
+  "generated_at": "2026-07-25T04:56:44.950133+00:00",
   "missions": [
     {
       "id": "N0",
@@ -19,14 +19,14 @@
       "id": "N2",
       "owner": "Opencode",
       "title": "UAP flight consistency",
-      "status": "scaffolded",
+      "status": "done",
       "href": "tools/uap/uap_flight_consistency.py"
     },
     {
       "id": "N3",
       "owner": "Hermes",
       "title": "Dimensionless constants",
-      "status": "scaffolded",
+      "status": "done",
       "href": "tools/astro/constants_probe.py"
     },
     {
@@ -69,8 +69,8 @@
       "notes": "needs official media"
     },
     "constants": {
-      "covered": false,
-      "notes": "scaffold demo runnable"
+      "covered": true,
+      "notes": "first probe landed; verdict: structure, not signal"
     },
     "archaeoastronomy": {
       "covered": false,
