@@ -1,0 +1,125 @@
+{
+  "n_bits": 1248,
+  "shannon_entropy": 1.0,
+  "p1": 0.4992,
+  "bit_balance_abs": 0.0008,
+  "run_density": 0.2991,
+  "lz76_phrases": 108,
+  "lz76_normalized": 0.0865,
+  "autocorr": {
+    "peak_lag": 1,
+    "peak_corr": 0.4014,
+    "strong_peak": true,
+    "lags_top": [
+      {
+        "lag": 1,
+        "corr": 0.4014
+      },
+      {
+        "lag": 2,
+        "corr": 0.3061
+      },
+      {
+        "lag": 4,
+        "corr": 0.2676
+      },
+      {
+        "lag": 3,
+        "corr": 0.2652
+      },
+      {
+        "lag": 5,
+        "corr": 0.2316
+      }
+    ]
+  },
+  "reshape_top": [
+    {
+      "shape": "416x3",
+      "rows": 416,
+      "cols": 3,
+      "col_entropy_std": 0.0005,
+      "row_entropy_std": 0.4581,
+      "mean_fill": 0.4992
+    },
+    {
+      "shape": "624x2",
+      "rows": 624,
+      "cols": 2,
+      "col_entropy_std": 0.0001,
+      "row_entropy_std": 0.4553,
+      "mean_fill": 0.4992
+    },
+    {
+      "shape": "312x4",
+      "rows": 312,
+      "cols": 4,
+      "col_entropy_std": 0.0014,
+      "row_entropy_std": 0.44,
+      "mean_fill": 0.4992
+    },
+    {
+      "shape": "208x6",
+      "rows": 208,
+      "cols": 6,
+      "col_entropy_std": 0.002,
+      "row_entropy_std": 0.387,
+      "mean_fill": 0.4992
+    },
+    {
+      "shape": "156x8",
+      "rows": 156,
+      "cols": 8,
+      "col_entropy_std": 0.0024,
+      "row_entropy_std": 0.3464,
+      "mean_fill": 0.4992
+    },
+    {
+      "shape": "104x12",
+      "rows": 104,
+      "cols": 12,
+      "col_entropy_std": 0.0037,
+      "row_entropy_std": 0.2999,
+      "mean_fill": 0.4992
+    },
+    {
+      "shape": "96x13",
+      "rows": 96,
+      "cols": 13,
+      "col_entropy_std": 0.019,
+      "row_entropy_std": 0.2764,
+      "mean_fill": 0.4992
+    },
+    {
+      "shape": "78x16",
+      "rows": 78,
+      "cols": 16,
+      "col_entropy_std": 0.0102,
+      "row_entropy_std": 0.2795,
+      "mean_fill": 0.4992
+    }
+  ],
+  "ascii_msb": {
+    "n_bytes": 156,
+    "printable_fraction": 0.2372,
+    "looks_like_text": false,
+    "preview": ".........C...#<..o..../...?...F...........fs....0...?y...l..J..6......2...D )..."
+  },
+  "ascii_lsb": {
+    "n_bytes": 156,
+    "printable_fraction": 0.2628,
+    "looks_like_text": false,
+    "preview": "..!....`?.....<8.............ab.c.0.......f..a.........?#6.@R@.l..7]/.L...\"....."
+  },
+  "math_curiosity": {
+    "window_trials": 8694,
+    "prime_hits": 1408,
+    "fib_hits": 1111,
+    "prime_hit_rate": 0.162,
+    "note": "Anecdotal \u2014 random bits also hit small primes."
+  },
+  "interpretation": [
+    "Near-max entropy + near-perfect balance \u2192 crypto, compression, or balanced synthetic bits (human/algorithm). Unlikely natural language.",
+    "Autocorr peak at lag 1 \u2192 periodic/framed structure."
+  ]
+}

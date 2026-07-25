@@ -1,0 +1,124 @@
+{
+  "note": "No ASCII plaintext for Chilbolton; ranked by printable fraction. Expect low.",
+  "grid_analyze": {
+    "shape": [
+      73,
+      23
+    ],
+    "entropy_bits": 1.0,
+    "bit_balance": 0.5003,
+    "dominant_period": {
+      "axis": "row",
+      "period": 9,
+      "corr": 0.295,
+      "col": [
+        10,
+        0.082
+      ],
+      "row": [
+        9,
+        0.295
+      ]
+    },
+    "fft_peakiness": 12.59,
+    "symmetry": {
+      "horizontal": 0.627,
+      "vertical": 0.674,
+      "rot180": 0.58
+    },
+    "structuredness_z": 24.48,
+    "verdict": "structured: non-random neighbours (z=24.5)"
+  },
+  "scan_top": [
+    {
+      "order": "row",
+      "polarity": "normal",
+      "nbits": 7,
+      "msb_first": true,
+      "printable": 0.661,
+      "ioc": 0.0158,
+      "preview": "\u0000\u0000\u0000\u0000\u0000\u0000\u0001#z@?_p\bav\u0002@:@2|p\u001ac<\u0007\"7\u0001C `= x\f\n^\u0003W\b@`\u00000\u001aC"
+    },
+    {
+      "order": "row",
+      "polarity": "inverted",
+      "nbits": 7,
+      "msb_first": false,
+      "printable": 0.657,
+      "ioc": 0.0158,
+      "preview": "\u007f\u007f\u007f\u007f\u007f\u007f?\u001dP~\u0001\u0002xw<H_~Q~Y`xS\u001ca\u000f]\t?\u001e}|!}pgWB\u001f\nw~|\u007fyS\u001e"
+    },
+    {
+      "order": "row",
+      "polarity": "inverted",
+      "nbits": 7,
+      "msb_first": true,
+      "printable": 0.653,
+      "ioc": 0.0158,
+      "preview": "\u007f\u007f\u007f\u007f\u007f\u007f~\\\u0005?@ \u000fw\u001e\t}?E?M\u0003\u000fe\u001cCx]H~<_\u001fB_\u0007su!|(w?\u001f\u007fOe<"
+    },
+    {
+      "order": "row_rev",
+      "polarity": "inverted",
+      "nbits": 7,
+      "msb_first": false,
+      "printable": 0.644,
+      "ioc": 0.0169,
+      "preview": "\u007f\u007f\u007f\u007f\u007f\u007f\u007f+`u\u000f @\u001fas~\n\u007fzc s\u000fr\u0014?d.|yes\u0007_B\u001fT>~nQxs\u007fg\u000fr"
+    },
+    {
+      "order": "boustrophedon",
+      "polarity": "inverted",
+      "nbits": 7,
+      "msb_first": false,
+      "printable": 0.64,
+      "ioc": 0.0181,
+      "preview": "\u007f\u007f\u007f\u007f\u007f\u007f?\u001dP~\u000f @w<H\u007f\n\u007fzY`x\u000fr\u0014\u000f]\t\u007fyes!}p\u001fT>\u001e\nw~s\u007fgS\u001e"
+    },
+    {
+      "order": "boustrophedon",
+      "polarity": "normal",
+      "nbits": 7,
+      "msb_first": true,
+      "printable": 0.636,
+      "ioc": 0.0181,
+      "preview": "\u0000\u0000\u0000\u0000\u0000\u0000\u0001#z@\u0007}~\bav\u0000W\u0000P2|p\u0007Xk\u0007\"7\u00000,\u0018= x\u0003jACW\b@\u0018\u0000\f\u001aC"
+    },
+    {
+      "order": "row",
+      "polarity": "normal",
+      "nbits": 7,
+      "msb_first": false,
+      "printable": 0.619,
+      "ioc": 0.0158,
+      "preview": "\u0000\u0000\u0000\u0000\u0000\u0000@b/\u0001~}\u0007\bC7 \u0001.\u0001&\u001f\u0007,c\u001ep\"v@a\u0002\u0003^\u0002\u000f\u0018(=`u\b\u0001\u0003\u0000\u0006,a"
+    },
+    {
+      "order": "row_rev",
+      "polarity": "normal",
+      "nbits": 7,
+      "msb_first": true,
+      "printable": 0.615,
+      "ioc": 0.0169,
+      "preview": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0015|(\u0007}~\u0003<\u0018@W\u0000P\u001c}\u0018\u0007Xk\u0001lE`0,\u0018\u000f\u0002^\u0003jA@D:p\u0018\u0000\f\u0007X"
+    },
+    {
+      "order": "row_rev",
+      "polarity": "inverted",
+      "nbits": 7,
+      "msb_first": true,
+      "printable": 0.611,
+      "ioc": 0.0169,
+      "preview": "\u007f\u007f\u007f\u007f\u007f\u007f\u007fj\u0003Wx\u0002\u0001|Cg?(\u007f/c\u0002gx'\u0014~\u0013:\u001fOSgp}!|\u0015>?;E\u000fg\u007fsx'"
+    },
+    {
+      "order": "row_rev",
+      "polarity": "normal",
+      "nbits": 7,
+      "msb_first": false,
+      "printable": 0.582,
+      "ioc": 0.0169,
+      "preview": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000T\u001f\np_?`\u001e\f\u0001u\u0000\u0005\u001c_\fp\rk@\u001bQ\u0003\u0006\u001a\fx =`+A\u0001\u0011.\u0007\f\u0000\u0018p\r"
+    }
+  ]
+}

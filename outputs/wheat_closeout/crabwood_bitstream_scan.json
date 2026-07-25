@@ -1,0 +1,119 @@
+{
+  "source": "data/images/crabwood_2002_disc_crop.png",
+  "params_note": "disc crop; turns=11 theta0=270 cw outward; both polarities via scan",
+  "best": {
+    "order": "asis",
+    "polarity": "normal",
+    "nbits": 7,
+    "msb_first": true,
+    "printable": 0.511,
+    "ioc": 0.032,
+    "preview": "p\u0003p@|/A`\u0003?\b9n\u007f`#\u001e\u0007\u0018\u0006\u007f\u0000\u000e\u0000\u0005K}px@~\u0003xaH`\u0006\u0018\u0000\f\b{}\u007f\u001f\u0007\u007f`",
+    "ber": 0.4863
+  },
+  "top_inv": [
+    {
+      "order": "asis",
+      "polarity": "normal",
+      "nbits": 7,
+      "msb_first": true,
+      "printable": 0.511,
+      "ioc": 0.032,
+      "preview": "p\u0003p@|/A`\u0003?\b9n\u007f`#\u001e\u0007\u0018\u0006\u007f\u0000\u000e\u0000\u0005K}px@~\u0003xaH`\u0006\u0018\u0000\f\b{}\u007f\u001f\u0007\u007f`",
+      "ber": 0.4863
+    },
+    {
+      "order": "asis",
+      "polarity": "normal",
+      "nbits": 8,
+      "msb_first": true,
+      "printable": 0.25,
+      "ioc": 0.0207,
+      "preview": "\u00e0\u000f\u0084\u000f\u008b\u00e0\u00e0\u0006\u00fcC\u009d\u00df\u00f0#<\u001c\u00c0o\u00e0\u0007\u0000\u000b/\u00ef\u000f\u0010?\u0003\u00f1\u0086F\u0000\u00c6\u0000\f\u0011\u00ef\u00ef\u00f3\u00e1\u00ff\u00e0fs\t\u0086\u001b\u0000",
+      "ber": 0.488
+    },
+    {
+      "order": "asis",
+      "polarity": "normal",
+      "nbits": 8,
+      "msb_first": false,
+      "printable": 0.269,
+      "ioc": 0.0207,
+      "preview": "\u0007\u00f0!\u00f0\u00d1\u0007\u0007`?\u00c2\u00b9\u00fb\u000f\u00c4<8\u0003\u00f6\u0007\u00e0\u0000\u00d0\u00f4\u00f7\u00f0\b\u00fc\u00c0\u008fab\u0000c\u00000\u0088\u00f7\u00f7\u00cf\u0087\u00ff\u0007f\u00ce\u0090a\u00d8\u0000",
+      "ber": 0.4896
+    },
+    {
+      "order": "asis",
+      "polarity": "inverted",
+      "nbits": 7,
+      "msb_first": false,
+      "printable": 0.573,
+      "ioc": 0.032,
+      "preview": "x\u001fx~`\u0005>|\u001f\u0001w1D\u0000|\u001dC\u000fsO\u0000\u007fG\u007f/\u0016 xp~@\u001fp<v|Os\u007fgw\u0010 \u0000\u0003\u000f\u0000|",
+      "ber": 0.4936
+    },
+    {
+      "order": "asis",
+      "polarity": "normal",
+      "nbits": 7,
+      "msb_first": false,
+      "printable": 0.534,
+      "ioc": 0.032,
+      "preview": "\u0007`\u0007\u0001\u001fzA\u0003`~\bN;\u007f\u0003b<p\f0\u007f\u00008\u0000Pi_\u0007\u000f\u0001?`\u000fC\t\u00030\f\u0000\u0018\bo_\u007f|p\u007f\u0003",
+      "ber": 0.5064
+    }
+  ],
+  "top_raw": [
+    {
+      "order": "asis",
+      "polarity": "inverted",
+      "nbits": 7,
+      "msb_first": true,
+      "printable": 0.511,
+      "ioc": 0.032,
+      "preview": "p\u0003p@|/A`\u0003?\b9n\u007f`#\u001e\u0007\u0018\u0006\u007f\u0000\u000e\u0000\u0005K}px@~\u0003xaH`\u0006\u0018\u0000\f\b{}\u007f\u001f\u0007\u007f`",
+      "ber": 0.4863
+    },
+    {
+      "order": "asis",
+      "polarity": "inverted",
+      "nbits": 8,
+      "msb_first": true,
+      "printable": 0.25,
+      "ioc": 0.0207,
+      "preview": "\u00e0\u000f\u0084\u000f\u008b\u00e0\u00e0\u0006\u00fcC\u009d\u00df\u00f0#<\u001c\u00c0o\u00e0\u0007\u0000\u000b/\u00ef\u000f\u0010?\u0003\u00f1\u0086F\u0000\u00c6\u0000\f\u0011\u00ef\u00ef\u00f3\u00e1\u00ff\u00e0fs\t\u0086\u001b\u0000",
+      "ber": 0.488
+    },
+    {
+      "order": "asis",
+      "polarity": "inverted",
+      "nbits": 8,
+      "msb_first": false,
+      "printable": 0.269,
+      "ioc": 0.0207,
+      "preview": "\u0007\u00f0!\u00f0\u00d1\u0007\u0007`?\u00c2\u00b9\u00fb\u000f\u00c4<8\u0003\u00f6\u0007\u00e0\u0000\u00d0\u00f4\u00f7\u00f0\b\u00fc\u00c0\u008fab\u0000c\u00000\u0088\u00f7\u00f7\u00cf\u0087\u00ff\u0007f\u00ce\u0090a\u00d8\u0000",
+      "ber": 0.4896
+    },
+    {
+      "order": "asis",
+      "polarity": "normal",
+      "nbits": 7,
+      "msb_first": false,
+      "printable": 0.573,
+      "ioc": 0.032,
+      "preview": "x\u001fx~`\u0005>|\u001f\u0001w1D\u0000|\u001dC\u000fsO\u0000\u007fG\u007f/\u0016 xp~@\u001fp<v|Os\u007fgw\u0010 \u0000\u0003\u000f\u0000|",
+      "ber": 0.4936
+    },
+    {
+      "order": "asis",
+      "polarity": "inverted",
+      "nbits": 7,
+      "msb_first": false,
+      "printable": 0.534,
+      "ioc": 0.032,
+      "preview": "\u0007`\u0007\u0001\u001fzA\u0003`~\bN;\u007f\u0003b<p\f0\u007f\u00008\u0000Pi_\u0007\u000f\u0001?`\u000fC\t\u00030\f\u0000\u0018\bo_\u007f|p\u007f\u0003",
+      "ber": 0.5064
+    }
+  ],
+  "caveat": "Web-res: expect BER~0.45-0.5 (noise). Negative control = finding nothing."
+}

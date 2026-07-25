@@ -1,0 +1,29 @@
+{
+  "shape": [
+    73,
+    23
+  ],
+  "entropy_bits": 1.0,
+  "bit_balance": 0.5003,
+  "dominant_period": {
+    "axis": "row",
+    "period": 9,
+    "corr": 0.295,
+    "col": [
+      10,
+      0.082
+    ],
+    "row": [
+      9,
+      0.295
+    ]
+  },
+  "fft_peakiness": 12.59,
+  "symmetry": {
+    "horizontal": 0.627,
+    "vertical": 0.674,
+    "rot180": 0.58
+  },
+  "structuredness_z": 24.48,
+  "verdict": "structured: non-random neighbours (z=24.5)"
+}
