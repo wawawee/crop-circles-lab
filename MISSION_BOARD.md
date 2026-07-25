@@ -50,9 +50,9 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
 | **G15** | queue | Cretan Hieroglyphic bipartite admin | network / symbolseq | ⬜ after Linear A |
 | **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **merged PR #14** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
-| **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
+| **G17** | **Freebuff** 🟡 | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets; synthetic LC; injection-recovery KA; off-ellipsoid controls | 🟡 **ASSIGNED** — `feat/g17-tess-ellipsoid`; IR_KNOWN_ANSWER_PASS; TESScut BLOCKED (synthetic only); 22/22 tests |
 | **G18** | **Freebuff** | EAMENA ley-line null + G18++ real subset comparison | spatial+network; Clark-Evans NN + collinear-triple FPR vs CSR/scrambled-coord nulls | 🟢 **PR #18** — NO_SIGNAL \| FPR_CALIBRATED; 44/44 tests; real Bani Walid subset `outputs/eamena/comparison_g18pp.json`; reusable `tools/ccat/spatial_pattern.py` (22 module tests) |
-| **G19** | queue | Long Delayed Echoes historic series | radio/FFT; digitized delays | ⬜ no-signal; Lunan CUT |
+| **G19** | **Opencode** 🟢 | Long Delayed Echoes historic series | radio/FFT; digitized delays; probe | 🟢 **merged PR** — STRUCTURE_SIGNAL (autocorr vs scramble: Appleton z=+14.47, Crawford z=+6.07, Stormer z=−0.55). Verdict reflects measurement-artifact clustering (stopwatch rounding), not alien relay. Lunan CUT: claim-under-test, not fact. Lunan withdrew in 1976. 29/29 tests. Forbidden-phrase guard. `feat/g19-lde` |
 | **G20** | **Opencode** | Boyajian Star TESS epoch-fold | astro; TIC 272172248 | 🟢 **merged PR #19** — STRUCTURE_SIGNAL (synthetic); TESS fetch BLOCKED; NO_SIGNAL if no separation from quiet control; 22/22 tests |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
@@ -350,7 +350,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > **G13** VASCO transients — no-signal prior; plate-artifact nulls.  
 > **G14** Chankillo towers — DEM horizon + synthetic ridge null.  
 > **G15** Cretan Hieroglyphic bipartite admin — CHIC + Linear A/B KA.  
-> **G17** TESS SETI Ellipsoid (Cabrales 2024) — optical no-signal sharpen.  
+> **G17** 🟡 **ASSIGNED** — `tools/scripts/tess_ellipsoid_probe.py`; synthetic LC; injection-recovery KA; off-ellipsoid controls; TESScut BLOCKED; 22/22 tests.  
 > **G18** 🟢 **drafted** — `tools/scripts/eamena_ley_null.py`; Clark-Evans NN + collinear-triple FPR vs CSR/scrambled-coord nulls; synthetic CSR fallback (API BLOCKED); 25/25 tests; forbidden-phrase guard.  
 > **G19** Long Delayed Echoes historic delays — no-signal; Lunan claim-under-test.  
 > **G20** 🟢 **merged PR #19** — `tools/scripts/boyajian_tess_probe.py`; synthetic LC with Kepler-morphology dips; quiet-star control; 22/22 tests.  

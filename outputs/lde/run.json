@@ -1,0 +1,457 @@
+{
+  "mission": "G19",
+  "generated_at": "2026-07-25T21:09:14.894919+00:00",
+  "verdict": "STRUCTURE_SIGNAL | z_stormer=-0.55 | z_appleton=14.47 | z_crawford=6.07",
+  "metadata": {
+    "n_stormer": 58,
+    "n_appleton": 77,
+    "n_crawford": 50,
+    "datasets": [
+      "Stormer_1928",
+      "Appleton_1934",
+      "Crawford_1967"
+    ]
+  },
+  "datasets": [
+    {
+      "label": "Stormer_1928",
+      "n": 58,
+      "min_s": 3,
+      "max_s": 15,
+      "mean_s": 9.5345,
+      "sd_s": 3.2282,
+      "histogram": {
+        "bin_start": 3,
+        "bin_end": 17,
+        "counts": [
+          1,
+          1,
+          6,
+          2,
+          3,
+          16,
+          5,
+          2,
+          1,
+          7,
+          5,
+          5,
+          4,
+          0
+        ],
+        "n": 58
+      },
+      "modes": {
+        "top_modes": [
+          [
+            8,
+            16
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            13,
+            5
+          ]
+        ],
+        "n_unique_delays": 13,
+        "entropy_bits": 3.2589
+      },
+      "autocorr": {
+        "lags": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "values": [
+          0.1105,
+          -0.0347,
+          -0.2628,
+          -0.1893,
+          -0.2911,
+          -0.1015,
+          0.1099,
+          0.0598,
+          0.1202,
+          0.1727,
+          0.1423,
+          -0.1011,
+          -0.0462,
+          -0.0664,
+          -0.0492,
+          -0.2523,
+          -0.0301,
+          -0.006,
+          0.0469,
+          0.157
+        ],
+        "peak_lag": 10,
+        "peak_value": 0.1727,
+        "n": 58
+      },
+      "fft": {
+        "n": 58,
+        "peak_bin": 7,
+        "peak_freq": 0.1207,
+        "peak_power": 1647.9026,
+        "power_mean": 461.1703,
+        "power_sd": 454.2155,
+        "peak_over_mean": 3.5733
+      },
+      "scramble_null": {
+        "n_sims": 1000,
+        "observed_peak_ac": 0.1727,
+        "scramble_mean_peak_ac": 0.2051,
+        "scramble_sd_peak_ac": 0.0594,
+        "z": -0.55,
+        "excess_over_null": false
+      },
+      "uniform_null": {
+        "n_sims": 1000,
+        "observed_peak_ac": 0.1727,
+        "uniform_mean_peak_ac": 0.2053,
+        "uniform_sd_peak_ac": 0.0583,
+        "z": -0.56,
+        "excess_over_null": false
+      },
+      "ac_z_vs_scramble": -0.55
+    },
+    {
+      "label": "Appleton_1934",
+      "n": 77,
+      "min_s": 2.0,
+      "max_s": 15.0,
+      "mean_s": 8.2468,
+      "sd_s": 3.1711,
+      "histogram": {
+        "bin_start": 2,
+        "bin_end": 17,
+        "counts": [
+          1,
+          3,
+          5,
+          9,
+          7,
+          6,
+          14,
+          8,
+          5,
+          3,
+          7,
+          4,
+          3,
+          2,
+          0
+        ],
+        "n": 77
+      },
+      "modes": {
+        "top_modes": [
+          [
+            8,
+            14
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            12,
+            7
+          ]
+        ],
+        "n_unique_delays": 14,
+        "entropy_bits": 3.5638
+      },
+      "autocorr": {
+        "lags": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "values": [
+          0.937,
+          0.882,
+          0.8357,
+          0.7856,
+          0.7423,
+          0.705,
+          0.6665,
+          0.6242,
+          0.5779,
+          0.5471,
+          0.5151,
+          0.4818,
+          0.4484,
+          0.4125,
+          0.3714,
+          0.329,
+          0.2928,
+          0.254,
+          0.2232,
+          0.1999
+        ],
+        "peak_lag": 1,
+        "peak_value": 0.937,
+        "n": 77
+      },
+      "fft": {
+        "n": 77,
+        "peak_bin": 1,
+        "peak_freq": 0.013,
+        "peak_power": 3062.5631,
+        "power_mean": 304.444,
+        "power_sd": 577.292,
+        "peak_over_mean": 10.0595
+      },
+      "scramble_null": {
+        "n_sims": 1000,
+        "observed_peak_ac": 0.937,
+        "scramble_mean_peak_ac": 0.1856,
+        "scramble_sd_peak_ac": 0.0519,
+        "z": 14.47,
+        "excess_over_null": true
+      },
+      "uniform_null": {
+        "n_sims": 1000,
+        "observed_peak_ac": 0.937,
+        "uniform_mean_peak_ac": 0.1872,
+        "uniform_sd_peak_ac": 0.0512,
+        "z": 14.65,
+        "excess_over_null": true
+      },
+      "ac_z_vs_scramble": 14.47
+    },
+    {
+      "label": "Crawford_1967",
+      "n": 50,
+      "min_s": 2.0,
+      "max_s": 40.0,
+      "mean_s": 7.08,
+      "sd_s": 6.0789,
+      "histogram": {
+        "bin_start": 2,
+        "bin_end": 42,
+        "counts": [
+          12,
+          4,
+          3,
+          2,
+          3,
+          4,
+          10,
+          3,
+          2,
+          1,
+          2,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "n": 50
+      },
+      "modes": {
+        "top_modes": [
+          [
+            2,
+            12
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "n_unique_delays": 15,
+        "entropy_bits": 3.3938
+      },
+      "autocorr": {
+        "lags": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "values": [
+          0.5628,
+          0.4889,
+          0.4225,
+          0.3636,
+          0.3371,
+          0.2949,
+          0.2569,
+          0.2347,
+          0.1989,
+          0.1787,
+          0.1569,
+          0.1232,
+          0.109,
+          0.0943,
+          0.079,
+          0.0632,
+          0.049,
+          0.0338,
+          0.0174,
+          0.0017
+        ],
+        "peak_lag": 1,
+        "peak_value": 0.5628,
+        "n": 50
+      },
+      "fft": {
+        "n": 50,
+        "peak_bin": 1,
+        "peak_freq": 0.02,
+        "peak_power": 4046.3,
+        "power_mean": 1238.1163,
+        "power_sd": 864.3637,
+        "peak_over_mean": 3.2681
+      },
+      "scramble_null": {
+        "n_sims": 1000,
+        "observed_peak_ac": 0.5628,
+        "scramble_mean_peak_ac": 0.1957,
+        "scramble_sd_peak_ac": 0.0604,
+        "z": 6.07,
+        "excess_over_null": true
+      },
+      "uniform_null": {
+        "n_sims": 1000,
+        "observed_peak_ac": 0.5628,
+        "uniform_mean_peak_ac": 0.217,
+        "uniform_sd_peak_ac": 0.0614,
+        "z": 5.63,
+        "excess_over_null": true
+      },
+      "ac_z_vs_scramble": 6.07
+    }
+  ],
+  "data_source": "Datasets digitized from Faizullin (2010) arXiv:1007.4054: Stormer 1928 series (5 series, 58 delays, stopwatch ~0.5 s precision), Appleton 1934 histogram (77 delays, digitized from Fig. 1), Crawford 1967 histogram (50 delays, estimated from qualitative description in Faizullin 2010 / Vidmar & Crawford 1985 JGR).",
+  "stance": "Long Delayed Echoes (LDEs) are a real ionospheric/magnetospheric propagation phenomenon with documented natural explanations (ducting, mode conversion, multi-round-the-world, plasma cloud reflection; cf. Holm 2004 / UiO review). This probe measures delay distribution and recurrence structure ONLY. The honest prior is NO_SIGNAL. Duncan Lunan's 1973 'Epsilon Bo\u00f6tis space probe' interpretation is a claim-under-test \u2014 not a fact. Lunan withdrew the claim in 1976 acknowledging methodological flaws. STRUCTURE != MESSAGE.",
+  "forbidden_phrases": [
+    "alien relay confirmed",
+    "Lunan proved",
+    "Epsilon Bo\u00f6tis probe",
+    "extraterrestrial communication",
+    "ET probe",
+    "Bracewell probe verified",
+    "world echo is alien",
+    "space probe confirmed",
+    "alien relay",
+    "extraterrestrial relay"
+  ],
+  "caveat": "Three independent LDE datasets analyzed. Honest prior: NO_SIGNAL. Delay distributions cluster around small integers (3\u201315 s for Stormer/Appleton; 2\u20138 s for Crawford). This likely reflects measurement precision (stopwatch rounding) and the real physics of magnetospheric ducting paths \u2014 not an alien communication protocol.",
+  "pipeline": {
+    "tool": "tools/scripts/lde_probe.py",
+    "dependencies": [],
+    "parameters": {
+      "seed": 42,
+      "n_sims": 500
+    }
+  }
+}

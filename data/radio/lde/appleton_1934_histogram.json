@@ -1,0 +1,14 @@
+{
+  "mission": "G19",
+  "label": "Appleton 1934 LDE histogram (digitized from figure)",
+  "source": "Appleton, E. (1934). LDE observations using World Radio Research League transmissions. Histogram reproduced in Faizullin (2010) arXiv:1007.4054 Fig. 1. Counts estimated from figure; see provenance note.",
+  "citation": "Appleton, E. (1934). Long delayed echoes. Nature or Proc. Roy. Soc. (exact ref TBD). Faizullin, R.T. (2010) arXiv:1007.4054.",
+  "provenance_note": "Counts are digitized from the histogram image in arXiv:1007.4054 Fig. 1. The histogram is hand-drawn; bin counts are approximate (±1 count). Only bins with non-zero counts are recorded.",
+  "histogram_bins": {
+    "delay_s": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "counts": [1, 3, 5, 9, 7, 6, 14, 8, 5, 3, 7, 4, 3, 2]
+  },
+  "n_total": 77,
+  "frequency_mhz": 9.6,
+  "year": 1934
+}

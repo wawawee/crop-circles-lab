@@ -1,0 +1,35 @@
+{
+  "mission": "G19",
+  "label": "Stormer 1928 echo delay series (Faizullin 2010, arXiv:1007.4054)",
+  "source": "Faizullin, R.T. (2010). 'Geometrical joke(r?)s for SETI.' arXiv:1007.4054. Citing Stormer & van der Pol 1928–1929 coordinated Eindhoven–Oslo experiments.",
+  "citation": "Stormer, C. (1928). 'Short Wave Echoes and the Aurora Borealis.' Nature, 122, 681. van der Pol, B. (1928). Nature, 122, 878–879.",
+  "note": "Five series of echo delays (seconds) registered during the October 1928–November 1929 experiments. Transmitter: PCJJ Eindhoven, 31.4 m wavelength. Measured by stopwatch, 0.5 s estimated precision.",
+  "series": {
+    "1": {
+      "values": [15, 9, 4, 8, 13, 8, 12, 10, 9, 5, 8, 7, 6],
+      "n": 13,
+      "date": "1928-10-11"
+    },
+    "2": {
+      "values": [12, 14, 14, 12, 8],
+      "n": 5,
+      "date": "1928-10-11"
+    },
+    "3": {
+      "values": [12, 5, 8],
+      "n": 3,
+      "date": "1928-10-11"
+    },
+    "4": {
+      "values": [12, 8, 5, 14, 14, 15, 12, 7, 5, 5, 13, 8, 8, 8, 13, 9, 10, 7, 14, 6, 9, 5, 9],
+      "n": 23,
+      "date": "1928-10-11"
+    },
+    "5": {
+      "values": [8, 11, 15, 8, 13, 3, 8, 8, 8, 12, 15, 13, 8, 8],
+      "n": 14,
+      "date": "1928-10-11"
+    }
+  },
+  "all_delays_s": [15, 9, 4, 8, 13, 8, 12, 10, 9, 5, 8, 7, 6, 12, 14, 14, 12, 8, 12, 5, 8, 12, 8, 5, 14, 14, 15, 12, 7, 5, 5, 13, 8, 8, 8, 13, 9, 10, 7, 14, 6, 9, 5, 9, 8, 11, 15, 8, 13, 3, 8, 8, 8, 12, 15, 13, 8, 8]
+}

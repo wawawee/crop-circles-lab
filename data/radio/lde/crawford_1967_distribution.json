@@ -1,0 +1,15 @@
+{
+  "mission": "G19",
+  "label": "Crawford 1967 LDE delay distribution (Stanford)",
+  "source": "Crawford, F.W., Sears, D.M., Bruce, R.L. (1970). 'Possible observations and mechanism of very long delayed radio echoes.' JGR 75(34), 7326–7332. Vidmar, R.J. & Crawford, F.W. (1985). 'Long-delayed radio echoes: Mechanisms and observations.' JGR 90(A2), 1523–1530.",
+  "citation": "Crawford et al. (1970) JGR 75 7326; Vidmar & Crawford (1985) JGR 90 1523.",
+  "provenance_note": "Histogram estimated from qualitative description in Faizullin (2010): 'Delays with 2 and 8 seconds were the most frequent.' Sears 1974 PhD thesis 'Long Delayed Radio Echoes' (DTIC ADA003070) may contain tabulated values; not accessed. Counts approximate.",
+  "histogram_bins": {
+    "delay_s": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+    "counts": [0, 12, 4, 3, 2, 3, 4, 10, 3, 2, 1, 2, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+  },
+  "n_total": 50,
+  "frequency_mhz": "5–12",
+  "year": 1967,
+  "caveat": "Historical LDE series (1928–1929) with delays up to 3.5 min were NOT reproduced. Only delays ≤40 s observed. Rate shift and time contraction noted relative to impulse spacing."
+}
