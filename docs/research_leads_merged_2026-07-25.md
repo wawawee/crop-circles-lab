@@ -40,7 +40,7 @@ Do **not** block 2D/CSV probes waiting on Blender. Use hubs only when geometry-f
 | VASCO vanishing stars | L | Real science; plate-artifact floor. Hyper later |
 | COSMIC/VLA hit re-vet | M | Extends radio; after BLC1 skill |
 | Indus ASR-net vs M77 | M | Extends symbolseq; after G1/G2 |
-| Rongorongo **2D** Spaelti corpus | M | G4 — no 3D request needed |
+| Rongorongo **2D** Spaelti corpus | M | **G4 → Opencode ASSIGNED** (2026-07-25) |
 | Rongorongo **3D** INSCRIBE | L | Email Ferrara + Blender hubs; after 2D |
 | Voynich 2025 Zenodo morphology | M | **Structure-only** allowed; still ban “translated.” Treat 2025 Arabic ρ claim as claim-under-test with shuffle nulls — not gospel |
 

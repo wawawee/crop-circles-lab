@@ -35,6 +35,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **R1** | Minimax (done) | radio_probe + fetchers | FFT/epoch-fold; Wow blocked; Vela/FRB PARK | 🟢 50/50 tests — **radio closed for Minimax** |
 | **R1++** | **Ozma** | CHIME Cat 2 periods | Recover 16.35 d + scramble null | 🟡 `cat2_fetcher` scaffold only — Ozma wires |
 | **G1** | Opencode | Linear A | z≈−73 formulaic STRUCTURE | 🟢 landed + gallery |
+| **G4** | **Opencode** | Rongorongo 2D (Spaelti) | Parallel passages + symbolseq; structure ≠ reading | ⬜ **ASSIGNED — next big ticket** |
 | **G2** | **Minimax** | Proto-Elamite | CDLI ledger entropy | ⬜ **Minimax next ticket only** (off radio/BLC1/Amazon) |
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed — Ozma inherits for interpretation pass |
 | **G7** | Opencode | Gorafe megaliths | Orientation STRUCTURE; astro/spatial UNDER | 🟢 v1; G7++ later (sunrise + valley null) |
@@ -177,6 +178,35 @@ Ulfberht: review/merge frontier PRs. Geoglyf + Ozma: go.
 > 4. **Negative:** unigram-matched shuffle of Linear A; optional random alphabet same length.
 > 5. Outputs: `outputs/linear_a/run.json` + `NOTES.md`. Update MISSION_BOARD G1 → 🟢.
 > 6. Forbidden: claiming decipherment, language family, or “Minoan = X”.
+
+
+### G4 — Opencode (ASSIGNED) — Rongorongo 2D parallel passages
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
+> Scout: Gemini G4 + merged leads (`docs/research_leads_merged_2026-07-25.md`).
+>
+> **Why you:** G1 Linear A was exemplary (STRUCTURE + honest null validation). This is the
+> bigger sibling — same `symbolseq` stack, harder corpus, parallel-passage / network angle.
+> Do **not** touch Amazon, BLC1, radio (Hyper/Ozma). G7++ can wait.
+>
+> 1. Ingest **open** Rongorongo 2D transcription corpus (Spaelti / Fischer / Barthel encodings
+>    as available with clear license). Prefer small text/JSON dumps under
+>    `data/scripts/rongorongo/` + README (attribution, glyph encoding, which tablets).
+>    No multi-GB 3D INSCRIBE meshes — that is L-later + Blender hubs.
+> 2. Reuse `tools/forensics/symbolseq.py` (+ thin `tools/scripts/rongorongo_probe.py` if needed).
+>    Do **not** fork a second entropy stack.
+> 3. Core tests:
+>    - Positional / bigram structure vs **unigram-matched shuffle** (same lesson as G1).
+>    - **Parallel passages:** find repeated glyph runs across tablets (or within); report
+>      length, multiplicity, and whether shuffle nulls produce similar runs at same rate.
+>    - Optional network view: glyph co-occurrence / transition graph stats vs degree-preserving null.
+> 4. Known-answer / calibration: if a short published “formulaic” segment is documented in a
+>    citable source, test recovery of that regularity; else document absence honestly.
+> 5. Outputs: `outputs/rongorongo/{run.json,NOTES.md}`. Update board G4 → 🟢 or 🔴 BLOCKED.
+> 6. **Forbidden:** decipherment, language-family claims, “aliens wrote Easter Island,”
+>    or treating any 202x viral “decoded” blog as ground truth.
+>
+> Prefer shipping a clean STRUCTURE / NO_SIGNAL / UNDERDETERMINED verdict with controls
+> over a sprawling incomplete pipeline. Gallery panel optional if Hyper’s embed CI is calm.
 
 ### G2 — Minimax (ONLY open ticket when Captain says go) — Proto-Elamite
 > Same stance. CDLI Proto-Elamite open transcriptions → `data/scripts/proto_elamite/`.

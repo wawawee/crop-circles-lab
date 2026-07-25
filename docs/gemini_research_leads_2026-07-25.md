@@ -9,7 +9,7 @@ Source: Gemini zetetic scout. Full narrative kept in chat; this file is the **ac
 | **G1** | Linear A positional entropy | **Opencode** (free now) | S | `symbolseq` | SigLA / open JSON; Linear B = known-answer |
 | **G2** | Proto-Elamite ledger entropy | **Minimax** (when free) | M | `symbolseq` | CDLI open; admin syntax vs shuffle |
 | **G3** | Wow! single-horn beam fit | **Minimax** follow-up *or* Opencode if G1 done fast | S | `radio_probe` | 6 intensities 6EQUJ5; sidereal transit model |
-| G4 | Rongorongo parallel passages | backlog | M | `symbolseq`+network | After G1/G2 |
+| **G4** | Rongorongo parallel passages | **Opencode** | M | `symbolseq`+network | ASSIGNED after G1 success |
 | G5 | Solway Firth ELA | backlog | S | `ela_screen` | Extends B10 |
 | G6 | Ley-line collinearity null | backlog | M | spatial+network | Poisson null |
 
