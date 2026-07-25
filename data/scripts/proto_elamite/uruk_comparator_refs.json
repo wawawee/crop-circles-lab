@@ -1,0 +1,27 @@
+{
+  "mission": "G2",
+  "comparator": "Uruk III SFU (Schmandt-Besserat Sub-Fund-Units)",
+  "purpose": (
+    "Same-period (ca. 3300-3000 BCE), same accounting-tablet purpose, "
+    "different script family (Sumerian cuneiform vs. Proto-Elamite). "
+    "Used as a STRUCTURE-only positive control: if numerals collapse "
+    "H(next|n) in a Sumerian accounting tablet, that reinforces the "
+    "expectation that a similar collapse in Proto-Elamite is a "
+    "structural property of the ledger format, NOT evidence of "
+    "language-family relatedness. PER the brief: this is documented "
+    "as a design path; live fetch is OUT OF MVP SCOPE."
+  ),
+  "candidate_cdli_ids": [
+    "W 14306,a",
+    "W 5233,a",
+    "W 9658,a",
+    "W 13249,a",
+    "W 17401,a"
+  ],
+  "license_note": (
+    "CDLI open-data terms. Per-tablet attribution required when an "
+    "actual ATF file lands in this directory. The MVP does NOT bundle "
+    "these tablets — placeholder only."
+  ),
+  "status": "POSTPONED"
+}

@@ -36,9 +36,9 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **R1++** | **Ozma** | CHIME Cat 2 periods | Recover 16.35 d + scramble null | 🟢 **landed PR #3** — Cat2 wired; recovers 16.35 d (20180916B) + 157 d (20121102A); scramble null; real path PARKING honest. `outputs/radio/cat2_*.json` |
 | **G1** | Opencode | Linear A | z≈−73 formulaic STRUCTURE | 🟢 landed + gallery |
 | **G4** | **Opencode** 🟢 | Rongorongo 2D (Spaelti) | Parallel passages + symbolseq; structure ≠ reading | 🟢 **landed** — `tools/scripts/rongorongo_probe.py`, `outputs/rongorongo/run.json` + `NOTES.md`. 5279 glyphs across 6 tablets, z=−42.9 conditional entropy vs shuffle. 240 parallel passages (33 cross-tablet, z=+40.9 vs shuffle). Top cross-tablet formula: `380 001 022f` ×7 across C+E. Verdict: SEQUENCE_STRUCTURE | PARALLEL_EXCESS | CROSS_TABLET_PARALLELS. No decipherment. |
-| **G2** | **Minimax** | Proto-Elamite | CDLI ledger entropy | ⬜ **Minimax next ticket only** (off radio/BLC1/Amazon) |
+| **G2** | **Minimax M3** | Proto-Elamite | CDLI ledger entropy | 🟢 **merged** — synth 4/4 invariants; CDLI default NEVER_ATTEMPTED + `--fetch-online`; 9 forbidden phrases; Uruk SFU POSTPONED. `feat/g2-proto-elamite` |
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed + **Ozma interpretation pass (PR)** — μ↔(6−μ) one-horn degeneracy, PHL@UPR 2024 natural H-cloud, N=6 gives zero power to infer artificiality; NOTES deepened in `outputs/radio/NOTES.md` |
-| **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE | CONTROL_SEPARATED | PER_TOMB_UNDERDETERMINED; convex-hull NND null; per-tomb sunrise Δ dist | 🟢 G7++ landed — `feat/g7pp-gorafe-nulls`. Nulls hardened. Sunrise + valley null. S-CONTROL_SEP; A-SPATIAL_UNDER; O-PER_TOMB_UNDER. |
+| **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
 | **G8** | queue | Betty Hill × Gaia | Star-map null | ⬜ paused (not tonight) |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟢 **landed PR #3** — synth known-answer + honest block on real slice; no TB mirror. `outputs/radio/blc1_*.json` |
@@ -53,7 +53,10 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G-Amazon** | 🟢 PR #1 — `STRUCTURE_ONLY`. Captain was 2nd approver; Ulfberht merged (legitimate). |
 | **G-BLC1 / R1++** | 🟢 PR #3 — Cursor APPROVED; rebased + merged by Cursor/Captain. Radio tests green. |
 | **G4** | Opencode 🟢 Rongorongo on main. |
-| **Minimax** | G2-only when Captain says go; radio/Amazon/BLC1 closed. |
+| **G7++** | 🟢 merged PR #4 — nulls hardened. |
+| **G2** | 🟢 Minimax M3 landed — merge gate this PR. |
+| **Minimax M3** | 💤 idle (radio/Amazon/BLC1 closed). |
+| **Opencode** | 💤 idle — next ticket when Captain assigns. |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -63,12 +66,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward (not default author). **Ozma** = radio/BLC1. **Opencode** = scripts/astro/geo S–M. **Minimax** = G2 only when released. **Geoglyf** = retired. **Cursor/Captain** = merge gate + board steward. |
+| **Roster** | **Ulfberht** = reviewer/steward (not default author). **Ozma** = radio/BLC1. **Opencode** = scripts/astro/geo S–M (idle). **Minimax M3** = idle (G2 done). **Geoglyf** = retired. **Cursor/Captain** = merge gate + board steward. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | No next ticket until Captain assigns. |
+| **Idle default** | No next ticket until Captain assigns. G2 + G7++ both merged. |
 
 ---
 
@@ -209,11 +212,21 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > Prefer shipping a clean STRUCTURE / NO_SIGNAL / UNDERDETERMINED verdict with controls
 > over a sprawling incomplete pipeline. Gallery panel optional if Hyper’s embed CI is calm.
 
-### G2 — Minimax (ONLY open ticket when Captain says go) — Proto-Elamite
+### G2 — Minimax M3 (ASSIGNED 2026-07-25) — Proto-Elamite
 > Same stance. CDLI Proto-Elamite open transcriptions → `data/scripts/proto_elamite/`.
 > symbolseq + window entropy; separate header/number blocks if trivial; shuffle null.
-> Known-answer: isolate low-entropy numeric blocks if present. `outputs/proto_elamite/`.
-> No decipherment claims. Ledger-vs-prose structure only.
+> Known-answer: isolate low-entropy numeric blocks if present; optional Uruk/SFU numeral notes.
+> `outputs/proto_elamite/`. Branch `feat/g2-proto-elamite`. PR for Cursor/Captain merge.
+> No decipherment claims. Ledger-vs-prose structure only. Off radio/BLC1/Amazon.
+
+### G7++ — Opencode (ASSIGNED 2026-07-25) — Gorafe sunrise + valley null
+> G7 v1 already: ORIENTATION_STRUCTURE; astro/spatial UNDER (`outputs/gorafe/NOTES.md`).
+> Deepen nulls — do not rewrite the probe.
+> 1. Per-tomb sunrise azimuth (skyfield) vs corridor bearing — hit rate + Δ distribution.
+> 2. Replace rectangular-bbox NND with valley/terrain-aware control (or document BLOCKED).
+> 3. Keep orientation STRUCTURE; UNDER → CONTROL_SEPARATED or still UNDER with honest reason.
+> 4. Extend `outputs/gorafe/`; branch `feat/g7pp-gorafe-nulls`; PR for merge gate.
+> Forbidden: intentional-astronomy claims without control separation.
 
 ### G3 — Wow! beam-fit (after G1 or G2)
 > Extend `tools/radio/radio_probe.py` or tiny `wow_beam_fit.py`: intensities [6,14,26,30.5,19.5,5.5]

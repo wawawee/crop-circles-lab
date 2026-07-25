@@ -1,0 +1,65 @@
+{
+  "label": "live_cdli:P000001",
+  "fetch": {
+    "fetch_status": "UNREACHABLE",
+    "cdli_id": "P000001",
+    "atf_text": "",
+    "attempts": [
+      {
+        "url": "https://cdli.mpiwg-berlin.mpg.de/dl/lineart/{p}/{pn}/{cdli_id}.atf",
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE"
+      },
+      {
+        "url": "https://cdli.ucla.edu/dl/lineart/{p}/{pn}/{cdli_id}.atf",
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE"
+      },
+      {
+        "url": "https://cdli.mpiwg-berlin.mpg.de/dl/lineart/{cdli_id}.atf",
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE"
+      },
+      {
+        "url": "https://cdli.ucla.edu/dl/lineart/{cdli_id}.atf",
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE"
+      },
+      {
+        "url": "https://cdli.mpiwg-berlin.mpg.de/publications/{cdli_id}.atf",
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE"
+      },
+      {
+        "url": "https://cdli.ucla.edu/publications/{cdli_id}.atf",
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE"
+      },
+      {
+        "url": "https://cdli.mpiwg-berlin.mpg.de/{cdli_id}.atf",
+        "verdict": "NETWORK_ERROR",
+        "error": "force_status_for_tests=UNREACHABLE"
+      }
+    ],
+    "notes": [
+      "Live CDLI fetch did not complete (test force or network)."
+    ]
+  },
+  "fetch_status": "UNREACHABLE",
+  "n_input_tokens": 0,
+  "invariants": {
+    "all_pass": false,
+    "invariants": {
+      "header_numeral_void": false,
+      "header_fraction_bounded": false,
+      "numeral_block_predictable": false,
+      "z_lock_vs_shuffle": false
+    },
+    "header_fraction": 0.0,
+    "supporting": {}
+  },
+  "warning": "Live fetch returned no ATF text. Use --bundled-corpus or --synthetic.",
+  "stance": "Proto-Elamite is undeciphered (ca. 3100-2900 BCE, Susa). This probe measures *numerical-block structure* only \u2014 it does NOT translate, decipher, or place Proto-Elamite in a language family. STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py for all metrics.",
+  "generated_at": "2026-07-25T10:47:39.455507+00:00",
+  "source": "Open data via Cuneiform Digital Library Initiative (CDLI), https://cdli.mpiwg-berlin.mpg.de \u2014 ATF transcriptions released under the CDLI open-data terms. Per-tablet attribution by `cdli_id`."
+}
