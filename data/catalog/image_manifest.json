@@ -1,0 +1,29 @@
+[
+  {
+    "file": "vacaville_ca.jpg",
+    "source": "wikimedia",
+    "wiki_title": "Vacaville CA Crop Circle.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Vacaville_CA_Crop_Circle.jpg",
+    "width": 1818,
+    "height": 1228,
+    "license": "CC BY 2.5"
+  },
+  {
+    "file": "lay_wood_diagram.png",
+    "source": "wikimedia",
+    "wiki_title": "Crop Circle Diagram Lay Wood, Devizes.png",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Crop_Circle_Diagram_Lay_Wood%2C_Devizes.png",
+    "width": 3333,
+    "height": 6666,
+    "license": "CC0"
+  },
+  {
+    "file": "arecibo_message_original.svg",
+    "source": "wikimedia",
+    "wiki_title": "Arecibo message.svg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Arecibo_message.svg",
+    "width": 512,
+    "height": 1536,
+    "license": "CC BY-SA 3.0"
+  }
+]

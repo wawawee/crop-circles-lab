@@ -1,0 +1,8 @@
+file,width,height,mean_intensity,edge_ratio,circles_raw,circles_clustered,lines,fractal_dim,rot_best,mirror,notes,camera,create_date
+barbury_pi_2008.jpg,800,512,153.55,0.29181,29,4,3426,1.9501,0.9807,0.9794,high_fractal_dimension|strong_rotational_symmetry,,
+cherhill_1996_tt.jpg,800,529,110.82,0.29552,7,1,2710,1.9267,0.9584,0.964,high_fractal_dimension|strong_rotational_symmetry,,2008:06:02 19:20:08+01:00
+chilbolton_message_2001_tt.jpg,295,600,149.31,0.35801,1,0,1086,1.966,0.9629,0.9644,high_fractal_dimension|strong_rotational_symmetry,,2008:08:21 15:24:59+01:00
+dna_alton_barnes_1996_tt.jpg,800,527,100.09,0.26202,1,0,3000,1.9309,0.9902,0.9902,high_fractal_dimension|strong_rotational_symmetry,,2008:06:03 11:55:05+01:00
+julia_set_1996_tt_oh.jpg,800,533,113.25,0.32261,12,0,3722,1.9566,0.9772,0.9747,high_fractal_dimension|strong_rotational_symmetry,,2008:06:03 12:44:25+01:00
+milk_hill_galaxy_2001_tt_oh.jpg,800,542,126.44,0.10986,15,2,932,1.7414,0.9704,0.9682,high_fractal_dimension|strong_rotational_symmetry,Nikon SUPER COOLSCAN 5000 ED,2015:04:17 17:42:11+01:00
+windmill_hill_triple_julia_1996_tt.jpg,800,533,103.88,0.16547,3,0,1349,1.8093,0.9657,0.973,high_fractal_dimension|strong_rotational_symmetry,,2008:06:03 14:58:20+01:00

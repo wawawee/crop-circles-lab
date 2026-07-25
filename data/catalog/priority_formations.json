@@ -1,0 +1,200 @@
+{
+  "version": "0.1.0",
+  "notes": "Curated priority set for local analysis. BLT-linked cases get priority; complex geometry second. Images may need manual acquisition from Temporary Temples / Lucy Pringle / CropCircleConnector due to copyright — see sources[].",
+  "formations": [
+    {
+      "id": "stonehenge-julia-1996",
+      "name": "Julia Set",
+      "location": "Opposite Stonehenge, Wiltshire, UK",
+      "date": "1996-07-07",
+      "priority": 1,
+      "tags": ["fractal", "julia-set", "time-window", "blt", "complex"],
+      "blt": {"lab_report": 78, "status": "examined", "notes": "Reduced seed weights, mitochondrial damage, germination abnormalities, spillover"},
+      "claimed_features": {
+        "circles": 151,
+        "length_ft": 915.2,
+        "width_ft": 508,
+        "time_window_min": 45,
+        "witnesses": ["pilot + passenger", "witness M (mist growing)"]
+      },
+      "geometry_notes": "Julia fractal spiral of circles; ideal candidate for true Julia-set parameter fit (z^2+c).",
+      "sources": [
+        "https://temporarytemples.co.uk/crop-circles/1996-crop-circles",
+        "https://lucypringle.co.uk/photos/1996/uk1996ay.shtml",
+        "https://bltresearch.com/labreports.php",
+        "https://skepticalinquirer.org/2022/05/revisiting-the-stonehenge-surprise-the-best-case-for-crop-circles/"
+      ],
+      "image_files": ["julia_set_1996.jpg"]
+    },
+    {
+      "id": "cherhill-1993",
+      "name": "Cherhill Iron Glaze",
+      "location": "Cherhill, Wiltshire, UK",
+      "date": "1993-08",
+      "priority": 1,
+      "tags": ["blt", "microwave", "meteoritic-iron", "scorched", "authentic-candidate"],
+      "blt": {"lab_report": 104, "status": "examined", "notes": "Meteoritic iron glaze on plant tissue; node elongation; dead insects on seed heads"},
+      "claimed_features": {
+        "circles": 2,
+        "diameter_m": 15,
+        "separation_m": 60,
+        "iron_spheres_um": [10, 40]
+      },
+      "geometry_notes": "Two circles ~15m with ~0.5m vortices; iron glaze concentrated in vortices.",
+      "sources": [
+        "https://bltresearch.com/labreports.php",
+        "http://www.lucypringle.co.uk/photos/1993/uk1993db.shtml"
+      ],
+      "image_files": ["cherhill_1993.jpg"]
+    },
+    {
+      "id": "logan-utah-1996",
+      "name": "Logan Utah",
+      "location": "Logan, Utah, USA",
+      "date": "1996-08-23",
+      "priority": 1,
+      "tags": ["blt", "microwave", "expulsion-cavities", "heat", "authentic-candidate"],
+      "blt": {"status": "examined", "notes": "Expulsion cavities, 90-degree bends without breaking, soil heat evidence, plasma vortex candidate"},
+      "claimed_features": {
+        "circles": 2,
+        "diameters_ft": [58, 30],
+        "connecting_path_ft": 258,
+        "orientation_note": "roughly toward Logan LDS Temple"
+      },
+      "geometry_notes": "Dumbbell-like with wing-like protrusions; less complex art, strong biophysical claims.",
+      "sources": ["https://bltresearch.com/"],
+      "image_files": ["logan_utah_1996.jpg"]
+    },
+    {
+      "id": "edmonton-1999",
+      "name": "Edmonton Alberta",
+      "location": "Edmonton, Alberta, Canada",
+      "date": "1999-09",
+      "priority": 1,
+      "tags": ["blt", "microwave", "soil-xrd", "layered-lay", "thistle", "authentic-candidate"],
+      "blt": {"lab_report": 122, "status": "examined", "funded_by": "Laurance Rockefeller", "notes": "Node elongation, expulsion cavities, magnetic soil material, XRD clay changes"},
+      "claimed_features": {
+        "circles": 7,
+        "length_ft": 191,
+        "layers": 3,
+        "crop": "thistle-heavy field"
+      },
+      "geometry_notes": "Counter-clockwise perimeter band UNDER radial layer UNDER chaotic top layer — key for swirl/layer analysis.",
+      "sources": [
+        "https://bltresearch.com/labreports.php",
+        "https://unsolvedmysteries.fandom.com/wiki/Canada_Crop_Circles"
+      ],
+      "image_files": ["edmonton_1999.jpg"]
+    },
+    {
+      "id": "eltopia-1998",
+      "name": "Eltopia Washington",
+      "location": "Eltopia, Washington, USA",
+      "date": "1998-06-18",
+      "priority": 1,
+      "tags": ["blt", "revisitation", "authentic-candidate"],
+      "blt": {"status": "examined", "notes": "Nine circles; revisitation weeks later damaged edges"},
+      "claimed_features": {
+        "circles": 9,
+        "size_ft": [270, 200]
+      },
+      "geometry_notes": "Useful for temporal edge-degradation comparison if multi-date photos exist.",
+      "sources": ["https://bltresearch.com/"],
+      "image_files": ["eltopia_1998.jpg"]
+    },
+    {
+      "id": "alton-barnes-dna-1996",
+      "name": "DNA Double Helix",
+      "location": "East Field, Alton Barnes, Wiltshire, UK",
+      "date": "1996-06-17",
+      "priority": 2,
+      "tags": ["complex", "dna", "beautifully-laid"],
+      "blt": {"status": "referenced", "notes": "Famed for beautifully laid barley"},
+      "claimed_features": {"motif": "double helix"},
+      "geometry_notes": "Helix pitch / rung spacing ratios worth measuring.",
+      "sources": ["https://temporarytemples.co.uk/crop-circles/1996-crop-circles"],
+      "image_files": ["dna_alton_barnes_1996.jpg"]
+    },
+    {
+      "id": "chilbolton-arecibo-2001",
+      "name": "Arecibo Answer / Chilbolton",
+      "location": "Chilbolton Observatory, Hampshire, UK",
+      "date": "2001-08",
+      "priority": 2,
+      "tags": ["complex", "message", "arecibo", "likely-human"],
+      "blt": {"status": "unknown"},
+      "claimed_features": {
+        "motif": "Arecibo reply bitmap",
+        "differences": ["triple helix DNA", "different home planet", "larger head figure"]
+      },
+      "geometry_notes": "Bitmap-grid analysis vs original Arecibo message; high human-feasibility.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Arecibo_message"
+      ],
+      "image_files": ["chilbolton_arecibo_2001.jpg"]
+    },
+    {
+      "id": "milk-hill-galaxy-2001",
+      "name": "Milk Hill Galaxy",
+      "location": "Milk Hill, Wiltshire, UK",
+      "date": "2001-08-12",
+      "priority": 2,
+      "tags": ["complex", "fractal", "largest"],
+      "blt": {"status": "unknown"},
+      "claimed_features": {
+        "circles": 409,
+        "length_ft": 900,
+        "motif": "six-armed spiral galaxy / Julia-like"
+      },
+      "geometry_notes": "Extreme circle-count stress test for Hough detection; fractal dimension target.",
+      "sources": [
+        "https://lucypringle.co.uk/photos/2001/uk2001df.shtml",
+        "https://temporarytemples.co.uk/"
+      ],
+      "image_files": ["milk_hill_galaxy_2001.jpg"]
+    },
+    {
+      "id": "barbury-pi-2008",
+      "name": "Barbury Castle Pi",
+      "location": "Barbury Castle, Wiltshire, UK",
+      "date": "2008-06-01",
+      "priority": 2,
+      "tags": ["complex", "mathematical", "pi", "lucy-pringle"],
+      "blt": {"status": "unknown"},
+      "claimed_features": {
+        "motif": "first ~10 digits of pi encoded in spiral ratchet"
+      },
+      "geometry_notes": "Decode spiral segments as digit encoding; verify against pi.",
+      "sources": [
+        "https://commons.wikimedia.org/wiki/File:Lucy_Pringle_Aerial_Shot_of_Pi_Crop_Circle_-_panoramio.jpg"
+      ],
+      "image_files": ["barbury_pi_2008.jpg"]
+    },
+    {
+      "id": "allington-cube-1999",
+      "name": "The Cube",
+      "location": "Allington, Wiltshire, UK",
+      "date": "1999",
+      "priority": 2,
+      "tags": ["complex", "3d-perspective", "cube"],
+      "blt": {"status": "unknown"},
+      "claimed_features": {"motif": "3D cube projection with shading"},
+      "geometry_notes": "Perspective vanishing-point / shading analysis.",
+      "sources": ["https://lucypringle.co.uk/"],
+      "image_files": ["allington_cube_1999.jpg"]
+    },
+    {
+      "id": "windmill-hill-triple-julia-1996",
+      "name": "Triple Julia Set",
+      "location": "Windmill Hill, Wiltshire, UK",
+      "date": "1996-07-29",
+      "priority": 2,
+      "tags": ["fractal", "julia-set", "complex"],
+      "blt": {"status": "unknown"},
+      "claimed_features": {"motif": "three-armed Julia-like spiral"},
+      "geometry_notes": "Compare arm self-similarity vs true Julia set; Temporary Temples notes arms are not true Julias.",
+      "sources": ["https://temporarytemples.co.uk/crop-circles/1996-crop-circles"],
+      "image_files": ["triple_julia_1996.jpg"]
+    }
+  ]
+}

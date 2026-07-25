@@ -1,0 +1,8 @@
+file,width,height,mean_intensity,edge_ratio,circles_raw,circles_clustered,lines,fractal_dim,rot_best,mirror,notes,camera,create_date
+barbury_pi_2008.jpg,800,512,153.55,0.29181,29,4,3426,1.9501,0.9807,0.9794,high_fractal_dimension|strong_rotational_symmetry,,
+berbah_indonesia.jpg,450,550,121.39,0.01439,0,0,6,1.0688,0.9647,0.9952,strong_rotational_symmetry,,
+lay_wood_diagram.png,3333,6666,202.38,0.01095,733,5,130,1.446,0.9962,0.9961,very_high_circle_count|strong_rotational_symmetry,,
+swirl_reference.jpg,500,296,112.83,0.09813,0,0,179,1.6321,0.9468,0.9452,high_fractal_dimension|strong_rotational_symmetry,,
+synthetic_julia_classic.png,900,600,227.57,0.07249,239,1,1021,1.6778,0.9953,0.9802,very_high_circle_count|high_fractal_dimension|strong_rotational_symmetry,,
+synthetic_julia_spiral.png,900,600,220.65,0.07751,230,4,1141,1.6933,0.9951,0.9797,very_high_circle_count|high_fractal_dimension|strong_rotational_symmetry,,
+vacaville_ca.jpg,1818,1228,136.44,0.33449,353,2,9894,1.9917,0.984,0.9793,very_high_circle_count|high_fractal_dimension|strong_rotational_symmetry,Digital Link,

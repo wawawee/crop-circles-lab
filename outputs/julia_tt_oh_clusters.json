@@ -1,0 +1,9 @@
+{
+  "path": "data/images/julia_set_1996_tt_oh.jpg",
+  "raw_circles": 12,
+  "clustered_circles": 0,
+  "noise_points": 12,
+  "eps_px": 21.3,
+  "clusters": [],
+  "note": "Clustered count \u2248 distinct circle centers after DBSCAN merge."
+}

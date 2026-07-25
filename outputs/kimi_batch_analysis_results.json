@@ -1,0 +1,122 @@
+[
+  {
+    "formation": "The Cube (Allington 1999) - alt",
+    "filename": "10_1999_Crop_Circles.png",
+    "dims": "400x384",
+    "size_kb": 380.5,
+    "mean_intensity": 115.5,
+    "edge_ratio_pct": 15.66,
+    "circles": 868,
+    "lines": 321,
+    "h_symmetry": 0.0739,
+    "complexity": 46.78
+  },
+  {
+    "formation": "The Cube (Allington 1999)",
+    "filename": "1_Lucy_Pringle_s_Crop_Circle_Photograph.png",
+    "dims": "400x269",
+    "size_kb": 400.3,
+    "mean_intensity": 92.1,
+    "edge_ratio_pct": 18.94,
+    "circles": 616,
+    "lines": 374,
+    "h_symmetry": 0.1832,
+    "complexity": 52.18
+  },
+  {
+    "formation": "Julia Set (Stonehenge 1996)",
+    "filename": "2_Crop_circles_Stonehenge_Down_Wiltshire.png",
+    "dims": "400x265",
+    "size_kb": 1327.0,
+    "mean_intensity": 106.8,
+    "edge_ratio_pct": 23.65,
+    "circles": 588,
+    "lines": 469,
+    "h_symmetry": 0.0374,
+    "complexity": 56.15
+  },
+  {
+    "formation": "Milk Hill Galaxy (2001)",
+    "filename": "3_TRANSCEND_MEDIA_SERVICE_The_Crop.png",
+    "dims": "400x303",
+    "size_kb": 683.8,
+    "mean_intensity": 111.5,
+    "edge_ratio_pct": 18.82,
+    "circles": 696,
+    "lines": 421,
+    "h_symmetry": 0.2543,
+    "complexity": 55.06
+  },
+  {
+    "formation": "Edmonton (1999) - overview",
+    "filename": "4_Canada_Crop_Circles_Unsolved_Mysteries.png",
+    "dims": "250x168",
+    "size_kb": 91.8,
+    "mean_intensity": 70.9,
+    "edge_ratio_pct": 30.45,
+    "circles": 233,
+    "lines": 267,
+    "h_symmetry": 0.1231,
+    "complexity": 47.17
+  },
+  {
+    "formation": "Edmonton (1999) - detail",
+    "filename": "5_Canada_Crop_Circles_Unsolved_Mysteries.png",
+    "dims": "250x123",
+    "size_kb": 67.6,
+    "mean_intensity": 152.3,
+    "edge_ratio_pct": 30.47,
+    "circles": 113,
+    "lines": 158,
+    "h_symmetry": 0.5935,
+    "complexity": 39.87
+  },
+  {
+    "formation": "Arecibo Reply (Chilbolton 2001)",
+    "filename": "6_The_Chilbolton_Reply_Crop_Circle.png",
+    "dims": "400x533",
+    "size_kb": 1840.5,
+    "mean_intensity": 96.8,
+    "edge_ratio_pct": 14.11,
+    "circles": 1106,
+    "lines": 594,
+    "h_symmetry": 0.2708,
+    "complexity": 56.12
+  },
+  {
+    "formation": "Cherhill-type (1993)",
+    "filename": "7_Crop_Circle_1989_1999_LEMURIA_LIGHT.png",
+    "dims": "400x566",
+    "size_kb": 996.0,
+    "mean_intensity": 128.1,
+    "edge_ratio_pct": 16.14,
+    "circles": 1334,
+    "lines": 544,
+    "h_symmetry": 0.6543,
+    "complexity": 62.88
+  },
+  {
+    "formation": "3D Cubes Collection",
+    "filename": "8_CROP_CIRCLES_3D_CUBES_High_Res_PNG.png",
+    "dims": "400x600",
+    "size_kb": 789.9,
+    "mean_intensity": 172.0,
+    "edge_ratio_pct": 13.36,
+    "circles": 1247,
+    "lines": 481,
+    "h_symmetry": 0.3825,
+    "complexity": 56.66
+  },
+  {
+    "formation": "Arecibo Reply - aerial",
+    "filename": "9_The_search_for_Extraterrestrial_Life.png",
+    "dims": "400x279",
+    "size_kb": 271.5,
+    "mean_intensity": 121.5,
+    "edge_ratio_pct": 26.96,
+    "circles": 612,
+    "lines": 614,
+    "h_symmetry": -0.1099,
+    "complexity": 56.83
+  }
+]
