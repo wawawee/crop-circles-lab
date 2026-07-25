@@ -1,0 +1,6316 @@
+{
+  "metadata": {
+    "n_total_signs_raw": 2899,
+    "n_total_signs_cleaned": 2848,
+    "n_inscriptions": 565,
+    "n_inscriptions_with_clean_data": 563,
+    "n_sites": 39,
+    "n_sign_types_syllabograms": 97,
+    "n_sign_types_total": 181,
+    "sites": {
+      "CM_ENKO": 2128,
+      "CM_RASH": 308,
+      "CM_KALA": 172,
+      "CM_KITI": 86,
+      "CM_CYPR": 29,
+      "CM_CYPR(QM)": 14,
+      "CM_MYRT": 13,
+      "CM_HALA": 11,
+      "CMADD_ENKO": 11,
+      "CM_KOUR": 9,
+      "CM_PYLA": 9,
+      "CMADD_TIRY": 8,
+      "CM_KATY": 8,
+      "CMADD_MARO": 8,
+      "CM_MAAP": 7,
+      "CM_MARO": 7,
+      "CMADD_KOUR": 6,
+      "CM_ENKO(QM)": 6,
+      "CM_PPAP": 5,
+      "CM_ARPE": 5,
+      "CM_ATHI": 4,
+      "CM_SYRI": 4,
+      "CMADD_IDAL": 4,
+      "CM_PSIL": 4,
+      "CM_PARA": 4,
+      "CMADD_CYPR(QM)": 3,
+      "CM_IDAL": 3,
+      "CMADD_ERIMI-KAFKALLA-T2-2": 3,
+      "CMADD_RASH": 3,
+      "CMADD_KLAV": 2,
+      "CMADD_KITI": 2,
+      "CMADD_MAAP": 2,
+      "CMADD_PARA": 2,
+      "CM_ALAS": 2,
+      "CMADD_HISHULEY-CARMEL": 2,
+      "CM_SALA": 2,
+      "CMADD_SANI": 1,
+      "CMADD_PPAP": 1,
+      "CMADD_RS-1963": 1
+    },
+    "top_signs": {
+      "I": 466,
+      "023": 109,
+      "102": 89,
+      "082": 84,
+      "004": 74,
+      "025": 71,
+      "006": 65,
+      "027": 65,
+      "075": 63,
+      "009": 60,
+      "097": 57,
+      "087": 48,
+      "104": 44,
+      "038": 42,
+      "107": 42,
+      "110": 41,
+      "021": 40,
+      "051": 38,
+      "096": 34,
+      "017": 34,
+      "013": 34,
+      "069": 33,
+      "005": 33,
+      "070": 32,
+      "I_": 31,
+      "033": 30,
+      "028": 26,
+      "079": 26,
+      "044": 25,
+      "072": 24
+    },
+    "source": "Corazza et al. 2022 PLOS ONE (Figshare collection 6095488). Signs extracted from sign2vec_d/context.csv (CC-BY). Sign numbering per Corazza consensual graphemes.",
+    "paper": "Corazza, M., Tamburini, F., Valério, M., & Ferrara, S. (2022). Unsupervised deep learning supports reclassification of Bronze age cypriot writing system. PLOS ONE 17(7): e0269544.",
+    "license": "CC BY 4.0 (Corazza et al.) — sign images copyright original publishers.",
+    "stance": "structure != meaning. No decipherment claims."
+  },
+  "sequences": {
+    "CM_RASH/CM_RASH.Atab.004A.r01": {
+      "tokens": [
+        "102",
+        "025",
+        "087",
+        "I",
+        "051",
+        "028",
+        "I",
+        "055",
+        "009",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r01"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r02": {
+      "tokens": [
+        "102",
+        "023",
+        "051",
+        "028",
+        "I",
+        "102",
+        "074",
+        "082",
+        "051",
+        "I",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r02"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r03": {
+      "tokens": [
+        "104",
+        "058_",
+        "006",
+        "009",
+        "I",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r03"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r04": {
+      "tokens": [
+        "102",
+        "002",
+        "100",
+        "I",
+        "055",
+        "025",
+        "051",
+        "040",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r04"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r05": {
+      "tokens": [
+        "102",
+        "004",
+        "004",
+        "096",
+        "I",
+        "051",
+        "028",
+        "I",
+        "004",
+        "071",
+        "100",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r05"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r06": {
+      "tokens": [
+        "104",
+        "071",
+        "006",
+        "023",
+        "I",
+        "051",
+        "028",
+        "I",
+        "038",
+        "105",
+        "058",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r06"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r07": {
+      "tokens": [
+        "051",
+        "028",
+        "I",
+        "038",
+        "035",
+        "100",
+        "I",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r07"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r08": {
+      "tokens": [
+        "103",
+        "035",
+        "082",
+        "051",
+        "I",
+        "051",
+        "028",
+        "I",
+        "025",
+        "051",
+        "009",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r08"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r09": {
+      "tokens": [
+        "037_",
+        "004",
+        "100",
+        "P",
+        "I",
+        "104",
+        "009",
+        "071",
+        "100",
+        "I",
+        "037_",
+        "071",
+        "100",
+        "040",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r09"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r10": {
+      "tokens": [
+        "004",
+        "008",
+        "100",
+        "I",
+        "051",
+        "028",
+        "I",
+        "104",
+        "009",
+        "004",
+        "055",
+        "096",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r10"
+    },
+    "CM_RASH/CM_RASH.Atab.004A.r11": {
+      "tokens": [
+        "102",
+        "002",
+        "071",
+        "100",
+        "I",
+        "051",
+        "028",
+        "I",
+        "092",
+        "028",
+        "095",
+        "100",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004A.r11"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r01g": {
+      "tokens": [
+        "082",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r01g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r01d": {
+      "tokens": [
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r01d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r02g": {
+      "tokens": [
+        "006",
+        "006",
+        "082",
+        "I",
+        "006"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r02g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r02d": {
+      "tokens": [
+        "I",
+        "104",
+        "024",
+        "I",
+        "062",
+        "076"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r02d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r03g": {
+      "tokens": [
+        "006",
+        "082",
+        "I",
+        "009",
+        "006",
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r03g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r03d": {
+      "tokens": [
+        "I",
+        "104",
+        "024",
+        "I",
+        "006",
+        "006"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r03d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r04g": {
+      "tokens": [
+        "024_",
+        "I",
+        "104",
+        "092",
+        "009",
+        "060"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r04g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r04d": {
+      "tokens": [
+        "059"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r04d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r05g": {
+      "tokens": [
+        "082",
+        "024",
+        "069",
+        "I",
+        "104",
+        "092",
+        "009",
+        "060"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r05g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r05d": {
+      "tokens": [
+        "059",
+        "I",
+        "028",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r05d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r06g": {
+      "tokens": [
+        "006",
+        "006",
+        "082",
+        "I",
+        "079",
+        "009",
+        "054",
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r06g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r06d": {
+      "tokens": [
+        "I",
+        "024",
+        "I",
+        "059"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r06d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r07g": {
+      "tokens": [
+        "076",
+        "074_",
+        "I",
+        "047",
+        "047",
+        "060",
+        "059"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r07g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r07d": {
+      "tokens": [
+        "I",
+        "102"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r07d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r08g": {
+      "tokens": [
+        "102",
+        "025",
+        "075",
+        "096",
+        "089",
+        "024",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r08g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r08d": {
+      "tokens": [
+        "030",
+        "070",
+        "017",
+        "023",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r08d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r09g": {
+      "tokens": [
+        "025",
+        "025",
+        "I",
+        "104",
+        "009",
+        "090",
+        "I",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r09g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r09d": {
+      "tokens": [
+        "078",
+        "023",
+        "I",
+        "006",
+        "006",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r09d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r10g": {
+      "tokens": [
+        "068",
+        "025",
+        "097",
+        "I",
+        "054",
+        "005",
+        "060"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r10g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r10d": {
+      "tokens": [
+        "I",
+        "102",
+        "082",
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r10d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r11g": {
+      "tokens": [
+        "102",
+        "013",
+        "013",
+        "I",
+        "068",
+        "025",
+        "075",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r11g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r11d": {
+      "tokens": [
+        "082",
+        "023",
+        "I",
+        "102",
+        "021_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r11d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r12g": {
+      "tokens": [
+        "082",
+        "025",
+        "075",
+        "059",
+        "I",
+        "037",
+        "051"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r12g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r12d": {
+      "tokens": [
+        "I",
+        "062_",
+        "021",
+        "024"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r12d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r13g": {
+      "tokens": [
+        "107",
+        "006",
+        "006",
+        "090",
+        "013",
+        "I",
+        "102",
+        "049"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r13g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r13d": {
+      "tokens": [
+        "080",
+        "I",
+        "047",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r13d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r14g": {
+      "tokens": [
+        "082",
+        "025",
+        "075",
+        "059",
+        "I",
+        "038",
+        "017",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r14g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r14d": {
+      "tokens": [
+        "038",
+        "012",
+        "097",
+        "I",
+        "082",
+        "024"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r14d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r15g": {
+      "tokens": [
+        "102",
+        "076",
+        "035",
+        "I",
+        "078",
+        "095",
+        "033",
+        "035"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r15g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r15d": {
+      "tokens": [
+        "I",
+        "038",
+        "017_",
+        "059"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r15d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r16g": {
+      "tokens": [
+        "038",
+        "061",
+        "044",
+        "035",
+        "I",
+        "038",
+        "017",
+        "062"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r16g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r16d": {
+      "tokens": [
+        "I",
+        "102",
+        "060",
+        "027_",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r16d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r17g": {
+      "tokens": [
+        "102",
+        "076",
+        "029",
+        "013",
+        "I",
+        "068",
+        "025",
+        "033"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r17g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r17d": {
+      "tokens": [
+        "025",
+        "I",
+        "102",
+        "087_",
+        "059_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r17d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r18g": {
+      "tokens": [
+        "025",
+        "004",
+        "I",
+        "044",
+        "047",
+        "095",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r18g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r18d": {
+      "tokens": [
+        "I",
+        "004",
+        "035",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r18d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r19g": {
+      "tokens": [
+        "030",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r19g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r19d": {
+      "tokens": [
+        "095",
+        "005",
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r19d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r20g": {
+      "tokens": [
+        "025",
+        "006",
+        "095_",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r20g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r20d": {
+      "tokens": [
+        "I",
+        "004",
+        "075",
+        "035",
+        "I",
+        "056",
+        "047"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r20d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r21g": {
+      "tokens": [
+        "102",
+        "004_",
+        "095_",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r21g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r21d": {
+      "tokens": [
+        "004",
+        "076",
+        "054",
+        "064",
+        "I",
+        "054"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r21d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r22g": {
+      "tokens": [
+        "021_",
+        "078_",
+        "051",
+        "I",
+        "061",
+        "009",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r22g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004B.r22d": {
+      "tokens": [
+        "025_",
+        "054_",
+        "047",
+        "060",
+        "059",
+        "I",
+        "044"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004B.r22d"
+    },
+    "CM_ENKO/CM_ENKO.Abou.054.r00": {
+      "tokens": [
+        "025",
+        "082",
+        "097_",
+        "011_",
+        "006"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.054.r00"
+    },
+    "CM_RASH/CM_RASH.Atab.001A.r01": {
+      "tokens": [
+        "104",
+        "028_",
+        "092",
+        "I",
+        "044",
+        "002_"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001A.r01"
+    },
+    "CM_RASH/CM_RASH.Atab.001A.r02": {
+      "tokens": [
+        "005",
+        "006",
+        "037",
+        "102",
+        "I",
+        "023",
+        "098"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001A.r02"
+    },
+    "CM_RASH/CM_RASH.Atab.001A.r03": {
+      "tokens": [
+        "023",
+        "I",
+        "104",
+        "036",
+        "023",
+        "I",
+        "006"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001A.r03"
+    },
+    "CM_RASH/CM_RASH.Atab.001A.r04": {
+      "tokens": [
+        "023",
+        "094",
+        "019",
+        "I",
+        "036",
+        "013",
+        "004",
+        "I"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001A.r04"
+    },
+    "CM_RASH/CM_RASH.Atab.001A.r05": {
+      "tokens": [
+        "I",
+        "006",
+        "025",
+        "I",
+        "044",
+        "006",
+        "100",
+        "091"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001A.r05"
+    },
+    "CM_RASH/CM_RASH.Atab.001A.r06": {
+      "tokens": [
+        "092_",
+        "044",
+        "I"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001A.r06"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r01g": {
+      "tokens": [
+        "104",
+        "060",
+        "033",
+        "I",
+        "024",
+        "070",
+        "I",
+        "052",
+        "030",
+        "021",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r01g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r01d": {
+      "tokens": [
+        "056"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r01d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r02g": {
+      "tokens": [
+        "102",
+        "075",
+        "054",
+        "I",
+        "102",
+        "029",
+        "017",
+        "017",
+        "I",
+        "087",
+        "090"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r02g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r02d": {
+      "tokens": [
+        "044"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r02d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r03g": {
+      "tokens": [
+        "079",
+        "037",
+        "082",
+        "097",
+        "I",
+        "025",
+        "009",
+        "049",
+        "028",
+        "095",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r03g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r03d": {
+      "tokens": [
+        "070",
+        "068",
+        "070"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r03d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r04g": {
+      "tokens": [
+        "102",
+        "075",
+        "I",
+        "006",
+        "049",
+        "033",
+        "035",
+        "054",
+        "I",
+        "030",
+        "021"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r04g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r04d": {
+      "tokens": [
+        "005",
+        "075",
+        "064"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r04d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r05g": {
+      "tokens": [
+        "102",
+        "028",
+        "054",
+        "I",
+        "038",
+        "033",
+        "051",
+        "I",
+        "038",
+        "033",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r05g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r05d": {
+      "tokens": [
+        "005",
+        "025",
+        "051",
+        "013",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r05d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r06g": {
+      "tokens": [
+        "087",
+        "I",
+        "104",
+        "023",
+        "I",
+        "079",
+        "052",
+        "064",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r06g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r06d": {
+      "tokens": [
+        "I",
+        "021",
+        "035",
+        "I",
+        "030",
+        "021",
+        "096"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r06d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r07g": {
+      "tokens": [
+        "009",
+        "027",
+        "069",
+        "I",
+        "102",
+        "004",
+        "075",
+        "I",
+        "062",
+        "010"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r07g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r07d": {
+      "tokens": [
+        "051",
+        "013",
+        "I",
+        "038",
+        "097",
+        "096"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r07d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r08g": {
+      "tokens": [
+        "052",
+        "030",
+        "062",
+        "013",
+        "I",
+        "038",
+        "033",
+        "051"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r08g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r08d": {
+      "tokens": [
+        "I",
+        "004",
+        "025",
+        "I",
+        "062",
+        "096",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r08d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r09g": {
+      "tokens": [
+        "097",
+        "I",
+        "079",
+        "056",
+        "049",
+        "054",
+        "I",
+        "021",
+        "096"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r09g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r09d": {
+      "tokens": [
+        "069",
+        "064",
+        "I",
+        "023",
+        "037",
+        "027"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r09d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r10g": {
+      "tokens": [
+        "102",
+        "075",
+        "I",
+        "025",
+        "009",
+        "049",
+        "028",
+        "095",
+        "I",
+        "110",
+        "060"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r10g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r10d": {
+      "tokens": [
+        "I",
+        "028",
+        "021",
+        "017",
+        "I",
+        "062",
+        "005",
+        "060"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r10d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r11g": {
+      "tokens": [
+        "072",
+        "054",
+        "I",
+        "038",
+        "033",
+        "051",
+        "I",
+        "110",
+        "078",
+        "013",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r11g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r11d": {
+      "tokens": [
+        "102",
+        "075",
+        "004",
+        "I",
+        "047",
+        "096",
+        "027",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r11d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r12g": {
+      "tokens": [
+        "023",
+        "062",
+        "017",
+        "I",
+        "087",
+        "051",
+        "009",
+        "082",
+        "I",
+        "056",
+        "009"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r12g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r12d": {
+      "tokens": [
+        "I",
+        "102",
+        "075",
+        "054",
+        "I",
+        "004",
+        "025",
+        "074",
+        "054"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r12d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r13g": {
+      "tokens": [
+        "087",
+        "056",
+        "I",
+        "025",
+        "087",
+        "059",
+        "089",
+        "I",
+        "079",
+        "056",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r13g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r13d": {
+      "tokens": [
+        "047",
+        "017",
+        "097",
+        "017",
+        "I",
+        "025",
+        "027",
+        "069",
+        "009",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r13d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r14g": {
+      "tokens": [
+        "004",
+        "025",
+        "074",
+        "095",
+        "I",
+        "082",
+        "087_",
+        "I",
+        "110",
+        "074",
+        "021"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r14g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r14d": {
+      "tokens": [
+        "I",
+        "102",
+        "075",
+        "004",
+        "I",
+        "047",
+        "033",
+        "054"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r14d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r15g": {
+      "tokens": [
+        "030",
+        "052",
+        "005",
+        "I",
+        "102",
+        "025",
+        "075",
+        "076",
+        "070"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r15g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r15d": {
+      "tokens": [
+        "I",
+        "068",
+        "025",
+        "097",
+        "017",
+        "I",
+        "030",
+        "006",
+        "004",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r15d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r16g": {
+      "tokens": [
+        "068",
+        "062",
+        "009",
+        "I",
+        "062",
+        "064",
+        "I",
+        "038",
+        "076_",
+        "I",
+        "025"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r16g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r16d": {
+      "tokens": [
+        "006",
+        "064",
+        "I",
+        "102",
+        "062",
+        "082"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r16d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r17g": {
+      "tokens": [
+        "054",
+        "076",
+        "033",
+        "I",
+        "038",
+        "024",
+        "080",
+        "I",
+        "102",
+        "035",
+        "096"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r17g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r17d": {
+      "tokens": [
+        "I",
+        "027",
+        "069",
+        "017",
+        "I",
+        "070",
+        "027",
+        "005",
+        "061",
+        "095"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r17d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r18g": {
+      "tokens": [
+        "056",
+        "096",
+        "044",
+        "I",
+        "102",
+        "075",
+        "I",
+        "110",
+        "035",
+        "005",
+        "017"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r18g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r18d": {
+      "tokens": [
+        "I",
+        "107",
+        "075",
+        "075",
+        "I",
+        "102",
+        "082",
+        "037",
+        "005"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r18d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r19g": {
+      "tokens": [
+        "107",
+        "030",
+        "095",
+        "I",
+        "107",
+        "017",
+        "075",
+        "013",
+        "I",
+        "038",
+        "033"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r19g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r19d": {
+      "tokens": [
+        "051",
+        "013",
+        "I",
+        "004",
+        "096",
+        "I",
+        "027",
+        "051"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r19d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r20g": {
+      "tokens": [
+        "107",
+        "082",
+        "082",
+        "I",
+        "025",
+        "090",
+        "I",
+        "104",
+        "056",
+        "005",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r20g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r20d": {
+      "tokens": [
+        "087",
+        "072",
+        "I",
+        "044",
+        "075",
+        "033"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r20d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r21g": {
+      "tokens": [
+        "023_",
+        "080_",
+        "079",
+        "013",
+        "I",
+        "021",
+        "072"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r21g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r21d": {
+      "tokens": [
+        "096",
+        "I",
+        "082",
+        "009",
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r21d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r22g": {
+      "tokens": [
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r22g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003A.r22d": {
+      "tokens": [
+        "102",
+        "035_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003A.r22d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20033g": {
+      "tokens": [
+        "044",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20033g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20034g": {
+      "tokens": [
+        "025",
+        "095",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20034g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20035g": {
+      "tokens": [
+        "004",
+        "075",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20035g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20036g": {
+      "tokens": [
+        "107",
+        "051_",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20036g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20037g": {
+      "tokens": [
+        "069",
+        "070",
+        "I",
+        "012_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20037g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20038g": {
+      "tokens": [
+        "038",
+        "082",
+        "I",
+        "027",
+        "051"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20038g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20039g": {
+      "tokens": [
+        "027",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20039g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20040g": {
+      "tokens": [
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20040g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20041g": {
+      "tokens": [
+        "078",
+        "005",
+        "070",
+        "I",
+        "082"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20041g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r20042g": {
+      "tokens": [
+        "082",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r20042g"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r01": {
+      "tokens": [
+        "038",
+        "087",
+        "103",
+        "023",
+        "069",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r01"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r02": {
+      "tokens": [
+        "073",
+        "082",
+        "I",
+        "082",
+        "096",
+        "088",
+        "023",
+        "104"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r02"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r03": {
+      "tokens": [
+        "007",
+        "053",
+        "009",
+        "070",
+        "012",
+        "023",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r03"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r04": {
+      "tokens": [
+        "101",
+        "I",
+        "027",
+        "013_",
+        "110",
+        "097"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r04"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r05": {
+      "tokens": [
+        "023",
+        "075",
+        "099",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r05"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r06": {
+      "tokens": [
+        "104",
+        "011",
+        "006",
+        "012",
+        "023",
+        "006"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r06"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r07": {
+      "tokens": [
+        "026",
+        "013_",
+        "I",
+        "006",
+        "046",
+        "053",
+        "012"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r07"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r08": {
+      "tokens": [
+        "023",
+        "082",
+        "012",
+        "025",
+        "I",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r08"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r09": {
+      "tokens": [
+        "082",
+        "096",
+        "088",
+        "023",
+        "009",
+        "070",
+        "026"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r09"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r10": {
+      "tokens": [
+        "075",
+        "004",
+        "087",
+        "025",
+        "I",
+        "041",
+        "041"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r10"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r11": {
+      "tokens": [
+        "097",
+        "038",
+        "009",
+        "075",
+        "007",
+        "021",
+        "038"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r11"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r12": {
+      "tokens": [
+        "021",
+        "107",
+        "011",
+        "024",
+        "107",
+        "027",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r12"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r13": {
+      "tokens": [
+        "023",
+        "004",
+        "009",
+        "088",
+        "013_",
+        "007",
+        "021"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r13"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r14": {
+      "tokens": [
+        "044",
+        "026",
+        "019",
+        "073",
+        "025",
+        "023",
+        "004"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r14"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r15": {
+      "tokens": [
+        "087",
+        "025",
+        "I",
+        "044",
+        "037",
+        "097",
+        "103"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r15"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r16": {
+      "tokens": [
+        "025",
+        "075",
+        "103",
+        "027",
+        "069",
+        "025",
+        "103"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r16"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r17": {
+      "tokens": [
+        "069",
+        "004",
+        "087",
+        "025",
+        "039",
+        "021",
+        "013_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r17"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r18": {
+      "tokens": [
+        "006",
+        "107",
+        "024_",
+        "053",
+        "011_",
+        "104",
+        "103"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r18"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r19": {
+      "tokens": [
+        "025",
+        "101",
+        "097",
+        "013_",
+        "I",
+        "035",
+        "021"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r19"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r20": {
+      "tokens": [
+        "097",
+        "023",
+        "073",
+        "097",
+        "019",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r20"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r21": {
+      "tokens": [
+        "069",
+        "007",
+        "021",
+        "046",
+        "025",
+        "004",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r21"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r22": {
+      "tokens": [
+        "027",
+        "005",
+        "025",
+        "004",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r22"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r23": {
+      "tokens": [
+        "004",
+        "087",
+        "025",
+        "I",
+        "044",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r23"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r24": {
+      "tokens": [
+        "025",
+        "004",
+        "099",
+        "007",
+        "I",
+        "011_",
+        "006",
+        "053",
+        "096_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r24"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r25": {
+      "tokens": [
+        "103",
+        "069",
+        "082",
+        "075",
+        "099",
+        "I",
+        "007",
+        "005"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r25"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r26": {
+      "tokens": [
+        "082",
+        "096",
+        "088",
+        "023",
+        "069",
+        "026",
+        "050"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r26"
+    },
+    "CM_ENKO/CM_ENKO.Arou.001.r27": {
+      "tokens": [
+        "069",
+        "025",
+        "103",
+        "069",
+        "082",
+        "075",
+        "099",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Arou.001.r27"
+    },
+    "CM_RASH/CM_RASH.Atab.004B.r12": {
+      "tokens": [
+        "019",
+        "087",
+        "072",
+        "096",
+        "I",
+        "025",
+        "006",
+        "100",
+        "040",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004B.r12"
+    },
+    "CM_RASH/CM_RASH.Atab.004B.r13": {
+      "tokens": [
+        "022",
+        "082",
+        "075",
+        "051",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004B.r13"
+    },
+    "CM_RASH/CM_RASH.Atab.004B.r14": {
+      "tokens": [
+        "104",
+        "009",
+        "055",
+        "009",
+        "070",
+        "I",
+        "051",
+        "028",
+        "I",
+        "019",
+        "091",
+        "073",
+        "023",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004B.r14"
+    },
+    "CM_RASH/CM_RASH.Atab.004B.r15": {
+      "tokens": [
+        "102",
+        "025",
+        "087",
+        "051",
+        "I",
+        "051",
+        "028",
+        "I",
+        "055",
+        "070",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004B.r15"
+    },
+    "CM_RASH/CM_RASH.Atab.004B.r16": {
+      "tokens": [
+        "038",
+        "001",
+        "004",
+        "082",
+        "009",
+        "I",
+        "102",
+        "075",
+        "051_",
+        "055",
+        "082",
+        "022",
+        "009",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004B.r16"
+    },
+    "CM_RASH/CM_RASH.Atab.004B.r17": {
+      "tokens": [
+        "102",
+        "074",
+        "075",
+        "051",
+        "I",
+        "027",
+        "I",
+        "070",
+        "006",
+        "096",
+        "037_"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004B.r17"
+    },
+    "CM_RASH/CM_RASH.Atab.004B.r18": {
+      "tokens": [
+        "073",
+        "092",
+        "100",
+        "I",
+        "051",
+        "028",
+        "I",
+        "055",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004B.r18"
+    },
+    "CM_RASH/CM_RASH.Atab.004B.r19": {
+      "tokens": [
+        "082",
+        "058",
+        "055",
+        "009",
+        "070",
+        "I",
+        "092",
+        "011_",
+        "096",
+        "I",
+        "006",
+        "P"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.004B.r19"
+    },
+    "CM_ENKO/CM_ENKO.Mlin.003.r00": {
+      "tokens": [
+        "102",
+        "I",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Mlin.003.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10201g": {
+      "tokens": [
+        "051_",
+        "I_",
+        "004_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10201g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10201d": {
+      "tokens": [
+        "I",
+        "027"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10201d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10202g": {
+      "tokens": [
+        "082_",
+        "028_",
+        "095_",
+        "I_",
+        "038_",
+        "064"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10202g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10202d": {
+      "tokens": [
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10202d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10203g": {
+      "tokens": [
+        "030_",
+        "033_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10203g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10024d": {
+      "tokens": [
+        "009_",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10024d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10025g": {
+      "tokens": [
+        "068_",
+        "080"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10025g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10025d": {
+      "tokens": [
+        "I",
+        "025",
+        "056"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10025d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10026g": {
+      "tokens": [
+        "062_",
+        "060",
+        "023",
+        "I",
+        "001",
+        "I",
+        "004"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10026g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10026d": {
+      "tokens": [
+        "024",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10026d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10027g": {
+      "tokens": [
+        "005_",
+        "I",
+        "012",
+        "097",
+        "I",
+        "079",
+        "009",
+        "011"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10027g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10027d": {
+      "tokens": [
+        "I",
+        "025",
+        "006",
+        "013",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10027d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10028g": {
+      "tokens": [
+        "082",
+        "097",
+        "I",
+        "038",
+        "076",
+        "I",
+        "110",
+        "I",
+        "104"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10028g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10028d": {
+      "tokens": [
+        "069",
+        "051",
+        "I",
+        "006",
+        "006",
+        "010"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10028d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10029g": {
+      "tokens": [
+        "011",
+        "087",
+        "I",
+        "038",
+        "076",
+        "074",
+        "I",
+        "079",
+        "061",
+        "006"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10029g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10029d": {
+      "tokens": [
+        "013",
+        "I",
+        "013_",
+        "I",
+        "038",
+        "030_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10029d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10030g": {
+      "tokens": [
+        "075_",
+        "054",
+        "059_",
+        "075",
+        "097",
+        "017",
+        "I",
+        "062"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10030g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10030d": {
+      "tokens": [
+        "096",
+        "062",
+        "I",
+        "009",
+        "060",
+        "059",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10030d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10031g": {
+      "tokens": [
+        "021",
+        "005",
+        "075",
+        "I",
+        "079",
+        "070",
+        "I",
+        "010",
+        "097",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10031g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10031d": {
+      "tokens": [
+        "075",
+        "087",
+        "059",
+        "059",
+        "I",
+        "079",
+        "005"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10031d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10032g": {
+      "tokens": [
+        "027",
+        "013",
+        "021_",
+        "I",
+        "001",
+        "028",
+        "107_",
+        "089",
+        "I",
+        "070"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10032g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10032d": {
+      "tokens": [
+        "I",
+        "064",
+        "054",
+        "064"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10032d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10033g": {
+      "tokens": [
+        "I",
+        "023_",
+        "051",
+        "066",
+        "I",
+        "004",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10033g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10033d": {
+      "tokens": [
+        "023",
+        "030_",
+        "095"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10033d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10034g": {
+      "tokens": [
+        "078_",
+        "005_",
+        "I",
+        "062"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10034g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10034d": {
+      "tokens": [
+        "097",
+        "051",
+        "017",
+        "I",
+        "021",
+        "009_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10034d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10035d": {
+      "tokens": [
+        "006_",
+        "090_",
+        "I",
+        "080",
+        "021",
+        "078"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10035d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10036d": {
+      "tokens": [
+        "027",
+        "090",
+        "I",
+        "030",
+        "054",
+        "064",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10036d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10037g": {
+      "tokens": [
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10037g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10037d": {
+      "tokens": [
+        "I",
+        "029",
+        "017",
+        "I",
+        "062",
+        "017",
+        "051",
+        "061",
+        "095_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10037d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10038g": {
+      "tokens": [
+        "001_",
+        "I",
+        "024_",
+        "037"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10038g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10038d": {
+      "tokens": [
+        "027",
+        "I",
+        "038",
+        "082",
+        "061",
+        "095"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10038d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10039g": {
+      "tokens": [
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10039g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10039d": {
+      "tokens": [
+        "079",
+        "001_",
+        "059",
+        "I",
+        "047",
+        "030",
+        "009",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10039d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10040g": {
+      "tokens": [
+        "075",
+        "029",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10040g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10040d": {
+      "tokens": [
+        "110_",
+        "082",
+        "013",
+        "I",
+        "056",
+        "023",
+        "090",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10040d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10041g": {
+      "tokens": [
+        "069",
+        "I",
+        "021"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10041g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10041d": {
+      "tokens": [
+        "078",
+        "097",
+        "017",
+        "I",
+        "054",
+        "064",
+        "027",
+        "089"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10041d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10042g": {
+      "tokens": [
+        "035"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10042g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10042d": {
+      "tokens": [
+        "I",
+        "038",
+        "009",
+        "I",
+        "062",
+        "091_",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10042d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002A.r10043d": {
+      "tokens": [
+        "I",
+        "102",
+        "075",
+        "078",
+        "I",
+        "079",
+        "005",
+        "061",
+        "095"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002A.r10043d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10001g": {
+      "tokens": [
+        "011"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10001g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10001d": {
+      "tokens": [
+        "024",
+        "I",
+        "023",
+        "080",
+        "I",
+        "102",
+        "035",
+        "075",
+        "082"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10001d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10002g": {
+      "tokens": [
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10002g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10002d": {
+      "tokens": [
+        "097",
+        "I",
+        "102",
+        "025",
+        "013",
+        "I",
+        "102",
+        "075",
+        "027",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10002d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10003d": {
+      "tokens": [
+        "I",
+        "038",
+        "017",
+        "017",
+        "I",
+        "107",
+        "033",
+        "072",
+        "027"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10003d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10004d": {
+      "tokens": [
+        "044",
+        "075",
+        "I",
+        "033",
+        "047",
+        "049",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10004d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10005g": {
+      "tokens": [
+        "079",
+        "074",
+        "064"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10005g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10005d": {
+      "tokens": [
+        "075",
+        "I",
+        "021",
+        "069_",
+        "017",
+        "I",
+        "062",
+        "070",
+        "I",
+        "009",
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10005d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10006g": {
+      "tokens": [
+        "I",
+        "104"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10006g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10006d": {
+      "tokens": [
+        "087",
+        "082",
+        "I",
+        "047",
+        "030",
+        "107",
+        "009",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10006d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10007g": {
+      "tokens": [
+        "I",
+        "012",
+        "107",
+        "I",
+        "030",
+        "017"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10007g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10007d": {
+      "tokens": [
+        "017",
+        "I",
+        "082",
+        "029",
+        "097",
+        "I",
+        "079",
+        "068",
+        "064",
+        "069"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10007d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10008g": {
+      "tokens": [
+        "027",
+        "089",
+        "I",
+        "005",
+        "110",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10008g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10008d": {
+      "tokens": [
+        "037",
+        "069",
+        "036",
+        "I",
+        "027",
+        "087",
+        "027"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10008d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10009g": {
+      "tokens": [
+        "075",
+        "I",
+        "102",
+        "013",
+        "I",
+        "047",
+        "068",
+        "060",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10009g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10009d": {
+      "tokens": [
+        "038",
+        "087",
+        "087",
+        "047",
+        "095",
+        "I",
+        "079",
+        "076",
+        "001"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10009d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10010g": {
+      "tokens": [
+        "079",
+        "070",
+        "010",
+        "075",
+        "009",
+        "107",
+        "I",
+        "107",
+        "011",
+        "087",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10010g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10010d": {
+      "tokens": [
+        "025",
+        "004",
+        "009",
+        "I",
+        "078",
+        "025",
+        "004",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10010d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10011g": {
+      "tokens": [
+        "009",
+        "080",
+        "047",
+        "I",
+        "037",
+        "097",
+        "I",
+        "102",
+        "051",
+        "I",
+        "079"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10011g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10011d": {
+      "tokens": [
+        "028",
+        "051",
+        "I",
+        "025",
+        "054",
+        "030"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10011d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10012g": {
+      "tokens": [
+        "079",
+        "027",
+        "I",
+        "087",
+        "068",
+        "028",
+        "107",
+        "036",
+        "I",
+        "102",
+        "035"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10012g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10012d": {
+      "tokens": [
+        "027",
+        "I",
+        "027",
+        "027",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10012d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10013g": {
+      "tokens": [
+        "078",
+        "096",
+        "080",
+        "I",
+        "006",
+        "082",
+        "I",
+        "038",
+        "012",
+        "097"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10013g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10014g": {
+      "tokens": [
+        "079",
+        "009",
+        "044",
+        "070",
+        "I",
+        "082",
+        "I",
+        "102",
+        "013"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10014g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10014d": {
+      "tokens": [
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10014d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10015g": {
+      "tokens": [
+        "021",
+        "047",
+        "070",
+        "I",
+        "082",
+        "029",
+        "097",
+        "I",
+        "006",
+        "025"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10015g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10016g": {
+      "tokens": [
+        "021",
+        "004",
+        "078_",
+        "I",
+        "102",
+        "035",
+        "I",
+        "102_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10016g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10017g": {
+      "tokens": [
+        "017_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10017g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10020d": {
+      "tokens": [
+        "082_",
+        "013"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10020d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10021g": {
+      "tokens": [
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10021g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10021d": {
+      "tokens": [
+        "005",
+        "107_",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10021d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10022g": {
+      "tokens": [
+        "052_",
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10022g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10022d": {
+      "tokens": [
+        "102_",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10022d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10023g": {
+      "tokens": [
+        "038",
+        "087",
+        "087",
+        "I",
+        "038",
+        "I",
+        "087_",
+        "095_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10023g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10023d": {
+      "tokens": [
+        "075_",
+        "I",
+        "023_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10023d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10024g": {
+      "tokens": [
+        "082_",
+        "075_",
+        "I",
+        "027",
+        "I",
+        "025",
+        "087",
+        "006_",
+        "090_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10024g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10024d": {
+      "tokens": [
+        "I",
+        "009_",
+        "090",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10024d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10025g": {
+      "tokens": [
+        "110",
+        "037",
+        "021",
+        "017",
+        "I",
+        "102",
+        "035",
+        "087",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10025g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10025d": {
+      "tokens": [
+        "087",
+        "082",
+        "I",
+        "004"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10025d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10026g": {
+      "tokens": [
+        "027",
+        "009",
+        "I",
+        "107_",
+        "012",
+        "033",
+        "025",
+        "I",
+        "104",
+        "009",
+        "076"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10026g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10026d": {
+      "tokens": [
+        "104",
+        "070",
+        "027",
+        "021"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10026d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r10027g": {
+      "tokens": [
+        "033",
+        "075_",
+        "I",
+        "090"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r10027g"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r01": {
+      "tokens": [
+        "104",
+        "024",
+        "091",
+        "I",
+        "104",
+        "072",
+        "087",
+        "099",
+        "023"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r01"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r02": {
+      "tokens": [
+        "070_",
+        "046_",
+        "I",
+        "107_",
+        "091_",
+        "I",
+        "104",
+        "091"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r02"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r03": {
+      "tokens": [
+        "033",
+        "091",
+        "I",
+        "104_",
+        "036",
+        "I",
+        "039",
+        "087",
+        "086"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r03"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r04": {
+      "tokens": [
+        "036",
+        "034",
+        "I",
+        "046",
+        "013_",
+        "I_",
+        "097_",
+        "023",
+        "091",
+        "001"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r04"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r05": {
+      "tokens": [
+        "039",
+        "086",
+        "I",
+        "036",
+        "072",
+        "091",
+        "046",
+        "I_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r05"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r06": {
+      "tokens": [
+        "046",
+        "015",
+        "086_",
+        "034_",
+        "053",
+        "I",
+        "073",
+        "087",
+        "023_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r06"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r07": {
+      "tokens": [
+        "086",
+        "I",
+        "004",
+        "088",
+        "082"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r07"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r08": {
+      "tokens": [
+        "023",
+        "I",
+        "072",
+        "087"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r08"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r09": {
+      "tokens": [
+        "I_",
+        "086_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r09"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r10": {
+      "tokens": [
+        "046_",
+        "023_",
+        "050_",
+        "087",
+        "086",
+        "I",
+        "112"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r10"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r11": {
+      "tokens": [
+        "088",
+        "070",
+        "I",
+        "027",
+        "086",
+        "001",
+        "006"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r11"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r12": {
+      "tokens": [
+        "035",
+        "091",
+        "023",
+        "072",
+        "023",
+        "082",
+        "086"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r12"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r13": {
+      "tokens": [
+        "073",
+        "021_",
+        "046",
+        "025",
+        "044",
+        "I",
+        "104",
+        "024",
+        "091_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r13"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r14": {
+      "tokens": [
+        "103",
+        "086",
+        "091",
+        "I",
+        "102",
+        "034",
+        "072"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r14"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r15": {
+      "tokens": [
+        "110_",
+        "082",
+        "033",
+        "070"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r15"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r16": {
+      "tokens": [
+        "I_",
+        "023_",
+        "I_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r16"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r17": {
+      "tokens": [
+        "024_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r17"
+    },
+    "CM_KALA/CM_KALA.Arou.001.r18": {
+      "tokens": [
+        "104_",
+        "024_",
+        "091_",
+        "I_",
+        "015_",
+        "034_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.001.r18"
+    },
+    "CM_MYRT/CM_MYRT.Avas.001.r00": {
+      "tokens": [
+        "102",
+        "087_",
+        "028",
+        "110"
+      ],
+      "site": "CM_MYRT",
+      "inscription": "CM_MYRT.Avas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.031.r00": {
+      "tokens": [
+        "082",
+        "095",
+        "088",
+        "I",
+        "025"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.031.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.052.r00": {
+      "tokens": [
+        "102",
+        "087",
+        "107",
+        "097",
+        "I",
+        "039"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.052.r00"
+    },
+    "CMADD_TIRY/CMADD_TIRY.Avas.002.r00": {
+      "tokens": [
+        "087",
+        "051",
+        "005",
+        "I"
+      ],
+      "site": "CMADD_TIRY",
+      "inscription": "CMADD_TIRY.Avas.002.r00"
+    },
+    "CM_RASH/CM_RASH.Atab.003.r01": {
+      "tokens": [
+        "038",
+        "005",
+        "021",
+        "097",
+        "I",
+        "007",
+        "053",
+        "027",
+        "075"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.003.r01"
+    },
+    "CM_RASH/CM_RASH.Atab.003.r02": {
+      "tokens": [
+        "104",
+        "004",
+        "X",
+        "075",
+        "082_",
+        "023"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.003.r02"
+    },
+    "CM_RASH/CM_RASH.Atab.003.r03": {
+      "tokens": [
+        "110",
+        "007"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.003.r03"
+    },
+    "CM_RASH/CM_RASH.Atab.003.r04": {
+      "tokens": [
+        "023"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.003.r04"
+    },
+    "CM_RASH/CM_RASH.Atab.003.r05": {
+      "tokens": [
+        "021"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.003.r05"
+    },
+    "CM_ENKO/CM_ENKO.Aost.001.r01": {
+      "tokens": [
+        "201",
+        "CCC",
+        "II"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Aost.001.r01"
+    },
+    "CM_ENKO/CM_ENKO.Aost.001.r02": {
+      "tokens": [
+        "202",
+        "CC",
+        "IIIIII"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Aost.001.r02"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r20001g": {
+      "tokens": [
+        "013_",
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r20001g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r20002g": {
+      "tokens": [
+        "079",
+        "036"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r20002g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r20003g": {
+      "tokens": [
+        "081",
+        "010",
+        "012_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r20003g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r20004g": {
+      "tokens": [
+        "074",
+        "047"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r20004g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r20005g": {
+      "tokens": [
+        "038",
+        "096"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r20005g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r20006g": {
+      "tokens": [
+        "081",
+        "070"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r20006g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r20007g": {
+      "tokens": [
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r20007g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r20008g": {
+      "tokens": [
+        "051"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r20008g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.002B.r20009g": {
+      "tokens": [
+        "104",
+        "006"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.002B.r20009g"
+    },
+    "CM_ENKO/CM_ENKO.Abou.040.r00": {
+      "tokens": [
+        "001",
+        "023_",
+        "072",
+        "085",
+        "I",
+        "005"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.040.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.068.r00": {
+      "tokens": [
+        "061_",
+        "085",
+        "088",
+        "I",
+        "061_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.068.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.015.r00": {
+      "tokens": [
+        "006",
+        "023"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.015.r00"
+    },
+    "CM_HALA/CM_HALA.Avas.001.r00": {
+      "tokens": [
+        "025",
+        "025"
+      ],
+      "site": "CM_HALA",
+      "inscription": "CM_HALA.Avas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.027.r00": {
+      "tokens": [
+        "015",
+        "017",
+        "008",
+        "I",
+        "050_",
+        "046_",
+        "034",
+        "097"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.027.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.001.r00": {
+      "tokens": [
+        "037",
+        "097",
+        "023",
+        "046_"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20201g": {
+      "tokens": [
+        "059_",
+        "I",
+        "110_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20201g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20202g": {
+      "tokens": [
+        "I_",
+        "068_",
+        "082_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20202g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20203g": {
+      "tokens": [
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20203g"
+    },
+    "CM_KITI/CM_KITI.Iins.002a.r00": {
+      "tokens": [
+        "102_",
+        "004",
+        "053",
+        "070_"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Iins.002a.r00"
+    },
+    "CM_KITI/CM_KITI.Ipla.001r.r00": {
+      "tokens": [
+        "081_",
+        "110",
+        "109",
+        "064_",
+        "072"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Ipla.001r.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10301g": {
+      "tokens": [
+        "096"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10301g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10301d": {
+      "tokens": [
+        "I",
+        "038",
+        "096_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10301d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10302g": {
+      "tokens": [
+        "030_",
+        "I",
+        "064_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10302g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10302d": {
+      "tokens": [
+        "I",
+        "079",
+        "037",
+        "107_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10302d"
+    },
+    "CM_ENKO/CM_ENKO.Abou.018.r00": {
+      "tokens": [
+        "110_",
+        "039",
+        "097",
+        "I",
+        "006",
+        "073",
+        "110_",
+        "027",
+        "005",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.018.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.078.r00": {
+      "tokens": [
+        "012",
+        "024",
+        "110_",
+        "097_",
+        "I",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.078.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r11g": {
+      "tokens": [
+        "I_",
+        "102"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r11g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r12g": {
+      "tokens": [
+        "I",
+        "087_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r12g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r12d": {
+      "tokens": [
+        "082",
+        "I",
+        "023",
+        "009",
+        "060",
+        "059"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r12d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r13g": {
+      "tokens": [
+        "017_",
+        "027_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r13g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r13d": {
+      "tokens": [
+        "I",
+        "079",
+        "095",
+        "I",
+        "082"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r13d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r14g": {
+      "tokens": [
+        "021",
+        "I",
+        "054_",
+        "075",
+        "I_",
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r14g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r14d": {
+      "tokens": [
+        "056",
+        "069",
+        "I",
+        "082",
+        "090",
+        "I",
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r14d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r15g": {
+      "tokens": [
+        "021_",
+        "013_",
+        "I",
+        "096",
+        "013",
+        "I",
+        "104",
+        "037",
+        "082_",
+        "009",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r15g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r15d": {
+      "tokens": [
+        "110",
+        "078",
+        "I",
+        "087",
+        "023",
+        "I",
+        "079",
+        "054"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r15d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r16g": {
+      "tokens": [
+        "102",
+        "009",
+        "054",
+        "072",
+        "017",
+        "I",
+        "102",
+        "096",
+        "062",
+        "I",
+        "025"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r16g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r16d": {
+      "tokens": [
+        "004",
+        "075",
+        "I",
+        "023",
+        "090",
+        "033"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r16d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r17g": {
+      "tokens": [
+        "102",
+        "056_",
+        "033",
+        "027",
+        "I",
+        "011",
+        "021",
+        "I",
+        "004",
+        "075",
+        "029"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r17g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r17d": {
+      "tokens": [
+        "I",
+        "102",
+        "082",
+        "013",
+        "I",
+        "047",
+        "027"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r17d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r18g": {
+      "tokens": [
+        "038",
+        "082",
+        "I",
+        "052",
+        "030",
+        "021",
+        "013",
+        "I",
+        "107",
+        "060",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r18g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r18d": {
+      "tokens": [
+        "107",
+        "011",
+        "087",
+        "I",
+        "102",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r18d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r19g": {
+      "tokens": [
+        "021",
+        "047",
+        "070",
+        "I",
+        "021",
+        "009",
+        "069",
+        "023",
+        "I",
+        "102",
+        "035"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r19g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r20g": {
+      "tokens": [
+        "110",
+        "004",
+        "I",
+        "027",
+        "030",
+        "052",
+        "I",
+        "030",
+        "012",
+        "017",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r20g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r21g": {
+      "tokens": [
+        "024",
+        "009",
+        "I",
+        "021",
+        "060",
+        "089",
+        "017",
+        "I",
+        "104"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r21g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r22g": {
+      "tokens": [
+        "104",
+        "056",
+        "013",
+        "I",
+        "004",
+        "075",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r22g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r23g": {
+      "tokens": [
+        "038",
+        "027",
+        "I",
+        "012",
+        "061",
+        "062",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r23g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r24g": {
+      "tokens": [
+        "006",
+        "021",
+        "I",
+        "096",
+        "035",
+        "I",
+        "006",
+        "056",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r24g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r25g": {
+      "tokens": [
+        "102",
+        "054",
+        "075",
+        "082",
+        "I",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r25g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.003B.r26g": {
+      "tokens": [
+        "078",
+        "075",
+        "075",
+        "I",
+        "110",
+        "062"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.003B.r26g"
+    },
+    "CM_ENKO/CM_ENKO.Abou.039.r00": {
+      "tokens": [
+        "001",
+        "085",
+        "088",
+        "112"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.039.r00"
+    },
+    "CM_RASH/CM_RASH.Atab.001B.rls": {
+      "tokens": [
+        "023",
+        "105",
+        "097",
+        "004",
+        "091"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001B.rls"
+    },
+    "CM_RASH/CM_RASH.Atab.001B.r02": {
+      "tokens": [
+        "040",
+        "I"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001B.r02"
+    },
+    "CM_RASH/CM_RASH.Atab.001B.r03": {
+      "tokens": [
+        "036",
+        "040"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001B.r03"
+    },
+    "CM_RASH/CM_RASH.Atab.001B.r04": {
+      "tokens": [
+        "I",
+        "006",
+        "009",
+        "013_"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001B.r04"
+    },
+    "CM_RASH/CM_RASH.Atab.001B.r05": {
+      "tokens": [
+        "094",
+        "110",
+        "023",
+        "I",
+        "004",
+        "023_"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001B.r05"
+    },
+    "CM_RASH/CM_RASH.Atab.001B.r06": {
+      "tokens": [
+        "I",
+        "025",
+        "044",
+        "040",
+        "I",
+        "027_"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001B.r06"
+    },
+    "CM_RASH/CM_RASH.Atab.001B.r07": {
+      "tokens": [
+        "073",
+        "019",
+        "I"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.001B.r07"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20301g": {
+      "tokens": [
+        "030",
+        "082_",
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20301g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20302g": {
+      "tokens": [
+        "009_",
+        "097_",
+        "I_",
+        "030_",
+        "044_",
+        "033"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20302g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20303g": {
+      "tokens": [
+        "079"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20303g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10601g": {
+      "tokens": [
+        "107_",
+        "082",
+        "I_",
+        "062_",
+        "064_",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10601g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10601d": {
+      "tokens": [
+        "068",
+        "082_",
+        "028_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10601d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10602g": {
+      "tokens": [
+        "044_",
+        "033",
+        "I_",
+        "038_",
+        "064"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10602g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10602d": {
+      "tokens": [
+        "I",
+        "079"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10602d"
+    },
+    "CM_ENKO/CM_ENKO.Avas.003.r00": {
+      "tokens": [
+        "I",
+        "027",
+        "073_",
+        "064",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.003.r00"
+    },
+    "CMADD_KOUR/CMADD_KOUR.Avas.005.r00": {
+      "tokens": [
+        "102",
+        "006"
+      ],
+      "site": "CMADD_KOUR",
+      "inscription": "CMADD_KOUR.Avas.005.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.056.r00": {
+      "tokens": [
+        "081",
+        "097",
+        "I",
+        "050"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.056.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.055.r00": {
+      "tokens": [
+        "006",
+        "025",
+        "082",
+        "097_",
+        "I",
+        "046"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.055.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.044.r00": {
+      "tokens": [
+        "044",
+        "061",
+        "097",
+        "019_",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.044.r00"
+    },
+    "CM_KATY/CM_KATY.Avas.001.r00": {
+      "tokens": [
+        "038_",
+        "027",
+        "006"
+      ],
+      "site": "CM_KATY",
+      "inscription": "CM_KATY.Avas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.002.r00": {
+      "tokens": [
+        "082",
+        "050",
+        "009",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.012.r00": {
+      "tokens": [
+        "075_",
+        "027",
+        "053",
+        "I",
+        "107",
+        "027",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.012.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10701g": {
+      "tokens": [
+        "I_",
+        "087",
+        "061_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10701g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10701d": {
+      "tokens": [
+        "082",
+        "047_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10701d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10702g": {
+      "tokens": [
+        "030_",
+        "033",
+        "I_",
+        "038_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10702g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10702d": {
+      "tokens": [
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10702d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10401g": {
+      "tokens": [
+        "023_",
+        "009_",
+        "027_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10401g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10401d": {
+      "tokens": [
+        "I",
+        "104",
+        "110",
+        "095_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10401d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10402g": {
+      "tokens": [
+        "I",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10402g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10402d": {
+      "tokens": [
+        "033",
+        "070_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10402d"
+    },
+    "CM_ENKO/CM_ENKO.Abou.001.r00": {
+      "tokens": [
+        "104",
+        "099",
+        "082",
+        "I",
+        "019"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10501g": {
+      "tokens": [
+        "029",
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10501g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10501d": {
+      "tokens": [
+        "038_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10501d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10502g": {
+      "tokens": [
+        "082",
+        "028_",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10502g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10502d": {
+      "tokens": [
+        "033",
+        "070_",
+        "I_",
+        "038_",
+        "064_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10502d"
+    },
+    "CM_KALA/CM_KALA.Arou.005.r01": {
+      "tokens": [
+        "091",
+        "I_",
+        "104_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.005.r01"
+    },
+    "CM_KALA/CM_KALA.Arou.005.r03": {
+      "tokens": [
+        "033",
+        "064_",
+        "I",
+        "013",
+        "097",
+        "027"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.005.r03"
+    },
+    "CM_KALA/CM_KALA.Arou.005.r04": {
+      "tokens": [
+        "009",
+        "I",
+        "008",
+        "069_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.005.r04"
+    },
+    "CM_KALA/CM_KALA.Arou.005.r05": {
+      "tokens": [
+        "023",
+        "069_",
+        "030_",
+        "096",
+        "099_",
+        "030_",
+        "096"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.005.r05"
+    },
+    "CM_KALA/CM_KALA.Arou.005.r06": {
+      "tokens": [
+        "035_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.005.r06"
+    },
+    "CM_KATY/CM_KATY.Avas.003.r00": {
+      "tokens": [
+        "087"
+      ],
+      "site": "CM_KATY",
+      "inscription": "CM_KATY.Avas.003.r00"
+    },
+    "CM_CYPR/CM_CYPR.Mvas.004.r00": {
+      "tokens": [
+        "092",
+        "008",
+        "015",
+        "023",
+        "I",
+        "038_"
+      ],
+      "site": "CM_CYPR",
+      "inscription": "CM_CYPR.Mvas.004.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.004.r00": {
+      "tokens": [
+        "027",
+        "028"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.004.r00"
+    },
+    "CM_ENKO/CM_ENKO.Aost.002.r01": {
+      "tokens": [
+        "104"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Aost.002.r01"
+    },
+    "CM_ENKO/CM_ENKO.Aost.002.r02": {
+      "tokens": [
+        "041_",
+        "I",
+        "046_",
+        "112",
+        "I",
+        "103",
+        "036"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Aost.002.r02"
+    },
+    "CM_ENKO/CM_ENKO.Aost.002.r03": {
+      "tokens": [
+        "072",
+        "I",
+        "027",
+        "041_",
+        "I",
+        "044",
+        "017"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Aost.002.r03"
+    },
+    "CM_ENKO/CM_ENKO.Aost.002.r05": {
+      "tokens": [
+        "005_",
+        "068_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Aost.002.r05"
+    },
+    "CM_KALA/CM_KALA.Avas.002.r00": {
+      "tokens": [
+        "070",
+        "082_",
+        "023"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Avas.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r00ls": {
+      "tokens": [
+        "025",
+        "021",
+        "013",
+        "I",
+        "004",
+        "082",
+        "I",
+        "027",
+        "051",
+        "I",
+        "068",
+        "025",
+        "096"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r00ls"
+    },
+    "CM_ENKO/CM_ENKO.Avas.010.r00": {
+      "tokens": [
+        "102"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.010.r00"
+    },
+    "CM_RASH/CM_RASH.Atab.002.r02": {
+      "tokens": [
+        "007_",
+        "IIII",
+        "102",
+        "004"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.002.r02"
+    },
+    "CM_RASH/CM_RASH.Atab.002.r03": {
+      "tokens": [
+        "006"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Atab.002.r03"
+    },
+    "CM_KITI/CM_KITI.Avas.006.r00": {
+      "tokens": [
+        "023",
+        "I",
+        "109"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.006.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.014.r00": {
+      "tokens": [
+        "025",
+        "I",
+        "023",
+        "I",
+        "021"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.014.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10101g": {
+      "tokens": [
+        "110_",
+        "070",
+        "I",
+        "027"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10101g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10102g": {
+      "tokens": [
+        "033_",
+        "095_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10102g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10103g": {
+      "tokens": [
+        "I",
+        "079",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10103g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10103d": {
+      "tokens": [
+        "030_",
+        "033",
+        "070"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10103d"
+    },
+    "CMADD_TIRY/CMADD_TIRY.Avas.001.r00": {
+      "tokens": [
+        "025",
+        "087"
+      ],
+      "site": "CMADD_TIRY",
+      "inscription": "CMADD_TIRY.Avas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.033.r00": {
+      "tokens": [
+        "082",
+        "097",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.033.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.041.r00": {
+      "tokens": [
+        "027",
+        "050",
+        "012",
+        "I",
+        "050"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.041.r00"
+    },
+    "CM_ATHI/CM_ATHI.Avas.001.r00": {
+      "tokens": [
+        "087",
+        "087",
+        "004",
+        "069"
+      ],
+      "site": "CM_ATHI",
+      "inscription": "CM_ATHI.Avas.001.r00"
+    },
+    "CM_CYPR/CM_CYPR.Mvas.002.r00": {
+      "tokens": [
+        "102",
+        "109",
+        "004",
+        "013",
+        "023",
+        "I",
+        "004",
+        "004",
+        "097",
+        "I",
+        "006",
+        "012"
+      ],
+      "site": "CM_CYPR",
+      "inscription": "CM_CYPR.Mvas.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.042.r00": {
+      "tokens": [
+        "102",
+        "087",
+        "097",
+        "I",
+        "112"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.042.r00"
+    },
+    "CM_PPAP/CM_PPAP.Mvas.001.r00": {
+      "tokens": [
+        "082",
+        "006",
+        "082",
+        "088",
+        "023"
+      ],
+      "site": "CM_PPAP",
+      "inscription": "CM_PPAP.Mvas.001.r00"
+    },
+    "CM_CYPR(QM)/CM_CYPR(QM).Psce.004.r00": {
+      "tokens": [
+        "067",
+        "005"
+      ],
+      "site": "CM_CYPR(QM)",
+      "inscription": "CM_CYPR(QM).Psce.004.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.016.r00": {
+      "tokens": [
+        "041_",
+        "028",
+        "021",
+        "I",
+        "019"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.016.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.017.r00": {
+      "tokens": [
+        "044",
+        "061",
+        "097",
+        "I",
+        "012bis",
+        "004"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.017.r00"
+    },
+    "CM_MYRT/CM_MYRT.Mvas.002.r00": {
+      "tokens": [
+        "038",
+        "104",
+        "101"
+      ],
+      "site": "CM_MYRT",
+      "inscription": "CM_MYRT.Mvas.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Mlin.002.r01": {
+      "tokens": [
+        "102",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Mlin.002.r01"
+    },
+    "CM_ENKO/CM_ENKO.Mlin.002.r02": {
+      "tokens": [
+        "102",
+        "036_",
+        "023",
+        "114",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Mlin.002.r02"
+    },
+    "CM_MAAP/CM_MAAP.Avas.002.r00": {
+      "tokens": [
+        "104_",
+        "097"
+      ],
+      "site": "CM_MAAP",
+      "inscription": "CM_MAAP.Avas.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.005.r20001": {
+      "tokens": [
+        "082",
+        "069_",
+        "088",
+        "097",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.005.r20001"
+    },
+    "CM_ENKO/CM_ENKO.Abou.023.r00": {
+      "tokens": [
+        "023",
+        "075",
+        "055",
+        "009",
+        "075"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.023.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20101g": {
+      "tokens": [
+        "104_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20101g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20102g": {
+      "tokens": [
+        "047_",
+        "095_",
+        "061_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20102g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20103g": {
+      "tokens": [
+        "I_",
+        "078_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20103g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20104g": {
+      "tokens": [
+        "033_",
+        "070_",
+        "I",
+        "038_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20104g"
+    },
+    "CM_HALA/CM_HALA.Abou.001.r00": {
+      "tokens": [
+        "102",
+        "087",
+        "107",
+        "097"
+      ],
+      "site": "CM_HALA",
+      "inscription": "CM_HALA.Abou.001.r00"
+    },
+    "CMADD_KLAV/CMADD_KLAV.Avas.001.r00": {
+      "tokens": [
+        "033",
+        "098"
+      ],
+      "site": "CMADD_KLAV",
+      "inscription": "CMADD_KLAV.Avas.001.r00"
+    },
+    "CM_MAAP/CM_MAAP.Avas.004.r00": {
+      "tokens": [
+        "021",
+        "023"
+      ],
+      "site": "CM_MAAP",
+      "inscription": "CM_MAAP.Avas.004.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.045.r00": {
+      "tokens": [
+        "102",
+        "073",
+        "004",
+        "097",
+        "I",
+        "023_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.045.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.005.r00": {
+      "tokens": [
+        "101",
+        "004",
+        "013",
+        "050",
+        "I",
+        "025"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.005.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.049.r00": {
+      "tokens": [
+        "102",
+        "068",
+        "110",
+        "067",
+        "I",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.049.r00"
+    },
+    "CM_ENKO(QM)/CM_ENKO(QM).Psce.002.r00": {
+      "tokens": [
+        "006",
+        "023"
+      ],
+      "site": "CM_ENKO(QM)",
+      "inscription": "CM_ENKO(QM).Psce.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.013.r00": {
+      "tokens": [
+        "I",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.013.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.016.r00": {
+      "tokens": [
+        "II",
+        "038",
+        "III"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.016.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.063.r00": {
+      "tokens": [
+        "064",
+        "009_",
+        "I",
+        "064",
+        "008",
+        "091",
+        "088"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.063.r00"
+    },
+    "CM_CYPR/CM_CYPR.Mvas.003.r00": {
+      "tokens": [
+        "027",
+        "069",
+        "009_",
+        "088_",
+        "023",
+        "I",
+        "015",
+        "017"
+      ],
+      "site": "CM_CYPR",
+      "inscription": "CM_CYPR.Mvas.003.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.007.r00": {
+      "tokens": [
+        "023",
+        "002"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.007.r00"
+    },
+    "CM_KITI/CM_KITI.Ipla.001v.r00": {
+      "tokens": [
+        "102_",
+        "I",
+        "102_",
+        "073",
+        "004",
+        "097",
+        "023"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Ipla.001v.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.001.r00": {
+      "tokens": [
+        "006",
+        "027",
+        "025"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.001.r00"
+    },
+    "CM_KITI/CM_KITI.Iins.002c.r00": {
+      "tokens": [
+        "023",
+        "092",
+        "097"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Iins.002c.r00"
+    },
+    "CM_MYRT/CM_MYRT.Mvas.001.r00": {
+      "tokens": [
+        "038",
+        "I",
+        "104",
+        "101"
+      ],
+      "site": "CM_MYRT",
+      "inscription": "CM_MYRT.Mvas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.061.r00": {
+      "tokens": [
+        "027",
+        "050_",
+        "012",
+        "005"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.061.r00"
+    },
+    "CM_CYPR(QM)/CM_CYPR(QM).Psce.002.r00": {
+      "tokens": [
+        "068",
+        "012",
+        "I",
+        "030",
+        "110"
+      ],
+      "site": "CM_CYPR(QM)",
+      "inscription": "CM_CYPR(QM).Psce.002.r00"
+    },
+    "CMADD_MARO/CMADD_MARO.Avas.002.r00": {
+      "tokens": [
+        "082",
+        "091",
+        "023"
+      ],
+      "site": "CMADD_MARO",
+      "inscription": "CMADD_MARO.Avas.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.065.r00": {
+      "tokens": [
+        "102",
+        "I",
+        "008",
+        "072",
+        "004"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.065.r00"
+    },
+    "CM_MARO/CM_MARO.Avas.001.r00": {
+      "tokens": [
+        "038",
+        "046_",
+        "023",
+        "I",
+        "044",
+        "068",
+        "I"
+      ],
+      "site": "CM_MARO",
+      "inscription": "CM_MARO.Avas.001.r00"
+    },
+    "CM_KOUR/CM_KOUR.Avas.001.r00": {
+      "tokens": [
+        "110",
+        "063"
+      ],
+      "site": "CM_KOUR",
+      "inscription": "CM_KOUR.Avas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.011.r00": {
+      "tokens": [
+        "082",
+        "061",
+        "006",
+        "099"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.011.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.026.r00": {
+      "tokens": [
+        "012bis",
+        "004",
+        "097",
+        "I",
+        "102"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.026.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.071.r00": {
+      "tokens": [
+        "004",
+        "036",
+        "012",
+        "069_",
+        "I_",
+        "005"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.071.r00"
+    },
+    "CM_KITI/CM_KITI.Abou.002.r00": {
+      "tokens": [
+        "004",
+        "008_"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Abou.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.075.r00": {
+      "tokens": [
+        "101",
+        "006",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.075.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.034.r00": {
+      "tokens": [
+        "110",
+        "046",
+        "097_",
+        "I",
+        "023",
+        "015_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.034.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.020.r00": {
+      "tokens": [
+        "027",
+        "004_",
+        "103"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.020.r00"
+    },
+    "CM_KITI/CM_KITI.Pblo.001.r00": {
+      "tokens": [
+        "091",
+        "028_"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Pblo.001.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.013.r00": {
+      "tokens": [
+        "023",
+        "I",
+        "112"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.013.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10801d": {
+      "tokens": [
+        "I",
+        "082",
+        "023_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10801d"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r10802g": {
+      "tokens": [
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r10802g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20401g": {
+      "tokens": [
+        "061",
+        "024",
+        "I"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20401g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20402g": {
+      "tokens": [
+        "064_",
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20402g"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20403g": {
+      "tokens": [
+        "030_",
+        "044_",
+        "033",
+        "070"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20403g"
+    },
+    "CM_ENKO/CM_ENKO.Abou.062.r00": {
+      "tokens": [
+        "110",
+        "023",
+        "059"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.062.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.047.r00": {
+      "tokens": [
+        "110",
+        "034",
+        "073",
+        "050"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.047.r00"
+    },
+    "CM_HALA/CM_HALA.Abou.002.r00": {
+      "tokens": [
+        "064",
+        "005",
+        "024",
+        "I",
+        "073_"
+      ],
+      "site": "CM_HALA",
+      "inscription": "CM_HALA.Abou.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.076.r00": {
+      "tokens": [
+        "081",
+        "097",
+        "I",
+        "107",
+        "039"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.076.r00"
+    },
+    "CM_ENKO/CM_ENKO.Apes.001.r00": {
+      "tokens": [
+        "097",
+        "082",
+        "011",
+        "I",
+        "005",
+        "108",
+        "064"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Apes.001.r00"
+    },
+    "CM_SYRI/CM_SYRI.Psce.001.r00": {
+      "tokens": [
+        "071",
+        "050",
+        "005",
+        "056"
+      ],
+      "site": "CM_SYRI",
+      "inscription": "CM_SYRI.Psce.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.022.r00": {
+      "tokens": [
+        "027_",
+        "082",
+        "013",
+        "I",
+        "023",
+        "072",
+        "012",
+        "009_",
+        "072"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.022.r00"
+    },
+    "CM_ENKO/CM_ENKO.Mins.001.r00": {
+      "tokens": [
+        "015",
+        "017",
+        "023",
+        "I",
+        "104",
+        "072",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Mins.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.021.r00": {
+      "tokens": [
+        "102",
+        "073",
+        "004",
+        "097",
+        "110",
+        "073",
+        "I",
+        "096_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.021.r00"
+    },
+    "CM_ENKO(QM)/CM_ENKO(QM).Mins.002.r01": {
+      "tokens": [
+        "114",
+        "I"
+      ],
+      "site": "CM_ENKO(QM)",
+      "inscription": "CM_ENKO(QM).Mins.002.r01"
+    },
+    "CM_ENKO(QM)/CM_ENKO(QM).Mins.002.r02": {
+      "tokens": [
+        "061",
+        "082"
+      ],
+      "site": "CM_ENKO(QM)",
+      "inscription": "CM_ENKO(QM).Mins.002.r02"
+    },
+    "CM_KITI/CM_KITI.Iins.001.r01": {
+      "tokens": [
+        "107",
+        "104",
+        "023"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Iins.001.r01"
+    },
+    "CM_KITI/CM_KITI.Iins.001.r02": {
+      "tokens": [
+        "082",
+        "088",
+        "I",
+        "110",
+        "023",
+        "059",
+        "021_",
+        "023",
+        "I",
+        "102"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Iins.001.r02"
+    },
+    "CM_ENKO/CM_ENKO.Abou.053.r00": {
+      "tokens": [
+        "027",
+        "013",
+        "070",
+        "I",
+        "082"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.053.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.066.r00": {
+      "tokens": [
+        "023",
+        "072",
+        "085",
+        "I",
+        "112"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.066.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.012.r00": {
+      "tokens": [
+        "023",
+        "012"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.012.r00"
+    },
+    "CMADD_IDAL/CMADD_IDAL.Avas.003.r00": {
+      "tokens": [
+        "I",
+        "027"
+      ],
+      "site": "CMADD_IDAL",
+      "inscription": "CMADD_IDAL.Avas.003.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.037.r00": {
+      "tokens": [
+        "110",
+        "073",
+        "085"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.037.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.002.r00": {
+      "tokens": [
+        "087",
+        "015",
+        "082",
+        "I",
+        "004",
+        "097",
+        "I",
+        "107"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.004.r00": {
+      "tokens": [
+        "006",
+        "023",
+        "013",
+        "023",
+        "I",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.004.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.029.r00": {
+      "tokens": [
+        "102",
+        "027",
+        "070",
+        "086"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.029.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.043.r00": {
+      "tokens": [
+        "110",
+        "068",
+        "107",
+        "009",
+        "027",
+        "I",
+        "112"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.043.r00"
+    },
+    "CM_CYPR/CM_CYPR.Mvas.001.r00": {
+      "tokens": [
+        "104",
+        "072_",
+        "067_"
+      ],
+      "site": "CM_CYPR",
+      "inscription": "CM_CYPR.Mvas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.081.r00": {
+      "tokens": [
+        "102",
+        "009",
+        "082",
+        "085",
+        "I",
+        "110"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.081.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.005.r00": {
+      "tokens": [
+        "028",
+        "027"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.005.r00"
+    },
+    "CMADD_MARO/CMADD_MARO.Avas.004.r00": {
+      "tokens": [
+        "091",
+        "091"
+      ],
+      "site": "CMADD_MARO",
+      "inscription": "CMADD_MARO.Avas.004.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.060.r00": {
+      "tokens": [
+        "087",
+        "097"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.060.r00"
+    },
+    "CM_KALA/CM_KALA.Arou.004.r01": {
+      "tokens": [
+        "104",
+        "024"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.004.r01"
+    },
+    "CM_KALA/CM_KALA.Arou.004.r02": {
+      "tokens": [
+        "046",
+        "025",
+        "009",
+        "004"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.004.r02"
+    },
+    "CM_KALA/CM_KALA.Arou.004.r03": {
+      "tokens": [
+        "102",
+        "075",
+        "023_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.004.r03"
+    },
+    "CM_KALA/CM_KALA.Arou.004.r04": {
+      "tokens": [
+        "VII"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.004.r04"
+    },
+    "CM_CYPR(QM)/CM_CYPR(QM).Psce.005.r00": {
+      "tokens": [
+        "108",
+        "099_",
+        "023"
+      ],
+      "site": "CM_CYPR(QM)",
+      "inscription": "CM_CYPR(QM).Psce.005.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.069.r00": {
+      "tokens": [
+        "102",
+        "087",
+        "104_",
+        "097",
+        "I",
+        "027"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.069.r00"
+    },
+    "CM_ENKO/CM_ENKO.Psce.001.r01": {
+      "tokens": [
+        "023",
+        "073"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Psce.001.r01"
+    },
+    "CM_ENKO/CM_ENKO.Psce.001.r02": {
+      "tokens": [
+        "027"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Psce.001.r02"
+    },
+    "CM_KATY/CM_KATY.Avas.002.r00": {
+      "tokens": [
+        "056_",
+        "053",
+        "082",
+        "102"
+      ],
+      "site": "CM_KATY",
+      "inscription": "CM_KATY.Avas.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.030.r00": {
+      "tokens": [
+        "087",
+        "082",
+        "024"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.030.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.038.r00": {
+      "tokens": [
+        "082",
+        "103",
+        "099",
+        "023",
+        "I",
+        "004"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.038.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.003.r00": {
+      "tokens": [
+        "028",
+        "021",
+        "I",
+        "055"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.003.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.006.r00": {
+      "tokens": [
+        "102_",
+        "019_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.006.r00"
+    },
+    "CMADD_ENKO/CMADD_ENKO.Pblo.002.r00": {
+      "tokens": [
+        "005"
+      ],
+      "site": "CMADD_ENKO",
+      "inscription": "CMADD_ENKO.Pblo.002.r00"
+    },
+    "CMADD_MARO/CMADD_MARO.Avas.003.r00": {
+      "tokens": [
+        "023",
+        "011",
+        "047"
+      ],
+      "site": "CMADD_MARO",
+      "inscription": "CMADD_MARO.Avas.003.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.003.r00": {
+      "tokens": [
+        "028",
+        "027"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.003.r00"
+    },
+    "CM_KALA/CM_KALA.Arou.002.r04": {
+      "tokens": [
+        "059_",
+        "004",
+        "I",
+        "081_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.002.r04"
+    },
+    "CM_KALA/CM_KALA.Arou.002.r05": {
+      "tokens": [
+        "033",
+        "027_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.002.r05"
+    },
+    "CM_KALA/CM_KALA.Arou.002.r06": {
+      "tokens": [
+        "044"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.002.r06"
+    },
+    "CM_ENKO/CM_ENKO.Mvas.002.r00": {
+      "tokens": [
+        "102",
+        "109",
+        "004",
+        "008",
+        "023",
+        "I",
+        "112"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Mvas.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.067.r00": {
+      "tokens": [
+        "064",
+        "005",
+        "024",
+        "I",
+        "081_",
+        "008",
+        "009",
+        "072"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.067.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.013.r00": {
+      "tokens": [
+        "075",
+        "096",
+        "I",
+        "006"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.013.r00"
+    },
+    "CMADD_KITI/CMADD_KITI.Avas.021.r00": {
+      "tokens": [
+        "006",
+        "023"
+      ],
+      "site": "CMADD_KITI",
+      "inscription": "CMADD_KITI.Avas.021.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.004.r00": {
+      "tokens": [
+        "053",
+        "107",
+        "099"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.004.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.014.r00": {
+      "tokens": [
+        "023",
+        "I",
+        "107"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.014.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.072.r00": {
+      "tokens": [
+        "064",
+        "005",
+        "024",
+        "I",
+        "046"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.072.r00"
+    },
+    "CMADD_SANI/CMADD_SANI.Avas.001.r00": {
+      "tokens": [
+        "082"
+      ],
+      "site": "CMADD_SANI",
+      "inscription": "CMADD_SANI.Avas.001.r00"
+    },
+    "CM_KALA/CM_KALA.Mbij.002.r00": {
+      "tokens": [
+        "096",
+        "110_",
+        "033_",
+        "055"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Mbij.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.032.r00": {
+      "tokens": [
+        "009",
+        "069",
+        "I",
+        "004",
+        "104",
+        "037_",
+        "053"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.032.r00"
+    },
+    "CM_PSIL/CM_PSIL.Asta.001.r00": {
+      "tokens": [
+        "055",
+        "002",
+        "009",
+        "072_"
+      ],
+      "site": "CM_PSIL",
+      "inscription": "CM_PSIL.Asta.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.007.r00": {
+      "tokens": [
+        "025",
+        "096"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.007.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.050.r00": {
+      "tokens": [
+        "107",
+        "110",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.050.r00"
+    },
+    "CMADD_ENKO/CMADD_ENKO.Abou.084.r00": {
+      "tokens": [
+        "087",
+        "107",
+        "097",
+        "I",
+        "004"
+      ],
+      "site": "CMADD_ENKO",
+      "inscription": "CMADD_ENKO.Abou.084.r00"
+    },
+    "CM_RASH/CM_RASH.Mvas.001.r00": {
+      "tokens": [
+        "091_",
+        "I",
+        "002_",
+        "102"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Mvas.001.r00"
+    },
+    "CMADD_TIRY/CMADD_TIRY.Abou.001.r00": {
+      "tokens": [
+        "041",
+        "097"
+      ],
+      "site": "CMADD_TIRY",
+      "inscription": "CMADD_TIRY.Abou.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.011.r00": {
+      "tokens": [
+        "064_",
+        "I_",
+        "064_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.011.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.008.r00": {
+      "tokens": [
+        "023",
+        "I",
+        "107"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.008.r00"
+    },
+    "CM_KOUR/CM_KOUR.Avas.004.r00": {
+      "tokens": [
+        "061"
+      ],
+      "site": "CM_KOUR",
+      "inscription": "CM_KOUR.Avas.004.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.057.r00": {
+      "tokens": [
+        "102",
+        "006",
+        "067",
+        "091",
+        "072"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.057.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.080.r00": {
+      "tokens": [
+        "104",
+        "009",
+        "006",
+        "009"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.080.r00"
+    },
+    "CM_KITI/CM_KITI.Mexv.001.r00": {
+      "tokens": [
+        "023",
+        "I",
+        "082"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Mexv.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.024.r00": {
+      "tokens": [
+        "015",
+        "017",
+        "008",
+        "I",
+        "015"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.024.r00"
+    },
+    "CM_ENKO/CM_ENKO.Pblo.001.r00": {
+      "tokens": [
+        "012_",
+        "015",
+        "027"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Pblo.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.083.r00": {
+      "tokens": [
+        "059_",
+        "009_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.083.r00"
+    },
+    "CMADD_CYPR(QM)/CMADD_CYPR(QM).Psce.008.r00": {
+      "tokens": [
+        "046_",
+        "039_",
+        "102"
+      ],
+      "site": "CMADD_CYPR(QM)",
+      "inscription": "CMADD_CYPR(QM).Psce.008.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.074.r01": {
+      "tokens": [
+        "025"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.074.r01"
+    },
+    "CM_ENKO/CM_ENKO.Abou.074.r02": {
+      "tokens": [
+        "008"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.074.r02"
+    },
+    "CM_ENKO/CM_ENKO.Abou.048.r00": {
+      "tokens": [
+        "044",
+        "061",
+        "097",
+        "I",
+        "015"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.048.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.058.r00": {
+      "tokens": [
+        "102",
+        "I",
+        "006"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.058.r00"
+    },
+    "CM_KALA/CM_KALA.Arou.003.r01": {
+      "tokens": [
+        "104"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.003.r01"
+    },
+    "CM_KALA/CM_KALA.Arou.003.r15": {
+      "tokens": [
+        "102"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Arou.003.r15"
+    },
+    "CM_MAAP/CM_MAAP.Avas.003.r00": {
+      "tokens": [
+        "001"
+      ],
+      "site": "CM_MAAP",
+      "inscription": "CM_MAAP.Avas.003.r00"
+    },
+    "CM_CYPR(QM)/CM_CYPR(QM).Psce.003.r00": {
+      "tokens": [
+        "102",
+        "004"
+      ],
+      "site": "CM_CYPR(QM)",
+      "inscription": "CM_CYPR(QM).Psce.003.r00"
+    },
+    "CM_KOUR/CM_KOUR.Psce.001.r00": {
+      "tokens": [
+        "027",
+        "013",
+        "110",
+        "097",
+        "023"
+      ],
+      "site": "CM_KOUR",
+      "inscription": "CM_KOUR.Psce.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.073.r00": {
+      "tokens": [
+        "046_",
+        "070",
+        "017",
+        "I",
+        "073_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.073.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.006.r00": {
+      "tokens": [
+        "038",
+        "107",
+        "009",
+        "041_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.006.r00"
+    },
+    "CM_PARA/CM_PARA.Psce.001.r00": {
+      "tokens": [
+        "044",
+        "004",
+        "008_",
+        "069"
+      ],
+      "site": "CM_PARA",
+      "inscription": "CM_PARA.Psce.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.046.r00": {
+      "tokens": [
+        "104",
+        "072",
+        "013",
+        "067",
+        "I",
+        "008"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.046.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.025.r00": {
+      "tokens": [
+        "110",
+        "096",
+        "034"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.025.r00"
+    },
+    "CM_KALA/CM_KALA.Avas.001.r00": {
+      "tokens": [
+        "038"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Avas.001.r00"
+    },
+    "CM_PYLA/CM_PYLA.Mlin.001.r00": {
+      "tokens": [
+        "013",
+        "023",
+        "025_"
+      ],
+      "site": "CM_PYLA",
+      "inscription": "CM_PYLA.Mlin.001.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.010.r00": {
+      "tokens": [
+        "023",
+        "109"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.010.r00"
+    },
+    "CMADD_MAAP/CMADD_MAAP.Avas.005.r00": {
+      "tokens": [
+        "101",
+        "061"
+      ],
+      "site": "CMADD_MAAP",
+      "inscription": "CMADD_MAAP.Avas.005.r00"
+    },
+    "CM_IDAL/CM_IDAL.Avas.001.r00": {
+      "tokens": [
+        "041",
+        "041",
+        "068"
+      ],
+      "site": "CM_IDAL",
+      "inscription": "CM_IDAL.Avas.001.r00"
+    },
+    "CM_KITI/CM_KITI.Abou.001.r00": {
+      "tokens": [
+        "082_",
+        "004",
+        "019_",
+        "086"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Abou.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Mvas.001.r00": {
+      "tokens": [
+        "082",
+        "109",
+        "064_",
+        "023",
+        "I",
+        "CC",
+        "XXX"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Mvas.001.r00"
+    },
+    "CM_MAAP/CM_MAAP.Avas.001.r00": {
+      "tokens": [
+        "038"
+      ],
+      "site": "CM_MAAP",
+      "inscription": "CM_MAAP.Avas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Mlin.001.r00": {
+      "tokens": [
+        "102",
+        "I",
+        "023"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Mlin.001.r00"
+    },
+    "CMADD_ERIMI-KAFKALLA-T2-2/CMADD_ERIMI-KAFKALLA-T2-2.Avas.001.r00": {
+      "tokens": [
+        "088",
+        "084",
+        "009"
+      ],
+      "site": "CMADD_ERIMI-KAFKALLA-T2-2",
+      "inscription": "CMADD_ERIMI-KAFKALLA-T2-2.Avas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.082.r00": {
+      "tokens": [
+        "006",
+        "006",
+        "004",
+        "099",
+        "046"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.082.r00"
+    },
+    "CMADD_PARA/CMADD_PARA.Psce.002.r00": {
+      "tokens": [
+        "012",
+        "023"
+      ],
+      "site": "CMADD_PARA",
+      "inscription": "CMADD_PARA.Psce.002.r00"
+    },
+    "CM_ARPE/CM_ARPE.Avas.001.r00": {
+      "tokens": [
+        "006",
+        "097",
+        "I",
+        "055",
+        "096"
+      ],
+      "site": "CM_ARPE",
+      "inscription": "CM_ARPE.Avas.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.064.r00": {
+      "tokens": [
+        "001_",
+        "023",
+        "072",
+        "085_",
+        "I",
+        "064"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.064.r00"
+    },
+    "CMADD_RASH/CMADD_RASH.Aeti.002.r00": {
+      "tokens": [
+        "052",
+        "107",
+        "064"
+      ],
+      "site": "CMADD_RASH",
+      "inscription": "CMADD_RASH.Aeti.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.015.r00": {
+      "tokens": [
+        "004",
+        "097_",
+        "I_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.015.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.035.r00": {
+      "tokens": [
+        "046",
+        "017",
+        "I",
+        "044"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.035.r00"
+    },
+    "CM_KOUR/CM_KOUR.Avas.003.r00": {
+      "tokens": [
+        "063"
+      ],
+      "site": "CM_KOUR",
+      "inscription": "CM_KOUR.Avas.003.r00"
+    },
+    "CM_KALA/CM_KALA.Ppla.001.r00": {
+      "tokens": [
+        "I",
+        "201_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Ppla.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.079.r00": {
+      "tokens": [
+        "112"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.079.r00"
+    },
+    "CM_KALA/CM_KALA.Mbij.001.r00": {
+      "tokens": [
+        "096",
+        "110_",
+        "033_",
+        "055"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Mbij.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.014.r00": {
+      "tokens": [
+        "004"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.014.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.051.r00": {
+      "tokens": [
+        "102",
+        "009",
+        "082",
+        "085",
+        "015"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.051.r00"
+    },
+    "CM_ALAS/CM_ALAS.Avas.001.r00": {
+      "tokens": [
+        "073",
+        "023"
+      ],
+      "site": "CM_ALAS",
+      "inscription": "CM_ALAS.Avas.001.r00"
+    },
+    "CMADD_HISHULEY-CARMEL/CMADD_HISHULEY-CARMEL.Mins.001.r00": {
+      "tokens": [
+        "027_",
+        "095_"
+      ],
+      "site": "CMADD_HISHULEY-CARMEL",
+      "inscription": "CMADD_HISHULEY-CARMEL.Mins.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.010.r00": {
+      "tokens": [
+        "101",
+        "037",
+        "008"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.010.r00"
+    },
+    "CM_PYLA/CM_PYLA.Psce.001.r00": {
+      "tokens": [
+        "023",
+        "055",
+        "096_",
+        "030"
+      ],
+      "site": "CM_PYLA",
+      "inscription": "CM_PYLA.Psce.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.036.r00": {
+      "tokens": [
+        "046",
+        "015_",
+        "085",
+        "088"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.036.r00"
+    },
+    "CM_ENKO/CM_ENKO.Abou.019.r00": {
+      "tokens": [
+        "102",
+        "I",
+        "027",
+        "006",
+        "097"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Abou.019.r00"
+    },
+    "CM_SALA/CM_SALA.Psce.001.r00": {
+      "tokens": [
+        "110"
+      ],
+      "site": "CM_SALA",
+      "inscription": "CM_SALA.Psce.001.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.002.r00": {
+      "tokens": [
+        "004",
+        "026"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.002.r00"
+    },
+    "CMADD_ENKO/CMADD_ENKO.Mins.004.r00": {
+      "tokens": [
+        "004",
+        "027",
+        "097"
+      ],
+      "site": "CMADD_ENKO",
+      "inscription": "CMADD_ENKO.Mins.004.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.018.r00": {
+      "tokens": [
+        "023",
+        "I",
+        "107"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.018.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.008.r00": {
+      "tokens": [
+        "023",
+        "082_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.008.r00"
+    },
+    "CMADD_KOUR/CMADD_KOUR.Avas.007.r00": {
+      "tokens": [
+        "025_"
+      ],
+      "site": "CMADD_KOUR",
+      "inscription": "CMADD_KOUR.Avas.007.r00"
+    },
+    "CMADD_KOUR/CMADD_KOUR.Avas.006.r00": {
+      "tokens": [
+        "005",
+        "082",
+        "005_"
+      ],
+      "site": "CMADD_KOUR",
+      "inscription": "CMADD_KOUR.Avas.006.r00"
+    },
+    "CM_PYLA/CM_PYLA.Mins.001.r00": {
+      "tokens": [
+        "025",
+        "021"
+      ],
+      "site": "CM_PYLA",
+      "inscription": "CM_PYLA.Mins.001.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.005.r10001": {
+      "tokens": [
+        "102_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.005.r10001"
+    },
+    "CM_RASH/CM_RASH.Aéti.001.r00": {
+      "tokens": [
+        "102",
+        "023"
+      ],
+      "site": "CM_RASH",
+      "inscription": "CM_RASH.Aéti.001.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.017.r00": {
+      "tokens": [
+        "021"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.017.r00"
+    },
+    "CM_ENKO/CM_ENKO.Avas.012.r00": {
+      "tokens": [
+        "024",
+        "037"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Avas.012.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.011.r00": {
+      "tokens": [
+        "027",
+        "072"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.011.r00"
+    },
+    "CM_MYRT/CM_MYRT.Avas.002.r00": {
+      "tokens": [
+        "025"
+      ],
+      "site": "CM_MYRT",
+      "inscription": "CM_MYRT.Avas.002.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.009.r00": {
+      "tokens": [
+        "023"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.009.r00"
+    },
+    "CM_KITI/CM_KITI.Avas.019.r00": {
+      "tokens": [
+        "107",
+        "019"
+      ],
+      "site": "CM_KITI",
+      "inscription": "CM_KITI.Avas.019.r00"
+    },
+    "CM_KALA/CM_KALA.Ppla.002.r00": {
+      "tokens": [
+        "046_"
+      ],
+      "site": "CM_KALA",
+      "inscription": "CM_KALA.Ppla.002.r00"
+    },
+    "CM_ENKO/CM_ENKO.Atab.004A.r20501g": {
+      "tokens": [
+        "009_",
+        "059_"
+      ],
+      "site": "CM_ENKO",
+      "inscription": "CM_ENKO.Atab.004A.r20501g"
+    },
+    "CMADD_PPAP/CMADD_PPAP.Psce.001.r00": {
+      "tokens": [
+        "102"
+      ],
+      "site": "CMADD_PPAP",
+      "inscription": "CMADD_PPAP.Psce.001.r00"
+    },
+    "CMADD_RS-1963/CMADD_RS-1963.Avas.003.r00": {
+      "tokens": [
+        "055"
+      ],
+      "site": "CMADD_RS-1963",
+      "inscription": "CMADD_RS-1963.Avas.003.r00"
+    }
+  }
+}
