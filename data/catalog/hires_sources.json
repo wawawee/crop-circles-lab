@@ -1,71 +1,149 @@
 {
-  "schema": "hires_sources.v1",
-  "notes": "Hi-res image source manifest for the hunt. These are URLs to download LOCALLY into data/images/ (analysis input only; private repo; nothing republished). license: 'CC-*' = freely reusable with attribution (safe to publish our figure of it); '(c) ...' = copyrighted, fair-use analysis only. verify_status RESOLVED = URL returned HTTP 200 image/jpeg from the sandbox on 2026-07-25. Background scouts are enriching this file (Chilbolton, Crabwood, Milk Hill, C3, etc.).",
-  "how_to_download": "cd data/images && while read -r url name; do curl -L -A 'Mozilla/5.0 (research)' -o \"$name\" \"$url\"; done < <(python -c \"import json;[print(s['url'],s['download_as']) for s in json.load(open('../catalog/hires_sources.json'))['sources'] if s.get('download_as')]\")",
+  "schema": "hires_sources.v2",
+  "generated": "2026-07-25",
+  "notes": "Hi-res image source manifest from the hunt (Hyperagent + scouts Scout1/Scout2). Download LOCALLY into data/images/ (analysis input only; private repo; nothing republished). license: 'CC-*' = freely reusable with attribution (safe to publish our figure of it); '(c) ...' = copyrighted, fair-use analysis only. All verify_status RESOLVED entries returned HTTP 200 + image content-type from the sandbox on 2026-07-25 (sizes noted).",
+  "how_to_download": "cd data/images && python - <<'PY'\nimport json,subprocess\nfor s in json.load(open('../catalog/hires_sources.json'))['sources']:\n    if s.get('download_as'):\n        subprocess.run(['curl','-L','-A','Mozilla/5.0 (research)','-o',s['download_as'],s['url']])\nPY",
+  "freely_licensed_publishable": [
+    "barbury-pi-2008 (Wikimedia CC-BY 3.0) — real aerial photo",
+    "chilbolton-2001-reconstruction (Wikimedia CC-BY-SA 3.0) — pixel-accurate DIAGRAM of the message panel, not a photo"
+  ],
+  "corrections": [
+    "Poirino 2011 ASCII decodes to 'Ea Enki' (Sumerian creator god), NOT 'Timeo ETI' (a common internet misattribution).",
+    "Poirino 2010 (separate, same field) encodes E=mc2 in decimal ASCII.",
+    "Wilton Windmill 2010 Euler string has a debated anomaly (an 'h'/Planck-constant-looking glyph) — worth checking in a careful bit read."
+  ],
   "sources": [
     {
-      "id": "barbury-pi-2008",
-      "title": "Barbury Castle Pi",
-      "year": 2008,
+      "id": "barbury-pi-2008", "title": "Barbury Castle Pi", "year": 2008,
       "location": "Barbury Castle, Wiltshire, UK",
       "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Lucy_Pringle_Aerial_Shot_of_Pi_Crop_Circle_-_panoramio.jpg",
-      "resolution": "800x512",
-      "bytes": 94388,
-      "host": "Wikimedia Commons (panoramio import)",
-      "license": "CC-BY (panoramio 3.0 — verify exact tag on the Commons file page before any public reuse)",
-      "why_interesting": "Encodes pi to 10 significant figures with correct rounding (see forensics.encoding.verify_barbury_pi). FREELY LICENSED — the one image here we could actually publish.",
-      "verify_status": "RESOLVED",
-      "download_as": "barbury_pi_2008_wikimedia.jpg",
-      "credit": "Lucy Pringle (via Panoramio / Wikimedia Commons)"
+      "resolution": "800x512", "bytes": 94388, "host": "Wikimedia Commons",
+      "license": "CC-BY 3.0 (Panoramio upload 'sirk_nala', Lucy Pringle aerial) — verify tag on file page",
+      "why_interesting": "Pi to 10 sig figs (encoding.verify_barbury_pi). FREELY LICENSED aerial photo — publishable.",
+      "verify_status": "RESOLVED", "download_as": "barbury_pi_2008_wikimedia.jpg", "credit": "Lucy Pringle / Panoramio (CC-BY)"
     },
     {
-      "id": "barbury-pi-2008-alt",
-      "title": "Barbury Castle Pi (alt)",
-      "year": 2008,
-      "location": "Barbury Castle, Wiltshire, UK",
-      "url": "https://astroengine.com/wp-content/uploads/2008/06/cropcircle1.jpg",
-      "resolution": "650x571",
-      "bytes": 169678,
-      "host": "astroengine.com",
-      "license": "(c) Apex",
-      "why_interesting": "Alternate framing of the Pi ratchet spiral; secondary to the Wikimedia CC shot.",
-      "verify_status": "RESOLVED",
-      "download_as": "barbury_pi_2008_apex.jpg",
-      "credit": "Apex News"
+      "id": "chilbolton-2001-reconstruction", "title": "Chilbolton Arecibo-reply message panel (reconstruction)", "year": 2001,
+      "location": "Chilbolton Observatory, Hampshire, UK",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Chilbolton_crop_circle1.png",
+      "resolution": "398x1202", "bytes": 36441, "host": "Wikimedia Commons",
+      "license": "CC-BY-SA 3.0 (User:Marco94) — DIAGRAM/reconstruction, not a photo",
+      "why_interesting": "Pixel-accurate 23x73 rendering of the Arecibo-reply message. IDEAL clean input for B2/chilbolton_grid + grid_analyze + encoding.verify_chilbolton_reply, and it's freely licensed.",
+      "verify_status": "RESOLVED", "download_as": "chilbolton_2001_reconstruction_cc.png", "credit": "Wikimedia User:Marco94 (CC-BY-SA 3.0)"
     },
     {
-      "id": "wilton-windmill-2010",
-      "title": "Wilton Windmill (Euler's identity)",
-      "year": 2010,
+      "id": "chilbolton-2001-photo", "title": "Chilbolton (both formations + radio telescope)", "year": 2001,
+      "location": "Chilbolton Observatory, Hampshire, UK",
+      "url": "https://temporarytemples.co.uk/wp-content/uploads/2014/07/2001_01_01_chilbolton-radio-telescope-hampshire-wheat-both-crop-circles-l.jpg",
+      "resolution": "381x600", "bytes": 258134, "host": "temporarytemples.co.uk",
+      "license": "(c) Steve Alexander / Temporary Temples",
+      "why_interesting": "Real aerial showing Face + Message beside the telescope; low-res though. Use the CC reconstruction for the actual bit grid.",
+      "verify_status": "RESOLVED", "download_as": "chilbolton_2001_tt.jpg", "credit": "Steve Alexander"
+    },
+    {
+      "id": "wilton-windmill-2010", "title": "Wilton Windmill — Euler's identity", "year": 2010,
       "location": "Wilton Windmill, Wiltshire, UK",
       "url": "https://www.lucypringle.co.uk/photos/2010/Wilton-Windmill-1.jpg",
-      "resolution": "800x1136",
-      "bytes": 173491,
-      "host": "lucypringle.co.uk",
+      "resolution": "800x1136", "bytes": 173491, "host": "lucypringle.co.uk",
       "license": "(c) Lucy Pringle",
-      "why_interesting": "Reported to encode Euler's identity e^(i*pi)+1=0 in 8-bit ASCII around the ring — a genuine math/message case and a prime target for grid_analyze (B9) + an ASCII decode in forensics.encoding. NEW candidate to add to priority_formations.json.",
-      "verify_status": "RESOLVED",
-      "download_as": "wilton_windmill_2010_lucy.jpg",
-      "credit": "Lucy Pringle"
+      "why_interesting": "8-bit ASCII of Euler's identity e^(i*pi)+1=0 around a 12-segment ring (debated 'h' anomaly). Prime target: grid_analyze + an ASCII decoder. NEW candidate formation.",
+      "verify_status": "RESOLVED", "download_as": "wilton_windmill_2010_lucy.jpg", "credit": "Lucy Pringle"
     },
     {
-      "id": "poirino-2011",
-      "title": "Poirino 'Ea/Enki' ASCII message",
-      "year": 2011,
-      "location": "Poirino (Turin), Italy",
-      "url": "https://futurism.com/wp-content/uploads/2015/11/crop-cricle-italy.jpg",
-      "resolution": "960x720",
-      "bytes": 154236,
-      "host": "futurism.com",
-      "license": "(c) editorial (original photographer unconfirmed)",
-      "why_interesting": "Reported 8-bit ASCII message naming 'Ea'/'Enki'; a Drake/Arecibo-style 'reply' formation. ASCII-decode + grid_analyze target. NEW candidate for priority_formations.json. Alt hi-res: youtube maxres i.ytimg.com/vi/E-MX6ZGBONI/maxresdefault.jpg (1280x720, video still).",
-      "verify_status": "RESOLVED",
-      "download_as": "poirino_2011.jpg",
-      "credit": "unconfirmed"
+      "id": "poirino-2011", "title": "Poirino 'Ea Enki' ASCII (heptagram)", "year": 2011,
+      "location": "Riva presso Chieri, Turin, Italy",
+      "url": "https://www.margheritacampaniolo.it/crop_circles_2011/poirino11/Foto3_poirino11.jpg",
+      "resolution": "640x562", "bytes": 180080, "host": "margheritacampaniolo.it (needs Referer header)",
+      "license": "(c) 'Max' / Margherita Campaniolo",
+      "why_interesting": "7-point star; outer ring = 8-bit ASCII 'Ea Enki'. ASCII-decode + grid_analyze target. NEW candidate. NOTE: fetch with Referer https://www.margheritacampaniolo.it/",
+      "verify_status": "RESOLVED", "download_as": "poirino_2011_eaenki.jpg", "credit": "Max / Campaniolo"
+    },
+    {
+      "id": "poirino-2010", "title": "Poirino E=mc^2 ASCII", "year": 2010,
+      "location": "Poirino, Turin, Italy",
+      "url": "https://futurism.com/wp-content/uploads/2014/06/crop-cricle-italy.jpg",
+      "resolution": "960x720", "bytes": 154236, "host": "futurism.com",
+      "license": "(c) editorial (photographer unconfirmed)",
+      "why_interesting": "6-petal formation encoding E=mc^2 in DECIMAL ASCII; first of the 2-year Poirino sequence. ASCII-decode target. NEW candidate.",
+      "verify_status": "RESOLVED", "download_as": "poirino_2010_emc2.jpg", "credit": "unconfirmed"
+    },
+    {
+      "id": "crabwood-2002", "title": "Crabwood alien face + ASCII disc (full)", "year": 2002,
+      "location": "Crabwood Farm, nr Winchester, Hampshire, UK",
+      "url": "https://preview.redd.it/crop-circle-discovered-in-england-2002-v0-6n3zqqvkpsyg1.jpeg?width=1080&crop=smart&auto=webp&s=a3b0df1741ad1823cb05bf29c89af5fbcef8c3b4",
+      "resolution": "1080x955", "bytes": 239856, "host": "Reddit (repost; original likely Alexander/Pringle)",
+      "license": "unknown (repost) — treat as (c)",
+      "why_interesting": "Best FREE full-formation aerial; TV-scanline halftone face + spiral ASCII disc ('Beware the bearers of FALSE gifts...'). Disc detail marginal at this scale (see B1/C1).",
+      "verify_status": "RESOLVED", "download_as": "crabwood_2002_full_reddit.jpg", "credit": "unknown"
+    },
+    {
+      "id": "crabwood-2002-disc", "title": "Crabwood ASCII disc close-up (small, free)", "year": 2002,
+      "location": "Crabwood Farm, Hampshire, UK",
+      "url": "https://fortyfive.imgix.net/PRINGLE_CrabwoodDisk02.jpg?auto=compress&fp-x=0.5&fp-y=0.5&ixlib=php-2.1.1&w=400",
+      "resolution": "400x276", "bytes": 35709, "host": "forty-five.com (Lucy Pringle)",
+      "license": "(c) Lucy Pringle",
+      "why_interesting": "Best FREE disc-specific close-up, but only 400px — likely still too low for BER<0.4 (C1 = paid TT master remains the real unlock).",
+      "verify_status": "RESOLVED", "download_as": "crabwood_2002_disc_400.jpg", "credit": "Lucy Pringle"
+    },
+    {
+      "id": "milk-hill-galaxy-2001", "title": "Milk Hill Galaxy (409 circles)", "year": 2001,
+      "location": "Milk Hill, nr Alton Barnes, Wiltshire, UK",
+      "url": "https://preview.redd.it/this-is-one-of-the-largest-and-most-complex-crop-circles-v0-dgd7xf3btric1.jpeg?auto=webp&s=cf11a589b670ca8ed690c8cb99ffce703b8a0453",
+      "resolution": "2000x1285", "bytes": 655949, "host": "Reddit (repost; likely Steve Alexander)",
+      "license": "unknown (repost) — treat as (c)",
+      "why_interesting": "HIGHEST-RES find (2000x1285). 409 circles, six-arm log spiral — the stress test for circle_extract (B4) + fractal/phi analysis. Alt: Flickr live.staticflickr.com/5480/10259166653_f169a0e57d_b.jpg (1024x720).",
+      "verify_status": "RESOLVED", "download_as": "milk_hill_galaxy_2001_hi.jpg", "credit": "likely Steve Alexander"
+    },
+    {
+      "id": "windmill-hill-triple-julia-1996", "title": "Windmill Hill Triple Julia (197 circles)", "year": 1996,
+      "location": "Windmill Hill, nr Avebury, Wiltshire, UK",
+      "url": "https://temporarytemples.co.uk/wp-content/uploads/2014/07/1996_07_29_windmill-hill-wiltshire-wheat-oh-35mm-neg.jpg",
+      "resolution": "~800x600", "bytes": 648531, "host": "temporarytemples.co.uk",
+      "license": "(c) Steve Alexander",
+      "why_interesting": "Three interlocking Julia-like arms, 197 circles; self-similarity vs true-Julia test (encoding.is_true_julia_set).",
+      "verify_status": "RESOLVED", "download_as": "windmill_hill_triple_julia_1996.jpg", "credit": "Steve Alexander"
+    },
+    {
+      "id": "milk-hill-koch-1997", "title": "Milk Hill Koch snowflake fractal", "year": 1997,
+      "location": "Milk Hill, nr Alton Barnes, Wiltshire, UK",
+      "url": "https://www.crystalinks.com/milkhill897.jpg",
+      "resolution": "800x620", "bytes": 898079, "host": "crystalinks.com",
+      "license": "unknown — treat as (c)",
+      "why_interesting": "Koch-triangle geometry, 198 circles/144 edges. Fractal-dimension target. Higher-res (c) alt: Alamy 1300x960 (Heritage/RCHME, watermarked).",
+      "verify_status": "RESOLVED", "download_as": "milk_hill_koch_1997.jpg", "credit": "unknown"
+    },
+    {
+      "id": "jellyfish-2009", "title": "Jellyfish, Kingstone Coombes", "year": 2009,
+      "location": "Kingstone Coombes, Oxfordshire, UK",
+      "url": "https://live.staticflickr.com/2423/3624849529_3a15bd71c5_b.jpg",
+      "resolution": "1024x768", "bytes": 288124, "host": "Flickr (user 'superdove', paramotor)",
+      "license": "check Flickr license tab — possibly CC (unconfirmed)",
+      "why_interesting": "600-ft biomorphic (non-geometric) form; tentacles reportedly diminish in a phi-ratio sequence. Great non-geometric control + phi test. NEW candidate.",
+      "verify_status": "RESOLVED", "download_as": "jellyfish_2009_flickr.jpg", "credit": "Flickr 'superdove' (license unconfirmed)"
+    },
+    {
+      "id": "eltopia-1998", "title": "Eltopia (nine circles) — C3 ceiling", "year": 1998,
+      "location": "Eltopia, Franklin County, Washington, USA",
+      "url": "https://iccra.org/bystate/Washington/images/Eltopia1998-2.jpg",
+      "resolution": "300x227", "bytes": 74412, "host": "ICCRA",
+      "license": "(c) 2008 ICCRA (Jeffrey & Delsey Wilson)",
+      "why_interesting": "C3: this ~300x227 is the public CEILING; nothing better found. BLT aerials sit behind the unreachable bltresearch.com.",
+      "verify_status": "RESOLVED", "download_as": "eltopia_1998_iccra.png", "credit": "ICCRA"
+    },
+    {
+      "id": "logan-utah-1996", "title": "Logan Utah — C3 NULL", "year": 1996,
+      "location": "Seth Alder Farm, Logan, Utah, USA",
+      "url": null,
+      "resolution": "none >300px", "host": "BLT Research (unreachable)",
+      "license": "(c) Mitch Mascaro / Con Olsen",
+      "why_interesting": "C3 NULL RESULT: no true overhead aerial >300px publicly confirmed — only low-angle ground shots + a schematic. Lives in BLT lab data (B5), not image CV.",
+      "verify_status": "NULL", "download_as": null, "credit": "Mascaro / Olsen"
     }
   ],
   "candidate_formations_to_add": [
-    {"id": "wilton-windmill-2010", "tags": ["message", "mathematical", "euler", "ascii", "complex"], "date": "2010-05-22"},
-    {"id": "poirino-2011", "tags": ["message", "ascii", "binary", "italy", "reply"], "date": "2011-06-20"}
+    {"id": "wilton-windmill-2010", "date": "2010-05-22", "tags": ["message","mathematical","euler","ascii","complex"]},
+    {"id": "poirino-2011", "date": "2011-06-20", "tags": ["message","ascii","ea-enki","italy","heptagram"]},
+    {"id": "poirino-2010", "date": "2010-06-13", "tags": ["message","ascii","emc2","italy","decimal"]},
+    {"id": "jellyfish-2009", "date": "2009-05-29", "tags": ["biomorphic","non-geometric","phi","control"]}
   ]
 }
