@@ -255,28 +255,21 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 ### G10 — Minimax M3 (ASSIGNED 2026-07-25) — Voynich morphology (structure-only)
 > Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
-> Scout: `docs/research_leads_merged_2026-07-25.md` (Voynich 2025 Zenodo morphology).
+> **Scout brief:** [`docs/g10_voynich_scout_2026-07-25.md`](docs/g10_voynich_scout_2026-07-25.md).
 > Do NOT touch radio, BLC1, Amazon, G9 (Opencode), or Indus files.
 >
-> 1. Ingest a **small open** Voynich transcription (EVA / Takahashi / Landini–Zandbergen
->    or 2025 Zenodo morphology dump). Save under `data/scripts/voynich/` + README
->    (attribution, encoding, which folios). No multi-GB page images.
+> 1. Ingest **ZL3b-n.txt** (`https://www.voynich.nu/data/ZL3b-n.txt`, ~402 KB IVTFF EVA)
+>    → `data/scripts/voynich/` + README (attribute Zandbergen & Landini). No page images.
 > 2. Reuse `tools/forensics/symbolseq.py` (+ thin `tools/scripts/voynich_probe.py`).
->    Do NOT fork a second entropy stack.
-> 3. Core tests:
->    - Token / glyph stream entropy + bigram / conditional H vs **unigram-matched shuffle**.
->    - Optional morphology features from Zenodo 2025 if present (glyph-shape clusters) —
->      structure metrics only.
->    - **Claim-under-test:** any 2025 “Arabic ρ / translation” claim → run the SAME
->      pipeline; if it does not beat shuffle nulls, verdict NO_SIGNAL / UNDERDETERMINED.
->      Never endorse decipherment.
-> 4. Known-answer: planted artificial Voynichese-like bigram structure OR Latin control
->    of similar length must separate from its own shuffle.
-> 5. Outputs: `outputs/voynich/{run.json,NOTES.md}`. Board G10 → 🟢 / 🔴 BLOCKED.
-> 6. Branch `feat/g10-voynich-morphology`. PR for Cursor merge. No push to main.
-> Forbidden: “Voynich translated,” language ID claims, aliens, treating viral blogs as truth.
->
-> Prefer STRUCTURE / NO_SIGNAL / UNDERDETERMINED with controls.
+> 3. Parse: `words[[glyph]]`, `tokens_flat`, `folio_id` from `<fXr…>` loci.
+> 4. Cond-H / IC / LZ / `structured_vs_shuffled` vs unigram-matched shuffle.
+> 5. **Claim-under-test:** Dominik 2025 Zenodo `10.5281/zenodo.17409830` (ρ≈0.82 abstract;
+>    packaged JSON mismatches — recompute + shuffle nulls). Never endorse Arabic reading.
+> 6. Known-answer: planted Voynichese-like bigrams + Latin/Italian control ~same N.
+> 7. Outputs: `outputs/voynich/{run.json,NOTES.md}`. Verdict vocabulary:
+>    SEQUENCE_STRUCTURE | NO_SIGNAL | UNDERDETERMINED | CLAIM_FAILS_NULL — never “translated”.
+> 8. Branch `feat/g10-voynich-morphology`. PR for Cursor merge. No push to main.
+> Forbidden: “Voynich translated,” language ID, aliens, viral blogs as truth.
 
 ### N1++ — Cursor (🟢 MERGED PR #6 2026-07-25) — bio_probe hardens
 > Landed: chrom-aware classify + `--seq-chrom`; `bins_status=skipped_seq_too_short`;
