@@ -116,58 +116,33 @@ def structured_vs_shuffled(tokens, n=1000, seed=0):
             "more_structured_than_chance": obs < mu - 2 * sd}
 
 
-def find_phrase_occurrences(words, phrase):
-    """Return 0-based word indices where `phrase` equals the word (None dropped)."""
-    phrase = list(phrase)
-    hits = []
-    for i, w in enumerate(words):
-        clean = [t for t in w if t is not None] if isinstance(w, (list, tuple)) else [w]
-        if clean == phrase:
-            hits.append(i)
-    return hits
+def repeat_structure(words, min_count=2, min_len=2):
+    """Find repeated word-groups and characterise their LAYOUT.
 
-
-def gaps(indices):
-    return [indices[i + 1] - indices[i] for i in range(len(indices) - 1)]
-
-
-def repeat_structure(words, min_len=2, max_len=8, min_count=2):
-    """Find repeated word-phrases and report spacing regularity.
-
-    Returns phrases sorted by (count, regularity). A phrase with constant gap
-    (e.g. every 3rd word-group) is flagged `metrical`.
+    Answers "is a refrain spaced regularly (verse/metre) or clustered (headers)?"
+    by reporting each repeated group's positions, the gaps between successive
+    occurrences, and the coefficient of variation of those gaps (low CV => regular).
     """
-    # normalize words
-    clean_words = []
-    for w in words:
-        if isinstance(w, (list, tuple)):
-            clean_words.append(tuple(t for t in w if t is not None))
-        else:
-            clean_words.append((w,))
-
-    # count identical full word-groups
-    counts = Counter(clean_words)
-    rows = []
-    for phrase, c in counts.items():
-        if c < min_count:
-            continue
-        if not (min_len <= len(phrase) <= max_len):
-            continue
-        idx = [i for i, w in enumerate(clean_words) if w == phrase]
-        g = gaps(idx)
-        regular = bool(g) and len(set(g)) == 1
-        rows.append({
-            "phrase": list(phrase),
-            "count": c,
-            "indices": idx,
-            "gaps": g,
-            "period": g[0] if regular else None,
-            "metrical": regular,
-            "layout_hint": ("metrical / verse-like" if regular
-                            else "clustered / irregular"),
-        })
-    rows.sort(key=lambda r: (r["metrical"], r["count"], -len(r["phrase"])), reverse=True)
-    return rows
+    import statistics
+    groups = [tuple(t for t in w if t is not None) for w in words
+              if isinstance(w, (list, tuple))]
+    pos = {}
+    for i, g in enumerate(groups):
+        if len(g) >= min_len:
+            pos.setdefault(g, []).append(i)
+    out = []
+    for g, ps in pos.items():
+        if len(ps) >= min_count:
+            gaps = [ps[i + 1] - ps[i] for i in range(len(ps) - 1)]
+            mean = sum(gaps) / len(gaps) if gaps else 0.0
+            cv = (statistics.pstdev(gaps) / mean) if (len(gaps) > 1 and mean) else 0.0
+            layout = ("regular/metrical" if (len(gaps) >= 2 and cv < 0.15)
+                      else "single-gap" if len(gaps) == 1 else "irregular/clustered")
+            out.append({"group": list(g), "count": len(ps), "positions": ps,
+                        "gaps": gaps, "gap_mean": round(mean, 2), "gap_cv": round(cv, 3),
+                        "layout": layout})
+    out.sort(key=lambda d: (-d["count"], -len(d["group"])))
+    return out
 
 
 def analyze(words, n_shuffles=1000, seed=0):
@@ -184,7 +159,6 @@ def analyze(words, n_shuffles=1000, seed=0):
         "lz78_ratio": lz78_ratio(tokens),
         "top_bigrams": [{"pair": list(p), "count": c} for p, c in top_bigrams(tokens)],
         "word_lengths": word_length_stats(words),
-        "repeat_structure": repeat_structure(words),
         "shuffled_control": structured_vs_shuffled(tokens, n=n_shuffles, seed=seed),
         "caveat": ("Necessary-not-sufficient: these statistics distinguish "
                    "'not random noise' from noise, but NOT 'undeciphered language' "
@@ -211,6 +185,17 @@ if __name__ == "__main__":
         print("shuffled control:", rep["shuffled_control"])
         print("top bigram:", rep["top_bigrams"][0])
         print("wrote", out)
+        # refrain / repeat structure (Kimi's question: regular metre vs clustered headers?)
+        refr = {"side_A": repeat_structure(data["sides"]["A"]),
+                "side_B": repeat_structure(data["sides"]["B"]),
+                "combined": repeat_structure(words)}
+        rout = os.path.join(root, "outputs", "phaistos_refrain.json")
+        json.dump(refr, open(rout, "w"), indent=2)
+        print("\nrepeated word-groups, SIDE A:")
+        for r in refr["side_A"]:
+            print("  %s x%d  positions=%s gaps=%s -> %s"
+                  % (r["group"], r["count"], r["positions"], r["gaps"], r["layout"]))
+        print("wrote", rout)
     else:
         # tiny self-demo
         print(analyze([["A", "B"], ["A", "B"], ["A", "C"]], n_shuffles=200))
