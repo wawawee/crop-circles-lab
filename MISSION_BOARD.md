@@ -43,7 +43,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟢 **merged** — UNDERDETERMINED (z≈−2.0, <3σ); Big Dipper/Orion KA separate; selection-bias caveat. `outputs/betty_hill/` |
 | **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟢 **merged PR #9** — STRUCTURE_SIGNAL; z≈−22.9 cond-H; z≈−27 graph null; P122+P385 ×29; Mohenjo-daro only |
-| **G10** | **Minimax M3** | Voynich morphology (structure-only) | greedy EVA + Dominik ρ CUT | 🟢 **merged** — SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL; glyph z≪0; 32/32 tests |
+| **G10** | **Minimax M3** | Voynich morphology (structure-only) | greedy EVA + Dominik ρ CUT | 🟢 **merged PR #12** — SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL; glyph z≪0; 32/32 tests |
 | **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟢 **merged PR #11** — STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY; z≈−28.95; tablet↔other J≈0.53 |
 | **G12** | queue | Linear Elamite entropy bounds | symbolseq; Liège 2024 | ⬜ after G10 — EXTENDS PE |
 | **G13** | queue | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | ⬜ no-signal prior |
@@ -72,7 +72,7 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
 | **G2++** | 🟢 merged PR #8 — Uruk comparator. |
 | **G9** | 🟢 merged PR #9 — Indus STRUCTURE_SIGNAL. |
-| **G10** | 🟢 merged — Voynich SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL. |
+| **G10** | 🟢 merged PR #12 — Voynich SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL. |
 | **G11** | 🟢 merged PR #11 — CM STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY. |
 | **Minimax M3** | 💤 idle (G10 done). |
 | **Opencode** | 💤 idle (G11 done). |
