@@ -29,6 +29,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **N2** | Opencode | UAP flight consistency | Official WebMs; metadata poverty | 🟢 landed |
 | **N3** | Hermes 💤 | Dimensionless constants | Nulls ≈ chance; Null B degenerate | 🟢 landed |
 | **N4** | Opencode | Archaeoastronomy | skyfield; lunar/random controls | 🟢 landed (BCE caveat) |
+| **N4++** | **Opencode** | Astro caveats harden | BCE equinox labels + real axis-Δaz null | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
 | **N5** | Captain | Mission dashboard | HTML + embeds | 🟢 landed |
 | **N0** | Hyper + Cursor | Phaistos | z≈−14 + period-3 refrain | 🟢 landed |
 | **B10/B11** | Cursor | ELA + cipher negcontrol | Pillow ELA; Caesar/IC | 🟢 landed |
@@ -63,8 +64,8 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G9** | 🟢 merged PR #9 — Indus STRUCTURE_SIGNAL. |
 | **G10** | 🟡 M3 assigned — Voynich morphology. |
 | **Minimax M3** | 🟡 on **G10** Voynich. |
-| **Opencode** | 💤 idle (G9 merged). |
-| **Cursor** | 🟢 merge gate on `main` — watching G10 |
+| **Opencode** | 🟡 on **N4++** astro caveats. |
+| **Cursor** | 🟢 merge gate on `main` — watching G10 / N4++ |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -74,12 +75,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = idle (G9 done). **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **N4++**. **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3). Captain on Gemini/Kimi research trail. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3), N4++ (Opencode). Captain on Gemini/Kimi research trail. |
 
 ---
 
@@ -173,8 +174,25 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 ### N4 — Opencode (DONE — Captain caveats)
 > skyfield + DE441 (~3.3GB **gitignored**). Crop lunar + random controls → “no separation.”
-> **Caveats:** deep-BCE equinox *calendar labels* in JSON look wrong; hit-definition for random
-> controls is weak. See `outputs/astro/NOTES.md`. Do not claim ancient almanac precision yet.
+> Caveats addressed by **N4++**.
+
+### N4++ — Opencode (ASSIGNED 2026-07-25) — Astro caveats harden
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: geometry ≠ intent.
+> Fix the two Captain caveats in `outputs/astro/NOTES.md`. Do NOT touch G10/Voynich (M3),
+> radio, BLC1, Amazon, or Indus.
+>
+> 1. **BCE equinox/solstice labels:** validate ecliptic-longitude root finder against a
+>    known BCE almanac reference (cite source). If labels stay wrong, emit `civil_doy`
+>    + `true_season_event` separately and flag `calendar_label_unreliable: true` for deep BCE.
+>    Do not invent precise ancient almanac claims.
+> 2. **Stronger null:** replace weak “azimuth near 50/60/65°” hit proxy. Prefer
+>    documented monument axis bearings (cite per site) → Δaz vs **random bearings** /
+>    random dates; if axis unknown, report sun azimuth only (no fake alignment hits).
+> 3. Re-run sites already in SITES; update `outputs/astro/{run.json,NOTES.md}` with
+>    N4++ addendum. Add 2–3 unit tests if easy.
+> 4. Branch `feat/n4pp-astro-caveats`. PR for Cursor merge. No push to main.
+> Forbidden: ancient-alien / divine-intent claims; treating civil calendar labels as
+> astronomical truth in deep BCE.
 
 ### G1 — Opencode (NEXT) — Linear A positional entropy
 > Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
