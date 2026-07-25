@@ -41,7 +41,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed + **Ozma interpretation pass (PR)** — μ↔(6−μ) one-horn degeneracy, PHL@UPR 2024 natural H-cloud, N=6 gives zero power to infer artificiality; NOTES deepened in `outputs/radio/NOTES.md` |
 | **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟢 **merged** — UNDERDETERMINED (z≈−2.0, <3σ); Big Dipper/Orion KA separate; selection-bias caveat. `outputs/betty_hill/` |
-| **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟡 **in progress ~5/7** — continue on `feat/g9-indus-symbolseq`; PR when done |
+| **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟢 **merged PR #9** — STRUCTURE_SIGNAL; z≈−22.9 cond-H; z≈−27 graph null; P122+P385 ×29; Mohenjo-daro only |
 | **G10** | **Minimax M3** | Voynich morphology (structure-only) | symbolseq + shuffle; 2025 Arabic-ρ claim-under-test | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
@@ -60,11 +60,11 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G7++** | 🟢 merged PR #4 — nulls hardened. |
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
 | **G2++** | 🟢 merged PR #8 — Uruk comparator. |
-| **G9** | 🟡 Opencode ~5/7 — still working. |
+| **G9** | 🟢 merged PR #9 — Indus STRUCTURE_SIGNAL. |
 | **G10** | 🟡 M3 assigned — Voynich morphology. |
 | **Minimax M3** | 🟡 on **G10** Voynich. |
-| **Opencode** | 🟡 **G9** Indus ~5/7. |
-| **Cursor** | 🟢 merge gate on `main` — watching G9 / G10 |
+| **Opencode** | 💤 idle (G9 merged). |
+| **Cursor** | 🟢 merge gate on `main` — watching G10 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -74,12 +74,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G9** PR. **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = idle (G9 done). **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G9 PR (Opencode), G10 (M3). Captain on Gemini/Kimi research trail. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3). Captain on Gemini/Kimi research trail. |
 
 ---
 
@@ -236,7 +236,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > Landed: UNDERDETERMINED (Hill z≈−2.0 <3σ); Big Dipper z≈−3.2 + Orion Belt z≈−2.8 KA separate.
 > Selection-bias (Fish from ~330) uncorrected — honest.
 
-### G9 — Opencode (🟡 IN PROGRESS ~5/7 2026-07-25) — Indus script structure
+### G9 — Opencode (🟢 MERGED PR #9 2026-07-25) — Indus script structure
 > Landed: `tools/scripts/indus_probe.py` + 24/24 tests. 179 sequences (1003 signs,
 > 182 distinct Parpola signs) from Mohenjo-daro (mayig CISI digitisation, MIT).
 > z=−22.9 cond-H vs unigram-matched shuffle; z=−27.0 transition-graph density vs
@@ -251,7 +251,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > was recovered from literature for known-answer; `P122+P385` emerges empirically
 > from this corpus.
 >
-> **Forbidden phrases enforced in probe.** Branch: `feat/g9-indus-symbolseq` — **open PR for Cursor merge**.
+> **Forbidden phrases enforced in probe.** Merged PR #9.
 
 ### G10 — Minimax M3 (ASSIGNED 2026-07-25) — Voynich morphology (structure-only)
 > Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
