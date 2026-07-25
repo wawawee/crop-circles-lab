@@ -16,3 +16,6 @@ outputs/constants_smoke/
 *.bsp.download
 outputs/forensics/ela/_selftest/
 outputs/forensics/ela/_pytest_tmp/
+
+# G-Amazon raw data (fetched locally by data/amazon/fetch_data.py; never committed)
+data/amazon/raw/

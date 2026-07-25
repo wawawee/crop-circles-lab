@@ -1,0 +1,109 @@
+{
+  "verdict": "STRUCTURE_ONLY",
+  "structure_kind": "clustered",
+  "n": 961,
+  "study_mask": "convex hull of the point set (screening approximation of the paper's basin window)",
+  "projection": "local equirectangular km about (-9.606,-64.943)",
+  "hull_area_km2": 3430536.8,
+  "clark_evans": {
+    "obs_mean_nn_km": 5.3066,
+    "csr_mean_nn_km": 30.3558,
+    "csr_sd_km": 0.5359,
+    "R": 0.1748,
+    "z": -46.739,
+    "n_sims": 199
+  },
+  "ripleyL": {
+    "radii_km": [
+      37.043,
+      97.9,
+      158.757,
+      219.615,
+      280.472,
+      341.329,
+      402.186,
+      463.043
+    ],
+    "obs_L_minus_r": [
+      261.0945,
+      451.8146,
+      507.0339,
+      502.8512,
+      465.3082,
+      414.1848,
+      363.7881,
+      320.071
+    ],
+    "csr_mean": [
+      -0.3773,
+      -2.3431,
+      -6.1002,
+      -11.7849,
+      -19.241,
+      -28.5694,
+      -39.7134,
+      -52.7494
+    ],
+    "z": [
+      319.19,
+      556.958,
+      473.929,
+      342.82,
+      245.282,
+      182.672,
+      140.78,
+      110.702
+    ],
+    "outside_envelope": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "n_sims": 199
+  },
+  "caveats": [
+    "CSR window = convex hull, not the paper's true basin polygon; this inflates apparent clustering slightly near the boundary.",
+    "Equirectangular km projection over a wide latitude band is a screening approximation (area distortion at the edges).",
+    "STRUCTURE_ONLY means spatial clustering exists; it does NOT imply intent, message, geometry-by-design, or any 'civilisation' claim."
+  ],
+  "source_label": "zenodo_peripato",
+  "source_csv": "earthworks_zenodo.csv",
+  "generated_utc": "2026-07-25T07:25:32.902020+00:00",
+  "type_counts": {
+    "Amazon Arch": 360,
+    "CNSA": 98,
+    "INRAP & DAC": 32,
+    "PAST": 164,
+    "TREES/INPE": 24,
+    "Multiple: (Amazon Arch | CNSA | PAST)": 95,
+    "Multiple: (Amazon Arch | CNSA)": 134,
+    "Multiple: (Amazon Arch | PAST)": 44,
+    "Multiple: (CNSA | PAST)": 10
+  },
+  "cross_check_jqjacobs": {
+    "source": "jqjacobs_amazon_geoglyphs (LOCAL cross-check, NOT committed)",
+    "n": 6036,
+    "hull_area_km2": 2296476.3,
+    "clark_evans": {
+      "obs_mean_nn_km": 0.8436,
+      "csr_mean_nn_km": 9.8043,
+      "csr_sd_km": 0.0639,
+      "R": 0.086,
+      "z": -140.33,
+      "n_sims": 30
+    },
+    "verdict": "STRUCTURE_ONLY",
+    "note": "NN-only Clark-Evans (Ripley K omitted for speed on 6k pts)."
+  },
+  "mode": "A",
+  "authored_by": "Ulfberht (Geoglyf agent not provisioned; reassigned by Captain)",
+  "data_provenance": {
+    "analysed": "Zenodo 10214943 Earthworks.rds -> 961 sites (committed as earthworks_zenodo.csv)",
+    "not_committed": "IPP .tif rasters (32/36MB) skipped; jqjacobs KML \u00a9 all-rights-reserved used as local cross-check only"
+  }
+}
