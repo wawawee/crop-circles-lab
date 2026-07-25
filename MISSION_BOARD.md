@@ -45,7 +45,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟢 **merged PR #9** — STRUCTURE_SIGNAL; z≈−22.9 cond-H; z≈−27 graph null; P122+P385 ×29; Mohenjo-daro only |
 | **G10** | **Minimax M3** | Voynich morphology (structure-only) | greedy EVA + Dominik ρ CUT | 🟢 **merged PR #12** — SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL; glyph z≪0; 32/32 tests |
 | **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟢 **merged PR #11** — STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY; z≈−28.95; tablet↔other J≈0.53 |
-| **G12** | **Minimax M3** | Linear Elamite entropy bounds | symbolseq; Desset CUT; LE↔PE↔Uruk comparator | 🟢 **landed G12 PR** — SEQUENCE_STRUCTURE | CLAIM_UNDERDETERMINED | ACCOUNTING_FORMAT_STRUCTURED | SCRIPT_INVARIANT_COMMON; synth 4/4 invariants; monumental inverse INVERSE_CONTROL_OK | CLAIM_FAILS_NULL; language_family_claim_made=false; honest SKIP via NEVER_ATTEMPTED; 31/31 tests pass; 38 forbidden phrases guarded. feat/g12-linear-elamite → Cursor merge gate. |
+| **G12** | **Minimax M3** | Linear Elamite entropy bounds | symbolseq; Desset CUT; LE↔PE↔Uruk comparator | 🟢 **merged PR #13** — SEQUENCE_STRUCTURE \| CLAIM_UNDERDETERMINED \| ACCOUNTING_FORMAT_STRUCTURED \| SCRIPT_INVARIANT_COMMON; monumental INVERSE_CONTROL_OK \| CLAIM_FAILS_NULL; language_family_claim_made=false; 31/31 tests |
 | **G13** | queue | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | ⬜ no-signal prior |
 | **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
 | **G15** | queue | Cretan Hieroglyphic bipartite admin | network / symbolseq | ⬜ after Linear A |
@@ -74,9 +74,10 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G9** | 🟢 merged PR #9 — Indus STRUCTURE_SIGNAL. |
 | **G10** | 🟢 merged PR #12 — Voynich SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL. |
 | **G11** | 🟢 merged PR #11 — CM STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY. |
-| **Minimax M3** | 🟢 **landed G12 Linear Elamite** — SEQUENCE_STRUCTURE | CLAIM_UNDERDETERMINED on synth; monumental inverse INVERSE_CONTROL_OK; LE↔PE↔Uruk comparator all-pass; language_family_claim_made=false; 31/31 tests. PR awaiting Cursor merge. |
-| **Opencode** | 🟡 on **G16** Meroitic. |
-| **Cursor** | 🟢 merge gate on `main` — watching G16; **G12 PR open and ready to merge** |
+| **G12** | 🟢 merged PR #13 — LE SEQUENCE_STRUCTURE \| CLAIM_UNDERDETERMINED (+ format comparators). |
+| **Minimax M3** | 💤 idle (G12 done). |
+| **Opencode** | 🟡 on **G16** Meroitic (WIP ~4/10). |
+| **Cursor** | 🟢 merge gate on `main` — watching G16 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -86,12 +87,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G16**. **Minimax M3** = **G12**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G16**. **Minimax M3** = idle. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G12** (M3) + **G16** (Opencode). |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G16** (Opencode). M3 idle. |
 
 ---
 
@@ -300,7 +301,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > See docs/research_leads_kimi_2026-07-25.md.
 
 
-### G12 — Minimax M3 (ASSIGNED 2026-07-25) — Linear Elamite entropy bounds
+### G12 — Minimax M3 (🟢 MERGED PR #13 2026-07-25) — Linear Elamite entropy bounds
 > Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
 > Brief: [`docs/research_leads_anomalistics_2026-07-25.md`](docs/research_leads_anomalistics_2026-07-25.md) (G12).
 > EXTENDS G2/G2++ — reuse PE/Uruk patterns; do **not** reopen language-family claims.
