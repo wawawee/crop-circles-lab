@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "purpose": "Honest status log for the Linear Elamite open-dump ingestion path. Default = NEVER_ATTEMPTED, no network contact unless the probe is invoked with --fetch-online.",
+    "generated_at": null,
+    "last_attempt_by": null,
+    "license_attribution": "CDLI Zenodo 10.5281/zenodo.4960710 (open-data; per-record attribution required)."
+  },
+  "open_dump": {
+    "doi": "10.5281/zenodo.4960710",
+    "endpoint_zenodo_record": "https://zenodo.org/record/4960710",
+    "endpoint_cdli_mirror": "https://cdli.mpiwg-berlin.mpg.de (multi-record navigation; specific records fetched on-demand)",
+    "fetch_status": "NEVER_ATTEMPTED",
+    "fetch_attempts": [],
+    "fetch_notes": [
+      "Default path is NEVER_ATTEMPTED (no network contact).",
+      "Pass --fetch-online to attempt live download of a specific record."
+    ]
+  },
+  "hatamti_liege_2024": {
+    "release_status": "in_press",
+    "machine_readable_dump": "PENDING",
+    "fetch_status": "NEVER_ATTEMPTED",
+    "fetch_notes": [
+      "Hatamti / Liège 2024 transcription release is in press at time of G12 work.",
+      "Sign-list only; phonetic mappings still disputed.",
+      "If/when machine-readable dump ships, mirror as data/scripts/linear_elamite/hatamti2024_synthetic_or_real_<id>.json."
+    ]
+  }
+}
