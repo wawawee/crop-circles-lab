@@ -1,0 +1,132 @@
+{
+  "mission_id": "G13",
+  "probe": "tools/scripts/vasco_probe.py",
+  "generated_at": "2026-07-25T19:28:06.374031+00:00",
+  "data_source": {
+    "file": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/data/astro/vasco/vasco_candidates.csv",
+    "doi": "10.5281/zenodo.14563521",
+    "catalog": "Solano et al. 2022 (VASCO POSS-I vanishing sources)",
+    "license": "CC-BY 4.0"
+  },
+  "n_candidates": 5399,
+  "n_null_realizations": 500,
+  "observed": {
+    "candidate_count": 5399,
+    "nearest_neighbor": {
+      "mean": 0.7562092070404314,
+      "median": 0.5823449045457484,
+      "min": 0.001695248268969396,
+      "n": 5399
+    },
+    "close_pairs_1deg": 7285,
+    "close_pairs_5deg": 101298,
+    "galactic_latitude": {
+      "mean_abs_b": 30.283079215675862,
+      "median_abs_b": 25.802048468488213,
+      "frac_plane_20": 0.4115576958696055,
+      "frac_plane_10": 0.2080014817558807,
+      "frac_plane_5": 0.09872198555288016
+    },
+    "delaunay": {
+      "mean_area_deg2": 47.86632561192914,
+      "std_area_deg2": 87.08428855856393,
+      "median_area_deg2": 22.746261501268407,
+      "n_triangles": 10789
+    }
+  },
+  "nulls": {
+    "uniform_random": {
+      "nn_mean": {
+        "mean": 1.3818773439529752,
+        "std": 0.010130953161801386
+      },
+      "close_pairs_1deg": {
+        "mean": 1109.192,
+        "std": 32.61746363327068
+      },
+      "close_pairs_5deg": {
+        "mean": 27722.48,
+        "std": 169.15159509815004
+      },
+      "mean_abs_b": {
+        "mean": 32.718998117154214,
+        "std": 0.28925974941553867
+      },
+      "frac_plane_20": {
+        "mean": 0.3418662715317652,
+        "std": 0.006436993743045594
+      }
+    },
+    "scramble_coords": {
+      "nn_mean": {
+        "mean": 0.8998620841864206,
+        "std": 0.00688250722902799
+      },
+      "close_pairs_1deg": {
+        "mean": 3811.532,
+        "std": 62.91742350383335
+      },
+      "close_pairs_5deg": {
+        "mean": 82166.02,
+        "std": 368.1564748581232
+      },
+      "mean_abs_b": {
+        "mean": 32.2510443560483,
+        "std": 0.11327554447081097
+      },
+      "frac_plane_20": {
+        "mean": 0.33472087423596963,
+        "std": 0.004333264047279905
+      }
+    },
+    "plate_artifact": {
+      "nn_mean": {
+        "mean": 0.9462933191164599,
+        "std": 0.015637035459934844
+      },
+      "close_pairs_1deg": {
+        "mean": 10073.288,
+        "std": 1311.197488849613
+      },
+      "close_pairs_5deg": {
+        "mean": 155635.698,
+        "std": 20153.072696067517
+      },
+      "mean_abs_b": {
+        "mean": 32.41412197215977,
+        "std": 4.637579288104703
+      },
+      "frac_plane_20": {
+        "mean": 0.31677903315428785,
+        "std": 0.07924920838448037
+      }
+    }
+  },
+  "z_scores": {
+    "uniform_random": {
+      "nn_mean": -61.758072209001675,
+      "close_pairs_1deg": 189.3405345503478,
+      "close_pairs_5deg": 434.96793487113075,
+      "mean_abs_b": -8.421216247335579,
+      "frac_plane_20": 10.826703756413249
+    },
+    "scramble_coords": {
+      "nn_mean": -20.872172358949655,
+      "close_pairs_1deg": 55.206774317266394,
+      "close_pairs_5deg": 51.96697954958664,
+      "mean_abs_b": -17.373256951146622,
+      "frac_plane_20": 17.731857739402752
+    },
+    "plate_artifact": {
+      "nn_mean": -12.156019762381515,
+      "close_pairs_1deg": -2.126520241009859,
+      "close_pairs_5deg": -2.6962487963735158,
+      "mean_abs_b": -0.4595161881005439,
+      "frac_plane_20": 1.1959572170802715
+    }
+  },
+  "max_abs_z": 434.96793487113075,
+  "verdict": "STRUCTURE_SIGNAL",
+  "forbidden_hits": 0,
+  "stance": "structure != meaning. no-signal prior. plate artifacts first."
+}
