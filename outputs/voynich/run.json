@@ -1,0 +1,438 @@
+{
+  "label": "voynich_zl3b_n_193858_chars",
+  "mission": "G10",
+  "data_path": "data/scripts/voynich/ZL3b-n.txt",
+  "n_text_lines": 5612,
+  "n_folios": 184,
+  "n_tokens_word": 35498,
+  "n_tokens_char": 193858,
+  "n_tokens_glyph": 163391,
+  "n_distinct_char": 41,
+  "n_distinct_glyph": 46,
+  "morphology": {
+    "char_level": {
+      "label": "voynich_char",
+      "n_tokens": 193858,
+      "n_distinct": 41,
+      "unigram_entropy_bits": 3.899,
+      "index_of_coincidence": 0.0765,
+      "conditional_bigram_entropy_bits": 2.362,
+      "lz78_ratio": 0.1615,
+      "shuffled_control": {
+        "observed": 2.3621,
+        "shuffled_mean": 3.8952,
+        "shuffled_sd": 0.0002,
+        "z": -8259.21,
+        "more_structured_than_chance": true
+      }
+    },
+    "glyph_level": {
+      "label": "voynich_glyph",
+      "n_tokens": 163391,
+      "n_distinct": 46,
+      "unigram_entropy_bits": 3.95,
+      "index_of_coincidence": 0.0829,
+      "conditional_bigram_entropy_bits": 2.718,
+      "lz78_ratio": 0.1829,
+      "shuffled_control": {
+        "observed": 2.7182,
+        "shuffled_mean": 3.9435,
+        "shuffled_sd": 0.0002,
+        "z": -6448.69,
+        "more_structured_than_chance": true
+      }
+    },
+    "word_level": {
+      "label": "voynich_word",
+      "n_tokens": 35498,
+      "n_distinct": 9522,
+      "unigram_entropy_bits": 10.873,
+      "index_of_coincidence": 0.0025,
+      "conditional_bigram_entropy_bits": 3.95,
+      "lz78_ratio": 0.5713,
+      "shuffled_control": {
+        "observed": 3.9502,
+        "shuffled_mean": 4.0853,
+        "shuffled_sd": 0.0024,
+        "z": -55.83,
+        "more_structured_than_chance": true
+      }
+    }
+  },
+  "planted_voynichese_like": {
+    "label": "planted_voynichese_like",
+    "n_tokens": 4000,
+    "n_distinct": 17,
+    "unigram_entropy_bits": 4.075,
+    "index_of_coincidence": 0.0596,
+    "conditional_bigram_entropy_bits": 3.36,
+    "lz78_ratio": 0.3215,
+    "shuffled_control": {
+      "observed": 3.3598,
+      "shuffled_mean": 4.0271,
+      "shuffled_sd": 0.0038,
+      "z": -176.86,
+      "more_structured_than_chance": true
+    }
+  },
+  "planted_latin_like": {
+    "label": "planted_latin_like",
+    "n_tokens": 4000,
+    "n_distinct": 91,
+    "unigram_entropy_bits": 5.252,
+    "index_of_coincidence": 0.0492,
+    "conditional_bigram_entropy_bits": 4.052,
+    "lz78_ratio": 0.393,
+    "shuffled_control": {
+      "observed": 4.0523,
+      "shuffled_mean": 4.4671,
+      "shuffled_sd": 0.0128,
+      "z": -32.42,
+      "more_structured_than_chance": true
+    }
+  },
+  "top_word_bigrams": [
+    {
+      "pair": [
+        "or",
+        "aiin"
+      ],
+      "count": 28
+    },
+    {
+      "pair": [
+        "chol",
+        "daiin"
+      ],
+      "count": 25
+    },
+    {
+      "pair": [
+        "s",
+        "aiin"
+      ],
+      "count": 23
+    },
+    {
+      "pair": [
+        "chol",
+        "chol"
+      ],
+      "count": 20
+    },
+    {
+      "pair": [
+        "qokeedy",
+        "qokeedy"
+      ],
+      "count": 19
+    },
+    {
+      "pair": [
+        "chedy",
+        "qokeey"
+      ],
+      "count": 19
+    },
+    {
+      "pair": [
+        "shedy",
+        "qokedy"
+      ],
+      "count": 18
+    },
+    {
+      "pair": [
+        "shedy",
+        "qokaiin"
+      ],
+      "count": 17
+    },
+    {
+      "pair": [
+        "ol",
+        "chedy"
+      ],
+      "count": 16
+    },
+    {
+      "pair": [
+        "chedy",
+        "qokain"
+      ],
+      "count": 16
+    }
+  ],
+  "top_char_bigrams": [
+    {
+      "pair": [
+        "c",
+        "h"
+      ],
+      "count": 11050
+    },
+    {
+      "pair": [
+        "h",
+        "e"
+      ],
+      "count": 8230
+    },
+    {
+      "pair": [
+        "d",
+        "y"
+      ],
+      "count": 7024
+    },
+    {
+      "pair": [
+        "a",
+        "i"
+      ],
+      "count": 6746
+    },
+    {
+      "pair": [
+        "o",
+        "k"
+      ],
+      "count": 6313
+    },
+    {
+      "pair": [
+        "i",
+        "n"
+      ],
+      "count": 6046
+    },
+    {
+      "pair": [
+        "o",
+        "l"
+      ],
+      "count": 5849
+    },
+    {
+      "pair": [
+        "e",
+        "e"
+      ],
+      "count": 5314
+    },
+    {
+      "pair": [
+        "q",
+        "o"
+      ],
+      "count": 5303
+    },
+    {
+      "pair": [
+        "e",
+        "d"
+      ],
+      "count": 5126
+    }
+  ],
+  "top_glyph_bigrams": [
+    {
+      "pair": [
+        "d",
+        "y"
+      ],
+      "count": 7024
+    },
+    {
+      "pair": [
+        "o",
+        "k"
+      ],
+      "count": 6313
+    },
+    {
+      "pair": [
+        "o",
+        "l"
+      ],
+      "count": 5849
+    },
+    {
+      "pair": [
+        "e",
+        "e"
+      ],
+      "count": 5314
+    },
+    {
+      "pair": [
+        "q",
+        "o"
+      ],
+      "count": 5303
+    },
+    {
+      "pair": [
+        "ch",
+        "e"
+      ],
+      "count": 5084
+    },
+    {
+      "pair": [
+        "e",
+        "d"
+      ],
+      "count": 5051
+    },
+    {
+      "pair": [
+        "e",
+        "y"
+      ],
+      "count": 4129
+    },
+    {
+      "pair": [
+        "k",
+        "e"
+      ],
+      "count": 4021
+    },
+    {
+      "pair": [
+        "o",
+        "t"
+      ],
+      "count": 4000
+    }
+  ],
+  "claim_under_test_results": {
+    "name": "Dominik_2025_Arabic_Rho_Spearman",
+    "dominik_rho": {
+      "published_rho_in_abstract": 0.82,
+      "published_rho_in_packaged_json_unverified": 0.9999,
+      "packaged_json_slope_unverified": 0.044,
+      "value": -0.2452,
+      "n_aligned_bigrams": 200,
+      "top_keys": [
+        [
+          [
+            "c",
+            "h"
+          ],
+          11050,
+          0
+        ],
+        [
+          [
+            "h",
+            "e"
+          ],
+          8230,
+          0
+        ],
+        [
+          [
+            "d",
+            "y"
+          ],
+          7024,
+          0
+        ],
+        [
+          [
+            "a",
+            "i"
+          ],
+          6746,
+          0
+        ],
+        [
+          [
+            "o",
+            "k"
+          ],
+          6313,
+          0
+        ],
+        [
+          [
+            "i",
+            "n"
+          ],
+          6046,
+          0
+        ],
+        [
+          [
+            "o",
+            "l"
+          ],
+          5849,
+          0
+        ],
+        [
+          [
+            "e",
+            "e"
+          ],
+          5314,
+          0
+        ]
+      ],
+      "shuffle_null": {
+        "observed": -0.2452,
+        "shuffled_mean": 0.1265,
+        "shuffled_sd": 0.003,
+        "z_relative_to_shuffle": -124.45,
+        "n_shuffles": 20,
+        "interpretation": "z > +2 means observed \u03c1 beats the unigram-preserving shuffle (robust); z \u2248 0 means observed \u03c1 is NOT distinguishable from a sequence that holds the same token counts but rearranges them."
+      },
+      "interpretation": "If shuffle_null.z_relative_to_shuffle <= +2 on Voynich vs embedded Semitic-root bigrams, then the 2025 abstract \u03c1 \u2248 0.82 claim does NOT beat a matched unigram-preserving shuffle and should be filed as CLAIM_FAILS_NULL. The published packaged \u03c1 \u2248 0.9999 / slope 0.044 is NOT verified here \u2014 that file is NOT bundled \u2014 but its inconsistency with the abstract is reported for the audit trail."
+    }
+  },
+  "verdict_block": {
+    "verdict": "SEQUENCE_STRUCTURE | CLAIM_FAILS_NULL",
+    "invariants": {
+      "voynich_word_structured": true,
+      "voynich_char_structured": true,
+      "plant_passes": true,
+      "latin_passes": true,
+      "rho_fails_null": true,
+      "voynich_glyph_structured": true
+    },
+    "notes": "Real-Voynich structure signal present at level FULL; however, the 2025 Dominik Arabic-\u03c1 claim does NOT beat the unigram-preserving shuffle by 2\u03c3 on this recomputation. The abstract \u03c1 \u2248 0.82 is not propagated as a finding; re-evaluate Dominik's packaged JSON (which we did NOT bundle) against an external auditor.",
+    "flags": [
+      "PLANT_AND_LATIN_SEPARATE_FROM_SHUFFLE",
+      "VOYNICH_WORD_AND_CHAR_STRUCTURED"
+    ],
+    "structure_level": "FULL"
+  },
+  "stance": "The Voynich manuscript (bought by Wilfrid Voynich 1912; Bodleian MS 408; radiocarbon-dated ca. 1404-1438) is undeciphered. This probe measures *sign-sequence / morphology structure* only \u2014 it does NOT translate, decipher, identify the script's language family, or endorse any 2025 'Arabic \u03c1' viral claim. STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py for all metrics.",
+  "forbidden_phrases": [
+    "translates to",
+    "decodes as",
+    "reads as",
+    "is Arabic",
+    "is language",
+    "Voynich translated",
+    "Voynich deciphered",
+    "Voynich is a",
+    "Voynich =",
+    "shares roots with",
+    "is related to Arabic",
+    "is related to Latin",
+    "aliens wrote",
+    "Dominik's Arabic translation",
+    "viral blog",
+    "viral decipherment",
+    "etymological root of Voynich"
+  ],
+  "caveat": "STRUCTURE != MESSAGE. These metrics distinguish 'not random noise' from noise, but NOT 'undeciphered language' from 'structured non-linguistic template' at Voynich-corpus sizes. The 2025 Dominik Arabic-\u03c1 claim is held to a shuffle null; the published \u03c1 \u2248 0.82 is NOT propagated as a finding.",
+  "source": "ZL3b-n.txt \u2014 Zandbergen, R. & Landini, G. C. (2026). Voynich Manuscript EVA transcription (IVTFF 2.0). Open transcription hosted at https://www.voynich.nu/data/ZL3b-n.txt. Compute statistics directly from this corpus; do not redistribute as a Voynich edition.",
+  "dominik_claim_note": "Dominik, M. (2025-10-21). Structural Convergence Between the Voynich Manuscript and Arabic Root Morphology. Zenodo. https://doi.org/10.5281/zenodo.17409830 (CC BY 4.0). ABSTRACT CLAIM (untested): Spearman \u03c1 \u2248 0.82 between Voynich bigram distribution and synthetic Arabic triliteral-root bigram control. PACKAGED JSON MISMATCH: pre-packaged CSV/JSON reports \u03c1 \u2248 0.9999 / slope \u2248 0.044, which is INCONSISTENT with the abstract's \u03c1 \u2248 0.82. This pipeline recomputes the \u03c1 claim UNDER the highlight test: Voynich bigram ranks vs a small embedded Semitic triliteral-root bigram list, versus a matched unigram-preserving shuffle null. We DO NOT verify the Dominik packaged JSON numerically (it is not bundled), but we report the conceptual \u03c1 + shuffle-null z so a downstream analyst can declare CLAIM_FAILS_NULL if the recomputed \u03c1 does not beat the shuffled null.",
+  "embedded_semitic_roots_count": 24,
+  "root_repeat_factor": 200,
+  "generated_at": "2026-07-25T12:16:21.587751+00:00"
+}

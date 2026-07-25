@@ -43,8 +43,8 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟢 **merged** — UNDERDETERMINED (z≈−2.0, <3σ); Big Dipper/Orion KA separate; selection-bias caveat. `outputs/betty_hill/` |
 | **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟢 **merged PR #9** — STRUCTURE_SIGNAL; z≈−22.9 cond-H; z≈−27 graph null; P122+P385 ×29; Mohenjo-daro only |
-| **G10** | **Minimax M3** | Voynich morphology (structure-only) | symbolseq + shuffle; 2025 Arabic-ρ claim-under-test | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
-| **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟢 **merged PR #11** — STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY; z≈−28.95; tablet↔other J≈0.53; KA/NC pass |
+| **G10** | **Minimax M3** | Voynich morphology (structure-only) | greedy EVA + Dominik ρ CUT | 🟢 **merged** — SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL; glyph z≪0; 32/32 tests |
+| **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟢 **merged PR #11** — STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY; z≈−28.95; tablet↔other J≈0.53 |
 | **G12** | queue | Linear Elamite entropy bounds | symbolseq; Liège 2024 | ⬜ after G10 — EXTENDS PE |
 | **G13** | queue | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | ⬜ no-signal prior |
 | **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
@@ -72,11 +72,11 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
 | **G2++** | 🟢 merged PR #8 — Uruk comparator. |
 | **G9** | 🟢 merged PR #9 — Indus STRUCTURE_SIGNAL. |
+| **G10** | 🟢 merged — Voynich SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL. |
 | **G11** | 🟢 merged PR #11 — CM STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY. |
-| **G10** | 🟡 M3 assigned — Voynich morphology. |
-| **Minimax M3** | 🟡 on **G10** Voynich. |
-| **Opencode** | 🟢 idle — G11 merged PR #11. |
-| **Cursor** | 🟢 merge gate on `main` — watching G10 |
+| **Minimax M3** | 💤 idle (G10 done). |
+| **Opencode** | 💤 idle (G11 done). |
+| **Cursor** | 🟢 merge gate on `main` — next assign from G12–G20 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -86,12 +86,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = idle. **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = idle. **Minimax M3** = idle. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3). Leads: anomalistics + docs/research_leads_kimi_2026-07-25.md |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: none — G10/G11 landed. Next: G16 Meroitic or G12 Linear Elamite. |
 
 ---
 
@@ -270,7 +270,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 >
 > **Forbidden phrases enforced in probe.** Merged PR #9.
 
-### G10 — Minimax M3 (ASSIGNED 2026-07-25) — Voynich morphology (structure-only)
+### G10 — Minimax M3 (🟢 MERGED 2026-07-25) — Voynich morphology (structure-only)
 > Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
 > **Scout brief:** [`docs/g10_voynich_scout_2026-07-25.md`](docs/g10_voynich_scout_2026-07-25.md).
 > Do NOT touch radio, BLC1, Amazon, G9 (Opencode), or Indus files.
