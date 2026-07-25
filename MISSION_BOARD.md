@@ -53,7 +53,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
 | **G18** | **Freebuff** | EAMENA ley-line null + G18++ real subset comparison | spatial+network; Clark-Evans NN + collinear-triple FPR vs CSR/scrambled-coord nulls | 🟢 **PR #18** — NO_SIGNAL \| FPR_CALIBRATED; 44/44 tests; real Bani Walid subset `outputs/eamena/comparison_g18pp.json`; reusable `tools/ccat/spatial_pattern.py` (22 module tests) |
 | **G19** | queue | Long Delayed Echoes historic series | radio/FFT; digitized delays | ⬜ no-signal; Lunan CUT |
-| **G20** | queue | Boyajian Star TESS epoch-fold | astro; TIC 272172248 | ⬜ underdetermined |
+| **G20** | **Opencode** | Boyajian Star TESS epoch-fold | astro; TIC 272172248 | 🟢 **merged PR #19** — STRUCTURE_SIGNAL (synthetic); TESS fetch BLOCKED; NO_SIGNAL if no separation from quiet control; 22/22 tests |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟢 **landed PR #3** — synth known-answer + honest block on real slice; no TB mirror. `outputs/radio/blc1_*.json` |
@@ -353,7 +353,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > **G17** TESS SETI Ellipsoid (Cabrales 2024) — optical no-signal sharpen.  
 > **G18** 🟢 **drafted** — `tools/scripts/eamena_ley_null.py`; Clark-Evans NN + collinear-triple FPR vs CSR/scrambled-coord nulls; synthetic CSR fallback (API BLOCKED); 25/25 tests; forbidden-phrase guard.  
 > **G19** Long Delayed Echoes historic delays — no-signal; Lunan claim-under-test.  
-> **G20** Boyajian’s Star TESS — dip recurrence / quiet limits.  
+> **G20** 🟢 **merged PR #19** — `tools/scripts/boyajian_tess_probe.py`; synthetic LC with Kepler-morphology dips; quiet-star control; 22/22 tests.  
 > Full triage: docs/research_leads_kimi_2026-07-25.md + docs/research_leads_anomalistics_2026-07-25.md.
 
 ### N1++ — Cursor (🟢 MERGED PR #6 2026-07-25) — bio_probe hardens

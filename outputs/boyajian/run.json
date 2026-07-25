@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-07-25T20:58:07.514258+00:00",
+  "probe_version": "1.0.0",
+  "target": {
+    "tic_id": 272172248,
+    "kic_id": 8462852,
+    "ra_deg": 301.564,
+    "dec_deg": 44.4568,
+    "common_name": "Boyajian's Star (Tabby's Star)"
+  },
+  "data_source": "synthetic (TESS real fetch blocked: lightkurve not available)",
+  "light_curve": {
+    "label": "target",
+    "n_points": 12096,
+    "duration_days": 27.9977,
+    "cadence_days": 0.002315
+  },
+  "period_search": {
+    "target": {
+      "n_periods_tried": 200,
+      "period_range_days": [
+        0.1,
+        15.0
+      ],
+      "best_period_days": 14.625628,
+      "best_period_index": 194,
+      "best_dip_score": 0.02963,
+      "null_mean_score": 0.005507,
+      "null_std_score": 0.00115,
+      "z_vs_null": 20.9759,
+      "n_peaks_above_3sigma": 135,
+      "n_scrambles": 50,
+      "method": "epoch-fold BLS-like dip scoring"
+    },
+    "quiet_star_control": {
+      "n_periods_tried": 200,
+      "period_range_days": [
+        0.1,
+        15.0
+      ],
+      "best_period_days": 14.925126,
+      "best_period_index": 198,
+      "best_dip_score": 0.00302,
+      "null_mean_score": 0.000387,
+      "null_std_score": 7.6e-05,
+      "z_vs_null": 34.7303,
+      "n_peaks_above_3sigma": 121,
+      "n_scrambles": 50,
+      "method": "epoch-fold BLS-like dip scoring"
+    }
+  },
+  "known_answer_test": {
+    "injected_spacings_days": [
+      4.7,
+      5.8,
+      5.5,
+      5.3
+    ],
+    "min_injected_spacing_days": 4.7,
+    "max_injected_spacing_days": 5.8,
+    "recovered": [
+      {
+        "true_period_days": 4.7,
+        "fold_score": 0.012904,
+        "within_tolerance": true
+      },
+      {
+        "true_period_days": 5.8,
+        "fold_score": 0.026765,
+        "within_tolerance": true
+      },
+      {
+        "true_period_days": 5.5,
+        "fold_score": 0.010506,
+        "within_tolerance": true
+      },
+      {
+        "true_period_days": 5.3,
+        "fold_score": 0.009876,
+        "within_tolerance": true
+      }
+    ],
+    "best_score": 0.026765,
+    "n_recovered": 4
+  },
+  "kepler_dip_morphology": {
+    "available_profiles": [
+      "D800",
+      "D1519",
+      "D1568"
+    ],
+    "n_profiles": 3,
+    "note": "Kepler dip morphology (asymmetric shape) used for synthetic dip injection. Structure comparator only \u2014 not an ET claim."
+  },
+  "comparison": {
+    "target_dip_score": 0.02963,
+    "quiet_dip_score": 0.00302,
+    "dip_ratio_target_over_quiet": 9.8113,
+    "target_noise_floor": 0.005507,
+    "quiet_noise_floor": 0.000387,
+    "target_peaks_abovenoise": 135,
+    "quiet_peaks_abovenoise": 121,
+    "target_separates_from_control": true
+  },
+  "verdict": "STRUCTURE_SIGNAL",
+  "verdict_detail": "Periodic dip structure detected and known-answer dip spacings are recoverable. This is expected for synthetic data with injected dips. On real data this would warrant investigation.",
+  "stance": "structure != meaning. Honest prior: underdetermined. Dip recurrence may reflect circumstellar dust (natural), not artificial structures. No alien megastructure claims.",
+  "forbidden_words_check": {
+    "all_absent": true
+  }
+}
