@@ -1,0 +1,967 @@
+# G11 — Cypro-Minoan sign-sequence structure probe  🟢
+Generated: 2026-07-25T12:17:10.459036+00:00
+
+## Stance
+Cypro-Minoan (ca. 1500-1100 BCE, Cyprus / Ugarit) script(s) is/are undeciphered. This probe measures *sign-sequence structure* only — it does NOT translate, decipher, or claim language family. STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py.
+
+**Motto:** *structure != message.* No decipherment, no language-family claim.
+### Forbidden phrases
+- `translates to`
+- `represents`
+- `decodes as`
+- `shares roots with`
+- `is related to`
+- `CM is Linear A`
+- `aliens wrote`
+
+## Source
+Corazza et al. 2022 PLOS ONE (Figshare 6095488), CC BY 4.0. Sign sequences from sign2vec_d context.csv (CC-BY). Sign images copyright original publishers.
+
+- 563 inscriptions, 2848 tokens, 108 distinct signs
+- 39 sites; tablet: 1722 signs, other: 1126 signs
+
+## Group analyses
+
+### full_corpus
+- tokens=2848  distinct=108  H₁=5.656  IC=0.0438
+- H(next|prev)=4.032  LZ78=0.4301
+- shuffle null: observed=4.0316  mean=4.419  z=-28.95
+- top bigrams: [(['I', '102'], 43), (['I', '038'], 35), (['023', 'I'], 33), (['097', 'I'], 32), (['013', 'I'], 29)]
+
+### tablet
+- tokens=1722  distinct=80  H₁=5.313  IC=0.0584
+- H(next|prev)=3.581  LZ78=0.428
+- shuffle null: observed=3.5809  mean=4.0492  z=-26.69
+- top bigrams: [(['I', '102'], 38), (['I', '038'], 32), (['013', 'I'], 25), (['075', 'I'], 22), (['082', 'I'], 19)]
+
+### other_media
+- tokens=1126  distinct=85  H₁=5.588  IC=0.033
+- H(next|prev)=3.561  LZ78=0.4805
+- shuffle null: observed=3.5612  mean=3.8288  z=-12.04
+- top bigrams: [(['023', 'I'], 20), (['097', 'I'], 19), (['I', '104'], 9), (['I', '027'], 8), (['097', '023'], 8)]
+
+### site_CM_ENKO
+- tokens=2093  distinct=93  H₁=5.483  IC=0.0498
+- H(next|prev)=3.803  LZ78=0.4338
+- shuffle null: observed=3.8026  mean=4.2023  z=-26.42
+- top bigrams: [(['I', '102'], 38), (['I', '038'], 31), (['097', 'I'], 28), (['013', 'I'], 28), (['082', 'I'], 22)]
+
+### site_CM_RASH
+- tokens=304  distinct=52  H₁=4.969  IC=0.0481
+- H(next|prev)=2.311  LZ78=0.5164
+- shuffle null: observed=2.3107  mean=2.7943  z=-11.99
+- top bigrams: [(['051', '028'], 11), (['028', 'I'], 11), (['I', '051'], 9), (['P', '102'], 6), (['100', 'I'], 6)]
+
+### site_CM_KALA
+- tokens=170  distinct=49  H₁=5.001  IC=0.0424
+- H(next|prev)=1.991  LZ78=0.6059
+- shuffle null: observed=1.9905  mean=2.1561  z=-3.86
+- top bigrams: [(['091', 'I'], 6), (['I', '104'], 5), (['104', '024'], 4), (['024', '091'], 3), (['086', 'I'], 3)]
+
+## Cross-group Jaccard overlap
+
+- full_corpus vs other_media: J=0.787  shared=85  A-only=23  B-only=0
+- full_corpus vs site_CMADD_CYPR(QM): J=0.0278  shared=3  A-only=105  B-only=0
+- full_corpus vs site_CMADD_ENKO: J=0.0648  shared=7  A-only=101  B-only=0
+- full_corpus vs site_CMADD_ERIMI-KAFKALLA-T2-2: J=0.0278  shared=3  A-only=105  B-only=0
+- full_corpus vs site_CMADD_HISHULEY-CARMEL: J=0.0185  shared=2  A-only=106  B-only=0
+- full_corpus vs site_CMADD_IDAL: J=0.0185  shared=2  A-only=106  B-only=0
+- full_corpus vs site_CMADD_KITI: J=0.0185  shared=2  A-only=106  B-only=0
+- full_corpus vs site_CMADD_KLAV: J=0.0185  shared=2  A-only=106  B-only=0
+- full_corpus vs site_CMADD_KOUR: J=0.0463  shared=5  A-only=103  B-only=0
+- full_corpus vs site_CMADD_MAAP: J=0.0185  shared=2  A-only=106  B-only=0
+- full_corpus vs site_CMADD_MARO: J=0.0463  shared=5  A-only=103  B-only=0
+- full_corpus vs site_CMADD_PARA: J=0.0185  shared=2  A-only=106  B-only=0
+- full_corpus vs site_CMADD_PPAP: J=0.0093  shared=1  A-only=107  B-only=0
+- full_corpus vs site_CMADD_RASH: J=0.0278  shared=3  A-only=105  B-only=0
+- full_corpus vs site_CMADD_RS-1963: J=0.0093  shared=1  A-only=107  B-only=0
+- full_corpus vs site_CMADD_SANI: J=0.0093  shared=1  A-only=107  B-only=0
+- full_corpus vs site_CMADD_TIRY: J=0.0648  shared=7  A-only=101  B-only=0
+- full_corpus vs site_CM_ALAS: J=0.0185  shared=2  A-only=106  B-only=0
+- full_corpus vs site_CM_ARPE: J=0.0463  shared=5  A-only=103  B-only=0
+- full_corpus vs site_CM_ATHI: J=0.0278  shared=3  A-only=105  B-only=0
+- full_corpus vs site_CM_CYPR: J=0.1944  shared=21  A-only=87  B-only=0
+- full_corpus vs site_CM_CYPR(QM): J=0.1111  shared=12  A-only=96  B-only=0
+- full_corpus vs site_CM_ENKO: J=0.8611  shared=93  A-only=15  B-only=0
+- full_corpus vs site_CM_ENKO(QM): J=0.0556  shared=6  A-only=102  B-only=0
+- full_corpus vs site_CM_HALA: J=0.0926  shared=10  A-only=98  B-only=0
+- full_corpus vs site_CM_IDAL: J=0.0185  shared=2  A-only=106  B-only=0
+- full_corpus vs site_CM_KALA: J=0.4537  shared=49  A-only=59  B-only=0
+- full_corpus vs site_CM_KATY: J=0.0741  shared=8  A-only=100  B-only=0
+- full_corpus vs site_CM_KITI: J=0.3241  shared=35  A-only=73  B-only=0
+- full_corpus vs site_CM_KOUR: J=0.0648  shared=7  A-only=101  B-only=0
+- full_corpus vs site_CM_MAAP: J=0.0556  shared=6  A-only=102  B-only=0
+- full_corpus vs site_CM_MARO: J=0.0556  shared=6  A-only=102  B-only=0
+- full_corpus vs site_CM_MYRT: J=0.0833  shared=9  A-only=99  B-only=0
+- full_corpus vs site_CM_PARA: J=0.037  shared=4  A-only=104  B-only=0
+- full_corpus vs site_CM_PPAP: J=0.037  shared=4  A-only=104  B-only=0
+- full_corpus vs site_CM_PSIL: J=0.037  shared=4  A-only=104  B-only=0
+- full_corpus vs site_CM_PYLA: J=0.0648  shared=7  A-only=101  B-only=0
+- full_corpus vs site_CM_RASH: J=0.4815  shared=52  A-only=56  B-only=0
+- full_corpus vs site_CM_SALA: J=0.0093  shared=1  A-only=107  B-only=0
+- full_corpus vs site_CM_SYRI: J=0.037  shared=4  A-only=104  B-only=0
+- full_corpus vs tablet: J=0.7407  shared=80  A-only=28  B-only=0
+- other_media vs site_CMADD_CYPR(QM): J=0.0353  shared=3  A-only=82  B-only=0
+- other_media vs site_CMADD_ENKO: J=0.0824  shared=7  A-only=78  B-only=0
+- other_media vs site_CMADD_ERIMI-KAFKALLA-T2-2: J=0.0353  shared=3  A-only=82  B-only=0
+- other_media vs site_CMADD_HISHULEY-CARMEL: J=0.0235  shared=2  A-only=83  B-only=0
+- other_media vs site_CMADD_IDAL: J=0.0235  shared=2  A-only=83  B-only=0
+- other_media vs site_CMADD_KITI: J=0.0235  shared=2  A-only=83  B-only=0
+- other_media vs site_CMADD_KLAV: J=0.0235  shared=2  A-only=83  B-only=0
+- other_media vs site_CMADD_KOUR: J=0.0588  shared=5  A-only=80  B-only=0
+- other_media vs site_CMADD_MAAP: J=0.0235  shared=2  A-only=83  B-only=0
+- other_media vs site_CMADD_MARO: J=0.0588  shared=5  A-only=80  B-only=0
+- other_media vs site_CMADD_PARA: J=0.0235  shared=2  A-only=83  B-only=0
+- other_media vs site_CMADD_PPAP: J=0.0118  shared=1  A-only=84  B-only=0
+- other_media vs site_CMADD_RASH: J=0.0353  shared=3  A-only=82  B-only=0
+- other_media vs site_CMADD_RS-1963: J=0.0118  shared=1  A-only=84  B-only=0
+- other_media vs site_CMADD_SANI: J=0.0118  shared=1  A-only=84  B-only=0
+- other_media vs site_CMADD_TIRY: J=0.0824  shared=7  A-only=78  B-only=0
+- other_media vs site_CM_ALAS: J=0.0235  shared=2  A-only=83  B-only=0
+- other_media vs site_CM_ARPE: J=0.0588  shared=5  A-only=80  B-only=0
+- other_media vs site_CM_ATHI: J=0.0353  shared=3  A-only=82  B-only=0
+- other_media vs site_CM_CYPR: J=0.2471  shared=21  A-only=64  B-only=0
+- other_media vs site_CM_CYPR(QM): J=0.1412  shared=12  A-only=73  B-only=0
+- other_media vs site_CM_ENKO: J=0.798  shared=79  A-only=6  B-only=14
+- other_media vs site_CM_ENKO(QM): J=0.0706  shared=6  A-only=79  B-only=0
+- other_media vs site_CM_HALA: J=0.1176  shared=10  A-only=75  B-only=0
+- other_media vs site_CM_IDAL: J=0.0235  shared=2  A-only=83  B-only=0
+- other_media vs site_CM_KALA: J=0.5765  shared=49  A-only=36  B-only=0
+- other_media vs site_CM_KATY: J=0.0941  shared=8  A-only=77  B-only=0
+- other_media vs site_CM_KITI: J=0.4118  shared=35  A-only=50  B-only=0
+- other_media vs site_CM_KOUR: J=0.0824  shared=7  A-only=78  B-only=0
+- other_media vs site_CM_MAAP: J=0.0706  shared=6  A-only=79  B-only=0
+- other_media vs site_CM_MARO: J=0.0706  shared=6  A-only=79  B-only=0
+- other_media vs site_CM_MYRT: J=0.1059  shared=9  A-only=76  B-only=0
+- other_media vs site_CM_PARA: J=0.0471  shared=4  A-only=81  B-only=0
+- other_media vs site_CM_PPAP: J=0.0471  shared=4  A-only=81  B-only=0
+- other_media vs site_CM_PSIL: J=0.0471  shared=4  A-only=81  B-only=0
+- other_media vs site_CM_PYLA: J=0.0824  shared=7  A-only=78  B-only=0
+- other_media vs site_CM_RASH: J=0.4421  shared=42  A-only=43  B-only=10
+- other_media vs site_CM_SALA: J=0.0118  shared=1  A-only=84  B-only=0
+- other_media vs site_CM_SYRI: J=0.0471  shared=4  A-only=81  B-only=0
+- other_media vs tablet: J=0.5278  shared=57  A-only=28  B-only=23
+- site_CMADD_CYPR(QM) vs site_CMADD_ENKO: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_CYPR(QM) vs site_CMADD_ERIMI-KAFKALLA-T2-2: J=0.0  shared=0  A-only=3  B-only=3
+- site_CMADD_CYPR(QM) vs site_CMADD_HISHULEY-CARMEL: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_CYPR(QM) vs site_CMADD_IDAL: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_CYPR(QM) vs site_CMADD_KITI: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_CYPR(QM) vs site_CMADD_KLAV: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_CYPR(QM) vs site_CMADD_KOUR: J=0.1429  shared=1  A-only=2  B-only=4
+- site_CMADD_CYPR(QM) vs site_CMADD_MAAP: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_CYPR(QM) vs site_CMADD_MARO: J=0.0  shared=0  A-only=3  B-only=5
+- site_CMADD_CYPR(QM) vs site_CMADD_PARA: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_CYPR(QM) vs site_CMADD_PPAP: J=0.3333  shared=1  A-only=2  B-only=0
+- site_CMADD_CYPR(QM) vs site_CMADD_RASH: J=0.0  shared=0  A-only=3  B-only=3
+- site_CMADD_CYPR(QM) vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_CYPR(QM) vs site_CMADD_SANI: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_CYPR(QM) vs site_CMADD_TIRY: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_CYPR(QM) vs site_CM_ALAS: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_CYPR(QM) vs site_CM_ARPE: J=0.0  shared=0  A-only=3  B-only=5
+- site_CMADD_CYPR(QM) vs site_CM_ATHI: J=0.0  shared=0  A-only=3  B-only=3
+- site_CMADD_CYPR(QM) vs site_CM_CYPR: J=0.0435  shared=1  A-only=2  B-only=20
+- site_CMADD_CYPR(QM) vs site_CM_CYPR(QM): J=0.0714  shared=1  A-only=2  B-only=11
+- site_CMADD_CYPR(QM) vs site_CM_ENKO: J=0.0323  shared=3  A-only=0  B-only=90
+- site_CMADD_CYPR(QM) vs site_CM_ENKO(QM): J=0.0  shared=0  A-only=3  B-only=6
+- site_CMADD_CYPR(QM) vs site_CM_HALA: J=0.0833  shared=1  A-only=2  B-only=9
+- site_CMADD_CYPR(QM) vs site_CM_IDAL: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_CYPR(QM) vs site_CM_KALA: J=0.0612  shared=3  A-only=0  B-only=46
+- site_CMADD_CYPR(QM) vs site_CM_KATY: J=0.1  shared=1  A-only=2  B-only=7
+- site_CMADD_CYPR(QM) vs site_CM_KITI: J=0.0556  shared=2  A-only=1  B-only=33
+- site_CMADD_CYPR(QM) vs site_CM_KOUR: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_CYPR(QM) vs site_CM_MAAP: J=0.0  shared=0  A-only=3  B-only=6
+- site_CMADD_CYPR(QM) vs site_CM_MARO: J=0.125  shared=1  A-only=2  B-only=5
+- site_CMADD_CYPR(QM) vs site_CM_MYRT: J=0.0909  shared=1  A-only=2  B-only=8
+- site_CMADD_CYPR(QM) vs site_CM_PARA: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_CYPR(QM) vs site_CM_PPAP: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_CYPR(QM) vs site_CM_PSIL: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_CYPR(QM) vs site_CM_PYLA: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_CYPR(QM) vs site_CM_RASH: J=0.0185  shared=1  A-only=2  B-only=51
+- site_CMADD_CYPR(QM) vs site_CM_SALA: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_CYPR(QM) vs site_CM_SYRI: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_CYPR(QM) vs tablet: J=0.0122  shared=1  A-only=2  B-only=79
+- site_CMADD_ENKO vs site_CMADD_ERIMI-KAFKALLA-T2-2: J=0.0  shared=0  A-only=7  B-only=3
+- site_CMADD_ENKO vs site_CMADD_HISHULEY-CARMEL: J=0.125  shared=1  A-only=6  B-only=1
+- site_CMADD_ENKO vs site_CMADD_IDAL: J=0.2857  shared=2  A-only=5  B-only=0
+- site_CMADD_ENKO vs site_CMADD_KITI: J=0.0  shared=0  A-only=7  B-only=2
+- site_CMADD_ENKO vs site_CMADD_KLAV: J=0.0  shared=0  A-only=7  B-only=2
+- site_CMADD_ENKO vs site_CMADD_KOUR: J=0.0909  shared=1  A-only=6  B-only=4
+- site_CMADD_ENKO vs site_CMADD_MAAP: J=0.0  shared=0  A-only=7  B-only=2
+- site_CMADD_ENKO vs site_CMADD_MARO: J=0.0  shared=0  A-only=7  B-only=5
+- site_CMADD_ENKO vs site_CMADD_PARA: J=0.0  shared=0  A-only=7  B-only=2
+- site_CMADD_ENKO vs site_CMADD_PPAP: J=0.0  shared=0  A-only=7  B-only=1
+- site_CMADD_ENKO vs site_CMADD_RASH: J=0.1111  shared=1  A-only=6  B-only=2
+- site_CMADD_ENKO vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=7  B-only=1
+- site_CMADD_ENKO vs site_CMADD_SANI: J=0.0  shared=0  A-only=7  B-only=1
+- site_CMADD_ENKO vs site_CMADD_TIRY: J=0.4  shared=4  A-only=3  B-only=3
+- site_CMADD_ENKO vs site_CM_ALAS: J=0.0  shared=0  A-only=7  B-only=2
+- site_CMADD_ENKO vs site_CM_ARPE: J=0.2  shared=2  A-only=5  B-only=3
+- site_CMADD_ENKO vs site_CM_ATHI: J=0.25  shared=2  A-only=5  B-only=1
+- site_CMADD_ENKO vs site_CM_CYPR: J=0.1667  shared=4  A-only=3  B-only=17
+- site_CMADD_ENKO vs site_CM_CYPR(QM): J=0.1875  shared=3  A-only=4  B-only=9
+- site_CMADD_ENKO vs site_CM_ENKO: J=0.0753  shared=7  A-only=0  B-only=86
+- site_CMADD_ENKO vs site_CM_ENKO(QM): J=0.0833  shared=1  A-only=6  B-only=5
+- site_CMADD_ENKO vs site_CM_HALA: J=0.4167  shared=5  A-only=2  B-only=5
+- site_CMADD_ENKO vs site_CM_IDAL: J=0.0  shared=0  A-only=7  B-only=2
+- site_CMADD_ENKO vs site_CM_KALA: J=0.12  shared=6  A-only=1  B-only=43
+- site_CMADD_ENKO vs site_CM_KATY: J=0.1538  shared=2  A-only=5  B-only=6
+- site_CMADD_ENKO vs site_CM_KITI: J=0.1351  shared=5  A-only=2  B-only=30
+- site_CMADD_ENKO vs site_CM_KOUR: J=0.1667  shared=2  A-only=5  B-only=5
+- site_CMADD_ENKO vs site_CM_MAAP: J=0.0833  shared=1  A-only=6  B-only=5
+- site_CMADD_ENKO vs site_CM_MARO: J=0.0833  shared=1  A-only=6  B-only=5
+- site_CMADD_ENKO vs site_CM_MYRT: J=0.1429  shared=2  A-only=5  B-only=7
+- site_CMADD_ENKO vs site_CM_PARA: J=0.1  shared=1  A-only=6  B-only=3
+- site_CMADD_ENKO vs site_CM_PPAP: J=0.0  shared=0  A-only=7  B-only=4
+- site_CMADD_ENKO vs site_CM_PSIL: J=0.0  shared=0  A-only=7  B-only=4
+- site_CMADD_ENKO vs site_CM_PYLA: J=0.0  shared=0  A-only=7  B-only=7
+- site_CMADD_ENKO vs site_CM_RASH: J=0.1132  shared=6  A-only=1  B-only=46
+- site_CMADD_ENKO vs site_CM_SALA: J=0.0  shared=0  A-only=7  B-only=1
+- site_CMADD_ENKO vs site_CM_SYRI: J=0.1  shared=1  A-only=6  B-only=3
+- site_CMADD_ENKO vs tablet: J=0.0875  shared=7  A-only=0  B-only=73
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_HISHULEY-CARMEL: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_IDAL: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_KITI: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_KLAV: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_KOUR: J=0.0  shared=0  A-only=3  B-only=5
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_MAAP: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_MARO: J=0.0  shared=0  A-only=3  B-only=5
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_PARA: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_PPAP: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_RASH: J=0.0  shared=0  A-only=3  B-only=3
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_SANI: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CMADD_TIRY: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_ALAS: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_ARPE: J=0.0  shared=0  A-only=3  B-only=5
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_ATHI: J=0.0  shared=0  A-only=3  B-only=3
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_CYPR: J=0.0909  shared=2  A-only=1  B-only=19
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_CYPR(QM): J=0.0  shared=0  A-only=3  B-only=12
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_ENKO: J=0.0213  shared=2  A-only=1  B-only=91
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_ENKO(QM): J=0.0  shared=0  A-only=3  B-only=6
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_HALA: J=0.0  shared=0  A-only=3  B-only=10
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_IDAL: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_KALA: J=0.04  shared=2  A-only=1  B-only=47
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_KATY: J=0.0  shared=0  A-only=3  B-only=8
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_KITI: J=0.027  shared=1  A-only=2  B-only=34
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_KOUR: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_MAAP: J=0.0  shared=0  A-only=3  B-only=6
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_MARO: J=0.0  shared=0  A-only=3  B-only=6
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_MYRT: J=0.0  shared=0  A-only=3  B-only=9
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_PARA: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_PPAP: J=0.1667  shared=1  A-only=2  B-only=3
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_PSIL: J=0.1667  shared=1  A-only=2  B-only=3
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_PYLA: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_RASH: J=0.0185  shared=1  A-only=2  B-only=51
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_SALA: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs site_CM_SYRI: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_ERIMI-KAFKALLA-T2-2 vs tablet: J=0.0122  shared=1  A-only=2  B-only=79
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_IDAL: J=0.3333  shared=1  A-only=1  B-only=1
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_KITI: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_KLAV: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_KOUR: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_MAAP: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_MARO: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_PARA: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_PPAP: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_RASH: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_SANI: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_HISHULEY-CARMEL vs site_CMADD_TIRY: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_HISHULEY-CARMEL vs site_CM_ALAS: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_HISHULEY-CARMEL vs site_CM_ARPE: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_HISHULEY-CARMEL vs site_CM_ATHI: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_HISHULEY-CARMEL vs site_CM_CYPR: J=0.0455  shared=1  A-only=1  B-only=20
+- site_CMADD_HISHULEY-CARMEL vs site_CM_CYPR(QM): J=0.0  shared=0  A-only=2  B-only=12
+- site_CMADD_HISHULEY-CARMEL vs site_CM_ENKO: J=0.0215  shared=2  A-only=0  B-only=91
+- site_CMADD_HISHULEY-CARMEL vs site_CM_ENKO(QM): J=0.0  shared=0  A-only=2  B-only=6
+- site_CMADD_HISHULEY-CARMEL vs site_CM_HALA: J=0.0  shared=0  A-only=2  B-only=10
+- site_CMADD_HISHULEY-CARMEL vs site_CM_IDAL: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_HISHULEY-CARMEL vs site_CM_KALA: J=0.02  shared=1  A-only=1  B-only=48
+- site_CMADD_HISHULEY-CARMEL vs site_CM_KATY: J=0.1111  shared=1  A-only=1  B-only=7
+- site_CMADD_HISHULEY-CARMEL vs site_CM_KITI: J=0.0278  shared=1  A-only=1  B-only=34
+- site_CMADD_HISHULEY-CARMEL vs site_CM_KOUR: J=0.125  shared=1  A-only=1  B-only=6
+- site_CMADD_HISHULEY-CARMEL vs site_CM_MAAP: J=0.0  shared=0  A-only=2  B-only=6
+- site_CMADD_HISHULEY-CARMEL vs site_CM_MARO: J=0.0  shared=0  A-only=2  B-only=6
+- site_CMADD_HISHULEY-CARMEL vs site_CM_MYRT: J=0.0  shared=0  A-only=2  B-only=9
+- site_CMADD_HISHULEY-CARMEL vs site_CM_PARA: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_HISHULEY-CARMEL vs site_CM_PPAP: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_HISHULEY-CARMEL vs site_CM_PSIL: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_HISHULEY-CARMEL vs site_CM_PYLA: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_HISHULEY-CARMEL vs site_CM_RASH: J=0.0385  shared=2  A-only=0  B-only=50
+- site_CMADD_HISHULEY-CARMEL vs site_CM_SALA: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_HISHULEY-CARMEL vs site_CM_SYRI: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_HISHULEY-CARMEL vs tablet: J=0.025  shared=2  A-only=0  B-only=78
+- site_CMADD_IDAL vs site_CMADD_KITI: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_IDAL vs site_CMADD_KLAV: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_IDAL vs site_CMADD_KOUR: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_IDAL vs site_CMADD_MAAP: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_IDAL vs site_CMADD_MARO: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_IDAL vs site_CMADD_PARA: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_IDAL vs site_CMADD_PPAP: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_IDAL vs site_CMADD_RASH: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_IDAL vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_IDAL vs site_CMADD_SANI: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_IDAL vs site_CMADD_TIRY: J=0.125  shared=1  A-only=1  B-only=6
+- site_CMADD_IDAL vs site_CM_ALAS: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_IDAL vs site_CM_ARPE: J=0.1667  shared=1  A-only=1  B-only=4
+- site_CMADD_IDAL vs site_CM_ATHI: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_IDAL vs site_CM_CYPR: J=0.0952  shared=2  A-only=0  B-only=19
+- site_CMADD_IDAL vs site_CM_CYPR(QM): J=0.0769  shared=1  A-only=1  B-only=11
+- site_CMADD_IDAL vs site_CM_ENKO: J=0.0215  shared=2  A-only=0  B-only=91
+- site_CMADD_IDAL vs site_CM_ENKO(QM): J=0.1429  shared=1  A-only=1  B-only=5
+- site_CMADD_IDAL vs site_CM_HALA: J=0.0909  shared=1  A-only=1  B-only=9
+- site_CMADD_IDAL vs site_CM_IDAL: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_IDAL vs site_CM_KALA: J=0.0408  shared=2  A-only=0  B-only=47
+- site_CMADD_IDAL vs site_CM_KATY: J=0.1111  shared=1  A-only=1  B-only=7
+- site_CMADD_IDAL vs site_CM_KITI: J=0.0571  shared=2  A-only=0  B-only=33
+- site_CMADD_IDAL vs site_CM_KOUR: J=0.125  shared=1  A-only=1  B-only=6
+- site_CMADD_IDAL vs site_CM_MAAP: J=0.0  shared=0  A-only=2  B-only=6
+- site_CMADD_IDAL vs site_CM_MARO: J=0.1429  shared=1  A-only=1  B-only=5
+- site_CMADD_IDAL vs site_CM_MYRT: J=0.1  shared=1  A-only=1  B-only=8
+- site_CMADD_IDAL vs site_CM_PARA: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_IDAL vs site_CM_PPAP: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_IDAL vs site_CM_PSIL: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_IDAL vs site_CM_PYLA: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_IDAL vs site_CM_RASH: J=0.0385  shared=2  A-only=0  B-only=50
+- site_CMADD_IDAL vs site_CM_SALA: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_IDAL vs site_CM_SYRI: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_IDAL vs tablet: J=0.025  shared=2  A-only=0  B-only=78
+- site_CMADD_KITI vs site_CMADD_KLAV: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_KITI vs site_CMADD_KOUR: J=0.1667  shared=1  A-only=1  B-only=4
+- site_CMADD_KITI vs site_CMADD_MAAP: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_KITI vs site_CMADD_MARO: J=0.1667  shared=1  A-only=1  B-only=4
+- site_CMADD_KITI vs site_CMADD_PARA: J=0.3333  shared=1  A-only=1  B-only=1
+- site_CMADD_KITI vs site_CMADD_PPAP: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_KITI vs site_CMADD_RASH: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_KITI vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_KITI vs site_CMADD_SANI: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_KITI vs site_CMADD_TIRY: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_KITI vs site_CM_ALAS: J=0.3333  shared=1  A-only=1  B-only=1
+- site_CMADD_KITI vs site_CM_ARPE: J=0.1667  shared=1  A-only=1  B-only=4
+- site_CMADD_KITI vs site_CM_ATHI: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_KITI vs site_CM_CYPR: J=0.0952  shared=2  A-only=0  B-only=19
+- site_CMADD_KITI vs site_CM_CYPR(QM): J=0.0769  shared=1  A-only=1  B-only=11
+- site_CMADD_KITI vs site_CM_ENKO: J=0.0215  shared=2  A-only=0  B-only=91
+- site_CMADD_KITI vs site_CM_ENKO(QM): J=0.3333  shared=2  A-only=0  B-only=4
+- site_CMADD_KITI vs site_CM_HALA: J=0.0  shared=0  A-only=2  B-only=10
+- site_CMADD_KITI vs site_CM_IDAL: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_KITI vs site_CM_KALA: J=0.0408  shared=2  A-only=0  B-only=47
+- site_CMADD_KITI vs site_CM_KATY: J=0.1111  shared=1  A-only=1  B-only=7
+- site_CMADD_KITI vs site_CM_KITI: J=0.0571  shared=2  A-only=0  B-only=33
+- site_CMADD_KITI vs site_CM_KOUR: J=0.125  shared=1  A-only=1  B-only=6
+- site_CMADD_KITI vs site_CM_MAAP: J=0.1429  shared=1  A-only=1  B-only=5
+- site_CMADD_KITI vs site_CM_MARO: J=0.1429  shared=1  A-only=1  B-only=5
+- site_CMADD_KITI vs site_CM_MYRT: J=0.0  shared=0  A-only=2  B-only=9
+- site_CMADD_KITI vs site_CM_PARA: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_KITI vs site_CM_PPAP: J=0.5  shared=2  A-only=0  B-only=2
+- site_CMADD_KITI vs site_CM_PSIL: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_KITI vs site_CM_PYLA: J=0.125  shared=1  A-only=1  B-only=6
+- site_CMADD_KITI vs site_CM_RASH: J=0.0385  shared=2  A-only=0  B-only=50
+- site_CMADD_KITI vs site_CM_SALA: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_KITI vs site_CM_SYRI: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_KITI vs tablet: J=0.025  shared=2  A-only=0  B-only=78
+- site_CMADD_KLAV vs site_CMADD_KOUR: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_KLAV vs site_CMADD_MAAP: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_KLAV vs site_CMADD_MARO: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_KLAV vs site_CMADD_PARA: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_KLAV vs site_CMADD_PPAP: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_KLAV vs site_CMADD_RASH: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_KLAV vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_KLAV vs site_CMADD_SANI: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_KLAV vs site_CMADD_TIRY: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_KLAV vs site_CM_ALAS: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_KLAV vs site_CM_ARPE: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_KLAV vs site_CM_ATHI: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_KLAV vs site_CM_CYPR: J=0.0  shared=0  A-only=2  B-only=21
+- site_CMADD_KLAV vs site_CM_CYPR(QM): J=0.0  shared=0  A-only=2  B-only=12
+- site_CMADD_KLAV vs site_CM_ENKO: J=0.0106  shared=1  A-only=1  B-only=92
+- site_CMADD_KLAV vs site_CM_ENKO(QM): J=0.0  shared=0  A-only=2  B-only=6
+- site_CMADD_KLAV vs site_CM_HALA: J=0.0  shared=0  A-only=2  B-only=10
+- site_CMADD_KLAV vs site_CM_IDAL: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_KLAV vs site_CM_KALA: J=0.02  shared=1  A-only=1  B-only=48
+- site_CMADD_KLAV vs site_CM_KATY: J=0.0  shared=0  A-only=2  B-only=8
+- site_CMADD_KLAV vs site_CM_KITI: J=0.0  shared=0  A-only=2  B-only=35
+- site_CMADD_KLAV vs site_CM_KOUR: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_KLAV vs site_CM_MAAP: J=0.0  shared=0  A-only=2  B-only=6
+- site_CMADD_KLAV vs site_CM_MARO: J=0.0  shared=0  A-only=2  B-only=6
+- site_CMADD_KLAV vs site_CM_MYRT: J=0.0  shared=0  A-only=2  B-only=9
+- site_CMADD_KLAV vs site_CM_PARA: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_KLAV vs site_CM_PPAP: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_KLAV vs site_CM_PSIL: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_KLAV vs site_CM_PYLA: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_KLAV vs site_CM_RASH: J=0.0189  shared=1  A-only=1  B-only=51
+- site_CMADD_KLAV vs site_CM_SALA: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_KLAV vs site_CM_SYRI: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_KLAV vs tablet: J=0.025  shared=2  A-only=0  B-only=78
+- site_CMADD_KOUR vs site_CMADD_MAAP: J=0.0  shared=0  A-only=5  B-only=2
+- site_CMADD_KOUR vs site_CMADD_MARO: J=0.1111  shared=1  A-only=4  B-only=4
+- site_CMADD_KOUR vs site_CMADD_PARA: J=0.0  shared=0  A-only=5  B-only=2
+- site_CMADD_KOUR vs site_CMADD_PPAP: J=0.2  shared=1  A-only=4  B-only=0
+- site_CMADD_KOUR vs site_CMADD_RASH: J=0.0  shared=0  A-only=5  B-only=3
+- site_CMADD_KOUR vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=5  B-only=1
+- site_CMADD_KOUR vs site_CMADD_SANI: J=0.2  shared=1  A-only=4  B-only=0
+- site_CMADD_KOUR vs site_CMADD_TIRY: J=0.2  shared=2  A-only=3  B-only=5
+- site_CMADD_KOUR vs site_CM_ALAS: J=0.0  shared=0  A-only=5  B-only=2
+- site_CMADD_KOUR vs site_CM_ARPE: J=0.1111  shared=1  A-only=4  B-only=4
+- site_CMADD_KOUR vs site_CM_ATHI: J=0.0  shared=0  A-only=5  B-only=3
+- site_CMADD_KOUR vs site_CM_CYPR: J=0.0833  shared=2  A-only=3  B-only=19
+- site_CMADD_KOUR vs site_CM_CYPR(QM): J=0.1333  shared=2  A-only=3  B-only=10
+- site_CMADD_KOUR vs site_CM_ENKO: J=0.0538  shared=5  A-only=0  B-only=88
+- site_CMADD_KOUR vs site_CM_ENKO(QM): J=0.2222  shared=2  A-only=3  B-only=4
+- site_CMADD_KOUR vs site_CM_HALA: J=0.25  shared=3  A-only=2  B-only=7
+- site_CMADD_KOUR vs site_CM_IDAL: J=0.0  shared=0  A-only=5  B-only=2
+- site_CMADD_KOUR vs site_CM_KALA: J=0.08  shared=4  A-only=1  B-only=45
+- site_CMADD_KOUR vs site_CM_KATY: J=0.3  shared=3  A-only=2  B-only=5
+- site_CMADD_KOUR vs site_CM_KITI: J=0.0811  shared=3  A-only=2  B-only=32
+- site_CMADD_KOUR vs site_CM_KOUR: J=0.0  shared=0  A-only=5  B-only=7
+- site_CMADD_KOUR vs site_CM_MAAP: J=0.0  shared=0  A-only=5  B-only=6
+- site_CMADD_KOUR vs site_CM_MARO: J=0.0  shared=0  A-only=5  B-only=6
+- site_CMADD_KOUR vs site_CM_MYRT: J=0.1667  shared=2  A-only=3  B-only=7
+- site_CMADD_KOUR vs site_CM_PARA: J=0.0  shared=0  A-only=5  B-only=4
+- site_CMADD_KOUR vs site_CM_PPAP: J=0.2857  shared=2  A-only=3  B-only=2
+- site_CMADD_KOUR vs site_CM_PSIL: J=0.0  shared=0  A-only=5  B-only=4
+- site_CMADD_KOUR vs site_CM_PYLA: J=0.0909  shared=1  A-only=4  B-only=6
+- site_CMADD_KOUR vs site_CM_RASH: J=0.0962  shared=5  A-only=0  B-only=47
+- site_CMADD_KOUR vs site_CM_SALA: J=0.0  shared=0  A-only=5  B-only=1
+- site_CMADD_KOUR vs site_CM_SYRI: J=0.125  shared=1  A-only=4  B-only=3
+- site_CMADD_KOUR vs tablet: J=0.0625  shared=5  A-only=0  B-only=75
+- site_CMADD_MAAP vs site_CMADD_MARO: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_MAAP vs site_CMADD_PARA: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_MAAP vs site_CMADD_PPAP: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_MAAP vs site_CMADD_RASH: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_MAAP vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_MAAP vs site_CMADD_SANI: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_MAAP vs site_CMADD_TIRY: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_MAAP vs site_CM_ALAS: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_MAAP vs site_CM_ARPE: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_MAAP vs site_CM_ATHI: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_MAAP vs site_CM_CYPR: J=0.0  shared=0  A-only=2  B-only=21
+- site_CMADD_MAAP vs site_CM_CYPR(QM): J=0.0  shared=0  A-only=2  B-only=12
+- site_CMADD_MAAP vs site_CM_ENKO: J=0.0215  shared=2  A-only=0  B-only=91
+- site_CMADD_MAAP vs site_CM_ENKO(QM): J=0.1429  shared=1  A-only=1  B-only=5
+- site_CMADD_MAAP vs site_CM_HALA: J=0.0  shared=0  A-only=2  B-only=10
+- site_CMADD_MAAP vs site_CM_IDAL: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_MAAP vs site_CM_KALA: J=0.0  shared=0  A-only=2  B-only=49
+- site_CMADD_MAAP vs site_CM_KATY: J=0.0  shared=0  A-only=2  B-only=8
+- site_CMADD_MAAP vs site_CM_KITI: J=0.0  shared=0  A-only=2  B-only=35
+- site_CMADD_MAAP vs site_CM_KOUR: J=0.125  shared=1  A-only=1  B-only=6
+- site_CMADD_MAAP vs site_CM_MAAP: J=0.0  shared=0  A-only=2  B-only=6
+- site_CMADD_MAAP vs site_CM_MARO: J=0.0  shared=0  A-only=2  B-only=6
+- site_CMADD_MAAP vs site_CM_MYRT: J=0.1  shared=1  A-only=1  B-only=8
+- site_CMADD_MAAP vs site_CM_PARA: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_MAAP vs site_CM_PPAP: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_MAAP vs site_CM_PSIL: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_MAAP vs site_CM_PYLA: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_MAAP vs site_CM_RASH: J=0.0  shared=0  A-only=2  B-only=52
+- site_CMADD_MAAP vs site_CM_SALA: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_MAAP vs site_CM_SYRI: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_MAAP vs tablet: J=0.0123  shared=1  A-only=1  B-only=79
+- site_CMADD_MARO vs site_CMADD_PARA: J=0.1667  shared=1  A-only=4  B-only=1
+- site_CMADD_MARO vs site_CMADD_PPAP: J=0.0  shared=0  A-only=5  B-only=1
+- site_CMADD_MARO vs site_CMADD_RASH: J=0.0  shared=0  A-only=5  B-only=3
+- site_CMADD_MARO vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=5  B-only=1
+- site_CMADD_MARO vs site_CMADD_SANI: J=0.2  shared=1  A-only=4  B-only=0
+- site_CMADD_MARO vs site_CMADD_TIRY: J=0.0  shared=0  A-only=5  B-only=7
+- site_CMADD_MARO vs site_CM_ALAS: J=0.1667  shared=1  A-only=4  B-only=1
+- site_CMADD_MARO vs site_CM_ARPE: J=0.0  shared=0  A-only=5  B-only=5
+- site_CMADD_MARO vs site_CM_ATHI: J=0.0  shared=0  A-only=5  B-only=3
+- site_CMADD_MARO vs site_CM_CYPR: J=0.04  shared=1  A-only=4  B-only=20
+- site_CMADD_MARO vs site_CM_CYPR(QM): J=0.0625  shared=1  A-only=4  B-only=11
+- site_CMADD_MARO vs site_CM_ENKO: J=0.0538  shared=5  A-only=0  B-only=88
+- site_CMADD_MARO vs site_CM_ENKO(QM): J=0.2222  shared=2  A-only=3  B-only=4
+- site_CMADD_MARO vs site_CM_HALA: J=0.0  shared=0  A-only=5  B-only=10
+- site_CMADD_MARO vs site_CM_IDAL: J=0.0  shared=0  A-only=5  B-only=2
+- site_CMADD_MARO vs site_CM_KALA: J=0.0588  shared=3  A-only=2  B-only=46
+- site_CMADD_MARO vs site_CM_KATY: J=0.0833  shared=1  A-only=4  B-only=7
+- site_CMADD_MARO vs site_CM_KITI: J=0.0811  shared=3  A-only=2  B-only=32
+- site_CMADD_MARO vs site_CM_KOUR: J=0.0909  shared=1  A-only=4  B-only=6
+- site_CMADD_MARO vs site_CM_MAAP: J=0.1  shared=1  A-only=4  B-only=5
+- site_CMADD_MARO vs site_CM_MARO: J=0.1  shared=1  A-only=4  B-only=5
+- site_CMADD_MARO vs site_CM_MYRT: J=0.0  shared=0  A-only=5  B-only=9
+- site_CMADD_MARO vs site_CM_PARA: J=0.0  shared=0  A-only=5  B-only=4
+- site_CMADD_MARO vs site_CM_PPAP: J=0.2857  shared=2  A-only=3  B-only=2
+- site_CMADD_MARO vs site_CM_PSIL: J=0.0  shared=0  A-only=5  B-only=4
+- site_CMADD_MARO vs site_CM_PYLA: J=0.0909  shared=1  A-only=4  B-only=6
+- site_CMADD_MARO vs site_CM_RASH: J=0.0755  shared=4  A-only=1  B-only=48
+- site_CMADD_MARO vs site_CM_SALA: J=0.0  shared=0  A-only=5  B-only=1
+- site_CMADD_MARO vs site_CM_SYRI: J=0.0  shared=0  A-only=5  B-only=4
+- site_CMADD_MARO vs tablet: J=0.0625  shared=5  A-only=0  B-only=75
+- site_CMADD_PARA vs site_CMADD_PPAP: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_PARA vs site_CMADD_RASH: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_PARA vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_PARA vs site_CMADD_SANI: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_PARA vs site_CMADD_TIRY: J=0.0  shared=0  A-only=2  B-only=7
+- site_CMADD_PARA vs site_CM_ALAS: J=0.3333  shared=1  A-only=1  B-only=1
+- site_CMADD_PARA vs site_CM_ARPE: J=0.0  shared=0  A-only=2  B-only=5
+- site_CMADD_PARA vs site_CM_ATHI: J=0.0  shared=0  A-only=2  B-only=3
+- site_CMADD_PARA vs site_CM_CYPR: J=0.0952  shared=2  A-only=0  B-only=19
+- site_CMADD_PARA vs site_CM_CYPR(QM): J=0.1667  shared=2  A-only=0  B-only=10
+- site_CMADD_PARA vs site_CM_ENKO: J=0.0215  shared=2  A-only=0  B-only=91
+- site_CMADD_PARA vs site_CM_ENKO(QM): J=0.1429  shared=1  A-only=1  B-only=5
+- site_CMADD_PARA vs site_CM_HALA: J=0.0  shared=0  A-only=2  B-only=10
+- site_CMADD_PARA vs site_CM_IDAL: J=0.0  shared=0  A-only=2  B-only=2
+- site_CMADD_PARA vs site_CM_KALA: J=0.02  shared=1  A-only=1  B-only=48
+- site_CMADD_PARA vs site_CM_KATY: J=0.0  shared=0  A-only=2  B-only=8
+- site_CMADD_PARA vs site_CM_KITI: J=0.0571  shared=2  A-only=0  B-only=33
+- site_CMADD_PARA vs site_CM_KOUR: J=0.125  shared=1  A-only=1  B-only=6
+- site_CMADD_PARA vs site_CM_MAAP: J=0.1429  shared=1  A-only=1  B-only=5
+- site_CMADD_PARA vs site_CM_MARO: J=0.1429  shared=1  A-only=1  B-only=5
+- site_CMADD_PARA vs site_CM_MYRT: J=0.0  shared=0  A-only=2  B-only=9
+- site_CMADD_PARA vs site_CM_PARA: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_PARA vs site_CM_PPAP: J=0.2  shared=1  A-only=1  B-only=3
+- site_CMADD_PARA vs site_CM_PSIL: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_PARA vs site_CM_PYLA: J=0.125  shared=1  A-only=1  B-only=6
+- site_CMADD_PARA vs site_CM_RASH: J=0.0189  shared=1  A-only=1  B-only=51
+- site_CMADD_PARA vs site_CM_SALA: J=0.0  shared=0  A-only=2  B-only=1
+- site_CMADD_PARA vs site_CM_SYRI: J=0.0  shared=0  A-only=2  B-only=4
+- site_CMADD_PARA vs tablet: J=0.025  shared=2  A-only=0  B-only=78
+- site_CMADD_PPAP vs site_CMADD_RASH: J=0.0  shared=0  A-only=1  B-only=3
+- site_CMADD_PPAP vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=1  B-only=1
+- site_CMADD_PPAP vs site_CMADD_SANI: J=0.0  shared=0  A-only=1  B-only=1
+- site_CMADD_PPAP vs site_CMADD_TIRY: J=0.0  shared=0  A-only=1  B-only=7
+- site_CMADD_PPAP vs site_CM_ALAS: J=0.0  shared=0  A-only=1  B-only=2
+- site_CMADD_PPAP vs site_CM_ARPE: J=0.0  shared=0  A-only=1  B-only=5
+- site_CMADD_PPAP vs site_CM_ATHI: J=0.0  shared=0  A-only=1  B-only=3
+- site_CMADD_PPAP vs site_CM_CYPR: J=0.0476  shared=1  A-only=0  B-only=20
+- site_CMADD_PPAP vs site_CM_CYPR(QM): J=0.0833  shared=1  A-only=0  B-only=11
+- site_CMADD_PPAP vs site_CM_ENKO: J=0.0108  shared=1  A-only=0  B-only=92
+- site_CMADD_PPAP vs site_CM_ENKO(QM): J=0.0  shared=0  A-only=1  B-only=6
+- site_CMADD_PPAP vs site_CM_HALA: J=0.1  shared=1  A-only=0  B-only=9
+- site_CMADD_PPAP vs site_CM_IDAL: J=0.0  shared=0  A-only=1  B-only=2
+- site_CMADD_PPAP vs site_CM_KALA: J=0.0204  shared=1  A-only=0  B-only=48
+- site_CMADD_PPAP vs site_CM_KATY: J=0.125  shared=1  A-only=0  B-only=7
+- site_CMADD_PPAP vs site_CM_KITI: J=0.0286  shared=1  A-only=0  B-only=34
+- site_CMADD_PPAP vs site_CM_KOUR: J=0.0  shared=0  A-only=1  B-only=7
+- site_CMADD_PPAP vs site_CM_MAAP: J=0.0  shared=0  A-only=1  B-only=6
+- site_CMADD_PPAP vs site_CM_MARO: J=0.0  shared=0  A-only=1  B-only=6
+- site_CMADD_PPAP vs site_CM_MYRT: J=0.1111  shared=1  A-only=0  B-only=8
+- site_CMADD_PPAP vs site_CM_PARA: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_PPAP vs site_CM_PPAP: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_PPAP vs site_CM_PSIL: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_PPAP vs site_CM_PYLA: J=0.0  shared=0  A-only=1  B-only=7
+- site_CMADD_PPAP vs site_CM_RASH: J=0.0192  shared=1  A-only=0  B-only=51
+- site_CMADD_PPAP vs site_CM_SALA: J=0.0  shared=0  A-only=1  B-only=1
+- site_CMADD_PPAP vs site_CM_SYRI: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_PPAP vs tablet: J=0.0125  shared=1  A-only=0  B-only=79
+- site_CMADD_RASH vs site_CMADD_RS-1963: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_RASH vs site_CMADD_SANI: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_RASH vs site_CMADD_TIRY: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_RASH vs site_CM_ALAS: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_RASH vs site_CM_ARPE: J=0.0  shared=0  A-only=3  B-only=5
+- site_CMADD_RASH vs site_CM_ATHI: J=0.0  shared=0  A-only=3  B-only=3
+- site_CMADD_RASH vs site_CM_CYPR: J=0.0  shared=0  A-only=3  B-only=21
+- site_CMADD_RASH vs site_CM_CYPR(QM): J=0.0  shared=0  A-only=3  B-only=12
+- site_CMADD_RASH vs site_CM_ENKO: J=0.0323  shared=3  A-only=0  B-only=90
+- site_CMADD_RASH vs site_CM_ENKO(QM): J=0.0  shared=0  A-only=3  B-only=6
+- site_CMADD_RASH vs site_CM_HALA: J=0.1818  shared=2  A-only=1  B-only=8
+- site_CMADD_RASH vs site_CM_IDAL: J=0.0  shared=0  A-only=3  B-only=2
+- site_CMADD_RASH vs site_CM_KALA: J=0.04  shared=2  A-only=1  B-only=47
+- site_CMADD_RASH vs site_CM_KATY: J=0.0  shared=0  A-only=3  B-only=8
+- site_CMADD_RASH vs site_CM_KITI: J=0.0556  shared=2  A-only=1  B-only=33
+- site_CMADD_RASH vs site_CM_KOUR: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_RASH vs site_CM_MAAP: J=0.0  shared=0  A-only=3  B-only=6
+- site_CMADD_RASH vs site_CM_MARO: J=0.0  shared=0  A-only=3  B-only=6
+- site_CMADD_RASH vs site_CM_MYRT: J=0.0  shared=0  A-only=3  B-only=9
+- site_CMADD_RASH vs site_CM_PARA: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_RASH vs site_CM_PPAP: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_RASH vs site_CM_PSIL: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_RASH vs site_CM_PYLA: J=0.0  shared=0  A-only=3  B-only=7
+- site_CMADD_RASH vs site_CM_RASH: J=0.0  shared=0  A-only=3  B-only=52
+- site_CMADD_RASH vs site_CM_SALA: J=0.0  shared=0  A-only=3  B-only=1
+- site_CMADD_RASH vs site_CM_SYRI: J=0.0  shared=0  A-only=3  B-only=4
+- site_CMADD_RASH vs tablet: J=0.0375  shared=3  A-only=0  B-only=77
+- site_CMADD_RS-1963 vs site_CMADD_SANI: J=0.0  shared=0  A-only=1  B-only=1
+- site_CMADD_RS-1963 vs site_CMADD_TIRY: J=0.0  shared=0  A-only=1  B-only=7
+- site_CMADD_RS-1963 vs site_CM_ALAS: J=0.0  shared=0  A-only=1  B-only=2
+- site_CMADD_RS-1963 vs site_CM_ARPE: J=0.2  shared=1  A-only=0  B-only=4
+- site_CMADD_RS-1963 vs site_CM_ATHI: J=0.0  shared=0  A-only=1  B-only=3
+- site_CMADD_RS-1963 vs site_CM_CYPR: J=0.0  shared=0  A-only=1  B-only=21
+- site_CMADD_RS-1963 vs site_CM_CYPR(QM): J=0.0  shared=0  A-only=1  B-only=12
+- site_CMADD_RS-1963 vs site_CM_ENKO: J=0.0108  shared=1  A-only=0  B-only=92
+- site_CMADD_RS-1963 vs site_CM_ENKO(QM): J=0.0  shared=0  A-only=1  B-only=6
+- site_CMADD_RS-1963 vs site_CM_HALA: J=0.0  shared=0  A-only=1  B-only=10
+- site_CMADD_RS-1963 vs site_CM_IDAL: J=0.0  shared=0  A-only=1  B-only=2
+- site_CMADD_RS-1963 vs site_CM_KALA: J=0.0204  shared=1  A-only=0  B-only=48
+- site_CMADD_RS-1963 vs site_CM_KATY: J=0.0  shared=0  A-only=1  B-only=8
+- site_CMADD_RS-1963 vs site_CM_KITI: J=0.0  shared=0  A-only=1  B-only=35
+- site_CMADD_RS-1963 vs site_CM_KOUR: J=0.0  shared=0  A-only=1  B-only=7
+- site_CMADD_RS-1963 vs site_CM_MAAP: J=0.0  shared=0  A-only=1  B-only=6
+- site_CMADD_RS-1963 vs site_CM_MARO: J=0.0  shared=0  A-only=1  B-only=6
+- site_CMADD_RS-1963 vs site_CM_MYRT: J=0.0  shared=0  A-only=1  B-only=9
+- site_CMADD_RS-1963 vs site_CM_PARA: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_RS-1963 vs site_CM_PPAP: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_RS-1963 vs site_CM_PSIL: J=0.25  shared=1  A-only=0  B-only=3
+- site_CMADD_RS-1963 vs site_CM_PYLA: J=0.1429  shared=1  A-only=0  B-only=6
+- site_CMADD_RS-1963 vs site_CM_RASH: J=0.0192  shared=1  A-only=0  B-only=51
+- site_CMADD_RS-1963 vs site_CM_SALA: J=0.0  shared=0  A-only=1  B-only=1
+- site_CMADD_RS-1963 vs site_CM_SYRI: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_RS-1963 vs tablet: J=0.0125  shared=1  A-only=0  B-only=79
+- site_CMADD_SANI vs site_CMADD_TIRY: J=0.0  shared=0  A-only=1  B-only=7
+- site_CMADD_SANI vs site_CM_ALAS: J=0.0  shared=0  A-only=1  B-only=2
+- site_CMADD_SANI vs site_CM_ARPE: J=0.0  shared=0  A-only=1  B-only=5
+- site_CMADD_SANI vs site_CM_ATHI: J=0.0  shared=0  A-only=1  B-only=3
+- site_CMADD_SANI vs site_CM_CYPR: J=0.0  shared=0  A-only=1  B-only=21
+- site_CMADD_SANI vs site_CM_CYPR(QM): J=0.0  shared=0  A-only=1  B-only=12
+- site_CMADD_SANI vs site_CM_ENKO: J=0.0108  shared=1  A-only=0  B-only=92
+- site_CMADD_SANI vs site_CM_ENKO(QM): J=0.1667  shared=1  A-only=0  B-only=5
+- site_CMADD_SANI vs site_CM_HALA: J=0.0  shared=0  A-only=1  B-only=10
+- site_CMADD_SANI vs site_CM_IDAL: J=0.0  shared=0  A-only=1  B-only=2
+- site_CMADD_SANI vs site_CM_KALA: J=0.0204  shared=1  A-only=0  B-only=48
+- site_CMADD_SANI vs site_CM_KATY: J=0.125  shared=1  A-only=0  B-only=7
+- site_CMADD_SANI vs site_CM_KITI: J=0.0286  shared=1  A-only=0  B-only=34
+- site_CMADD_SANI vs site_CM_KOUR: J=0.0  shared=0  A-only=1  B-only=7
+- site_CMADD_SANI vs site_CM_MAAP: J=0.0  shared=0  A-only=1  B-only=6
+- site_CMADD_SANI vs site_CM_MARO: J=0.0  shared=0  A-only=1  B-only=6
+- site_CMADD_SANI vs site_CM_MYRT: J=0.0  shared=0  A-only=1  B-only=9
+- site_CMADD_SANI vs site_CM_PARA: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_SANI vs site_CM_PPAP: J=0.25  shared=1  A-only=0  B-only=3
+- site_CMADD_SANI vs site_CM_PSIL: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_SANI vs site_CM_PYLA: J=0.0  shared=0  A-only=1  B-only=7
+- site_CMADD_SANI vs site_CM_RASH: J=0.0192  shared=1  A-only=0  B-only=51
+- site_CMADD_SANI vs site_CM_SALA: J=0.0  shared=0  A-only=1  B-only=1
+- site_CMADD_SANI vs site_CM_SYRI: J=0.0  shared=0  A-only=1  B-only=4
+- site_CMADD_SANI vs tablet: J=0.0125  shared=1  A-only=0  B-only=79
+- site_CMADD_TIRY vs site_CM_ALAS: J=0.0  shared=0  A-only=7  B-only=2
+- site_CMADD_TIRY vs site_CM_ARPE: J=0.2  shared=2  A-only=5  B-only=3
+- site_CMADD_TIRY vs site_CM_ATHI: J=0.1111  shared=1  A-only=6  B-only=2
+- site_CMADD_TIRY vs site_CM_CYPR: J=0.0769  shared=2  A-only=5  B-only=19
+- site_CMADD_TIRY vs site_CM_CYPR(QM): J=0.1176  shared=2  A-only=5  B-only=10
+- site_CMADD_TIRY vs site_CM_ENKO: J=0.0753  shared=7  A-only=0  B-only=86
+- site_CMADD_TIRY vs site_CM_ENKO(QM): J=0.0833  shared=1  A-only=6  B-only=5
+- site_CMADD_TIRY vs site_CM_HALA: J=0.4167  shared=5  A-only=2  B-only=5
+- site_CMADD_TIRY vs site_CM_IDAL: J=0.125  shared=1  A-only=6  B-only=1
+- site_CMADD_TIRY vs site_CM_KALA: J=0.0769  shared=4  A-only=3  B-only=45
+- site_CMADD_TIRY vs site_CM_KATY: J=0.0714  shared=1  A-only=6  B-only=7
+- site_CMADD_TIRY vs site_CM_KITI: J=0.05  shared=2  A-only=5  B-only=33
+- site_CMADD_TIRY vs site_CM_KOUR: J=0.0769  shared=1  A-only=6  B-only=6
+- site_CMADD_TIRY vs site_CM_MAAP: J=0.0833  shared=1  A-only=6  B-only=5
+- site_CMADD_TIRY vs site_CM_MARO: J=0.0833  shared=1  A-only=6  B-only=5
+- site_CMADD_TIRY vs site_CM_MYRT: J=0.2308  shared=3  A-only=4  B-only=6
+- site_CMADD_TIRY vs site_CM_PARA: J=0.0  shared=0  A-only=7  B-only=4
+- site_CMADD_TIRY vs site_CM_PPAP: J=0.0  shared=0  A-only=7  B-only=4
+- site_CMADD_TIRY vs site_CM_PSIL: J=0.0  shared=0  A-only=7  B-only=4
+- site_CMADD_TIRY vs site_CM_PYLA: J=0.0769  shared=1  A-only=6  B-only=6
+- site_CMADD_TIRY vs site_CM_RASH: J=0.1132  shared=6  A-only=1  B-only=46
+- site_CMADD_TIRY vs site_CM_SALA: J=0.0  shared=0  A-only=7  B-only=1
+- site_CMADD_TIRY vs site_CM_SYRI: J=0.1  shared=1  A-only=6  B-only=3
+- site_CMADD_TIRY vs tablet: J=0.0741  shared=6  A-only=1  B-only=74
+- site_CM_ALAS vs site_CM_ARPE: J=0.0  shared=0  A-only=2  B-only=5
+- site_CM_ALAS vs site_CM_ATHI: J=0.0  shared=0  A-only=2  B-only=3
+- site_CM_ALAS vs site_CM_CYPR: J=0.0455  shared=1  A-only=1  B-only=20
+- site_CM_ALAS vs site_CM_CYPR(QM): J=0.0769  shared=1  A-only=1  B-only=11
+- site_CM_ALAS vs site_CM_ENKO: J=0.0215  shared=2  A-only=0  B-only=91
+- site_CM_ALAS vs site_CM_ENKO(QM): J=0.1429  shared=1  A-only=1  B-only=5
+- site_CM_ALAS vs site_CM_HALA: J=0.0909  shared=1  A-only=1  B-only=9
+- site_CM_ALAS vs site_CM_IDAL: J=0.0  shared=0  A-only=2  B-only=2
+- site_CM_ALAS vs site_CM_KALA: J=0.0408  shared=2  A-only=0  B-only=47
+- site_CM_ALAS vs site_CM_KATY: J=0.0  shared=0  A-only=2  B-only=8
+- site_CM_ALAS vs site_CM_KITI: J=0.0571  shared=2  A-only=0  B-only=33
+- site_CM_ALAS vs site_CM_KOUR: J=0.125  shared=1  A-only=1  B-only=6
+- site_CM_ALAS vs site_CM_MAAP: J=0.1429  shared=1  A-only=1  B-only=5
+- site_CM_ALAS vs site_CM_MARO: J=0.1429  shared=1  A-only=1  B-only=5
+- site_CM_ALAS vs site_CM_MYRT: J=0.0  shared=0  A-only=2  B-only=9
+- site_CM_ALAS vs site_CM_PARA: J=0.0  shared=0  A-only=2  B-only=4
+- site_CM_ALAS vs site_CM_PPAP: J=0.2  shared=1  A-only=1  B-only=3
+- site_CM_ALAS vs site_CM_PSIL: J=0.0  shared=0  A-only=2  B-only=4
+- site_CM_ALAS vs site_CM_PYLA: J=0.125  shared=1  A-only=1  B-only=6
+- site_CM_ALAS vs site_CM_RASH: J=0.0385  shared=2  A-only=0  B-only=50
+- site_CM_ALAS vs site_CM_SALA: J=0.0  shared=0  A-only=2  B-only=1
+- site_CM_ALAS vs site_CM_SYRI: J=0.0  shared=0  A-only=2  B-only=4
+- site_CM_ALAS vs tablet: J=0.025  shared=2  A-only=0  B-only=78
+- site_CM_ARPE vs site_CM_ATHI: J=0.0  shared=0  A-only=5  B-only=3
+- site_CM_ARPE vs site_CM_CYPR: J=0.1304  shared=3  A-only=2  B-only=18
+- site_CM_ARPE vs site_CM_CYPR(QM): J=0.0625  shared=1  A-only=4  B-only=11
+- site_CM_ARPE vs site_CM_ENKO: J=0.0538  shared=5  A-only=0  B-only=88
+- site_CM_ARPE vs site_CM_ENKO(QM): J=0.2222  shared=2  A-only=3  B-only=4
+- site_CM_ARPE vs site_CM_HALA: J=0.1538  shared=2  A-only=3  B-only=8
+- site_CM_ARPE vs site_CM_IDAL: J=0.0  shared=0  A-only=5  B-only=2
+- site_CM_ARPE vs site_CM_KALA: J=0.102  shared=5  A-only=0  B-only=44
+- site_CM_ARPE vs site_CM_KATY: J=0.0833  shared=1  A-only=4  B-only=7
+- site_CM_ARPE vs site_CM_KITI: J=0.0811  shared=3  A-only=2  B-only=32
+- site_CM_ARPE vs site_CM_KOUR: J=0.0909  shared=1  A-only=4  B-only=6
+- site_CM_ARPE vs site_CM_MAAP: J=0.1  shared=1  A-only=4  B-only=5
+- site_CM_ARPE vs site_CM_MARO: J=0.1  shared=1  A-only=4  B-only=5
+- site_CM_ARPE vs site_CM_MYRT: J=0.0769  shared=1  A-only=4  B-only=8
+- site_CM_ARPE vs site_CM_PARA: J=0.0  shared=0  A-only=5  B-only=4
+- site_CM_ARPE vs site_CM_PPAP: J=0.125  shared=1  A-only=4  B-only=3
+- site_CM_ARPE vs site_CM_PSIL: J=0.125  shared=1  A-only=4  B-only=3
+- site_CM_ARPE vs site_CM_PYLA: J=0.2  shared=2  A-only=3  B-only=5
+- site_CM_ARPE vs site_CM_RASH: J=0.0962  shared=5  A-only=0  B-only=47
+- site_CM_ARPE vs site_CM_SALA: J=0.0  shared=0  A-only=5  B-only=1
+- site_CM_ARPE vs site_CM_SYRI: J=0.0  shared=0  A-only=5  B-only=4
+- site_CM_ARPE vs tablet: J=0.0625  shared=5  A-only=0  B-only=75
+- site_CM_ATHI vs site_CM_CYPR: J=0.0909  shared=2  A-only=1  B-only=19
+- site_CM_ATHI vs site_CM_CYPR(QM): J=0.0714  shared=1  A-only=2  B-only=11
+- site_CM_ATHI vs site_CM_ENKO: J=0.0323  shared=3  A-only=0  B-only=90
+- site_CM_ATHI vs site_CM_ENKO(QM): J=0.0  shared=0  A-only=3  B-only=6
+- site_CM_ATHI vs site_CM_HALA: J=0.0833  shared=1  A-only=2  B-only=9
+- site_CM_ATHI vs site_CM_IDAL: J=0.0  shared=0  A-only=3  B-only=2
+- site_CM_ATHI vs site_CM_KALA: J=0.0612  shared=3  A-only=0  B-only=46
+- site_CM_ATHI vs site_CM_KATY: J=0.1  shared=1  A-only=2  B-only=7
+- site_CM_ATHI vs site_CM_KITI: J=0.027  shared=1  A-only=2  B-only=34
+- site_CM_ATHI vs site_CM_KOUR: J=0.0  shared=0  A-only=3  B-only=7
+- site_CM_ATHI vs site_CM_MAAP: J=0.0  shared=0  A-only=3  B-only=6
+- site_CM_ATHI vs site_CM_MARO: J=0.0  shared=0  A-only=3  B-only=6
+- site_CM_ATHI vs site_CM_MYRT: J=0.0909  shared=1  A-only=2  B-only=8
+- site_CM_ATHI vs site_CM_PARA: J=0.4  shared=2  A-only=1  B-only=2
+- site_CM_ATHI vs site_CM_PPAP: J=0.0  shared=0  A-only=3  B-only=4
+- site_CM_ATHI vs site_CM_PSIL: J=0.0  shared=0  A-only=3  B-only=4
+- site_CM_ATHI vs site_CM_PYLA: J=0.0  shared=0  A-only=3  B-only=7
+- site_CM_ATHI vs site_CM_RASH: J=0.0377  shared=2  A-only=1  B-only=50
+- site_CM_ATHI vs site_CM_SALA: J=0.0  shared=0  A-only=3  B-only=1
+- site_CM_ATHI vs site_CM_SYRI: J=0.0  shared=0  A-only=3  B-only=4
+- site_CM_ATHI vs tablet: J=0.0375  shared=3  A-only=0  B-only=77
+- site_CM_CYPR vs site_CM_CYPR(QM): J=0.2222  shared=6  A-only=15  B-only=6
+- site_CM_CYPR vs site_CM_ENKO: J=0.2258  shared=21  A-only=0  B-only=72
+- site_CM_CYPR vs site_CM_ENKO(QM): J=0.125  shared=3  A-only=18  B-only=3
+- site_CM_CYPR vs site_CM_HALA: J=0.1071  shared=3  A-only=18  B-only=7
+- site_CM_CYPR vs site_CM_IDAL: J=0.0  shared=0  A-only=21  B-only=2
+- site_CM_CYPR vs site_CM_KALA: J=0.2963  shared=16  A-only=5  B-only=33
+- site_CM_CYPR vs site_CM_KATY: J=0.16  shared=4  A-only=17  B-only=4
+- site_CM_CYPR vs site_CM_KITI: J=0.3659  shared=15  A-only=6  B-only=20
+- site_CM_CYPR vs site_CM_KOUR: J=0.1667  shared=4  A-only=17  B-only=3
+- site_CM_CYPR vs site_CM_MAAP: J=0.1739  shared=4  A-only=17  B-only=2
+- site_CM_CYPR vs site_CM_MARO: J=0.125  shared=3  A-only=18  B-only=3
+- site_CM_CYPR vs site_CM_MYRT: J=0.1538  shared=4  A-only=17  B-only=5
+- site_CM_CYPR vs site_CM_PARA: J=0.1364  shared=3  A-only=18  B-only=1
+- site_CM_CYPR vs site_CM_PPAP: J=0.1364  shared=3  A-only=18  B-only=1
+- site_CM_CYPR vs site_CM_PSIL: J=0.087  shared=2  A-only=19  B-only=2
+- site_CM_CYPR vs site_CM_PYLA: J=0.0769  shared=2  A-only=19  B-only=5
+- site_CM_CYPR vs site_CM_RASH: J=0.2373  shared=14  A-only=7  B-only=38
+- site_CM_CYPR vs site_CM_SALA: J=0.0  shared=0  A-only=21  B-only=1
+- site_CM_CYPR vs site_CM_SYRI: J=0.0  shared=0  A-only=21  B-only=4
+- site_CM_CYPR vs tablet: J=0.2024  shared=17  A-only=4  B-only=63
+- site_CM_CYPR(QM) vs site_CM_ENKO: J=0.129  shared=12  A-only=0  B-only=81
+- site_CM_CYPR(QM) vs site_CM_ENKO(QM): J=0.125  shared=2  A-only=10  B-only=4
+- site_CM_CYPR(QM) vs site_CM_HALA: J=0.1579  shared=3  A-only=9  B-only=7
+- site_CM_CYPR(QM) vs site_CM_IDAL: J=0.0769  shared=1  A-only=11  B-only=1
+- site_CM_CYPR(QM) vs site_CM_KALA: J=0.1296  shared=7  A-only=5  B-only=42
+- site_CM_CYPR(QM) vs site_CM_KATY: J=0.0526  shared=1  A-only=11  B-only=7
+- site_CM_CYPR(QM) vs site_CM_KITI: J=0.1463  shared=6  A-only=6  B-only=29
+- site_CM_CYPR(QM) vs site_CM_KOUR: J=0.1176  shared=2  A-only=10  B-only=5
+- site_CM_CYPR(QM) vs site_CM_MAAP: J=0.0588  shared=1  A-only=11  B-only=5
+- site_CM_CYPR(QM) vs site_CM_MARO: J=0.2  shared=3  A-only=9  B-only=3
+- site_CM_CYPR(QM) vs site_CM_MYRT: J=0.1667  shared=3  A-only=9  B-only=6
+- site_CM_CYPR(QM) vs site_CM_PARA: J=0.0667  shared=1  A-only=11  B-only=3
+- site_CM_CYPR(QM) vs site_CM_PPAP: J=0.0667  shared=1  A-only=11  B-only=3
+- site_CM_CYPR(QM) vs site_CM_PSIL: J=0.0  shared=0  A-only=12  B-only=4
+- site_CM_CYPR(QM) vs site_CM_PYLA: J=0.1176  shared=2  A-only=10  B-only=5
+- site_CM_CYPR(QM) vs site_CM_RASH: J=0.1034  shared=6  A-only=6  B-only=46
+- site_CM_CYPR(QM) vs site_CM_SALA: J=0.0833  shared=1  A-only=11  B-only=0
+- site_CM_CYPR(QM) vs site_CM_SYRI: J=0.0667  shared=1  A-only=11  B-only=3
+- site_CM_CYPR(QM) vs tablet: J=0.1084  shared=9  A-only=3  B-only=71
+- site_CM_ENKO vs site_CM_ENKO(QM): J=0.0645  shared=6  A-only=87  B-only=0
+- site_CM_ENKO vs site_CM_HALA: J=0.1075  shared=10  A-only=83  B-only=0
+- site_CM_ENKO vs site_CM_IDAL: J=0.0215  shared=2  A-only=91  B-only=0
+- site_CM_ENKO vs site_CM_KALA: J=0.5106  shared=48  A-only=45  B-only=1
+- site_CM_ENKO vs site_CM_KATY: J=0.086  shared=8  A-only=85  B-only=0
+- site_CM_ENKO vs site_CM_KITI: J=0.3617  shared=34  A-only=59  B-only=1
+- site_CM_ENKO vs site_CM_KOUR: J=0.0638  shared=6  A-only=87  B-only=1
+- site_CM_ENKO vs site_CM_MAAP: J=0.0645  shared=6  A-only=87  B-only=0
+- site_CM_ENKO vs site_CM_MARO: J=0.0645  shared=6  A-only=87  B-only=0
+- site_CM_ENKO vs site_CM_MYRT: J=0.0968  shared=9  A-only=84  B-only=0
+- site_CM_ENKO vs site_CM_PARA: J=0.043  shared=4  A-only=89  B-only=0
+- site_CM_ENKO vs site_CM_PPAP: J=0.043  shared=4  A-only=89  B-only=0
+- site_CM_ENKO vs site_CM_PSIL: J=0.043  shared=4  A-only=89  B-only=0
+- site_CM_ENKO vs site_CM_PYLA: J=0.0753  shared=7  A-only=86  B-only=0
+- site_CM_ENKO vs site_CM_RASH: J=0.3942  shared=41  A-only=52  B-only=11
+- site_CM_ENKO vs site_CM_SALA: J=0.0108  shared=1  A-only=92  B-only=0
+- site_CM_ENKO vs site_CM_SYRI: J=0.0319  shared=3  A-only=90  B-only=1
+- site_CM_ENKO vs tablet: J=0.6635  shared=69  A-only=24  B-only=11
+- site_CM_ENKO(QM) vs site_CM_HALA: J=0.0667  shared=1  A-only=5  B-only=9
+- site_CM_ENKO(QM) vs site_CM_IDAL: J=0.0  shared=0  A-only=6  B-only=2
+- site_CM_ENKO(QM) vs site_CM_KALA: J=0.0784  shared=4  A-only=2  B-only=45
+- site_CM_ENKO(QM) vs site_CM_KATY: J=0.1667  shared=2  A-only=4  B-only=6
+- site_CM_ENKO(QM) vs site_CM_KITI: J=0.1081  shared=4  A-only=2  B-only=31
+- site_CM_ENKO(QM) vs site_CM_KOUR: J=0.1818  shared=2  A-only=4  B-only=5
+- site_CM_ENKO(QM) vs site_CM_MAAP: J=0.0909  shared=1  A-only=5  B-only=5
+- site_CM_ENKO(QM) vs site_CM_MARO: J=0.2  shared=2  A-only=4  B-only=4
+- site_CM_ENKO(QM) vs site_CM_MYRT: J=0.0714  shared=1  A-only=5  B-only=8
+- site_CM_ENKO(QM) vs site_CM_PARA: J=0.0  shared=0  A-only=6  B-only=4
+- site_CM_ENKO(QM) vs site_CM_PPAP: J=0.4286  shared=3  A-only=3  B-only=1
+- site_CM_ENKO(QM) vs site_CM_PSIL: J=0.0  shared=0  A-only=6  B-only=4
+- site_CM_ENKO(QM) vs site_CM_PYLA: J=0.0833  shared=1  A-only=5  B-only=6
+- site_CM_ENKO(QM) vs site_CM_RASH: J=0.0741  shared=4  A-only=2  B-only=48
+- site_CM_ENKO(QM) vs site_CM_SALA: J=0.0  shared=0  A-only=6  B-only=1
+- site_CM_ENKO(QM) vs site_CM_SYRI: J=0.0  shared=0  A-only=6  B-only=4
+- site_CM_ENKO(QM) vs tablet: J=0.0617  shared=5  A-only=1  B-only=75
+- site_CM_HALA vs site_CM_IDAL: J=0.0  shared=0  A-only=10  B-only=2
+- site_CM_HALA vs site_CM_KALA: J=0.18  shared=9  A-only=1  B-only=40
+- site_CM_HALA vs site_CM_KATY: J=0.125  shared=2  A-only=8  B-only=6
+- site_CM_HALA vs site_CM_KITI: J=0.1538  shared=6  A-only=4  B-only=29
+- site_CM_HALA vs site_CM_KOUR: J=0.0625  shared=1  A-only=9  B-only=6
+- site_CM_HALA vs site_CM_MAAP: J=0.0667  shared=1  A-only=9  B-only=5
+- site_CM_HALA vs site_CM_MARO: J=0.0667  shared=1  A-only=9  B-only=5
+- site_CM_HALA vs site_CM_MYRT: J=0.2667  shared=4  A-only=6  B-only=5
+- site_CM_HALA vs site_CM_PARA: J=0.0  shared=0  A-only=10  B-only=4
+- site_CM_HALA vs site_CM_PPAP: J=0.0  shared=0  A-only=10  B-only=4
+- site_CM_HALA vs site_CM_PSIL: J=0.0  shared=0  A-only=10  B-only=4
+- site_CM_HALA vs site_CM_PYLA: J=0.0625  shared=1  A-only=9  B-only=6
+- site_CM_HALA vs site_CM_RASH: J=0.1273  shared=7  A-only=3  B-only=45
+- site_CM_HALA vs site_CM_SALA: J=0.0  shared=0  A-only=10  B-only=1
+- site_CM_HALA vs site_CM_SYRI: J=0.0769  shared=1  A-only=9  B-only=3
+- site_CM_HALA vs tablet: J=0.125  shared=10  A-only=0  B-only=70
+- site_CM_IDAL vs site_CM_KALA: J=0.0  shared=0  A-only=2  B-only=49
+- site_CM_IDAL vs site_CM_KATY: J=0.0  shared=0  A-only=2  B-only=8
+- site_CM_IDAL vs site_CM_KITI: J=0.0  shared=0  A-only=2  B-only=35
+- site_CM_IDAL vs site_CM_KOUR: J=0.0  shared=0  A-only=2  B-only=7
+- site_CM_IDAL vs site_CM_MAAP: J=0.0  shared=0  A-only=2  B-only=6
+- site_CM_IDAL vs site_CM_MARO: J=0.1429  shared=1  A-only=1  B-only=5
+- site_CM_IDAL vs site_CM_MYRT: J=0.0  shared=0  A-only=2  B-only=9
+- site_CM_IDAL vs site_CM_PARA: J=0.0  shared=0  A-only=2  B-only=4
+- site_CM_IDAL vs site_CM_PPAP: J=0.0  shared=0  A-only=2  B-only=4
+- site_CM_IDAL vs site_CM_PSIL: J=0.0  shared=0  A-only=2  B-only=4
+- site_CM_IDAL vs site_CM_PYLA: J=0.0  shared=0  A-only=2  B-only=7
+- site_CM_IDAL vs site_CM_RASH: J=0.0  shared=0  A-only=2  B-only=52
+- site_CM_IDAL vs site_CM_SALA: J=0.0  shared=0  A-only=2  B-only=1
+- site_CM_IDAL vs site_CM_SYRI: J=0.0  shared=0  A-only=2  B-only=4
+- site_CM_IDAL vs tablet: J=0.0123  shared=1  A-only=1  B-only=79
+- site_CM_KALA vs site_CM_KATY: J=0.14  shared=7  A-only=42  B-only=1
+- site_CM_KALA vs site_CM_KITI: J=0.4483  shared=26  A-only=23  B-only=9
+- site_CM_KALA vs site_CM_KOUR: J=0.098  shared=5  A-only=44  B-only=2
+- site_CM_KALA vs site_CM_MAAP: J=0.1224  shared=6  A-only=43  B-only=0
+- site_CM_KALA vs site_CM_MARO: J=0.1  shared=5  A-only=44  B-only=1
+- site_CM_KALA vs site_CM_MYRT: J=0.1373  shared=7  A-only=42  B-only=2
+- site_CM_KALA vs site_CM_PARA: J=0.0816  shared=4  A-only=45  B-only=0
+- site_CM_KALA vs site_CM_PPAP: J=0.0816  shared=4  A-only=45  B-only=0
+- site_CM_KALA vs site_CM_PSIL: J=0.06  shared=3  A-only=46  B-only=1
+- site_CM_KALA vs site_CM_PYLA: J=0.1429  shared=7  A-only=42  B-only=0
+- site_CM_KALA vs site_CM_RASH: J=0.4225  shared=30  A-only=19  B-only=22
+- site_CM_KALA vs site_CM_SALA: J=0.0204  shared=1  A-only=48  B-only=0
+- site_CM_KALA vs site_CM_SYRI: J=0.0192  shared=1  A-only=48  B-only=3
+- site_CM_KALA vs tablet: J=0.4176  shared=38  A-only=11  B-only=42
+- site_CM_KATY vs site_CM_KITI: J=0.1622  shared=6  A-only=2  B-only=29
+- site_CM_KATY vs site_CM_KOUR: J=0.0714  shared=1  A-only=7  B-only=6
+- site_CM_KATY vs site_CM_MAAP: J=0.0769  shared=1  A-only=7  B-only=5
+- site_CM_KATY vs site_CM_MARO: J=0.0769  shared=1  A-only=7  B-only=5
+- site_CM_KATY vs site_CM_MYRT: J=0.2143  shared=3  A-only=5  B-only=6
+- site_CM_KATY vs site_CM_PARA: J=0.0  shared=0  A-only=8  B-only=4
+- site_CM_KATY vs site_CM_PPAP: J=0.2  shared=2  A-only=6  B-only=2
+- site_CM_KATY vs site_CM_PSIL: J=0.0  shared=0  A-only=8  B-only=4
+- site_CM_KATY vs site_CM_PYLA: J=0.0  shared=0  A-only=8  B-only=7
+- site_CM_KATY vs site_CM_RASH: J=0.1321  shared=7  A-only=1  B-only=45
+- site_CM_KATY vs site_CM_SALA: J=0.0  shared=0  A-only=8  B-only=1
+- site_CM_KATY vs site_CM_SYRI: J=0.0909  shared=1  A-only=7  B-only=3
+- site_CM_KATY vs tablet: J=0.1  shared=8  A-only=0  B-only=72
+- site_CM_KITI vs site_CM_KOUR: J=0.1053  shared=4  A-only=31  B-only=3
+- site_CM_KITI vs site_CM_MAAP: J=0.1389  shared=5  A-only=30  B-only=1
+- site_CM_KITI vs site_CM_MARO: J=0.1081  shared=4  A-only=31  B-only=2
+- site_CM_KITI vs site_CM_MYRT: J=0.1579  shared=6  A-only=29  B-only=3
+- site_CM_KITI vs site_CM_PARA: J=0.0541  shared=2  A-only=33  B-only=2
+- site_CM_KITI vs site_CM_PPAP: J=0.1143  shared=4  A-only=31  B-only=0
+- site_CM_KITI vs site_CM_PSIL: J=0.0263  shared=1  A-only=34  B-only=3
+- site_CM_KITI vs site_CM_PYLA: J=0.05  shared=2  A-only=33  B-only=5
+- site_CM_KITI vs site_CM_RASH: J=0.3385  shared=22  A-only=13  B-only=30
+- site_CM_KITI vs site_CM_SALA: J=0.0286  shared=1  A-only=34  B-only=0
+- site_CM_KITI vs site_CM_SYRI: J=0.0  shared=0  A-only=35  B-only=4
+- site_CM_KITI vs tablet: J=0.3068  shared=27  A-only=8  B-only=53
+- site_CM_KOUR vs site_CM_MAAP: J=0.1818  shared=2  A-only=5  B-only=4
+- site_CM_KOUR vs site_CM_MARO: J=0.0833  shared=1  A-only=6  B-only=5
+- site_CM_KOUR vs site_CM_MYRT: J=0.0667  shared=1  A-only=6  B-only=8
+- site_CM_KOUR vs site_CM_PARA: J=0.0  shared=0  A-only=7  B-only=4
+- site_CM_KOUR vs site_CM_PPAP: J=0.1  shared=1  A-only=6  B-only=3
+- site_CM_KOUR vs site_CM_PSIL: J=0.0  shared=0  A-only=7  B-only=4
+- site_CM_KOUR vs site_CM_PYLA: J=0.1667  shared=2  A-only=5  B-only=5
+- site_CM_KOUR vs site_CM_RASH: J=0.0926  shared=5  A-only=2  B-only=47
+- site_CM_KOUR vs site_CM_SALA: J=0.1429  shared=1  A-only=6  B-only=0
+- site_CM_KOUR vs site_CM_SYRI: J=0.0  shared=0  A-only=7  B-only=4
+- site_CM_KOUR vs tablet: J=0.0741  shared=6  A-only=1  B-only=74
+- site_CM_MAAP vs site_CM_MARO: J=0.2  shared=2  A-only=4  B-only=4
+- site_CM_MAAP vs site_CM_MYRT: J=0.1538  shared=2  A-only=4  B-only=7
+- site_CM_MAAP vs site_CM_PARA: J=0.0  shared=0  A-only=6  B-only=4
+- site_CM_MAAP vs site_CM_PPAP: J=0.1111  shared=1  A-only=5  B-only=3
+- site_CM_MAAP vs site_CM_PSIL: J=0.0  shared=0  A-only=6  B-only=4
+- site_CM_MAAP vs site_CM_PYLA: J=0.1818  shared=2  A-only=4  B-only=5
+- site_CM_MAAP vs site_CM_RASH: J=0.1154  shared=6  A-only=0  B-only=46
+- site_CM_MAAP vs site_CM_SALA: J=0.0  shared=0  A-only=6  B-only=1
+- site_CM_MAAP vs site_CM_SYRI: J=0.0  shared=0  A-only=6  B-only=4
+- site_CM_MAAP vs tablet: J=0.075  shared=6  A-only=0  B-only=74
+- site_CM_MARO vs site_CM_MYRT: J=0.1538  shared=2  A-only=4  B-only=7
+- site_CM_MARO vs site_CM_PARA: J=0.1111  shared=1  A-only=5  B-only=3
+- site_CM_MARO vs site_CM_PPAP: J=0.1111  shared=1  A-only=5  B-only=3
+- site_CM_MARO vs site_CM_PSIL: J=0.0  shared=0  A-only=6  B-only=4
+- site_CM_MARO vs site_CM_PYLA: J=0.0833  shared=1  A-only=5  B-only=6
+- site_CM_MARO vs site_CM_RASH: J=0.0741  shared=4  A-only=2  B-only=48
+- site_CM_MARO vs site_CM_SALA: J=0.0  shared=0  A-only=6  B-only=1
+- site_CM_MARO vs site_CM_SYRI: J=0.0  shared=0  A-only=6  B-only=4
+- site_CM_MARO vs tablet: J=0.0617  shared=5  A-only=1  B-only=75
+- site_CM_MYRT vs site_CM_PARA: J=0.0  shared=0  A-only=9  B-only=4
+- site_CM_MYRT vs site_CM_PPAP: J=0.0  shared=0  A-only=9  B-only=4
+- site_CM_MYRT vs site_CM_PSIL: J=0.0  shared=0  A-only=9  B-only=4
+- site_CM_MYRT vs site_CM_PYLA: J=0.0667  shared=1  A-only=8  B-only=6
+- site_CM_MYRT vs site_CM_RASH: J=0.1509  shared=8  A-only=1  B-only=44
+- site_CM_MYRT vs site_CM_SALA: J=0.1111  shared=1  A-only=8  B-only=0
+- site_CM_MYRT vs site_CM_SYRI: J=0.0  shared=0  A-only=9  B-only=4
+- site_CM_MYRT vs tablet: J=0.0988  shared=8  A-only=1  B-only=72
+- site_CM_PARA vs site_CM_PPAP: J=0.0  shared=0  A-only=4  B-only=4
+- site_CM_PARA vs site_CM_PSIL: J=0.0  shared=0  A-only=4  B-only=4
+- site_CM_PARA vs site_CM_PYLA: J=0.0  shared=0  A-only=4  B-only=7
+- site_CM_PARA vs site_CM_RASH: J=0.0566  shared=3  A-only=1  B-only=49
+- site_CM_PARA vs site_CM_SALA: J=0.0  shared=0  A-only=4  B-only=1
+- site_CM_PARA vs site_CM_SYRI: J=0.0  shared=0  A-only=4  B-only=4
+- site_CM_PARA vs tablet: J=0.05  shared=4  A-only=0  B-only=76
+- site_CM_PPAP vs site_CM_PSIL: J=0.0  shared=0  A-only=4  B-only=4
+- site_CM_PPAP vs site_CM_PYLA: J=0.1  shared=1  A-only=3  B-only=6
+- site_CM_PPAP vs site_CM_RASH: J=0.0566  shared=3  A-only=1  B-only=49
+- site_CM_PPAP vs site_CM_SALA: J=0.0  shared=0  A-only=4  B-only=1
+- site_CM_PPAP vs site_CM_SYRI: J=0.0  shared=0  A-only=4  B-only=4
+- site_CM_PPAP vs tablet: J=0.037  shared=3  A-only=1  B-only=77
+- site_CM_PSIL vs site_CM_PYLA: J=0.1  shared=1  A-only=3  B-only=6
+- site_CM_PSIL vs site_CM_RASH: J=0.0769  shared=4  A-only=0  B-only=48
+- site_CM_PSIL vs site_CM_SALA: J=0.0  shared=0  A-only=4  B-only=1
+- site_CM_PSIL vs site_CM_SYRI: J=0.0  shared=0  A-only=4  B-only=4
+- site_CM_PSIL vs tablet: J=0.05  shared=4  A-only=0  B-only=76
+- site_CM_PYLA vs site_CM_RASH: J=0.1132  shared=6  A-only=1  B-only=46
+- site_CM_PYLA vs site_CM_SALA: J=0.0  shared=0  A-only=7  B-only=1
+- site_CM_PYLA vs site_CM_SYRI: J=0.0  shared=0  A-only=7  B-only=4
+- site_CM_PYLA vs tablet: J=0.0875  shared=7  A-only=0  B-only=73
+- site_CM_RASH vs site_CM_SALA: J=0.0192  shared=1  A-only=51  B-only=0
+- site_CM_RASH vs site_CM_SYRI: J=0.037  shared=2  A-only=50  B-only=2
+- site_CM_RASH vs tablet: J=0.65  shared=52  A-only=0  B-only=28
+- site_CM_SALA vs site_CM_SYRI: J=0.0  shared=0  A-only=1  B-only=4
+- site_CM_SALA vs tablet: J=0.0125  shared=1  A-only=0  B-only=79
+- site_CM_SYRI vs tablet: J=0.037  shared=3  A-only=1  B-only=77
+
+## Cross-group shared-sign analysis
+
+- Signs shared across all groups: 57
+  ['001', '002', '004', '005', '006', '007', '008', '009', '011', '012', '013', '017', '019', '021', '023']...
+- Signs unique to tablet: 23
+- Signs unique to other media: 28
+
+## Known-answer: synthetic scribal variants
+
+- Label: synthetic_scribal_variants_ka
+- tokens=272  distinct=43
+- H₁=4.629  H(next|prev)=1.94
+- shuffle null: observed=1.9404  mean=2.807  z=-19.31
+- Scribal variants (shared sign set, bigram structure) MUST show strong conditional structure vs shuffle (z << -3).
+
+## Negative control
+
+- Label: unigram_shuffle_negative_control
+- tokens=2848  distinct=108
+- shuffle null: observed=4.4271  mean=4.4191  z=0.6
+- A shuffled version of the real data must NOT light up as structured.
+
+## Verdict
+
+**STRUCTURE_SIGNAL**
+
+- full_corpus: STRUCTURE_SIGNAL z=-28.95
+- tablet: STRUCTURE_SIGNAL z=-26.69
+- other_media: STRUCTURE_SIGNAL z=-12.04
+- site_CM_ENKO: STRUCTURE_SIGNAL z=-26.42
+- site_CM_RASH: STRUCTURE_SIGNAL z=-11.99
+- site_CM_KALA: STRUCTURE_SIGNAL z=-3.86
+- Cross-group Jaccard mean: 0.0649
+- Tablet vs other shared: 0.5278
+- KA scribal variants: z=-19.31 PASS
+
+## Caveats
+
+1. **Corpus reconstructed from trigram-sliding-window data** — sign sequences are read from individual cropped sign image paths, not from authoritative transliteration tables. Directionality (LTR/RTL/boustrophedon) may not be preserved.
+2. **CM1/CM2/CM3 labels not directly available** in the open sign2vec_d data. Site-based and medium-based labels used as proxies.
+3. **Token normalization** strips underscore-suffixed variants (e.g., '046_' → '046'). These are paleographic variants, not distinct graphemes, per the paper's argument.
+4. **Short sequences predominate** — many inscriptions carry only 1–5 signs. Longer tablet sequences drive most structural signal.
+5. **No decipherment, language ID, or script classification.

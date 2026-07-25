@@ -44,7 +44,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟢 **merged** — UNDERDETERMINED (z≈−2.0, <3σ); Big Dipper/Orion KA separate; selection-bias caveat. `outputs/betty_hill/` |
 | **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟢 **merged PR #9** — STRUCTURE_SIGNAL; z≈−22.9 cond-H; z≈−27 graph null; P122+P385 ×29; Mohenjo-daro only |
 | **G10** | **Minimax M3** | Voynich morphology (structure-only) | symbolseq + shuffle; 2025 Arabic-ρ claim-under-test | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
-| **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
+| **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟡 **PR #11 in gate** — STRUCTURE_SIGNAL z≈−28.95; tablet↔other J≈0.53; KA/NC pass |
 | **G12** | queue | Linear Elamite entropy bounds | symbolseq; Liège 2024 | ⬜ after G10 — EXTENDS PE |
 | **G13** | queue | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | ⬜ no-signal prior |
 | **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
@@ -74,8 +74,8 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G9** | 🟢 merged PR #9 — Indus STRUCTURE_SIGNAL. |
 | **G10** | 🟡 M3 assigned — Voynich morphology. |
 | **Minimax M3** | 🟡 on **G10** Voynich. |
-| **Opencode** | 🟡 on **G11** Cypro-Minoan. |
-| **Cursor** | 🟢 merge gate on `main` — watching G10 / G11 |
+| **Opencode** | 🟢 PR #11 — G11 Cypro-Minoan structure probe (in Cursor gate). |
+| **Cursor** | 🟢 merge gate on `main` — reviewing G11 / watching G10 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -85,12 +85,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G11**. **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **PR #11** (G11 in gate). **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3), G11 (Opencode). Leads: anomalistics + docs/research_leads_kimi_2026-07-25.md |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3). PR in gate: G11 (Opencode PR #11). Leads: anomalistics + docs/research_leads_kimi_2026-07-25.md |
 
 ---
 
