@@ -1,16 +1,26 @@
 # Acquisition status
 
-## Have
-- Julia Set 1996: TT OH + angles, Getty drop, SI still
-- Allington Cube 1999: Lucy Pringle drop + TT
-- Milk Hill Galaxy 2001: TT OH + Transcend drop
-- Cherhill: 1996 TT + 1993 Lucy thumbs (`cherhill_1993_lucy_*`) — thumbs are “Hand of Friendship” pictogram pages; confirm vs BLT iron-glaze sample photos
-- DNA Alton Barnes 1996, Triple Julia, Chilbolton message/face, Barbury π, 3D cubes infographic
+## Primary aerials (usable for CV)
 
-## Have (continued)
-- Edmonton 1999: BLT Wayback lab images → `edmonton_1999.jpg` + `blt_edmonton/` (node comparison, figs)
+| Formation | File | Notes |
+|-----------|------|-------|
+| Julia Set 1996 | `julia_set_1996_tt_oh.jpg` (+ angles, Getty, SI) | Best TT overhead |
+| Edmonton 1999 | **`edmonton_1999.png`** (600×324) | Replaces low-res BLT ed-1/ed-2 as main aerial; lab figs stay in `blt_edmonton/` |
+| Eltopia 1998 | **`eltopia_1998_iccra.png`** (300×227) | ICCRA WA / Pasco–Franklin County grab |
+| Allington Cube 1999 | `allington_cube_1999_lucy.png` + TT | Lucy drop |
+| Milk Hill Galaxy 2001 | `milk_hill_galaxy_2001_tt_oh.jpg` | |
+| Chilbolton 2001 | `chilbolton_message_2001_tt.jpg` etc. | |
+| Wiltshire spiral (misc.) | `wiltshire_spiral_aerial.png` | **Not** Cherhill 1993 — later Wiltshire spiral (often miscited) |
+| Known hoax (control) | **`chualar_2013_nvidia_hoax.png`** | Chualar 2013 / NVIDIA Tegra Braille “192” — use as man-made baseline |
+| Typology collage | `lucy_pringle_collage_mystery_fields.png` | Low-res thumbs only |
 
-## Still missing
-- Confirmed BLT iron-glaze plant close-ups for Cherhill 1993 (Lucy thumbs are aerial pictogram pages)
-- `logan_utah_1996.jpg`, `eltopia_1998.jpg` (BLT site offline; Wayback labreport paths not confirmed yet)
+## Lab-only / no good aerial online
 
+| Formation | Status |
+|-----------|--------|
+| **Cherhill 1993 (järnglasyr)** | No confirmed iron-glaze aerial online. Lucy `cherhill_1993_lucy_*` = “Hand of Friendship” pictogram thumbs, not the BLT two-circle ~15 m iron-glaze case. Rely on BLT lab reports (meteoritic glaze, nodes). |
+| **Logan, Utah 1996** | No published aerial found (search noise = irrigation circles / unrelated). Rely on BLT biophysical notes (expulsion cavities, heat). |
+
+## BLT Wayback (Edmonton lab)
+
+`blt_edmonton/` — node comparison, figs, low-res ed-1/ed-2 (kept as lab context, not primary CV aerial).

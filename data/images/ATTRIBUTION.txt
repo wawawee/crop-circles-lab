@@ -26,6 +26,12 @@ Synthetic:
 Infographics / third-party pages:
   cubes_3d_collection_infographic.png — Shapes of Wisdom (diagrams, not aerials)
   milk_hill_galaxy_2001_transcend.png, pictogram_1989_1999_lemuria.png — third-party web grabs
+  lucy_pringle_collage_mystery_fields.png — Lucy Pringle collage slide (thumbs)
+  wiltshire_spiral_aerial.png — third-party Wiltshire spiral aerial (not Cherhill 1993)
+  eltopia_1998_iccra.png — ICCRA / WA Eltopia grab
+  edmonton_1999.png — better Edmonton aerial (replaces BLT ed-1 as CV primary)
+  chualar_2013_nvidia_hoax.png — © 111th Aerial Photography; known NVIDIA marketing hoax (control sample)
 
 BLT Research Team (Wayback Machine snapshots under blt_edmonton/):
   Lab Report images from archived bltresearch.com — cite BLT/Talbott/Levengood.
+  Low-res ed-1/ed-2 kept for lab context only; use edmonton_1999.png for CV.

@@ -24,7 +24,7 @@
         "https://bltresearch.com/labreports.php",
         "https://skepticalinquirer.org/2022/05/revisiting-the-stonehenge-surprise-the-best-case-for-crop-circles/"
       ],
-      "image_files": ["julia_set_1996.jpg"]
+      "image_files": ["julia_set_1996_tt_oh.jpg", "julia_set_1996_getty.png", "julia_set_1996_si.jpg"]
     },
     {
       "id": "cherhill-1993",
@@ -32,7 +32,7 @@
       "location": "Cherhill, Wiltshire, UK",
       "date": "1993-08",
       "priority": 1,
-      "tags": ["blt", "microwave", "meteoritic-iron", "scorched", "authentic-candidate"],
+      "tags": ["blt", "microwave", "meteoritic-iron", "scorched", "authentic-candidate", "lab-data-only"],
       "blt": {"lab_report": 104, "status": "examined", "notes": "Meteoritic iron glaze on plant tissue; node elongation; dead insects on seed heads"},
       "claimed_features": {
         "circles": 2,
@@ -40,12 +40,13 @@
         "separation_m": 60,
         "iron_spheres_um": [10, 40]
       },
-      "geometry_notes": "Two circles ~15m with ~0.5m vortices; iron glaze concentrated in vortices.",
+      "geometry_notes": "Two circles ~15m with ~0.5m vortices; iron glaze concentrated in vortices. NO confirmed aerial online — do not confuse with wiltshire_spiral_aerial.png or Lucy Hand-of-Friendship thumbs.",
       "sources": [
         "https://bltresearch.com/labreports.php",
         "http://www.lucypringle.co.uk/photos/1993/uk1993db.shtml"
       ],
-      "image_files": ["cherhill_1993.jpg"]
+      "image_files": [],
+      "lab_track": "Use BLT #104 plant/soil data; Lucy cherhill_1993_lucy_* are different 1993 pictogram thumbs only"
     },
     {
       "id": "logan-utah-1996",
@@ -53,7 +54,7 @@
       "location": "Logan, Utah, USA",
       "date": "1996-08-23",
       "priority": 1,
-      "tags": ["blt", "microwave", "expulsion-cavities", "heat", "authentic-candidate"],
+      "tags": ["blt", "microwave", "expulsion-cavities", "heat", "authentic-candidate", "lab-data-only"],
       "blt": {"status": "examined", "notes": "Expulsion cavities, 90-degree bends without breaking, soil heat evidence, plasma vortex candidate"},
       "claimed_features": {
         "circles": 2,
@@ -61,9 +62,10 @@
         "connecting_path_ft": 258,
         "orientation_note": "roughly toward Logan LDS Temple"
       },
-      "geometry_notes": "Dumbbell-like with wing-like protrusions; less complex art, strong biophysical claims.",
+      "geometry_notes": "Dumbbell-like with wing-like protrusions. No published aerial found online (search noise = desert irrigation circles).",
       "sources": ["https://bltresearch.com/"],
-      "image_files": ["logan_utah_1996.jpg"]
+      "image_files": [],
+      "lab_track": "Rely on BLT biophysical notes; skip CV until an aerial surfaces"
     },
     {
       "id": "edmonton-1999",
@@ -79,12 +81,12 @@
         "layers": 3,
         "crop": "thistle-heavy field"
       },
-      "geometry_notes": "Counter-clockwise perimeter band UNDER radial layer UNDER chaotic top layer — key for swirl/layer analysis.",
+      "geometry_notes": "Counter-clockwise perimeter band UNDER radial layer UNDER chaotic top layer — key for swirl/layer analysis. Oblique aerial needs perspective correction before ratios.",
       "sources": [
         "https://bltresearch.com/labreports.php",
         "https://unsolvedmysteries.fandom.com/wiki/Canada_Crop_Circles"
       ],
-      "image_files": ["edmonton_1999.jpg"]
+      "image_files": ["edmonton_1999.png", "blt_edmonton/ed-1.jpg", "blt_edmonton/Node_Comparison.jpg"]
     },
     {
       "id": "eltopia-1998",
@@ -98,9 +100,22 @@
         "circles": 9,
         "size_ft": [270, 200]
       },
-      "geometry_notes": "Useful for temporal edge-degradation comparison if multi-date photos exist.",
-      "sources": ["https://bltresearch.com/"],
-      "image_files": ["eltopia_1998.jpg"]
+      "geometry_notes": "Useful for temporal edge-degradation comparison if multi-date photos exist. ICCRA grab is low-res (300×227).",
+      "sources": ["https://bltresearch.com/", "ICCRA"],
+      "image_files": ["eltopia_1998_iccra.png"]
+    },
+    {
+      "id": "chualar-2013-nvidia",
+      "name": "Chualar California (NVIDIA hoax)",
+      "location": "Chualar, California, USA",
+      "date": "2013",
+      "priority": 3,
+      "tags": ["known-hoax", "control", "man-made", "braille"],
+      "blt": {"status": "n/a"},
+      "claimed_features": {"motif": "chip/circuit with Braille '192' (Tegra K1 cores)"},
+      "geometry_notes": "Confirmed marketing stunt — excellent man-made control for CV classifiers.",
+      "sources": ["111th Aerial Photography", "NVIDIA marketing coverage"],
+      "image_files": ["chualar_2013_nvidia_hoax.png"]
     },
     {
       "id": "alton-barnes-dna-1996",
