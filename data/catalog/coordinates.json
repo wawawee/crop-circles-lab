@@ -1,0 +1,17 @@
+{
+  "notes": "Approximate coordinates for spatial analysis of the priority formations. NOT survey-grade. Wiltshire/Hampshire entries are field- or monument-level; US/Canada entries are town/city-level. Provenance: known monument coordinates + the formation's stated location text. Flagged rows ('uncertain') should be verified against a survey diagram before any distance claim is leaned on.",
+  "coordinates": {
+    "stonehenge-julia-1996":            {"lat": 51.1793, "lon": -1.8266, "confidence": "site-approx",   "note": "field opposite Stonehenge across the A303"},
+    "cherhill-1993":                    {"lat": 51.4310, "lon": -1.9330, "confidence": "village-level"},
+    "logan-utah-1996":                  {"lat": 41.7370, "lon": -111.8338, "confidence": "town-level"},
+    "edmonton-1999":                    {"lat": 53.5461, "lon": -113.4938, "confidence": "city-level-approx"},
+    "eltopia-1998":                     {"lat": 46.4290, "lon": -119.0490, "confidence": "town-level"},
+    "chualar-2013-nvidia":              {"lat": 36.5710, "lon": -121.5230, "confidence": "town-level"},
+    "alton-barnes-dna-1996":            {"lat": 51.3630, "lon": -1.8290, "confidence": "site-approx", "note": "East Field, Alton Barnes"},
+    "chilbolton-arecibo-2001":          {"lat": 51.1450, "lon": -1.4370, "confidence": "site", "note": "Chilbolton Observatory"},
+    "milk-hill-galaxy-2001":            {"lat": 51.3760, "lon": -1.8560, "confidence": "site-approx"},
+    "barbury-pi-2008":                  {"lat": 51.4866, "lon": -1.7810, "confidence": "site-approx", "note": "field below Barbury Castle"},
+    "allington-cube-1999":              {"lat": 51.3450, "lon": -1.9150, "confidence": "uncertain", "note": "Allington nr Devizes -- verify against survey diagram"},
+    "windmill-hill-triple-julia-1996":  {"lat": 51.4340, "lon": -1.8620, "confidence": "site", "note": "Windmill Hill, Avebury"}
+  }
+}

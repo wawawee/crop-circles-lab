@@ -109,7 +109,7 @@
 
 **Acceptance:** CSV + short caveats (tiny N, no claim of authenticity).
 
-### B7 — Spatial / temporal stub → real catalog CSV
+### B7 — Spatial / temporal stub → real catalog CSV — DONE ✅
 **Goal:** Make `spatial.py` ideas real.  
 **Work:**
 1. `data/catalog/formations.csv` with id, lat, lon, date, tags, image path (from `priority_formations.json`).
@@ -117,6 +117,8 @@
 3. Optional lunar phase via astropy for dated rows.
 
 **Acceptance:** CSV + script `tools/ccat/spatial_report.py` printing nearest monument.
+
+**Result (2026-07-25, Hyperagent/finasteos):** Landed `data/catalog/formations.csv` (12 formations), `data/catalog/coordinates.json` (approx coords, precision-flagged), and `tools/ccat/spatial_report.py`. Nearest-monument via inline haversine (no geopy). Moon illumination via a pure-Python synodic approximation (dropped astropy: 5.3 breaks on numpy 2 under py3.9, and 6.x needs py3.10 — the approximation runs anywhere and was validated: Windmill Hill Triple Julia 1996-07-29 → 0.97 near full [full moon 30 Jul 1996 ✓]; DNA 1996-06-17 → 0.01 near new [new moon 15 Jun 1996 ✓]). Wiltshire cluster = 7/12 within 30 km of Avebury; 4 non-UK sites (Logan/Edmonton/Eltopia/Chualar) have no monument in our set. NOTE: coords are approximate — verify `allington-cube-1999` before leaning on its distance.
 
 ### B8 — Vision LLM triage hook (local)
 **Goal:** Use BAMBAM models via LM Studio.  
@@ -136,7 +138,7 @@
 | C1 | High-res Crabwood disc master | Temporary Temples purchase / higher scan — **OWNER** |
 | C2 | Cherhill 1993 iron-glaze lab HTML + micrographs | Wayback 404 on cherhill.php; published paper hunt — **READY to search**, asset may not exist public |
 | C3 | True overhead Logan / Eltopia hi-res | Not found public; ICCRA Eltopia is 300×227 only |
-| C4 | Public release of TT/Lucy/Getty images | Must stay private / attributed — see `NOTICE.md` — **OWNER** legal |
+| C4 | Public release of TT/Lucy/Getty images | Must stay private / attributed — **OWNER** legal |
 
 ### C2 subtasks (if picking up)
 - Search Semantic Scholar / Sci-Hub-accessible metadata for Levengood “semi-molten meteoric iron” / Physiologia Plantarum crop circle papers.
@@ -151,7 +153,7 @@
 |-----------------|-------|
 | **CV engineer** | B3, B4 |
 | **Crypto / encoding** | B1, B2 |
-| **Data wrangler** | B5, B7, C2 search |
+| **Data wrangler** | B5, C2 search (B7 ✅) |
 | **ML lite** | B6 |
 | **Local vision** | B8 |
 | **Captain (human)** | C1, C4, prioritize which READY next |
@@ -183,10 +185,11 @@ python tools/ccat/crabwood_bits.py data/images/crabwood_2002_tt_disc.jpg --out o
 python tools/ccat/chilbolton_grid.py data/images/chilbolton_message_2001_tt.jpg --out outputs/chilbolton_grid.json
 python tools/ccat/info_theory.py --synthetic-julia
 python tools/ccat/blt_archive.py --out data/reports/blt_wayback
+python tools/ccat/spatial_report.py
 ```
 
 When finishing a task: update the status line for that ID in this file, commit, push.
 
 ---
 
-*Last updated: 2026-07-25 — deep-dive pipeline landed; B1–B8 are the open READY queue.*
+*Last updated: 2026-07-25 — B7 landed (spatial catalog, Hyperagent/finasteos). Open READY: B1–B6, B8.*

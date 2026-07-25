@@ -1,0 +1,13 @@
+id,name,date,lat,lon,coord_confidence,nearest_monument,monument_km,lunar_illum,lunar_date_basis,priority,tags,image_files
+stonehenge-julia-1996,Julia Set,1996-07-07,51.1793,-1.8266,site-approx,Stonehenge,0.05,0.647,exact,1,fractal|julia-set|time-window|blt|complex,julia_set_1996_tt_oh.jpg|julia_set_1996_getty.png
+cherhill-1993,Cherhill Iron Glaze,1993-08,51.431,-1.933,village-level,Windmill Hill (Avebury),4.93,0.079,approx-mid-month,1,blt|microwave|meteoritic-iron|scorched|authentic-candidate|lab-data-only,
+logan-utah-1996,Logan Utah,1996-08-23,41.737,-111.8338,town-level,Windmill Hill (Avebury),7650.24,0.637,exact,1,blt|microwave|expulsion-cavities|heat|authentic-candidate|lab-data-only,logan_utah_1996.jpg
+edmonton-1999,Edmonton Alberta,1999-09,53.5461,-113.4938,city-level-approx,Barbury Castle,6726.87,0.214,approx-mid-month,1,blt|microwave|soil-xrd|layered-lay|thistle|authentic-candidate,edmonton_1999.png
+eltopia-1998,Eltopia Washington,1998-06-18,46.429,-119.049,town-level,Barbury Castle,7591.02,0.409,exact,1,blt|revisitation|authentic-candidate,eltopia_1998_iccra.png
+chualar-2013-nvidia,Chualar California (NVIDIA hoax),2013,36.571,-121.523,town-level,Barbury Castle,8606.73,,year-only-skipped,3,known-hoax|control|man-made|braille,chualar_2013_nvidia_hoax.png
+alton-barnes-dna-1996,DNA Double Helix,1996-06-17,51.363,-1.829,site-approx,Adam's Grave (Alton Barnes),0.71,0.006,exact,2,complex|dna|beautifully-laid,dna_alton_barnes_1996.jpg
+chilbolton-arecibo-2001,Arecibo Answer / Chilbolton,2001-08,51.145,-1.437,site,Chilbolton Observatory,0.0,0.188,approx-mid-month,2,complex|message|arecibo|likely-human,chilbolton_arecibo_2001.jpg
+milk-hill-galaxy-2001,Milk Hill Galaxy,2001-08-12,51.376,-1.856,site-approx,Adam's Grave (Alton Barnes),1.67,0.482,exact,2,complex|fractal|largest,milk_hill_galaxy_2001.jpg
+barbury-pi-2008,Barbury Castle Pi,2008-06-01,51.4866,-1.781,site-approx,Barbury Castle,0.0,0.085,exact,2,complex|mathematical|pi|lucy-pringle,barbury_pi_2008.jpg
+allington-cube-1999,The Cube,1999,51.345,-1.915,uncertain,Adam's Grave (Alton Barnes),6.03,,year-only-skipped,2,complex|3d-perspective|cube,allington_cube_1999.jpg
+windmill-hill-triple-julia-1996,Triple Julia Set,1996-07-29,51.434,-1.862,site,Windmill Hill (Avebury),0.0,0.973,exact,2,fractal|julia-set|complex,triple_julia_1996.jpg
