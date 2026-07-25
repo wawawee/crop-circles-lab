@@ -1,0 +1,226 @@
+{
+  "generated_at": "2026-07-25T11:05:52.112190+00:00",
+  "ticket": "G8",
+  "stance": "structure != message",
+  "prior": "NO_SIGNAL",
+  "map": {
+    "title": "Betty Hill Star Map (Fish Interpretation)",
+    "version": "1.1",
+    "source": "Dickinson, T. (1974). 'The Zeta Reticuli Incident.' Astronomy, 2(6): 4-17.",
+    "star_selection_caveat": "Fish selected ~15 stars from ~330 within 65 ly that best matched the sketch. Statistical significance is contested (Soter 1978). This analysis treats the graph structure as-is, not as a selection-corrected test.",
+    "n_nodes_total": 15,
+    "n_nodes_with_coords": 14,
+    "n_edges": 21,
+    "sun_included_as_node": true
+  },
+  "resolution": {
+    "n_resolved_actual": 14,
+    "sun_excluded_from_geometry": true,
+    "resolution_errors": [
+      "sun: no sky position (excluded from angle computation)"
+    ],
+    "backend": "skyfield (DE441 + embedded J2000 Hipparcos coords)"
+  },
+  "hill_graph_stats": {
+    "n_nodes": 14,
+    "pairwise": {
+      "n_pairs": 91,
+      "mean": 65.7288378818828,
+      "std": 33.948055473757165,
+      "min": 0.0056090416585066055,
+      "max": 141.3176620981364,
+      "median": 59.696470337994235
+    },
+    "mst": {
+      "n_edges": 13,
+      "mean": 27.33158417997509,
+      "std": 17.983023264658648,
+      "min": 0.0056090416585066055,
+      "max": 79.28849549332976,
+      "median": 27.18014513657469,
+      "total": 355.31059433967613
+    },
+    "neighbor": {
+      "degrees": [
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13
+      ],
+      "mean_degree": 13.0,
+      "degree_hist": {
+        "13": 14
+      },
+      "mean_nnd": 24.12248848727739,
+      "nnd_std": 18.623669870766808
+    },
+    "graph_energy": 1795.0293908075464
+  },
+  "hill_edge_stats": {
+    "n_edges": 20,
+    "mean": 42.743224532648114,
+    "std": 31.01711679441967,
+    "min": 0.0056090416585066055,
+    "max": 113.1657157168747,
+    "median": 28.902821355575366
+  },
+  "random_field_null": {
+    "n_trials": 500,
+    "seed": 42,
+    "null_mst_mean_mean": 33.76879185236078,
+    "null_mst_mean_std": 3.1983764453035617,
+    "comparison": {
+      "mst_mean": {
+        "z": -2.0126,
+        "percentile": 97.0,
+        "n_null": 500,
+        "excess_1sigma": true,
+        "excess_2sigma": true,
+        "excess_3sigma": false
+      },
+      "mst_total": {
+        "z": -2.0126,
+        "percentile": 97.0,
+        "n_null": 500,
+        "excess_1sigma": true,
+        "excess_2sigma": true,
+        "excess_3sigma": false
+      }
+    }
+  },
+  "degree_preserving_null": {
+    "mst_mean": {
+      "z": -1.7476,
+      "percentile": 100.0,
+      "n_null": 500,
+      "excess_1sigma": true,
+      "excess_2sigma": false,
+      "excess_3sigma": false,
+      "null_caption": "degree-preserving shuffle"
+    },
+    "edge_mean": {
+      "z": -9.5394,
+      "percentile": 100.0,
+      "n_null": 500,
+      "excess_1sigma": true,
+      "excess_2sigma": true,
+      "excess_3sigma": true,
+      "null_caption": "edge lengths under degree-preserving shuffle"
+    }
+  },
+  "edge_length_vs_all_pairs": {
+    "z": -0.6771,
+    "percentile": 70.3,
+    "n_null": 91,
+    "excess_1sigma": false,
+    "excess_2sigma": false,
+    "excess_3sigma": false,
+    "real_caption": "mean edge length of drawn graph",
+    "null_caption": "mean of all pairwise distances (random pairs in same set)"
+  },
+  "known_answer_tests": {
+    "big_dipper_core": {
+      "label": "Big Dipper core (7 stars)",
+      "names": "Alkaid, Mizar, Alioth, Megrez, Dubhe, Merak, Phecda",
+      "n_stars": 7,
+      "real": {
+        "mst_mean": 5.764969310534137,
+        "mst_total": 34.58981586320482,
+        "pairwise_mean": 12.120381725693736,
+        "graph_energy": 152.75512874207396
+      },
+      "null_comparison": {
+        "mst_mean": {
+          "z": -3.1771,
+          "percentile": 99.5,
+          "n_null": 200,
+          "excess_1sigma": true,
+          "excess_2sigma": true,
+          "excess_3sigma": true
+        },
+        "mst_total": {
+          "z": -3.1771,
+          "percentile": 99.5,
+          "n_null": 200,
+          "excess_1sigma": true,
+          "excess_2sigma": true,
+          "excess_3sigma": true
+        },
+        "pairwise_mean": {
+          "z": -3.1707,
+          "percentile": 99.5,
+          "n_null": 200,
+          "excess_1sigma": true,
+          "excess_2sigma": true,
+          "excess_3sigma": true
+        },
+        "graph_energy": {
+          "z": -3.2273,
+          "percentile": 99.5,
+          "n_null": 200,
+          "excess_1sigma": true,
+          "excess_2sigma": true,
+          "excess_3sigma": true
+        }
+      },
+      "verdict": "SEPARATED (planted asterism detected)"
+    },
+    "orion_belt": {
+      "label": "Orion's Belt (3 stars)",
+      "names": "Alnitak, Alnilam, Mintaka",
+      "n_stars": 3,
+      "real": {
+        "mst_mean": 1.3258310499191113,
+        "mst_total": 2.6516620998382225,
+        "pairwise_mean": 1.619636267856783,
+        "graph_energy": 6.589739587553991
+      },
+      "null_comparison": {
+        "mst_mean": {
+          "z": -2.7951,
+          "percentile": 100.0,
+          "n_null": 200,
+          "excess_1sigma": true,
+          "excess_2sigma": true,
+          "excess_3sigma": false
+        },
+        "mst_total": {
+          "z": -2.7951,
+          "percentile": 100.0,
+          "n_null": 200,
+          "excess_1sigma": true,
+          "excess_2sigma": true,
+          "excess_3sigma": false
+        },
+        "pairwise_mean": {
+          "z": -3.0787,
+          "percentile": 100.0,
+          "n_null": 200,
+          "excess_1sigma": true,
+          "excess_2sigma": true,
+          "excess_3sigma": true
+        },
+        "graph_energy": {
+          "z": -3.1114,
+          "percentile": 100.0,
+          "n_null": 200,
+          "excess_1sigma": true,
+          "excess_2sigma": true,
+          "excess_3sigma": true
+        }
+      },
+      "verdict": "SEPARATED (planted asterism detected)"
+    }
+  },
+  "verdict": "UNDERDETERMINED | Hill map z(max)=2.01 (weak, <3sigma) | Known-answer SEPARATED | Per-statistic z-scores in run.json | Selection-bias (Fish chose from ~330 stars) not corrected"
+}

@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "title": "Betty Hill Star Map (Fish Interpretation)",
+    "version": "1.1",
+    "description": "Encoded graph of the star map Betty Hill sketched during hypnotic regression (1961), with Marjorie Fish's star identifications (1974). J2000 coordinates from Hipparcos catalog via skyfield.",
+    "source_citation": "Dickinson, T. (1974). 'The Zeta Reticuli Incident.' Astronomy, 2(6): 4-17.",
+    "secondary_sources": [
+      "Soter, S. (1978). 'Betty Hill's Star Map.' Astronomy, 6(11): 6.",
+      "Sturrock, P. (1987). An Analysis of the Betty Hill Star Map. SUIPR Report No. 1021.",
+      "Fish, M. (1973-1978). Personal correspondence and model construction, as cited in Dickinson (1974)."
+    ],
+    "star_selection_caveat": "Fish selected ~15 stars from ~330 within 65 ly that best matched the sketch. Statistical significance is contested (Soter 1978). This analysis treats the graph structure as-is, not as a selection-corrected test.",
+    "coordinate_note": "J2000 RA/Dec from Hipparcos. Resolved via skyfield Star(ra_hours, dec_degrees) using DE441 ephemeris. Small ~0.01deg proper-motion corrections not applied (insignificant for pairwise angular separations)."
+  },
+  "nodes": [
+    {"id": "zet1",  "label": "Zeta1 Reticuli",   "hip": 15330,  "ra_j2000_h": 3.30354,  "dec_j2000_deg": -62.5064,  "common": "Zeta1 Reticuli",  "vmag": 5.52, "dist_ly": 39.3, "spectral": "G2V"},
+    {"id": "zet2",  "label": "Zeta2 Reticuli",   "hip": 15371,  "ra_j2000_h": 3.30273,  "dec_j2000_deg": -62.5064,  "common": "Zeta2 Reticuli",  "vmag": 5.24, "dist_ly": 39.3, "spectral": "G1V"},
+    {"id": "sun",   "label": "Sun",              "hip": null,   "ra_j2000_h": null,      "dec_j2000_deg": null,      "common": "Sun",            "vmag": -26.7, "dist_ly": 0.0, "spectral": "G2V"},
+    {"id": "tau",   "label": "Tau Ceti",         "hip": 8102,   "ra_j2000_h": 1.68447,   "dec_j2000_deg": -15.9375,  "common": "Tau Ceti",       "vmag": 3.50, "dist_ly": 11.9, "spectral": "G8V"},
+    {"id": "82er",  "label": "82 Eridani",       "hip": 15510,  "ra_j2000_h": 3.33213,   "dec_j2000_deg": -43.0697,  "common": "82 Eridani",     "vmag": 4.27, "dist_ly": 19.7, "spectral": "G8V"},
+    {"id": "delp",  "label": "Delta Pavonis",    "hip": 99240,  "ra_j2000_h": 20.1454,   "dec_j2000_deg": -66.1819,  "common": "Delta Pavonis",  "vmag": 3.55, "dist_ly": 19.9, "spectral": "G8IV"},
+    {"id": "eps",   "label": "Epsilon Eridani",  "hip": 16537,  "ra_j2000_h": 3.53772,   "dec_j2000_deg": -9.4583,   "common": "Epsilon Eridani","vmag": 3.73, "dist_ly": 10.5, "spectral": "K2V"},
+    {"id": "hr8832","label": "HR 8832",          "hip": 114622, "ra_j2000_h": 23.2206,   "dec_j2000_deg": 57.1678,   "common": "HR 8832",        "vmag": 5.57, "dist_ly": 21.3, "spectral": "K3V"},
+    {"id": "luy",   "label": "Luyten's Star",    "hip": 36208,  "ra_j2000_h": 7.45681,   "dec_j2000_deg": 5.2258,    "common": "Luyten's Star",  "vmag": 9.87, "dist_ly": 12.4, "spectral": "M3.5V"},
+    {"id": "gl1",   "label": "Gliese 1",         "hip": 439,    "ra_j2000_h": 0.02344,   "dec_j2000_deg": -37.3575,  "common": "Gliese 1",       "vmag": 8.56, "dist_ly": 14.2, "spectral": "M1.5V"},
+    {"id": "gl86",  "label": "Gliese 86",        "hip": 10138,  "ra_j2000_h": 2.17358,   "dec_j2000_deg": -50.8236,  "common": "Gliese 86",      "vmag": 6.17, "dist_ly": 35.2, "spectral": "K1V"},
+    {"id": "gl832", "label": "Gliese 832",       "hip": 106440, "ra_j2000_h": 21.55944,  "dec_j2000_deg": -49.0092,  "common": "Gliese 832",     "vmag": 8.67, "dist_ly": 16.2, "spectral": "M1.5V"},
+    {"id": "gl754", "label": "Gliese 754",       "hip": 93873,  "ra_j2000_h": 19.11236,  "dec_j2000_deg": -43.6389,  "common": "Gliese 754",     "vmag": 12.23,"dist_ly": 19.3, "spectral": "M4.5V"},
+    {"id": "gl205", "label": "Gliese 205",       "hip": 25878,  "ra_j2000_h": 5.53344,   "dec_j2000_deg": 3.6253,    "common": "Gliese 205",     "vmag": 7.97, "dist_ly": 18.6, "spectral": "M1.5V"},
+    {"id": "gl229", "label": "Gliese 229",       "hip": 29295,  "ra_j2000_h": 6.17628,   "dec_j2000_deg": -21.8647,  "common": "Gliese 229",     "vmag": 8.14, "dist_ly": 19.0, "spectral": "M1V"}
+  ],
+  "edges": [
+    {"source": "zet1",  "target": "zet2",  "style": "solid", "note": "Zeta binary pair"},
+    {"source": "zet1",  "target": "gl86",  "style": "solid"},
+    {"source": "zet2",  "target": "gl86",  "style": "solid"},
+    {"source": "zet1",  "target": "82er",  "style": "solid"},
+    {"source": "zet2",  "target": "82er",  "style": "solid"},
+    {"source": "gl86",  "target": "82er",  "style": "solid"},
+    {"source": "gl86",  "target": "delp",  "style": "solid"},
+    {"source": "82er",  "target": "delp",  "style": "solid"},
+    {"source": "gl86",  "target": "eps",   "style": "dashed"},
+    {"source": "eps",   "target": "gl1",   "style": "solid"},
+    {"source": "eps",   "target": "luy",   "style": "dashed"},
+    {"source": "gl1",   "target": "gl205", "style": "solid"},
+    {"source": "luy",   "target": "gl205", "style": "dashed"},
+    {"source": "gl205", "target": "gl229", "style": "solid"},
+    {"source": "gl229", "target": "gl832", "style": "solid"},
+    {"source": "gl1",   "target": "gl832", "style": "dashed"},
+    {"source": "gl832", "target": "gl754", "style": "solid"},
+    {"source": "delp",  "target": "gl754", "style": "dashed"},
+    {"source": "sun",   "target": "tau",   "style": "dashed"},
+    {"source": "tau",   "target": "hr8832","style": "dashed"},
+    {"source": "hr8832","target": "gl754", "style": "dashed"}
+  ],
+  "edges_caveat": "Edge connectivity reconstructed from published diagrams (Dickinson 1974). Different reproductions show slight variations. The 'style' field distinguishes solid from dashed as drawn on the original sketch."
+}
