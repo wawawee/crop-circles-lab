@@ -40,7 +40,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed — Ozma inherits for interpretation pass |
 | **G7** | Opencode | Gorafe megaliths | Orientation STRUCTURE; astro/spatial UNDER | 🟢 v1; G7++ later (sunrise + valley null) |
 | **G8** | queue | Betty Hill × Gaia | Star-map null | ⬜ paused (not tonight) |
-| **G-Amazon** | **Geoglyf** | Amazon Mode A | Zenodo + jqjacobs; NN/Ripley vs CSR | ⬜ skill ready; **data/code untouched** |
+| **G-Amazon** | **Ulfberht** (Geoglyf ej riggad) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY (klustring, ej mening); NN R=0.175 z=−46.7, Ripley L>CSR alla radier; kontroller gröna; Mode B BLOCKED |
 | **G-BLC1** | **Ozma** | BLC1 RFI known-answer | Inherit Minimax synth+no-TB stub; ON/OFF + harmonics | 🟡 bas landad — Ozma äger + granskar |
 
 ### Cursor cleanup signal (2026-07-25) — Hyper may start
