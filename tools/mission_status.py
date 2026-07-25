@@ -31,17 +31,25 @@ def main() -> None:
         {"id": "N5", "owner": "Captain/Cursor", "title": "Mission dashboard", "status": "done", "href": "reports/mission_dashboard.html"},
         {"id": "R1", "owner": "Minimax", "title": "radio_probe + honest fetchers", "status": "done", "href": "outputs/radio/"},
         {"id": "W1", "owner": "Cursor", "title": "Wheat closeout scans", "status": "done", "href": "outputs/wheat_closeout/SUMMARY.md"},
+        {"id": "G3", "owner": "Minimax→Ozma", "title": "Wow! 1977 sidereal beam-fit", "status": "done", "href": "outputs/radio/"},
+        {"id": "G7", "owner": "Opencode", "title": "Gorafe megaliths orientation", "status": "done", "href": "outputs/gorafe/run.json"},
+        {"id": "G4", "owner": "Opencode", "title": "Rongorongo 2D parallel passages", "status": "done", "href": "outputs/rongorongo/run.json"},
+        {"id": "G-Amazon", "owner": "Ulfberht", "title": "Amazon earthworks Mode A", "status": "in_review", "href": "outputs/amazon/run.json"},
+        {"id": "G-BLC1", "owner": "Ozma", "title": "BLC1 RFI known-answer", "status": "in_progress", "href": "tools/radio/blc1_fetcher.py"},
+        {"id": "R1++", "owner": "Ozma", "title": "CHIME Cat 2 periods (16.35 d)", "status": "in_progress", "href": "tools/radio/cat2_fetcher.py"},
     ]
     domains = {
         "crop_circles": {"covered": True, "notes": "B1–B11 + signal + wheat closeout"},
         "phaistos": {"covered": True, "notes": "z≈−14 + period-3 refrain; metre yes, meaning no"},
         "linear_a": {"covered": True, "notes": "z≈−73 formulaic STRUCTURE; null validates; not decipherment"},
+        "rongorongo": {"covered": True, "notes": "cond-entropy z≈−42.9 vs per-tablet shuffle; 33 cross-tablet parallels z≈+40.9; SEQUENCE_STRUCTURE, no decipherment"},
         "dna_epigenetics": {"covered": True, "notes": "bio_probe SARS + chr22 slice; biology ≠ message"},
         "uap_video": {"covered": True, "notes": "metadata poverty → g underdetermined"},
         "constants": {"covered": True, "notes": "first probe landed; verdict: structure, not signal"},
-        "archaeoastronomy": {"covered": True, "notes": "lunar-phase probe vs uniform null — NO SIGNAL"},
+        "archaeoastronomy": {"covered": True, "notes": "lunar-phase probe vs uniform null — NO SIGNAL; Gorafe orientation STRUCTURE, astro UNDERDETERMINED"},
+        "amazon": {"covered": False, "notes": "Mode A spatial point-process in review (PR): STRUCTURE_ONLY clustering vs CSR; merge held for 2nd reviewer"},
         "nazca": {"covered": False, "notes": "scout brief only"},
-        "wow_frb": {"covered": True, "notes": "radio scaffold + honest CHIME/Vela fetchers (park when unreachable)"},
+        "wow_frb": {"covered": True, "notes": "radio scaffold + honest CHIME/Vela fetchers (park when unreachable); G3 Wow beam-fit UNDERDETERMINED"},
     }
     status = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
