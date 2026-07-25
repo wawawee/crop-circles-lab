@@ -45,11 +45,11 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟢 **merged PR #9** — STRUCTURE_SIGNAL; z≈−22.9 cond-H; z≈−27 graph null; P122+P385 ×29; Mohenjo-daro only |
 | **G10** | **Minimax M3** | Voynich morphology (structure-only) | greedy EVA + Dominik ρ CUT | 🟢 **merged PR #12** — SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL; glyph z≪0; 32/32 tests |
 | **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟢 **merged PR #11** — STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY; z≈−28.95; tablet↔other J≈0.53 |
-| **G12** | queue | Linear Elamite entropy bounds | symbolseq; Liège 2024 | ⬜ after G10 — EXTENDS PE |
+| **G12** | **Minimax M3** | Linear Elamite entropy bounds | symbolseq; Liège 2024; Desset CUT | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
 | **G13** | queue | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | ⬜ no-signal prior |
 | **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
 | **G15** | queue | Cretan Hieroglyphic bipartite admin | network / symbolseq | ⬜ after Linear A |
-| **G16** | queue | Meroitic corpus (Otten 2025) | symbolseq; GitHub open | ⬜ **next script** after G11 — structure-only |
+| **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
 | **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
 | **G18** | queue | EAMENA ley-line null | spatial+network; GeoJSON subsets | ⬜ no-signal / FPR calib |
 | **G19** | queue | Long Delayed Echoes historic series | radio/FFT; digitized delays | ⬜ no-signal; Lunan CUT |
@@ -74,9 +74,9 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G9** | 🟢 merged PR #9 — Indus STRUCTURE_SIGNAL. |
 | **G10** | 🟢 merged PR #12 — Voynich SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL. |
 | **G11** | 🟢 merged PR #11 — CM STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY. |
-| **Minimax M3** | 💤 idle (G10 done). |
-| **Opencode** | 💤 idle (G11 done). |
-| **Cursor** | 🟢 merge gate on `main` — next assign from G12–G20 |
+| **Minimax M3** | 🟡 on **G12** Linear Elamite. |
+| **Opencode** | 🟡 on **G16** Meroitic. |
+| **Cursor** | 🟢 merge gate on `main` — watching G12 / G16 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -86,12 +86,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = idle. **Minimax M3** = idle. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G16**. **Minimax M3** = **G12**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: none — G10/G11 landed. Next: G16 Meroitic or G12 Linear Elamite. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G12** (M3) + **G16** (Opencode). |
 
 ---
 
@@ -300,12 +300,54 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > See docs/research_leads_kimi_2026-07-25.md.
 
 
-### G12–G20 — queue (do not start until Captain assigns)
-> **G12** Linear Elamite (Liège 2024) — EXTENDS PE; Desset decipherment = claim-under-test.  
+### G12 — Minimax M3 (ASSIGNED 2026-07-25) — Linear Elamite entropy bounds
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
+> Brief: [`docs/research_leads_anomalistics_2026-07-25.md`](docs/research_leads_anomalistics_2026-07-25.md) (G12).
+> EXTENDS G2/G2++ — reuse PE/Uruk patterns; do **not** reopen language-family claims.
+> Do NOT touch Voynich, Cypro-Minoan, Indus, radio, BLC1, Amazon, or Opencode’s G16 files.
+>
+> 1. Ingest open Linear Elamite sign streams (Hatamti / Liège 2024; CDLI Zenodo `10.5281/zenodo.4960710`
+>    or documented open dump). Save under `data/scripts/linear_elamite/` + README (attribution + license).
+>    Prefer text/JSON sign IDs — no huge image dumps. If fetch blocked → `NEVER_ATTEMPTED` / honest SKIP with synth path.
+> 2. Thin probe `tools/scripts/linear_elamite_probe.py` reusing `tools/forensics/symbolseq.py`
+>    (cond-H / IC / LZ / `structured_vs_shuffled`). Mirror G2++ style where useful.
+> 3. **Controls:** Proto-Elamite and/or Uruk numeral streams as **structure comparators only**
+>    (`language_family_claim_made: false`). Unigram-matched shuffle null of LE itself.
+> 4. **Claim-under-test:** Desset / Liège 2024 decipherment publicity — recompute whatever open
+>    frequency / bigram claim you can without endorsing readings. Verdict may include
+>    `CLAIM_FAILS_NULL` / `CLAIM_UNDERDETERMINED` / `RHO_PENDING_*` style honesty — never “deciphered”.
+> 5. Known-answer: planted formulaic LE-like sequences that must separate from shuffle;
+>    negative: random alphabet / shuffled LE.
+> 6. Outputs: `outputs/linear_elamite/{run.json,NOTES.md}` (+ optional PR_DESCRIPTION.md).
+>    Verdict vocab: SEQUENCE_STRUCTURE | NO_SIGNAL | UNDERDETERMINED | CLAIM_FAILS_NULL — never language ID.
+> 7. Tests under `tools/scripts/tests/test_linear_elamite_probe.py` (≥15). Forbidden-phrase list in probe.
+> 8. Branch `feat/g12-linear-elamite`. PR → Cursor merge. Stay on your branch; rebase on `main` before PR.
+> Forbidden: “Linear Elamite deciphered,” “Elamite = X,” PE↔LE language family, aliens, viral blogs as truth.
+
+### G16 — Opencode (ASSIGNED 2026-07-25) — Meroitic corpus (structure-only)
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
+> Brief: [`docs/research_leads_kimi_2026-07-25.md`](docs/research_leads_kimi_2026-07-25.md) (G16 = Kimi #1).
+> Do NOT touch Linear Elamite (M3/G12), Voynich, radio, BLC1, Amazon.
+>
+> 1. Ingest **Joshua-Otten/Meroitic-Corpus** (Otten & Anastasopoulos 2025, GitHub open).
+>    → `data/scripts/meroitic/` + README (attribution + license). Prefer machine-readable sign/translit streams.
+>    **Do not cite** Lackadaisical Security / Ghost License “99.5% decipherment” repos.
+> 2. Thin probe `tools/scripts/meroitic_probe.py` reusing `tools/forensics/symbolseq.py`
+>    (same stack as G9/G11). Optional site/medium splits if labels exist.
+> 3. **Known-answer:** royal-name / formulaic segments that must show structure vs own shuffle
+>    (document what is honestly recoverable). **Control:** Late-Egyptian (or other open Egyptian)
+>    sample ~comparable N — structure comparator only, not “Meroitic is Egyptian”.
+> 4. **Negative:** unigram-matched shuffle of Meroitic; optional random alphabet same length.
+> 5. Outputs: `outputs/meroitic/{run.json,NOTES.md}`. Verdict: STRUCTURE_SIGNAL | NO_SIGNAL |
+>    UNDERDETERMINED (+ honest flags). Never decipherment / language-family claims.
+> 6. Tests under `tools/scripts/tests/test_meroitic_probe.py` (≥12). Forbidden-phrase guard.
+> 7. Branch `feat/g16-meroitic`. PR → Cursor merge. Stay on your branch; rebase on `main` before PR.
+> Forbidden: “Meroitic deciphered,” “translates to,” crank 99.5% claims, aliens, viral blogs as truth.
+
+### G13–G20 — remaining queue (do not start until Captain assigns)
 > **G13** VASCO transients — no-signal prior; plate-artifact nulls.  
 > **G14** Chankillo towers — DEM horizon + synthetic ridge null.  
 > **G15** Cretan Hieroglyphic bipartite admin — CHIC + Linear A/B KA.  
-> **G16** Meroitic corpus (Otten & Anastasopoulos 2025 GitHub) — **preferred next script** after G11.  
 > **G17** TESS SETI Ellipsoid (Cabrales 2024) — optical no-signal sharpen.  
 > **G18** EAMENA ley-line null — spatial FPR calibration (GeoJSON subsets).  
 > **G19** Long Delayed Echoes historic delays — no-signal; Lunan claim-under-test.  
