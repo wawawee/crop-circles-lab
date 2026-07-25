@@ -72,6 +72,7 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
 | **G2++** | 🟢 merged PR #8 — Uruk comparator. |
 | **G9** | 🟢 merged PR #9 — Indus STRUCTURE_SIGNAL. |
+| **G11** | 🟢 merged PR #11 — CM STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY. |
 | **G10** | 🟡 M3 assigned — Voynich morphology. |
 | **Minimax M3** | 🟡 on **G10** Voynich. |
 | **Opencode** | 🟢 idle — G11 merged PR #11. |
