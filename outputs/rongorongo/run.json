@@ -1,0 +1,1384 @@
+{
+  "generated_at": "2026-07-25T07:32:32.584204+00:00",
+  "mission": "G4",
+  "dataset": {
+    "source": "Spaelti XML corpus (CC BY / open-access)",
+    "tablets": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "n_tablets": 6,
+    "tablet_summary": {
+      "A": {
+        "sides": {
+          "Aa": {
+            "n_lines": 8,
+            "n_glyphs_raw": 912,
+            "n_glyphs_clean": 905
+          },
+          "Ab": {
+            "n_lines": 8,
+            "n_glyphs_raw": 934,
+            "n_glyphs_clean": 926
+          }
+        },
+        "total_clean": 1831
+      },
+      "B": {
+        "sides": {
+          "Br": {
+            "n_lines": 10,
+            "n_glyphs_raw": 561,
+            "n_glyphs_clean": 557
+          },
+          "Bv": {
+            "n_lines": 12,
+            "n_glyphs_raw": 741,
+            "n_glyphs_clean": 732
+          }
+        },
+        "total_clean": 1289
+      },
+      "C": {
+        "sides": {
+          "Ca": {
+            "n_lines": 14,
+            "n_glyphs_raw": 530,
+            "n_glyphs_clean": 515
+          },
+          "Cb": {
+            "n_lines": 14,
+            "n_glyphs_raw": 495,
+            "n_glyphs_clean": 476
+          }
+        },
+        "total_clean": 991
+      },
+      "D": {
+        "sides": {
+          "Da": {
+            "n_lines": 8,
+            "n_glyphs_raw": 194,
+            "n_glyphs_clean": 137
+          },
+          "Db": {
+            "n_lines": 6,
+            "n_glyphs_raw": 122,
+            "n_glyphs_clean": 103
+          }
+        },
+        "total_clean": 240
+      },
+      "E": {
+        "sides": {
+          "Er": {
+            "n_lines": 9,
+            "n_glyphs_raw": 470,
+            "n_glyphs_clean": 460
+          },
+          "Ev": {
+            "n_lines": 8,
+            "n_glyphs_raw": 425,
+            "n_glyphs_clean": 422
+          }
+        },
+        "total_clean": 882
+      },
+      "F": {
+        "sides": {
+          "Fa": {
+            "n_lines": 6,
+            "n_glyphs_raw": 53,
+            "n_glyphs_clean": 37
+          },
+          "Fb": {
+            "n_lines": 4,
+            "n_glyphs_raw": 23,
+            "n_glyphs_clean": 9
+          }
+        },
+        "total_clean": 46
+      }
+    },
+    "total_glyphs_clean": 5279,
+    "distinct_glyphs": 939
+  },
+  "full_corpus_analysis": {
+    "n_tokens": 5279,
+    "n_distinct": 939,
+    "max_entropy_bits": 9.875,
+    "unigram_entropy_bits": 8.094,
+    "index_of_coincidence": 0.0098,
+    "ioc_over_uniform": 9.231,
+    "conditional_bigram_entropy_bits": 3.546,
+    "lz78_ratio": 0.5217,
+    "top_bigrams": [
+      {
+        "pair": [
+          "380",
+          "001"
+        ],
+        "count": 43
+      },
+      {
+        "pair": [
+          "040",
+          "040"
+        ],
+        "count": 23
+      },
+      {
+        "pair": [
+          "004",
+          "064"
+        ],
+        "count": 19
+      },
+      {
+        "pair": [
+          "002",
+          "002"
+        ],
+        "count": 18
+      },
+      {
+        "pair": [
+          "001",
+          "006"
+        ],
+        "count": 15
+      },
+      {
+        "pair": [
+          "004",
+          "002"
+        ],
+        "count": 14
+      },
+      {
+        "pair": [
+          "022",
+          "380y"
+        ],
+        "count": 14
+      },
+      {
+        "pair": [
+          "073",
+          "006"
+        ],
+        "count": 13
+      }
+    ],
+    "word_lengths": {
+      "n_words": 104,
+      "min": 1,
+      "max": 132,
+      "mean": 50.76,
+      "hist": {
+        "1": 1,
+        "2": 1,
+        "5": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "11": 1,
+        "15": 2,
+        "17": 2,
+        "18": 2,
+        "21": 1,
+        "22": 6,
+        "31": 1,
+        "32": 2,
+        "33": 4,
+        "34": 2,
+        "35": 3,
+        "36": 5,
+        "37": 3,
+        "38": 3,
+        "39": 1,
+        "40": 3,
+        "42": 1,
+        "43": 1,
+        "45": 1,
+        "47": 1,
+        "48": 1,
+        "49": 2,
+        "50": 1,
+        "51": 2,
+        "53": 6,
+        "55": 5,
+        "56": 2,
+        "57": 2,
+        "58": 2,
+        "59": 2,
+        "61": 3,
+        "65": 3,
+        "66": 1,
+        "67": 2,
+        "70": 1,
+        "96": 1,
+        "104": 1,
+        "105": 1,
+        "107": 1,
+        "108": 1,
+        "109": 1,
+        "112": 1,
+        "113": 1,
+        "114": 2,
+        "119": 1,
+        "122": 1,
+        "124": 2,
+        "128": 1,
+        "132": 1
+      }
+    },
+    "shuffled_control": {
+      "observed": 3.5457,
+      "shuffled_mean": 3.9448,
+      "shuffled_sd": 0.0093,
+      "z": -42.92,
+      "more_structured_than_chance": true
+    },
+    "caveat": "Necessary-not-sufficient: these statistics distinguish 'not random noise' from noise, but NOT 'undeciphered language' from 'structured non-linguistic template' at small corpus sizes."
+  },
+  "per_tablet_analysis": {
+    "A": {
+      "n_tokens": 1831,
+      "n_distinct": 581,
+      "max_entropy_bits": 9.182,
+      "unigram_entropy_bits": 7.961,
+      "index_of_coincidence": 0.0098,
+      "ioc_over_uniform": 5.684,
+      "conditional_bigram_entropy_bits": 2.47,
+      "lz78_ratio": 0.5926,
+      "top_bigrams": [
+        {
+          "pair": [
+            "001",
+            "009a"
+          ],
+          "count": 10
+        },
+        {
+          "pair": [
+            "600",
+            "007"
+          ],
+          "count": 9
+        },
+        {
+          "pair": [
+            "005t",
+            "009"
+          ],
+          "count": 9
+        },
+        {
+          "pair": [
+            "004",
+            "600"
+          ],
+          "count": 8
+        },
+        {
+          "pair": [
+            "600",
+            "004"
+          ],
+          "count": 7
+        },
+        {
+          "pair": [
+            "080",
+            "004"
+          ],
+          "count": 7
+        },
+        {
+          "pair": [
+            "001",
+            "052"
+          ],
+          "count": 7
+        },
+        {
+          "pair": [
+            "060a",
+            "003a"
+          ],
+          "count": 6
+        }
+      ],
+      "word_lengths": {
+        "n_words": 16,
+        "min": 96,
+        "max": 132,
+        "mean": 114.44,
+        "hist": {
+          "96": 1,
+          "104": 1,
+          "105": 1,
+          "107": 1,
+          "108": 1,
+          "109": 1,
+          "112": 1,
+          "113": 1,
+          "114": 2,
+          "119": 1,
+          "122": 1,
+          "124": 2,
+          "128": 1,
+          "132": 1
+        }
+      },
+      "shuffled_control": {
+        "observed": 2.4697,
+        "shuffled_mean": 2.7395,
+        "shuffled_sd": 0.0111,
+        "z": -24.23,
+        "more_structured_than_chance": true
+      },
+      "caveat": "Necessary-not-sufficient: these statistics distinguish 'not random noise' from noise, but NOT 'undeciphered language' from 'structured non-linguistic template' at small corpus sizes."
+    },
+    "B": {
+      "n_tokens": 1289,
+      "n_distinct": 301,
+      "max_entropy_bits": 8.234,
+      "unigram_entropy_bits": 7.189,
+      "index_of_coincidence": 0.0113,
+      "ioc_over_uniform": 3.4,
+      "conditional_bigram_entropy_bits": 2.676,
+      "lz78_ratio": 0.5555,
+      "top_bigrams": [
+        {
+          "pair": [
+            "004",
+            "064"
+          ],
+          "count": 16
+        },
+        {
+          "pair": [
+            "003",
+            "065"
+          ],
+          "count": 9
+        },
+        {
+          "pair": [
+            "006",
+            "074f"
+          ],
+          "count": 8
+        },
+        {
+          "pair": [
+            "065",
+            "003"
+          ],
+          "count": 8
+        },
+        {
+          "pair": [
+            "065",
+            "200"
+          ],
+          "count": 8
+        },
+        {
+          "pair": [
+            "385",
+            "003"
+          ],
+          "count": 6
+        },
+        {
+          "pair": [
+            "004",
+            "002"
+          ],
+          "count": 5
+        },
+        {
+          "pair": [
+            "166",
+            "068"
+          ],
+          "count": 5
+        }
+      ],
+      "word_lengths": {
+        "n_words": 22,
+        "min": 38,
+        "max": 70,
+        "mean": 58.59,
+        "hist": {
+          "38": 1,
+          "47": 1,
+          "51": 1,
+          "53": 2,
+          "55": 2,
+          "57": 2,
+          "58": 2,
+          "59": 1,
+          "61": 3,
+          "65": 3,
+          "66": 1,
+          "67": 2,
+          "70": 1
+        }
+      },
+      "shuffled_control": {
+        "observed": 2.6759,
+        "shuffled_mean": 2.9963,
+        "shuffled_sd": 0.0136,
+        "z": -23.54,
+        "more_structured_than_chance": true
+      },
+      "caveat": "Necessary-not-sufficient: these statistics distinguish 'not random noise' from noise, but NOT 'undeciphered language' from 'structured non-linguistic template' at small corpus sizes."
+    },
+    "C": {
+      "n_tokens": 991,
+      "n_distinct": 246,
+      "max_entropy_bits": 7.943,
+      "unigram_entropy_bits": 6.703,
+      "index_of_coincidence": 0.0193,
+      "ioc_over_uniform": 4.759,
+      "conditional_bigram_entropy_bits": 2.449,
+      "lz78_ratio": 0.5429,
+      "top_bigrams": [
+        {
+          "pair": [
+            "380",
+            "001"
+          ],
+          "count": 20
+        },
+        {
+          "pair": [
+            "040",
+            "040"
+          ],
+          "count": 19
+        },
+        {
+          "pair": [
+            "002",
+            "002"
+          ],
+          "count": 11
+        },
+        {
+          "pair": [
+            "004",
+            "760"
+          ],
+          "count": 8
+        },
+        {
+          "pair": [
+            "760",
+            "004"
+          ],
+          "count": 8
+        },
+        {
+          "pair": [
+            "390",
+            "041"
+          ],
+          "count": 7
+        },
+        {
+          "pair": [
+            "008",
+            "078"
+          ],
+          "count": 7
+        },
+        {
+          "pair": [
+            "078",
+            "711"
+          ],
+          "count": 7
+        }
+      ],
+      "word_lengths": {
+        "n_words": 28,
+        "min": 22,
+        "max": 43,
+        "mean": 35.39,
+        "hist": {
+          "22": 1,
+          "31": 1,
+          "32": 2,
+          "33": 4,
+          "34": 2,
+          "35": 3,
+          "36": 5,
+          "37": 3,
+          "38": 2,
+          "39": 1,
+          "40": 3,
+          "43": 1
+        }
+      },
+      "shuffled_control": {
+        "observed": 2.4494,
+        "shuffled_mean": 2.9717,
+        "shuffled_sd": 0.0213,
+        "z": -24.52,
+        "more_structured_than_chance": true
+      },
+      "caveat": "Necessary-not-sufficient: these statistics distinguish 'not random noise' from noise, but NOT 'undeciphered language' from 'structured non-linguistic template' at small corpus sizes."
+    },
+    "D": {
+      "n_tokens": 240,
+      "n_distinct": 113,
+      "max_entropy_bits": 6.82,
+      "unigram_entropy_bits": 6.234,
+      "index_of_coincidence": 0.0162,
+      "ioc_over_uniform": 1.828,
+      "conditional_bigram_entropy_bits": 1.475,
+      "lz78_ratio": 0.6792,
+      "top_bigrams": [
+        {
+          "pair": [
+            "200",
+            "052x"
+          ],
+          "count": 5
+        },
+        {
+          "pair": [
+            "052x",
+            "600"
+          ],
+          "count": 4
+        },
+        {
+          "pair": [
+            "600",
+            "007"
+          ],
+          "count": 3
+        },
+        {
+          "pair": [
+            "001",
+            "063"
+          ],
+          "count": 3
+        },
+        {
+          "pair": [
+            "002",
+            "200"
+          ],
+          "count": 2
+        },
+        {
+          "pair": [
+            "590",
+            "052"
+          ],
+          "count": 2
+        },
+        {
+          "pair": [
+            "073",
+            "006"
+          ],
+          "count": 2
+        },
+        {
+          "pair": [
+            "002",
+            "003"
+          ],
+          "count": 2
+        }
+      ],
+      "word_lengths": {
+        "n_words": 13,
+        "min": 9,
+        "max": 22,
+        "mean": 18.46,
+        "hist": {
+          "9": 1,
+          "15": 2,
+          "17": 2,
+          "18": 2,
+          "21": 1,
+          "22": 5
+        }
+      },
+      "shuffled_control": {
+        "observed": 1.4747,
+        "shuffled_mean": 1.611,
+        "shuffled_sd": 0.0232,
+        "z": -5.87,
+        "more_structured_than_chance": true
+      },
+      "caveat": "Necessary-not-sufficient: these statistics distinguish 'not random noise' from noise, but NOT 'undeciphered language' from 'structured non-linguistic template' at small corpus sizes."
+    },
+    "E": {
+      "n_tokens": 882,
+      "n_distinct": 220,
+      "max_entropy_bits": 7.781,
+      "unigram_entropy_bits": 6.718,
+      "index_of_coincidence": 0.0168,
+      "ioc_over_uniform": 3.704,
+      "conditional_bigram_entropy_bits": 2.366,
+      "lz78_ratio": 0.5454,
+      "top_bigrams": [
+        {
+          "pair": [
+            "380",
+            "001"
+          ],
+          "count": 23
+        },
+        {
+          "pair": [
+            "022",
+            "380y"
+          ],
+          "count": 14
+        },
+        {
+          "pair": [
+            "004",
+            "430"
+          ],
+          "count": 12
+        },
+        {
+          "pair": [
+            "430",
+            "022"
+          ],
+          "count": 12
+        },
+        {
+          "pair": [
+            "040",
+            "300"
+          ],
+          "count": 11
+        },
+        {
+          "pair": [
+            "300",
+            "028x"
+          ],
+          "count": 8
+        },
+        {
+          "pair": [
+            "028x",
+            "004"
+          ],
+          "count": 7
+        },
+        {
+          "pair": [
+            "670",
+            "002"
+          ],
+          "count": 6
+        }
+      ],
+      "word_lengths": {
+        "n_words": 17,
+        "min": 42,
+        "max": 59,
+        "mean": 51.88,
+        "hist": {
+          "42": 1,
+          "45": 1,
+          "48": 1,
+          "49": 2,
+          "50": 1,
+          "51": 1,
+          "53": 4,
+          "55": 3,
+          "56": 2,
+          "59": 1
+        }
+      },
+      "shuffled_control": {
+        "observed": 2.3664,
+        "shuffled_mean": 2.8606,
+        "shuffled_sd": 0.0197,
+        "z": -25.07,
+        "more_structured_than_chance": true
+      },
+      "caveat": "Necessary-not-sufficient: these statistics distinguish 'not random noise' from noise, but NOT 'undeciphered language' from 'structured non-linguistic template' at small corpus sizes."
+    },
+    "F": {
+      "n_tokens": 46,
+      "n_distinct": 38,
+      "max_entropy_bits": 5.248,
+      "unigram_entropy_bits": 5.143,
+      "index_of_coincidence": 0.0097,
+      "ioc_over_uniform": 0.367,
+      "conditional_bigram_entropy_bits": 0.345,
+      "lz78_ratio": 0.8478,
+      "top_bigrams": [
+        {
+          "pair": [
+            "300!",
+            "685!"
+          ],
+          "count": 1
+        },
+        {
+          "pair": [
+            "685!",
+            "073f!"
+          ],
+          "count": 1
+        },
+        {
+          "pair": [
+            "073f!",
+            "001?"
+          ],
+          "count": 1
+        },
+        {
+          "pair": [
+            "001?",
+            "005!"
+          ],
+          "count": 1
+        },
+        {
+          "pair": [
+            "005!",
+            "099b!"
+          ],
+          "count": 1
+        },
+        {
+          "pair": [
+            "099b!",
+            "052ay"
+          ],
+          "count": 1
+        },
+        {
+          "pair": [
+            "052ay",
+            "677"
+          ],
+          "count": 1
+        },
+        {
+          "pair": [
+            "677",
+            "099b!"
+          ],
+          "count": 1
+        }
+      ],
+      "word_lengths": {
+        "n_words": 8,
+        "min": 1,
+        "max": 11,
+        "mean": 5.75,
+        "hist": {
+          "1": 1,
+          "2": 1,
+          "5": 1,
+          "6": 2,
+          "7": 1,
+          "8": 1,
+          "11": 1
+        }
+      },
+      "shuffled_control": {
+        "observed": 0.3447,
+        "shuffled_mean": 0.3714,
+        "shuffled_sd": 0.0246,
+        "z": -1.09,
+        "more_structured_than_chance": false
+      },
+      "caveat": "Necessary-not-sufficient: these statistics distinguish 'not random noise' from noise, but NOT 'undeciphered language' from 'structured non-linguistic template' at small corpus sizes."
+    }
+  },
+  "parallel_passages": {
+    "total_found": 240,
+    "cross_tablet": 33,
+    "top_cross_tablet": [
+      {
+        "ngram": [
+          "380",
+          "001",
+          "022f"
+        ],
+        "len": 3,
+        "occurrences": 7,
+        "tablets": [
+          "C",
+          "E"
+        ],
+        "positions": [
+          [
+            "C",
+            76
+          ],
+          [
+            "C",
+            82
+          ],
+          [
+            "C",
+            89
+          ],
+          [
+            "C",
+            96
+          ],
+          [
+            "C",
+            101
+          ],
+          [
+            "E",
+            539
+          ],
+          [
+            "E",
+            599
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "006",
+          "001",
+          "006"
+        ],
+        "len": 3,
+        "occurrences": 5,
+        "tablets": [
+          "B",
+          "E"
+        ],
+        "positions": [
+          [
+            "B",
+            719
+          ],
+          [
+            "B",
+            998
+          ],
+          [
+            "E",
+            572
+          ],
+          [
+            "E",
+            772
+          ],
+          [
+            "E",
+            832
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "004",
+          "002",
+          "004"
+        ],
+        "len": 3,
+        "occurrences": 4,
+        "tablets": [
+          "A",
+          "C"
+        ],
+        "positions": [
+          [
+            "A",
+            1434
+          ],
+          [
+            "A",
+            1436
+          ],
+          [
+            "C",
+            776
+          ],
+          [
+            "C",
+            869
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "002",
+          "004",
+          "002"
+        ],
+        "len": 3,
+        "occurrences": 4,
+        "tablets": [
+          "A",
+          "C"
+        ],
+        "positions": [
+          [
+            "A",
+            1435
+          ],
+          [
+            "A",
+            1437
+          ],
+          [
+            "C",
+            777
+          ],
+          [
+            "C",
+            870
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "001",
+          "380",
+          "001"
+        ],
+        "len": 3,
+        "occurrences": 4,
+        "tablets": [
+          "C",
+          "E"
+        ],
+        "positions": [
+          [
+            "C",
+            75
+          ],
+          [
+            "C",
+            501
+          ],
+          [
+            "C",
+            605
+          ],
+          [
+            "E",
+            627
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "002",
+          "010",
+          "002"
+        ],
+        "len": 3,
+        "occurrences": 3,
+        "tablets": [
+          "B",
+          "C"
+        ],
+        "positions": [
+          [
+            "B",
+            953
+          ],
+          [
+            "C",
+            334
+          ],
+          [
+            "C",
+            815
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "002",
+          "001",
+          "007"
+        ],
+        "len": 3,
+        "occurrences": 3,
+        "tablets": [
+          "C",
+          "E"
+        ],
+        "positions": [
+          [
+            "C",
+            111
+          ],
+          [
+            "E",
+            556
+          ],
+          [
+            "E",
+            674
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "380",
+          "001",
+          "607"
+        ],
+        "len": 3,
+        "occurrences": 3,
+        "tablets": [
+          "C",
+          "E"
+        ],
+        "positions": [
+          [
+            "C",
+            606
+          ],
+          [
+            "C",
+            620
+          ],
+          [
+            "E",
+            639
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "002",
+          "001",
+          "002"
+        ],
+        "len": 3,
+        "occurrences": 3,
+        "tablets": [
+          "D",
+          "E"
+        ],
+        "positions": [
+          [
+            "D",
+            97
+          ],
+          [
+            "E",
+            463
+          ],
+          [
+            "E",
+            751
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "001",
+          "006",
+          "001"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "A",
+          "E"
+        ],
+        "positions": [
+          [
+            "A",
+            944
+          ],
+          [
+            "E",
+            773
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "001",
+          "062",
+          "630"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "B",
+          "C"
+        ],
+        "positions": [
+          [
+            "B",
+            1127
+          ],
+          [
+            "C",
+            533
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "004",
+          "064",
+          "050"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "B",
+          "E"
+        ],
+        "positions": [
+          [
+            "B",
+            1150
+          ],
+          [
+            "E",
+            504
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "007",
+          "001",
+          "191"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "B",
+          "E"
+        ],
+        "positions": [
+          [
+            "B",
+            1180
+          ],
+          [
+            "E",
+            200
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "001",
+          "191",
+          "048"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "B",
+          "E"
+        ],
+        "positions": [
+          [
+            "B",
+            1181
+          ],
+          [
+            "E",
+            201
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "046",
+          "073",
+          "006"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "B",
+          "E"
+        ],
+        "positions": [
+          [
+            "B",
+            1222
+          ],
+          [
+            "E",
+            851
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "700",
+          "600",
+          "059f"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "B",
+          "E"
+        ],
+        "positions": [
+          [
+            "B",
+            1243
+          ],
+          [
+            "E",
+            735
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "001",
+          "009",
+          "755"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "C",
+          "E"
+        ],
+        "positions": [
+          [
+            "C",
+            0
+          ],
+          [
+            "E",
+            446
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "009",
+          "755",
+          "050"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "C",
+          "E"
+        ],
+        "positions": [
+          [
+            "C",
+            1
+          ],
+          [
+            "E",
+            447
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "755",
+          "050",
+          "010"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "C",
+          "E"
+        ],
+        "positions": [
+          [
+            "C",
+            2
+          ],
+          [
+            "E",
+            448
+          ]
+        ]
+      },
+      {
+        "ngram": [
+          "001",
+          "280",
+          "001"
+        ],
+        "len": 3,
+        "occurrences": 2,
+        "tablets": [
+          "C",
+          "E"
+        ],
+        "positions": [
+          [
+            "C",
+            19
+          ],
+          [
+            "E",
+            622
+          ]
+        ]
+      }
+    ],
+    "negative_control": {
+      "min_len": 3,
+      "n_shuffles": 200,
+      "n_parallels_total": 240,
+      "n_len_ge_3": {
+        "observed": 240,
+        "shuffle_mean": 34.33,
+        "shuffle_sd": 5.03,
+        "z": 40.92
+      },
+      "n_len_ge_4": {
+        "observed": 0,
+        "shuffle_mean": 0.0,
+        "shuffle_sd": 0.0,
+        "z": 0
+      },
+      "n_cross_tablet": {
+        "observed": 33,
+        "shuffle_mean": 14.47,
+        "shuffle_sd": 3.66,
+        "z": 5.06
+      },
+      "caveat": "Shuffle preserves per-line token count within each tablet. Parallel passages in shuffle arise by chance from repeated glyphs."
+    }
+  },
+  "within_tablet_repeats": {},
+  "verdict": "SEQUENCE_STRUCTURE | PARALLEL_EXCESS | CROSS_TABLET_PARALLELS",
+  "interpretation": "Rongorongo 5279 glyphs across 6 tablets (A\u2013F, 939 distinct Barthel codes). Conditional entropy z=-42.9 vs shuffle \u2014 sequence is STRONGLY STRUCTURED (non-random bigram transitions). Parallel passages (\u22653-glyph runs) occur at z=40.9 vs shuffled tablets \u2014 real repeated formulae, not chance. Structure is NOT decipherment. The pattern may reflect a formulaic template (e.g. genealogy, ritual sequence) rather than natural language. Repeated cross-tablet glyph runs suggest a shared textual tradition, but do not imply reading ability.",
+  "caveat": "Glyph codes follow Barthel (1958) numbering, which bundles some ligatures as single codes and splits others. Spaelti's XML preserves SVG-level glyph distinctions.  '_' gaps and '000!' damage markers excluded from analysis.  Small tablets (D, F) have <400 clean glyphs \u2014 per-tablet z-scores are noisy.  Parallel passages depend on the Barthel encoding granularity; a different glyph decomposition would change counts. STRUCTURE \u2260 DECIPHERMENT."
+}

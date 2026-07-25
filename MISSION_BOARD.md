@@ -35,7 +35,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **R1** | Minimax (done) | radio_probe + fetchers | FFT/epoch-fold; Wow blocked; Vela/FRB PARK | 🟢 50/50 tests — **radio closed for Minimax** |
 | **R1++** | **Ozma** | CHIME Cat 2 periods | Recover 16.35 d + scramble null | 🟡 `cat2_fetcher` scaffold only — Ozma wires |
 | **G1** | Opencode | Linear A | z≈−73 formulaic STRUCTURE | 🟢 landed + gallery |
-| **G4** | **Opencode** | Rongorongo 2D (Spaelti) | Parallel passages + symbolseq; structure ≠ reading | ⬜ **ASSIGNED — next big ticket** |
+| **G4** | **Opencode** 🟢 | Rongorongo 2D (Spaelti) | Parallel passages + symbolseq; structure ≠ reading | 🟢 **landed** — `tools/scripts/rongorongo_probe.py`, `outputs/rongorongo/run.json` + `NOTES.md`. 5279 glyphs across 6 tablets, z=−42.9 conditional entropy vs shuffle. 240 parallel passages (33 cross-tablet, z=+40.9 vs shuffle). Top cross-tablet formula: `380 001 022f` ×7 across C+E. Verdict: SEQUENCE_STRUCTURE | PARALLEL_EXCESS | CROSS_TABLET_PARALLELS. No decipherment. |
 | **G2** | **Minimax** | Proto-Elamite | CDLI ledger entropy | ⬜ **Minimax next ticket only** (off radio/BLC1/Amazon) |
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed — Ozma inherits for interpretation pass |
 | **G7** | Opencode | Gorafe megaliths | Orientation STRUCTURE; astro/spatial UNDER | 🟢 v1; G7++ later (sunrise + valley null) |
