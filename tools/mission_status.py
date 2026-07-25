@@ -26,7 +26,7 @@ def main() -> None:
         {"id": "N1", "owner": "Hyper", "title": "DNA/RNA bio_probe", "status": "scaffolded", "href": "tools/bio/bio_probe.py"},
         {"id": "N2", "owner": "Opencode", "title": "UAP flight consistency", "status": "done", "href": "tools/uap/uap_flight_consistency.py"},
         {"id": "N3", "owner": "Hermes", "title": "Dimensionless constants", "status": "done", "href": "tools/astro/constants_probe.py"},
-        {"id": "N4", "owner": "Kimi", "title": "Archaeoastronomy", "status": "scaffolded", "href": "tools/astro/astro_probe.py"},
+        {"id": "N4", "owner": "Kimi", "title": "Archaeoastronomy", "status": "done", "href": "tools/astro/archaeo_probe.py"},
         {"id": "N5", "owner": "Captain/Cursor", "title": "Mission dashboard", "status": "done", "href": "reports/mission_dashboard.html"},
         {"id": "W1", "owner": "Cursor", "title": "Wheat closeout scans", "status": "done", "href": "outputs/wheat_closeout/SUMMARY.md"},
     ]
@@ -36,7 +36,7 @@ def main() -> None:
         "dna_epigenetics": {"covered": False, "notes": "scaffold only"},
         "uap_video": {"covered": False, "notes": "needs official media"},
         "constants": {"covered": True, "notes": "first probe landed; verdict: structure, not signal"},
-        "archaeoastronomy": {"covered": False, "notes": "scaffold + lunar on formations.csv"},
+        "archaeoastronomy": {"covered": True, "notes": "first lunar-phase probe vs uniform-phase null on 16 formations — see archaeo panel"},
         "nazca": {"covered": False, "notes": "scout brief only"},
         "wow_frb": {"covered": False, "notes": "scout brief only"},
     }

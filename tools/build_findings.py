@@ -195,6 +195,21 @@ def build_constants(root: Path) -> dict:
     }
 
 
+def build_archaeo(root: Path) -> dict:
+    """Fold the archaeoastronomy probe (lunar-phase test + monument readout +
+    formations scatter) into FINDINGS_DATA. Verdict comes straight from the
+    probe — never re-derived or inflated here."""
+    a = load_json(root / "outputs" / "astro" / "archaeo_probe.json")
+    return {
+        "generated_at": a.get("generated_at"),
+        "n_formations": a.get("n_formations"),
+        "lunar": a["lunar"],
+        "monument": a["monument"],
+        "scatter": a["scatter"],
+        "bounds": a["bounds"],
+    }
+
+
 def build_domains_missions(root: Path) -> tuple:
     mission_status = load_json(root / "data" / "catalog" / "mission_status.json")
 
@@ -202,6 +217,7 @@ def build_domains_missions(root: Path) -> tuple:
         "phaistos": "#phaistos",
         "crop_circles": "#wheat",
         "constants": "#constants",
+        "archaeoastronomy": "#archaeo",
     }
 
     domains_list = []
@@ -298,6 +314,9 @@ def main() -> None:
     print("Building constants section...")
     constants = build_constants(root)
 
+    print("Building archaeo section...")
+    archaeo = build_archaeo(root)
+
     print("Building domains/missions from mission_status.json...")
     domains, missions, outputs, n_outputs = build_domains_missions(root)
 
@@ -309,6 +328,7 @@ def main() -> None:
         "phaistos": phaistos,
         "wheat_closeout": wheat_closeout,
         "constants": constants,
+        "archaeo": archaeo,
         "domains": domains,
         "missions": missions,
         "outputs": outputs,
@@ -344,6 +364,12 @@ def main() -> None:
     print(f"constants.real_hits: {constants['real_hits']} (expect 30)")
     print(f"constants.real_total: {constants['real_total']} (expect 136)")
     print(f"constants.null_a.mean: {constants['null_a']['mean']} (expect 31.82)")
+    print(f"archaeo.n_formations: {archaeo['n_formations']} (expect 16)")
+    print(f"archaeo.lunar.verdict: {archaeo['lunar']['verdict']} (from probe)")
+    print(f"archaeo.lunar.all: obs {archaeo['lunar']['all']['observed_mean']} z {archaeo['lunar']['all']['z']} p {archaeo['lunar']['all']['p']}")
+    print(f"archaeo.lunar.exact: obs {archaeo['lunar']['exact']['observed_mean']} n {archaeo['lunar']['exact']['n_used']} z {archaeo['lunar']['exact']['z']} p {archaeo['lunar']['exact']['p']}")
+    print(f"archaeo.scatter len: {len(archaeo['scatter'])} (expect 16)")
+    print(f"archaeo.monument: mean {archaeo['monument']['mean_km']} median {archaeo['monument']['median_km']} within5 {archaeo['monument']['within_5km']}")
 
 
 if __name__ == "__main__":

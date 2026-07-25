@@ -1,0 +1,243 @@
+{
+  "generated_at": "2026-07-25T05:29:41Z",
+  "n_formations": 16,
+  "lunar": {
+    "observed_mean": 0.3881,
+    "n_used": 14,
+    "n_approx_with_illum": 3,
+    "approx_fraction": 0.214,
+    "exact": {
+      "observed_mean": 0.4503,
+      "n_used": 11,
+      "z": -0.468,
+      "p": 0.64685,
+      "verdict": "NO SIGNAL"
+    },
+    "all": {
+      "observed_mean": 0.3881,
+      "n_used": 14,
+      "z": -1.1882,
+      "p": 0.2403,
+      "verdict": "NO SIGNAL"
+    },
+    "null": {
+      "mean": 0.5,
+      "sd": 0.0941,
+      "p2_5": 0.3152,
+      "p50": 0.4999,
+      "p97_5": 0.6822,
+      "trials": 20000,
+      "model": "f=(1-cosθ)/2, θ~U(0,2π)"
+    },
+    "verdict": "NO SIGNAL",
+    "caveat": "Observed mean lunar illumination sits inside the uniform-phase control band (does not beat p<0.01 / |z|>2.6). Consistent with random dates; no lunar-phase signal. Small n and several approximate dates limit power."
+  },
+  "monument": {
+    "mean_km": 2035.699,
+    "median_km": 10.465,
+    "within_5km": 7,
+    "n": 16,
+    "verdict": "UNDERDETERMINED",
+    "note": "Descriptive only. No matched spatial null yet — needs monument coordinate set + bounding-box random points before any proximity or clustering claim can be made."
+  },
+  "scatter": [
+    {
+      "id": "stonehenge-julia-1996",
+      "name": "Julia Set",
+      "lat": 51.1793,
+      "lon": -1.8266,
+      "priority": 1,
+      "coord_confidence": "site-approx",
+      "nearest_monument": "Stonehenge",
+      "monument_km": 0.05,
+      "lunar_illum": 0.647,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "cherhill-1993",
+      "name": "Cherhill Iron Glaze",
+      "lat": 51.431,
+      "lon": -1.933,
+      "priority": 1,
+      "coord_confidence": "village-level",
+      "nearest_monument": "Windmill Hill (Avebury)",
+      "monument_km": 4.93,
+      "lunar_illum": 0.079,
+      "lunar_date_basis": "approx-mid-month"
+    },
+    {
+      "id": "logan-utah-1996",
+      "name": "Logan Utah",
+      "lat": 41.737,
+      "lon": -111.8338,
+      "priority": 1,
+      "coord_confidence": "town-level",
+      "nearest_monument": "Windmill Hill (Avebury)",
+      "monument_km": 7650.24,
+      "lunar_illum": 0.637,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "edmonton-1999",
+      "name": "Edmonton Alberta",
+      "lat": 53.5461,
+      "lon": -113.4938,
+      "priority": 1,
+      "coord_confidence": "city-level-approx",
+      "nearest_monument": "Barbury Castle",
+      "monument_km": 6726.87,
+      "lunar_illum": 0.214,
+      "lunar_date_basis": "approx-mid-month"
+    },
+    {
+      "id": "eltopia-1998",
+      "name": "Eltopia Washington",
+      "lat": 46.429,
+      "lon": -119.049,
+      "priority": 1,
+      "coord_confidence": "town-level",
+      "nearest_monument": "Barbury Castle",
+      "monument_km": 7591.02,
+      "lunar_illum": 0.409,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "chualar-2013-nvidia",
+      "name": "Chualar California (NVIDIA hoax)",
+      "lat": 36.571,
+      "lon": -121.523,
+      "priority": 3,
+      "coord_confidence": "town-level",
+      "nearest_monument": "Barbury Castle",
+      "monument_km": 8606.73,
+      "lunar_illum": null,
+      "lunar_date_basis": "year-only-skipped"
+    },
+    {
+      "id": "alton-barnes-dna-1996",
+      "name": "DNA Double Helix",
+      "lat": 51.363,
+      "lon": -1.829,
+      "priority": 2,
+      "coord_confidence": "site-approx",
+      "nearest_monument": "Adam's Grave (Alton Barnes)",
+      "monument_km": 0.71,
+      "lunar_illum": 0.006,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "chilbolton-arecibo-2001",
+      "name": "Arecibo Answer / Chilbolton",
+      "lat": 51.145,
+      "lon": -1.437,
+      "priority": 2,
+      "coord_confidence": "site",
+      "nearest_monument": "Chilbolton Observatory",
+      "monument_km": 0.0,
+      "lunar_illum": 0.188,
+      "lunar_date_basis": "approx-mid-month"
+    },
+    {
+      "id": "milk-hill-galaxy-2001",
+      "name": "Milk Hill Galaxy",
+      "lat": 51.376,
+      "lon": -1.856,
+      "priority": 2,
+      "coord_confidence": "site-approx",
+      "nearest_monument": "Adam's Grave (Alton Barnes)",
+      "monument_km": 1.67,
+      "lunar_illum": 0.482,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "barbury-pi-2008",
+      "name": "Barbury Castle Pi",
+      "lat": 51.4866,
+      "lon": -1.781,
+      "priority": 2,
+      "coord_confidence": "site-approx",
+      "nearest_monument": "Barbury Castle",
+      "monument_km": 0.0,
+      "lunar_illum": 0.085,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "allington-cube-1999",
+      "name": "The Cube",
+      "lat": 51.345,
+      "lon": -1.915,
+      "priority": 2,
+      "coord_confidence": "uncertain",
+      "nearest_monument": "Adam's Grave (Alton Barnes)",
+      "monument_km": 6.03,
+      "lunar_illum": null,
+      "lunar_date_basis": "year-only-skipped"
+    },
+    {
+      "id": "windmill-hill-triple-julia-1996",
+      "name": "Triple Julia Set",
+      "lat": 51.434,
+      "lon": -1.862,
+      "priority": 2,
+      "coord_confidence": "site",
+      "nearest_monument": "Windmill Hill (Avebury)",
+      "monument_km": 0.0,
+      "lunar_illum": 0.973,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "wilton-windmill-2010",
+      "name": "Wilton Windmill (Euler's Identity)",
+      "lat": 51.3597,
+      "lon": -1.5085,
+      "priority": 2,
+      "coord_confidence": "site-approx",
+      "nearest_monument": "Adam's Grave (Alton Barnes)",
+      "monument_km": 22.75,
+      "lunar_illum": 0.616,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "poirino-2011",
+      "name": "Poirino 'Ea Enki' ASCII (heptagram)",
+      "lat": 45.0167,
+      "lon": 7.8667,
+      "priority": 2,
+      "coord_confidence": "town-level",
+      "nearest_monument": "Chilbolton Observatory",
+      "monument_km": 969.18,
+      "lunar_illum": 0.844,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "poirino-2010",
+      "name": "Poirino E=mc^2 ASCII",
+      "lat": 44.9203,
+      "lon": 7.8462,
+      "priority": 2,
+      "coord_confidence": "town-level",
+      "nearest_monument": "Chilbolton Observatory",
+      "monument_km": 976.1,
+      "lunar_illum": 0.01,
+      "lunar_date_basis": "exact"
+    },
+    {
+      "id": "jellyfish-2009",
+      "name": "Jellyfish",
+      "lat": 51.572,
+      "lon": -1.615,
+      "priority": 3,
+      "coord_confidence": "approx",
+      "nearest_monument": "Barbury Castle",
+      "monument_km": 14.9,
+      "lunar_illum": 0.244,
+      "lunar_date_basis": "exact"
+    }
+  ],
+  "bounds": {
+    "lat_min": 36.571,
+    "lat_max": 53.5461,
+    "lon_min": -121.523,
+    "lon_max": 7.8667
+  }
+}

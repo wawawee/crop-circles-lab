@@ -260,6 +260,21 @@
     .tile .metric b { color: var(--ink); font-size: 0.98rem; }
     .tile .note { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; color: var(--mute); line-height: 1.55; margin: 0.7rem 0 0; }
 
+    /* ---------- archaeo monument readout ---------- */
+    .mproj {
+      display: flex; flex-wrap: wrap; gap: 1.6rem 2.6rem;
+      margin: 0.9rem 0 0.2rem; padding: 0.2rem 0;
+    }
+    .mstat { display: flex; flex-direction: column; gap: 0.15rem; }
+    .mstat .mnum {
+      font-family: "Newsreader", serif; font-weight: 700; font-size: 1.7rem;
+      letter-spacing: -0.01em; color: var(--ink); line-height: 1;
+    }
+    .mstat .mlab {
+      font-family: "IBM Plex Mono", monospace; font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+    }
+
     /* ---------- domain heatmap ---------- */
     .heat { display: grid; grid-template-columns: repeat(auto-fill, minmax(178px, 1fr)); gap: 0.6rem; }
     .cell {
@@ -616,12 +631,89 @@
     root.appendChild(csec);
 
     // ============================================================
+    // E2. ARCHAEOASTRONOMY — formations in space & time
+    // ============================================================
+    var A = D.archaeo;
+    if (A) {
+      var L = A.lunar || {};
+      var Lnull = L.null || {};
+      var Lall = L.all || {};
+      var Lexact = L.exact || {};
+      var M = A.monument || {};
+      var scatter = A.scatter || [];
+      var bounds = A.bounds || {};
+
+      var asec = el("section", "rise");
+      asec.id = "archaeo";
+      asec.innerHTML =
+        '<div class="sec-h"><h2><span class="num">E</span>Archaeoastronomy — formations in space &amp; time</h2>' +
+        '<span class="aside">n=' + esc(A.n_formations) + ' formations · one honest lunar test, control-first</span></div>' +
+        '<p class="starnote">Two views of the same 16 formations: where they sit, and whether their dates track the Moon. ' +
+        'A coordinate scatter is not a map of meaning; a lunar mean is nothing until it beats its uniform-phase null.</p>';
+
+      var agrid = el("div", "phaistos-grid");
+
+      // ---- Panel 1: coordinate map ----
+      var a1 = el("div", "panel");
+      a1.innerHTML =
+        '<div class="panel-h">' +
+          '<span class="fact-no">View 1 / coordinate scatter</span>' +
+          '<span class="lbl">lon × lat · <b>' + scatter.length + '</b> formations</span>' +
+        "</div>";
+      a1.appendChild(buildFormationMap(scatter, bounds));
+      a1.insertAdjacentHTML("beforeend",
+        '<p class="caption">x = longitude, y = latitude (north up) · marker colour = priority · hover for name · monument · km · illum. ' +
+        'Lat ' + fmt(bounds.lat_min, 2) + '–' + fmt(bounds.lat_max, 2) + '°, lon ' + fmt(bounds.lon_min, 2) + '–' + fmt(bounds.lon_max, 2) + '°.</p>');
+      a1.insertAdjacentHTML("beforeend",
+        '<p class="caveat">Coordinate scatter, NOT a geographic basemap — equirectangular, no projection correction, no coastlines. ' +
+        'Distances between far-apart points are distorted. Point positions carry coord_confidence from site to city level.</p>');
+      agrid.appendChild(a1);
+
+      // ---- Panel 2: lunar-phase vs uniform-phase null ----
+      var a2 = el("div", "panel");
+      a2.innerHTML =
+        '<div class="panel-h">' +
+          '<span class="fact-no">View 2 / lunar-phase test</span>' + tag(L.verdict) +
+        "</div>" +
+        '<div class="panel-h"><span class="lbl">mean lunar illuminated fraction — observed vs uniform-phase null</span>' +
+          controlTag("Uniform-phase null") + "</div>";
+      a2.appendChild(buildLunarNullChart(L));
+      a2.insertAdjacentHTML("beforeend",
+        '<p class="caption">null model ' + esc(Lnull.model || "f=(1-cosθ)/2, θ~U(0,2π)") + ' · E[f]=0.5 · ' +
+        esc(Lnull.trials) + ' trials · null ' + fmt(Lnull.mean, 3) + ' ± ' + fmt(Lnull.sd, 3) +
+        ' · all n=' + esc(Lall.n_used) + ' obs ' + fmt(Lall.observed_mean, 3) + ' (z ' + fmt(Lall.z, 2) + ', p ' + fmt(Lall.p, 3) + ')' +
+        ' · exact-date n=' + esc(Lexact.n_used) + ' obs ' + fmt(Lexact.observed_mean, 3) + ' (z ' + fmt(Lexact.z, 2) + ', p ' + fmt(Lexact.p, 3) + ')</p>');
+      a2.insertAdjacentHTML("beforeend", '<p class="caveat">' + esc(L.caveat) + "</p>");
+      agrid.appendChild(a2);
+
+      asec.appendChild(agrid);
+
+      // ---- Monument proximity — descriptive readout ----
+      var a3 = el("div", "panel");
+      a3.innerHTML =
+        '<div class="panel-h">' +
+          '<span class="fact-no">Monument proximity / descriptive</span>' + tag(M.verdict) +
+        "</div>" +
+        '<div class="panel-h"><span class="lbl">nearest-monument distance — <b>read-out only, no clustering claim</b></span></div>' +
+        '<div class="mproj">' +
+          '<div class="mstat"><span class="mnum">' + fmt(M.mean_km, 1) + '</span><span class="mlab">mean km</span></div>' +
+          '<div class="mstat"><span class="mnum">' + fmt(M.median_km, 1) + '</span><span class="mlab">median km</span></div>' +
+          '<div class="mstat"><span class="mnum">' + esc(M.within_5km) + ' / ' + esc(M.n) + '</span><span class="mlab">within 5 km</span></div>' +
+        '</div>' +
+        '<p class="caption">The mean is dragged up by the North-American and Italian formations thousands of km from any UK monument; the median is the honest centre.</p>' +
+        '<p class="caveat">' + esc(M.note) + "</p>";
+      asec.appendChild(a3);
+
+      root.appendChild(asec);
+    }
+
+    // ============================================================
     // F. OUTPUT INDEX
     // ============================================================
     var osec = el("section", "rise");
     osec.id = "outputs";
     osec.innerHTML =
-      '<div class="sec-h"><h2><span class="num">E</span>Output index</h2>' +
+      '<div class="sec-h"><h2><span class="num">F</span>Output index</h2>' +
       '<span class="aside">artifacts on disk</span></div>';
     var det = el("details", "outputs");
     var nOut = D.n_outputs != null ? D.n_outputs : (D.outputs || []).length;
@@ -960,6 +1052,216 @@
         s.appendChild(txt(cx, y0 + 16, b.label, { "text-anchor": "middle", "font-size": 10, fill: "var(--ink)" }));
         s.appendChild(txt(cx, y0 + 29, b.sub, { "text-anchor": "middle", "font-size": 9, fill: "var(--mute)" }));
       });
+
+      return s;
+    }
+
+    // -------------------------------------------------------
+    // Archaeo View 1: coordinate scatter map (lon × lat, north up)
+    // zoomed to bounds with ~6% padding, gridlines + degree ticks,
+    // markers coloured by priority, each with a <title> tooltip.
+    // -------------------------------------------------------
+    function buildFormationMap(scatter, bounds) {
+      var W = 620, H = 380;
+      var m = { l: 52, r: 20, t: 20, b: 50 };
+      var x0 = m.l, x1 = W - m.r, y0 = H - m.b, y1 = m.t;
+      var s = svg(W, H);
+
+      var pts = (scatter || []).filter(function (p) { return p.lat != null && p.lon != null; });
+
+      // domain from bounds (fallback to data extent) with ~6% padding
+      var loLon = (bounds && bounds.lon_min != null) ? bounds.lon_min : Math.min.apply(null, pts.map(function (p) { return p.lon; }));
+      var hiLon = (bounds && bounds.lon_max != null) ? bounds.lon_max : Math.max.apply(null, pts.map(function (p) { return p.lon; }));
+      var loLat = (bounds && bounds.lat_min != null) ? bounds.lat_min : Math.min.apply(null, pts.map(function (p) { return p.lat; }));
+      var hiLat = (bounds && bounds.lat_max != null) ? bounds.lat_max : Math.max.apply(null, pts.map(function (p) { return p.lat; }));
+      var padLon = (hiLon - loLon) * 0.06 || 1;
+      var padLat = (hiLat - loLat) * 0.06 || 1;
+      var dLonMin = loLon - padLon, dLonMax = hiLon + padLon;
+      var dLatMin = loLat - padLat, dLatMax = hiLat + padLat;
+
+      var X = function (lon) { return x0 + (lon - dLonMin) / (dLonMax - dLonMin) * (x1 - x0); };
+      // invert y so north (higher lat) is up
+      var Y = function (lat) { return y0 - (lat - dLatMin) / (dLatMax - dLatMin) * (y0 - y1); };
+
+      // plot frame
+      s.appendChild(node("rect", { x: x0, y: y1, width: (x1 - x0), height: (y0 - y1),
+        fill: "color-mix(in srgb, var(--accent) 4%, transparent)", stroke: "var(--hair)", "stroke-width": 1 }));
+
+      // "nice" tick step for a given span (aim ~4-6 ticks)
+      function niceStep(span) {
+        var raw = span / 5;
+        var mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10));
+        var norm = raw / mag;
+        var step = (norm < 1.5) ? 1 : (norm < 3) ? 2 : (norm < 7) ? 5 : 10;
+        return step * mag;
+      }
+      function fmtDeg(v) {
+        var r = Math.round(v * 100) / 100;
+        return (r > 0 ? "+" : "") + r + "°";
+      }
+
+      // vertical gridlines + lon ticks (x)
+      var lonStep = niceStep(dLonMax - dLonMin);
+      var lonStart = Math.ceil(dLonMin / lonStep) * lonStep;
+      for (var lo = lonStart; lo <= dLonMax + 1e-9; lo += lonStep) {
+        var xx = X(lo);
+        s.appendChild(node("line", { x1: xx, y1: y1, x2: xx, y2: y0, stroke: "var(--hair)", "stroke-width": 1, "stroke-dasharray": "1 3" }));
+        s.appendChild(node("line", { x1: xx, y1: y0, x2: xx, y2: y0 + 5, stroke: "var(--line)", "stroke-width": 1 }));
+        s.appendChild(txt(xx, y0 + 18, fmtDeg(lo), { "text-anchor": "middle", "font-size": 9.5, fill: "var(--mute)" }));
+      }
+      // horizontal gridlines + lat ticks (y)
+      var latStep = niceStep(dLatMax - dLatMin);
+      var latStart = Math.ceil(dLatMin / latStep) * latStep;
+      for (var la = latStart; la <= dLatMax + 1e-9; la += latStep) {
+        var yy = Y(la);
+        s.appendChild(node("line", { x1: x0, y1: yy, x2: x1, y2: yy, stroke: "var(--hair)", "stroke-width": 1, "stroke-dasharray": "1 3" }));
+        s.appendChild(node("line", { x1: x0 - 5, y1: yy, x2: x0, y2: yy, stroke: "var(--line)", "stroke-width": 1 }));
+        s.appendChild(txt(x0 - 8, yy + 3.5, fmtDeg(la), { "text-anchor": "end", "font-size": 9.5, fill: "var(--mute)" }));
+      }
+
+      // axis titles
+      s.appendChild(txt((x0 + x1) / 2, H - 8, "longitude  ·  °E (west negative)", { "text-anchor": "middle", "font-size": 10.5, fill: "var(--ink)", "letter-spacing": "0.1em" }));
+      s.appendChild(txt(m.l - 40, (y0 + y1) / 2, "latitude · °N", { "text-anchor": "middle", "font-size": 10.5, fill: "var(--ink)", "letter-spacing": "0.1em", transform: "rotate(-90 " + (m.l - 40) + " " + ((y0 + y1) / 2) + ")" }));
+
+      // priority palette (stay in the parchment register)
+      var PRI = {
+        1: { fill: "var(--accent)", r: 6.5 },              // top-priority — deep blue
+        2: { fill: "var(--run)", r: 5.5 },                 // second — ochre
+        3: { fill: "var(--mute)", r: 4.5 }                 // control/low — muted
+      };
+
+      // draw markers (jitter identical coords a hair so overlaps stay visible)
+      var seen = {};
+      pts.forEach(function (p) {
+        var key = p.lon.toFixed(3) + "," + p.lat.toFixed(3);
+        var dup = seen[key] || 0; seen[key] = dup + 1;
+        var jx = dup ? (dup % 2 ? 4 : -4) * Math.ceil(dup / 2) : 0;
+        var jy = dup ? (dup % 2 ? -4 : 4) * Math.ceil(dup / 2) : 0;
+        var style = PRI[p.priority] || PRI[3];
+        var cx = X(p.lon) + jx, cy = Y(p.lat) + jy;
+        var g = node("g", {});
+        var illum = (p.lunar_illum == null) ? "n/a" : Number(p.lunar_illum).toFixed(3);
+        var km = (p.monument_km == null) ? "n/a" : Number(p.monument_km).toLocaleString() + " km";
+        var ti = node("title", {});
+        ti.textContent = p.name + " · " + (p.nearest_monument || "?") + " · " + km + " · illum " + illum +
+          " · P" + (p.priority == null ? "?" : p.priority) + " · " + (p.coord_confidence || "");
+        g.appendChild(ti);
+        g.appendChild(node("circle", { cx: cx, cy: cy, r: style.r,
+          fill: style.fill, "fill-opacity": 0.82, stroke: "var(--paper)", "stroke-width": 1.2 }));
+        s.appendChild(g);
+      });
+
+      // compact legend (top-left inside frame)
+      var lx = x0 + 10, ly = y1 + 14;
+      [[1, "P1"], [2, "P2"], [3, "P3 / control"]].forEach(function (row, i) {
+        var yy = ly + i * 15;
+        var st = PRI[row[0]];
+        s.appendChild(node("circle", { cx: lx + 4, cy: yy - 3.5, r: 4.5, fill: st.fill, "fill-opacity": 0.82, stroke: "var(--paper)", "stroke-width": 1 }));
+        s.appendChild(txt(lx + 14, yy, row[1], { "font-size": 9, fill: "var(--mute)" }));
+      });
+
+      return s;
+    }
+
+    // -------------------------------------------------------
+    // Archaeo View 2: lunar-phase Monte-Carlo null (buildEntropyChart idiom)
+    // x = mean illuminated fraction; negative-control band centred at 0.5;
+    // observed (all) bold + exact-date subset lighter; z & p annotated.
+    // -------------------------------------------------------
+    function buildLunarNullChart(L) {
+      var W = 600, H = 340;
+      var m = { l: 30, r: 26, t: 30, b: 58 };
+      var x0 = m.l, x1 = W - m.r, y0 = H - m.b, y1 = m.t;
+      var s = svg(W, H);
+
+      var nul = L.null || {};
+      var all = L.all || {};
+      var exact = L.exact || {};
+      var mean = (nul.mean != null) ? nul.mean : 0.5;
+      var sd = (nul.sd != null) ? nul.sd : 0.094;
+      var obs = all.observed_mean;
+      var obsEx = exact.observed_mean;
+
+      // zoomed domain around the null (a sensible window ~0.15..0.85)
+      var dMin = 0.15, dMax = 0.85;
+      var X = function (v) { return x0 + (v - dMin) / (dMax - dMin) * (x1 - x0); };
+
+      function pdf(v) { var z = (v - mean) / sd; return Math.exp(-0.5 * z * z); }
+      var peak = 1;
+      var plotTop = y1 + 14;
+      var Y = function (p) { return y0 - (p / peak) * (y0 - plotTop); };
+
+      // baseline
+      s.appendChild(node("line", { x1: x0, y1: y0, x2: x1, y2: y0, stroke: "var(--line)", "stroke-width": 1.4 }));
+
+      // x ticks every 0.1
+      [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8].forEach(function (tv) {
+        var xx = X(tv);
+        s.appendChild(node("line", { x1: xx, y1: y0, x2: xx, y2: y0 + 5, stroke: "var(--line)", "stroke-width": 1 }));
+        s.appendChild(txt(xx, y0 + 18, tv.toFixed(1), { "text-anchor": "middle", "font-size": 11, fill: "var(--mute)" }));
+      });
+      s.appendChild(txt((x0 + x1) / 2, H - 10, "mean lunar illuminated fraction", { "text-anchor": "middle", "font-size": 11.5, fill: "var(--ink)", "letter-spacing": "0.1em" }));
+
+      // ---- negative-control bands: ±2σ and ±1σ ----
+      function bandRect(loV, hiV, opacity) {
+        var xa = X(loV), xb = X(hiV);
+        return node("rect", { x: xa, y: plotTop, width: (xb - xa), height: (y0 - plotTop), fill: "var(--bad)", opacity: opacity });
+      }
+      s.appendChild(bandRect(mean - 2 * sd, mean + 2 * sd, 0.07));
+      s.appendChild(bandRect(mean - 1 * sd, mean + 1 * sd, 0.10));
+
+      // ---- gaussian bell (control), dashed red outline ----
+      var pts = [];
+      var N = 120;
+      for (var i = 0; i <= N; i++) {
+        var v = mean - 3.6 * sd + (7.2 * sd) * (i / N);
+        pts.push([X(v), Y(pdf(v))]);
+      }
+      var dPath = "M " + X(mean - 3.6 * sd) + " " + y0;
+      pts.forEach(function (p) { dPath += " L " + p[0].toFixed(2) + " " + p[1].toFixed(2); });
+      dPath += " L " + X(mean + 3.6 * sd) + " " + y0 + " Z";
+      s.appendChild(node("path", { d: dPath, fill: "var(--bad)", "fill-opacity": 0.13, stroke: "var(--bad)",
+        "stroke-width": 1.4, "stroke-dasharray": "5 3", "stroke-opacity": 0.75 }));
+
+      // control labels on the bell
+      s.appendChild(txt(X(mean), plotTop + 30, "NEGATIVE CONTROL", { "font-size": 9.5, fill: "var(--bad)", "letter-spacing": "0.1em", "text-anchor": "middle" }));
+      s.appendChild(txt(X(mean), plotTop + 43, "uniform-phase null", { "font-size": 9.5, fill: "var(--bad)", "text-anchor": "middle", opacity: 0.85 }));
+
+      // null mean line (E[f]=0.5)
+      s.appendChild(node("line", { x1: X(mean), y1: Y(pdf(mean)) - 6, x2: X(mean), y2: y0,
+        stroke: "var(--bad)", "stroke-width": 1.4, "stroke-dasharray": "2 2" }));
+      s.appendChild(txt(X(mean), Y(pdf(mean)) - 12, "null mean " + mean.toFixed(2), { "text-anchor": "middle", "font-size": 10.5, fill: "var(--bad)", "font-weight": 600 }));
+
+      // ---- exact-date subset mean (lighter accent, dashed) ----
+      if (obsEx != null) {
+        var xEx = X(obsEx);
+        s.appendChild(node("line", { x1: xEx, y1: plotTop + 8, x2: xEx, y2: y0,
+          stroke: "var(--accent)", "stroke-width": 1.6, "stroke-dasharray": "4 3", opacity: 0.7 }));
+        s.appendChild(node("circle", { cx: xEx, cy: y0, r: 3, fill: "var(--accent)", opacity: 0.7 }));
+        s.appendChild(txt(xEx, plotTop + 6, "exact-date " + obsEx.toFixed(2) + " (n=" + exact.n_used + ")",
+          { "text-anchor": "middle", "font-size": 9.5, fill: "var(--accent)", opacity: 0.85 }));
+      }
+
+      // ---- observed mean (all) — bold ink ----
+      if (obs != null) {
+        var xObs = X(obs);
+        s.appendChild(node("line", { x1: xObs, y1: plotTop - 6, x2: xObs, y2: y0,
+          stroke: "var(--ink)", "stroke-width": 2.6 }));
+        s.appendChild(node("circle", { cx: xObs, cy: y0, r: 3.4, fill: "var(--ink)" }));
+        s.appendChild(txt(xObs, plotTop - 10, "observed " + obs.toFixed(3) + " (n=" + all.n_used + ")",
+          { "text-anchor": "middle", "font-size": 11, fill: "var(--ink)", "font-weight": 600 }));
+
+        // z bracket observed -> null mean
+        var yBr = y0 - 20;
+        s.appendChild(node("line", { x1: xObs, y1: yBr, x2: X(mean), y2: yBr, stroke: "var(--accent)", "stroke-width": 1.3 }));
+        s.appendChild(node("line", { x1: xObs, y1: yBr - 4, x2: xObs, y2: yBr + 4, stroke: "var(--accent)", "stroke-width": 1.3 }));
+        s.appendChild(node("line", { x1: X(mean), y1: yBr - 4, x2: X(mean), y2: yBr + 4, stroke: "var(--accent)", "stroke-width": 1.3 }));
+        var zval = (all.z != null) ? Number(all.z).toFixed(2) : "–";
+        var pval = (all.p != null) ? Number(all.p).toFixed(3) : "–";
+        var side = (xObs < X(mean)) ? -1 : 1;
+        s.appendChild(txt((xObs + X(mean)) / 2, yBr - 8, "z " + zval + " · p " + pval,
+          { "text-anchor": "middle", "font-size": 11, fill: "var(--accent)", "font-weight": 600 }));
+      }
 
       return s;
     }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T04:56:44.950133+00:00",
+  "generated_at": "2026-07-25T05:30:24.312515+00:00",
   "missions": [
     {
       "id": "N0",
@@ -33,8 +33,8 @@
       "id": "N4",
       "owner": "Kimi",
       "title": "Archaeoastronomy",
-      "status": "scaffolded",
-      "href": "tools/astro/astro_probe.py"
+      "status": "done",
+      "href": "tools/astro/archaeo_probe.py"
     },
     {
       "id": "N5",
@@ -73,8 +73,8 @@
       "notes": "first probe landed; verdict: structure, not signal"
     },
     "archaeoastronomy": {
-      "covered": false,
-      "notes": "scaffold + lunar on formations.csv"
+      "covered": true,
+      "notes": "first lunar-phase probe vs uniform-phase null on 16 formations \u2014 see archaeo panel"
     },
     "nazca": {
       "covered": false,
@@ -87,164 +87,29 @@
   },
   "outputs": [
     {
-      "path": "outputs/astro/run.json",
-      "name": "run.json",
-      "kb": 4.3
-    },
-    {
-      "path": "outputs/batch_table.json",
-      "name": "batch_table.json",
-      "kb": 2.6
-    },
-    {
-      "path": "outputs/bio/demo.json",
-      "name": "demo.json",
-      "kb": 14.7
-    },
-    {
-      "path": "outputs/chilbolton_bits_73x23.json",
-      "name": "chilbolton_bits_73x23.json",
-      "kb": 33.0
-    },
-    {
-      "path": "outputs/chilbolton_grid.json",
-      "name": "chilbolton_grid.json",
-      "kb": 1.7
+      "path": "outputs/astro/archaeo_probe.json",
+      "name": "archaeo_probe.json",
+      "kb": 6.5
     },
     {
       "path": "outputs/constants/constants_analysis.json",
       "name": "constants_analysis.json",
-      "kb": 22.0
-    },
-    {
-      "path": "outputs/constants/run.json",
-      "name": "run.json",
-      "kb": 23.7
-    },
-    {
-      "path": "outputs/constants_smoke/constants_analysis.json",
-      "name": "constants_analysis.json",
-      "kb": 17.3
-    },
-    {
-      "path": "outputs/crabwood_bits.json",
-      "name": "crabwood_bits.json",
-      "kb": 1.4
-    },
-    {
-      "path": "outputs/crabwood_bits_disc2.json",
-      "name": "crabwood_bits_disc2.json",
-      "kb": 1.4
-    },
-    {
-      "path": "outputs/crabwood_sweep.json",
-      "name": "crabwood_sweep.json",
-      "kb": 9.5
-    },
-    {
-      "path": "outputs/feature_table.json",
-      "name": "feature_table.json",
-      "kb": 5.7
-    },
-    {
-      "path": "outputs/info_chualar.json",
-      "name": "info_chualar.json",
-      "kb": 1.1
-    },
-    {
-      "path": "outputs/info_julia_getty.json",
-      "name": "info_julia_getty.json",
-      "kb": 0.6
-    },
-    {
-      "path": "outputs/info_julia_tt.json",
-      "name": "info_julia_tt.json",
-      "kb": 0.2
-    },
-    {
-      "path": "outputs/info_julia_tt_nomask.json",
-      "name": "info_julia_tt_nomask.json",
-      "kb": 0.8
-    },
-    {
-      "path": "outputs/info_synthetic_julia.json",
-      "name": "info_synthetic_julia.json",
-      "kb": 1.1
-    },
-    {
-      "path": "outputs/julia_circles.json",
-      "name": "julia_circles.json",
-      "kb": 21.7
-    },
-    {
-      "path": "outputs/julia_tt_oh_clusters.json",
-      "name": "julia_tt_oh_clusters.json",
-      "kb": 0.2
-    },
-    {
-      "path": "outputs/kimi_batch_analysis_results.json",
-      "name": "kimi_batch_analysis_results.json",
-      "kb": 3.0
+      "kb": 1.3
     },
     {
       "path": "outputs/phaistos_analysis.json",
       "name": "phaistos_analysis.json",
-      "kb": 3.4
+      "kb": 2.1
     },
     {
       "path": "outputs/phaistos_refrain.json",
       "name": "phaistos_refrain.json",
-      "kb": 1.8
-    },
-    {
-      "path": "outputs/priority_batch.json",
-      "name": "priority_batch.json",
-      "kb": 2.8
-    },
-    {
-      "path": "outputs/signal/chilbolton_window_entropy.json",
-      "name": "chilbolton_window_entropy.json",
-      "kb": 3.2
-    },
-    {
-      "path": "outputs/signal/chualar_lsb.json",
-      "name": "chualar_lsb.json",
-      "kb": 1.0
+      "kb": 1.1
     },
     {
       "path": "outputs/signal/multiplex_l20.json",
       "name": "multiplex_l20.json",
-      "kb": 1.7
-    },
-    {
-      "path": "outputs/uap/demo.json",
-      "name": "demo.json",
-      "kb": 1.1
-    },
-    {
-      "path": "outputs/uap/run.json",
-      "name": "run.json",
-      "kb": 4.4
-    },
-    {
-      "path": "outputs/vision/chilbolton_message_2001_tt_qwen.json",
-      "name": "chilbolton_message_2001_tt_qwen.json",
-      "kb": 0.5
-    },
-    {
-      "path": "outputs/vision/chualar_2013_nvidia_hoax_qwen.json",
-      "name": "chualar_2013_nvidia_hoax_qwen.json",
-      "kb": 0.6
-    },
-    {
-      "path": "outputs/vision/crabwood_2002_disc_crop_qwen.json",
-      "name": "crabwood_2002_disc_crop_qwen.json",
-      "kb": 0.6
-    },
-    {
-      "path": "outputs/wheat_closeout/chilbolton_bitstream_scan.json",
-      "name": "chilbolton_bitstream_scan.json",
-      "kb": 3.7
+      "kb": 0.2
     },
     {
       "path": "outputs/wheat_closeout/chilbolton_grid_analyze.json",
@@ -254,13 +119,8 @@
     {
       "path": "outputs/wheat_closeout/crabwood_bitstream_scan.json",
       "name": "crabwood_bitstream_scan.json",
-      "kb": 4.3
-    },
-    {
-      "path": "outputs/wheat_closeout/crabwood_signal_probe.json",
-      "name": "crabwood_signal_probe.json",
-      "kb": 2.7
+      "kb": 0.4
     }
   ],
-  "n_outputs": 35
+  "n_outputs": 7
 }
