@@ -100,9 +100,23 @@ def shannon_symbol(seq: str) -> float:
 
 
 def shuffle_seq(seq: str, seed: int = 0) -> str:
+    """Composition-preserving shuffle (Fisher–Yates).
+
+    N1++: prefer NumPy Generator for speed on chr-scale pools; fall back to
+    stdlib ``random.Random`` when numpy is unavailable. Same seed → same
+    permutation on a given backend (backends may differ — document seed+backend
+    in reports if comparing across installs).
+    """
     chars = list(seq.upper())
-    rng = random.Random(seed)
-    rng.shuffle(chars)
+    if not chars:
+        return ""
+    try:
+        import numpy as np
+        rng = np.random.default_rng(seed)
+        rng.shuffle(chars)
+    except ImportError:
+        rng = random.Random(seed)
+        rng.shuffle(chars)
     return "".join(chars)
 
 
@@ -195,15 +209,15 @@ def load_annotations(path: Path) -> list[dict]:
 
 
 def _classify_window_bin(window_start: int, window_end: int,
-                         annotations: list[dict]) -> tuple[str, int, bool]:
+                         annotations: list[dict],
+                         window_chrom: str | None = None) -> tuple[str, int, bool]:
     """Return (bin, intersect_len, straddles_boundary) for a window.
 
     Rule:
       * If annotations is empty -> ('intergenic', 0, False).
-      * Else, count intersecting bp with each BED row that lies on the
-        SAME chromosome-strata (we treat chrom as opaque; bad chrom binned
-        as intergenic with intersect_len=0 to be safe -- but for matched
-        chromosomes we take max-overlap-wins).
+      * Else, count intersecting bp with each BED row. When ``window_chrom``
+        is set (N1++), skip rows whose ``chrom`` does not match — prevents
+        chr1 BED + chr22 FASTA silent mis-tagging.
       * The BED row with the LARGEST intersecting-base count dictates the bin.
       * If multiple rows tie on intersect_len, the row whose 'start' is
         CLOSEST to window_start wins (deterministic tiebreak).
@@ -217,6 +231,8 @@ def _classify_window_bin(window_start: int, window_end: int,
     best_len = 0
     best_dist = None
     for row in annotations:
+        if window_chrom is not None and row.get("chrom") != window_chrom:
+            continue
         ov_lo = max(window_start, row["start"])
         ov_hi = min(window_end, row["end"])
         if ov_hi <= ov_lo:
@@ -254,7 +270,8 @@ def _window_entropy_mean_of(seq_text: str, char_window: int, step: int) -> float
 def _per_bin_analysis(seq: str, window: int, step: int,
                       annotations: list[dict] | None,
                       annotation_file: str | None,
-                      shuffle_seed: int = 42) -> dict | None:
+                      shuffle_seed: int = 42,
+                      seq_chrom: str | None = None) -> dict | None:
     """Run the per-bin shuffle control.
 
     Returns None when no annotations were provided (caller decides whether
@@ -267,12 +284,20 @@ def _per_bin_analysis(seq: str, window: int, step: int,
     windows_meta: list[dict] = []
     real_texts_by_bin: dict[str, list[str]] = {b: [] for b in BIN_TYPES}
     if n_total < window:
-        return _wrap_bin_result({}, annotations, annotation_file)
+        wrapped = _wrap_bin_result({}, annotations, annotation_file)
+        wrapped["status"] = "skipped_seq_too_short"
+        wrapped["n_bases"] = n_total
+        wrapped["window"] = window
+        wrapped["note"] = (
+            f"sequence length {n_total} < window {window}; "
+            "bins empty despite features_parsed > 0"
+        )
+        return wrapped
 
     for w_start in range(0, n_total - window + 1, step):
         w_end = w_start + window
         bin_type, ov_len, straddles = _classify_window_bin(
-            w_start, w_end, annotations
+            w_start, w_end, annotations, window_chrom=seq_chrom
         )
         window_text = seq[w_start:w_end]
         windows_meta.append({
@@ -281,6 +306,7 @@ def _per_bin_analysis(seq: str, window: int, step: int,
             "bin": bin_type,
             "intersect_len": ov_len,
             "straddles_boundary": straddles,
+            "window_chrom": seq_chrom,
         })
         real_texts_by_bin[bin_type].append(window_text)
 
@@ -327,7 +353,10 @@ def _per_bin_analysis(seq: str, window: int, step: int,
             "status": status,
             "min_windows_for_delta": MIN_WINDOWS_FOR_BIN_DELTA,
         }
-    return _wrap_bin_result(per_bin, annotations, annotation_file, windows_meta)
+    wrapped = _wrap_bin_result(per_bin, annotations, annotation_file, windows_meta)
+    wrapped["status"] = "ok"
+    wrapped["seq_chrom"] = seq_chrom
+    return wrapped
 
 
 def _wrap_bin_result(per_bin: dict[str, dict], annotations: list[dict],
@@ -367,7 +396,8 @@ def _wrap_bin_result(per_bin: dict[str, dict], annotations: list[dict],
 def analyze_sequence(seq: str, window: int = 1000, step: int = 250,
                      label: str = "", shuffle_seed: int = 42,
                      annotations: list[dict] | None = None,
-                     annotation_file: str | None = None) -> dict:
+                     annotation_file: str | None = None,
+                     seq_chrom: str | None = None) -> dict:
     """Run the probe on `seq` and on a composition-preserving shuffle.
 
     The headline test statistic is
@@ -376,7 +406,8 @@ def analyze_sequence(seq: str, window: int = 1000, step: int = 250,
     If `annotations` is provided, the same Δ is also computed WITHIN each
     genome bin (coding / untranslated / intronic / intergenic) using the
     per-bin shuffle control. Each window is tagged with its bin via
-    max-overlap on BED4.
+    max-overlap on BED4. Pass ``seq_chrom`` (N1++) so BED rows on other
+    chromosomes are ignored.
 
     Returned dict has BOTH 'window_entropy_bits' (legacy, real-only) and
     'window_entropy_bits_real' + 'window_entropy_bits_shuffled' as the
@@ -384,6 +415,7 @@ def analyze_sequence(seq: str, window: int = 1000, step: int = 250,
     provided, two ADDITIVE keys appear:
         * `annotation_summary` -- {annotation_file, features_parsed, ...}
         * `bins`               -- {bin_type: {n_windows, ..., delta_window_H_mean}}
+        * `bins_status`        -- ok | skipped_seq_too_short
     """
     bits = seq_to_bits(seq)
     shuf = shuffle_seq(seq, seed=shuffle_seed)
@@ -435,21 +467,28 @@ def analyze_sequence(seq: str, window: int = 1000, step: int = 250,
     }
 
     if annotations is not None:
-        report["annotation_summary"] = {
-            "annotation_file": annotation_file,
-            "features_parsed": len(annotations),
-        }
-        report["bins"] = _per_bin_analysis(
+        bin_block = _per_bin_analysis(
             seq, window=window, step=step,
             annotations=annotations, annotation_file=annotation_file,
-            shuffle_seed=shuffle_seed,
-        ).get("bins", {})
-        # and keep the rule + window counts in a flat spot too
+            shuffle_seed=shuffle_seed, seq_chrom=seq_chrom,
+        ) or {}
+        report["annotation_summary"] = bin_block.get("annotation_summary", {
+            "annotation_file": annotation_file,
+            "features_parsed": len(annotations),
+        })
+        report["bins"] = bin_block.get("bins", {})
+        report["bins_status"] = bin_block.get("status", "ok")
+        report["seq_chrom"] = seq_chrom
+        report["min_windows_for_delta"] = bin_block.get(
+            "min_windows_for_delta", MIN_WINDOWS_FOR_BIN_DELTA
+        )
         report["per_bin_rule"] = (
             "Fisher-Yates of WHOLE-BIN pool with same (window, step); "
             "composition-preserving per bin (incl. GC%). "
             f"Bins with fewer than {MIN_WINDOWS_FOR_BIN_DELTA} windows are "
-            "flagged status=too_few_windows with delta=null."
+            "flagged status=too_few_windows with delta=null. "
+            "Chrom mismatch rows skipped when seq_chrom is set. "
+            f"bins_status={report['bins_status']}."
         )
 
     return report
@@ -493,9 +532,20 @@ def write_notes_markdown(report: dict) -> str:
             "",
             f"- annotation file: `{annotation.get('annotation_file', '?')}`  "
             f"features parsed: **{annotation.get('features_parsed', '?')}**",
+            f"- seq_chrom filter: `{report.get('seq_chrom')}`  "
+            f"bins_status: **{report.get('bins_status', 'ok')}**",
             "",
         ]
-    if bins:
+    if report.get("bins_status") == "skipped_seq_too_short":
+        lines += [
+            "## Per-bin shuffle control",
+            "",
+            f"**skipped_seq_too_short** — n_bases={report.get('n_bases')} "
+            f"< window; bins empty despite features_parsed="
+            f"{annotation.get('features_parsed') if annotation else '?'}.",
+            "",
+        ]
+    elif bins:
         lines += ["## Per-bin shuffle control (Fisher-Yates within each bin)",
                   "",
                   f"(min windows for defensible Δ: "
@@ -582,6 +632,8 @@ def main() -> None:
                     help="seed for the composition-preserving (GC-percent-matched) shuffle control")
     ap.add_argument("--annotations", type=Path, default=None,
                     help="optional BED4 (0-based half-open) annotation file -- enables per-bin analysis")
+    ap.add_argument("--seq-chrom", type=str, default=None,
+                    help="N1++: chromosome id of the FASTA slice; BED rows on other chroms are skipped")
     ap.add_argument("--out", type=Path, default=None, help="write JSON report here")
     ap.add_argument("--out-md", type=Path, default=None,
                     help="write a one-pager markdown notes file here")
@@ -604,6 +656,7 @@ def main() -> None:
             label=str(args.fasta), shuffle_seed=args.shuffle_seed,
             annotations=annotations,
             annotation_file=str(args.annotations) if args.annotations else None,
+            seq_chrom=args.seq_chrom,
         )
 
     text = json.dumps(result, indent=2)

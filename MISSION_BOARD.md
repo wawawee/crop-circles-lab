@@ -39,7 +39,9 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G2** | **Minimax M3** | Proto-Elamite | CDLI ledger entropy | 🟢 **merged** — synth 4/4 invariants; CDLI default NEVER_ATTEMPTED + `--fetch-online`; 9 forbidden phrases; Uruk SFU POSTPONED. `feat/g2-proto-elamite` |
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed + **Ozma interpretation pass (PR)** — μ↔(6−μ) one-horn degeneracy, PHL@UPR 2024 natural H-cloud, N=6 gives zero power to infer artificiality; NOTES deepened in `outputs/radio/NOTES.md` |
 | **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
-| **G8** | queue | Betty Hill × Gaia | Star-map null | ⬜ paused (not tonight) |
+| **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
+| **G2++** | **Minimax M3** | Uruk SFU comparator | PE vs Uruk numeral structure | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
+| **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟡 **in PR** `feat/n1pp-bio-hardens` — 33/33 tests |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟢 **landed PR #3** — synth known-answer + honest block on real slice; no TB mirror. `outputs/radio/blc1_*.json` |
 
@@ -55,8 +57,9 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G4** | Opencode 🟢 Rongorongo on main. |
 | **G7++** | 🟢 merged PR #4 — nulls hardened. |
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
-| **Minimax M3** | 💤 idle (radio/Amazon/BLC1 closed). |
-| **Opencode** | 💤 idle — next ticket when Captain assigns. |
+| **Minimax M3** | 🟡 on **G2++** Uruk SFU; radio/Amazon/BLC1 closed. |
+| **Opencode** | 🟡 on **G8** Betty Hill × Gaia. |
+| **Cursor** | 🟡 on **N1++** bio hardens + merge gate. |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -66,12 +69,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward (not default author). **Ozma** = radio/BLC1. **Opencode** = scripts/astro/geo S–M (idle). **Minimax M3** = idle (G2 done). **Geoglyf** = retired. **Cursor/Captain** = merge gate + board steward. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G8**. **Minimax M3** = **G2++**. **Cursor** = **N1++** + merge gate. **Geoglyf** = retired. **Captain** = assigner. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | No next ticket until Captain assigns. G2 + G7++ both merged. |
+| **Idle default** | No next ticket until Captain assigns. Active: G2++ (M3), G8 (Opencode), N1++ (Cursor). |
 
 ---
 
@@ -214,12 +217,50 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 ### G2 — Minimax M3 (🟢 MERGED 2026-07-25) — Proto-Elamite
 > Landed: `tools/scripts/proto_elamite_probe.py` + 15/15 tests. Synth 4/4 invariants;
-> CDLI default NEVER_ATTEMPTED; Uruk SFU POSTPONED. Idle until Captain assigns next.
+> CDLI default NEVER_ATTEMPTED; Uruk SFU POSTPONED → see **G2++**.
+
+### G2++ — Minimax M3 (ASSIGNED 2026-07-25) — Uruk SFU comparator
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ message.
+> Finish the POSTPONED path in `data/scripts/proto_elamite/uruk_comparator_refs.json`.
+> Do NOT touch radio, BLC1, Amazon, G8, or N1++.
+>
+> 1. Fetch **small** open CDLI Uruk III ATF for ≥1–3 of the listed candidate IDs
+>    (or documented substitutes). Save under `data/scripts/proto_elamite/uruk/` + README
+>    with cdli_id attribution. Prefer `--fetch-online` opt-in; default stay honest-empty.
+> 2. Run the **same** numeral-block / header invariants as G2 on Uruk tablets.
+> 3. Compare PE synth (or bundled PE ATF) vs Uruk: report whether numeral H(next|n)
+>    collapse / z_lock pattern is **shared ledger structure** (expected) vs PE-unique.
+> 4. Optional: SFU / subset-sum note only if trivial from published numeral signs —
+>    else document SKIP. No language-family claim either way.
+> 5. Outputs: `outputs/proto_elamite/uruk_{run.json,NOTES.md}`. Update board G2++ → 🟢.
+> 6. Branch `feat/g2pp-uruk-comparator`. PR for Cursor/Captain merge.
+> Forbidden: "PE related to Sumerian", decipherment, inventing ATF.
 
 ### G7++ — Opencode (🟢 MERGED PR #4 2026-07-25) — Gorafe sunrise + valley null
 > Landed: per-tomb Dec hit@15°≈40% z≈7; convex-hull NND z−15.6; DEM null BLOCKED.
 > Verdict: ORIENTATION_STRUCTURE | CONTROL_SEPARATED | SPATIAL_CLUSTER_UNDERDETERMINED | PER_TOMB_UNDERDETERMINED.
-> Idle until Captain assigns next.
+
+### G8 — Opencode (ASSIGNED 2026-07-25) — Betty Hill × Gaia null
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ message.
+> Classic “alien star map” → rigorous network null. Clear prior: expect **NO_SIGNAL**.
+> Do NOT touch radio, BLC1, Amazon, G2++, or bio.
+>
+> 1. Encode the published Betty Hill star-map graph (Marjorie Fish / Hill sketch nodes)
+>    as a small JSON under `data/astro/betty_hill/` + README (sources, which stars claimed).
+> 2. Resolve claimed stars to sky positions via **skyfield** and/or Gaia DR3 public catalog
+>    (small cone queries / published Hipparcos-Gaia crosswalk — no full Gaia dump).
+> 3. Metrics: pairwise angular distances, MST / neighbor-graph shape stats vs
+>    **degree-preserving or random-star-field nulls** (same N bright stars in same sky patch).
+> 4. Known-answer: a planted true asterism (e.g. Big Dipper subset) must separate from null;
+>    Hill map should **not** beat nulls at the planted level (or document UNDERDETERMINED).
+> 5. Outputs: `outputs/betty_hill/{run.json,NOTES.md}`. Board G8 → 🟢 / 🔴 BLOCKED.
+> 6. Branch `feat/g8-betty-hill-gaia`. PR for merge gate.
+> Forbidden: “Zeta Reticuli confirmed,” alien navigation claims, cherry-picked star IDs
+> without citing the map edition you used.
+
+### N1++ — Cursor (ASSIGNED 2026-07-25) — bio_probe hardens
+> See deferred list under N1 status. Chrom-match classify, short-seq status,
+> intronic bin when models exist, numpy shuffle speed. Branch `feat/n1pp-bio-hardens`.
 
 ### G3 — Wow! beam-fit (after G1 or G2)
 > Extend `tools/radio/radio_probe.py` or tiny `wow_beam_fit.py`: intensities [6,14,26,30.5,19.5,5.5]
