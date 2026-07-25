@@ -34,7 +34,7 @@ def main() -> None:
         {"id": "G3", "owner": "Minimax→Ozma", "title": "Wow! 1977 sidereal beam-fit", "status": "done", "href": "outputs/radio/"},
         {"id": "G7", "owner": "Opencode", "title": "Gorafe megaliths orientation", "status": "done", "href": "outputs/gorafe/run.json"},
         {"id": "G4", "owner": "Opencode", "title": "Rongorongo 2D parallel passages", "status": "done", "href": "outputs/rongorongo/run.json"},
-        {"id": "G-Amazon", "owner": "Ulfberht", "title": "Amazon earthworks Mode A", "status": "in_review", "href": "outputs/amazon/run.json"},
+        {"id": "G-Amazon", "owner": "Ulfberht", "title": "Amazon earthworks Mode A", "status": "done", "href": "outputs/amazon/run.json"},
         {"id": "G-BLC1", "owner": "Ozma", "title": "BLC1 RFI known-answer", "status": "in_progress", "href": "tools/radio/blc1_fetcher.py"},
         {"id": "R1++", "owner": "Ozma", "title": "CHIME Cat 2 periods (16.35 d)", "status": "in_progress", "href": "tools/radio/cat2_fetcher.py"},
     ]
@@ -47,7 +47,7 @@ def main() -> None:
         "uap_video": {"covered": True, "notes": "metadata poverty → g underdetermined"},
         "constants": {"covered": True, "notes": "first probe landed; verdict: structure, not signal"},
         "archaeoastronomy": {"covered": True, "notes": "lunar-phase probe vs uniform null — NO SIGNAL; Gorafe orientation STRUCTURE, astro UNDERDETERMINED"},
-        "amazon": {"covered": False, "notes": "Mode A spatial point-process in review (PR): STRUCTURE_ONLY clustering vs CSR; merge held for 2nd reviewer"},
+        "amazon": {"covered": True, "notes": "Mode A spatial point-process (PR #1 merged): STRUCTURE_ONLY clustering vs CSR, NN R=0.175 z=−46.7, Ripley L>CSR all radii; Mode B BLOCKED; not lost-civilisation"},
         "nazca": {"covered": False, "notes": "scout brief only"},
         "wow_frb": {"covered": True, "notes": "radio scaffold + honest CHIME/Vela fetchers (park when unreachable); G3 Wow beam-fit UNDERDETERMINED"},
     }
