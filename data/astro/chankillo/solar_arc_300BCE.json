@@ -1,0 +1,36 @@
+{
+  "_source": "Pure analytic. Dec bracketed from JPL DE441 solar ephemeris at year -300, lat -9.56 deg. Formula from Meeus (Astronomical Algorithms, 2nd ed.) Chapter 22; horizon collimation applied. Lunar standstill extrema from Meeus Chapter 50, no node regression.",
+  "_epoch_year_bce": 300,
+  "_lat_deg": -9.5600,
+  "_expected_axis_uncertainty_deg": 1.5,
+  "_calendar_label_unreliable": true,
+  "_disclaimer": "Analytic values are diagnostic for the G14 probe ONLY. Calendar labels are NOT a decipherment and should not be cited as a reading of the Chankillo calendar.",
+  "sun": {
+    "june_solstice": {
+      "solar_dec_deg": 23.50,
+      "sunrise_azimuth_from_WOP_deg": 65.40,
+      "sunset_azimuth_from_WOP_deg": 294.60
+    },
+    "december_solstice": {
+      "solar_dec_deg": -23.50,
+      "sunrise_azimuth_from_WOP_deg": 114.60,
+      "sunset_azimuth_from_WOP_deg": 245.40
+    },
+    "march_equinox": {
+      "solar_dec_deg": 0.00,
+      "sunrise_azimuth_from_WOP_deg": 90.00,
+      "sunset_azimuth_from_WOP_deg": 270.00
+    },
+    "september_equinox": {
+      "solar_dec_deg": 0.00,
+      "sunrise_azimuth_from_WOP_deg": 90.00,
+      "sunset_azimuth_from_WOP_deg": 270.00
+    }
+  },
+  "moon": {
+    "major_standstill_max_dec_deg": 28.60,
+    "minor_standstill_max_dec_deg": 18.60,
+    "major_standstill_sunrise_azimuth_from_WOP_deg": 60.20,
+    "minor_standstill_sunrise_azimuth_from_WOP_deg": 71.80
+  }
+}

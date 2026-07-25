@@ -1,0 +1,132 @@
+{
+  "mission": "G14",
+  "generated_at": "2026-07-25T19:57:57.303956+00:00",
+  "verdict": "ORIENTATION_STRUCTURE | CONTROL_SEPARATED",
+  "metadata": {
+    "wop_lat": -9.56,
+    "wop_lon": -78.238,
+    "n_towers_used": 13,
+    "n_towers_expected": 13,
+    "epoch_year_bce": 300,
+    "coord_source": "ghezzi_ruggles_2007_fig1_schematic",
+    "calendar_label_unreliable": true,
+    "axis_tolerance_deg": 1.5,
+    "deliberately_no_dem": true
+  },
+  "groups": [
+    {
+      "label": "observed_tower_bearings_vs_analytic_solar_sweep",
+      "observed_bearings_deg": [
+        99.59337968742307,
+        90.00024912052301,
+        80.40713239095282,
+        71.32359252943755,
+        63.113391926251886,
+        55.03261583189445,
+        48.840072663755514,
+        43.629039032467574,
+        38.26992327463056,
+        34.61687642402548,
+        31.532886288588383,
+        28.03572683327955,
+        25.831633209293937
+      ],
+      "expected_bearings_deg": [
+        65.4,
+        69.5,
+        73.60000000000001,
+        77.7,
+        81.8,
+        85.9,
+        90.0,
+        94.1,
+        98.19999999999999,
+        102.3,
+        106.4,
+        110.5,
+        114.6
+      ],
+      "deltas_deg": [
+        34.19337968742309,
+        20.500249120522994,
+        6.807132390952802,
+        6.3764074705624125,
+        18.68660807374806,
+        30.86738416810556,
+        41.15992733624449,
+        50.47096096753239,
+        59.93007672536942,
+        67.68312357597449,
+        74.8671137114116,
+        82.46427316672043,
+        88.76836679070607
+      ],
+      "structure_z": {
+        "observed": 2744.4437,
+        "null_mean": 39737.8155,
+        "null_sd": 0.0,
+        "z": -3.699337178164294e+16
+      },
+      "mc_z": {
+        "observed": 2744.4437,
+        "null_mean": 1954.5657,
+        "null_sd": 188.8223,
+        "z": 4.1832,
+        "n_iter": 20
+      }
+    }
+  ],
+  "null_uniform": {
+    "label": "uniform_bearing_null",
+    "n_iter": 20,
+    "z": -3.699337178164294e+16
+  },
+  "null_ridge": {
+    "label": "synthetic_ridge_null",
+    "z": -973028701997214.2,
+    "z_delta_vs_flat": 3.602034307964573e+16,
+    "threshold_for_control_separated": 1.5
+  },
+  "caveats": [
+    "Coordinates in tower_coords.json are approximate per Ghezzi & Ruggles (2007) Fig. 1 - NOT geodesy-grade.",
+    "No DEM on disk. Synthetic piecewise-linear east-arc ridge null emulates horizon-occlusion; a real DEM swap-in is documented in data/astro/chankillo/README.md.",
+    "Calendar labels for year < -2000 are NOT reliable (N4++ rule). We measure structural fit; we do NOT endorse the Ghezzi & Ruggles interpretive calendar.",
+    "z vs MC-permuted tower ordering null is the substantive test - it preserves the per-tower bearings but breaks the sequential order and tests whether that ordering carries the sweep signal.",
+    "Verdict tags are STRUCTURE ONLY - NEVER a reading of the Chankillo calendar or a claim of construction intent.",
+    "Schematic-fixture span bias: observed tower-bearing spread ~74 deg from WOP exceeds the published Ghezzi & Ruggles 2007 annual-solar-arc claim of ~33 deg; the ORIENTATION_STRUCTURE verdict may be inflated by schematic-only approximation until a geodesy-grade re-derive replaces the fixture."
+  ],
+  "data_source": "Loader attempts `data/astro/chankillo/{tower_coords.json, solar_arc_300BCE.json}` first. Coordinates derived from Ghezzi & Ruggles (2007) Fig. 1 schematic approximation. NO DEM is on disk; the probe runs a flat-horizon baseline + synthetic piecewise-linear east-arc ridge null. Solar arc is sourced from JPL DE441 at year -300 (analytic Meeus 22nd-ed.). Per-tower tolerances are \u00b11.5 deg per the published axis uncertainty. Calendar labels for year<-2000 are NOT reliable (N4++ rule, applied here).",
+  "stance": "Chankillo Thirteen Towers (Casma-Sechin Basin, ~250-200 BCE, Peru) are an archaeoastronomical complex. The published interpretation - Ghezzi & Ruggles 2007 - is that the 13 tower-to-observer bearings from the western observing point bracket the annual Sun-arc sunrise with ~1-2 day precision. This probe measures sign alignment structure vs uniform / scrambled / synthetic-ridge nulls ONLY. It does NOT endorse any claim that Chankillo is a 'proven calendar', imply a tribal calendar reading, claim extraterrestrial contact, or fabricate a DEM.",
+  "forbidden_phrases": [
+    "Chankillo deciphered",
+    "Chankillo calendar proven",
+    "proven Inca calendar",
+    "proved solar calendar",
+    "perfectly aligned",
+    "exactly aligned",
+    "tribal calendar",
+    "Smithsonian calendar",
+    "alien observatory",
+    "aliens built",
+    "ancient astronauts",
+    "99% aligned",
+    "100% aligned",
+    "civilization-decoding",
+    "civilization decoded",
+    "civilization decoded by towers",
+    "language of the gods",
+    "alignment proves",
+    "calendar proves",
+    "civilization encoded",
+    "civilization encoded in towers",
+    "skysurfer",
+    "sky surfer"
+  ],
+  "pipeline": {
+    "tool": "tools/scripts/chankillo_probe.py",
+    "parameters": {
+      "n_shuffles": 20,
+      "seed": 0
+    }
+  }
+}
