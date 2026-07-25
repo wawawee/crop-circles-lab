@@ -62,3 +62,9 @@ See also: [`research_leads_merged_2026-07-25.md`](research_leads_merged_2026-07-
 4. Either → **G15** Cretan Hieroglyphic  
 
 Do **not** interrupt G10 Voynich mid-flight.
+
+---
+
+## Related: Kimi 2026-07-25 list
+
+See [`research_leads_kimi_2026-07-25.md`](research_leads_kimi_2026-07-25.md) for G16–G20 (Meroitic, TESS Ellipsoid, EAMENA, LDE, Boyajian) + holds/rejects.

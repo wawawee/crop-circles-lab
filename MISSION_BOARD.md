@@ -49,6 +49,11 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G13** | queue | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | ⬜ no-signal prior |
 | **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
 | **G15** | queue | Cretan Hieroglyphic bipartite admin | network / symbolseq | ⬜ after Linear A |
+| **G16** | queue | Meroitic corpus (Otten 2025) | symbolseq; GitHub open | ⬜ **next script** after G11 — structure-only |
+| **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
+| **G18** | queue | EAMENA ley-line null | spatial+network; GeoJSON subsets | ⬜ no-signal / FPR calib |
+| **G19** | queue | Long Delayed Echoes historic series | radio/FFT; digitized delays | ⬜ no-signal; Lunan CUT |
+| **G20** | queue | Boyajian Star TESS epoch-fold | astro; TIC 272172248 | ⬜ underdetermined |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟢 **landed PR #3** — synth known-answer + honest block on real slice; no TB mirror. `outputs/radio/blc1_*.json` |
@@ -85,7 +90,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3), G11 (Opencode). Leads: docs/research_leads_anomalistics_2026-07-25.md |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3), G11 (Opencode). Leads: anomalistics + docs/research_leads_kimi_2026-07-25.md |
 
 ---
 
@@ -304,12 +309,22 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > Forbidden: decipherment, language-family claims, “CM is Linear A,” aliens.
 >
 > Prefer STRUCTURE / NO_SIGNAL / UNDERDETERMINED / MEDIA_DRIVEN_ALLOGRAPHY with controls.
+>
+> **Later G11+ (not this ticket):** Unicode 16.0 CM block + UCL 3D sign DB — after text probe merges.
+> See docs/research_leads_kimi_2026-07-25.md.
 
-### G12–G15 — queue (do not start until Captain assigns)
+
+### G12–G20 — queue (do not start until Captain assigns)
 > **G12** Linear Elamite (Liège 2024) — EXTENDS PE; Desset decipherment = claim-under-test.  
 > **G13** VASCO transients — no-signal prior; plate-artifact nulls.  
 > **G14** Chankillo towers — DEM horizon + synthetic ridge null.  
-> **G15** Cretan Hieroglyphic bipartite admin — CHIC + Linear A/B KA.
+> **G15** Cretan Hieroglyphic bipartite admin — CHIC + Linear A/B KA.  
+> **G16** Meroitic corpus (Otten & Anastasopoulos 2025 GitHub) — **preferred next script** after G11.  
+> **G17** TESS SETI Ellipsoid (Cabrales 2024) — optical no-signal sharpen.  
+> **G18** EAMENA ley-line null — spatial FPR calibration (GeoJSON subsets).  
+> **G19** Long Delayed Echoes historic delays — no-signal; Lunan claim-under-test.  
+> **G20** Boyajian’s Star TESS — dip recurrence / quiet limits.  
+> Full triage: docs/research_leads_kimi_2026-07-25.md + docs/research_leads_anomalistics_2026-07-25.md.
 
 ### N1++ — Cursor (🟢 MERGED PR #6 2026-07-25) — bio_probe hardens
 > Landed: chrom-aware classify + `--seq-chrom`; `bins_status=skipped_seq_too_short`;
