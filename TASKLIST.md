@@ -49,7 +49,7 @@
 
 ## B. READY — pick up / delegate
 
-### B1 — Manual Crabwood disc crop + parameter sweep
+### B1 — Manual Crabwood disc crop + parameter sweep — DONE ✅ (resolution floor; no paid master)
 **Goal:** Drive BER well below ~0.4 vs Red Collie / Vigay plaintexts.  
 **Why blocked before:** Auto spiral on ~600px TT disc = random bits.  
 **Work:**
@@ -61,7 +61,9 @@
 
 **Acceptance:** Documented best BER; if still ≥0.4, note resolution floor and stop.
 
-### B2 — Chilbolton message panel: manual bbox + cell OCR
+**Result (2026-07-25, local):** Crop from `oh2` → `crabwood_2002_disc_crop.png` (246×246). Sweep 4992 → **BER floor 0.4495**. `crabwood_*_disc.jpg` mislabeled. C1 parked (no budget) — stay on free/OS imagery. See `outputs/crabwood_b1_notes.md`.
+
+### B2 — Chilbolton message panel: manual bbox + cell OCR — DONE ✅ (structural probe)
 **Goal:** Reliable 73×23 bitmap from `chilbolton_message_2001_tt.jpg` (or better OH).  
 **Work:**
 1. Draw/record bbox JSON: `data/catalog/chilbolton_bbox.json` `{x0,y0,x1,y1}`.
@@ -70,6 +72,8 @@
 4. Diff structural regions vs published Arecibo reply (Si / helix / figure height) — cite `forensics.encoding`.
 
 **Acceptance:** Stable grid across slight bbox jitter; overlay committed.
+
+**Result (2026-07-25, local):** Manual bbox `[22,28,275,572]`; bits PNG+JSON. Fill≈0.5 at web-res. See `outputs/chilbolton_b2_notes.md`.
 
 ### B3 — Finish preprocess: perspective + crop/stubble helpers — scaffold DONE ✅ (Edmonton ortho left to local)
 **Goal:** Implement remaining hyperagent stubs properly.  
@@ -106,16 +110,15 @@
 
 **Result (2026-07-25):** `tools/ccat/parse_blt_labs.py` → `data/catalog/blt_lab_metrics.json` (`blt_lab_metrics.v1`) + `outputs/blt_lab_summary.md`. Logan #79 (KS-03-131): node expansion 15–65%, expulsion cavities, diameters 30.4/58 ft. Edmonton #122 (KS-04-176): 7-circle, bent nodes 40–120°, magnetic particles, microwave heating claim. Cherhill metrics pulled from archived JSE/BLT semi-molten page (lab #104 HTML still 404). Caveat baked into JSON: BLT claims, not independent remeasurement.
 
-### B6 — Known-hoax vs candidate classifier (lightweight) — **REMOTE PRIMARY**
+### B6 — Known-hoax vs candidate classifier (lightweight) — **LOCAL NEXT** (free corpus on disk)
 **Goal:** Features that separate Chualar (known marketing hoax) from BLT-priority cases.  
 **Work:**
-1. Feature vector: edge ratio, symmetry, fractal D, circle/line ratio, entropy.
+1. Feature vector: edge ratio, symmetry, fractal D, circle/line ratio, entropy (+ B3/B4: blob count, circularity, stubble fraction).
 2. Table over current corpus → `outputs/feature_table.csv` (extend `report.py`).
 3. Simple sklearn baseline (logistic / RF) — **report as exploratory only**.
 
 **Acceptance:** CSV + short caveats (tiny N, no claim of authenticity).
-**Delegate:** Yes — tracked images in repo include Chualar + priority set.
-**Note (2026-07-25, Hyperagent):** Bulk-pulling the ~60 image binaries through the GitHub MCP is impractical (per-file raw tokens expire fast; no shell `git clone` from the sandbox). B6 is best run LOCALLY in Cursor (images on disk), or remotely on a small hand-picked subset. The mask-first `circle_extract.py` (B4) and `preprocess.py` (B3) now provide clean feature inputs (blob count, circularity, ink fraction, stubble fraction).
+**Note (2026-07-25, Hyperagent):** Bulk image fetch via MCP impractical → run **locally** (images already on disk). Free/OS only — no paid imagery.
 
 ### B7 — Spatial / temporal stub → real catalog CSV — DONE ✅
 **Goal:** Make `spatial.py` ideas real.  
@@ -128,7 +131,7 @@
 
 **Result (2026-07-25, Hyperagent/finasteos):** Landed `data/catalog/formations.csv` (12 formations), `data/catalog/coordinates.json` (approx coords, precision-flagged), and `tools/ccat/spatial_report.py`. Nearest-monument via inline haversine (no geopy). Moon illumination via a pure-Python synodic approximation (dropped astropy: 5.3 breaks on numpy 2 under py3.9, and 6.x needs py3.10 — the approximation runs anywhere and was validated: Windmill Hill Triple Julia 1996-07-29 → 0.97 near full [full moon 30 Jul 1996 ✓]; DNA 1996-06-17 → 0.01 near new [new moon 15 Jun 1996 ✓]). Wiltshire cluster = 7/12 within 30 km of Avebury; 4 non-UK sites (Logan/Edmonton/Eltopia/Chualar) have no monument in our set. NOTE: coords are approximate — verify `allington-cube-1999` before leaning on its distance.
 
-### B8 — Vision LLM triage hook (local)
+### B8 — Vision LLM triage hook (local) — DONE ✅
 **Goal:** Use BAMBAM models via LM Studio.  
 **Work:**
 1. Document load steps for `Qwen2.5-VL-7B` / `GLM-4.6V-Flash` in `data/catalog/VISION_MODELS.md`.
@@ -137,13 +140,15 @@
 
 **Acceptance:** ≥3 vision JSON outputs committed.
 
+**Result (2026-07-25, local):** `qwen/qwen2.5-vl-7b` ×3 → `outputs/vision/*_qwen.json`.
+
 ---
 
 ## C. BLOCKED / OWNER
 
 | ID | Item | Blocker |
 |----|------|---------|
-| C1 | High-res Crabwood disc master | Temporary Temples purchase / higher scan — **OWNER** |
+| C1 | High-res Crabwood disc master | **PARKED** — no budget; stay free/OS web-res (BER floor documented). Reopen if TT/master appears gratis |
 | C2 | Cherhill 1993 iron-glaze lab HTML + micrographs | Lab #104 PHP still 404; **partial DONE** — JSE 1995 text archived + Physiol. Plant. DOIs (1994/1999) in `levengood_citations.json`. PDF/EDS still OWNER |
 | C3 | True overhead Logan / Eltopia hi-res | Not found public; ICCRA Eltopia is 300×227 only |
 | C4 | Public release of TT/Lucy/Getty images | Must stay private / attributed — **OWNER** legal |
@@ -222,4 +227,4 @@ When finishing a task: update the status line for that ID in this file, commit, 
 
 ---
 
-*Last updated: 2026-07-25 — B4 + B3 scaffold landed (Hyperagent). Remote still open: B6 (corpus images → local-preferred), B1/B2 CLI-prep, C3/C2 tail. Local: B1, B2, B8, Edmonton corners. Open READY: B1, B2, B6, B8.*
+*Last updated: 2026-07-25 — Pulled Hyper B3/B4 scaffold (`2a5549c`). Restored local B1/B2/B8 DONE. C1 parked (no budget). Free local next: **B6**, Edmonton corners, real Julia `circle_extract`.*
