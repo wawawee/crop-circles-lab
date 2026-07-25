@@ -49,7 +49,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G13** | queue | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | ⬜ no-signal prior |
 | **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
 | **G15** | queue | Cretan Hieroglyphic bipartite admin | network / symbolseq | ⬜ after Linear A |
-| **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **PR #14 open** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
+| **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **merged PR #14** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
 | **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
 | **G18** | queue | EAMENA ley-line null | spatial+network; GeoJSON subsets | ⬜ no-signal / FPR calib |
 | **G19** | queue | Long Delayed Echoes historic series | radio/FFT; digitized delays | ⬜ no-signal; Lunan CUT |
@@ -75,10 +75,10 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G10** | 🟢 merged PR #12 — Voynich SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL. |
 | **G11** | 🟢 merged PR #11 — CM STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY. |
 | **G12** | 🟢 merged PR #13 — LE SEQUENCE_STRUCTURE \| CLAIM_UNDERDETERMINED (+ format comparators). |
-| **G16** | 🟢 **PR #14** — Meroitic STRUCTURE_SIGNAL (z≈−11336; KA/NC pass; 20/20). |
-| **Minimax M3** | 💤 idle (G12 done). |
-| **Opencode** | 🟢 **PR #14 open** — G16 Meroitic STRUCTURE_SIGNAL. |
-| **Cursor** | 🟢 merge gate on `main` — merging G16 |
+| **G16** | 🟢 merged PR #14 — Meroitic STRUCTURE_SIGNAL. |
+| **Minimax M3** | 💤 idle. |
+| **Opencode** | 💤 idle (G16 done). |
+| **Cursor** | 🟢 merge gate on `main` — next assign from G13–G15 / G17–G20 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -88,12 +88,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G16**. **Minimax M3** = idle. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = idle. **Minimax M3** = idle. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G16** (Opencode). M3 idle. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: none — G12/G16 landed. Next: G13 VASCO / G15 Cretan / G17–G20. |
 
 ---
 
@@ -326,7 +326,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > 8. Branch `feat/g12-linear-elamite`. PR → Cursor merge. Stay on your branch; rebase on `main` before PR.
 > Forbidden: “Linear Elamite deciphered,” “Elamite = X,” PE↔LE language family, aliens, viral blogs as truth.
 
-### G16 — Opencode (🟢 PR #14 open 2026-07-25) — Meroitic corpus (structure-only)
+### G16 — Opencode (🟢 MERGED PR #14 2026-07-25) — Meroitic corpus (structure-only)
 > Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
 > Brief: [`docs/research_leads_kimi_2026-07-25.md`](docs/research_leads_kimi_2026-07-25.md) (G16 = Kimi #1).
 > Do NOT touch Linear Elamite (M3/G12), Voynich, radio, BLC1, Amazon.
