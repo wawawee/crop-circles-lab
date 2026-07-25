@@ -1,0 +1,71 @@
+{
+  "schema": "hires_sources.v1",
+  "notes": "Hi-res image source manifest for the hunt. These are URLs to download LOCALLY into data/images/ (analysis input only; private repo; nothing republished). license: 'CC-*' = freely reusable with attribution (safe to publish our figure of it); '(c) ...' = copyrighted, fair-use analysis only. verify_status RESOLVED = URL returned HTTP 200 image/jpeg from the sandbox on 2026-07-25. Background scouts are enriching this file (Chilbolton, Crabwood, Milk Hill, C3, etc.).",
+  "how_to_download": "cd data/images && while read -r url name; do curl -L -A 'Mozilla/5.0 (research)' -o \"$name\" \"$url\"; done < <(python -c \"import json;[print(s['url'],s['download_as']) for s in json.load(open('../catalog/hires_sources.json'))['sources'] if s.get('download_as')]\")",
+  "sources": [
+    {
+      "id": "barbury-pi-2008",
+      "title": "Barbury Castle Pi",
+      "year": 2008,
+      "location": "Barbury Castle, Wiltshire, UK",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Lucy_Pringle_Aerial_Shot_of_Pi_Crop_Circle_-_panoramio.jpg",
+      "resolution": "800x512",
+      "bytes": 94388,
+      "host": "Wikimedia Commons (panoramio import)",
+      "license": "CC-BY (panoramio 3.0 — verify exact tag on the Commons file page before any public reuse)",
+      "why_interesting": "Encodes pi to 10 significant figures with correct rounding (see forensics.encoding.verify_barbury_pi). FREELY LICENSED — the one image here we could actually publish.",
+      "verify_status": "RESOLVED",
+      "download_as": "barbury_pi_2008_wikimedia.jpg",
+      "credit": "Lucy Pringle (via Panoramio / Wikimedia Commons)"
+    },
+    {
+      "id": "barbury-pi-2008-alt",
+      "title": "Barbury Castle Pi (alt)",
+      "year": 2008,
+      "location": "Barbury Castle, Wiltshire, UK",
+      "url": "https://astroengine.com/wp-content/uploads/2008/06/cropcircle1.jpg",
+      "resolution": "650x571",
+      "bytes": 169678,
+      "host": "astroengine.com",
+      "license": "(c) Apex",
+      "why_interesting": "Alternate framing of the Pi ratchet spiral; secondary to the Wikimedia CC shot.",
+      "verify_status": "RESOLVED",
+      "download_as": "barbury_pi_2008_apex.jpg",
+      "credit": "Apex News"
+    },
+    {
+      "id": "wilton-windmill-2010",
+      "title": "Wilton Windmill (Euler's identity)",
+      "year": 2010,
+      "location": "Wilton Windmill, Wiltshire, UK",
+      "url": "https://www.lucypringle.co.uk/photos/2010/Wilton-Windmill-1.jpg",
+      "resolution": "800x1136",
+      "bytes": 173491,
+      "host": "lucypringle.co.uk",
+      "license": "(c) Lucy Pringle",
+      "why_interesting": "Reported to encode Euler's identity e^(i*pi)+1=0 in 8-bit ASCII around the ring — a genuine math/message case and a prime target for grid_analyze (B9) + an ASCII decode in forensics.encoding. NEW candidate to add to priority_formations.json.",
+      "verify_status": "RESOLVED",
+      "download_as": "wilton_windmill_2010_lucy.jpg",
+      "credit": "Lucy Pringle"
+    },
+    {
+      "id": "poirino-2011",
+      "title": "Poirino 'Ea/Enki' ASCII message",
+      "year": 2011,
+      "location": "Poirino (Turin), Italy",
+      "url": "https://futurism.com/wp-content/uploads/2015/11/crop-cricle-italy.jpg",
+      "resolution": "960x720",
+      "bytes": 154236,
+      "host": "futurism.com",
+      "license": "(c) editorial (original photographer unconfirmed)",
+      "why_interesting": "Reported 8-bit ASCII message naming 'Ea'/'Enki'; a Drake/Arecibo-style 'reply' formation. ASCII-decode + grid_analyze target. NEW candidate for priority_formations.json. Alt hi-res: youtube maxres i.ytimg.com/vi/E-MX6ZGBONI/maxresdefault.jpg (1280x720, video still).",
+      "verify_status": "RESOLVED",
+      "download_as": "poirino_2011.jpg",
+      "credit": "unconfirmed"
+    }
+  ],
+  "candidate_formations_to_add": [
+    {"id": "wilton-windmill-2010", "tags": ["message", "mathematical", "euler", "ascii", "complex"], "date": "2010-05-22"},
+    {"id": "poirino-2011", "tags": ["message", "ascii", "binary", "italy", "reply"], "date": "2011-06-20"}
+  ]
+}
