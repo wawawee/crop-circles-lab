@@ -37,10 +37,11 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G1** | Opencode | Linear A | z≈−73 formulaic STRUCTURE | 🟢 landed + gallery |
 | **G4** | **Opencode** 🟢 | Rongorongo 2D (Spaelti) | Parallel passages + symbolseq; structure ≠ reading | 🟢 **landed** — `tools/scripts/rongorongo_probe.py`, `outputs/rongorongo/run.json` + `NOTES.md`. 5279 glyphs across 6 tablets, z=−42.9 conditional entropy vs shuffle. 240 parallel passages (33 cross-tablet, z=+40.9 vs shuffle). Top cross-tablet formula: `380 001 022f` ×7 across C+E. Verdict: SEQUENCE_STRUCTURE | PARALLEL_EXCESS | CROSS_TABLET_PARALLELS. No decipherment. |
 | **G2** | **Minimax M3** | Proto-Elamite | CDLI ledger entropy | 🟢 **merged** — synth 4/4 invariants; CDLI default NEVER_ATTEMPTED + `--fetch-online`; 9 forbidden phrases; Uruk SFU POSTPONED. `feat/g2-proto-elamite` |
+| **G2++** | **Minimax M3** | Uruk III SFU comparator | Same 4 invariants as G2 + PE-vs-Uruk structural compare | 🟡 **on branch** `feat/g2pp-uruk-comparator` — open PR when green; Cursor merges |
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed + **Ozma interpretation pass (PR)** — μ↔(6−μ) one-horn degeneracy, PHL@UPR 2024 natural H-cloud, N=6 gives zero power to infer artificiality; NOTES deepened in `outputs/radio/NOTES.md` |
 | **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟢 **merged** — UNDERDETERMINED (z≈−2.0, <3σ); Big Dipper/Orion KA separate; selection-bias caveat. `outputs/betty_hill/` |
-| **G2++** | **Minimax M3** | Uruk SFU comparator | PE vs Uruk numeral structure | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
+| **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟢 **landed PR #3** — synth known-answer + honest block on real slice; no TB mirror. `outputs/radio/blc1_*.json` |
@@ -57,9 +58,9 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G4** | Opencode 🟢 Rongorongo on main. |
 | **G7++** | 🟢 merged PR #4 — nulls hardened. |
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
-| **Minimax M3** | 🟡 on **G2++** Uruk SFU; radio/Amazon/BLC1 closed. |
-| **Opencode** | 💤 idle (G8 merged). |
-| **Cursor** | 🟢 merge gate on `main` — watching G2++ |
+| **Minimax M3** | 🟡 finishing **G2++** — open PR when green. |
+| **Opencode** | 🟡 on **G9** Indus. |
+| **Cursor** | 🟢 merge gate on `main` — watching G2++ / G9 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -69,12 +70,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = idle (G8 done). **Minimax M3** = **G2++**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G9**. **Minimax M3** = **G2++**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G2++ (M3). Captain on Gemini/Kimi research trail. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G2++ (M3), G9 (Opencode). Captain on Gemini/Kimi research trail. |
 
 ---
 
@@ -242,7 +243,32 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 ### G8 — Opencode (🟢 MERGED 2026-07-25) — Betty Hill × Gaia null
 > Landed: UNDERDETERMINED (Hill z≈−2.0 <3σ); Big Dipper z≈−3.2 + Orion Belt z≈−2.8 KA separate.
-> Selection-bias (Fish from ~330) uncorrected — honest. Idle until Captain assigns next.
+> Selection-bias (Fish from ~330) uncorrected — honest.
+
+### G9 — Opencode (ASSIGNED 2026-07-25) — Indus script structure
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
+> Scout: `docs/research_leads_merged_2026-07-25.md` (Indus ASR-net vs M77).
+> **Why you:** G1/G4 were exemplary. Same `symbolseq` stack; Indus is the next undeciphered corpus.
+> Do NOT touch Amazon, BLC1, radio, G2++ (M3), or bio.
+>
+> 1. Ingest **open** Indus sign streams (e.g. ICIT / Mahadevan / Wells corpora as available
+>    with clear license — small text/JSON only). Save under `data/scripts/indus/` + README
+>    (attribution, encoding, which seal/tablet sets). No huge image dumps.
+> 2. Reuse `tools/forensics/symbolseq.py` (+ thin `tools/scripts/indus_probe.py` if needed).
+>    Do **not** fork a second entropy stack.
+> 3. Core tests:
+>    - Positional / bigram / conditional entropy vs **unigram-matched shuffle**.
+>    - Optional: short “ASR-net”-style co-occurrence / transition graph stats vs
+>      degree-preserving null (M77 / random graph baseline — document which).
+>    - Known-answer: if a published formulaic Indus segment exists in a citable source,
+>      test recovery; else document absence. Optional Linear B / PE-numeral control
+>      only as structure calibration (not language claim).
+> 4. Outputs: `outputs/indus/{run.json,NOTES.md}`. Board G9 → 🟢 / 🔴 BLOCKED.
+> 5. Branch `feat/g9-indus-symbolseq`. PR for Cursor merge gate.
+> Forbidden: decipherment, Dravidian/IE/Sumerian language-family claims, “aliens,”
+> or treating any viral “Indus decoded” blog as ground truth.
+>
+> Prefer STRUCTURE / NO_SIGNAL / UNDERDETERMINED with controls over sprawling incomplete work.
 
 ### N1++ — Cursor (🟢 MERGED PR #6 2026-07-25) — bio_probe hardens
 > Landed: chrom-aware classify + `--seq-chrom`; `bins_status=skipped_seq_too_short`;
