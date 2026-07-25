@@ -44,7 +44,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟢 **merged** — UNDERDETERMINED (z≈−2.0, <3σ); Big Dipper/Orion KA separate; selection-bias caveat. `outputs/betty_hill/` |
 | **G9** | **Opencode** | Indus script (ASR-net / M77) | symbolseq + network null vs M77 | 🟢 **merged PR #9** — STRUCTURE_SIGNAL; z≈−22.9 cond-H; z≈−27 graph null; P122+P385 ×29; Mohenjo-daro only |
 | **G10** | **Minimax M3** | Voynich morphology (structure-only) | symbolseq + shuffle; 2025 Arabic-ρ claim-under-test | 🟡 **ASSIGNED** (Captain go 2026-07-25) |
-| **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟡 **PR #11 in gate** — STRUCTURE_SIGNAL z≈−28.95; tablet↔other J≈0.53; KA/NC pass |
+| **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟢 **merged PR #11** — STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY; z≈−28.95; tablet↔other J≈0.53; KA/NC pass |
 | **G12** | queue | Linear Elamite entropy bounds | symbolseq; Liège 2024 | ⬜ after G10 — EXTENDS PE |
 | **G13** | queue | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | ⬜ no-signal prior |
 | **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
@@ -74,8 +74,8 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G9** | 🟢 merged PR #9 — Indus STRUCTURE_SIGNAL. |
 | **G10** | 🟡 M3 assigned — Voynich morphology. |
 | **Minimax M3** | 🟡 on **G10** Voynich. |
-| **Opencode** | 🟢 PR #11 — G11 Cypro-Minoan structure probe (in Cursor gate). |
-| **Cursor** | 🟢 merge gate on `main` — reviewing G11 / watching G10 |
+| **Opencode** | 🟢 idle — G11 merged PR #11. |
+| **Cursor** | 🟢 merge gate on `main` — watching G10 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -85,12 +85,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **PR #11** (G11 in gate). **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = idle. **Minimax M3** = **G10**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3). PR in gate: G11 (Opencode PR #11). Leads: anomalistics + docs/research_leads_kimi_2026-07-25.md |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G10 (M3). Leads: anomalistics + docs/research_leads_kimi_2026-07-25.md |
 
 ---
 
@@ -288,29 +288,14 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > Forbidden: “Voynich translated,” language ID, aliens, viral blogs as truth.
 
 
-### G11 — Opencode (ASSIGNED 2026-07-25) — Cypro-Minoan allography / media
-> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
-> Scout: [`docs/research_leads_anomalistics_2026-07-25.md`](docs/research_leads_anomalistics_2026-07-25.md) (prio 1).
-> Do NOT touch G10/Voynich (M3), radio, BLC1, Amazon, or PE/Uruk.
+### G11 — Opencode (🟢 MERGED PR #11 2026-07-25) — Cypro-Minoan allography / media
+> Landed: Corazza 2022 / sign2vec_d corpus; `tools/scripts/cypro_minoan_probe.py` +
+> `ingest_cm_corpus.py`; `outputs/cypro_minoan/{run.json,NOTES.md}`; 13/13 tests.
+> Verdict: **STRUCTURE_SIGNAL | MEDIA_DRIVEN_ALLOGRAPHY** (full z≈−28.95; tablet↔other
+> Jaccard≈0.53; KA z≈−19.3 PASS; NC z≈0.6 PASS). CM1/2/3 labels unavailable in open
+> data — site/medium proxies. Structure ≠ message.
 >
-> 1. Ingest open Cypro-Minoan transliterations (Corazza 2022 Figshare collection 6095488
->    and/or documented GitHub JSON/CSV). Save under `data/scripts/cypro_minoan/` + README
->    (license, CM1/CM2/CM3 labels, media if present). No huge image dumps.
-> 2. Reuse `tools/forensics/symbolseq.py` (+ thin `tools/scripts/cypro_minoan_probe.py`).
->    Optional: sign2vec / glyph vectors only if small + licensed — do NOT fork entropy stack.
-> 3. Core tests:
->    - Per-subgroup (CM1/2/3) entropy / bigram / cond-H vs **unigram-matched shuffle**.
->    - Cross-subgroup overlap / Jaccard (or simple shared-sign stats) — ask whether
->      CM splits look like **media/allography** vs distinct scripts (structure only).
->    - Known-answer: Linear B scribal variants (if small open sample) should look like
->      one system; shuffle null must collapse structure.
-> 4. Outputs: `outputs/cypro_minoan/{run.json,NOTES.md}`. Board G11 → 🟢 / 🔴 BLOCKED.
-> 5. Branch `feat/g11-cypro-minoan`. PR for Cursor merge. No push to main.
-> Forbidden: decipherment, language-family claims, “CM is Linear A,” aliens.
->
-> Prefer STRUCTURE / NO_SIGNAL / UNDERDETERMINED / MEDIA_DRIVEN_ALLOGRAPHY with controls.
->
-> **Later G11+ (not this ticket):** Unicode 16.0 CM block + UCL 3D sign DB — after text probe merges.
+> **Later G11+ (not this ticket):** Unicode 16.0 CM block + UCL 3D sign DB.
 > See docs/research_leads_kimi_2026-07-25.md.
 
 
