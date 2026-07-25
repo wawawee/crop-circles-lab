@@ -8,14 +8,27 @@
       "location": "Opposite Stonehenge, Wiltshire, UK",
       "date": "1996-07-07",
       "priority": 1,
-      "tags": ["fractal", "julia-set", "time-window", "blt", "complex"],
-      "blt": {"lab_report": 78, "status": "examined", "notes": "Reduced seed weights, mitochondrial damage, germination abnormalities, spillover"},
+      "tags": [
+        "fractal",
+        "julia-set",
+        "time-window",
+        "blt",
+        "complex"
+      ],
+      "blt": {
+        "lab_report": 78,
+        "status": "examined",
+        "notes": "Reduced seed weights, mitochondrial damage, germination abnormalities, spillover"
+      },
       "claimed_features": {
         "circles": 151,
         "length_ft": 915.2,
         "width_ft": 508,
         "time_window_min": 45,
-        "witnesses": ["pilot + passenger", "witness M (mist growing)"]
+        "witnesses": [
+          "pilot + passenger",
+          "witness M (mist growing)"
+        ]
       },
       "geometry_notes": "Julia fractal spiral of circles; ideal candidate for true Julia-set parameter fit (z^2+c).",
       "sources": [
@@ -24,7 +37,11 @@
         "https://bltresearch.com/labreports.php",
         "https://skepticalinquirer.org/2022/05/revisiting-the-stonehenge-surprise-the-best-case-for-crop-circles/"
       ],
-      "image_files": ["julia_set_1996_tt_oh.jpg", "julia_set_1996_getty.png", "julia_set_1996_si.jpg"]
+      "image_files": [
+        "julia_set_1996_tt_oh.jpg",
+        "julia_set_1996_getty.png",
+        "julia_set_1996_si.jpg"
+      ]
     },
     {
       "id": "cherhill-1993",
@@ -32,13 +49,27 @@
       "location": "Cherhill, Wiltshire, UK",
       "date": "1993-08",
       "priority": 1,
-      "tags": ["blt", "microwave", "meteoritic-iron", "scorched", "authentic-candidate", "lab-data-only"],
-      "blt": {"lab_report": 104, "status": "examined", "notes": "Meteoritic iron glaze on plant tissue; node elongation; dead insects on seed heads"},
+      "tags": [
+        "blt",
+        "microwave",
+        "meteoritic-iron",
+        "scorched",
+        "authentic-candidate",
+        "lab-data-only"
+      ],
+      "blt": {
+        "lab_report": 104,
+        "status": "examined",
+        "notes": "Meteoritic iron glaze on plant tissue; node elongation; dead insects on seed heads"
+      },
       "claimed_features": {
         "circles": 2,
         "diameter_m": 15,
         "separation_m": 60,
-        "iron_spheres_um": [10, 40]
+        "iron_spheres_um": [
+          10,
+          40
+        ]
       },
       "geometry_notes": "Two circles ~15m with ~0.5m vortices; iron glaze concentrated in vortices. NO confirmed aerial online — do not confuse with wiltshire_spiral_aerial.png or Lucy Hand-of-Friendship thumbs.",
       "sources": [
@@ -54,17 +85,36 @@
       "location": "Logan, Utah, USA",
       "date": "1996-08-23",
       "priority": 1,
-      "tags": ["blt", "microwave", "expulsion-cavities", "heat", "authentic-candidate", "lab-data-only"],
-      "blt": {"status": "examined", "notes": "Expulsion cavities, 90-degree bends without breaking, soil heat evidence, plasma vortex candidate"},
+      "tags": [
+        "blt",
+        "microwave",
+        "expulsion-cavities",
+        "heat",
+        "authentic-candidate",
+        "lab-data-only"
+      ],
+      "blt": {
+        "status": "examined",
+        "notes": "Expulsion cavities, 90-degree bends without breaking, soil heat evidence, plasma vortex candidate"
+      },
       "claimed_features": {
         "circles": 2,
-        "diameters_ft": [58, 30],
+        "diameters_ft": [
+          58,
+          30
+        ],
         "connecting_path_ft": 258,
         "orientation_note": "roughly toward Logan LDS Temple"
       },
       "geometry_notes": "Dumbbell-like with wing-like protrusions. No published aerial found online (search noise = desert irrigation circles).",
-      "sources": ["https://bltresearch.com/"],
-      "image_files": ["logan_utah_1996.jpg", "blt_logan/photoA.jpg", "blt_logan/photoB.jpg"],
+      "sources": [
+        "https://bltresearch.com/"
+      ],
+      "image_files": [
+        "logan_utah_1996.jpg",
+        "blt_logan/photoA.jpg",
+        "blt_logan/photoB.jpg"
+      ],
       "lab_track": "BLT Lab #79 text in data/reports/blt_wayback/logan_lab.txt; field photos in blt_logan/"
     },
     {
@@ -73,8 +123,20 @@
       "location": "Edmonton, Alberta, Canada",
       "date": "1999-09",
       "priority": 1,
-      "tags": ["blt", "microwave", "soil-xrd", "layered-lay", "thistle", "authentic-candidate"],
-      "blt": {"lab_report": 122, "status": "examined", "funded_by": "Laurance Rockefeller", "notes": "Node elongation, expulsion cavities, magnetic soil material, XRD clay changes"},
+      "tags": [
+        "blt",
+        "microwave",
+        "soil-xrd",
+        "layered-lay",
+        "thistle",
+        "authentic-candidate"
+      ],
+      "blt": {
+        "lab_report": 122,
+        "status": "examined",
+        "funded_by": "Laurance Rockefeller",
+        "notes": "Node elongation, expulsion cavities, magnetic soil material, XRD clay changes"
+      },
       "claimed_features": {
         "circles": 7,
         "length_ft": 191,
@@ -86,7 +148,11 @@
         "https://bltresearch.com/labreports.php",
         "https://unsolvedmysteries.fandom.com/wiki/Canada_Crop_Circles"
       ],
-      "image_files": ["edmonton_1999.png", "blt_edmonton/ed-1.jpg", "blt_edmonton/Node_Comparison.jpg"]
+      "image_files": [
+        "edmonton_1999.png",
+        "blt_edmonton/ed-1.jpg",
+        "blt_edmonton/Node_Comparison.jpg"
+      ]
     },
     {
       "id": "eltopia-1998",
@@ -94,15 +160,30 @@
       "location": "Eltopia, Washington, USA",
       "date": "1998-06-18",
       "priority": 1,
-      "tags": ["blt", "revisitation", "authentic-candidate"],
-      "blt": {"status": "examined", "notes": "Nine circles; revisitation weeks later damaged edges"},
+      "tags": [
+        "blt",
+        "revisitation",
+        "authentic-candidate"
+      ],
+      "blt": {
+        "status": "examined",
+        "notes": "Nine circles; revisitation weeks later damaged edges"
+      },
       "claimed_features": {
         "circles": 9,
-        "size_ft": [270, 200]
+        "size_ft": [
+          270,
+          200
+        ]
       },
       "geometry_notes": "Useful for temporal edge-degradation comparison if multi-date photos exist. ICCRA grab is low-res (300×227).",
-      "sources": ["https://bltresearch.com/", "ICCRA"],
-      "image_files": ["eltopia_1998_iccra.png"]
+      "sources": [
+        "https://bltresearch.com/",
+        "ICCRA"
+      ],
+      "image_files": [
+        "eltopia_1998_iccra.png"
+      ]
     },
     {
       "id": "chualar-2013-nvidia",
@@ -110,12 +191,26 @@
       "location": "Chualar, California, USA",
       "date": "2013",
       "priority": 3,
-      "tags": ["known-hoax", "control", "man-made", "braille"],
-      "blt": {"status": "n/a"},
-      "claimed_features": {"motif": "chip/circuit with Braille '192' (Tegra K1 cores)"},
+      "tags": [
+        "known-hoax",
+        "control",
+        "man-made",
+        "braille"
+      ],
+      "blt": {
+        "status": "n/a"
+      },
+      "claimed_features": {
+        "motif": "chip/circuit with Braille '192' (Tegra K1 cores)"
+      },
       "geometry_notes": "Confirmed marketing stunt — excellent man-made control for CV classifiers.",
-      "sources": ["111th Aerial Photography", "NVIDIA marketing coverage"],
-      "image_files": ["chualar_2013_nvidia_hoax.png"]
+      "sources": [
+        "111th Aerial Photography",
+        "NVIDIA marketing coverage"
+      ],
+      "image_files": [
+        "chualar_2013_nvidia_hoax.png"
+      ]
     },
     {
       "id": "alton-barnes-dna-1996",
@@ -123,12 +218,25 @@
       "location": "East Field, Alton Barnes, Wiltshire, UK",
       "date": "1996-06-17",
       "priority": 2,
-      "tags": ["complex", "dna", "beautifully-laid"],
-      "blt": {"status": "referenced", "notes": "Famed for beautifully laid barley"},
-      "claimed_features": {"motif": "double helix"},
+      "tags": [
+        "complex",
+        "dna",
+        "beautifully-laid"
+      ],
+      "blt": {
+        "status": "referenced",
+        "notes": "Famed for beautifully laid barley"
+      },
+      "claimed_features": {
+        "motif": "double helix"
+      },
       "geometry_notes": "Helix pitch / rung spacing ratios worth measuring.",
-      "sources": ["https://temporarytemples.co.uk/crop-circles/1996-crop-circles"],
-      "image_files": ["dna_alton_barnes_1996.jpg"]
+      "sources": [
+        "https://temporarytemples.co.uk/crop-circles/1996-crop-circles"
+      ],
+      "image_files": [
+        "dna_alton_barnes_1996.jpg"
+      ]
     },
     {
       "id": "chilbolton-arecibo-2001",
@@ -136,17 +244,30 @@
       "location": "Chilbolton Observatory, Hampshire, UK",
       "date": "2001-08",
       "priority": 2,
-      "tags": ["complex", "message", "arecibo", "likely-human"],
-      "blt": {"status": "unknown"},
+      "tags": [
+        "complex",
+        "message",
+        "arecibo",
+        "likely-human"
+      ],
+      "blt": {
+        "status": "unknown"
+      },
       "claimed_features": {
         "motif": "Arecibo reply bitmap",
-        "differences": ["triple helix DNA", "different home planet", "larger head figure"]
+        "differences": [
+          "triple helix DNA",
+          "different home planet",
+          "larger head figure"
+        ]
       },
       "geometry_notes": "Bitmap-grid analysis vs original Arecibo message; high human-feasibility.",
       "sources": [
         "https://en.wikipedia.org/wiki/Arecibo_message"
       ],
-      "image_files": ["chilbolton_arecibo_2001.jpg"]
+      "image_files": [
+        "chilbolton_arecibo_2001.jpg"
+      ]
     },
     {
       "id": "milk-hill-galaxy-2001",
@@ -154,8 +275,14 @@
       "location": "Milk Hill, Wiltshire, UK",
       "date": "2001-08-12",
       "priority": 2,
-      "tags": ["complex", "fractal", "largest"],
-      "blt": {"status": "unknown"},
+      "tags": [
+        "complex",
+        "fractal",
+        "largest"
+      ],
+      "blt": {
+        "status": "unknown"
+      },
       "claimed_features": {
         "circles": 409,
         "length_ft": 900,
@@ -166,7 +293,9 @@
         "https://lucypringle.co.uk/photos/2001/uk2001df.shtml",
         "https://temporarytemples.co.uk/"
       ],
-      "image_files": ["milk_hill_galaxy_2001.jpg"]
+      "image_files": [
+        "milk_hill_galaxy_2001.jpg"
+      ]
     },
     {
       "id": "barbury-pi-2008",
@@ -174,8 +303,15 @@
       "location": "Barbury Castle, Wiltshire, UK",
       "date": "2008-06-01",
       "priority": 2,
-      "tags": ["complex", "mathematical", "pi", "lucy-pringle"],
-      "blt": {"status": "unknown"},
+      "tags": [
+        "complex",
+        "mathematical",
+        "pi",
+        "lucy-pringle"
+      ],
+      "blt": {
+        "status": "unknown"
+      },
       "claimed_features": {
         "motif": "first ~10 digits of pi encoded in spiral ratchet"
       },
@@ -183,7 +319,9 @@
       "sources": [
         "https://commons.wikimedia.org/wiki/File:Lucy_Pringle_Aerial_Shot_of_Pi_Crop_Circle_-_panoramio.jpg"
       ],
-      "image_files": ["barbury_pi_2008.jpg"]
+      "image_files": [
+        "barbury_pi_2008.jpg"
+      ]
     },
     {
       "id": "allington-cube-1999",
@@ -191,12 +329,24 @@
       "location": "Allington, Wiltshire, UK",
       "date": "1999",
       "priority": 2,
-      "tags": ["complex", "3d-perspective", "cube"],
-      "blt": {"status": "unknown"},
-      "claimed_features": {"motif": "3D cube projection with shading"},
+      "tags": [
+        "complex",
+        "3d-perspective",
+        "cube"
+      ],
+      "blt": {
+        "status": "unknown"
+      },
+      "claimed_features": {
+        "motif": "3D cube projection with shading"
+      },
       "geometry_notes": "Perspective vanishing-point / shading analysis.",
-      "sources": ["https://lucypringle.co.uk/"],
-      "image_files": ["allington_cube_1999.jpg"]
+      "sources": [
+        "https://lucypringle.co.uk/"
+      ],
+      "image_files": [
+        "allington_cube_1999.jpg"
+      ]
     },
     {
       "id": "windmill-hill-triple-julia-1996",
@@ -204,12 +354,133 @@
       "location": "Windmill Hill, Wiltshire, UK",
       "date": "1996-07-29",
       "priority": 2,
-      "tags": ["fractal", "julia-set", "complex"],
-      "blt": {"status": "unknown"},
-      "claimed_features": {"motif": "three-armed Julia-like spiral"},
+      "tags": [
+        "fractal",
+        "julia-set",
+        "complex"
+      ],
+      "blt": {
+        "status": "unknown"
+      },
+      "claimed_features": {
+        "motif": "three-armed Julia-like spiral"
+      },
       "geometry_notes": "Compare arm self-similarity vs true Julia set; Temporary Temples notes arms are not true Julias.",
-      "sources": ["https://temporarytemples.co.uk/crop-circles/1996-crop-circles"],
-      "image_files": ["triple_julia_1996.jpg"]
+      "sources": [
+        "https://temporarytemples.co.uk/crop-circles/1996-crop-circles"
+      ],
+      "image_files": [
+        "triple_julia_1996.jpg"
+      ]
+    },
+    {
+      "id": "wilton-windmill-2010",
+      "name": "Wilton Windmill (Euler's Identity)",
+      "location": "Wilton Windmill, Wiltshire, UK",
+      "date": "2010-05-22",
+      "priority": 2,
+      "tags": [
+        "message",
+        "mathematical",
+        "euler",
+        "ascii",
+        "complex"
+      ],
+      "blt": {
+        "status": "unknown"
+      },
+      "claimed_features": {
+        "motif": "Euler's identity e^(i*pi)+1=0 in 8-bit ASCII around a 12-segment ring",
+        "anomaly": "debated 'h'/Planck-constant-looking glyph"
+      },
+      "geometry_notes": "12-segment ring; each segment = 8 ASCII bits. Decode + grid_analyze target.",
+      "sources": [
+        "https://www.lucypringle.co.uk/photos/2010/wilton-windmill-2010.shtml",
+        "https://en.wikipedia.org/wiki/Wilton_Windmill"
+      ],
+      "image_files": [
+        "wilton_windmill_2010_lucy.jpg"
+      ]
+    },
+    {
+      "id": "poirino-2011",
+      "name": "Poirino 'Ea Enki' ASCII (heptagram)",
+      "location": "Riva presso Chieri / Poirino, Turin, Italy",
+      "date": "2011-06-20",
+      "priority": 2,
+      "tags": [
+        "message",
+        "ascii",
+        "ea-enki",
+        "italy",
+        "heptagram"
+      ],
+      "blt": {
+        "status": "unknown"
+      },
+      "claimed_features": {
+        "motif": "7-point star; outer ring 8-bit ASCII 'Ea Enki'"
+      },
+      "geometry_notes": "Heptagram; ASCII ring decode. Decodes to 'Ea Enki' (Sumerian god), NOT 'Timeo ETI' (internet misattribution).",
+      "sources": [
+        "https://www.margheritacampaniolo.it/crop_circles_2011/poirino11/"
+      ],
+      "image_files": [
+        "poirino_2011_eaenki.jpg"
+      ]
+    },
+    {
+      "id": "poirino-2010",
+      "name": "Poirino E=mc^2 ASCII",
+      "location": "Poirino, Turin, Italy",
+      "date": "2010-06-13",
+      "priority": 2,
+      "tags": [
+        "message",
+        "ascii",
+        "emc2",
+        "italy",
+        "decimal"
+      ],
+      "blt": {
+        "status": "unknown"
+      },
+      "claimed_features": {
+        "motif": "6-petal formation encoding E=mc^2 in decimal ASCII"
+      },
+      "geometry_notes": "First of the 2-year Poirino ASCII sequence; decimal-ASCII decode target.",
+      "sources": [
+        "https://futurism.com/massive-crop-circle-appeared-in-italy-this-week"
+      ],
+      "image_files": [
+        "poirino_2010_emc2.jpg"
+      ]
+    },
+    {
+      "id": "jellyfish-2009",
+      "name": "Jellyfish",
+      "location": "Kingstone Coombes, Oxfordshire, UK",
+      "date": "2009-05-29",
+      "priority": 3,
+      "tags": [
+        "biomorphic",
+        "non-geometric",
+        "phi",
+        "control"
+      ],
+      "blt": {
+        "status": "unknown"
+      },
+      "claimed_features": {
+        "motif": "~600-ft biomorphic jellyfish; tentacles reportedly diminish in a phi ratio"
+      },
+      "geometry_notes": "Non-geometric control; test phi-ratio tentacle spacing; contrast vs the geometric/message set.",
+      "sources": [
+        "https://www.theguardian.com/uk/2009/jun/04/crop-circle-jellyfish-oxfordshire"
+      ],
+      "image_files": [
+        "jellyfish_2009_flickr.jpg"
+      ]
     }
   ]
 }
