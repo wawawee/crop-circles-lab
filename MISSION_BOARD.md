@@ -54,7 +54,7 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G-BLC1 / R1++** | 🟢 PR #3 — Cursor APPROVED; rebased + merged by Cursor/Captain. Radio tests green. |
 | **G4** | Opencode 🟢 Rongorongo on main. |
 | **G7++** | 🟢 merged PR #4 — nulls hardened. |
-| **G2** | 🟢 Minimax M3 landed — merge gate this PR. |
+| **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
 | **Minimax M3** | 💤 idle (radio/Amazon/BLC1 closed). |
 | **Opencode** | 💤 idle — next ticket when Captain assigns. |
 
