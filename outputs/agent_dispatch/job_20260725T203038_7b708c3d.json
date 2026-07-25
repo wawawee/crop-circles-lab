@@ -1,0 +1,19 @@
+{
+  "id": "job_20260725T203038_7b708c3d",
+  "backend": "freebuff",
+  "status": "dispatched",
+  "prompt": "# Mission G18++ — real EAMENA subset + thin reusable FPR module (same Freebuff session)\n\nYou are **Freebuff** / DeepSeek v4 flash on crop-circles-lab (ANOMALISTIK). Stance: **structure ≠ meaning**. Honest prior still **no-signal**.\n\n**Already landed:** G18 PR #18 (`feat/g18-eamena-ley-null`) — synthetic CSR FPR calibration. Do **not** reopen mysticism claims. Extend it.\n\n## Scope THIS ticket (ONLY 1 + 2)\n\n### 1) Real EAMENA subset\n- Ingest a **small real** region GeoJSON (Zenodo community / interactive export / documented subset) → `data/geo/eamena/` (+ README update: provenance, license, N, bbox).\n- **Not** full 338k. If still blocked after honest attempt → document BLOCKED clearly and stop with UNDERDETERMINED — do not fake coords.\n- Re-run Clark-Evans + collinear-triple FPR vs CSR / scrambled-coord nulls on the real subset.\n- Keep Cox/settlement-pattern caveat (environment ≠ ley).\n- Outputs: update `outputs/eamena/{run.json,NOTES.md}` (or `outputs/eamena/real_*` if cleaner). Verdict vocab unchanged; flag `source: real_eamena_subset` in metadata.\n\n### 2) Thin reusable module\n- Extract FPR / null helpers from `tools/scripts/eamena_ley_null.py` into something like `tools/geo/spatial_fpr.py` (or sibling).\n- Probe becomes a thin caller. Keep tests green; add focused unit tests for the extracted module.\n- **No** gallery / findings_gallery / mission_dashboard embed work. Cursor owns that later.\n\n## Do NOT touch\nG13/G14/G15 PRs, Voynich, radio, BLC1, Amazon reopen, Meroitic, Linear Elamite, gallery HTML/embeds.\n\n## Git\n- Prefer continue on `feat/g18-eamena-ley-null` (amend PR #18 with G18++ commits) **or** `feat/g18-plus-real-eamena` if cleaner — pick one, rebase on `main`, surgical board row for G18++ only.\n- Cursor merges. Author ≠ sole merger.\n\n## Forbidden\nAliens, ley mysticism as truth, silent fabrication of EAMENA points, full-corpus binge, gallery panels.\n\nStart now. Work until PR updated or honest BLOCKED in NOTES.md.",
+  "cwd": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles",
+  "created_at": "2026-07-25T20:30:38Z",
+  "updated_at": "2026-07-25T20:30:39Z",
+  "freebuff_pid": 28576,
+  "result_path": null,
+  "log_path": null,
+  "notes": [],
+  "prompt_file": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/outputs/agent_dispatch/job_20260725T203038_7b708c3d.prompt.md",
+  "inject": {
+    "ok": true,
+    "clipboard": true,
+    "injected": true
+  }
+}

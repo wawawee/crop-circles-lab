@@ -1,0 +1,31 @@
+{
+  "mission": "G18++",
+  "generated_at": "2026-07-25T22:00:00Z",
+  "description": "Real vs synthetic CSR comparison for EAMENA ley-line null FPR calibration",
+  "synthetic_csr_baseline": {
+    "n_sites": 178,
+    "distribution": "csr",
+    "clark_evans_R": 0.9836,
+    "clark_evans_z": -0.374,
+    "collinear_per_pair": 0.974,
+    "scrambled_fpr": 0.6667,
+    "csr_fpr": 0.6869,
+    "verdict": "NO_SPATIAL_SIGNAL | NO_LEY_SIGNAL | CONTROL_NOT_SEPARATED | FPR_CALIBRATED",
+    "ground_truth": "NO SIGNAL (CSR by construction)",
+    "correct_call": true
+  },
+  "real_eamena_subset": {
+    "n_sites": 178,
+    "source": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/data/geo/eamena/bani_walid_libya_subset.geojson",
+    "distribution": "real_eamena_subset",
+    "clark_evans_R": 0.3737,
+    "clark_evans_z": -15.346,
+    "density_sites_per_km2": 0.563904,
+    "collinear_per_pair": 32.975806,
+    "scrambled_fpr": 0.0,
+    "csr_fpr": 0.0,
+    "verdict": "SPATIAL_CLUSTER_ONLY | LEY_LINE_SIGNAL | CONTROL_SEPARATED",
+    "interpretation": "LEY_LINE_SIGNAL is a FALSE POSITIVE driven by spatial clustering (Clark-Evans R=0.37, z=-15.3). Archaeological sites cluster along environmental gradients (water, soil, trade routes), producing more collinear triples than naive CSR expects. This is NOT evidence of intentional ley-line geometry. The null model must be an inhomogeneous Poisson (Cox) process conditioned on covariates."
+  },
+  "conclusion": "FPR calibration on synthetic CSR data is clean: NO_SIGNAL verdict matches ground truth. However, on real EAMENA data, the naive CSR null produces a false positive LEY_LINE_SIGNAL because real archaeology is inhomogeneously clustered. A Cox process null (conditioned on environmental covariates) is needed for honest evaluation of real data. The synthetic CSR benchmark remains the correct FPR calibration tool."
+}
