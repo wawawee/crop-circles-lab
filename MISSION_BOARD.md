@@ -37,6 +37,8 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G1** | **Opencode** (NEXT) | Linear A symbolseq | SigLA open corpus → entropy/IC/Markov vs shuffle; Linear B known-answer | ⬜ **assigned** |
 | **G2** | **Minimax** (queue) | Proto-Elamite ledger entropy | CDLI streams → positional/conditional H vs shuffle | ⬜ after current Minimax job |
 | **G3** | Minimax or Opencode | Wow! horn beam-fit | Fit sidereal transit to 6EQUJ5 intensities; underdetermined OK | ⬜ after G1/G2 |
+| **G-Amazon** | **Hyper Fable 5 / Opus 4.8** | Amazon earthworks spatial | Zenodo site DB + IPP nulls (Mode A); real LIDAR only if verified | ⬜ skill: `amazon-earthworks-spatial` |
+| **G-BLC1** | **Hyper Fable 5 / Opus 4.8** | BLC1 RFI known-answer | Scoped slice or synthetic comb; Sheikh RFI; no TB mirror | ⬜ skill: `blc1-rfi-known-answer` |
 
 ---
 

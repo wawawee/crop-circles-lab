@@ -13,9 +13,16 @@ Source: Gemini zetetic scout. Full narrative kept in chat; this file is the **ac
 | G5 | Solway Firth ELA | backlog | S | `ela_screen` | Extends B10 |
 | G6 | Ley-line collinearity null | backlog | M | spatial+network | Poisson null |
 
-## Demoted / reframed
-- **Amazon “LIDAR geometry”**: Zenodo 7750985 is mostly **1 km predictive rasters + site DB**, not canopy point clouds for Hough. Reframe later as spatial IPP / site-point null — do not assign as raw LIDAR M-task yet.
-- **BLC1 full stack**: open data exists but TB-scale; Sheikh et al. already RFI. Only as scoped known-answer slice later.
+## Demoted / reframed → Hyper (Fable 5 / Opus 4.8)
+| ID | Target | Owner | Skill |
+|----|--------|-------|-------|
+| **G-Amazon** | Amazon earthworks spatial (Mode A default) | Hyper Fable/Opus | `.cursor/skills/amazon-earthworks-spatial/SKILL.md` |
+| **G-BLC1** | BLC1 RFI known-answer (scoped slice / synthetic comb) | Hyper Fable/Opus | `.cursor/skills/blc1-rfi-known-answer/SKILL.md` |
+
+**Do not** assign these to Minimax/Opencode free tiers as “full LIDAR / full TB campaign.”
+Skills enforce Mode A vs Mode B and download size caps.
+
+## Still demoted for everyone
 - **Yonaguni / Baltic**: coarse bathymetry, low ROI until dense clouds.
 
 ## Explicit skips (policy)
