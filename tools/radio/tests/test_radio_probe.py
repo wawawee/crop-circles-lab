@@ -805,6 +805,228 @@ def test_cli_pulsar_vela_synthetic_recovers_p0_pass():
 
 # --- Standalone runner ----------------------------------------------------
 
+# === G-BLC1 RFI known-answer tests (mirror of Vela polish pattern) ===
+
+def test_blc1_constants_match_sheikh_2021():
+    """BLC1 constants pinned to Sheikh et al. 2021 (Nat. Astron. 5 1169)."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    assert RP.BLC1_FREQ_MHZ == 982.002
+    assert RP.BLC1_DRIFT_HZ_PER_S == -0.26
+    assert RP.BLC1_CLOCK_MHZ == 2.0
+    assert RP.BLC1_COMB_TOLERANCE_MHZ == 0.01
+    assert RP.BLC1_BIBCODE.startswith("2021NatAs")
+    assert RP.BLC1_REFERENCE_URL.startswith("https://")
+
+
+def test_blc1_fetcher_live_probe_disabled_by_default():
+    """The 'no TB mirror' stance: try_fetch_blc1_peaks() returns
+    NEVER_ATTEMPTED with one attempt per documented URL, WITHOUT
+    contacting the network."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import blc1_fetcher as BLC
+    res = BLC.try_fetch_blc1_peaks()
+    assert res.fetch_status == "NEVER_ATTEMPTED"
+    assert res.peak_rows == []
+    assert len(res.attempts) >= 5
+    for att in res.attempts:
+        assert att.verdict == "NEVER_ATTEMPTED"
+    note = res.provenance_note.lower()
+    assert "disabled" in note or "no tb mirror" in note
+
+
+def test_blc1_fetcher_test_force_fetched_renders_positive_control_peaks():
+    """Test hook FETCHED synthesises the 5-peak positive control set:
+    1 BLC1 detection @ 982.002 + 2 clock harmonics + 2 known Parkes RFI freqs."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import blc1_fetcher as BLC
+    res = BLC.try_fetch_blc1_peaks(force_status_for_tests="FETCHED")
+    assert res.fetch_status == "FETCHED"
+    assert len(res.peak_rows) == 5
+    freqs = [float(r.raw_freq_mhz) for r in res.peak_rows]
+    assert 982.002 in freqs  # BLC1 detection
+    assert 440.0 in freqs    # PARKES_UHF_RFI
+    assert 1217.0 in freqs   # PARKES_L2_GPS_RFI
+
+
+def test_blc1_synthetic_comb_plant_recovery_pass():
+    """SYNTHETIC G-BLC1 plant: 5 harmonically-spaced peaks around 982.002 MHz
+    should trigger all-hits_at_clock and rfi_comb_detected=True."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_blc1_synthetic(seed=0)
+    ka = out["known_answer"]
+    assert out["n_peaks"] >= 5
+    assert ka["hits_at_clock"] >= out["n_peaks"] - 1, (
+        f"synthetic plant should have hits_at_clock ~ N_peaks, "
+        f"got hits={ka['hits_at_clock']} N={out['n_peaks']}"
+    )
+    assert ka["recovery_pass"] is True
+    assert ka["rfi_comb_detected"] is True
+
+
+def test_blc1_scramble_null_drops_hits_at_clock():
+    """Scramble null: shuffling peak freqs uniformly should drop
+    hits_at_clock well below the planted value."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_blc1_synthetic(seed=0)
+    cd = out["comb_detection"]
+    nc = out["negative_controls"]
+    assert cd["hits_at_clock"] > nc["scramble_null_hits"], (
+        f"scramble null should DROP hits; got hits={cd['hits_at_clock']} "
+        f"vs scramble={nc['scramble_null_hits']}"
+    )
+
+
+def test_blc1_real_default_yellow_banner_no_synthetic_fallback():
+    """--blc1-real WITHOUT bundled override: NEVER_ATTEMPTED + YELLOW BANNER
+    warnings. CRITICAL invariant: NO synthetic peaks injected."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_blc1_real(bundled_csv_path=None, seed=0)
+    assert out["fetch_status"] == "NEVER_ATTEMPTED"
+    assert out["n_peaks"] == 0
+    assert out["comb_detection"] is None
+    assert out["known_answer"] is None
+    warnings_text = " ".join(out["warnings"]).lower()
+    assert "no tb mirror" in warnings_text or "disabled" in warnings_text
+    assert "sheikh" in out["stance"].lower()
+    assert "not sufficient" in out["stance"].lower() or \
+           "necessary, not sufficient" in out["stance"].lower()
+
+
+def test_blc1_real_bundled_overrides_fetch_user_override():
+    """--bundled-blc1-csv WITH peaks: USER_OVERRIDE + comb detection runs."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    td = Path(tempfile.mkdtemp(prefix="blc1_ovr_"))
+    csv_path = td / "blc1_test.csv"
+    csv_path.write_text(
+        "freq_mhz,snr_db,drift_hz_per_s,t_start_mjd,t_end_mjd,label\n"
+        "982.002,25.0,-0.26,58000,58000,BLC1_DETECTION\n"
+        "984.002,12.0,-0.26,58000,58000,BLC1_HARM+1\n"
+        "986.002,9.0,-0.26,58000,58000,BLC1_HARM+2\n"
+    )
+    try:
+        out = RP.run_blc1_real(bundled_csv_path=csv_path, seed=0)
+        assert out["fetch_status"] == "USER_OVERRIDE"
+        assert out["source_type"] == "bundled_override"
+        assert out["n_peaks"] == 3
+        assert out["comb_detection"]["hits_at_clock"] >= 3
+    finally:
+        import shutil
+        shutil.rmtree(td, ignore_errors=True)
+
+
+def test_blc1_force_status_propagates_via_post_analyze_rerun():
+    """--blc1-real --fetch-status-test-force FETCHED triggers the
+    post-analyze re-run block (mirrors Vela/FRB pattern)."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    # analyze() with mode='blc1_real' runs the default NEVER_ATTEMPTED path.
+    rep = RP.analyze(mode="blc1_real", seed=0, bundled_blc1_csv=None)
+    assert "blc1_real_data" in rep
+    assert rep["blc1_real_data"]["fetch_status"] == "NEVER_ATTEMPTED"
+    # Mirror the post-analyze re-run block in main(): re-run with the
+    # test-force hook applied.
+    rep["blc1_real_data"] = RP.run_blc1_real(
+        bundled_csv_path=None, seed=0,
+        force_status_for_tests="FETCHED",
+    )
+    assert rep["blc1_real_data"]["fetch_status"] == "FETCHED"
+    assert rep["blc1_real_data"]["n_peaks"] == 5
+    assert rep["blc1_real_data"]["known_answer"]["rfi_comb_detected"] is True
+
+
+# === G3 (Wow! beam-fit) tests ===
+
+def test_wow_beam_synth_recovery_pass():
+    """SYNTH G3: noise-free plant at (mu=2.5, sigma=1.5, amp=30) ->
+    fit recovers within tolerance."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_wow_beam_fit(mode="synthetic", seed=0)
+    ka = out["known_answer"]
+    assert ka["recovery_pass"] is True, (
+        f"recovery_pass should be True, got {ka['recovery_pass']}; "
+        f"errors: mu_err={ka['mu_err_idx']}, sigma_err={ka['sigma_err_idx']}, "
+        f"amp_err={ka['amplitude_err']}"
+    )
+    assert ka["mu_err_idx"] is not None and ka["mu_err_idx"] <= 0.5
+    assert ka["sigma_err_idx"] is not None and ka["sigma_err_idx"] <= 0.5
+    assert ka["amplitude_err"] is not None and ka["amplitude_err"] <= 1e-6
+
+
+def test_wow_beam_real_beats_constant():
+    """Real Wow! (Ehman transcript) should NOT have r²_gaussian < r²_constant.
+    With N=6 underdetermined, r²_gaussian >= r²_constant holds trivially."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_wow_beam_fit(mode="real", seed=0)
+    fit = out["fit"]
+    assert fit["n_samples"] == 6
+    assert fit["r2_constant"] >= 0
+    assert fit["r2_gaussian"] >= fit["r2_constant"], (
+        f"Gaussian fit cannot be worse than a constant baseline. "
+        f"got r2_gaussian={fit['r2_gaussian']}, r2_constant={fit['r2_constant']}"
+    )
+    assert out["known_answer"]["recovery_pass"] is None
+
+
+def test_wow_beam_real_sinc_fit():
+    """Real Wow! sinc fit must produce r²_sinc + recovered (mu, sigma, amp)."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_wow_beam_fit(mode="real", seed=0)
+    fit = out["fit"]
+    assert "r2_sinc" in fit, "fit dict must include r2_sinc"
+    assert fit["r2_sinc"] is not None
+    rs = fit["recovered_sinc"]
+    assert rs["mu_idx"] is not None
+    assert rs["sigma_idx"] is not None
+    assert rs["amplitude"] is not None
+
+
+def test_wow_beam_scramble_null_baseline():
+    """Scramble null: 24 perms -> median + p5/p95 r² distribution."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_wow_beam_fit(mode="real", seed=0)
+    sn = out["scramble_null"]
+    assert sn["n_permutations"] >= 24, (
+        f"expected >=24 permutations for stable median+p95, got {sn['n_permutations']}"
+    )
+    assert sn["r2_median"] is not None
+    assert sn["r2_p5"] <= sn["r2_median"] + 1e-6
+    assert sn["r2_median"] <= sn["r2_p95"] + 1e-6
+
+
+def test_wow_beam_degeneracy_pair_and_motto():
+    """degeneracy_pair (μ ↔ 6-μ) surfaced; stance cites PHL@UPR 2024."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_wow_beam_fit(mode="synthetic", seed=0)
+    fit = out["fit"]
+    degen = fit["degeneracy_pair"]
+    assert isinstance(degen, tuple) and len(degen) == 2
+    # mu ↔ 6-mu symmetry: pair sums to 6.
+    assert abs((degen[0] + degen[1]) - 6.0) < 0.5, (
+        f"degeneracy_pair must sum to 6 (mu + (6-mu) = 6); got {degen}"
+    )
+    note = fit["underdetermined_note"]
+    assert "3 d.o.f." in note.lower() or "3 dof" in note.lower(), (
+        f"underdetermined note should mention DOF=3; got: {note[:200]}"
+    )
+    stance = out["stance"]
+    assert "PHL@UPR" in stance or "2408.08513" in stance, (
+        f"stance should cite PHL@UPR 2024 / arXiv:2408.08513; got: {stance[:200]}"
+    )
+    assert "underdetermined" in stance.lower()
+    assert "necessary, not sufficient" in stance.lower() or \
+           "necessary, NOT sufficient" in stance
+
+
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

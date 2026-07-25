@@ -62,6 +62,10 @@ try:
     import pulsar_fetcher as PUL  # noqa: E402
 except ImportError:  # pragma: no cover
     PUL = None
+try:
+    import blc1_fetcher as BLC  # noqa: E402
+except ImportError:  # pragma: no cover
+    BLC = None
 
 
 # --- module constants ------------------------------------------------------
@@ -75,6 +79,16 @@ except ImportError:  # pragma: no cover
 WOW_SAMPLES_SIGMA = (6.5, 14.5, 26.5, 30.5, 19.5, 5.5)
 WOW_DT_S = 12.0                # 12 s per sample
 WOW_FREQ_MHZ = 1420.0          # the famous hydrogen-line frequency
+
+# G3 (Wow! beam-fit) constants. The synthetic plant below uses 6 evenly-
+# spaced sample indices (0..5) and exact Gaussian values at each index.
+# All fit math is pure-numpy (no scipy) to match the codebase's zero-
+# dependency style on the radio path.
+WOW_TRANSIT_PLANT_MU_IDX = 2.5      # sample-index, midpoint 2-3
+WOW_TRANSIT_PLANT_SIGMA_IDX = 1.5    # sample-index width
+WOW_TRANSIT_PLANT_AMP = 30.0         # central peak amplitude (sigma units)
+WOW_TRANSIT_PERMUTATIONS = 24        # 6! = 720 -> 24 is enough for median+p95
+WOW_TRANSIT_RECOVERY_TOL_IDX = 0.5   # |recovered_mu - plant_mu| <= 0.5 indices
 
 # FRB 180916 published period (NOTE: distinct from FRB 121102's ~157-d cycle).
 # Source: Pastor-Marazuela et al. 2020/2021, CHIME/FRB. We do NOT compute the
@@ -120,6 +134,34 @@ DEFAULT_VELA_OBS_WINDOW_DAYS = 365.0   # ~1 year of pulses
 DEFAULT_VELA_JITTER_S = 1e-6           # ±1 microsecond synthetic jitter
 DEFAULT_VELA_GRID_DELTA_S = 1e-5      # ±10 microseconds around VELA_P0
 DEFAULT_VELA_GRID_STEPS = 1001
+
+# BLC1 (Breakthrough Listen Candidate 1) constants.
+# Source: Sheikh et al. 2021, Nature Astronomy, 5, 1169,
+# DOI 10.1038/s41550-021-01508-8. BLC1 was detected at Parkes L-band
+# ~982.002 MHz with drift rate -0.26 Hz/s. Sheikh 2021 concluded
+# BLC1 was an INTERMODULATION PRODUCT of clock-oscillator RFI, NOT a
+# confirmed technosignature.
+BLC1_FREQ_MHZ = 982.002
+BLC1_DRIFT_HZ_PER_S = -0.26
+BLC1_CLOCK_MHZ = 2.0                    # fundamental clock spacing (Sheikh 2021)
+BLC1_COMB_TOLERANCE_MHZ = 0.01          # |f_peak - n*f_clock| <= 0.01 MHz
+BLC1_BIBCODE = "2021NatAs...5.1169S"
+BLC1_REFERENCE_URL = "https://doi.org/10.1038/s41550-021-01508-8"
+BLC1_DATA_LICENSE = "CC BY 4.0 (Sheikh 2021 supplementary tables)"
+
+# Known Parkes RFI comb (per ATNF RFI characterisation page). A peak
+# detected at one of these freqs is LABELED RFI_COMB_DETECTED and
+# treated as a natural artefact, not a technosignature hit.
+PARKES_KNOWN_RFI_FREQS_MHZ: tuple[float, ...] = (
+    137.0, 440.0, 715.0, 982.002, 1217.0, 1616.0,
+)
+PARKES_KNOWN_RFI_TOLERANCE_MHZ = 0.5
+
+# BLC1 synthetic plant defaults.
+DEFAULT_BLC1_HARMONICS = 5               # n peaks at f_center +/- i*clock for i in -(H-1)//2..H//2
+DEFAULT_BLC1_SNR_BASE_DB = 25.0          # strongest peak SNR
+DEFAULT_BLC1_SNR_DECAY_DB = 3.0          # each harmonic weaker by 3 dB
+DEFAULT_BLC1_LABEL_PREFIX = "BLC1_SYNTH"
 
 
 # --- FFT power spectrum ---------------------------------------------------
@@ -754,6 +796,823 @@ def _vela_motto_stance_with_recovered(err_s: float) -> str:
     )
 
 
+# --- BLC1 (Breakthrough Listen Candidate 1) scaffold -------------------
+# BLC1 was detected at Parkes L-band ~982.002 MHz with drift rate
+# -0.26 Hz/s. Sheikh 2021 concluded it was an INTERMODULATION PRODUCT of
+# clock-oscillator RFI, NOT a confirmed technosignature. The lab-motto:
+# "structure != message" applies: a positive comb-hit here IS RFI, NOT ET.
+#
+# Per the G-BLC1 mission brief, the LIVE probe is DISABLED by default
+# (the "no TB mirror" stance). The bundled override `--bundled-blc1-csv`
+# is the realistic landing today. The synthetic comb plant is a math-
+# validation tool only.
+
+def synth_blc1_comb_peaks(
+    f_center_mhz: float = BLC1_FREQ_MHZ,
+    f_clock_mhz: float = BLC1_CLOCK_MHZ,
+    drift_hz_per_s: float = BLC1_DRIFT_HZ_PER_S,
+    harmonics: int = DEFAULT_BLC1_HARMONICS,
+    snr_base_db: float = DEFAULT_BLC1_SNR_BASE_DB,
+    snr_decay_db: float = DEFAULT_BLC1_SNR_DECAY_DB,
+    label_prefix: str = DEFAULT_BLC1_LABEL_PREFIX,
+) -> list:
+    """Plant N harmonically-spaced peaks around f_center at multiples of f_clock.
+
+    Mirrors the Vela synthetic plant pattern: deterministic, no jitter
+    (since the plant is meant to be RECOVERABLE by the comb detector).
+    Returns a list of BLC1PeakRow objects (from blc1_fetcher when
+    available; raises ModuleNotFoundError otherwise).
+
+    The peak SNR decays by `snr_decay_db` per harmonic step away from
+    the carrier (i.e., the central peak is loudest). Drift is uniform
+    across the comb (matching Sheikh 2021's signature).
+    """
+    if BLC is None:
+        raise ModuleNotFoundError("blc1_fetcher module not importable")
+    rows = []
+    half = max(harmonics // 2, 0)
+    for i, offset in enumerate(range(-half, harmonics - half)):
+        freq = f_center_mhz + float(offset) * float(f_clock_mhz)
+        snr = float(snr_base_db) - abs(offset) * float(snr_decay_db)
+        label = f"{label_prefix}_{offset:+d}"
+        rows.append(BLC.BLC1PeakRow(
+            raw_freq_mhz=float(freq),
+            raw_snr_db=float(snr),
+            raw_drift_hz_per_s=float(drift_hz_per_s),
+            raw_t_start_mjd=None, raw_t_end_mjd=None,
+            raw_label=label,
+        ))
+    return rows
+
+
+def _blc1_run_peak_detector(
+    peak_rows: list,
+    clock_guess_mhz: float = BLC1_CLOCK_MHZ,
+    tolerance_mhz: float = BLC1_COMB_TOLERANCE_MHZ,
+    scramble_seed: int = 0,
+) -> dict:
+    """Detect clock-oscillator comb structure in a peak list.
+
+    Strategy
+    --------
+    For each peak `f_i`, compute residuals `r_i = f_i mod clock_guess`
+    (modulo the candidate clock frequency). A peak whose residual is
+    within `tolerance_mhz` of 0 OR within `tolerance_mhz` of
+    `clock_guess` (=complement) is counted as a CLOCK HARMONIC HIT.
+
+    A peak whose freq is within PARKES_KNOWN_RFI_TOLERANCE_MHZ of any
+    known Parkes RFI comb freq is flagged as `KNOWN_RFI`.
+
+    Scramble null
+    -------------
+    Permute the freq_mhz values uniformly within the observed band
+    (min..max of the input peaks) and re-count CLOCK HARMONIC HITS.
+    Under the null hypothesis, hits should drop to roughly the
+    uniform-rate expectation (for N peaks and a fractional band of
+    `2*tolerance_mhz / clock_guess_mhz`, expected ~N*p hits).
+    """
+    # numpy is imported at module level (line 49). No lazy re-import here.
+    freqs = np.asarray([float(r.raw_freq_mhz) for r in peak_rows], dtype=float)
+    n_in = int(len(freqs))
+    if n_in == 0:
+        return {
+            "clock_guess_mhz": float(clock_guess_mhz),
+            "tolerance_mhz": float(tolerance_mhz),
+            "n_peaks": 0,
+            "hits_at_clock": 0,
+            "hits_at_clock_fraction": 0.0,
+            "peaks_at_known_rfi": 0,
+            "scramble_null_hits": 0,
+            "scramble_null_p_value": 1.0,
+            "rfi_comb_detected": False,
+        }
+    # Hits at clock: |freq mod clock - 0| <= tol  OR  |freq mod clock - clock| <= tol
+    mod_residuals = np.mod(freqs, float(clock_guess_mhz))
+    dist_to_zero = np.minimum(mod_residuals,
+                                float(clock_guess_mhz) - mod_residuals)
+    hits_mask = dist_to_zero <= float(tolerance_mhz)
+    hits_at_clock = int(np.sum(hits_mask))
+    # Known RFI flags
+    rfi_mask = np.zeros(n_in, dtype=bool)
+    for rfi_freq in PARKES_KNOWN_RFI_FREQS_MHZ:
+        rfi_mask |= np.abs(freqs - float(rfi_freq)) <= PARKES_KNOWN_RFI_TOLERANCE_MHZ
+    peaks_at_known_rfi = int(np.sum(rfi_mask))
+    # Scramble null
+    rng = np.random.default_rng(scramble_seed)
+    f_low = float(freqs.min())
+    f_high = float(freqs.max())
+    if f_high <= f_low:
+        f_high = f_low + 1.0
+    shuf = rng.uniform(f_low, f_high, size=n_in)
+    shuf_mod = np.mod(shuf, float(clock_guess_mhz))
+    shuf_dist = np.minimum(shuf_mod, float(clock_guess_mhz) - shuf_mod)
+    scramble_null_hits = int(np.sum(shuf_dist <= float(tolerance_mhz)))
+    # P(Z > hits_at_clock | null has rate scramble_null_hits / N) under
+    # binomial. Use rate = scramble_null_hits / max(N, 1) for the null.
+    p_rate = scramble_null_hits / max(n_in, 1)
+    if p_rate <= 0.0:
+        p_value = 1.0 if hits_at_clock < n_in else 0.0
+    else:
+        from math import comb as _comb
+        k = hits_at_clock
+        # P(X >= k) under Binomial(n, p)
+        try:
+            tail = sum(_comb(n_in, j) * (p_rate ** j) * ((1 - p_rate) ** (n_in - j))
+                        for j in range(k, n_in + 1))
+        except Exception:
+            tail = 1.0
+        p_value = float(min(max(tail, 0.0), 1.0))
+    return {
+        "clock_guess_mhz": float(clock_guess_mhz),
+        "tolerance_mhz": float(tolerance_mhz),
+        "n_peaks": int(n_in),
+        "hits_at_clock": int(hits_at_clock),
+        "hits_at_clock_fraction": float(hits_at_clock / max(n_in, 1)),
+        "peaks_at_known_rfi": peaks_at_known_rfi,
+        "peaks_at_known_rfi_label": [
+            float(freqs[i]) for i in range(n_in) if rfi_mask[i]
+        ],
+        "scramble_null_hits": scramble_null_hits,
+        "scramble_null_p_value": p_value,
+        "rfi_comb_detected": bool(
+            hits_at_clock >= max(2, n_in // 3) or peaks_at_known_rfi >= 1
+        ),
+    }
+
+
+def run_blc1_synthetic(
+    seed: int = 0,
+    f_center_mhz: float = BLC1_FREQ_MHZ,
+    f_clock_mhz: float = BLC1_CLOCK_MHZ,
+    drift_hz_per_s: float = BLC1_DRIFT_HZ_PER_S,
+    harmonics: int = DEFAULT_BLC1_HARMONICS,
+    snr_base_db: float = DEFAULT_BLC1_SNR_BASE_DB,
+    snr_decay_db: float = DEFAULT_BLC1_SNR_DECAY_DB,
+    scramble_seed: int = 0,
+) -> dict:
+    """SYNTHETIC BLC1 clock-comb plant + comb detector + scramble null.
+
+    Synthetic plant EXCLUDES Sheikh 2021's real Parkes RFI environment
+    beyond the clock-oscillator comb itself. Recovery_pass = TRUE iff
+    hits_at_clock fraction is well above the scramble-null rate.
+    """
+    if BLC is None:
+        return _blc1_module_missing()
+    try:
+        peaks = synth_blc1_comb_peaks(
+            f_center_mhz=f_center_mhz, f_clock_mhz=f_clock_mhz,
+            drift_hz_per_s=drift_hz_per_s, harmonics=harmonics,
+            snr_base_db=snr_base_db, snr_decay_db=snr_decay_db,
+        )
+    except Exception as e:
+        return {
+            "label": "blc1_synthetic",
+            "method": "blc1_synthetic_comb_detector",
+            "fetch_status": "MODULE_MISSING",
+            "n_peaks": 0, "plant_combs": 0,
+            "known_answer": None, "stance": _blc1_motto_stance(),
+            "warnings": [f"synth_blc1_comb_peaks failed: {e}"],
+        }
+    detect = _blc1_run_peak_detector(
+        peak_rows=peaks, clock_guess_mhz=f_clock_mhz,
+        tolerance_mhz=BLC1_COMB_TOLERANCE_MHZ, scramble_seed=scramble_seed,
+    )
+    recovery_pass = bool(
+        detect["n_peaks"] > 0 and detect["hits_at_clock"] >= max(
+            2, int(0.5 * detect["n_peaks"])
+        ) and detect["hits_at_clock"] > detect["scramble_null_hits"]
+    )
+    return {
+        "label": "blc1_synthetic",
+        "method": "blc1_synthetic_comb_detector",
+        "plant": {
+            "f_center_mhz": float(f_center_mhz),
+            "f_clock_mhz": float(f_clock_mhz),
+            "drift_hz_per_s": float(drift_hz_per_s),
+            "harmonics": int(harmonics),
+            "snr_base_db": float(snr_base_db),
+            "snr_decay_db": float(snr_decay_db),
+            "rfi_conclusion": (
+                "Sheikh 2021 (Nat. Astron. 5 1169, DOI "
+                "10.1038/s41550-021-01508-8) concluded BLC1 was "
+                "clock-oscillator intermodulation RFI, NOT ET. "
+                "The synthetic plant mimics this signature for "
+                "math-validation only."
+            ),
+        },
+        "n_peaks": detect["n_peaks"],
+        "comb_detection": detect,
+        "negative_controls": {
+            "scramble_null_hits": detect["scramble_null_hits"],
+            "scramble_null_p_value": detect["scramble_null_p_value"],
+            "scramble_null_band_mhz_lo": float(min(p.raw_freq_mhz for p in peaks)),
+            "scramble_null_band_mhz_hi": float(max(p.raw_freq_mhz for p in peaks)),
+        },
+        "known_answer": {
+            "recovered_clock_mhz": float(f_clock_mhz),
+            "hits_at_clock": detect["hits_at_clock"],
+            "rfi_comb_detected": bool(detect["rfi_comb_detected"]),
+            "scramble_null_drop": bool(
+                detect["hits_at_clock"] > detect["scramble_null_hits"]
+            ),
+            "recovery_pass": bool(recovery_pass),
+        },
+        "warnings": [],
+        "stance": (
+            "SYNTHETIC BLC1 clock-comb plant. Scaffolds detection math; "
+            "tells us NOTHING about the real BLC1. Sheikh 2021 concluded "
+            "BLC1 was clock-oscillator RFI; a positive comb-hit here is "
+            "labeled RFI, NOT a technosignature. Lab motto: structure != "
+            "message. Periodicity is necessary, NOT sufficient, for "
+            "artificiality."
+        ),
+    }
+
+
+def run_blc1_real(
+    bundled_csv_path,
+    seed: int = 0,
+    force_status_for_tests: str | None = None,
+) -> dict:
+    """REAL-DATA BLC1 path. Lab motto: never scrape open archives.
+
+    In production this surfaces a NEVER_ATTEMPTED + 🟡 YELLOW BANNER
+    because the user brief forbids the "TB mirror" (Berkeley SETI
+    opendata) path. The honest landing today is the bundled override
+    `--bundled-blc1-csv` for hand-transcribed Sheikh 2021 supplementary
+    tables.
+    """
+    if BLC is None:
+        return _blc1_module_missing()
+    result = BLC.try_fetch_blc1_peaks(
+        force_status_for_tests=force_status_for_tests,
+    )
+    base_plant = {
+        "f_center_mhz": float(BLC1_FREQ_MHZ),
+        "f_clock_mhz": float(BLC1_CLOCK_MHZ),
+        "drift_hz_per_s": float(BLC1_DRIFT_HZ_PER_S),
+        "rfi_conclusion": (
+            "Sheikh 2021: BLC1 = clock-oscillator RFI, NOT ET."
+        ),
+        "license": BLC1_DATA_LICENSE,
+    }
+    if bundled_csv_path is not None:
+        try:
+            bundle = BLC.load_bundled_blc1_csv(
+                Path(bundled_csv_path) if not isinstance(
+                    bundled_csv_path, Path) else bundled_csv_path
+            )
+        except Exception as e:
+            bundle = BLC.BundledBLC1Override(
+                peak_rows=[], source_path=str(bundled_csv_path),
+                n_rows=0, error=str(e),
+            )
+        if bundle.error is not None:
+            return {
+                "label": "blc1_real_data",
+                "method": "blc1_comb_detector",
+                "data_source": f"bundled_csv={bundled_csv_path}",
+                "source_type": "bundled_attempt",
+                "fetch_status": "USER_OVERRIDE_INVALID",
+                "ref_bibcode": BLC1_BIBCODE,
+                "ref_url": BLC1_REFERENCE_URL,
+                "fetched_from": str(bundled_csv_path),
+                "fetch_attempts": [],
+                "n_peaks": 0, "plant": base_plant,
+                "comb_detection": None, "negative_controls": None,
+                "known_answer": None,
+                "warnings": [
+                    f"--bundled-blc1-csv {bundled_csv_path} failed to "
+                    f"parse: {bundle.error}. Honest empty fallback; "
+                    f"NO synthetic plant used."
+                ],
+                "stance": _blc1_motto_stance(),
+            }
+        if bundle.has_peaks:
+            detect = _blc1_run_peak_detector(
+                peak_rows=bundle.peak_rows, clock_guess_mhz=BLC1_CLOCK_MHZ,
+                tolerance_mhz=BLC1_COMB_TOLERANCE_MHZ, scramble_seed=seed,
+            )
+            return {
+                "label": "blc1_real_data",
+                "method": "blc1_comb_detector",
+                "data_source": str(bundled_csv_path),
+                "source_type": "bundled_override",
+                "fetch_status": "USER_OVERRIDE",
+                "ref_bibcode": BLC1_BIBCODE,
+                "ref_url": BLC1_REFERENCE_URL,
+                "fetched_from": str(bundled_csv_path),
+                "fetch_attempts": [],
+                "n_peaks": detect["n_peaks"],
+                "license": BLC1_DATA_LICENSE,
+                "provenance_note": (
+                    f"Bundled override with N={detect['n_peaks']} peaks "
+                    f"from {bundled_csv_path}. Lab motto: BLC1 is "
+                    f"clock-oscillator RFI per Sheikh 2021; a positive "
+                    f"comb-hit is RFI, NOT ET. License: {BLC1_DATA_LICENSE}."
+                ),
+                "plant": base_plant,
+                "comb_detection": detect,
+                "negative_controls": {
+                    "scramble_null_hits": detect["scramble_null_hits"],
+                    "scramble_null_p_value": detect["scramble_null_p_value"],
+                },
+                "known_answer": {
+                    "recovered_clock_mhz": float(BLC1_CLOCK_MHZ),
+                    "hits_at_clock": detect["hits_at_clock"],
+                    "rfi_comb_detected": bool(detect["rfi_comb_detected"]),
+                    "scramble_null_drop": bool(
+                        detect["hits_at_clock"] > detect["scramble_null_hits"]
+                    ),
+                    "recovery_pass": bool(detect["rfi_comb_detected"]),
+                },
+                "warnings": [],
+                "stance": _blc1_motto_stance_with_recovered(
+                    detect["hits_at_clock"], detect["peaks_at_known_rfi"],
+                ),
+            }
+    # No bundled CSV OR no peaks in bundle: use the fetcher result.
+    if not result.peak_rows:
+        return {
+            "label": "blc1_real_data",
+            "method": "blc1_comb_detector",
+            "data_source": "Berkeley SETI opendata (NOT scraped)",
+            "source_type": "empty",
+            "fetch_status": result.fetch_status,
+            "ref_bibcode": BLC1_BIBCODE,
+            "ref_url": BLC1_REFERENCE_URL,
+            "fetched_from": result.fetched_from,
+            "fetch_attempts": [
+                a if isinstance(a, dict) else a.to_dict()
+                for a in result.attempts
+            ],
+            "n_peaks": 0,
+            "license": BLC1_DATA_LICENSE,
+            "provenance_note": (
+                "Live probe disabled per user brief ('no TB mirror'). "
+                "No MJDs/peak-rows obtained. NO synthetic plant used."
+            ),
+            "plant": base_plant,
+            "comb_detection": None,
+            "negative_controls": None,
+            "known_answer": None,
+            "warnings": [
+                "no real-data path attempted because the G-BLC1 live "
+                "probe is DISABLED by design (no TB mirror).",
+                f"fetch_status: {result.fetch_status}; "
+                f"see fetch_attempts[] for the {len(result.attempts)} "
+                f"admin URLs that were NOT contacted.",
+                "to populate: pass --bundled-blc1-csv with a CSV "
+                "header `freq_mhz,snr_db,drift_hz_per_s,t_start_mjd,"
+                "t_end_mjd,label` of peaks manually transcribed from "
+                "Sheikh 2021 supplementary tables.",
+            ],
+            "stance": _blc1_motto_stance(),
+        }
+    # Live probe returned peaks (test_force FETCHED; never in production)
+    detect = _blc1_run_peak_detector(
+        peak_rows=result.peak_rows, clock_guess_mhz=BLC1_CLOCK_MHZ,
+        tolerance_mhz=BLC1_COMB_TOLERANCE_MHZ, scramble_seed=seed,
+    )
+    return {
+        "label": "blc1_real_data",
+        "method": "blc1_comb_detector",
+        "data_source": result.fetched_from or "Berkeley SETI opendata",
+        "source_type": result.fetch_status.lower(),
+        "fetch_status": result.fetch_status,
+        "ref_bibcode": BLC1_BIBCODE,
+        "ref_url": BLC1_REFERENCE_URL,
+        "fetched_from": result.fetched_from,
+        "fetch_attempts": [
+            a if isinstance(a, dict) else a.to_dict()
+            for a in result.attempts
+        ],
+        "n_peaks": detect["n_peaks"],
+        "license": BLC1_DATA_LICENSE,
+        "provenance_note": (
+            f"Real-data path with N={detect['n_peaks']} peaks from "
+            f"`{result.fetched_from}`. BLC1 = clock-oscillator RFI per "
+            f"Sheikh 2021. License: {BLC1_DATA_LICENSE}. Lab motto: "
+            f"comb-hit IS RFI, NOT ET."
+        ),
+        "plant": base_plant,
+        "comb_detection": detect,
+        "negative_controls": {
+            "scramble_null_hits": detect["scramble_null_hits"],
+            "scramble_null_p_value": detect["scramble_null_p_value"],
+        },
+        "known_answer": {
+            "recovered_clock_mhz": float(BLC1_CLOCK_MHZ),
+            "hits_at_clock": detect["hits_at_clock"],
+            "rfi_comb_detected": bool(detect["rfi_comb_detected"]),
+            "scramble_null_drop": bool(
+                detect["hits_at_clock"] > detect["scramble_null_hits"]
+            ),
+            "recovery_pass": bool(detect["rfi_comb_detected"]),
+        },
+        "warnings": [],
+        "stance": _blc1_motto_stance_with_recovered(
+            detect["hits_at_clock"], detect["peaks_at_known_rfi"],
+        ),
+    }
+
+
+def _blc1_module_missing() -> dict:
+    return {
+        "label": "blc1_(synthetic|real)",
+        "method": "blc1_comb_detector",
+        "data_source": "(no source obtained)",
+        "source_type": "empty",
+        "fetch_status": "MODULE_MISSING",
+        "ref_bibcode": BLC1_BIBCODE,
+        "ref_url": BLC1_REFERENCE_URL,
+        "fetched_from": None,
+        "fetch_attempts": [],
+        "n_peaks": 0,
+        "license": BLC1_DATA_LICENSE,
+        "provenance_note": (
+            "blc1_fetcher module not importable in this environment; "
+            "G-BLC1 path disabled. Synthetic scaffold remains."
+        ),
+        "plant": {
+            "f_center_mhz": float(BLC1_FREQ_MHZ),
+            "f_clock_mhz": float(BLC1_CLOCK_MHZ),
+            "drift_hz_per_s": float(BLC1_DRIFT_HZ_PER_S),
+        },
+        "comb_detection": None,
+        "negative_controls": None,
+        "known_answer": None,
+        "warnings": [
+            "no real-data path attempted because the BLC1 fetcher "
+            "module is unavailable. NO synthetic plant used."
+        ],
+        "stance": _blc1_motto_stance(),
+    }
+
+
+def _blc1_motto_stance() -> str:
+    return (
+        "Structure != message. BLC1 (Breakthrough Listen Candidate 1) "
+        "is NOT a confirmed technosignature per Sheikh et al. 2021 "
+        "(Nature Astronomy 5 1169, DOI 10.1038/s41550-021-01508-8); "
+        "it was an intermodulation product of clock-oscillator RFI at "
+        "Parkes. We test period/peak-detection math against BLC1 for "
+        "RFI comb detection, NOT for ET claims. Live probe DISABLED per "
+        "user brief ('no TB mirror'); bundled-override only. "
+        "PERIODICITY/COMB-HIT IS NECESSARY, NOT SUFFICIENT, FOR "
+        "ARTIFICIALITY. We do NOT fabricate peak lists."
+    )
+
+
+def _blc1_motto_stance_with_recovered(hits_at_clock: int,
+                                         peaks_at_known_rfi: int) -> str:
+    return (
+        f"BLC1 comb detector reports hits_at_clock={hits_at_clock} and "
+        f"peaks_at_known_rfi={peaks_at_known_rfi} on the input peak "
+        "list. Sheikh 2021 concluded BLC1 was clock-oscillator RFI; a "
+        "positive comb-hit here IS RFI, NOT a technosignature. Lab "
+        "motto: STRUCTURE != MESSAGE. COMB-HIT IS NECESSARY, NOT "
+        "SUFFICIENT FOR ARTIFICIALITY. We do NOT claim ET."
+    )
+
+
+# --- G3 (Wow! beam-fit): sidereal transit Gaussian+sinc grid search -----
+# Lab motto: structure != message. The 6-sample Wow! intensity table is
+# genuinely underdetermined (3 DOF after a 3-param Gaussian fit). The
+# 2024 PHL@UPR reanalysis (arXiv:2408.08513, CC BY 4.0) attributes Wow!
+# to a hydrogen cloud near a solar-type star -- NATURAL. We DO NOT claim
+# ET. We DO compute r² for Gaussian, sinc, and constant fits + a
+# permutation baseline so the result is mathematically transparent.
+
+def synth_wow_beam_transit(
+    mu_idx: float = WOW_TRANSIT_PLANT_MU_IDX,
+    sigma_idx: float = WOW_TRANSIT_PLANT_SIGMA_IDX,
+    amplitude: float = WOW_TRANSIT_PLANT_AMP,
+) -> np.ndarray:
+    """Plant N=6 exact Gaussian beam-crossing samples at indices 0..5.
+
+    No noise. Returns a length-6 ndarray. The plant is fully recoverable
+    by `fit_wow_beam_transit` (modulo numerical precision and the μ ↔
+    6-μ symmetry for a symmetric plant).
+
+    shape: amplitude * exp(-0.5 * ((idx - mu) / sigma)^2)
+    """
+    idx = np.arange(6, dtype=float)
+    return amplitude * np.exp(-0.5 * ((idx - float(mu_idx)) / float(sigma_idx)) ** 2)
+
+
+def _wow_gaussian_at(idx_arr: np.ndarray, mu: float, sigma: float,
+                       amp: float) -> np.ndarray:
+    """Inner closed-form Gaussian at sample indices."""
+    s = max(float(sigma), 1e-9)
+    return float(amp) * np.exp(
+        -0.5 * ((np.asarray(idx_arr, dtype=float) - float(mu)) / s) ** 2
+    )
+
+
+def _wow_sinc_at(idx_arr: np.ndarray, mu: float, sigma: float,
+                   amp: float) -> np.ndarray:
+    """Inner closed-form sinc at sample indices: amp * sinc((idx-mu)/sig)."""
+    s = max(float(sigma), 1e-9)
+    x = (np.asarray(idx_arr, dtype=float) - float(mu)) / s
+    pi_x = np.pi * x
+    # sinc(x) = sin(pi*x)/(pi*x) with continuous extension at 0 = 1.
+    out = np.where(np.abs(pi_x) < 1e-9, 1.0, np.sin(pi_x) / pi_x)
+    return float(amp) * out
+
+
+def fit_wow_beam_transit(samples, mu_idx_range=(0.0, 5.0),
+                          sigma_idx_range=(0.5, 3.0),
+                          amp_range=(1.0, 60.0),
+                          grid_steps: int = 51) -> dict:
+    """Pure-numpy coarse grid search for Gaussian + sinc fits on N=6 samples.
+
+    Returns r² for Gaussian, sinc, constant; recovered (mu, sigma, amp)
+    for both fits; residuals; degeneracy_pair for the Gaussian (μ ↔
+    6-μ symmetry on a symmetric plant: r² is identical for μ=k vs
+    μ=6-k because the residuals are mirror-reflected); underdetermined
+    caveat text. No scipy dependency.
+
+    Parameters d.o.f. for any fit K-params on N=6 samples is N - K.
+    A constant (K=1) has 5 d.o.f. -- a meaningful baseline.
+    """
+    samples = np.asarray(samples, dtype=float)
+    n = int(len(samples))
+    if n == 0:
+        return {"n_samples": 0, "r2_constant": 0.0,
+                "r2_gaussian": 0.0, "r2_sinc": 0.0,
+                "recovered_gaussian": None, "recovered_sinc": None,
+                "degeneracy_pair": (None, None),
+                "underdetermined": True, "n_dof_gaussian": 0,
+                "n_dof_sinc": 0, "n_dof_constant": 0}
+    # Constant baseline: best A = mean(y). SS_res_const = sum((y - A)^2).
+    a_const = float(np.mean(samples))
+    ss_tot = float(np.sum((samples - a_const) ** 2)) or 1e-12
+    ss_res_const = float(np.sum((samples - a_const) ** 2))
+    r2_const = float(1.0 - ss_res_const / ss_tot)
+
+    # Coarse grid search for Gaussian and sinc.
+    mu_grid = np.linspace(float(mu_idx_range[0]), float(mu_idx_range[1]),
+                            int(grid_steps))
+    sigma_grid = np.linspace(float(sigma_idx_range[0]),
+                                float(sigma_idx_range[1]),
+                                int(grid_steps))
+    grid_idx = np.arange(n, dtype=float)
+
+    best_gauss = (np.inf, None, None, None)
+    best_sinc = (np.inf, None, None, None)
+    ss_tot_safe = max(ss_tot, 1e-12)
+    for mu in mu_grid:
+        for sig in sigma_grid:
+            g_pred = _wow_gaussian_at(grid_idx, mu, sig, 1.0)
+            if float(np.max(np.abs(g_pred))) <= 1e-9:
+                continue
+            # Closed-form best-amplitude for fixed shape: scale = y . g / g . g
+            scale = float(np.dot(samples, g_pred)) / float(np.dot(g_pred, g_pred))
+            if scale <= 0.0:
+                continue
+            g_fit = scale * g_pred
+            ss = float(np.sum((samples - g_fit) ** 2))
+            if ss < best_gauss[0]:
+                best_gauss = (ss, float(mu), float(sig), float(scale))
+
+            s_pred = _wow_sinc_at(grid_idx, mu, sig, 1.0)
+            scale_s = float(np.dot(samples, s_pred)) / float(np.dot(s_pred, s_pred))
+            if scale_s <= 0.0:
+                continue
+            s_fit = scale_s * s_pred
+            ss_s = float(np.sum((samples - s_fit) ** 2))
+            if ss_s < best_sinc[0]:
+                best_sinc = (ss_s, float(mu), float(sig), float(scale_s))
+
+    ss_gauss, mu_g, sig_g, amp_g = best_gauss
+    ss_sinc, mu_s, sig_s, amp_s = best_sinc
+    r2_gauss = float(1.0 - ss_gauss / ss_tot_safe)
+    r2_sinc = float(1.0 - ss_sinc / ss_tot_safe)
+
+    # Residuals at the best-fit params.
+    g_resid = samples - amp_g * _wow_gaussian_at(grid_idx, mu_g, sig_g, 1.0)
+    s_resid = samples - amp_s * _wow_sinc_at(grid_idx, mu_s, sig_s, 1.0)
+
+    # μ ↔ 6-μ symmetry: a SYMMETRIC 6-sample Gaussian has IDENTICAL r² at
+    # μ and at (6-μ). For an asymmetric plant (like real Wow!), this is
+    # only APPROXIMATE -- surface both candidates.
+    candidate_mu_alt = 6.0 - float(mu_g)
+    degen_pair = (round(float(mu_g), 4), round(candidate_mu_alt, 4))
+
+    # Underdetermined caveat based on d.o.f.
+    n_dof_constant = n - 1
+    n_dof_gaussian = n - 3
+    n_dof_sinc = n - 3
+    underdetermined_note = (
+        f"Gaussian fit on N=6 has only {n_dof_gaussian} d.o.f. (N-K=6-3); "
+        f"a constant baseline has {n_dof_constant}. With 3 d.o.f. the "
+        f"fit is heavily under-determined -- two distinct transits "
+        f"(e.g., horn-beam crossing vs transient pulse) can both fit "
+        f"the 6 peaks equally well. WOW IS NOT a confirmed technosignature "
+        f"per Sheikh et al. 2021 / PHL@UPR 2024 (arXiv:2408.08513, CC BY 4.0). "
+        f"Structure != message."
+    )
+
+    return {
+        "n_samples": n,
+        "best_amplitude_constant": round(a_const, 4),
+        "r2_constant": round(r2_const, 6),
+        "r2_gaussian": round(r2_gauss, 6),
+        "r2_sinc": round(r2_sinc, 6),
+        "n_dof_constant": int(n_dof_constant),
+        "n_dof_gaussian": int(n_dof_gaussian),
+        "n_dof_sinc": int(n_dof_sinc),
+        "recovered_gaussian": {
+            "mu_idx": round(mu_g, 4),
+            "sigma_idx": round(sig_g, 4),
+            "amplitude": round(amp_g, 4),
+            "ss_res": round(ss_gauss, 4),
+            "residuals_gauss": [round(float(r), 4) for r in g_resid],
+        },
+        "recovered_sinc": {
+            "mu_idx": round(mu_s, 4),
+            "sigma_idx": round(sig_s, 4),
+            "amplitude": round(amp_s, 4),
+            "ss_res": round(ss_sinc, 4),
+            "residuals_sinc": [round(float(r), 4) for r in s_resid],
+        },
+        "degeneracy_pair": degen_pair,
+        "underdetermined_note": underdetermined_note,
+        "underdetermined": bool(n_dof_gaussian <= 3),
+        "fit_quality_caveat": (
+            "Even if r² ≈ 1 from a 3-param fit, the d.o.f. shortage means "
+            "the fit is consistent with EITHER a horn-beam transit OR a "
+            "transient signal. We cannot distinguish them from 6 bins."
+        ),
+    }
+
+
+def wow_beam_scramble_null(samples,
+                            n_permutations: int = WOW_TRANSIT_PERMUTATIONS,
+                            seed: int = 0) -> dict:
+    """Permute the 6 samples (n_permutations times) and re-fit Gaussian each.
+
+    Returns median + p5/p95 r² distribution across permutations.
+    Wow!'s real-data r² should land either CLEARLY above the scramble
+    distribution (structure) or roughly AT the scramble median (no
+    structure). The fit MUST NOT silently claim structure when the
+    scramble-null is comparable.
+    """
+    samples = np.asarray(samples, dtype=float)
+    rng = np.random.default_rng(seed)
+    r2_distribution: list[float] = []
+    mu_distribution: list[float] = []
+    n = len(samples)
+    if n == 0:
+        return {"n_samples": 0, "n_permutations": 0,
+                "r2_median": 0.0, "r2_p5": 0.0, "r2_p95": 0.0,
+                "mu_distribution_median": 0.0}
+    for _ in range(int(n_permutations)):
+        permuted = rng.permutation(samples)
+        fit = fit_wow_beam_transit(permuted)
+        r2_distribution.append(float(fit["r2_gaussian"]))
+        if fit["recovered_gaussian"] is not None:
+            mu_distribution.append(float(
+                fit["recovered_gaussian"]["mu_idx"]
+            ))
+    arr = np.asarray(r2_distribution, dtype=float)
+    mu_arr = np.asarray(mu_distribution, dtype=float)
+    return {
+        "n_samples": int(n),
+        "n_permutations": int(n_permutations),
+        "r2_median": round(float(np.median(arr)), 6),
+        "r2_p5": round(float(np.percentile(arr, 5)), 6),
+        "r2_p95": round(float(np.percentile(arr, 95)), 6),
+        "r2_min": round(float(np.min(arr)), 6),
+        "r2_max": round(float(np.max(arr)), 6),
+        "mu_distribution_median": round(float(np.median(mu_arr)), 4)
+            if len(mu_arr) else 0.0,
+    }
+
+
+def run_wow_beam_fit(mode: str = "synthetic", seed: int = 0) -> dict:
+    """Orchestrator. mode ∈ {'synthetic', 'real'}.
+
+    'synthetic' plants a noise-free 6-sample Gaussian at the canonical
+    (μ=2.5, σ=1.5, A=30) and asserts recovery_pass=True (math-validation).
+
+    'real' uses the WOW_SAMPLES_SIGMA tuple (Ehman's handwritten
+    transcript); runs the same fits + scramble null + lab motto
+    caveat; the recovery can NOT be PASS/FALL since the real data is
+    not pre-planted -- instead we report r² + underdetermined caveat +
+    2024 PHL@UPR cite.
+    """
+    if mode == "synthetic":
+        samples = synth_wow_beam_transit(
+            mu_idx=WOW_TRANSIT_PLANT_MU_IDX,
+            sigma_idx=WOW_TRANSIT_PLANT_SIGMA_IDX,
+            amplitude=WOW_TRANSIT_PLANT_AMP,
+        )
+        truth = {
+            "mu_idx": float(WOW_TRANSIT_PLANT_MU_IDX),
+            "sigma_idx": float(WOW_TRANSIT_PLANT_SIGMA_IDX),
+            "amplitude": float(WOW_TRANSIT_PLANT_AMP),
+        }
+        data_source = "synthetic_plant"
+        data_label = "synthetic"
+    elif mode == "real":
+        samples = np.asarray(WOW_SAMPLES_SIGMA, dtype=float)
+        truth = None
+        data_source = "Ehman_transcript_6EQUJ5"
+        data_label = "real"
+    else:
+        return {
+            "label": "wow_beam_fit",
+            "method": "wow_beam_transit_fit",
+            "data_source": "",
+            "data_label": mode,
+            "mode": mode,
+            "fetch_status": "INVALID_MODE",
+            "fit": None, "scramble_null": None,
+            "known_answer": None, "warnings": ["unknown mode"],
+            "stance": _wow_beam_motto_stance(),
+        }
+
+    fit = fit_wow_beam_transit(samples)
+    scramble = wow_beam_scramble_null(samples, seed=seed)
+    if truth is not None:
+        mu_rec = fit["recovered_gaussian"]["mu_idx"]
+        sig_rec = fit["recovered_gaussian"]["sigma_idx"]
+        amp_rec = fit["recovered_gaussian"]["amplitude"]
+        recovery_pass = bool(
+            abs(mu_rec - truth["mu_idx"]) <= WOW_TRANSIT_RECOVERY_TOL_IDX
+            and abs(sig_rec - truth["sigma_idx"]) <= WOW_TRANSIT_RECOVERY_TOL_IDX
+            and abs(amp_rec - truth["amplitude"]) <= 1e-6
+        )
+        recovery_summary = {
+            "mu_err_idx": round(abs(mu_rec - truth["mu_idx"]), 6),
+            "sigma_err_idx": round(abs(sig_rec - truth["sigma_idx"]), 6),
+            "amplitude_err": round(abs(amp_rec - truth["amplitude"]), 6),
+            "recovery_pass": bool(recovery_pass),
+        }
+    else:
+        recovery_summary = {
+            "mu_err_idx": None, "sigma_err_idx": None,
+            "amplitude_err": None,
+            "recovery_pass": None,
+            "note": "real data has no planted ground truth; r² + DOF + "
+                     "scramble null are the only honest outputs.",
+        }
+
+    # cross-check: real-data r²_gaussian vs scramble median.
+    cross_check = None
+    if scramble["r2_median"] is not None:
+        cross_check = {
+            "structure_above_scramble_median": bool(
+                fit["r2_gaussian"] > scramble["r2_median"]
+            ),
+            "delta_real_vs_scramble_median": round(
+                fit["r2_gaussian"] - scramble["r2_median"], 6
+            ),
+        }
+
+    return {
+        "label": "wow_beam_fit",
+        "method": "wow_beam_transit_grid_fit",
+        "data_source": data_source,
+        "data_label": data_label,
+        "mode": mode,
+        "fetch_status": "OK",
+        "samples": [round(float(x), 4) for x in samples],
+        "plant": truth,
+        "fit": fit,
+        "scramble_null": scramble,
+        "cross_check_scramble": cross_check,
+        "known_answer": recovery_summary,
+        "warnings": [
+            "structure != message; N=6 fit is heavily underdetermined; "
+            "we do NOT claim detection of artificial origin.",
+            "2024 PHL@UPR reanalysis (arXiv:2408.08513, CC BY 4.0) "
+            "attributes Wow! to a hydrogen cloud near a solar-type star "
+            "-- NATURAL mechanism.",
+        ],
+        "stance": _wow_beam_motto_stance(),
+    }
+
+
+def _wow_beam_motto_stance() -> str:
+    """Lab motto + underdetermined caveat. Used by ALL G3 outputs."""
+    return (
+        "Structure != message. The 1977 Wow! signal is a 6-sample "
+        "intensity table, NOT a time series. A 3-parameter Gaussian fit "
+        "on N=6 has only 3 d.o.f. -- heavily underdetermined. The fit is "
+        "consistent with EITHER a horn-beam transit OR a transient pulse "
+        "(or a hydrogen cloud per PHL@UPR 2024, arXiv:2408.08513). We "
+        "do NOT claim detection of an artificial origin. The 2024 "
+        "PHL@UPR reanalysis (CC BY 4.0) attributes Wow! to a hydrogen "
+        "cloud near a solar-type star -- NATURAL. The N=6 fit gives us "
+        "NO statistical power to distinguish transient from beam-crossing. "
+        "Periodicity / beam-crossing is necessary, NOT sufficient for "
+        "artificiality. Lab motto: structure != message."
+    )
+
+
 # --- Wow! honesty audit ---------------------------------------------------
 
 def wow_honest_check(samples=WOW_SAMPLES_SIGMA,
@@ -1144,14 +2003,21 @@ def analyze(
     seed: int = 0,
     bundled_real_json: Path | None = None,
     bundled_pulsar_csv: Path | None = None,
+    bundled_blc1_csv: Path | None = None,
 ) -> dict:
     """Orchestrator: returns a single dict containing all sub-runs.
 
     `mode ∈ {'all', 'known_train', 'wow', 'frb_180916',
-             'frb_180916_real'}`.
+             'frb_180916_real', 'pulsar_vela_synthetic',
+             'pulsar_vela_real', 'pulsar_vela',
+             'blc1_synthetic', 'blc1_real', 'blc1'}`.
 
     `bundled_real_json` is forwarded to `run_frb_180916_real` when mode
-    includes 'frb_180916_real'. It is ignored otherwise.
+    includes 'frb_180916_real'.
+    `bundled_pulsar_csv` is forwarded to `run_pulsar_vela` when mode
+    includes `pulsar_vela*`.
+    `bundled_blc1_csv` is forwarded to `run_blc1_real` when mode
+    includes `blc1*`.
     """
     out: dict = {
         "label": "radio_probe",
@@ -1194,6 +2060,29 @@ def analyze(
             out["pulsar_vela_synthetic"] = run_pulsar_vela_synthetic(
                 seed=seed,
             )
+    if mode == "blc1_synthetic":
+        out["blc1_synthetic"] = run_blc1_synthetic(seed=seed)
+    if mode == "wow_beam_fit_synthetic":
+        out["wow_beam_fit"] = run_wow_beam_fit(mode="synthetic", seed=seed)
+    if mode == "wow_beam_fit_real":
+        out["wow_beam_fit"] = run_wow_beam_fit(mode="real", seed=seed)
+    if mode == "wow_beam_fit":
+        out["wow_beam_fit"] = run_wow_beam_fit(mode="synthetic", seed=seed)
+    if mode == "blc1_real":
+        out["blc1_real_data"] = run_blc1_real(
+            bundled_csv_path=bundled_blc1_csv,
+            seed=seed,
+        )
+    if mode == "blc1":
+        # Fall-through: prefer real-data if a CSV override was given,
+        # else default to synthetic known-answer plant (proves math).
+        if bundled_blc1_csv is not None:
+            out["blc1_real_data"] = run_blc1_real(
+                bundled_csv_path=bundled_blc1_csv,
+                seed=seed,
+            )
+        else:
+            out["blc1_synthetic"] = run_blc1_synthetic(seed=seed)
     return out
 
 
@@ -1334,6 +2223,294 @@ def write_notes_markdown(report: dict) -> str:
                 f"_stance:_ {rd.get('stance', '')}",
                 "",
             ]
+    if "pulsar_vela_synthetic" in report:
+        pv = report["pulsar_vela_synthetic"]
+        ka = pv.get("known_answer") or {}
+        nc = pv.get("negative_controls") or {}
+        plant = pv.get("plant") or {}
+        lines += [
+            "## Vela pulsar (PSR B0833-45 / J0835-4510) — SYNTHETIC positive-control",
+            "",
+            f"- source: **synthetic plant** (no real MJDs injected; "
+            "pulsar_fetcher NEVER fabricates arrival times)",
+            f"- plant: PSR **{plant.get('psr_b1950', '?')}** / "
+            f"**{plant.get('psr_j2000', '?')}**, P0 = "
+            f"**{plant.get('true_period_s', 0):.9f} s** "
+            f"(freq ~{plant.get('true_freq_hz', 0):.4f} Hz), "
+            f"N={plant.get('n_arrivals', '?')} arrivals over "
+            f"{plant.get('obs_window_d', '?')} d, jitter "
+            f"{plant.get('jitter_s', '?')} s "
+            f"(synthetic coherence is BETTER than real Vela — see motto)",
+            f"- recovery: best period **{ka.get('recovered_period_s')}** "
+            f"(err |P - P0| = {ka.get('recovery_error_s')} s, "
+            f"Z^2 = {ka.get('recovered_z2')}, "
+            f"p = {ka.get('recovered_p_value')}); "
+            f"**{'PASS' if ka.get('recovery_pass') else 'FAIL'}** "
+            "(proves the math; does NOT imply artificial origin)",
+            f"- shuffled uniform null: max Z^2 = "
+            f"{nc.get('shuffled_uniform_z2_max')}, "
+            f"p = {nc.get('shuffled_uniform_z2_p_value')}, "
+            f"best period = {nc.get('shuffled_uniform_best_period_s')} s — "
+            "no signal",
+            "",
+            "_lab motto:_ Structure != message. Vela is the universe's most "
+            "famous NATURAL clock (Manchester+2005 AJ 129 1993; PPTA DR3 "
+            "Zic+2023). Synthetic fits a perfect plant and proves the epoch-"
+            "fold implementation works. It tells us NOTHING about the real "
+            "pulsar, and it does NOT imply artificial origin. Periodicity "
+            "is necessary, NOT sufficient, for artificiality.",
+            "",
+        ]
+    if "pulsar_vela_real_data" in report:
+        rd = report["pulsar_vela_real_data"]
+        plant = rd.get("plant") or {}
+        lines += [
+            "## Vela pulsar (PSR B0833-45 / J0835-4510) — REAL-DATA path",
+            "",
+            f"- data source: **{rd.get('data_source', '?')}** "
+            f"(source_type=`{rd.get('source_type', '?')}`, "
+            f"fetch_status=`{rd.get('fetch_status', '?')}`)",
+            f"- reference: bibcode=`{rd.get('ref_bibcode') or '-'}`, "
+            f"url=`{rd.get('ref_url') or '-'}`",
+            f"- published P0: **{plant.get('true_period_s', 0):.9f} s** "
+            f"(Manchester+2005 AJ 129 1993, DOI 10.1086/428488)",
+            f"- N arrivals: **{rd.get('n_arrivals', 0)}** "
+            f"(mjd first={rd.get('arrival_mjd_first')}, "
+            f"last={rd.get('arrival_mjd_last')})",
+            "",
+        ]
+        if rd.get("warnings"):
+            lines += [
+                "### YELLOW BANNER - real-data path could NOT obtain MJDs",
+                "",
+            ]
+            for w in rd["warnings"]:
+                lines.append(f"  - {w}")
+            lines.append("")
+            note = (rd.get("provenance_note") or "")[:600]
+            lines.append(f"_provenance:_ {note}")
+            lines.append("")
+            attempts = rd.get("fetch_attempts") or []
+            if attempts:
+                lines += ["### Fetch attempts", ""]
+                for i, a in enumerate(attempts[:6], start=1):
+                    if isinstance(a, dict):
+                        url = a.get("url", "?")
+                        verdict = a.get("verdict", "?")
+                        http = a.get("http_status", "?")
+                        err = a.get("error") or a.get("error_msg") or "-"
+                        nbytes = a.get("content_bytes", 0)
+                    else:
+                        url = getattr(a, "url", "?")
+                        verdict = getattr(a, "verdict", "?")
+                        http = getattr(a, "http_status", "?")
+                        err = getattr(a, "error", None) or "-"
+                        nbytes = getattr(a, "content_bytes", 0)
+                    lines.append(
+                        f"  {i}. `{str(url)[:80]}` -> {verdict} "
+                        f"(http={http}, bytes={nbytes}, err={err})"
+                    )
+                if len(attempts) > 6:
+                    lines.append(f"  ... and {len(attempts) - 6} more")
+                lines.append("")
+        else:
+            ka = rd.get("known_answer") or {}
+            nc = rd.get("negative_controls") or {}
+            lines += [
+                f"- recovered period: **{ka.get('recovered_period_s')}** "
+                f"(err |P - P0| = {ka.get('recovery_error_s')} s, "
+                f"Z^2 = {ka.get('recovered_z2')}, "
+                f"p = {ka.get('recovered_p_value')}); "
+                f"**{'PASS' if ka.get('recovery_pass') else 'FAIL'}** "
+                "(math-validation only)",
+                f"- shuffled uniform null: max Z^2 = "
+                f"{nc.get('shuffled_uniform_z2_max')}, "
+                f"p = {nc.get('shuffled_uniform_z2_p_value')}, "
+                f"best period = {nc.get('shuffled_uniform_best_period_s')} s — "
+                "no signal (real Vela P0 is the PLANT)",
+                "",
+                f"_stance:_ {rd.get('stance', '')}",
+                "",
+            ]
+    if "wow_beam_fit" in report:
+        wb = report["wow_beam_fit"]
+        fit = wb.get("fit") or {}
+        rb = fit.get("recovered_gaussian") or {}
+        rs = fit.get("recovered_sinc") or {}
+        sn = wb.get("scramble_null") or {}
+        cross = wb.get("cross_check_scramble") or {}
+        ka = wb.get("known_answer") or {}
+        plant = wb.get("plant") or {}
+        lines += [
+            "## Wow! (1977) — SIDEREAL TRANSIT fit (underdetermined)",
+            "",
+            f"- data source: **{wb.get('data_source','?')}** "
+            f"(data_label=`{wb.get('data_label','?')}`)",
+            f"- samples: {[round(float(x), 4) for x in (wb.get('samples') or [])]} "
+            "(Ehman's handwritten 6EQUJ5 transcript if real)",
+            (
+                f"- plant (synthetic only): mu={plant.get('mu_idx')}, "
+                f"sigma={plant.get('sigma_idx')}, "
+                f"amp={plant.get('amplitude')} (exact 6-bin Gaussian, "
+                "no noise)"
+                if wb.get('data_label') == 'synthetic' else
+                "- plant: n/a (real data; no ground truth)"
+            ),
+            f"- r² for constant baseline: **{fit.get('r2_constant', 0):.6f}** "
+            f"(DO={fit.get('n_dof_constant', 0)})",
+            f"- r² for Gaussian fit:  **{fit.get('r2_gaussian', 0):.6f}** "
+            f"(DO={fit.get('n_dof_gaussian', 0)}) -- recovered (mu_idx="
+            f"{rb.get('mu_idx')}, sigma_idx={rb.get('sigma_idx')}, "
+            f"amp={rb.get('amplitude')})",
+            f"- r² for sinc fit:       **{fit.get('r2_sinc', 0):.6f}** "
+            f"(DO={fit.get('n_dof_sinc', 0)}) -- recovered (mu_idx="
+            f"{rs.get('mu_idx')}, sigma_idx={rs.get('sigma_idx')}, "
+            f"amp={rs.get('amplitude')})",
+            (
+                f"- recovery_pass (synthetic): "
+                f"**{'PASS' if ka.get('recovery_pass') else 'FAIL'}** "
+                f"(mu_err={ka.get('mu_err_idx')}, "
+                f"sigma_err={ka.get('sigma_err_idx')}, "
+                f"amp_err={ka.get('amplitude_err')})"
+                if ka.get('recovery_pass') is not None else
+                "- recovery_pass: n/a (real data has no planted ground truth)"
+            ),
+            f"- degeneracy_pair (μ ↔ 6-μ symmetry on symmetric plants): "
+            f"{fit.get('degeneracy_pair')}",
+            f"- scrambled-null permutation baseline: n={sn.get('n_permutations', 0)}, "
+            f"r² median={sn.get('r2_median', 0):.6f}, "
+            f"r² p5={sn.get('r2_p5', 0):.6f}, "
+            f"r² p95={sn.get('r2_p95', 0):.6f}",
+            (
+                f"- structure vs scramble: real r²_gaussian "
+                f"{'is ABOVE' if cross.get('structure_above_scramble_median') else 'is AT/UNDER'} "
+                f"scramble median by "
+                f"{cross.get('delta_real_vs_scramble_median', 0):.6f}"
+                if cross else
+                "- structure vs scramble: n/a"
+            ),
+            "",
+            "_Underdetermined caveat:_ " + (
+                str(fit.get('underdetermined_note', ''))
+            ),
+            "",
+            "_stance:_ " + str(wb.get('stance', '')),
+            "",
+        ]
+    if "blc1_synthetic" in report:
+        bs = report["blc1_synthetic"]
+        plant = bs.get("plant") or {}
+        ka = bs.get("known_answer") or {}
+        cd = bs.get("comb_detection") or {}
+        nc = bs.get("negative_controls") or {}
+        lines += [
+            "## BLC1 (Breakthrough Listen Candidate 1) — SYNTHETIC clock-comb known-answer",
+            "",
+            f"- source: **synthetic plant** (no live fetch attempted; per "
+            "user brief 'no TB mirror' the G-BLC1 real-data path is "
+            "DISABLED by default)",
+            f"- plant: f_center = **{plant.get('f_center_mhz')} MHz**, "
+            f"clock spacing = **{plant.get('f_clock_mhz')} MHz** "
+            f"(Sheikh 2021 supplementary), drift = "
+            f"**{plant.get('drift_hz_per_s')} Hz/s**, "
+            f"{plant.get('harmonics')} harmonics, "
+            f"central peak SNR = {plant.get('snr_base_db')} dB "
+            f"decaying {plant.get('snr_decay_db')} dB/step",
+            f"- commander: \u26a0\ufe0f Sheikh 2021 (Nat. Astron. 5 1169, "
+            "DOI 10.1038/s41550-021-01508-8) concluded BLC1 was an "
+            "INTERMODULATION PRODUCT of clock-oscillator RFI at Parkes, "
+            "NOT a confirmed technosignature. The synthetic plant mimics "
+            "this signature for math-validation only. A positive comb-hit "
+            "here IS RFI, NOT ET.",
+            f"- comb-detection: n_peaks = **{cd.get('n_peaks')}**, "
+            f"hits_at_clock = **{cd.get('hits_at_clock')}** "
+            f"(fraction {cd.get('hits_at_clock_fraction'):.3f}), "
+            f"peaks_at_known_rfi = {cd.get('peaks_at_known_rfi')}",
+            f"- recovery_pass: **{'PASS' if ka.get('recovery_pass') else 'FAIL'}** "
+            f"(rfi_comb_detected={ka.get('rfi_comb_detected')}, "
+            f"scramble_null_drop={ka.get('scramble_null_drop')})",
+            f"- scrambled-null control: hits = "
+            f"{nc.get('scramble_null_hits')} (band "
+            f"{nc.get('scramble_null_band_mhz_lo'):.3f}.."
+            f"{nc.get('scramble_null_band_mhz_hi'):.3f} MHz); "
+            f"p-value = {nc.get('scramble_null_p_value'):.3e} -- "
+            "permute the peak freqs uniformly and the comb-hit "
+            "should DROP to noise.",
+            "",
+            "_stance:_ Structure != message. BLC1 = clock-oscillator RFI "
+            "per Sheikh 2021, NOT a confirmed technosignature. Periodicity "
+            "(comb structure) IS NECESSARY, NOT SUFFICIENT, FOR "
+            "ARTIFICIALITY. We do NOT fabricate peak lists. Lab motto: "
+            "even a positive comb-hit is RFI until proven otherwise.",
+            "",
+        ]
+    if "blc1_real_data" in report:
+        rd = report["blc1_real_data"]
+        plant = rd.get("plant") or {}
+        lines += [
+            "## BLC1 (Breakthrough Listen Candidate 1) — REAL-DATA path "
+            "(DISABLED; bundled override only)",
+            "",
+            f"- data source: **{rd.get('data_source', '?')}** "
+            f"(source_type=`{rd.get('source_type', '?')}`, "
+            f"fetch_status=`{rd.get('fetch_status', '?')}`)",
+            f"- reference: bibcode=`{rd.get('ref_bibcode') or '-'}`, "
+            f"url=`{rd.get('ref_url') or '-'}`",
+            f"- license: `{rd.get('license') or '-'}`",
+            f"- f_center = **{plant.get('f_center_mhz')} MHz** "
+            f"(BLC1 detection freq); clock = "
+            f"**{plant.get('f_clock_mhz')} MHz**; drift = "
+            f"**{plant.get('drift_hz_per_s')} Hz/s**",
+            "",
+        ]
+        if rd.get("warnings"):
+            lines += ["### 🟡 YELLOW BANNER - G-BLC1 live probe DISABLED "
+                       "by design (no TB mirror)",
+                       "",
+                       ]
+            for w in rd["warnings"]:
+                lines.append(f"  - {w}")
+            lines.append("")
+            note = (rd.get("provenance_note") or "")[:600]
+            lines.append(f"_provenance:_ {note}")
+            lines.append("")
+            attempts = rd.get("fetch_attempts") or []
+            if attempts:
+                lines += ["### Administrative URLs NOT contacted", ""]
+                for i, a in enumerate(attempts[:6], start=1):
+                    if isinstance(a, dict):
+                        url = a.get("url", "?")
+                        verdict = a.get("verdict", "?")
+                        err = a.get("error") or "-"
+                    else:
+                        url = getattr(a, "url", "?")
+                        verdict = getattr(a, "verdict", "?")
+                        err = getattr(a, "error", None) or "-"
+                    lines.append(
+                        f"  {i}. `{str(url)[:90]}` -> {verdict} "
+                        f"(err={err})"
+                    )
+                if len(attempts) > 6:
+                    lines.append(f"  ... and {len(attempts) - 6} more")
+                lines.append("")
+        else:
+            cd = rd.get("comb_detection") or {}
+            ka = rd.get("known_answer") or {}
+            nc = rd.get("negative_controls") or {}
+            lines += [
+                f"- comb-detection: n_peaks = **{cd.get('n_peaks')}**, "
+                f"hits_at_clock = **{cd.get('hits_at_clock')}**, "
+                f"peaks_at_known_rfi = {cd.get('peaks_at_known_rfi')}",
+                f"- result: **{'RFI_COMB_DETECTED' if ka.get('rfi_comb_detected') else 'no hit'}** "
+                f"(recovery_pass={ka.get('recovery_pass')}, "
+                f"scramble_null_drop={ka.get('scramble_null_drop')})",
+                f"- scrambled-null control: hits = "
+                f"{nc.get('scramble_null_hits')}, "
+                f"p-value = {nc.get('scramble_null_p_value'):.3e}",
+                "",
+                f"_stance:_ {rd.get('stance', '')}",
+                "",
+            ]
     lines += [
         "---",
         "",
@@ -1400,15 +2577,55 @@ def main() -> None:
                          "CSV file of Vela arrival MJDs. Schema: "
                          "header `name,mjd` (Vela-row filter is "
                          "applied automatically) OR a flat list of "
-                         "MJD floats (treated as Vela). Only honoured "
-                         "when combined with --pulsar-vela*.")
-    ap.add_argument("--fetch-status-test-force",
-                    choices=["UNREACHABLE", "PARKING_PAGE", "FETCHED"],
-                    default=None,
-                    help="TEST HOOK: synthesize fetcher result without "
-                         "network contact. UNREACHABLE / PARKING_PAGE / "
-                         "FETCHED. Production users must omit this flag. "
-                         "Only applies to --frb-180916-real.")
+                     "MJD floats (treated as Vela). Only honoured "
+                     "when combined with --pulsar-vela*.")
+    ap.add_argument(
+        "--fetch-status-test-force",
+        choices=["UNREACHABLE", "PARKING_PAGE", "FETCHED"],
+        default=None,
+        help="TEST HOOK: synthesize fetcher result without "
+             "network contact. UNREACHABLE / PARKING_PAGE / "
+             "FETCHED. Production users must omit this flag. "
+             "Applies to --frb-180916-real, --pulsar-vela-real, "
+             "and --blc1-real."
+    )
+    ap.add_argument("--blc1", action="store_true",
+                     help="BLC1 default mode: synthetic known-answer "
+                          "(math-validation) UNLESS --bundled-blc1-csv "
+                          "is given (then real-data path).")
+    ap.add_argument("--blc1-synthetic", action="store_true",
+                     help="BLC1 synthetic clock-comb + comb detector + "
+                          "scramble null + positive-control RFI hit. "
+                          "Plants 5 harmonically-spaced peaks around "
+                          "982.002 MHz (BLC1 detection freq per Sheikh "
+                          "2021).")
+    ap.add_argument("--blc1-real", action="store_true",
+                     help="BLC1 real-data path. Live probe DISABLED "
+                          "per user brief ('no TB mirror'); use "
+                          "--bundled-blc1-csv to inject hand-transcribed "
+                          "Sheikh 2021 supplementary tables.")
+    ap.add_argument("--bundled-blc1-csv", type=Path, default=None,
+                     help="Override the (disabled) BLC1 live TB fetch "
+                          "with a CSV file of peak rows. Schema: header "
+                          "`freq_mhz,snr_db,drift_hz_per_s,t_start_mjd,"
+                          "t_end_mjd,label`. Only honoured when combined "
+                          "with --blc1*.")
+    ap.add_argument("--wow-beam-fit", action="store_true",
+                     help="G3: fit a Gaussian + sinc sidereal transit to "
+                          "the 6EQUJ5 intensity table [6.5, 14.5, 26.5, "
+                          "30.5, 19.5, 5.5]. Synthetic default; use "
+                          "--wow-beam-fit-real for Ehman's handwritten "
+                          "transcript. Underdetermined caveat enforced "
+                          "(N=6 - K=3 -> 3 DOF).")
+    ap.add_argument("--wow-beam-fit-synthetic", action="store_true",
+                     help="G3 SYNTHETIC known-answer: plant a noise-free "
+                          "6-sample Gaussian at (mu=2.5, sigma=1.5, amp=30) "
+                          "and verify the fit recovers (|err_mu|<=0.5 idx, "
+                          "|err_sigma|<=0.5 idx, |err_amp|<=1e-6).")
+    ap.add_argument("--wow-beam-fit-real", action="store_true",
+                     help="G3 REAL-DATA: run the Gaussian + sinc + constant "
+                          "+ scramble-null pipeline on the Ehman transcript "
+                          "values. Lab motto + PHL@UPR 2024 cite enforced.")
     ap.add_argument("--all-of-the-above", action="store_true",
                     help="Run known-train + wow-honest + frb-180916 (synthetic)"
                          " (default)")
@@ -1434,6 +2651,18 @@ def main() -> None:
         mode = "pulsar_vela_real"
     elif args.pulsar_vela:
         mode = "pulsar_vela"
+    elif args.blc1_real:
+        mode = "blc1_real"
+    elif args.blc1_synthetic:
+        mode = "blc1_synthetic"
+    elif args.blc1:
+        mode = "blc1"
+    elif args.wow_beam_fit_real:
+        mode = "wow_beam_fit_real"
+    elif args.wow_beam_fit_synthetic:
+        mode = "wow_beam_fit_synthetic"
+    elif args.wow_beam_fit:
+        mode = "wow_beam_fit"
     elif args.all_of_the_above:
         mode = "all"
     elif (args.frb_180916 or args.frb_180916_synthetic) and not (
@@ -1464,6 +2693,9 @@ def main() -> None:
         bundled_pulsar_csv=args.bundled_pulsar_csv
         if mode in ("pulsar_vela", "pulsar_vela_real", "pulsar_vela_synthetic")
         else None,
+        bundled_blc1_csv=args.bundled_blc1_csv
+        if mode in ("blc1", "blc1_real", "blc1_synthetic")
+        else None,
     )
     if mode == "frb_180916_real" and args.fetch_status_test_force:
         # Re-run with the test hook applied to the real-data path layer.
@@ -1486,6 +2718,19 @@ def main() -> None:
             report["pulsar_vela_real_data"] = run_pulsar_vela(
                 bundled_csv_path=args.bundled_pulsar_csv
                 if mode == "pulsar_vela_real" else None,
+                seed=args.seed,
+                force_status_for_tests=args.fetch_status_test_force,
+            )
+    if mode == "blc1_real" and args.fetch_status_test_force:
+        # Same thin-shim pattern: re-run with the fetch-status test hook
+        # applied to the BLC1 real path layer so production users
+        # don't have to know about force_status_for_tests. The "no TB
+        # mirror" stance means in production this block fires only for
+        # the FETCHED test_force == positive-control peaks.
+        if BLC is not None and "blc1_real_data" in report:
+            report["blc1_real_data"] = run_blc1_real(
+                bundled_csv_path=args.bundled_blc1_csv
+                if mode == "blc1_real" else None,
                 seed=args.seed,
                 force_status_for_tests=args.fetch_status_test_force,
             )

@@ -1,0 +1,94 @@
+{
+  "label": "radio_probe",
+  "mode": "wow_beam_fit_real",
+  "seed": 0,
+  "stance": "Structure != message. Pulsars are the universe's most precise natural clocks -- periodicity is necessary, NOT sufficient, for artificiality. All scaffolds here are math-validation plants; none are claims about real Wow! or real FRBs.",
+  "wow_beam_fit": {
+    "label": "wow_beam_fit",
+    "method": "wow_beam_transit_grid_fit",
+    "data_source": "Ehman_transcript_6EQUJ5",
+    "data_label": "real",
+    "mode": "real",
+    "fetch_status": "OK",
+    "samples": [
+      6.5,
+      14.5,
+      26.5,
+      30.5,
+      19.5,
+      5.5
+    ],
+    "plant": null,
+    "fit": {
+      "n_samples": 6,
+      "best_amplitude_constant": 17.1667,
+      "r2_constant": 0.0,
+      "r2_gaussian": 0.982831,
+      "r2_sinc": 0.963572,
+      "n_dof_constant": 5,
+      "n_dof_gaussian": 3,
+      "n_dof_sinc": 3,
+      "recovered_gaussian": {
+        "mu_idx": 2.7,
+        "sigma_idx": 1.35,
+        "amplitude": 30.9322,
+        "ss_res": 9.0538,
+        "residuals_gauss": [
+          2.3138,
+          0.5018,
+          -0.5413,
+          0.3222,
+          0.0441,
+          -1.7463
+        ]
+      },
+      "recovered_sinc": {
+        "mu_idx": 2.6,
+        "sigma_idx": 2.95,
+        "amplitude": 29.2449,
+        "ss_res": 19.2095,
+        "residuals_sinc": [
+          2.6537,
+          -2.5115,
+          -0.7951,
+          2.1316,
+          -0.0527,
+          -0.8253
+        ]
+      },
+      "degeneracy_pair": [
+        2.7,
+        3.3
+      ],
+      "underdetermined_note": "Gaussian fit on N=6 has only 3 d.o.f. (N-K=6-3); a constant baseline has 5. With 3 d.o.f. the fit is heavily under-determined -- two distinct transits (e.g., horn-beam crossing vs transient pulse) can both fit the 6 peaks equally well. WOW IS NOT a confirmed technosignature per Sheikh et al. 2021 / PHL@UPR 2024 (arXiv:2408.08513, CC BY 4.0). Structure != message.",
+      "underdetermined": true,
+      "fit_quality_caveat": "Even if r\u00b2 \u2248 1 from a 3-param fit, the d.o.f. shortage means the fit is consistent with EITHER a horn-beam transit OR a transient signal. We cannot distinguish them from 6 bins."
+    },
+    "scramble_null": {
+      "n_samples": 6,
+      "n_permutations": 24,
+      "r2_median": 0.120072,
+      "r2_p5": -0.401746,
+      "r2_p95": 0.837169,
+      "r2_min": -0.420166,
+      "r2_max": 0.880136,
+      "mu_distribution_median": 2.15
+    },
+    "cross_check_scramble": {
+      "structure_above_scramble_median": true,
+      "delta_real_vs_scramble_median": 0.862759
+    },
+    "known_answer": {
+      "mu_err_idx": null,
+      "sigma_err_idx": null,
+      "amplitude_err": null,
+      "recovery_pass": null,
+      "note": "real data has no planted ground truth; r\u00b2 + DOF + scramble null are the only honest outputs."
+    },
+    "warnings": [
+      "structure != message; N=6 fit is heavily underdetermined; we do NOT claim detection of artificial origin.",
+      "2024 PHL@UPR reanalysis (arXiv:2408.08513, CC BY 4.0) attributes Wow! to a hydrogen cloud near a solar-type star -- NATURAL mechanism."
+    ],
+    "stance": "Structure != message. The 1977 Wow! signal is a 6-sample intensity table, NOT a time series. A 3-parameter Gaussian fit on N=6 has only 3 d.o.f. -- heavily underdetermined. The fit is consistent with EITHER a horn-beam transit OR a transient pulse (or a hydrogen cloud per PHL@UPR 2024, arXiv:2408.08513). We do NOT claim detection of an artificial origin. The 2024 PHL@UPR reanalysis (CC BY 4.0) attributes Wow! to a hydrogen cloud near a solar-type star -- NATURAL. The N=6 fit gives us NO statistical power to distinguish transient from beam-crossing. Periodicity / beam-crossing is necessary, NOT sufficient for artificiality. Lab motto: structure != message."
+  }
+}
