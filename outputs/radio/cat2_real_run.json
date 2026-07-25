@@ -1,0 +1,86 @@
+{
+  "label": "radio_probe",
+  "mode": "cat2_real",
+  "seed": 0,
+  "stance": "Structure != message. Pulsars are the universe's most precise natural clocks -- periodicity is necessary, NOT sufficient, for artificiality. All scaffolds here are math-validation plants; none are claims about real Wow! or real FRBs.",
+  "cat2_real_data": {
+    "label": "cat2_real_data",
+    "method": "real_cat2_multisource_epoch_fold_z2",
+    "data_source": "CHIME/FRB Catalog 2",
+    "source_type": "empty",
+    "fetch_status": "PARKING_PAGE",
+    "ref_bibcode": "2026ApJS..283...34C",
+    "ref_url": "https://iopscience.iop.org/article/10.3847/1538-4365/ae3828",
+    "fetched_from": null,
+    "fetch_attempts": [
+      {
+        "url": "https://www.chime-frb.ca/catalog/frb_catalog_2.csv",
+        "role": "CHIME primary Catalog 2 CSV (advertised on site)",
+        "http_status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_bytes": 7357,
+        "verdict": "HTML_PARKING",
+        "error": "content-type contains 'html' - not a CSV",
+        "elapsed_s": 0.054
+      },
+      {
+        "url": "https://www.chime-frb.ca/catalog/catalog_2.csv",
+        "role": "CHIME primary alternate filename",
+        "http_status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_bytes": 7357,
+        "verdict": "HTML_PARKING",
+        "error": "content-type contains 'html' - not a CSV",
+        "elapsed_s": 0.034
+      },
+      {
+        "url": "https://www.chime-frb.ca/catalog/frbcatalog2.csv",
+        "role": "CHIME no-underscore filename",
+        "http_status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_bytes": 7357,
+        "verdict": "HTML_PARKING",
+        "error": "content-type contains 'html' - not a CSV",
+        "elapsed_s": 0.034
+      },
+      {
+        "url": "https://raw.githubusercontent.com/CHIME-FRB-Open-Data/catalog/main/csv/catalog2.csv",
+        "role": "GitHub raw CSV mirror (offline at probe time)",
+        "http_status": 404,
+        "content_type": "text/plain; charset=utf-8",
+        "content_bytes": 0,
+        "verdict": "4XX",
+        "error": "HTTP Error 404: Not Found",
+        "elapsed_s": 0.039
+      },
+      {
+        "url": "https://chime-frb-open-data.s3.ca-central-1.amazonaws.com/catalog2.csv",
+        "role": "S3 mirror (offline at probe time)",
+        "http_status": 404,
+        "content_type": "application/xml",
+        "content_bytes": 0,
+        "verdict": "4XX",
+        "error": "HTTP Error 404: Not Found",
+        "elapsed_s": 0.072
+      }
+    ],
+    "n_sources": 0,
+    "n_bursts_total": 0,
+    "provenance_note": "Live CHIME/FRB Catalog 2 fetch returned PARKING_PAGE. No MJDs obtained from the network. The Cat 2 data portal mirrors the Cat 1 offline/parking state at probe time (2026-07-25). To populate today, pass --bundled-cat2-csv with a CSV of `name,mjd` rows transcribed from the published catalog. No synthetic data injected.",
+    "plant": {
+      "known_repeater_periods_d": {
+        "FRB 20180916B": 16.35,
+        "FRB 20121102A": 157.0
+      },
+      "tolerance_d": 1.0
+    },
+    "per_source": {},
+    "known_answer": null,
+    "negative_controls": null,
+    "warnings": [
+      "no real-data path attempted because the Cat 2 source returned zero MJDs across all sources. NO synthetic plant was used.",
+      "to populate: (a) wait for the CHIME/FRB Cat 2 portal to come back online and rerun; or (b) pass --bundled-cat2-csv with a CSV of `name,mjd` rows transcribed from the published Second CHIME/FRB Catalog."
+    ],
+    "stance": "Structure != message. The Second CHIME/FRB Catalog (CHIME/FRB Collab. 2026, ApJS 283 34) periodic repeaters have NATURAL activity cycles (e.g. FRB 20180916B ~16.35 d). Recovering a period is a math-validation outcome, NOT evidence of artificiality. We do NOT fabricate arrival MJDs; on a failed fetch the run reports fetch_status + attempts and stops. Periodicity is necessary, NOT sufficient, for artificiality."
+  }
+}

@@ -33,15 +33,15 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **N0** | Hyper + Cursor | Phaistos | z≈−14 + period-3 refrain | 🟢 landed |
 | **B10/B11** | Cursor | ELA + cipher negcontrol | Pillow ELA; Caesar/IC | 🟢 landed |
 | **R1** | Minimax (done) | radio_probe + fetchers | FFT/epoch-fold; Wow blocked; Vela/FRB PARK | 🟢 50/50 tests — **radio closed for Minimax** |
-| **R1++** | **Ozma** | CHIME Cat 2 periods | Recover 16.35 d + scramble null | 🟡 **PR #3** — Cat2 wired + synth known-answer; real path PARKING; merge blocked on conflicts |
+| **R1++** | **Ozma** | CHIME Cat 2 periods | Recover 16.35 d + scramble null | 🟢 **landed PR #3** — Cat2 wired; recovers 16.35 d (20180916B) + 157 d (20121102A); scramble null; real path PARKING honest. `outputs/radio/cat2_*.json` |
 | **G1** | Opencode | Linear A | z≈−73 formulaic STRUCTURE | 🟢 landed + gallery |
 | **G4** | **Opencode** 🟢 | Rongorongo 2D (Spaelti) | Parallel passages + symbolseq; structure ≠ reading | 🟢 **landed** — `tools/scripts/rongorongo_probe.py`, `outputs/rongorongo/run.json` + `NOTES.md`. 5279 glyphs across 6 tablets, z=−42.9 conditional entropy vs shuffle. 240 parallel passages (33 cross-tablet, z=+40.9 vs shuffle). Top cross-tablet formula: `380 001 022f` ×7 across C+E. Verdict: SEQUENCE_STRUCTURE | PARALLEL_EXCESS | CROSS_TABLET_PARALLELS. No decipherment. |
 | **G2** | **Minimax** | Proto-Elamite | CDLI ledger entropy | ⬜ **Minimax next ticket only** (off radio/BLC1/Amazon) |
-| **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed — Ozma inherits for interpretation pass |
+| **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed + **Ozma interpretation pass (PR)** — μ↔(6−μ) one-horn degeneracy, PHL@UPR 2024 natural H-cloud, N=6 gives zero power to infer artificiality; NOTES deepened in `outputs/radio/NOTES.md` |
 | **G7** | Opencode | Gorafe megaliths | Orientation STRUCTURE; astro/spatial UNDER | 🟢 v1; G7++ later (sunrise + valley null) |
 | **G8** | queue | Betty Hill × Gaia | Star-map null | ⬜ paused (not tonight) |
-| **G-Amazon** | **Ulfberht** (Geoglyf ej riggad) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY (klustring, ej mening); NN R=0.175 z=−46.7, Ripley L>CSR alla radier; kontroller gröna; Mode B BLOCKED |
-| **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟡 **PR #3** — Cursor APPROVE pending rebase onto main |
+| **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
+| **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟢 **landed PR #3** — synth known-answer + honest block on real slice; no TB mirror. `outputs/radio/blc1_*.json` |
 
 ### Hyper handoff status (Cursor, 2026-07-25 mid-morning)
 
@@ -49,14 +49,26 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 
 | Item | Reality |
 |------|---------|
-| **Geoglyf** | Never provisioned — G-Amazon reassigned to **Ulfberht** (author). |
-| **G-Amazon** | 🟢 PR #1 merged — `STRUCTURE_ONLY`; Amazon tests PASS; survey-coverage confound in NOTES. |
-| **Reviewer integrity** | Ulfberht authored *and* self-merged #1/#2. Cursor is de-facto 2nd reader after the fact: Amazon science OK; process smell noted. |
-| **G-BLC1 / R1++** | Ozma **PR #3** — Cursor APPROVE on substance (66/66 radio tests; honest `BLOCKED_DATA_TOO_LARGE` on unmeasured path). **Do not merge until rebased** (`mergeable: CONFLICTING` vs main). Prefer Cursor/Captain merge, not Ulfberht alone. |
-| **G4** | Opencode 🟢 Rongorongo landed on main. |
-| **Minimax** | Still G2-only when Captain says go; radio/Amazon/BLC1 closed. |
+| **Geoglyf** | Retired / never provisioned — do not spawn. Amazon authored by **Ulfberht**. |
+| **G-Amazon** | 🟢 PR #1 — `STRUCTURE_ONLY`. Captain was 2nd approver; Ulfberht merged (legitimate). |
+| **G-BLC1 / R1++** | 🟢 PR #3 — Cursor APPROVED; rebased + merged by Cursor/Captain. Radio tests green. |
+| **G4** | Opencode 🟢 Rongorongo on main. |
+| **Minimax** | G2-only when Captain says go; radio/Amazon/BLC1 closed. |
 
-**Inherited KEEP base (still true):** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
+**Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
+
+### Agent ops (async)
+
+Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own board row.
+
+| Rule | Detail |
+|------|--------|
+| **Roster** | **Ulfberht** = reviewer/steward (not default author). **Ozma** = radio/BLC1. **Opencode** = scripts/astro/geo S–M. **Minimax** = G2 only when released. **Geoglyf** = retired. **Cursor/Captain** = merge gate + board steward. |
+| **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
+| **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
+| **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
+| **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
+| **Idle default** | No next ticket until Captain assigns. |
 
 ---
 
