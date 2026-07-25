@@ -1,6 +1,6 @@
 {
   "mission": "G18",
-  "generated_at": "2026-07-25T20:34:09.784330+00:00",
+  "generated_at": "2026-07-25T20:45:43.588240+00:00",
   "verdict": "NO_SPATIAL_SIGNAL | NO_LEY_SIGNAL | CONTROL_NOT_SEPARATED | FPR_CALIBRATED",
   "metadata": {
     "n_sites": 100,
@@ -15,14 +15,14 @@
   },
   "clark_evans": {
     "n": 100,
-    "area_km2_approx": 38318.5,
+    "area_km2_approx": 38320.2,
     "density_sites_per_km2": 0.00261,
-    "obs_mean_nn_km": 10.2101,
-    "expected_nn_csr_formula_km": 9.7876,
-    "csr_null_mean_km": 10.2841,
-    "csr_null_sd_km": 0.5998,
-    "clark_evans_R": 0.9928,
-    "z_vs_csr": -0.123,
+    "obs_mean_nn_km": 10.086,
+    "expected_nn_csr_formula_km": 9.7878,
+    "csr_null_mean_km": 10.2881,
+    "csr_null_sd_km": 0.5951,
+    "clark_evans_R": 0.9804,
+    "z_vs_csr": -0.34,
     "n_sims": 29
   },
   "ley_fpr": {
@@ -30,27 +30,25 @@
     "tolerance_km": 0.5,
     "pairs_evaluated": 200,
     "observed": {
-      "collinear_triples_per_pair": 0.6,
-      "total_collinear_instances": 120
+      "collinear_triples_per_pair": 0.545,
+      "total_collinear_instances": 109
     },
     "null_scrambled_coord": {
-      "mean_per_pair": 0.555,
-      "sd_per_pair": 0.071679,
-      "z": 0.628,
-      "exceed_count": 5,
-      "fpr_empirical": 0.1724,
+      "mean_per_pair": 0.561552,
+      "sd_per_pair": 0.058326,
+      "z": -0.284,
+      "fpr_empirical": 0.6207,
       "n_sims": 29
     },
     "null_csr": {
-      "mean_per_pair": 0.551034,
-      "sd_per_pair": 0.063563,
-      "z": 0.77,
-      "exceed_count": 6,
-      "fpr_empirical": 0.2069,
+      "mean_per_pair": 0.556034,
+      "sd_per_pair": 0.064131,
+      "z": -0.172,
+      "fpr_empirical": 0.6207,
       "n_sims": 29
     }
   },
-  "interpretation": "**Ground truth:** SYNTHETIC CSR (ground truth: NO SIGNAL by construction)\n\nCSR synthetic data: 100 points uniformly distributed in bounding box.\nClark-Evans R=0.993, z=-0.12 \u2014 consistent with CSR expectation.\n\n**Ley-line (collinear triple) FPR calibration:**\n- Scrambled-coord null: empirical FPR = 0.1724 (threshold 0.05)\n- CSR Monte-Carlo null: empirical FPR = 0.2069 (threshold 0.05)\n- Observed collinear triples per pair: 0.600000\n\nFor CSR synthetic data, both null FPRs should be >> 0.05,\nconfirming that 'ley line' detection on random points produces\nchance-expected false positives.\n\n**FPR Calibration result:** NO_SIGNAL \u2014 'ley line' alignments\nin CSR data do not exceed null expectation. The empirical FPR\nis consistent with the nominal \u03b1=0.05 threshold.",
+  "interpretation": "**Ground truth:** SYNTHETIC CSR (ground truth: NO SIGNAL by construction)\n\nCSR synthetic data: 100 points uniformly distributed in bounding box.\nClark-Evans R=0.980, z=-0.34 \u2014 consistent with CSR expectation.\n\n**Ley-line (collinear triple) FPR calibration:**\n- Scrambled-coord null: empirical FPR = 0.6207 (threshold 0.05)\n- CSR Monte-Carlo null: empirical FPR = 0.6207 (threshold 0.05)\n- Observed collinear triples per pair: 0.545000\n\nFor CSR synthetic data, both null FPRs should be >> 0.05,\nconfirming that 'ley line' detection on random points produces\nchance-expected false positives.\n\n**FPR Calibration result:** NO_SIGNAL \u2014 'ley line' alignments\nin CSR data do not exceed null expectation. The empirical FPR\nis consistent with the nominal \u03b1=0.05 threshold.",
   "caveats": [
     "Synthetic CSR data \u2014 ground truth is NO SIGNAL by construction. Results for real EAMENA data may differ.",
     "Collinear triple detection is sampled (not exhaustive), capped at 200 pairs for performance.",
@@ -88,6 +86,9 @@
   ],
   "pipeline": {
     "tool": "tools/scripts/eamena_ley_null.py",
+    "dependencies": [
+      "tools/ccat/spatial_pattern.py"
+    ],
     "parameters": {
       "geojson": null,
       "n_synthetic": 100,

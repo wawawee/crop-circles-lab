@@ -1,5 +1,5 @@
 # G18 — EAMENA ley-line null  [NO-CLUSTER] [NO-LEYS] [CTRL-!SEP] [FPR-CAL]
-*Generated: 2026-07-25T20:34:09.784330+00:00*
+*Generated: 2026-07-25T20:45:43.588240+00:00*
 
 ## Stance
 EAMENA (Endangered Archaeology in the Middle East and North Africa) records ~338,000 archaeological sites. This probe tests the fringe claim that 3+ sites on a straight line constitute a 'ley line.' We measure spatial structure (collinear-triple frequency) relative to Complete Spatial Randomness (CSR) and scrambled-coordinate nulls. We do NOT endorse ley-line mysticism, ancient-highway claims, or any 'Earth energy' interpretation. The honest prior is NO_SIGNAL — spatial clustering in archaeological site distributions is well-known to follow environmental settlement patterns (water, soil, trade routes), not intentional geometric networks.
@@ -37,28 +37,28 @@ EAMENA (Endangered Archaeology in the Middle East and North Africa) records ~338
 - **NOTE:** Synthetic CSR data — ground truth is NO SIGNAL
 
 ## Nearest-neighbour (Clark-Evans)
-- Observed mean NN: 10.2101 km
-- CSR null mean NN: 10.2841 km
-- Clark-Evans R: 0.9928
-- z vs CSR: -0.123
+- Observed mean NN: 10.086 km
+- CSR null mean NN: 10.2881 km
+- Clark-Evans R: 0.9804
+- z vs CSR: -0.34
 - Density: 0.00261 sites/km²
 
 ## Ley-line (collinear triple) FPR analysis
 - Tolerance corridor: 0.5 km
 - Pairs evaluated: 200
-- Observed collinear triples per pair: 0.6
+- Observed collinear triples per pair: 0.545
 
 ### Scrambled-coordinate null
-- Mean: 0.555
-- SD: 0.071679
-- z: 0.628
-- Empirical FPR: 0.1724 (<0.05 = beats null)
+- Mean: 0.561552
+- SD: 0.058326
+- z: -0.284
+- Empirical FPR: 0.6207 (<0.05 = beats null)
 
 ### CSR Monte-Carlo null
-- Mean: 0.551034
-- SD: 0.063563
-- z: 0.77
-- Empirical FPR: 0.2069 (<0.05 = beats null)
+- Mean: 0.556034
+- SD: 0.064131
+- z: -0.172
+- Empirical FPR: 0.6207 (<0.05 = beats null)
 
 ## Verdict
 **NO_SPATIAL_SIGNAL | NO_LEY_SIGNAL | CONTROL_NOT_SEPARATED | FPR_CALIBRATED**
@@ -67,12 +67,12 @@ EAMENA (Endangered Archaeology in the Middle East and North Africa) records ~338
 **Ground truth:** SYNTHETIC CSR (ground truth: NO SIGNAL by construction)
 
 CSR synthetic data: 100 points uniformly distributed in bounding box.
-Clark-Evans R=0.993, z=-0.12 — consistent with CSR expectation.
+Clark-Evans R=0.980, z=-0.34 — consistent with CSR expectation.
 
 **Ley-line (collinear triple) FPR calibration:**
-- Scrambled-coord null: empirical FPR = 0.1724 (threshold 0.05)
-- CSR Monte-Carlo null: empirical FPR = 0.2069 (threshold 0.05)
-- Observed collinear triples per pair: 0.600000
+- Scrambled-coord null: empirical FPR = 0.6207 (threshold 0.05)
+- CSR Monte-Carlo null: empirical FPR = 0.6207 (threshold 0.05)
+- Observed collinear triples per pair: 0.545000
 
 For CSR synthetic data, both null FPRs should be >> 0.05,
 confirming that 'ley line' detection on random points produces

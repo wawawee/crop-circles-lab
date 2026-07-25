@@ -1,9 +1,9 @@
 """
 test_eamena_ley_null.py — G18 tests for EAMENA ley-line null hypothesis probe.
 
-Tests: forbidden-phrase guard, data loading, CSR generation, geometry,
-Clark-Evans NN analysis, collinear-triple detection, FPR null models,
-verdict assembly, output schema, end-to-end main().
+Geometry/analysis functions now live in tools/ccat/spatial_pattern.py (reusable
+module); probe-specific tests (stance, forbidden phrases, verdict, loaders, I/O)
+stay here.
 
 Run:
   python tools/scripts/tests/test_eamena_ley_null.py
@@ -12,8 +12,6 @@ Run:
 from __future__ import annotations
 
 import json
-import math
-import random as rnd
 import sys
 from pathlib import Path
 
@@ -23,12 +21,10 @@ sys.path.insert(0, str(ROOT))
 
 import tools.scripts.eamena_ley_null as EL  # noqa: E402
 from tools.scripts.eamena_ley_null import (  # noqa: E402
-    DATA_DIR, FORBIDDEN_PHRASES, OUT_DIR, STANCE, TOLERANCE_KM,
-    clark_evans_analysis, count_collinear_triples,
-    generate_synthetic_csr, haversine_km, ley_line_fpr_analysis,
-    load_data, load_geojson, mean_nn_km, perpendicular_distance_km,
-    build_verdict, write_notes_md,
+    DATA_DIR, FORBIDDEN_PHRASES, OUT_DIR, STANCE,
+    load_data, load_geojson, build_verdict, write_notes_md,
 )
+from tools.ccat import spatial_pattern as SP  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -74,7 +70,7 @@ def test_assert_no_forbidden_phrases_raises_on_banned() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Data loading + synthetic CSR generation
+# Data loading (mission-specific)
 # ---------------------------------------------------------------------------
 
 def test_load_synthetic_csr_produces_correct_n() -> None:
@@ -85,7 +81,7 @@ def test_load_synthetic_csr_produces_correct_n() -> None:
 
 
 def test_generate_synthetic_csr_in_bounds() -> None:
-    coords, meta = generate_synthetic_csr(n=100, seed=42)
+    coords, meta = SP.generate_synthetic_csr(n=100, seed=42)
     assert len(coords) == 100
     bbox = meta["bbox"]
     for lat, lon in coords:
@@ -112,101 +108,54 @@ def test_load_geojson_raises_on_bad_format() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Geometry helpers
+# Geometry helpers (delegated to spatial_pattern — smoke tests)
 # ---------------------------------------------------------------------------
 
 def test_haversine_known_distance() -> None:
-    # Distance from equator to 1 deg north at 0 lon ≈ 111.2 km
-    d = haversine_km(0.0, 0.0, 1.0, 0.0)
+    d = SP.haversine_km(0.0, 0.0, 1.0, 0.0)
     assert 110.0 < d < 112.0
 
 
 def test_haversine_zero_distance() -> None:
-    d = haversine_km(30.0, 35.0, 30.0, 35.0)
+    d = SP.haversine_km(30.0, 35.0, 30.0, 35.0)
     assert d < 0.001
 
 
 def test_perpendicular_distance_collinear() -> None:
-    # Three points on a line (meridian)
-    d = perpendicular_distance_km(0.0, 0.0, 1.0, 0.0, -1.0, 0.0)
-    assert d < 0.1  # should be very close to 0
+    d = SP.perpendicular_distance_km(0.0, 0.0, 1.0, 0.0, -1.0, 0.0)
+    assert d < 0.1
 
 
 def test_perpendicular_distance_non_collinear() -> None:
-    # Points far from the line
-    d = perpendicular_distance_km(0.0, 1.0, 0.0, 0.0, 0.0, 0.0)
-    assert d > 100.0  # ~111 km away
+    d = SP.perpendicular_distance_km(0.0, 1.0, 0.0, 0.0, 0.0, 0.0)
+    assert d > 100.0
 
 
 # ---------------------------------------------------------------------------
-# Nearest-neighbour analysis
+# Spatial analysis (delegated — smoke via spatial_pattern)
 # ---------------------------------------------------------------------------
 
 def test_mean_nn_synthetic_csr_reasonable() -> None:
-    coords, _ = generate_synthetic_csr(n=100, seed=0)
-    m = mean_nn_km(coords)
-    assert 1 < m < 100  # reasonable range for 100pts in [34,30]x[35.5,32.5]
+    coords, _ = SP.generate_synthetic_csr(n=100, seed=0)
+    m = SP.mean_nn_km(coords)
+    assert 1 < m < 100
 
 
 def test_clark_evans_csr_z_near_zero() -> None:
-    coords, _ = generate_synthetic_csr(n=100, seed=1)
-    ce = clark_evans_analysis(coords, n_sims=49, seed=0)
-    # For CSR data, R should be ~1 and z should be near 0
+    coords, _ = SP.generate_synthetic_csr(n=100, seed=1)
+    ce = SP.clark_evans_analysis(coords, n_sims=49, seed=0)
     assert abs(ce["z_vs_csr"]) < 3.0
-
-
-def test_clark_evans_underdetermined_on_small_n() -> None:
-    coords = [(30.0, 35.0), (30.1, 35.1)]  # n=2
-    ce = clark_evans_analysis(coords, n_sims=10, seed=0)
-    assert math.isfinite(ce.get("clark_evans_R", float("nan")))
-
-
-# ---------------------------------------------------------------------------
-# Collinear triple detection
-# ---------------------------------------------------------------------------
-
-def test_count_collinear_triples_zero_on_spread_points() -> None:
-    # Three points far apart on a different line should not be collinear
-    coords = [(30.0, 35.0), (31.0, 35.0), (30.0, 36.0)]
-    result = count_collinear_triples(coords, tolerance_km=0.5,
-                                      n_triple_samples=5, seed=0)
-    # With tolerance 0.5 km and points spread over 111 km, should be zero
-    assert result["collinear_triples_per_pair"] == 0.0
-
-
-def test_count_collinear_triples_detects_aligned_points() -> None:
-    # Three points intentionally collinear (on same meridian, close spacing)
-    coords = [(30.0, 35.0), (30.01, 35.0), (30.02, 35.0)]
-    result = count_collinear_triples(coords, tolerance_km=1.0,
-                                      n_triple_samples=10, seed=0)
-    assert result["collinear_triples_per_pair"] > 0
 
 
 def test_count_collinear_triples_handles_n_lt_3() -> None:
     coords = [(30.0, 35.0), (31.0, 36.0)]
-    result = count_collinear_triples(coords, n_triple_samples=5, seed=0)
-    assert result["n_triples_evaluated"] == 0
-
-
-# ---------------------------------------------------------------------------
-# FPR null models
-# ---------------------------------------------------------------------------
-
-def test_ley_fpr_analysis_csr_rates_not_extreme() -> None:
-    coords, _ = generate_synthetic_csr(n=100, seed=0)
-    fpr = ley_line_fpr_analysis(coords, n_sims=49, n_triple_samples=200,
-                                 seed=0)
-    # On CSR data, null FPRs should be well above 0.05 (no "signal")
-    sc_fpr = fpr["null_scrambled_coord"]["fpr_empirical"]
-    csr_fpr = fpr["null_csr"]["fpr_empirical"]
-    # With 49 sims, both FPRs should comfortably exceed 0.01
-    assert sc_fpr > 0.05 or csr_fpr > 0.05,\
-        f"scrambled FPR={sc_fpr}, csr FPR={csr_fpr} — both too low for CSR data"
+    result = SP.count_collinear_triples(coords, n_triple_samples=5, seed=0)
+    assert result["pairs_evaluated"] == 0
 
 
 def test_ley_fpr_analysis_underdetermined_n_lt_3() -> None:
     coords = [(30.0, 35.0), (31.0, 36.0)]
-    fpr = ley_line_fpr_analysis(coords, n_sims=10, n_triple_samples=10, seed=0)
+    fpr = SP.ley_line_fpr_analysis(coords, n_sims=10, n_triple_samples=10, seed=0)
     assert fpr["verdict"] == "UNDERDETERMINED"
 
 
@@ -215,9 +164,10 @@ def test_ley_fpr_analysis_underdetermined_n_lt_3() -> None:
 # ---------------------------------------------------------------------------
 
 def test_verdict_no_signal_on_csr_data() -> None:
-    coords, _ = generate_synthetic_csr(n=100, seed=0)
-    ce = clark_evans_analysis(coords, n_sims=49, seed=0)
-    fpr = ley_line_fpr_analysis(coords, n_sims=29, n_triple_samples=200, seed=0)
+    import random as rnd
+    coords, _ = SP.generate_synthetic_csr(n=100, seed=0)
+    ce = SP.clark_evans_analysis(coords, n_sims=29, seed=0)
+    fpr = SP.ley_line_fpr_analysis(coords, n_sims=29, n_triple_samples=200, seed=0)
     v = build_verdict(ce, fpr, len(coords))
     assert "NO_LEY_SIGNAL" in v
 
@@ -274,6 +224,18 @@ def test_notes_md_has_stance_and_caveats() -> None:
     assert "## Caveats" in text
     assert "## Verdict" in text
     assert "NO_LEY_SIGNAL" in text or "UNDERDETERMINED" in text
+
+
+# ---------------------------------------------------------------------------
+# spatial_pattern dependency check
+# ---------------------------------------------------------------------------
+
+def test_probe_uses_spatial_pattern() -> None:
+    """Verify the probe delegates to the reusable module."""
+    assert hasattr(EL, "SP"), "EL.SP not found — probe may not import spatial_pattern"
+    assert hasattr(SP, "clark_evans_analysis")
+    assert hasattr(SP, "ley_line_fpr_analysis")
+    assert hasattr(SP, "generate_synthetic_csr")
 
 
 if __name__ == "__main__":
