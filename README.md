@@ -1,6 +1,8 @@
 # Crop Circles Lab — local geometry / fractal / forensic toolkit
 
 > **Agents: read [`TASKLIST.md`](TASKLIST.md) first** — open READY tasks, acceptance criteria, and delegation batches live there.
+>
+> **Images:** see [`NOTICE.md`](NOTICE.md) + `data/images/ATTRIBUTION.txt` — private research use; no commercial redistribution of aerials.
 
 Personal research lab (foil-hat optional). Combines:
 - **CCAT** — OpenCV image analysis (edges, Hough, DBSCAN clustering, swirl, dashboards)

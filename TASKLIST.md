@@ -136,7 +136,7 @@
 | C1 | High-res Crabwood disc master | Temporary Temples purchase / higher scan — **OWNER** |
 | C2 | Cherhill 1993 iron-glaze lab HTML + micrographs | Wayback 404 on cherhill.php; published paper hunt — **READY to search**, asset may not exist public |
 | C3 | True overhead Logan / Eltopia hi-res | Not found public; ICCRA Eltopia is 300×227 only |
-| C4 | Public release of TT/Lucy/Getty images | Must stay private / attributed — **OWNER** legal |
+| C4 | Public release of TT/Lucy/Getty images | Must stay private / attributed — see `NOTICE.md` — **OWNER** legal |
 
 ### C2 subtasks (if picking up)
 - Search Semantic Scholar / Sci-Hub-accessible metadata for Levengood “semi-molten meteoric iron” / Physiologia Plantarum crop circle papers.

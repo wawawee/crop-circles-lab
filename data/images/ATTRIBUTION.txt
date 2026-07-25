@@ -1,4 +1,6 @@
-LOCAL RESEARCH IMAGE CORPUS — do not redistribute photographer originals.
+LOCAL RESEARCH IMAGE CORPUS — see also repo-root `NOTICE.md`.
+
+Do not redistribute photographer originals. Analysis outputs (JSON/CSV/plots) are the product.
 
 Temporary Temples (*_tt*.jpg):
   © Steve Alexander / Temporary Temples — https://temporarytemples.co.uk/
