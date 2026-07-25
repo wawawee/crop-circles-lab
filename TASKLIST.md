@@ -44,6 +44,7 @@
 | A7 | Info-theory probes (`info_theory.py`) — synthetic Julia = log-spiral ✔ |
 | A8 | BLT Wayback archive: Edmonton lab + Logan Lab #79 text/photos (`data/reports/blt_wayback/`, `blt_logan/`) |
 | A9 | Private GitHub repo + attribution / acquisition docs |
+| A10 | `tools/signal/` — bitstream / LSB / window-entropy (Weeks multiplex + genomic-DSP heritage); 5/5 tests; L20 entropy 0.9991 reproduced |
 
 ---
 
@@ -205,7 +206,8 @@ We treat a finding as interesting only if **one** of:
 1. Independent bit recovery matches published plaintext with BER ≪ 0.25, **or**
 2. Geometry ratios pass known-answer tests and replicate on rectified imagery, **or**
 3. Lab metrics are transcribed with citations and survive CICAP-style methodology notes, **or**
-4. A control (Chualar) cleanly separates on features while candidates do not look identical.
+4. A control (Chualar) cleanly separates on features while candidates do not look identical, **or**
+5. A bitstream/LSB probe shows structure that survives shuffle controls (entropy/reshape/ASCII) — authorship still open.
 
 Otherwise: file under `outputs/` as negative / inconclusive — still valuable.
 
@@ -233,6 +235,9 @@ python tools/ccat/info_theory.py --synthetic-julia
 python tools/ccat/blt_archive.py --out data/reports/blt_wayback
 python tools/ccat/spatial_report.py
 python tools/ccat/parse_blt_labs.py
+python tools/signal/bitstream_probe.py --demo-multiplex --out outputs/signal/multiplex_l20.json
+python tools/signal/lsb_probe.py data/images/chualar_2013_nvidia_hoax.png --out outputs/signal/chualar_lsb.json
+python tools/signal/tests/test_bitstream.py
 ```
 
 When finishing a task: update the status line for that ID in this file, commit, push.
@@ -243,6 +248,8 @@ When finishing a task: update the status line for that ID in this file, commit, 
 
 See **`data/catalog/TOOLS_EVAL.md`** for the full honest triage of the proposed third-party tool list. Summary: KEEP = GLYPH-style grid analysis (built natively as B9); MAYBE = classical-cipher solvers (B11, as negative controls) + steganalysis (B10, photo tamper-forensics only, never "message extraction"); SKIP = all DNA-genomics / DNA-storage tools and ancient-script decoders (category errors — crop circles have no real DNA or matching symbol corpus). Repo verification complete (2026-07-25): Decipher + stegoVeritas verified real; DecryptionToolkeet is deleted (404); ST3GG / StegMaster / StegoForge skipped as unmaintained/offensive.
 
+**Local complement:** `tools/signal/` (A10) reuses *ideas* from the Weeks multiplex + genomic-DSP Shannon windows as **generic bitstream/LSB probes** (not DNA pipelines) — sits beside B10/B11 for message-hunting on recovered bits.
+
 ---
 
-*Last updated: 2026-07-25 — B9 (grid_analyze) landed + tools triage (TOOLS_EVAL.md); B10/B11 added (B10 local tamper-forensics, B11 cipher negative-control). Open READY: B1, B2, B6, B8, B10, B11.*
+*Last updated: 2026-07-25 — Merged `tools/signal/` (A10, L20 entropy 0.9991). Hyper: B9 + TOOLS_EVAL + B10/B11 queued. Open READY: B10, B11 (+ image-hunt follow-ups).*

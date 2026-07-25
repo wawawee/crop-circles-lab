@@ -1,0 +1,39 @@
+{
+  "path": "data/images/chualar_2013_nvidia_hoax.png",
+  "size": [
+    1024,
+    683
+  ],
+  "channels": {
+    "R": {
+      "lsb_entropy": 0.9997,
+      "lsb_mean": 0.5107,
+      "chi_lsb": 0.0267,
+      "plane7_entropy": 0.8915
+    },
+    "G": {
+      "lsb_entropy": 1.0,
+      "lsb_mean": 0.5021,
+      "chi_lsb": 0.0017,
+      "plane7_entropy": 0.6747
+    },
+    "B": {
+      "lsb_entropy": 1.0,
+      "lsb_mean": 0.5004,
+      "chi_lsb": 0.0031,
+      "plane7_entropy": 0.9465
+    }
+  },
+  "rgb_lsb_bitstream_sample": {
+    "n_bits_sampled": 65536,
+    "shannon_entropy": 0.9984,
+    "bit_balance_abs": 0.0233,
+    "interpretation": [
+      "Near-max entropy + near-perfect balance \u2192 crypto, compression, or balanced synthetic bits (human/algorithm). Unlikely natural language."
+    ]
+  },
+  "flags": [
+    "LSB near-max entropy while MSB quieter \u2014 classic stego/noise fingerprint."
+  ],
+  "stance": "Message-hunting heuristic only \u2014 high LSB entropy is common in compressed photos too."
+}

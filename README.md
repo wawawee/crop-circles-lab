@@ -7,6 +7,7 @@
 Personal research lab (foil-hat optional). Combines:
 - **CCAT** — OpenCV image analysis (edges, Hough, DBSCAN clustering, swirl, dashboards)
 - **Forensics cores** — Hawkins ratios, fractal dimension, message encoding (π / Crabwood / Arecibo / Julia classification)
+- **Signal** — bitstream / LSB / window-entropy probes (multiplex + genomic-DSP heritage) for hunting *encoded messages* anywhere
 
 ## Quick start
 
@@ -26,6 +27,7 @@ python tools/forensics/tests/test_encoding.py
 ```
 tools/ccat/        computer vision toolkit
 tools/forensics/   validated math/encoding cores (+ tests)
+tools/signal/      bitstream / LSB / window-entropy message probes
 data/images/       aerials & references (see ATTRIBUTION.txt)
 data/catalog/      formation metadata / acquisition status
 outputs/           generated reports & dashboards
@@ -49,6 +51,11 @@ python tools/ccat/info_theory.py data/images/julia_set_1996_getty.png
 
 # 5) Archive BLT lab reports from Wayback
 python tools/ccat/blt_archive.py --out data/reports/blt_wayback
+
+# 6) Message-hunting signal probes (multiplex / stego / Shannon windows)
+python tools/signal/bitstream_probe.py --demo-multiplex
+python tools/signal/lsb_probe.py data/images/chualar_2013_nvidia_hoax.png
+python tools/signal/tests/test_bitstream.py
 ```
 
 Findings so far: web-res Crabwood discs give BER≈0.5 (random) — need higher-res disc crop.

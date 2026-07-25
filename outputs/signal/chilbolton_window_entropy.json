@@ -1,0 +1,219 @@
+{
+  "kind": "image",
+  "path": "data/images/chilbolton_message_2001_tt.jpg",
+  "axis": "rows",
+  "size": [
+    295,
+    600
+  ],
+  "window": 24,
+  "step": 8,
+  "entropy_mean": 7.5156,
+  "entropy_min": 6.7353,
+  "entropy_max": 7.6936,
+  "low_entropy_bands": [
+    {
+      "offset": 0,
+      "entropy": 6.7353
+    },
+    {
+      "offset": 8,
+      "entropy": 6.7593
+    },
+    {
+      "offset": 16,
+      "entropy": 7.0473
+    },
+    {
+      "offset": 576,
+      "entropy": 7.2712
+    },
+    {
+      "offset": 568,
+      "entropy": 7.2839
+    },
+    {
+      "offset": 40,
+      "entropy": 7.3725
+    },
+    {
+      "offset": 408,
+      "entropy": 7.3738
+    },
+    {
+      "offset": 416,
+      "entropy": 7.4144
+    },
+    {
+      "offset": 24,
+      "entropy": 7.416
+    },
+    {
+      "offset": 480,
+      "entropy": 7.4377
+    }
+  ],
+  "profile_sample": [
+    {
+      "offset": 0,
+      "entropy": 6.7353
+    },
+    {
+      "offset": 8,
+      "entropy": 6.7593
+    },
+    {
+      "offset": 16,
+      "entropy": 7.0473
+    },
+    {
+      "offset": 24,
+      "entropy": 7.416
+    },
+    {
+      "offset": 32,
+      "entropy": 7.5957
+    },
+    {
+      "offset": 40,
+      "entropy": 7.3725
+    },
+    {
+      "offset": 48,
+      "entropy": 7.4928
+    },
+    {
+      "offset": 56,
+      "entropy": 7.5088
+    },
+    {
+      "offset": 64,
+      "entropy": 7.5731
+    },
+    {
+      "offset": 72,
+      "entropy": 7.5517
+    },
+    {
+      "offset": 80,
+      "entropy": 7.6016
+    },
+    {
+      "offset": 88,
+      "entropy": 7.5676
+    },
+    {
+      "offset": 96,
+      "entropy": 7.5797
+    },
+    {
+      "offset": 104,
+      "entropy": 7.6048
+    },
+    {
+      "offset": 112,
+      "entropy": 7.6514
+    },
+    {
+      "offset": 120,
+      "entropy": 7.6815
+    },
+    {
+      "offset": 128,
+      "entropy": 7.676
+    },
+    {
+      "offset": 136,
+      "entropy": 7.6161
+    },
+    {
+      "offset": 144,
+      "entropy": 7.6486
+    },
+    {
+      "offset": 152,
+      "entropy": 7.6733
+    },
+    {
+      "offset": 160,
+      "entropy": 7.6718
+    },
+    {
+      "offset": 168,
+      "entropy": 7.6049
+    },
+    {
+      "offset": 176,
+      "entropy": 7.6048
+    },
+    {
+      "offset": 184,
+      "entropy": 7.6061
+    },
+    {
+      "offset": 192,
+      "entropy": 7.6239
+    },
+    {
+      "offset": 200,
+      "entropy": 7.5732
+    },
+    {
+      "offset": 208,
+      "entropy": 7.547
+    },
+    {
+      "offset": 216,
+      "entropy": 7.5361
+    },
+    {
+      "offset": 224,
+      "entropy": 7.5496
+    },
+    {
+      "offset": 232,
+      "entropy": 7.5634
+    },
+    {
+      "offset": 240,
+      "entropy": 7.5093
+    },
+    {
+      "offset": 248,
+      "entropy": 7.5242
+    },
+    {
+      "offset": 256,
+      "entropy": 7.515
+    },
+    {
+      "offset": 264,
+      "entropy": 7.5541
+    },
+    {
+      "offset": 272,
+      "entropy": 7.5515
+    },
+    {
+      "offset": 280,
+      "entropy": 7.5512
+    },
+    {
+      "offset": 288,
+      "entropy": 7.5425
+    },
+    {
+      "offset": 296,
+      "entropy": 7.5186
+    },
+    {
+      "offset": 304,
+      "entropy": 7.4861
+    },
+    {
+      "offset": 312,
+      "entropy": 7.4685
+    }
+  ],
+  "note": "Low-entropy bands can be flat sky, captions, OR structured message panels."
+}

@@ -1,0 +1,79 @@
+{
+  "source": "multiplex_L20_weeks",
+  "n_bits": 87,
+  "shannon_entropy": 0.9991,
+  "p1": 0.5172,
+  "bit_balance_abs": 0.0172,
+  "run_density": 0.686,
+  "lz76_phrases": 14,
+  "lz76_normalized": 0.1609,
+  "autocorr": {
+    "peak_lag": 1,
+    "peak_corr": -0.3695,
+    "strong_peak": true,
+    "lags_top": [
+      {
+        "lag": 1,
+        "corr": -0.3695
+      },
+      {
+        "lag": 4,
+        "corr": -0.3112
+      },
+      {
+        "lag": 3,
+        "corr": 0.2059
+      },
+      {
+        "lag": 18,
+        "corr": 0.1958
+      },
+      {
+        "lag": 5,
+        "corr": 0.1845
+      }
+    ]
+  },
+  "reshape_top": [
+    {
+      "shape": "3x29",
+      "rows": 3,
+      "cols": 29,
+      "col_entropy_std": 0.4365,
+      "row_entropy_std": 0.0,
+      "mean_fill": 0.5172
+    },
+    {
+      "shape": "29x3",
+      "rows": 29,
+      "cols": 3,
+      "col_entropy_std": 0.0434,
+      "row_entropy_std": 0.0,
+      "mean_fill": 0.5172
+    }
+  ],
+  "ascii_msb": {
+    "n_bytes": 10,
+    "printable_fraction": 0.5,
+    "looks_like_text": false,
+    "preview": ".5f....Zf5"
+  },
+  "ascii_lsb": {
+    "n_bytes": 10,
+    "printable_fraction": 0.6,
+    "looks_like_text": false,
+    "preview": "[.fi..iZf."
+  },
+  "math_curiosity": {
+    "window_trials": 567,
+    "prime_hits": 103,
+    "fib_hits": 70,
+    "prime_hit_rate": 0.1817,
+    "note": "Anecdotal \u2014 random bits also hit small primes."
+  },
+  "interpretation": [
+    "Near-max entropy + near-perfect balance \u2192 crypto, compression, or balanced synthetic bits (human/algorithm). Unlikely natural language.",
+    "Autocorr peak at lag 1 \u2192 periodic/framed structure.",
+    "Best 2D reshape 3x29 shows column structure \u2014 try as bitmap."
+  ]
+}
