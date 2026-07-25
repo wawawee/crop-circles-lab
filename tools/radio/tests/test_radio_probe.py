@@ -1238,16 +1238,64 @@ def test_blc1_synthetic_verdict_is_rfi_and_persists_in_off():
     assert out["known_answer"]["rfi_comb_detected"] is True
 
 
-def test_blc1_real_default_verdict_is_no_signal():
-    """Per the brief, the DEFAULT real-BLC1 verdict is NO_SIGNAL (Sheikh 2021
-    terrestrial RFI). The live probe stays disabled with no synthesis."""
+def test_blc1_real_default_no_data_verdict_is_not_no_signal():
+    """Ulfberht gate-review fix: on the UNMEASURED real path (no TB mirror ->
+    NEVER_ATTEMPTED, n_peaks=0), the machine `verdict` must NOT be NO_SIGNAL
+    (nothing was measured). It carries BLOCKED_DATA_TOO_LARGE, and Sheikh's
+    documented conclusion lives in a separate `literature_verdict` field."""
     sys.path.insert(0, str(Path(__file__).parent.parent))
     import radio_probe as RP
     out = RP.run_blc1_real(bundled_csv_path=None, seed=0)
-    assert out["verdict"] == "NO_SIGNAL"
     assert out["fetch_status"] == "NEVER_ATTEMPTED"
     assert out["n_peaks"] == 0
     assert out["known_answer"] is None
+    # machine verdict reflects what actually happened, NOT an inherited label
+    assert out["verdict"] == "BLOCKED_DATA_TOO_LARGE"
+    assert out["verdict"] != "NO_SIGNAL"
+    # the documented (literature) conclusion is carried separately + honestly
+    lit = out["literature_verdict"]
+    assert "NO_SIGNAL" in lit and "Sheikh 2021" in lit
+    assert "not independently reproduced" in lit.lower()
+
+
+def test_blc1_real_measured_bundled_keeps_no_signal_verdict():
+    """On a MEASURED path (bundled Sheikh-style peaks -> comb detected), a
+    NO_SIGNAL verdict IS legitimate (no technosignature), and the literature
+    conclusion is still carried separately."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    td = Path(tempfile.mkdtemp(prefix="blc1_meas_"))
+    csv_path = td / "peaks.csv"
+    csv_path.write_text(
+        "freq_mhz,snr_db,drift_hz_per_s,t_start_mjd,t_end_mjd,label\n"
+        "982.002,25.0,-0.26,58000,58000,A\n"
+        "984.002,12.0,-0.26,58000,58000,B\n"
+        "986.002,9.0,-0.26,58000,58000,C\n"
+    )
+    try:
+        out = RP.run_blc1_real(bundled_csv_path=csv_path, seed=0)
+        assert out["fetch_status"] == "USER_OVERRIDE"
+        assert out["n_peaks"] == 3
+        assert out["verdict"] == "NO_SIGNAL"  # measured RFI comb -> no ET
+        assert "Sheikh 2021" in out["literature_verdict"]
+    finally:
+        import shutil
+        shutil.rmtree(td, ignore_errors=True)
+
+
+def test_blc1_white_noise_negative_finds_no_comb():
+    """Skill §4 white-noise waterfall negative: pure-noise frequencies (no
+    injected comb) must NOT manufacture a comb -> rfi_comb_detected False,
+    hits_at_clock small. Independent of the in-band scramble null."""
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    import radio_probe as RP
+    out = RP.run_blc1_synthetic(seed=0)
+    wn = out["white_noise_negative"]
+    assert wn["rfi_comb_detected"] is False
+    assert wn["hits_at_clock"] < 2, (
+        f"white-noise negative should not manufacture a comb; got "
+        f"hits_at_clock={wn['hits_at_clock']}"
+    )
 
 
 if __name__ == "__main__":

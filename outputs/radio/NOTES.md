@@ -59,11 +59,16 @@ and the composite **verdict = `RFI_COMB_TERRESTRIAL`**.
 
 **Real-data path** (`outputs/radio/blc1_real_run.json`): the live probe is
 **DISABLED by design** ("no TB mirror"; see below). It surfaces
-`fetch_status = NEVER_ATTEMPTED`, `n_peaks = 0`, injects **no** synthetic
-peaks, and carries the mission-mandated default **`verdict = NO_SIGNAL`**
-(Sheikh 2021 terrestrial RFI). A bundled hand-transcribed Sheikh-2021 table
-can be injected via `--bundled-blc1-csv`; even a positive comb-hit there is
-labeled RFI, not ET.
+`fetch_status = NEVER_ATTEMPTED`, `n_peaks = 0`, and injects **no** synthetic
+peaks. Per Ulfberht's gate-review, the **measured** `verdict` on this
+unmeasured path is **`BLOCKED_DATA_TOO_LARGE`** — *not* `NO_SIGNAL`, because
+nothing was actually measured. Sheikh's documented conclusion is carried in a
+separate field: `literature_verdict = "NO_SIGNAL — terrestrial RFI (Sheikh
+2021), NOT independently reproduced here"`. An inherited/expected label must
+never occupy the measured-verdict slot (the Linear-A lesson applied to radio).
+A bundled hand-transcribed Sheikh-2021 table can be injected via
+`--bundled-blc1-csv`; on that **measured** path a `verdict = NO_SIGNAL` (comb
+detected → RFI → no technosignature) is legitimate.
 
 ### Real slice: `BLOCKED_DATA_TOO_LARGE`
 Per the skill scope-lock, I attempted to identify a **small** (≪ 1 GB) public
@@ -134,11 +139,15 @@ job here is the interpretation, not new code. The honest reading:
 | control | where | expected |
 |---|---|---|
 | Scramble / shuffle null | BLC1 comb, Cat2 per-source, FRB, Vela | signal must NOT survive |
+| White-noise waterfall negative | BLC1 (`white_noise_negative`) | pure noise → 0 comb hits |
 | ON/OFF cadence | BLC1 (`blc1_on_off_cadence`) | RFI persists in OFF → terrestrial |
 | Harmonic-family Δf | BLC1 (`blc1_delta_f_regularity`) | regular comb → intermodulation RFI |
 | Uniform-noise / time-order shuffle | epoch-fold nulls | Z² stays low |
 
-**Bottom line.** BLC1 real path → **NO_SIGNAL** (terrestrial RFI, Sheikh 2021).
+**Bottom line.** BLC1 real path (unmeasured) → measured `verdict =
+BLOCKED_DATA_TOO_LARGE`; the *documented* literature conclusion is **NO_SIGNAL**
+(terrestrial RFI, Sheikh 2021), carried separately and explicitly marked "not
+independently reproduced here."
 Cat2 → math validated (16.35 d recovered), real data parks honestly. Wow! →
 underdetermined, natural-source-consistent. No independent ET detection is
 claimed anywhere. Prove the control before you whisper "signal."

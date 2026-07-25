@@ -43,9 +43,13 @@ python3 tools/radio/radio_probe.py --blc1-real \
 CSV schema (peaks transcribed from Sheikh 2021 supplementary tables):
 `freq_mhz,snr_db,drift_hz_per_s,t_start_mjd,t_end_mjd,label`
 
-The default real-BLC1 verdict is **`NO_SIGNAL`** (terrestrial RFI) and stays
-there unless OFF-controlled evidence says otherwise (it will not). We do
-**not** re-open the ET question and we do **not** fabricate peaks.
+On the **unmeasured** real path (no data), the machine `verdict` is
+**`BLOCKED_DATA_TOO_LARGE`** — not `NO_SIGNAL`, because nothing was measured.
+Sheikh's documented conclusion (`NO_SIGNAL` — terrestrial RFI, not
+independently reproduced here) is carried in a separate `literature_verdict`
+field. On a **measured** bundled/real ON/OFF slice, a `NO_SIGNAL` verdict is
+legitimate. We do **not** re-open the ET question and we do **not** fabricate
+peaks.
 
 ## Expected data products (for reference only — NOT to be mirrored)
 

@@ -6,7 +6,8 @@
   "blc1_real_data": {
     "label": "blc1_real_data",
     "method": "blc1_comb_detector",
-    "verdict": "NO_SIGNAL",
+    "verdict": "BLOCKED_DATA_TOO_LARGE",
+    "literature_verdict": "NO_SIGNAL \u2014 terrestrial RFI (Sheikh 2021, DOI 10.1038/s41550-021-01508-8), NOT independently reproduced here",
     "data_source": "Berkeley SETI opendata (NOT scraped)",
     "source_type": "empty",
     "fetch_status": "NEVER_ATTEMPTED",

@@ -37,6 +37,16 @@
       "regular_comb": true,
       "note": "LOW CV => equally-spaced comb => intermodulation RFI family (terrestrial). Structure != message: regularity is evidence for RFI, never for ET."
     },
+    "white_noise_negative": {
+      "n_peaks": 5,
+      "hits_at_clock": 0,
+      "rfi_comb_detected": false,
+      "band_mhz": [
+        500.0,
+        1500.0
+      ],
+      "note": "pure-noise frequencies, no injected comb -> the detector must NOT manufacture a comb. hits_at_clock ~ 0, rfi_comb_detected False. Independent of the in-band scramble null."
+    },
     "plant": {
       "f_center_mhz": 982.002,
       "f_clock_mhz": 2.0,

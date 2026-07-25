@@ -152,6 +152,13 @@ BLC1_COMB_TOLERANCE_MHZ = 0.01          # |f_peak - n*f_clock| <= 0.01 MHz
 BLC1_BIBCODE = "2021NatAs...5.1169S"
 BLC1_REFERENCE_URL = "https://doi.org/10.1038/s41550-021-01508-8"
 BLC1_DATA_LICENSE = "CC BY 4.0 (Sheikh 2021 supplementary tables)"
+# Documented (literature) conclusion — kept OUT of the measured `verdict`
+# slot per Ulfberht's gate-review: an inherited/expected label must never
+# occupy the measured-verdict field on a path where nothing was measured.
+BLC1_LITERATURE_VERDICT = (
+    "NO_SIGNAL — terrestrial RFI (Sheikh 2021, DOI 10.1038/s41550-021-01508-8), "
+    "NOT independently reproduced here"
+)
 
 # Known Parkes RFI comb (per ATNF RFI characterisation page). A peak
 # detected at one of these freqs is LABELED RFI_COMB_DETECTED and
@@ -1111,6 +1118,31 @@ def run_blc1_synthetic(
         clock_guess_mhz=f_clock_mhz, tolerance_mhz=BLC1_COMB_TOLERANCE_MHZ,
         seed=scramble_seed,
     )
+    # (3) White-noise waterfall negative (skill §4): a pure-noise spectrum
+    #     with NO injected comb. We draw peak frequencies uniformly across a
+    #     WIDE band decoupled from the clock comb; the detector must find
+    #     ~zero clock-locked hits and rfi_comb_detected=False. This is an
+    #     independent negative distinct from the in-band scramble null.
+    rng_wn = np.random.default_rng(scramble_seed + 202)
+    wn_freqs = [
+        type("R", (), {"raw_freq_mhz": float(x)})()
+        for x in rng_wn.uniform(500.0, 1500.0, size=max(len(peaks), 5))
+    ]
+    wn_detect = _blc1_run_peak_detector(
+        wn_freqs, clock_guess_mhz=f_clock_mhz,
+        tolerance_mhz=BLC1_COMB_TOLERANCE_MHZ, scramble_seed=scramble_seed,
+    )
+    white_noise_negative = {
+        "n_peaks": wn_detect["n_peaks"],
+        "hits_at_clock": wn_detect["hits_at_clock"],
+        "rfi_comb_detected": bool(wn_detect["rfi_comb_detected"]),
+        "band_mhz": [500.0, 1500.0],
+        "note": (
+            "pure-noise frequencies, no injected comb -> the detector must "
+            "NOT manufacture a comb. hits_at_clock ~ 0, rfi_comb_detected "
+            "False. Independent of the in-band scramble null."
+        ),
+    }
     # Verdict: BLC1's real family persists in OFF AND is a regular comb ->
     # terrestrial RFI. For the real BLC1 path the honest verdict is
     # NO_SIGNAL; here (synthetic) we report the RFI classification the
@@ -1127,6 +1159,7 @@ def run_blc1_synthetic(
         "on_off_control": on_off,
         "on_off_contrast_on_only": on_off_contrast,
         "harmonic_family": harmonic_family,
+        "white_noise_negative": white_noise_negative,
         "plant": {
             "f_center_mhz": float(f_center_mhz),
             "f_clock_mhz": float(f_clock_mhz),
@@ -1213,7 +1246,8 @@ def run_blc1_real(
             return {
                 "label": "blc1_real_data",
                 "method": "blc1_comb_detector",
-                "verdict": "NO_SIGNAL",  # Sheikh 2021: terrestrial RFI (default)
+                "verdict": "USER_OVERRIDE_INVALID",  # nothing measured (bad CSV)
+                "literature_verdict": BLC1_LITERATURE_VERDICT,
                 "data_source": f"bundled_csv={bundled_csv_path}",
                 "source_type": "bundled_attempt",
                 "fetch_status": "USER_OVERRIDE_INVALID",
@@ -1239,7 +1273,8 @@ def run_blc1_real(
             return {
                 "label": "blc1_real_data",
                 "method": "blc1_comb_detector",
-                "verdict": "NO_SIGNAL",  # Sheikh 2021: terrestrial RFI (default)
+                "verdict": "NO_SIGNAL",  # MEASURED: RFI comb detected -> no technosignature
+                "literature_verdict": BLC1_LITERATURE_VERDICT,
                 "data_source": str(bundled_csv_path),
                 "source_type": "bundled_override",
                 "fetch_status": "USER_OVERRIDE",
@@ -1280,7 +1315,8 @@ def run_blc1_real(
         return {
             "label": "blc1_real_data",
             "method": "blc1_comb_detector",
-            "verdict": "NO_SIGNAL",  # Sheikh 2021: terrestrial RFI (default)
+            "verdict": "BLOCKED_DATA_TOO_LARGE",  # nothing measured (no TB mirror)
+            "literature_verdict": BLC1_LITERATURE_VERDICT,
             "data_source": "Berkeley SETI opendata (NOT scraped)",
             "source_type": "empty",
             "fetch_status": result.fetch_status,
@@ -1322,7 +1358,8 @@ def run_blc1_real(
     return {
         "label": "blc1_real_data",
         "method": "blc1_comb_detector",
-        "verdict": "NO_SIGNAL",  # Sheikh 2021: BLC1 = terrestrial RFI (default)
+        "verdict": "NO_SIGNAL",  # MEASURED: RFI comb detected -> no technosignature
+        "literature_verdict": BLC1_LITERATURE_VERDICT,
         "data_source": result.fetched_from or "Berkeley SETI opendata",
         "source_type": result.fetch_status.lower(),
         "fetch_status": result.fetch_status,
@@ -1367,7 +1404,8 @@ def _blc1_module_missing() -> dict:
     return {
         "label": "blc1_(synthetic|real)",
         "method": "blc1_comb_detector",
-        "verdict": "NO_SIGNAL",  # Sheikh 2021: terrestrial RFI (default)
+        "verdict": "MODULE_MISSING",  # nothing measured (fetcher unavailable)
+        "literature_verdict": BLC1_LITERATURE_VERDICT,
         "data_source": "(no source obtained)",
         "source_type": "empty",
         "fetch_status": "MODULE_MISSING",
@@ -2949,6 +2987,9 @@ def write_notes_markdown(report: dict) -> str:
             f"- data source: **{rd.get('data_source', '?')}** "
             f"(source_type=`{rd.get('source_type', '?')}`, "
             f"fetch_status=`{rd.get('fetch_status', '?')}`)",
+            f"- **measured verdict: `{rd.get('verdict', '?')}`** "
+            "(what this run actually established — NOT an inherited label)",
+            f"- literature verdict: _{rd.get('literature_verdict', '-')}_",
             f"- reference: bibcode=`{rd.get('ref_bibcode') or '-'}`, "
             f"url=`{rd.get('ref_url') or '-'}`",
             f"- license: `{rd.get('license') or '-'}`",
