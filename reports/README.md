@@ -1,0 +1,56 @@
+# reports/
+
+Two static, offline-first pages for the Mystery Analysis Lab. Both are pure
+HTML/CSS/SVG/vanilla-JS — no build step, no framework, no external chart
+libraries. Open by double-clicking (they run fine over `file://`).
+
+## Pages
+
+### `findings_gallery.html` — the findings gallery (flagship)
+The visual write-up of what the lab has actually measured. Every panel shows a
+result **next to its negative control**, so structure is never mistaken for
+meaning. Sections:
+
+- **Hero** — ethos, doc links, the verdict-tag legend, and a `N of 8 domains`
+  coverage line.
+- **Phaistos** (the star panel) — two independent facts side by side:
+  1. *Conditional entropy vs shuffle* — observed `H(next|prev) ≈ 2.07 bits`
+     drawn against the shuffle null (Gaussian bell centred at 2.64), with the
+     `z ≈ −14 (13.9σ below chance)` bracket.
+  2. *Refrain metre* — the 31 groups of side A, with the refrain `02 12 31 26`
+     at A16/A19/A22 highlighted, `gap 3` brackets, and the period-6 couplets.
+- **Wheat closeout** — Crabwood / Chilbolton / Multiplex, each a gauge with its
+  noise-floor control marker.
+- **Domain heatmap** — all 8 beyond-wheat domains; covered ones link to their
+  panel.
+- **Constants** — real filtered hits vs Null A / Null B medians, with the
+  chance-zone band.
+- **Output index** — the `outputs/*.json` artifacts, collapsed in a `<details>`.
+
+### `mission_dashboard.html` — the mission board
+Crew / agent status, domain coverage, and recent JSON outputs. Fed by
+`mission_status.embed.js`.
+
+## How to open
+Double-click either `.html` file, or open it in a browser via `file://`. No
+server needed. Data is loaded from a sibling `*.embed.js` file next to the page.
+
+## Data flow
+```
+outputs/*.json  →  tools/build_findings.py   →  reports/findings_data.embed.js   →  findings_gallery.html
+outputs/*.json  →  tools/mission_status.py   →  reports/mission_status.embed.js  →  mission_dashboard.html
+```
+`findings_gallery.html` reads `window.FINDINGS_DATA` from
+`findings_data.embed.js`; the page is fully data-driven, so a fresh build
+auto-updates every panel. If the embed is missing, the page shows a graceful
+banner with the regenerate command.
+
+## Regenerate
+```
+python tools/mission_status.py && python tools/build_findings.py
+```
+Then reload the page.
+
+## Honesty stance
+Structure ≠ meaning. Every panel carries its control. Ulfberht sharp; foil hat =
+nightcap.

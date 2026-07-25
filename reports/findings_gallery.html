@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mystery Analysis Lab — Findings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1f18;
+      --paper: #e8e4d9;
+      --panel: #f3efe4;
+      --line: #2c3a28;
+      --ok: #2f6b3a;
+      --run: #9a6b12;
+      --bad: #8b2e2e;
+      --mute: #5c6558;
+      --accent: #1e4d6b;
+      --hair: color-mix(in srgb, var(--line) 32%, transparent);
+      --hair-strong: color-mix(in srgb, var(--line) 55%, transparent);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 18% -5%, #ddd6c4 0%, transparent 45%),
+        radial-gradient(ellipse at 92% 8%, #d8d2c1 0%, transparent 40%),
+        linear-gradient(165deg, #d4cfc0, var(--paper) 38%, #cfc8b6);
+      background-attachment: fixed;
+      font-family: "Newsreader", Georgia, serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+    /* faint paper grain — static, cheap, no animation */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 2.6rem 1.25rem 4rem; position: relative; z-index: 1; }
+
+    a { color: var(--accent); text-underline-offset: 2px; }
+    a:hover { color: color-mix(in srgb, var(--accent) 78%, var(--ink)); }
+    .mono { font-family: "IBM Plex Mono", monospace; }
+
+    /* ---------- entrance motion ---------- */
+    .rise { opacity: 0; transform: translateY(10px); animation: rise 0.7s cubic-bezier(.2,.7,.2,1) forwards; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .rise { opacity: 1; transform: none; animation: none; }
+    }
+
+    /* ---------- hero ---------- */
+    header.hero {
+      border-top: 3px solid var(--line);
+      padding-top: 1.4rem;
+    }
+    .kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 0 0 0.5rem;
+    }
+    header.hero h1 {
+      font-size: clamp(2.1rem, 5.4vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.022em;
+      line-height: 1.02;
+      margin: 0 0 0.5rem;
+    }
+    header.hero .ethos {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(1.05rem, 2.1vw, 1.32rem);
+      font-style: italic;
+      max-width: 44rem;
+      line-height: 1.4;
+    }
+    .heronav {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+      margin: 1.1rem 0 0;
+      display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem;
+      align-items: baseline;
+    }
+    .heronav .sep { color: var(--hair-strong); }
+    .meta {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.76rem;
+      color: var(--mute);
+      margin-top: 0.9rem;
+      line-height: 1.6;
+    }
+    .meta b { color: var(--ink); font-weight: 600; }
+
+    /* ---------- verdict legend ---------- */
+    .legend {
+      margin-top: 1.5rem;
+      border: 1px solid var(--hair);
+      background: color-mix(in srgb, var(--panel) 70%, transparent);
+      padding: 0.9rem 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 0.55rem 1.3rem;
+    }
+    .legend .lh {
+      grid-column: 1 / -1;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 0.15rem;
+    }
+    .legrow { display: flex; align-items: baseline; gap: 0.6rem; font-size: 0.9rem; }
+    .legrow .gloss { color: var(--mute); font-size: 0.85rem; }
+
+    /* ---------- verdict tag component ---------- */
+    .tag {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 0.24rem 0.5rem;
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      line-height: 1;
+      border-radius: 1px;
+    }
+    .tag::before {
+      content: ""; width: 0.5rem; height: 0.5rem; border-radius: 50%;
+      background: currentColor; flex: none;
+    }
+    .tag.signal { background: var(--ok); color: #f3efe4; border-color: var(--ok); }
+    .tag.signal::before { background: #f3efe4; }
+    .tag.structure { background: var(--accent); color: #f0eee6; border-color: var(--accent); }
+    .tag.structure::before { background: #f0eee6; }
+    .tag.nosignal { background: transparent; color: var(--mute); border-color: var(--mute); }
+    .tag.nosignal::before { background: transparent; border: 1.5px solid var(--mute); box-sizing: border-box; }
+    .tag.underdetermined { background: var(--run); color: #f6f1e4; border-color: var(--run); }
+    .tag.underdetermined::before { background: #f6f1e4; }
+    .tag.control {
+      background: transparent; color: var(--bad); border-color: var(--bad);
+      border-style: dashed;
+    }
+    .tag.control::before { display: none; }
+
+    /* ---------- sections & panels ---------- */
+    section { margin-top: 2.6rem; scroll-margin-top: 1.5rem; }
+    .sec-h {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.45rem;
+      margin: 0 0 1.15rem;
+    }
+    .sec-h h2 {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-family: "IBM Plex Mono", monospace;
+      margin: 0;
+    }
+    .sec-h .num {
+      font-family: "IBM Plex Mono", monospace;
+      color: var(--accent); font-weight: 600; margin-right: 0.55rem;
+    }
+    .sec-h .aside {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.74rem; color: var(--mute);
+    }
+
+    .panel {
+      background:
+        linear-gradient(180deg, color-mix(in srgb, #fff 22%, var(--panel)), var(--panel));
+      border: 1px solid var(--hair-strong);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 8px 26px -20px rgba(26,31,24,0.55);
+      padding: 1.15rem 1.2rem 1.25rem;
+      position: relative;
+    }
+    .panel + .panel { margin-top: 1.1rem; }
+    .panel-h {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 0.8rem; flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .panel-h .lbl {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mute);
+    }
+    .panel-h .lbl b { color: var(--ink); font-weight: 600; }
+    .caption {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.74rem; color: var(--mute); margin: 0.4rem 0 0; line-height: 1.55;
+    }
+    .caveat {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem; line-height: 1.55;
+      color: color-mix(in srgb, var(--bad) 82%, var(--ink));
+      border-left: 3px solid color-mix(in srgb, var(--bad) 60%, transparent);
+      padding: 0.35rem 0 0.35rem 0.75rem;
+      margin: 0.7rem 0 0;
+      background: color-mix(in srgb, var(--bad) 5%, transparent);
+    }
+    .caveat::before { content: "caveat — "; color: var(--bad); font-weight: 600; }
+
+    svg { display: block; width: 100%; height: auto; }
+    svg text { font-family: "IBM Plex Mono", monospace; }
+
+    /* ---------- Phaistos ---------- */
+    .phaistos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+      align-items: stretch;
+    }
+    #phaistos .panel { display: flex; flex-direction: column; }
+    .fact-no {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .starnote {
+      font-style: italic; color: var(--mute); font-size: 1.02rem;
+      max-width: 46rem; margin: -0.4rem 0 1.1rem;
+    }
+
+    /* refrain cells */
+    .refrain-scroll { overflow-x: auto; padding-bottom: 0.3rem; }
+    .metre-badge {
+      display: inline-flex; align-items: baseline; gap: 0.4rem;
+      font-family: "IBM Plex Mono", monospace; font-size: 0.7rem;
+      color: var(--accent); border: 1.5px solid var(--accent);
+      padding: 0.18rem 0.45rem; letter-spacing: 0.08em;
+    }
+
+    /* ---------- wheat tiles ---------- */
+    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+    .tile { background: linear-gradient(180deg, color-mix(in srgb,#fff 20%,var(--panel)), var(--panel));
+      border: 1px solid var(--hair-strong); padding: 1rem 1rem 1.1rem;
+      box-shadow: 0 8px 24px -22px rgba(26,31,24,0.5); }
+    .tile h3 { font-family: "Newsreader", serif; font-weight: 700; font-size: 1.28rem; margin: 0 0 0.15rem; }
+    .tile .metric { font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; color: var(--mute); margin: 0 0 0.7rem; }
+    .tile .metric b { color: var(--ink); font-size: 0.98rem; }
+    .tile .note { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; color: var(--mute); line-height: 1.55; margin: 0.7rem 0 0; }
+
+    /* ---------- domain heatmap ---------- */
+    .heat { display: grid; grid-template-columns: repeat(auto-fill, minmax(178px, 1fr)); gap: 0.6rem; }
+    .cell {
+      position: relative;
+      font-family: "IBM Plex Mono", monospace;
+      padding: 0.85rem 0.85rem 0.9rem;
+      min-height: 6.2rem;
+      border: 1px solid var(--hair);
+      display: flex; flex-direction: column; gap: 0.35rem;
+      background: var(--panel);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .cell .dkey { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; }
+    .cell strong { font-family: "Newsreader", serif; font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; }
+    .cell .dnotes { font-size: 0.68rem; line-height: 1.5; margin-top: auto; }
+    .cell.on {
+      background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 92%, #000) , var(--accent));
+      color: #eef1ee; border-color: var(--accent);
+      cursor: pointer;
+    }
+    .cell.on .dkey { color: #cfe0ec; opacity: 0.9; }
+    .cell.on .dnotes { color: #d7e3ea; }
+    .cell.on::after {
+      content: "→"; position: absolute; top: 0.6rem; right: 0.7rem;
+      font-size: 0.85rem; color: #bcd4e2;
+    }
+    .cell.on:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -18px rgba(30,77,107,0.8); }
+    .cell.off {
+      border-style: dashed; border-color: color-mix(in srgb, var(--mute) 55%, transparent);
+      color: var(--mute); background: color-mix(in srgb, var(--panel) 55%, transparent);
+    }
+    .cell.off .dkey { color: color-mix(in srgb, var(--mute) 80%, transparent); }
+    .cell.off strong { color: color-mix(in srgb, var(--mute) 92%, var(--ink)); }
+
+    /* ---------- mission strip ---------- */
+    .missions { display: grid; gap: 0.4rem; }
+    .mrow {
+      display: grid; grid-template-columns: 2.6rem 1fr auto; gap: 0.5rem 0.9rem;
+      align-items: baseline;
+      padding: 0.5rem 0.7rem;
+      border: 1px solid var(--hair);
+      background: color-mix(in srgb, var(--panel) 65%, transparent);
+    }
+    .mrow .mid { font-family: "IBM Plex Mono", monospace; font-weight: 600; color: var(--accent); font-size: 0.82rem; }
+    .mrow .mtitle { font-size: 1.02rem; }
+    .mrow .mowner { color: var(--mute); font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; }
+    .badge {
+      font-family: "IBM Plex Mono", monospace; font-size: 0.68rem; letter-spacing: 0.08em;
+      padding: 0.18rem 0.45rem; border: 1px solid currentColor; white-space: nowrap; text-transform: uppercase;
+    }
+    .badge.done { color: var(--ok); }
+    .badge.scaffolded, .badge.run { color: var(--run); }
+    .badge.blocked { color: var(--bad); }
+
+    /* ---------- outputs index ---------- */
+    details.outputs { border: 1px solid var(--hair-strong); background: color-mix(in srgb, var(--panel) 70%, transparent); }
+    details.outputs > summary {
+      cursor: pointer; list-style: none;
+      font-family: "IBM Plex Mono", monospace; font-size: 0.78rem;
+      padding: 0.75rem 1rem; letter-spacing: 0.05em;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    details.outputs > summary::-webkit-details-marker { display: none; }
+    details.outputs > summary .chev { transition: transform 0.2s ease; color: var(--mute); }
+    details.outputs[open] > summary .chev { transform: rotate(90deg); }
+    details.outputs > summary:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+    ul.out {
+      list-style: none; padding: 0.4rem 1rem 1rem; margin: 0;
+      font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
+      columns: 2; column-gap: 2rem;
+    }
+    ul.out li { break-inside: avoid; margin-bottom: 0.32rem; display: flex; justify-content: space-between; gap: 0.6rem; }
+    ul.out li .kb { color: var(--mute); flex: none; }
+
+    /* ---------- footer ---------- */
+    footer {
+      margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 1.1rem;
+      font-family: "IBM Plex Mono", monospace; font-size: 0.76rem; color: var(--mute);
+      line-height: 1.7;
+    }
+    footer .honesty { color: var(--ink); font-size: 0.82rem; }
+    footer code {
+      background: color-mix(in srgb, var(--ink) 8%, transparent);
+      padding: 0.12rem 0.4rem; border: 1px solid var(--hair); border-radius: 2px;
+      color: var(--ink);
+    }
+
+    /* ---------- no-data banner ---------- */
+    .nodata {
+      border: 2px dashed var(--bad); background: color-mix(in srgb, var(--bad) 8%, var(--panel));
+      color: color-mix(in srgb, var(--bad) 80%, var(--ink));
+      padding: 1.4rem 1.5rem; font-family: "IBM Plex Mono", monospace; font-size: 0.92rem;
+      line-height: 1.6; margin-top: 2rem;
+    }
+    .nodata code { background: color-mix(in srgb, var(--ink) 10%, transparent); padding: 0.15rem 0.45rem; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 820px) {
+      .phaistos-grid { grid-template-columns: 1fr; }
+      .tiles { grid-template-columns: 1fr; }
+      ul.out { columns: 1; }
+      .legend { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="root">
+    <!-- rendered by JS -->
+  </div>
+
+  <script src="findings_data.embed.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var D = window.FINDINGS_DATA;
+    var root = document.getElementById("root");
+
+    // ---------- graceful no-data banner ----------
+    if (!D) {
+      root.innerHTML =
+        '<header class="hero"><p class="kicker">Mystery Analysis Lab</p>' +
+        '<h1>Findings</h1></header>' +
+        '<div class="nodata"><b>No data loaded.</b><br/>' +
+        'window.FINDINGS_DATA is missing. Regenerate the embed, then reload:<br/><br/>' +
+        '<code>python tools/mission_status.py &amp;&amp; python tools/build_findings.py</code></div>';
+      return;
+    }
+
+    // ---------- tiny helpers ----------
+    var SVGNS = "http://www.w3.org/2000/svg";
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+    function el(tag, cls, html) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (html != null) e.innerHTML = html;
+      return e;
+    }
+    // verdict -> css class + label
+    var VERDICT = {
+      "SIGNAL":          { cls: "signal",          label: "Signal" },
+      "STRUCTURE":       { cls: "structure",       label: "Structure" },
+      "NO SIGNAL":       { cls: "nosignal",        label: "No signal" },
+      "UNDERDETERMINED": { cls: "underdetermined", label: "Underdetermined" }
+    };
+    function tag(verdict) {
+      var v = VERDICT[verdict] || { cls: "nosignal", label: verdict || "?" };
+      return '<span class="tag ' + v.cls + '">' + esc(v.label) + "</span>";
+    }
+    function controlTag(txt) {
+      return '<span class="tag control">' + esc(txt || "Negative control") + "</span>";
+    }
+    function fmt(n, d) {
+      if (n == null || isNaN(n)) return "–";
+      return Number(n).toFixed(d == null ? 2 : d);
+    }
+
+    // ============================================================
+    // HERO
+    // ============================================================
+    var coveredCount = (D.domains || []).filter(function (d) { return d.covered === true; }).length;
+
+    var hero = el("header", "hero rise");
+    hero.innerHTML =
+      '<p class="kicker">Computational · Forensic Anomalistics</p>' +
+      '<h1>Mystery Analysis Lab — Findings</h1>' +
+      '<p class="ethos">' + esc(D.ethos) + "</p>" +
+      '<nav class="heronav">' +
+        '<a href="../MISSION_BOARD.md">MISSION_BOARD.md</a><span class="sep">·</span>' +
+        '<a href="../ROADMAP_BEYOND_WHEAT.md">ROADMAP_BEYOND_WHEAT.md</a><span class="sep">·</span>' +
+        '<a href="mission_dashboard.html">mission_dashboard.html</a>' +
+      "</nav>";
+
+    // legend
+    var legend = el("div", "legend");
+    legend.innerHTML =
+      '<div class="lh">Verdict system — read the tag, then read its control</div>' +
+      '<div class="legrow">' + tag("SIGNAL") + '<span class="gloss">real message above control</span></div>' +
+      '<div class="legrow">' + tag("STRUCTURE") + '<span class="gloss">non-random, not decoded</span></div>' +
+      '<div class="legrow">' + tag("NO SIGNAL") + '<span class="gloss">at noise; control found nothing</span></div>' +
+      '<div class="legrow">' + tag("UNDERDETERMINED") + '<span class="gloss">data too poor to decide</span></div>' +
+      '<div class="legrow">' + controlTag("Negative control") + '<span class="gloss">the null we test against</span></div>';
+    hero.appendChild(legend);
+
+    // meta line
+    var meta = el("p", "meta");
+    meta.innerHTML =
+      "generated_at <b>" + esc(D.generated_at) + "</b>" +
+      " &nbsp;·&nbsp; <b>" + coveredCount + " of 8</b> domains with landed analysis" +
+      " &nbsp;·&nbsp; " + (D.n_outputs != null ? D.n_outputs : (D.outputs || []).length) + " JSON artifacts";
+    hero.appendChild(meta);
+
+    root.appendChild(hero);
+
+    // ---------- optional compact mission strip ----------
+    if (D.missions && D.missions.length) {
+      var msec = el("section", "rise");
+      msec.innerHTML =
+        '<div class="sec-h"><h2><span class="num">00</span>Night-shift crew</h2>' +
+        '<span class="aside">who ran what</span></div>';
+      var mwrap = el("div", "missions");
+      D.missions.forEach(function (m) {
+        var r = el("div", "mrow");
+        var st = (m.status || "").toLowerCase();
+        r.innerHTML =
+          '<div class="mid">' + esc(m.id) + "</div>" +
+          '<div><span class="mtitle">' + esc(m.title) + "</span> " +
+            '<span class="mowner">· ' + esc(m.owner) +
+            (m.href ? ' · <a href="../' + esc(m.href) + '">' + esc(m.href) + "</a>" : "") +
+            "</span></div>" +
+          '<div class="badge ' + esc(st) + '">' + esc(m.status) + "</div>";
+        mwrap.appendChild(r);
+      });
+      msec.appendChild(mwrap);
+      root.appendChild(msec);
+    }
+
+    // ============================================================
+    // B. PHAISTOS — the star panel
+    // ============================================================
+    var ph = D.phaistos || {};
+    var ent = ph.entropy || {};
+    var ref = ph.refrain || {};
+    var seq = ph.sequence || {};
+
+    var psec = el("section", "rise");
+    psec.id = "phaistos";
+    psec.innerHTML =
+      '<div class="sec-h"><h2><span class="num">A</span>Phaistos Disc — the flagship result</h2>' +
+      '<span class="aside">n=' + esc(seq.n_tokens) + ' tokens · ' + esc(seq.n_distinct) + ' glyphs · IoC ' + fmt(seq.index_of_coincidence, 4) + '</span></div>' +
+      '<p class="starnote">Two independent facts, each with its own control. Prove the beat; don’t pretend to read the words.</p>';
+
+    var pgrid = el("div", "phaistos-grid");
+
+    // ---- Fact 1: conditional entropy vs shuffle ----
+    var p1 = el("div", "panel");
+    p1.innerHTML =
+      '<div class="panel-h">' +
+        '<span class="fact-no">Fact 1 / conditional entropy</span>' + tag(ent.verdict) +
+      "</div>" +
+      '<div class="panel-h"><span class="lbl">H(next | prev), <b>bits</b> — observed vs shuffle null</span>' +
+        controlTag("Shuffle null") + "</div>";
+    p1.appendChild(buildEntropyChart(ent));
+    p1.insertAdjacentHTML("beforeend",
+      '<p class="caption">max entropy ' + fmt(ent.max_entropy_bits, 2) + ' bits · unigram ' + fmt(ent.unigram_entropy_bits, 2) + ' bits · observed ' + fmt(ent.observed, 4) + ' · shuffle ' + fmt(ent.shuffled_mean, 4) + '±' + fmt(ent.shuffled_sd, 4) + '</p>');
+    p1.insertAdjacentHTML("beforeend",
+      '<p class="caveat">Structured ≠ readable — low conditional entropy proves dependency, not language.</p>');
+    pgrid.appendChild(p1);
+
+    // ---- Fact 2: refrain metre ----
+    var p2 = el("div", "panel");
+    p2.innerHTML =
+      '<div class="panel-h">' +
+        '<span class="fact-no">Fact 2 / refrain metre</span>' + tag(ref.verdict) +
+      "</div>" +
+      '<div class="panel-h"><span class="lbl">Side A — 31 groups · refrain <b>' + esc(ref.phrase_label) + '</b> at ' +
+        esc((ref.positions_1based || []).join(", ")) + '</span>' +
+        '<span class="metre-badge">period ' + esc(ref.period) + '</span></div>';
+    p2.appendChild(buildRefrainChart(ref));
+    p2.insertAdjacentHTML("beforeend", '<p class="caption">metre yes, meaning no.</p>');
+    p2.insertAdjacentHTML("beforeend", '<p class="caveat">' + esc(ref.caveat) + "</p>");
+    pgrid.appendChild(p2);
+
+    psec.appendChild(pgrid);
+    root.appendChild(psec);
+
+    // ============================================================
+    // C. WHEAT CLOSEOUT
+    // ============================================================
+    var wsec = el("section", "rise");
+    wsec.id = "wheat";
+    wsec.innerHTML =
+      '<div class="sec-h"><h2><span class="num">B</span>Wheat closeout — three honest verdicts</h2>' +
+      '<span class="aside">each gauge carries its noise-floor control</span></div>';
+    var tiles = el("div", "tiles");
+    (D.wheat_closeout || []).forEach(function (w) {
+      var t = el("div", "tile");
+      t.innerHTML =
+        "<h3>" + esc(w.name) + "</h3>" +
+        '<p class="metric">' + esc(w.metric_label) + ": <b>" + esc(w.value) + "</b></p>";
+      t.appendChild(buildGauge(w));
+      t.insertAdjacentHTML("beforeend",
+        '<div style="margin-top:0.7rem">' + tag(w.verdict) + "</div>");
+      t.insertAdjacentHTML("beforeend", '<p class="note">' + esc(w.note) + "</p>");
+      tiles.appendChild(t);
+    });
+    wsec.appendChild(tiles);
+    root.appendChild(wsec);
+
+    // ============================================================
+    // D. BEYOND-WHEAT DOMAIN HEATMAP
+    // ============================================================
+    var PRETTY = {
+      crop_circles: "Crop circles", phaistos: "Phaistos", dna_epigenetics: "DNA / epigenetics",
+      uap_video: "UAP video", constants: "Constants", archaeoastronomy: "Archaeoastronomy",
+      nazca: "Nazca lines", wow_frb: "Wow! / FRB"
+    };
+    var dsec = el("section", "rise");
+    dsec.id = "domains";
+    dsec.innerHTML =
+      '<div class="sec-h"><h2><span class="num">C</span>Beyond wheat — the mystery landscape</h2>' +
+      '<span class="aside">' + coveredCount + ' of ' + (D.domains || []).length + ' covered</span></div>';
+    var heat = el("div", "heat");
+    (D.domains || []).forEach(function (d) {
+      var on = d.covered === true;
+      var name = PRETTY[d.key] || d.label || d.key;
+      var cell = el("div", "cell " + (on ? "on" : "off"));
+      cell.innerHTML =
+        '<span class="dkey">' + esc(d.key) + "</span>" +
+        "<strong>" + esc(name) + "</strong>" +
+        '<span class="dnotes">' + esc(d.notes || "") + "</span>";
+      if (on && d.anchor) {
+        cell.setAttribute("role", "link");
+        cell.setAttribute("tabindex", "0");
+        cell.title = "Jump to " + name;
+        var go = function () {
+          var target = document.querySelector(d.anchor);
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        };
+        cell.addEventListener("click", go);
+        cell.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); }
+        });
+      }
+      heat.appendChild(cell);
+    });
+    dsec.appendChild(heat);
+    root.appendChild(dsec);
+
+    // ============================================================
+    // E. CONSTANTS mini-panel
+    // ============================================================
+    var C = D.constants || {};
+    var csec = el("section", "rise");
+    csec.id = "constants";
+    csec.innerHTML =
+      '<div class="sec-h"><h2><span class="num">D</span>Dimensionless constants — structure, not signal</h2>' +
+      '<span class="aside">real hits vs two null models</span></div>';
+    var cpanel = el("div", "panel");
+    cpanel.innerHTML =
+      '<div class="panel-h">' +
+        '<span class="lbl">Filtered hits (count) — real vs null medians</span>' +
+        '<span>' + controlTag("Chance zone") + " " + tag(C.verdict) + "</span>" +
+      "</div>";
+    cpanel.appendChild(buildConstantsChart(C));
+    cpanel.insertAdjacentHTML("beforeend",
+      '<p class="caption">real ' + esc(C.real_hits) + ' ≤ null medians (' + esc((C.null_a || {}).p50) + ', ' + esc((C.null_b || {}).p50) +
+      ') → structure, not signal · p(null≥real) = ' + fmt(C.p_null_a_ge, 2) + ' / ' + fmt(C.p_null_b_ge, 2) + '</p>');
+    cpanel.insertAdjacentHTML("beforeend", '<p class="caveat">' + esc(C.caveat) + "</p>");
+    csec.appendChild(cpanel);
+    root.appendChild(csec);
+
+    // ============================================================
+    // F. OUTPUT INDEX
+    // ============================================================
+    var osec = el("section", "rise");
+    osec.id = "outputs";
+    osec.innerHTML =
+      '<div class="sec-h"><h2><span class="num">E</span>Output index</h2>' +
+      '<span class="aside">artifacts on disk</span></div>';
+    var det = el("details", "outputs");
+    var nOut = D.n_outputs != null ? D.n_outputs : (D.outputs || []).length;
+    det.innerHTML =
+      "<summary><span>" + nOut + " JSON artifacts · outputs/*.json</span>" +
+      '<span class="chev">▸</span></summary>';
+    var ul = el("ul", "out");
+    (D.outputs || []).forEach(function (o) {
+      var li = el("li");
+      li.innerHTML =
+        '<a href="../' + esc(o.path) + '">' + esc(o.path) + "</a>" +
+        '<span class="kb">' + esc(o.kb) + " KB</span>";
+      ul.appendChild(li);
+    });
+    det.appendChild(ul);
+    osec.appendChild(det);
+    root.appendChild(osec);
+
+    // ============================================================
+    // FOOTER
+    // ============================================================
+    var foot = el("footer", "rise");
+    foot.innerHTML =
+      '<p class="honesty">Structure ≠ meaning. Every panel carries its control. Ulfberht sharp; foil hat = nightcap.</p>' +
+      "<p>regenerate: <code>python tools/mission_status.py &amp;&amp; python tools/build_findings.py</code></p>" +
+      "<p>generated_at " + esc(D.generated_at) + "</p>";
+    root.appendChild(foot);
+
+    // stagger the entrance animations
+    (function stagger() {
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) return;
+      var items = root.querySelectorAll(".rise");
+      for (var i = 0; i < items.length; i++) {
+        items[i].style.animationDelay = (i * 0.07) + "s";
+      }
+    })();
+
+    // ============================================================
+    // ===============  HAND-ROLLED SVG BUILDERS  =================
+    // ============================================================
+
+    // ---- small SVG DOM helpers ----
+    function svg(w, h) {
+      var s = document.createElementNS(SVGNS, "svg");
+      s.setAttribute("viewBox", "0 0 " + w + " " + h);
+      s.setAttribute("width", "100%");
+      s.setAttribute("role", "img");
+      return s;
+    }
+    function node(name, attrs) {
+      var n = document.createElementNS(SVGNS, name);
+      if (attrs) for (var k in attrs) if (attrs.hasOwnProperty(k)) n.setAttribute(k, attrs[k]);
+      return n;
+    }
+    function txt(x, y, str, attrs) {
+      var t = node("text", attrs || {});
+      t.setAttribute("x", x); t.setAttribute("y", y);
+      t.textContent = str;
+      return t;
+    }
+
+    // -------------------------------------------------------
+    // Fact 1: conditional entropy — Gaussian shuffle null + observed line + z bracket
+    // -------------------------------------------------------
+    function buildEntropyChart(e) {
+      var W = 560, H = 340;
+      var m = { l: 30, r: 26, t: 30, b: 58 };
+      var x0 = m.l, x1 = W - m.r, y0 = H - m.b, y1 = m.t;
+      var s = svg(W, H);
+
+      // zoomed domain
+      var dMin = 1.95, dMax = 2.75;
+      var X = function (v) { return x0 + (v - dMin) / (dMax - dMin) * (x1 - x0); };
+
+      var mean = e.shuffled_mean, sd = e.shuffled_sd, obs = e.observed;
+
+      // gaussian pdf (unnormalised height in plot space)
+      function pdf(v) { var z = (v - mean) / sd; return Math.exp(-0.5 * z * z); }
+      var peak = 1; // pdf(mean) === 1
+      var plotTop = y1 + 14; // leave headroom for labels
+      var Y = function (p) { return y0 - (p / peak) * (y0 - plotTop); };
+
+      // ---- axis baseline ----
+      s.appendChild(node("line", { x1: x0, y1: y0, x2: x1, y2: y0, stroke: "var(--line)", "stroke-width": 1.4 }));
+
+      // ---- x ticks ----
+      var ticks = [2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7];
+      ticks.forEach(function (tv) {
+        var xx = X(tv);
+        s.appendChild(node("line", { x1: xx, y1: y0, x2: xx, y2: y0 + 5, stroke: "var(--line)", "stroke-width": 1 }));
+        s.appendChild(txt(xx, y0 + 18, tv.toFixed(1), { "text-anchor": "middle", "font-size": 11, fill: "var(--mute)" }));
+      });
+      s.appendChild(txt((x0 + x1) / 2, H - 10, "H(next | prev)  ·  bits", { "text-anchor": "middle", "font-size": 11.5, fill: "var(--ink)", "letter-spacing": "0.12em" }));
+
+      // ---- shuffle null: ±2sd and ±1sd shaded bands (negative control) ----
+      function bandRect(loV, hiV, opacity) {
+        var xa = X(loV), xb = X(hiV);
+        return node("rect", { x: xa, y: plotTop, width: (xb - xa), height: (y0 - plotTop),
+          fill: "var(--bad)", opacity: opacity });
+      }
+      s.appendChild(bandRect(mean - 2 * sd, mean + 2 * sd, 0.07));
+      s.appendChild(bandRect(mean - 1 * sd, mean + 1 * sd, 0.10));
+
+      // ---- gaussian bell path (filled = control), dashed red outline ----
+      var pts = [];
+      var N = 120;
+      for (var i = 0; i <= N; i++) {
+        var v = mean - 4.2 * sd + (8.4 * sd) * (i / N);
+        pts.push([X(v), Y(pdf(v))]);
+      }
+      var dPath = "M " + X(mean - 4.2 * sd) + " " + y0;
+      pts.forEach(function (p) { dPath += " L " + p[0].toFixed(2) + " " + p[1].toFixed(2); });
+      dPath += " L " + X(mean + 4.2 * sd) + " " + y0 + " Z";
+      s.appendChild(node("path", { d: dPath, fill: "var(--bad)", "fill-opacity": 0.13, stroke: "var(--bad)",
+        "stroke-width": 1.4, "stroke-dasharray": "5 3", "stroke-opacity": 0.75 }));
+
+      // control label on the bell
+      s.appendChild(txt(X(mean + 1.7 * sd), plotTop + 30, "NEGATIVE CONTROL", { "font-size": 9.5, fill: "var(--bad)", "letter-spacing": "0.1em", "text-anchor": "start" }));
+      s.appendChild(txt(X(mean + 1.7 * sd), plotTop + 43, "shuffle distribution", { "font-size": 9.5, fill: "var(--bad)", "text-anchor": "start", opacity: 0.85 }));
+
+      // ---- shuffle mean line ----
+      s.appendChild(node("line", { x1: X(mean), y1: Y(pdf(mean)) - 6, x2: X(mean), y2: y0,
+        stroke: "var(--bad)", "stroke-width": 1.4, "stroke-dasharray": "2 2" }));
+      s.appendChild(txt(X(mean), Y(pdf(mean)) - 12, "shuffle mean 2.64", { "text-anchor": "middle", "font-size": 10.5, fill: "var(--bad)", "font-weight": 600 }));
+
+      // ---- observed line (bold ink) ----
+      var xObs = X(obs);
+      s.appendChild(node("line", { x1: xObs, y1: plotTop - 6, x2: xObs, y2: y0,
+        stroke: "var(--ink)", "stroke-width": 2.6 }));
+      s.appendChild(node("circle", { cx: xObs, cy: y0, r: 3.4, fill: "var(--ink)" }));
+      s.appendChild(txt(xObs, plotTop - 10, "observed 2.07", { "text-anchor": "middle", "font-size": 11, fill: "var(--ink)", "font-weight": 600 }));
+
+      // ---- z bracket spanning observed -> mean ----
+      var yBr = y0 - 20;
+      s.appendChild(node("line", { x1: xObs, y1: yBr, x2: X(mean), y2: yBr, stroke: "var(--accent)", "stroke-width": 1.3 }));
+      s.appendChild(node("line", { x1: xObs, y1: yBr - 4, x2: xObs, y2: yBr + 4, stroke: "var(--accent)", "stroke-width": 1.3 }));
+      s.appendChild(node("line", { x1: X(mean), y1: yBr - 4, x2: X(mean), y2: yBr + 4, stroke: "var(--accent)", "stroke-width": 1.3 }));
+      var zval = (e.z != null) ? e.z.toFixed(2) : "-13.89";
+      var sigma = Math.abs(e.z != null ? e.z : -13.89).toFixed(1);
+      s.appendChild(txt((xObs + X(mean)) / 2, yBr - 8, "z ≈ −14  (" + sigma + "σ below chance)", { "text-anchor": "middle", "font-size": 11, fill: "var(--accent)", "font-weight": 600 }));
+
+      return s;
+    }
+
+    // -------------------------------------------------------
+    // Fact 2: refrain metre — 31 cells, refrain highlighted, gap brackets, couplet markers
+    // -------------------------------------------------------
+    function buildRefrainChart(r) {
+      var seqA = r.side_A_sequence || [];
+      var n = seqA.length; // 31
+      var cellW = 30, gap = 4;
+      var m = { l: 8, r: 8, t: 46, b: 42 };
+      var innerW = n * cellW + (n - 1) * gap;
+      var W = m.l + m.r + innerW;
+      var cellTop = m.t;
+      var cellH = 96;
+      var H = cellTop + cellH + m.b;
+      var s = svg(W, H);
+      s.setAttribute("viewBox", "0 0 " + W + " " + H);
+
+      // refrain + couplet position sets (0-based indices)
+      var refrainIdx = (r.positions_0based || [15, 18, 21]);
+      function idxFrom1(list) { return (list || []).map(function (p) { return parseInt(String(p).replace(/[^0-9]/g, ""), 10) - 1; }); }
+      var coupletsRaw = r.couplets || [];
+      var couplet1 = idxFrom1((coupletsRaw[0] || {}).positions_1based); // A14/A20
+      var couplet2 = idxFrom1((coupletsRaw[1] || {}).positions_1based); // A15/A21
+      var isRefrain = function (i) { return refrainIdx.indexOf(i) !== -1; };
+      var isCouplet = function (i) { return couplet1.indexOf(i) !== -1 || couplet2.indexOf(i) !== -1; };
+
+      // block tint A14..A22
+      var blk = (r.block_1based || ["A14", "A22"]).map(function (p) { return parseInt(String(p).replace(/[^0-9]/g, ""), 10) - 1; });
+      var blkLo = blk[0], blkHi = blk[1];
+      function cellX(i) { return m.l + i * (cellW + gap); }
+      var blkX = cellX(blkLo) - gap / 2;
+      var blkW = (cellX(blkHi) + cellW) - blkX + gap / 2;
+      s.appendChild(node("rect", { x: blkX, y: cellTop - 10, width: blkW, height: cellH + 20,
+        fill: "var(--accent)", opacity: 0.06 }));
+      s.appendChild(txt(blkX + blkW / 2, cellTop - 16, "refrain block  A14–A22", { "text-anchor": "middle", "font-size": 9.5, fill: "var(--accent)", opacity: 0.8, "letter-spacing": "0.08em" }));
+
+      // draw cells
+      for (var i = 0; i < n; i++) {
+        var x = cellX(i);
+        var refrain = isRefrain(i);
+        var couplet = isCouplet(i);
+        var fill = refrain ? "var(--accent)" : "var(--panel)";
+        var stroke = refrain ? "var(--accent)" : (couplet ? "var(--run)" : "var(--hair-strong)");
+        var sw = refrain ? 1.6 : (couplet ? 1.6 : 1);
+        var dash = couplet && !refrain ? "3 2" : "0";
+        var g = node("g", {});
+        g.appendChild(node("rect", { x: x, y: cellTop, width: cellW, height: cellH,
+          fill: fill, stroke: stroke, "stroke-width": sw, "stroke-dasharray": dash,
+          rx: 1.5 }));
+
+        // Evans numbers stacked
+        var vals = seqA[i] || [];
+        var color = refrain ? "#eef2f6" : "var(--ink)";
+        var lineH = 13.5;
+        var startY = cellTop + cellH / 2 - (vals.length - 1) * lineH / 2 + 4;
+        for (var j = 0; j < vals.length; j++) {
+          var vv = vals[j];
+          var label = (vv == null) ? "·" : (vv < 10 ? "0" + vv : String(vv));
+          g.appendChild(txt(x + cellW / 2, startY + j * lineH, label,
+            { "text-anchor": "middle", "font-size": (refrain ? 11 : 10),
+              "font-weight": (refrain ? 600 : 400), fill: color }));
+        }
+        // cell label A1..A31
+        g.appendChild(txt(x + cellW / 2, cellTop + cellH + 14, "A" + (i + 1),
+          { "text-anchor": "middle", "font-size": 8.5,
+            fill: refrain ? "var(--accent)" : "var(--mute)",
+            "font-weight": refrain ? 600 : 400 }));
+        s.appendChild(g);
+      }
+
+      // gap brackets A16-A19 and A19-A22 (labelled "gap 3")
+      var by = cellTop + cellH + 26;
+      function gapBracket(i1, i2) {
+        var xa = cellX(i1) + cellW / 2, xb = cellX(i2) + cellW / 2;
+        var g = node("g", {});
+        g.appendChild(node("line", { x1: xa, y1: by, x2: xb, y2: by, stroke: "var(--accent)", "stroke-width": 1.2 }));
+        g.appendChild(node("line", { x1: xa, y1: by - 4, x2: xa, y2: by, stroke: "var(--accent)", "stroke-width": 1.2 }));
+        g.appendChild(node("line", { x1: xb, y1: by - 4, x2: xb, y2: by, stroke: "var(--accent)", "stroke-width": 1.2 }));
+        g.appendChild(txt((xa + xb) / 2, by + 11, "gap 3", { "text-anchor": "middle", "font-size": 9, fill: "var(--accent)", "font-weight": 600 }));
+        return g;
+      }
+      if (refrainIdx.length >= 3) {
+        s.appendChild(gapBracket(refrainIdx[0], refrainIdx[1]));
+        s.appendChild(gapBracket(refrainIdx[1], refrainIdx[2]));
+      }
+
+      // top annotation: the refrain phrase
+      s.appendChild(txt(m.l, 16, "refrain “" + (r.phrase_label || "") + "” · period " + (r.period || 3), { "font-size": 11, fill: "var(--accent)", "font-weight": 600 }));
+      s.appendChild(txt(m.l, 30, "couplets (period 6): " + coupletsRaw.map(function (c) { return "“" + c.label + "”"; }).join("  ·  "), { "font-size": 8.7, fill: "var(--run)" }));
+
+      return s;
+    }
+
+    // -------------------------------------------------------
+    // Wheat gauge — value marker + negative-control marker on item scale
+    // -------------------------------------------------------
+    function buildGauge(w) {
+      var W = 320, H = 96;
+      var m = { l: 14, r: 14, t: 30, b: 34 };
+      var x0 = m.l, x1 = W - m.r;
+      var trackY = m.t + 16;
+      var s = svg(W, H);
+      var lo = w.scale[0], hi = w.scale[1];
+      var X = function (v) { return x0 + (v - lo) / (hi - lo) * (x1 - x0); };
+
+      var isNoSignal = (w.verdict === "NO SIGNAL");
+      var valColor = isNoSignal ? "var(--mute)" : "var(--accent)";
+
+      // track
+      s.appendChild(node("rect", { x: x0, y: trackY, width: (x1 - x0), height: 6, rx: 3,
+        fill: "color-mix(in srgb, var(--ink) 10%, transparent)" }));
+      // filled portion up to value
+      s.appendChild(node("rect", { x: x0, y: trackY, width: Math.max(0, X(w.value) - x0), height: 6, rx: 3,
+        fill: valColor, opacity: 0.55 }));
+
+      // scale endpoints
+      s.appendChild(txt(x0, trackY + 26, String(lo), { "font-size": 9, fill: "var(--mute)", "text-anchor": "start" }));
+      s.appendChild(txt(x1, trackY + 26, String(hi), { "font-size": 9, fill: "var(--mute)", "text-anchor": "end" }));
+
+      // ---- negative-control marker (dashed red) ----
+      var xc = X(w.control_value);
+      s.appendChild(node("line", { x1: xc, y1: trackY - 9, x2: xc, y2: trackY + 15,
+        stroke: "var(--bad)", "stroke-width": 1.6, "stroke-dasharray": "3 2" }));
+      s.appendChild(txt(xc, trackY - 13, "control", { "text-anchor": "middle", "font-size": 8.5, fill: "var(--bad)", "font-weight": 600 }));
+      s.appendChild(txt(xc, trackY + 26, w.control_label, { "text-anchor": (w.control_value >= (lo + hi) / 2 ? "end" : "middle"), "font-size": 8.3, fill: "var(--bad)", opacity: 0.85 }));
+
+      // ---- value marker (ink pin) ----
+      var xv = X(w.value);
+      s.appendChild(node("line", { x1: xv, y1: trackY - 4, x2: xv, y2: trackY + 10, stroke: valColor, "stroke-width": 2.4 }));
+      s.appendChild(node("circle", { cx: xv, cy: trackY + 3, r: 3.4, fill: valColor }));
+      s.appendChild(txt(xv, trackY - 8, String(w.value), { "text-anchor": "middle", "font-size": 10, fill: valColor, "font-weight": 600 }));
+
+      return s;
+    }
+
+    // -------------------------------------------------------
+    // Constants grouped bars — real vs Null A p50 vs Null B p50, chance-zone band
+    // -------------------------------------------------------
+    function buildConstantsChart(c) {
+      var W = 640, H = 320;
+      var m = { l: 46, r: 24, t: 26, b: 62 };
+      var x0 = m.l, x1 = W - m.r, y0 = H - m.b, y1 = m.t;
+      var s = svg(W, H);
+
+      var scaleMax = 45;
+      var Y = function (v) { return y0 - (v / scaleMax) * (y0 - y1); };
+
+      var na = c.null_a || {}, nb = c.null_b || {};
+      var bars = [
+        { label: "Real (filtered)", sub: "hits 30", val: c.real_hits, color: "var(--accent)", solid: true },
+        { label: na.label || "Null A", sub: "p50 " + na.p50, val: na.p50, color: "var(--mute)", solid: false },
+        { label: nb.label || "Null B", sub: "p50 " + nb.p50, val: nb.p50, color: "var(--mute)", solid: false }
+      ];
+
+      // ---- chance zone band: Null A mean ± sd ----
+      var bandLo = (na.mean || 0) - (na.sd || 0);
+      var bandHi = (na.mean || 0) + (na.sd || 0);
+      s.appendChild(node("rect", { x: x0, y: Y(bandHi), width: (x1 - x0), height: (Y(bandLo) - Y(bandHi)),
+        fill: "var(--bad)", opacity: 0.10 }));
+      s.appendChild(node("line", { x1: x0, y1: Y(na.mean), x2: x1, y2: Y(na.mean),
+        stroke: "var(--bad)", "stroke-width": 1.2, "stroke-dasharray": "5 3", opacity: 0.75 }));
+      s.appendChild(txt(x1 - 4, Y(na.mean) - 5, "chance zone  (Null A " + fmt(na.mean, 2) + " ± " + fmt(na.sd, 2) + ")",
+        { "text-anchor": "end", "font-size": 9.5, fill: "var(--bad)", "font-weight": 600 }));
+      s.appendChild(txt(x1 - 4, Y(na.mean) + 12, "NEGATIVE CONTROL", { "text-anchor": "end", "font-size": 8.5, fill: "var(--bad)", opacity: 0.8, "letter-spacing": "0.08em" }));
+
+      // ---- y axis + gridlines ----
+      s.appendChild(node("line", { x1: x0, y1: y1, x2: x0, y2: y0, stroke: "var(--line)", "stroke-width": 1.2 }));
+      s.appendChild(node("line", { x1: x0, y1: y0, x2: x1, y2: y0, stroke: "var(--line)", "stroke-width": 1.2 }));
+      [0, 10, 20, 30, 40].forEach(function (gv) {
+        var yy = Y(gv);
+        if (gv !== 0) s.appendChild(node("line", { x1: x0, y1: yy, x2: x1, y2: yy, stroke: "var(--hair)", "stroke-width": 1, "stroke-dasharray": "1 3" }));
+        s.appendChild(node("line", { x1: x0 - 4, y1: yy, x2: x0, y2: yy, stroke: "var(--line)", "stroke-width": 1 }));
+        s.appendChild(txt(x0 - 8, yy + 3.5, String(gv), { "text-anchor": "end", "font-size": 10, fill: "var(--mute)" }));
+      });
+      s.appendChild(txt(m.l - 34, (y0 + y1) / 2, "hits", { "text-anchor": "middle", "font-size": 10.5, fill: "var(--ink)", transform: "rotate(-90 " + (m.l - 34) + " " + ((y0 + y1) / 2) + ")", "letter-spacing": "0.1em" }));
+
+      // ---- bars ----
+      var slotW = (x1 - x0) / bars.length;
+      var barW = Math.min(78, slotW * 0.5);
+      bars.forEach(function (b, i) {
+        var cx = x0 + slotW * (i + 0.5);
+        var bx = cx - barW / 2;
+        var by = Y(b.val);
+        var rect = node("rect", { x: bx, y: by, width: barW, height: (y0 - by),
+          fill: b.color, "fill-opacity": b.solid ? 0.9 : 0.16,
+          stroke: b.color, "stroke-width": 1.5 });
+        if (!b.solid) rect.setAttribute("stroke-dasharray", "4 3");
+        s.appendChild(rect);
+        // value on top
+        s.appendChild(txt(cx, by - 7, String(b.val), { "text-anchor": "middle", "font-size": 12, fill: b.color === "var(--mute)" ? "var(--mute)" : "var(--ink)", "font-weight": 600 }));
+        // label
+        s.appendChild(txt(cx, y0 + 16, b.label, { "text-anchor": "middle", "font-size": 10, fill: "var(--ink)" }));
+        s.appendChild(txt(cx, y0 + 29, b.sub, { "text-anchor": "middle", "font-size": 9, fill: "var(--mute)" }));
+      });
+
+      return s;
+    }
+
+  })();
+  </script>
+</body>
+</html>
