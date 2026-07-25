@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "type": "synthetic_linear_elamite_like_corpus",
+    "purpose": "Math-probe inputs for G12 invariants. NOT real LE data.",
+    "alphabet": "Hatamti 2024 catalogue numeric IDs (LE_001..LE_120) reused as opaque sign IDs; bare Latin numerals for accounting quantities (LE numeral system partially overlaps Proto-Elamite's tagged numerals and is treated here as parallel struct).",
+    "seeds": {
+      "ledger_seed": 0,
+      "monumental_seed": 17,
+      "shuffle_seed": 99
+    },
+    "license": "synthetic; no licence required",
+    "real_open_dump_pointer": "10.5281/zenodo.4960710 (CDLI) — currently NEVER_ATTEMPTED",
+    "forbidden_phrases_warning": "Do NOT paste this file's tokens as 'real LE'. The 4 invariants pass on this by construction (we control the data)."
+  },
+  "formulaic_ledger": [
+    {
+      "cdli_id": "SYNTH-LEI-L01",
+      "label": "synth_ledger_001",
+      "script_genre": "formulaic_accounting_tablet",
+      "tokens": [
+        "LE_017", "LE_044", "LE_088", "LE_002", "LE_055", "LE_063",
+        "LE_002", "LE_017", "LE_120", "LE_044",
+        "LE_099", "1", "1", "1",
+        "LE_007", "1",
+        "LE_058", "2", "1",
+        "LE_063", "3", "3", "1",
+        "LE_017", "2", "2", "1",
+        "LE_044", "1",
+        "LE_055", "5", "5", "3", "1",
+        "LE_007", "1",
+        "LE_058", "1",
+        "LE_063", "8", "8", "1",
+        "LE_002", "5", "3",
+        "LE_017", "1",
+        "LE_044", "2", "1",
+        "LE_055", "3", "3", "1",
+        "LE_007", "1",
+        "LE_058", "1",
+        "LE_063", "1",
+        "LE_017", "2", "1",
+        "LE_044", "1",
+        "LE_055", "8", "1",
+        "LE_002", "1",
+        "LE_099", "1",
+        "LE_017", "1",
+        "LE_044", "2", "2", "1",
+        "LE_055", "3", "1",
+        "LE_007", "5", "1",
+        "LE_058", "1",
+        "LE_063", "1"
+      ]
+    },
+    {
+      "cdli_id": "SYNTH-LEI-L02",
+      "label": "synth_ledger_002",
+      "script_genre": "formulaic_accounting_tablet",
+      "tokens": [
+        "LE_017", "LE_044", "LE_088", "LE_002", "LE_120",
+        "LE_099", "1", "1", "2",
+        "LE_058", "3", "2", "1",
+        "LE_063", "5", "5", "3", "1",
+        "LE_017", "2", "2", "2",
+        "LE_044", "1",
+        "LE_055", "8", "5", "3", "1",
+        "LE_007", "1",
+        "LE_058", "1",
+        "LE_063", "1",
+        "LE_017", "2", "1",
+        "LE_044", "1",
+        "LE_055", "1",
+        "LE_002", "3", "3", "1",
+        "LE_017", "1",
+        "LE_044", "2", "1",
+        "LE_055", "3", "3", "1",
+        "LE_002", "1",
+        "LE_099", "1",
+        "LE_017", "1",
+        "LE_044", "2", "2", "1",
+        "LE_055", "3", "1",
+        "LE_007", "1",
+        "LE_058", "1",
+        "LE_063", "1"
+      ]
+    }
+  ],
+  "monumental_narrative": [
+    {
+      "cdli_id": "SYNTH-LEI-M01",
+      "label": "synth_monumental_001",
+      "script_genre": "monumental_narrative_inscription",
+      "caveat": "Synthesised narrative-style LE-like sequence. NO numerals. This bundle is INCLUDED to demonstrate that the G12 ledger invariants correctly *fail* on monumental LE (INVERSE of a positive control): failing them here means 'this is not an accounting tablet', NOT 'this script lacks structure'.",
+      "tokens": [
+        "LE_001", "LE_017", "LE_088", "LE_044", "LE_055", "LE_063",
+        "LE_002", "LE_088", "LE_017", "LE_055", "LE_063", "LE_044",
+        "LE_088", "LE_001", "LE_017", "LE_088", "LE_055", "LE_063",
+        "LE_002", "LE_088", "LE_017", "LE_044", "LE_063",
+        "LE_001", "LE_017", "LE_088", "LE_044", "LE_055", "LE_002",
+        "LE_063", "LE_017", "LE_088", "LE_055", "LE_044", "LE_002",
+        "LE_088", "LE_063", "LE_017", "LE_001", "LE_055", "LE_044",
+        "LE_002", "LE_088", "LE_017", "LE_063", "LE_055", "LE_044",
+        "LE_088", "LE_001", "LE_017", "LE_002", "LE_055", "LE_063",
+        "LE_044", "LE_017", "LE_088", "LE_001", "LE_002", "LE_055",
+        "LE_063", "LE_017", "LE_088", "LE_044", "LE_055", "LE_002"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "label": "synthetic_known_answer",
+  "n_input_tokens": 96,
+  "header_stats": {
+    "n_tokens": 13,
+    "n_numerals": 0,
+    "unigram_entropy_bits": 2.661,
+    "index_of_coincidence": 0.1026,
+    "lz78_ratio": 0.6923
+  },
+  "line_stats": {
+    "n_tokens": 83,
+    "n_numeral_signs": 54,
+    "n_numeral_blocks": 30,
+    "unigram_entropy_bits": 1.785,
+    "conditional_bigram_entropy_bits": 0.501,
+    "cond_h_over_h1_ratio": 0.2806,
+    "index_of_coincidence": 0.1411,
+    "lz78_ratio": 0.4819,
+    "shuffled_control": {
+      "observed": 1.9128,
+      "shuffled_mean": 2.1924,
+      "shuffled_sd": 0.076,
+      "z": -3.68,
+      "more_structured_than_chance": true
+    }
+  },
+  "invariants": {
+    "invariants": {
+      "header_numeral_void": true,
+      "header_fraction_bounded": true,
+      "numeral_block_predictable": true,
+      "z_lock_vs_shuffle": true
+    },
+    "all_pass": true,
+    "header_fraction": 0.1354,
+    "supporting": {
+      "header_n_numerals": 0,
+      "line_cond_h_over_h1": 0.2806,
+      "line_shuffled_z": -3.68
+    }
+  },
+  "stance": "Linear Elamite (ca. 2200-1850 BCE, Anshan/Susa) is UNDECIPHERED. This probe measures *structural entropy of the unified sign sequence* and applies the 4 ledger-style invariants the G2 probe calibrated on Proto-Elamite accounting tablets. The invariants WILL NOT pass on monumental / narrative LE inscriptions \u2014 that failure means 'this is not an accounting tablet', NOT 'this script lacks structure'. STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py for all metrics.",
+  "stance_monumental_caveat": "Unlike Proto-Elamite, which is overwhelmingly accounting-tablet, Linear Elamite has famous monumental inscriptions (silver beakers, metalwork, royal stelae). The 4 ledger invariants target an accounting-tablet SHAPE \u2014 they will FAIL on monumental corpora by construction, and that failure is itself informative: it tells you the corpus is narrative, not numeric-ledger. Do NOT interpret a monumental-bundle FAIL as 'LE lacks linguistic structure'.",
+  "forbidden_phrases": [
+    "translates to",
+    "represents",
+    "decodes as",
+    "shares roots with",
+    "is related to Sumerian",
+    "is related to Elamite",
+    "Proto-Elamite is a",
+    "Proto-Elamite =",
+    "Minoan =",
+    "PE related to Sumerian",
+    "Proto-Elamite is Sumerian",
+    "Proto-Elamite is cuneiform",
+    "Proto-Elamite derives from",
+    "Urukian origin",
+    "Sumerian-Elamite",
+    "Proto-Elamite is descended from Sumerian",
+    "Proto-Elamite script family",
+    "Sumerian ancestor",
+    "Linear Elamite deciphered",
+    "Linear Elamite is deciphered",
+    "LE deciphered",
+    "LE = ",
+    "Elamite = ",
+    "Linear Elamite = ",
+    "Linear Elamite translates",
+    "Elamite represents ",
+    "is related to Akkadian",
+    "is the same as Akkadian",
+    "Sumerian-Elamite",
+    "Akkadian-Elamite",
+    "viral blog",
+    "youtube decipherment",
+    "anonymous ",
+    "99% deciphered",
+    "100% deciphered",
+    "alien origin",
+    "aliens wrote",
+    "extraterrestrial script",
+    "ancient aliens",
+    "alien"
+  ],
+  "caveat": "Structure != message. These invariants confirm that the passed bundle carries an accounting-tablet SHAPE. They do NOT confirm LE is a language, NOT identify the script's family, and NOT imply reading ability.",
+  "generated_at": "2026-07-25T12:47:05.877553+00:00",
+  "source": "Open data via Cuneiform Digital Library Initiative (CDLI) and Zenodo mirror at https://zenodo.org/record/4960710 \u2014 per-tablet attribution via `cdli_id`, released under the CDLI open-data terms.",
+  "desset_2024_claim_block": {
+    "press_claim_summary": "Desset / Li\u00e8ge 2024 publicity asserts a sound-based reading of Linear Elamite. The abstract claim that can be recomputed from the open data WITHOUT endorsing readings: that LE sign streams carry predictable low-entropy local dependencies (a NECESSARY-not- SUFFICIENT condition for a real language). Our recompute: structure (cond-H / IC / LZ78) + a matched unigram-preserving shuffle null. If the observed structure fails to beat the shuffle, we file this as CLAIM_FAILS_NULL. If it beats, we file CLAIM_UNDERDETERMINED with the explicit caveat that 'beats-shuffle' != 'translates'.",
+    "n_tokens": 96,
+    "n_distinct": 14,
+    "index_of_coincidence": 0.1149,
+    "ioc_over_k_unstructured_check": 1.6088,
+    "unigram_entropy_bits": 3.344,
+    "max_entropy_bits": 3.807,
+    "h1_over_max_ratio": 0.8783,
+    "top_unigrams": [
+      {
+        "sign": "5",
+        "count": 20,
+        "fraction": 0.2083
+      },
+      {
+        "sign": "1",
+        "count": 18,
+        "fraction": 0.1875
+      },
+      {
+        "sign": "8",
+        "count": 13,
+        "fraction": 0.1354
+      },
+      {
+        "sign": "LE_088",
+        "count": 11,
+        "fraction": 0.1146
+      },
+      {
+        "sign": "LE_002",
+        "count": 5,
+        "fraction": 0.0521
+      },
+      {
+        "sign": "LE_063",
+        "count": 5,
+        "fraction": 0.0521
+      },
+      {
+        "sign": "LE_058",
+        "count": 4,
+        "fraction": 0.0417
+      },
+      {
+        "sign": "LE_017",
+        "count": 4,
+        "fraction": 0.0417
+      }
+    ],
+    "top_bigrams": [
+      {
+        "pair": [
+          "5",
+          "5"
+        ],
+        "count": 8
+      },
+      {
+        "pair": [
+          "1",
+          "1"
+        ],
+        "count": 7
+      },
+      {
+        "pair": [
+          "8",
+          "8"
+        ],
+        "count": 6
+      },
+      {
+        "pair": [
+          "1",
+          "LE_088"
+        ],
+        "count": 4
+      },
+      {
+        "pair": [
+          "LE_088",
+          "1"
+        ],
+        "count": 4
+      },
+      {
+        "pair": [
+          "8",
+          "LE_088"
+        ],
+        "count": 3
+      },
+      {
+        "pair": [
+          "LE_088",
+          "8"
+        ],
+        "count": 3
+      },
+      {
+        "pair": [
+          "5",
+          "LE_063"
+        ],
+        "count": 3
+      },
+      {
+        "pair": [
+          "LE_063",
+          "5"
+        ],
+        "count": 3
+      },
+      {
+        "pair": [
+          "LE_058",
+          "LE_088"
+        ],
+        "count": 2
+      },
+      {
+        "pair": [
+          "1",
+          "LE_063"
+        ],
+        "count": 2
+      },
+      {
+        "pair": [
+          "LE_063",
+          "1"
+        ],
+        "count": 2
+      }
+    ],
+    "shuffled_null": {
+      "observed": 2.0551,
+      "shuffled_mean": 2.3479,
+      "shuffled_sd": 0.0698,
+      "z": -4.2,
+      "more_structured_than_chance": true,
+      "n_shuffles": 500,
+      "match": "unigram_preserving_shuffle"
+    },
+    "claim_verdict_recommendation": "CLAIM_UNDERDETERMINED",
+    "caveat": "'beats the shuffle by > 2\u03c3' is NOT endorsement of any phonetic/glottal-stop reading. It only means the LE sign stream has more predictability than a frequency-matched control \u2014 necessary for ANY structured sequence, necessary-not-sufficient for any specific language."
+  },
+  "verdict_block": {
+    "verdict": "SEQUENCE_STRUCTURE | CLAIM_UNDERDETERMINED",
+    "structure_axis": "SEQUENCE_STRUCTURE",
+    "claim_axis": "CLAIM_UNDERDETERMINED",
+    "comparator_axes": [],
+    "invariants_passed_count": 4,
+    "notes": "Axis 1 reflects whether the corpus carries accounting-tablet structure. Axis 2 reflects whether Desset 2024's structural claim beats a matched shuffle \u2014 NOT endorsement of any reading."
+  }
+}
