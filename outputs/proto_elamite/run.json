@@ -49,9 +49,18 @@
     "is related to Elamite",
     "Proto-Elamite is a",
     "Proto-Elamite =",
-    "Minoan ="
+    "Minoan =",
+    "PE related to Sumerian",
+    "Proto-Elamite is Sumerian",
+    "Proto-Elamite is cuneiform",
+    "Proto-Elamite derives from",
+    "Urukian origin",
+    "Sumerian-Elamite",
+    "Proto-Elamite is descended from Sumerian",
+    "Proto-Elamite script family",
+    "Sumerian ancestor"
   ],
   "caveat": "Structure != message. These invariants confirm accounting ledgers have predictable low-entropy numeral blocks. They do NOT confirm Proto-Elamite is a language, NOT identify the script's family, and NOT imply reading ability.",
-  "generated_at": "2026-07-25T10:47:39.349966+00:00",
+  "generated_at": "2026-07-25T11:20:24.004871+00:00",
   "source": "Open data via Cuneiform Digital Library Initiative (CDLI), https://cdli.mpiwg-berlin.mpg.de \u2014 ATF transcriptions released under the CDLI open-data terms. Per-tablet attribution by `cdli_id`."
 }

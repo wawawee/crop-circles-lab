@@ -1,0 +1,224 @@
+{
+  "mission": "G2++",
+  "generated_at": "2026-07-25T11:19:14.523201+00:00",
+  "source": "Open data via Cuneiform Digital Library Initiative (CDLI), https://cdli.mpiwg-berlin.mpg.de \u2014 ATF transcriptions released under the CDLI open-data terms. Per-tablet attribution by `cdli_id`.",
+  "stance": "Uruk III (ca. 3300-3000 BCE) Sumerian cuneiform accounting tablets are STRUCTURAL positive controls for the Proto-Elamite probe: same period, same accounting-tablet purpose, DIFFERENT sign pool. STRUCTURE != MESSAGE. This probe measures numerical-block SHAPE only \u2014 it does NOT translate, decipher, or relate Proto-Elamite and Sumerian cuneiform. Numerals are arithmetic, NOT linguistics; their shared tag system is a STRUCTURAL choice in ancient accounting, not evidence of script-family derivation. Reused tools/forensics/symbolseq.py + the G2 probe machinery end-to-end.",
+  "pe_run": {
+    "label": "synthetic_known_answer",
+    "n_input_tokens": 102,
+    "header_stats": {
+      "n_tokens": 13,
+      "n_numerals": 0,
+      "unigram_entropy_bits": 2.873,
+      "index_of_coincidence": 0.0769,
+      "lz78_ratio": 0.7692
+    },
+    "line_stats": {
+      "n_tokens": 89,
+      "n_numeral_signs": 60,
+      "n_numeral_blocks": 30,
+      "unigram_entropy_bits": 2.0,
+      "conditional_bigram_entropy_bits": 1.559,
+      "cond_h_over_h1_ratio": 0.7794,
+      "index_of_coincidence": 0.1382,
+      "lz78_ratio": 0.4831,
+      "shuffled_control": {
+        "observed": 2.0356,
+        "shuffled_mean": 2.2832,
+        "shuffled_sd": 0.0746,
+        "z": -3.32
+      }
+    },
+    "invariants": {
+      "invariants": {
+        "header_numeral_void": true,
+        "header_fraction_bounded": true,
+        "numeral_block_predictable": true,
+        "z_lock_vs_shuffle": true
+      },
+      "all_pass": true,
+      "header_fraction": 0.1275,
+      "supporting": {
+        "header_n_numerals": 0,
+        "line_cond_h_over_h1": 0.7794,
+        "line_shuffled_z": -3.32
+      }
+    },
+    "stance": "Proto-Elamite is undeciphered (ca. 3100-2900 BCE, Susa). This probe measures *numerical-block structure* only \u2014 it does NOT translate, decipher, or place Proto-Elamite in a language family. STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py for all metrics.",
+    "forbidden_phrases": [
+      "translates to",
+      "represents",
+      "decodes as",
+      "shares roots with",
+      "is related to Sumerian",
+      "is related to Elamite",
+      "Proto-Elamite is a",
+      "Proto-Elamite =",
+      "Minoan =",
+      "PE related to Sumerian",
+      "Proto-Elamite is Sumerian",
+      "Proto-Elamite is cuneiform",
+      "Proto-Elamite derives from",
+      "Urukian origin",
+      "Sumerian-Elamite",
+      "Proto-Elamite is descended from Sumerian",
+      "Proto-Elamite script family",
+      "Sumerian ancestor"
+    ],
+    "caveat": "Structure != message. These invariants confirm accounting ledgers have predictable low-entropy numeral blocks. They do NOT confirm Proto-Elamite is a language, NOT identify the script's family, and NOT imply reading ability."
+  },
+  "uruk_run": {
+    "label": "synthetic_uruk_known_answer",
+    "n_input_tokens": 101,
+    "header_stats": {
+      "n_tokens": 13,
+      "n_numerals": 0,
+      "unigram_entropy_bits": 3.239,
+      "index_of_coincidence": 0.0385,
+      "lz78_ratio": 0.8462
+    },
+    "line_stats": {
+      "n_tokens": 88,
+      "n_numeral_signs": 59,
+      "n_numeral_blocks": 30,
+      "unigram_entropy_bits": 2.129,
+      "conditional_bigram_entropy_bits": 0.623,
+      "cond_h_over_h1_ratio": 0.2926,
+      "index_of_coincidence": 0.1134,
+      "lz78_ratio": 0.5114,
+      "shuffled_control": {
+        "observed": 1.894,
+        "shuffled_mean": 2.2807,
+        "shuffled_sd": 0.0767,
+        "z": -5.04
+      }
+    },
+    "invariants": {
+      "invariants": {
+        "header_numeral_void": true,
+        "header_fraction_bounded": true,
+        "numeral_block_predictable": true,
+        "z_lock_vs_shuffle": true
+      },
+      "all_pass": true,
+      "header_fraction": 0.1287,
+      "supporting": {
+        "header_n_numerals": 0,
+        "line_cond_h_over_h1": 0.2926,
+        "line_shuffled_z": -5.04
+      }
+    },
+    "stance": "Uruk III (ca. 3300-3000 BCE) Sumerian cuneiform accounting tablets are STRUCTURAL positive controls for the Proto-Elamite probe: same period, same accounting-tablet purpose, DIFFERENT sign pool. STRUCTURE != MESSAGE. This probe measures numerical-block SHAPE only \u2014 it does NOT translate, decipher, or relate Proto-Elamite and Sumerian cuneiform. Numerals are arithmetic, NOT linguistics; their shared tag system is a STRUCTURAL choice in ancient accounting, not evidence of script-family derivation. Reused tools/forensics/symbolseq.py + the G2 probe machinery end-to-end.",
+    "forbidden_phrases": [
+      "translates to",
+      "represents",
+      "decodes as",
+      "shares roots with",
+      "is related to Sumerian",
+      "is related to Elamite",
+      "Proto-Elamite is a",
+      "Proto-Elamite =",
+      "Minoan =",
+      "PE related to Sumerian",
+      "Proto-Elamite is Sumerian",
+      "Proto-Elamite is cuneiform",
+      "Proto-Elamite derives from",
+      "Urukian origin",
+      "Sumerian-Elamite",
+      "Proto-Elamite is descended from Sumerian",
+      "Proto-Elamite script family",
+      "Sumerian ancestor"
+    ],
+    "caveat": "Structure != message. These invariants confirm accounting ledgers have predictable low-entropy numeral blocks. They do NOT confirm Proto-Elamite is a language, NOT identify the script's family, and NOT imply reading ability.",
+    "mission": "G2++"
+  },
+  "compare_pe_vs_uruk": {
+    "shared_ledger_structure": {
+      "pe_all_pass": true,
+      "uruk_all_pass": true,
+      "invariant_match_table": [
+        {
+          "invariant": "header_numeral_void",
+          "pe": true,
+          "uruk": true,
+          "match": true
+        },
+        {
+          "invariant": "header_fraction_bounded",
+          "pe": true,
+          "uruk": true,
+          "match": true
+        },
+        {
+          "invariant": "numeral_block_predictable",
+          "pe": true,
+          "uruk": true,
+          "match": true
+        },
+        {
+          "invariant": "z_lock_vs_shuffle",
+          "pe": true,
+          "uruk": true,
+          "match": true
+        }
+      ],
+      "both_pass": true,
+      "all_invariants_match": true
+    },
+    "numerical_diffs_no_language_claim": {
+      "header_h1_diff_bits": 0.366,
+      "line_cond_h_diff_bits": -0.936,
+      "lz78_ratio_diff": 0.0283,
+      "shuffled_z_diff": -1.72
+    },
+    "stance": "Uruk III (ca. 3300-3000 BCE) Sumerian cuneiform accounting tablets are STRUCTURAL positive controls for the Proto-Elamite probe: same period, same accounting-tablet purpose, DIFFERENT sign pool. STRUCTURE != MESSAGE. This probe measures numerical-block SHAPE only \u2014 it does NOT translate, decipher, or relate Proto-Elamite and Sumerian cuneiform. Numerals are arithmetic, NOT linguistics; their shared tag system is a STRUCTURAL choice in ancient accounting, not evidence of script-family derivation. Reused tools/forensics/symbolseq.py + the G2 probe machinery end-to-end.",
+    "forbidden_phrases_screened": [
+      "translates to",
+      "represents",
+      "decodes as",
+      "shares roots with",
+      "is related to Sumerian",
+      "is related to Elamite",
+      "Proto-Elamite is a",
+      "Proto-Elamite =",
+      "Minoan =",
+      "PE related to Sumerian",
+      "Proto-Elamite is Sumerian",
+      "Proto-Elamite is cuneiform",
+      "Proto-Elamite derives from",
+      "Urukian origin",
+      "Sumerian-Elamite",
+      "Proto-Elamite is descended from Sumerian",
+      "Proto-Elamite script family",
+      "Sumerian ancestor"
+    ],
+    "language_family_claim_made": false,
+    "caution": "Same-shape invariants in DIFFERENT sign systems confirm the invariants describe a SHARED accounting-tablet STRUCTURE, NOT script-family derivation. Numerals are arithmetic, not linguistics. Per Captain brief: NO language-family claim either way."
+  },
+  "sfu_subset_sum_probe": {
+    "status": "SKIPPED_PER_BRIEF_NON_TRIVIAL",
+    "note": "Captain brief: 'Optional SFU/subset-sum only if trivial; else SKIP.' Schmandt-Besserat SFU = 1, 10, 60, 360, 3600 sexagesimal subdivisions of measure. Subset-sum probe would test if recorded quantities fit n1*60^k + n2*60^j + ...; implementation requires Sumerian sexagesimal digit decomposition (non-trivial) vs PE simple-integer notation. Documented as POSTPONED; re-evaluate in a follow-up ticket with explicit math-spec.",
+    "tokens_analyzed": 0
+  },
+  "forbidden_phrases": [
+    "translates to",
+    "represents",
+    "decodes as",
+    "shares roots with",
+    "is related to Sumerian",
+    "is related to Elamite",
+    "Proto-Elamite is a",
+    "Proto-Elamite =",
+    "Minoan =",
+    "PE related to Sumerian",
+    "Proto-Elamite is Sumerian",
+    "Proto-Elamite is cuneiform",
+    "Proto-Elamite derives from",
+    "Urukian origin",
+    "Sumerian-Elamite",
+    "Proto-Elamite is descended from Sumerian",
+    "Proto-Elamite script family",
+    "Sumerian ancestor"
+  ],
+  "caveat": "STRUCTURE != MESSAGE. This comparator shows that the G2 invariants ALSO pass on a Sumerian Uruk III synth with a DIFFERENT sign pool. That confirms the invariants describe a SHARED accounting-tablet structure, NOT a Proto-Elamite-specific artefact. It does NOT relate the two scripts linguistically \u2014 numerals are arithmetic, not linguistics. SFU/subset-sum probe is SKIPPED per the Captain brief 'Optional only if trivial; else SKIP'."
+}

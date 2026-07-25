@@ -37,7 +37,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G1** | Opencode | Linear A | z≈−73 formulaic STRUCTURE | 🟢 landed + gallery |
 | **G4** | **Opencode** 🟢 | Rongorongo 2D (Spaelti) | Parallel passages + symbolseq; structure ≠ reading | 🟢 **landed** — `tools/scripts/rongorongo_probe.py`, `outputs/rongorongo/run.json` + `NOTES.md`. 5279 glyphs across 6 tablets, z=−42.9 conditional entropy vs shuffle. 240 parallel passages (33 cross-tablet, z=+40.9 vs shuffle). Top cross-tablet formula: `380 001 022f` ×7 across C+E. Verdict: SEQUENCE_STRUCTURE | PARALLEL_EXCESS | CROSS_TABLET_PARALLELS. No decipherment. |
 | **G2** | **Minimax M3** | Proto-Elamite | CDLI ledger entropy | 🟢 **merged** — synth 4/4 invariants; CDLI default NEVER_ATTEMPTED + `--fetch-online`; 9 forbidden phrases; Uruk SFU POSTPONED. `feat/g2-proto-elamite` |
-| **G2++** | **Minimax M3** | Uruk III SFU comparator | Same 4 invariants as G2 + PE-vs-Uruk structural compare | 🟡 **on branch** `feat/g2pp-uruk-comparator` — open PR when green; Cursor merges |
+| **G2++** | **Minimax M3** | Uruk III SFU comparator | PE vs Uruk numeral structure | 🟢 **merged PR #8** — synth Uruk 4/4; PE baseline preserved; `language_family_claim_made: False`; SFU SKIPPED; 20/20 tests |
 | **G3** | Minimax → **Ozma review** | Wow! beam-fit | Gaussian/sinc; underdetermined | 🟢 landed + **Ozma interpretation pass (PR)** — μ↔(6−μ) one-horn degeneracy, PHL@UPR 2024 natural H-cloud, N=6 gives zero power to infer artificiality; NOTES deepened in `outputs/radio/NOTES.md` |
 | **G7** | Opencode | Gorafe megaliths | ORIENTATION_STRUCTURE \| CONTROL_SEPARATED \| PER_TOMB_UNDERDETERMINED; convex-hull NND; per-tomb sunrise | 🟢 **G7++ merged PR #4** |
 | **G8** | **Opencode** | Betty Hill × Gaia | Star-map null | 🟢 **merged** — UNDERDETERMINED (z≈−2.0, <3σ); Big Dipper/Orion KA separate; selection-bias caveat. `outputs/betty_hill/` |
@@ -58,9 +58,10 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G4** | Opencode 🟢 Rongorongo on main. |
 | **G7++** | 🟢 merged PR #4 — nulls hardened. |
 | **G2** | 🟢 merged PR #5 — Proto-Elamite probe. |
-| **Minimax M3** | 🟡 finishing **G2++** — open PR when green. |
+| **G2++** | 🟢 merged PR #8 — Uruk comparator. |
+| **Minimax M3** | 💤 idle (radio/Amazon/BLC1 closed). |
 | **Opencode** | 🟡 on **G9** Indus. |
-| **Cursor** | 🟢 merge gate on `main` — watching G2++ / G9 |
+| **Cursor** | 🟢 merge gate on `main` — watching G9 |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -70,12 +71,12 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 
 | Rule | Detail |
 |------|--------|
-| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G9**. **Minimax M3** = **G2++**. **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
+| **Roster** | **Ulfberht** = reviewer/steward. **Ozma** = radio/BLC1. **Opencode** = **G9**. **Minimax M3** = idle (G2++ done). **Cursor** = merge gate on `main`. **Geoglyf** = retired. **Captain** = assigner + Gemini/Kimi research. |
 | **One owner per ID** | Only the owner edits that board row. Everyone else: PR comment. |
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G2++ (M3), G9 (Opencode). Captain on Gemini/Kimi research trail. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: G9 (Opencode). Captain on Gemini/Kimi research trail. |
 
 ---
 
@@ -220,22 +221,9 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > Landed: `tools/scripts/proto_elamite_probe.py` + 15/15 tests. Synth 4/4 invariants;
 > CDLI default NEVER_ATTEMPTED; Uruk SFU POSTPONED → see **G2++**.
 
-### G2++ — Minimax M3 (ASSIGNED 2026-07-25) — Uruk SFU comparator
-> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ message.
-> Finish the POSTPONED path in `data/scripts/proto_elamite/uruk_comparator_refs.json`.
-> Do NOT touch radio, BLC1, Amazon, G8, or N1++.
->
-> 1. Fetch **small** open CDLI Uruk III ATF for ≥1–3 of the listed candidate IDs
->    (or documented substitutes). Save under `data/scripts/proto_elamite/uruk/` + README
->    with cdli_id attribution. Prefer `--fetch-online` opt-in; default stay honest-empty.
-> 2. Run the **same** numeral-block / header invariants as G2 on Uruk tablets.
-> 3. Compare PE synth (or bundled PE ATF) vs Uruk: report whether numeral H(next|n)
->    collapse / z_lock pattern is **shared ledger structure** (expected) vs PE-unique.
-> 4. Optional: SFU / subset-sum note only if trivial from published numeral signs —
->    else document SKIP. No language-family claim either way.
-> 5. Outputs: `outputs/proto_elamite/uruk_{run.json,NOTES.md}`. Update board G2++ → 🟢.
-> 6. Branch `feat/g2pp-uruk-comparator`. PR for Cursor/Captain merge.
-> Forbidden: "PE related to Sumerian", decipherment, inventing ATF.
+### G2++ — Minimax M3 (🟢 MERGED PR #8 2026-07-25) — Uruk SFU comparator
+> Landed: synth Uruk 4/4; PE baseline preserved; language_family_claim_made=False;
+> SFU SKIPPED_PER_BRIEF_NON_TRIVIAL; 20/20 tests. Idle until Captain assigns next.
 
 ### G7++ — Opencode (🟢 MERGED PR #4 2026-07-25) — Gorafe sunrise + valley null
 > Landed: per-tomb Dec hit@15°≈40% z≈7; convex-hull NND z−15.6; DEM null BLOCKED.
