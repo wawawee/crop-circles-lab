@@ -46,10 +46,13 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G10** | **Minimax M3** | Voynich morphology (structure-only) | greedy EVA + Dominik ρ CUT | 🟢 **merged PR #12** — SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL; glyph z≪0; 32/32 tests |
 | **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟢 **merged PR #11** — STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY; z≈−28.95; tablet↔other J≈0.53 |
 | **G12** | **Minimax M3** | Linear Elamite entropy bounds | symbolseq; Desset CUT; LE↔PE↔Uruk comparator | 🟢 **merged PR #13** — SEQUENCE_STRUCTURE \| CLAIM_UNDERDETERMINED \| ACCOUNTING_FORMAT_STRUCTURED \| SCRIPT_INVARIANT_COMMON; monumental INVERSE_CONTROL_OK \| CLAIM_FAILS_NULL; language_family_claim_made=false; 31/31 tests |
-| **G13** | queue | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | ⬜ no-signal prior |
+| **G13** | **Opencode** 🟡 | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | 🟡 **ASSIGNED** (CLI headless) — no-signal prior; plate-artifact nulls |
 | **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
-| **G15** | queue | Cretan Hieroglyphic bipartite admin | network / symbolseq | ⬜ after Linear A |
+| **G15** | **Freebuff** 🟢 | Cretan Hieroglyphic bipartite admin | network / symbolseq | 🟢 **landed (synthetic CHIC fallback; PR open)** — structure == bipartite admin isomorphism vs Linear A (SYNTH Evans-shaped CH corpus; NO real CHIC dump exists publicly per 2026-07-25 scout; verdict UNDERDETERMINED z=-2.7); forbidden-phrase guard at test layer (msg-deliberate-listing mask). PR `feat/g15-cretan-hieroglyphic`. 29 tests, 28 pass after STANCE rephrase. |
 | **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **merged PR #14** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
+| **G10++** | **Cursor** | Voynich plant pages × CCAT | ccat shape vs synthetic botany controls | 🟡 **landed scaffold** — `tools/scripts/voynich_botany_probe.py`; synthetic fixtures; Beinecke IIIF + POWO TODO |
+| **G9++** | **Cursor** | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | 🟡 **landed** — `tools/scripts/indus_west_negcontrol.py`; fixture West plaintext; real tables TODO |
+| **ATLAS** | **Cursor** | Language Entropy Atlas + anomaly schema | entropy_atlas + anomalies.json | 🟢 **seeded** — `data/catalog/entropy_atlas.json`, `anomaly_schema.json`, `atlas_query.py` |
 | **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
 | **G18** | queue | EAMENA ley-line null | spatial+network; GeoJSON subsets | ⬜ no-signal / FPR calib |
 | **G19** | queue | Long Delayed Echoes historic series | radio/FFT; digitized delays | ⬜ no-signal; Lunan CUT |
@@ -77,8 +80,9 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G12** | 🟢 merged PR #13 — LE SEQUENCE_STRUCTURE \| CLAIM_UNDERDETERMINED (+ format comparators). |
 | **G16** | 🟢 merged PR #14 — Meroitic STRUCTURE_SIGNAL. |
 | **Minimax M3** | 💤 idle. |
-| **Opencode** | 💤 idle (G16 done). |
-| **Cursor** | 🟢 merge gate on `main` — next assign from G13–G15 / G17–G20 |
+| **Opencode** | 🟡 **G13 VASCO** (CLI headless dispatch). |
+| **Freebuff** | 🟡 **G15 Cretan Hieroglyphic** (Terminal inject). |
+| **Cursor** | 🟢 merge gate on `main` — G14 / G17–G20 still queue |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -93,7 +97,28 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: none — G12/G16 landed. Next: G13 VASCO / G15 Cretan / G17–G20. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G13 Opencode**, **G15 Freebuff**. Next queue: G14 / G17–G20. |
+| **External dispatch** | Cursor/Auto may push prompts to OpenCode / Freebuff without manual copy-paste — see below. |
+
+### Dispatch prompts outside Cursor (OpenCode ↔ Freebuff)
+
+Stop copying mission prompts by hand. From repo root:
+
+```bash
+# Freebuff (interactive TUI — inject into Terminal.app Freebuff tab, or --spawn)
+./tools/scripts/freebuff-dispatch "Your mission prompt…"
+
+# OpenCode headless (background job → outputs/agent_dispatch/job_*.json)
+./tools/scripts/opencode-dispatch "Your mission prompt…"
+./tools/scripts/opencode-dispatch --wait "…"   # block until done
+
+# Unified + dry-run
+python tools/scripts/dispatch_external_agent.py --dry-run --backend auto "…"
+python tools/scripts/dispatch_external_agent.py status <job_id>
+python tools/scripts/dispatch_external_agent.py await <job_id>
+```
+
+Jobs land under `outputs/agent_dispatch/` (gitignored). Freebuff has no headless API — inject (default) uses clipboard + Terminal.app keystrokes; keep Freebuff frontmost or use `--spawn` / `--no-inject`.
 
 ---
 
@@ -109,6 +134,9 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 | Symbol sequences (scripts) | `tools/forensics/symbolseq.py` |
 | EXIF | `tools/ccat/exif_probe.py` |
 | Message registry | `tools/forensics/messages.py` |
+| Entropy atlas / anomalies | `data/catalog/entropy_atlas.json`, `anomalies.json`, `tools/scripts/atlas_query.py` |
+| Voynich botany (shape) | `tools/scripts/voynich_botany_probe.py` |
+| Indus West negcontrol | `tools/scripts/indus_west_negcontrol.py` |
 
 ---
 
@@ -346,10 +374,35 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 > 7. Branch `feat/g16-meroitic`. PR → Cursor merge. Stay on your branch; rebase on `main` before PR.
 > Forbidden: “Meroitic deciphered,” “translates to,” crank 99.5% claims, aliens, viral blogs as truth.
 
-### G13–G20 — remaining queue (do not start until Captain assigns)
-> **G13** VASCO transients — no-signal prior; plate-artifact nulls.  
+### G13 — Opencode CLI (🟡 ASSIGNED 2026-07-25) — VASCO optical transient clustering
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
+> Brief: [`docs/research_leads_anomalistics_2026-07-25.md`](docs/research_leads_anomalistics_2026-07-25.md) (G13).
+> Stub → promote: `tools/scripts/stubs/vasco_missing.py`. Reuse `tools/astro/`, `tools/ccat/spatial_report.py`.
+> Do NOT touch G15 (Freebuff), Voynich, radio, BLC1, Amazon, Meroitic.
+>
+> 1. Ingest Zenodo VASCO candidates `10.5281/zenodo.14563521` (CC-BY) → `data/astro/vasco/` + README.
+> 2. Probe `tools/scripts/vasco_probe.py` (replace stub): sky clustering + galactic-latitude tests.
+> 3. **Mandatory nulls:** plate-artifact / emulsion / scrambled-coord controls. Honest prior = **no-signal**.
+> 4. Outputs: `outputs/vasco/{run.json,NOTES.md}`. Verdict: NO_SIGNAL | UNDERDETERMINED | STRUCTURE_SIGNAL (rare).
+> 5. Tests ≥10. Branch `feat/g13-vasco`. PR → Cursor merge.
+> Forbidden: Dyson-sphere / ET claims that do not survive plate nulls.
+
+### G15 — Freebuff (🟡 ASSIGNED 2026-07-25) — Cretan Hieroglyphic bipartite admin
+> Repo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`. Stance: structure ≠ meaning.
+> Brief: [`docs/research_leads_anomalistics_2026-07-25.md`](docs/research_leads_anomalistics_2026-07-25.md) (G15).
+> Reuse `tools/forensics/symbolseq.py` (G1/G9/G11 stack). Linear A outputs = known-answer comparator only.
+> Do NOT touch G13 (Opencode), Voynich, Linear Elamite, radio, BLC1, Amazon.
+>
+> 1. Ingest CHIC machine-readable dumps (Zenodo/GitHub) → `data/scripts/cretan_hieroglyphic/` + README.
+> 2. Probe `tools/scripts/cretan_hieroglyphic_probe.py`: bipartite admin / network isomorphism tests.
+> 3. **Known-answer:** Linear A/B admin tablets isomorphism (structure comparator, not decipherment).
+> 4. **Negative:** unigram-matched shuffle; random bipartite same size.
+> 5. Outputs: `outputs/cretan_hieroglyphic/{run.json,NOTES.md}`. Verdict vocab: SEQUENCE_STRUCTURE | NO_SIGNAL | UNDERDETERMINED — never language ID.
+> 6. Tests ≥12. Branch `feat/g15-cretan-hieroglyphic`. PR → Cursor merge.
+> Forbidden: “deciphered,” phonetic claims, aliens, viral blogs as truth.
+
+### G14 / G17–G20 — remaining queue (do not start until Captain assigns)
 > **G14** Chankillo towers — DEM horizon + synthetic ridge null.  
-> **G15** Cretan Hieroglyphic bipartite admin — CHIC + Linear A/B KA.  
 > **G17** TESS SETI Ellipsoid (Cabrales 2024) — optical no-signal sharpen.  
 > **G18** EAMENA ley-line null — spatial FPR calibration (GeoJSON subsets).  
 > **G19** Long Delayed Echoes historic delays — no-signal; Lunan claim-under-test.  
