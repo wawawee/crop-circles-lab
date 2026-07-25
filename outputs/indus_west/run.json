@@ -1,0 +1,160 @@
+{
+  "stance": "Barbara West's Indus 'decipherment' is treated strictly as a claim-under-test. This probe compares entropy / IC / conditional-H profiles of Indus seals, West-style plaintext (fixture or real), and Tamil/Telugu baselines. It does NOT endorse West, identify Indus as Dravidian, or translate seals. STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py.",
+  "forbidden_phrases": [
+    "West deciphered",
+    "Indus is Tamil",
+    "Indus is Telugu",
+    "Indus is Dravidian",
+    "translates to",
+    "decodes as",
+    "aliens wrote"
+  ],
+  "profiles": [
+    {
+      "label": "indus_corpus_mohenjodaro",
+      "n_tokens": 1003,
+      "n_distinct": 182,
+      "unigram_entropy_bits": 6.286,
+      "conditional_bigram_entropy_bits": 2.758,
+      "index_of_coincidence": 0.0255,
+      "lz78_ratio": 0.5135,
+      "shuffled_control": {
+        "observed": 2.7577,
+        "shuffled_mean": 3.2669,
+        "shuffled_sd": 0.022,
+        "z": -23.13,
+        "more_structured_than_chance": true
+      }
+    },
+    {
+      "label": "west_claim_plaintext",
+      "n_tokens": 171,
+      "n_distinct": 126,
+      "unigram_entropy_bits": 6.788,
+      "conditional_bigram_entropy_bits": 0.507,
+      "index_of_coincidence": 0.005,
+      "lz78_ratio": 0.8304,
+      "shuffled_control": {
+        "observed": 0.5067,
+        "shuffled_mean": 0.6226,
+        "shuffled_sd": 0.0098,
+        "z": -11.86,
+        "more_structured_than_chance": true
+      }
+    },
+    {
+      "label": "tamil_letters",
+      "n_tokens": 70,
+      "n_distinct": 18,
+      "unigram_entropy_bits": 3.774,
+      "conditional_bigram_entropy_bits": 1.761,
+      "index_of_coincidence": 0.0737,
+      "lz78_ratio": 0.5857,
+      "shuffled_control": {
+        "observed": 1.7609,
+        "shuffled_mean": 2.0028,
+        "shuffled_sd": 0.073,
+        "z": -3.31,
+        "more_structured_than_chance": true
+      }
+    },
+    {
+      "label": "telugu_letters",
+      "n_tokens": 72,
+      "n_distinct": 23,
+      "unigram_entropy_bits": 4.155,
+      "conditional_bigram_entropy_bits": 1.582,
+      "index_of_coincidence": 0.0559,
+      "lz78_ratio": 0.6111,
+      "shuffled_control": {
+        "observed": 1.5822,
+        "shuffled_mean": 1.7978,
+        "shuffled_sd": 0.0632,
+        "z": -3.41,
+        "more_structured_than_chance": true
+      }
+    },
+    {
+      "label": "west_english_like_KA",
+      "n_tokens": 90,
+      "n_distinct": 27,
+      "unigram_entropy_bits": 4.348,
+      "conditional_bigram_entropy_bits": 1.628,
+      "index_of_coincidence": 0.0517,
+      "lz78_ratio": 0.6111,
+      "shuffled_control": {
+        "observed": 1.6283,
+        "shuffled_mean": 1.9134,
+        "shuffled_sd": 0.0612,
+        "z": -4.66,
+        "more_structured_than_chance": true
+      }
+    }
+  ],
+  "claim_under_test": {
+    "distance_west_to_indus": 2.0211,
+    "distance_west_to_lang_mean": 0.3992,
+    "distances_west_to_each_baseline": {
+      "tamil_letters": 0.4193,
+      "telugu_letters": 0.379
+    },
+    "feature_space": "h1_over_max, h2_over_h1, ioc_over_uniform, lz78_ratio",
+    "west_features": {
+      "h1_over_max": 0.9728719607676324,
+      "h2_over_h1": 0.07469063052445492,
+      "ioc_over_uniform": 0.63,
+      "lz78_ratio": 0.8304
+    },
+    "indus_features": {
+      "h1_over_max": 0.8372631779701474,
+      "h2_over_h1": 0.4387527839643653,
+      "ioc_over_uniform": 4.641,
+      "lz78_ratio": 0.5135
+    },
+    "verdict": "CLAIM_LOOKS_LANGUAGE_LIKE",
+    "note": "West stream sits closer to Dravidian letter baselines than to Indus seals (normalized metrics) \u2014 escalate for human review of the real West tables. Still NOT an endorsement of the decipherment."
+  },
+  "english_known_answer": {
+    "distance_west_to_indus": 1.6241,
+    "distance_west_to_lang_mean": 0.0572,
+    "distances_west_to_each_baseline": {
+      "tamil_letters": 0.0592,
+      "telugu_letters": 0.0552
+    },
+    "feature_space": "h1_over_max, h2_over_h1, ioc_over_uniform, lz78_ratio",
+    "west_features": {
+      "h1_over_max": 0.914427522842899,
+      "h2_over_h1": 0.37442502299908004,
+      "ioc_over_uniform": 1.3959000000000001,
+      "lz78_ratio": 0.6111
+    },
+    "indus_features": {
+      "h1_over_max": 0.8372631779701474,
+      "h2_over_h1": 0.4387527839643653,
+      "ioc_over_uniform": 4.641,
+      "lz78_ratio": 0.5135
+    },
+    "verdict": "CLAIM_LOOKS_LANGUAGE_LIKE",
+    "note": "West stream sits closer to Dravidian letter baselines than to Indus seals (normalized metrics) \u2014 escalate for human review of the real West tables. Still NOT an endorsement of the decipherment."
+  },
+  "verdict": "CLAIM_LOOKS_LANGUAGE_LIKE",
+  "west_path": "data/scripts/indus/west/west_plaintext_real.json",
+  "west_stream": "claim_plaintext",
+  "using_real_claim_file": true,
+  "data_note": "West source: /Users/perbrinell/Documents/TIN-STUDY/crop-circles/data/scripts/indus/west/west_plaintext_real.json (stream=claim_plaintext). Best-effort public claim sample \u2014 see DATA_SOURCES.md (Barbara West 2004 tables blocked / unobtainable). Indus: mayig CISI subset. Tamil/Telugu: short letter baselines.",
+  "tools_used": [
+    "symbolseq",
+    "indus_west_negcontrol"
+  ],
+  "negative_controls": [
+    "tamil_letters",
+    "telugu_letters",
+    "shuffled_control"
+  ],
+  "todos": [
+    "If authentic Barbara West 2004 tables surface: replace claim_plaintext in west_plaintext_real.json",
+    "Optionally add longer Tamil/Telugu corpora (CLDR / Project Madurai)",
+    "Compare West word-length distribution to English Zipf separately"
+  ],
+  "generated_at": "2026-07-25T18:26:40.204655+00:00"
+}

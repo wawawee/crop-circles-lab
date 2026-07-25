@@ -1,0 +1,15 @@
+{
+  "id": "job_20260725T185318_6663ff08",
+  "backend": "freebuff",
+  "status": "dry_run",
+  "prompt": "smoke freebuff dry-run",
+  "cwd": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles",
+  "created_at": "2026-07-25T18:53:18Z",
+  "updated_at": "2026-07-25T18:53:18Z",
+  "freebuff_pid": 28576,
+  "result_path": null,
+  "log_path": null,
+  "notes": [
+    "dry-run: no clipboard / inject / spawn"
+  ]
+}

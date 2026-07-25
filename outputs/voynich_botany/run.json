@@ -1,0 +1,430 @@
+{
+  "label": "voynich_botany_ccat",
+  "stance": "Voynich plant pages (~herbal section) are undeciphered illustrations. This probe measures *visual edge/shape structure* via CCAT and compares candidate pages to synthetic plant-like controls. It does NOT identify species, endorse New-World plant claims, or decipher the manuscript. STRUCTURE != MESSAGE.",
+  "forbidden_phrases": [
+    "is sunflower",
+    "is capsicum",
+    "New World plant proves",
+    "Voynich deciphered",
+    "species identified as",
+    "aliens drew"
+  ],
+  "n_plants": 16,
+  "n_controls": 5,
+  "plants": [
+    {
+      "id": "f11r",
+      "path": "data/scripts/voynich/plants/folios/f11r.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.08001,
+        "fractal_dim": 1.732,
+        "circles": 47,
+        "lines": 2098,
+        "intensity_std": 49.13,
+        "rot_best": 0.9846,
+        "mirror": 0.9763
+      }
+    },
+    {
+      "id": "f13v",
+      "path": "data/scripts/voynich/plants/folios/f13v.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.09966,
+        "fractal_dim": 1.8034,
+        "circles": 16,
+        "lines": 2533,
+        "intensity_std": 47.97,
+        "rot_best": 0.986,
+        "mirror": 0.9769
+      }
+    },
+    {
+      "id": "f16r",
+      "path": "data/scripts/voynich/plants/folios/f16r.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.07011,
+        "fractal_dim": 1.7099,
+        "circles": 16,
+        "lines": 1555,
+        "intensity_std": 50.56,
+        "rot_best": 0.9838,
+        "mirror": 0.9768
+      }
+    },
+    {
+      "id": "f17v",
+      "path": "data/scripts/voynich/plants/folios/f17v.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.07727,
+        "fractal_dim": 1.7388,
+        "circles": 0,
+        "lines": 1598,
+        "intensity_std": 46.15,
+        "rot_best": 0.9905,
+        "mirror": 0.9795
+      }
+    },
+    {
+      "id": "f20r",
+      "path": "data/scripts/voynich/plants/folios/f20r.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.07452,
+        "fractal_dim": 1.6729,
+        "circles": 1,
+        "lines": 1932,
+        "intensity_std": 51.1,
+        "rot_best": 0.9867,
+        "mirror": 0.9832
+      }
+    },
+    {
+      "id": "f25v",
+      "path": "data/scripts/voynich/plants/folios/f25v.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.07073,
+        "fractal_dim": 1.7107,
+        "circles": 0,
+        "lines": 1437,
+        "intensity_std": 47.77,
+        "rot_best": 0.9864,
+        "mirror": 0.9714
+      }
+    },
+    {
+      "id": "f2v",
+      "path": "data/scripts/voynich/plants/folios/f2v.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.06568,
+        "fractal_dim": 1.6777,
+        "circles": 0,
+        "lines": 1394,
+        "intensity_std": 44.35,
+        "rot_best": 0.9886,
+        "mirror": 0.9815
+      }
+    },
+    {
+      "id": "f33r",
+      "path": "data/scripts/voynich/plants/folios/f33r.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.0829,
+        "fractal_dim": 1.7399,
+        "circles": 4,
+        "lines": 1925,
+        "intensity_std": 52.12,
+        "rot_best": 0.9791,
+        "mirror": 0.9708
+      }
+    },
+    {
+      "id": "f3r",
+      "path": "data/scripts/voynich/plants/folios/f3r.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.08058,
+        "fractal_dim": 1.7446,
+        "circles": 56,
+        "lines": 2136,
+        "intensity_std": 51.1,
+        "rot_best": 0.9836,
+        "mirror": 0.9706
+      }
+    },
+    {
+      "id": "f41v",
+      "path": "data/scripts/voynich/plants/folios/f41v.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.08821,
+        "fractal_dim": 1.7691,
+        "circles": 22,
+        "lines": 2319,
+        "intensity_std": 51.24,
+        "rot_best": 0.9793,
+        "mirror": 0.9674
+      }
+    },
+    {
+      "id": "f49r",
+      "path": "data/scripts/voynich/plants/folios/f49r.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.08546,
+        "fractal_dim": 1.7441,
+        "circles": 0,
+        "lines": 1661,
+        "intensity_std": 54.11,
+        "rot_best": 0.9726,
+        "mirror": 0.9683
+      }
+    },
+    {
+      "id": "f4v",
+      "path": "data/scripts/voynich/plants/folios/f4v.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.06882,
+        "fractal_dim": 1.7213,
+        "circles": 5,
+        "lines": 1438,
+        "intensity_std": 45.24,
+        "rot_best": 0.9887,
+        "mirror": 0.9829
+      }
+    },
+    {
+      "id": "f5r",
+      "path": "data/scripts/voynich/plants/folios/f5r.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.07386,
+        "fractal_dim": 1.7246,
+        "circles": 1,
+        "lines": 1516,
+        "intensity_std": 46.14,
+        "rot_best": 0.9842,
+        "mirror": 0.9776
+      }
+    },
+    {
+      "id": "f6v",
+      "path": "data/scripts/voynich/plants/folios/f6v.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.07919,
+        "fractal_dim": 1.7404,
+        "circles": 2,
+        "lines": 1858,
+        "intensity_std": 45.82,
+        "rot_best": 0.9856,
+        "mirror": 0.9808
+      }
+    },
+    {
+      "id": "f8r",
+      "path": "data/scripts/voynich/plants/folios/f8r.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.06642,
+        "fractal_dim": 1.662,
+        "circles": 0,
+        "lines": 1403,
+        "intensity_std": 47.18,
+        "rot_best": 0.9865,
+        "mirror": 0.9777
+      }
+    },
+    {
+      "id": "f9v",
+      "path": "data/scripts/voynich/plants/folios/f9v.jpg",
+      "label": "voynich_or_synth_plant",
+      "features": {
+        "edge_ratio": 0.07724,
+        "fractal_dim": 1.7256,
+        "circles": 8,
+        "lines": 1882,
+        "intensity_std": 47.96,
+        "rot_best": 0.9892,
+        "mirror": 0.981
+      }
+    }
+  ],
+  "controls": [
+    {
+      "id": "achillea_millefolium_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/achillea_millefolium_thome.jpg",
+      "label": "botany_control",
+      "features": {
+        "edge_ratio": 0.1235,
+        "fractal_dim": 1.7951,
+        "circles": 867,
+        "lines": 4820,
+        "intensity_std": 67.95,
+        "rot_best": 0.9488,
+        "mirror": 0.9311
+      }
+    },
+    {
+      "id": "fagopyrum_esculentum_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/fagopyrum_esculentum_thome.jpg",
+      "label": "botany_control",
+      "features": {
+        "edge_ratio": 0.06622,
+        "fractal_dim": 1.6344,
+        "circles": 347,
+        "lines": 2590,
+        "intensity_std": 60.02,
+        "rot_best": 0.9742,
+        "mirror": 0.9719
+      }
+    },
+    {
+      "id": "phragmites_australis_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/phragmites_australis_thome.jpg",
+      "label": "botany_control",
+      "features": {
+        "edge_ratio": 0.11816,
+        "fractal_dim": 1.7808,
+        "circles": 657,
+        "lines": 4513,
+        "intensity_std": 61.05,
+        "rot_best": 0.959,
+        "mirror": 0.9499
+      }
+    },
+    {
+      "id": "taraxacum_officinale_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/taraxacum_officinale_thome.jpg",
+      "label": "botany_control",
+      "features": {
+        "edge_ratio": 0.13203,
+        "fractal_dim": 1.8144,
+        "circles": 547,
+        "lines": 5193,
+        "intensity_std": 67.18,
+        "rot_best": 0.9369,
+        "mirror": 0.9072
+      }
+    },
+    {
+      "id": "urtica_dioica_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/urtica_dioica_thome.jpg",
+      "label": "botany_control",
+      "features": {
+        "edge_ratio": 0.16685,
+        "fractal_dim": 1.8546,
+        "circles": 961,
+        "lines": 7251,
+        "intensity_std": 76.56,
+        "rot_best": 0.9277,
+        "mirror": 0.9213
+      }
+    }
+  ],
+  "matches": [
+    {
+      "plant_id": "f11r",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 4.87036,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f13v",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 5.38948,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f16r",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 4.23078,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f17v",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 6.20304,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f20r",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 3.98919,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f25v",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 5.47848,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f2v",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 7.00787,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f33r",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 3.53331,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f3r",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 3.98946,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f41v",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 3.92701,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f49r",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 2.6435,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f4v",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 6.60994,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f5r",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 6.20746,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f6v",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 6.35062,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f8r",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 5.74224,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    },
+    {
+      "plant_id": "f9v",
+      "nearest_control": "fagopyrum_esculentum_thome",
+      "distance": 5.39356,
+      "interpretation": "Relative shape distance only \u2014 not a species ID. Lower = more similar to synthetic 'realish' control silhouette."
+    }
+  ],
+  "metrics": {
+    "mean_distance_to_nearest_control": 5.09789,
+    "mean_pairwise_plant_distance": 1.4759,
+    "n_pairs_within": 120
+  },
+  "verdict": "SELF_SIMILAR_VS_CONTROLS",
+  "todos": [
+    "Crop illustration regions on Beinecke folios (exclude text / root labels)",
+    "Expand POWO/GBIF leaf/habit reference set under botany_controls/real/",
+    "Optional: wire --powo-search (Kew POWO API) \u2014 rate-limit + attribution required",
+    "Optional: Google Lens / reverse-image \u2014 commercial ToS; keep offline-first"
+  ],
+  "caveat": "Beinecke IIIF herbal folio sample (whole pages). Self-similarity among Voynich herbal drawings is expected for a single illustrator style; it is NOT a species match and NOT evidence of hoax vs botanical realism by itself. Beinecke IIIF pages (when used) are whole-folio scans \u2014 crop illustration regions for cleaner shape matching.",
+  "tools_used": [
+    "ccat.analyze_image",
+    "voynich_botany_probe"
+  ],
+  "generated_at": "2026-07-25T18:28:35.799603+00:00",
+  "plants_source": "data/scripts/voynich/plants/folios",
+  "controls_source": "data/scripts/voynich/plants/botany_controls/real"
+}

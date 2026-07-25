@@ -1,0 +1,162 @@
+{
+  "generated_for": "voynich_botany_probe",
+  "note": "Beinecke IIIF herbal folio sample + PD botanical controls when present.",
+  "iiif_manifest": "https://collections.library.yale.edu/manifests/2002046",
+  "catalog": "https://collections.library.yale.edu/catalog/2002046",
+  "plants": [
+    {
+      "folio_id": "f2v",
+      "path": "data/scripts/voynich/plants/folios/f2v.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006079/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f3r",
+      "path": "data/scripts/voynich/plants/folios/f3r.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006080/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f4v",
+      "path": "data/scripts/voynich/plants/folios/f4v.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006083/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f5r",
+      "path": "data/scripts/voynich/plants/folios/f5r.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006084/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f6v",
+      "path": "data/scripts/voynich/plants/folios/f6v.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006087/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f8r",
+      "path": "data/scripts/voynich/plants/folios/f8r.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006090/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f9v",
+      "path": "data/scripts/voynich/plants/folios/f9v.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006093/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f11r",
+      "path": "data/scripts/voynich/plants/folios/f11r.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006096/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f13v",
+      "path": "data/scripts/voynich/plants/folios/f13v.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006099/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f16r",
+      "path": "data/scripts/voynich/plants/folios/f16r.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006104/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f17v",
+      "path": "data/scripts/voynich/plants/folios/f17v.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006107/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f20r",
+      "path": "data/scripts/voynich/plants/folios/f20r.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006112/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f25v",
+      "path": "data/scripts/voynich/plants/folios/f25v.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006123/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f33r",
+      "path": "data/scripts/voynich/plants/folios/f33r.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006138/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f41v",
+      "path": "data/scripts/voynich/plants/folios/f41v.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006155/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    },
+    {
+      "folio_id": "f49r",
+      "path": "data/scripts/voynich/plants/folios/f49r.jpg",
+      "source_iiif": "https://collections.library.yale.edu/iiif/2/1006170/full/900,/0/default.jpg",
+      "attribution": "Beinecke Rare Book & Manuscript Library, Yale University \u2014 MS 408 (Cipher / Voynich Manuscript). Public-domain manuscript images via Yale IIIF."
+    }
+  ],
+  "controls": [
+    {
+      "id": "phragmites_australis_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/phragmites_australis_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Illustration_Phragmites_australis0.jpg/960px-Illustration_Phragmites_australis0.jpg",
+      "commons": "File:Illustration_Phragmites_australis0.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Illustration_Phragmites_australis0.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9, Flora von Deutschland, \u00d6sterreich und der Schweiz (1885) \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)",
+      "kind": "pd_botanical_plate"
+    },
+    {
+      "id": "fagopyrum_esculentum_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/fagopyrum_esculentum_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Illustration_Fagopyrum_esculentum0_clean.jpg/960px-Illustration_Fagopyrum_esculentum0_clean.jpg",
+      "commons": "File:Illustration_Fagopyrum_esculentum0_clean.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Illustration_Fagopyrum_esculentum0_clean.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9, Flora von Deutschland, \u00d6sterreich und der Schweiz (1885) \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)",
+      "kind": "pd_botanical_plate"
+    },
+    {
+      "id": "achillea_millefolium_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/achillea_millefolium_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Illustration_Achillea_millefolium0.jpg/960px-Illustration_Achillea_millefolium0.jpg",
+      "commons": "File:Illustration_Achillea_millefolium0.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Illustration_Achillea_millefolium0.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9, Flora von Deutschland, \u00d6sterreich und der Schweiz (1885) \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)",
+      "kind": "pd_botanical_plate"
+    },
+    {
+      "id": "urtica_dioica_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/urtica_dioica_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Illustration_Urtica_dioica0.jpg/960px-Illustration_Urtica_dioica0.jpg",
+      "commons": "File:Illustration_Urtica_dioica0.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Illustration_Urtica_dioica0.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9 Flora 1885 \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)",
+      "kind": "pd_botanical_plate"
+    },
+    {
+      "id": "taraxacum_officinale_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/taraxacum_officinale_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Illustration_Taraxacum_officinale0.jpg/960px-Illustration_Taraxacum_officinale0.jpg",
+      "commons": "File:Illustration_Taraxacum_officinale0.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Illustration_Taraxacum_officinale0.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9 Flora 1885 \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)",
+      "kind": "pd_botanical_plate"
+    }
+  ],
+  "todos": [
+    "Crop illustration regions on Beinecke folios (exclude text / root labels)",
+    "Expand POWO/GBIF leaf/habit reference set under botany_controls/real/",
+    "Optional: wire --powo-search (Kew POWO API) \u2014 rate-limit + attribution required",
+    "Optional: Google Lens / reverse-image \u2014 commercial ToS; keep offline-first"
+  ]
+}

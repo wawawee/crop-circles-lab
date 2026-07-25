@@ -1,0 +1,19 @@
+{
+  "id": "job_20260725T191101_1775891c",
+  "backend": "freebuff",
+  "status": "dispatched",
+  "prompt": "# Mission G15 — Cretan Hieroglyphic bipartite admin (ASSIGNED to Freebuff)\n\nYou are **Freebuff** on the crop-circles-lab (ANOMALISTIK). Stance: **structure ≠ meaning**. Measure → control → report. No decipherment claims.\n\nRepo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`\nBoard: `MISSION_BOARD.md` (your row: G15). Brief: `docs/research_leads_anomalistics_2026-07-25.md` (G15).\nReuse: `tools/forensics/symbolseq.py` (same stack as G1/G9/G11). Linear A under `outputs/linear_a/` = known-answer comparator only.\n\n## Do NOT touch\nG13 (Opencode/VASCO), Voynich, Linear Elamite, radio, BLC1, Amazon, Meroitic, other agents' open PRs.\n\n## Deliver\n1. Ingest **CHIC** machine-readable dumps (Zenodo/GitHub) → `data/scripts/cretan_hieroglyphic/` + README (attribution + license).\n2. Probe `tools/scripts/cretan_hieroglyphic_probe.py`: bipartite admin / network isomorphism tests.\n3. **Known-answer:** Linear A/B admin tablets isomorphism (structure comparator, not decipherment).\n4. **Negative:** unigram-matched shuffle; random bipartite same size.\n5. Outputs: `outputs/cretan_hieroglyphic/{run.json,NOTES.md}`.\n   Verdict vocab: SEQUENCE_STRUCTURE | NO_SIGNAL | UNDERDETERMINED — never language ID.\n6. Tests ≥12 under `tools/scripts/tests/test_cretan_hieroglyphic_probe.py`. Forbidden-phrase guard.\n7. Branch `feat/g15-cretan-hieroglyphic`. Open PR → Cursor merges. Update **only** your G15 board row when landed.\n8. Surgical edits to hot files (`MISSION_BOARD.md`); rebase on `main` before PR — never overwrite.\n\n## Forbidden\n\"deciphered,\" phonetic/language claims, aliens, viral blogs as truth.\n\nStart now. Work until PR is ready or you are honestly BLOCKED (document in NOTES.md).",
+  "cwd": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles",
+  "created_at": "2026-07-25T19:11:01Z",
+  "updated_at": "2026-07-25T19:11:02Z",
+  "freebuff_pid": 28576,
+  "result_path": null,
+  "log_path": null,
+  "notes": [],
+  "prompt_file": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/outputs/agent_dispatch/job_20260725T191101_1775891c.prompt.md",
+  "inject": {
+    "ok": true,
+    "clipboard": true,
+    "injected": true
+  }
+}

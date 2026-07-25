@@ -1,0 +1,50 @@
+{
+  "note": "PD botanical plates for CCAT controls (not species ID)",
+  "controls": [
+    {
+      "id": "phragmites_australis_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/phragmites_australis_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Illustration_Phragmites_australis0.jpg/960px-Illustration_Phragmites_australis0.jpg",
+      "commons": "File:Illustration_Phragmites_australis0.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Illustration_Phragmites_australis0.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9, Flora von Deutschland, \u00d6sterreich und der Schweiz (1885) \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)"
+    },
+    {
+      "id": "fagopyrum_esculentum_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/fagopyrum_esculentum_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Illustration_Fagopyrum_esculentum0_clean.jpg/960px-Illustration_Fagopyrum_esculentum0_clean.jpg",
+      "commons": "File:Illustration_Fagopyrum_esculentum0_clean.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Illustration_Fagopyrum_esculentum0_clean.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9, Flora von Deutschland, \u00d6sterreich und der Schweiz (1885) \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)"
+    },
+    {
+      "id": "achillea_millefolium_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/achillea_millefolium_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Illustration_Achillea_millefolium0.jpg/960px-Illustration_Achillea_millefolium0.jpg",
+      "commons": "File:Illustration_Achillea_millefolium0.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Illustration_Achillea_millefolium0.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9, Flora von Deutschland, \u00d6sterreich und der Schweiz (1885) \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)"
+    },
+    {
+      "id": "urtica_dioica_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/urtica_dioica_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Illustration_Urtica_dioica0.jpg/960px-Illustration_Urtica_dioica0.jpg",
+      "commons": "File:Illustration_Urtica_dioica0.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Illustration_Urtica_dioica0.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9 Flora 1885 \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)"
+    },
+    {
+      "id": "taraxacum_officinale_thome",
+      "path": "data/scripts/voynich/plants/botany_controls/real/taraxacum_officinale_thome.jpg",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Illustration_Taraxacum_officinale0.jpg/960px-Illustration_Taraxacum_officinale0.jpg",
+      "commons": "File:Illustration_Taraxacum_officinale0.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Illustration_Taraxacum_officinale0.jpg",
+      "attribution": "Otto Wilhelm Thom\u00e9 Flora 1885 \u2014 public domain",
+      "license": "Public domain (PD-old / PD-Art)"
+    }
+  ]
+}

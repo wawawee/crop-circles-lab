@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Cursor-facing shortcut: dispatch a prompt to Freebuff (or OpenCode via flags).
+# Usage:
+#   freebuff-dispatch "Investigate X…"
+#   freebuff-dispatch --backend opencode --wait "…"
+#   freebuff-dispatch --spawn "…"          # new Terminal tab
+#   freebuff-dispatch --no-inject "…"      # clipboard + queue only
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+export DISPATCH_DEFAULT_BACKEND="${DISPATCH_DEFAULT_BACKEND:-freebuff}"
+# Default this wrapper to freebuff unless caller already passed --backend.
+has_backend=0
+for arg in "$@"; do
+  if [[ "$arg" == "--backend" || "$arg" == --backend=* ]]; then
+    has_backend=1
+    break
+  fi
+done
+if [[ $has_backend -eq 0 ]]; then
+  exec python3 "$ROOT/tools/scripts/dispatch_external_agent.py" --backend freebuff "$@"
+else
+  exec python3 "$ROOT/tools/scripts/dispatch_external_agent.py" "$@"
+fi

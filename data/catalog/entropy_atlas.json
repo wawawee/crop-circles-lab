@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "generated_note": "Language Entropy Atlas \u2014 Hecklefish Kimi proposal #4. Seeded from existing probe outputs + reference baselines. STRUCTURE != MESSAGE.",
+  "columns": [
+    "id",
+    "domain",
+    "N",
+    "H1",
+    "H2",
+    "IC",
+    "z_vs_shuffle",
+    "status",
+    "source"
+  ],
+  "entries": [
+    {
+      "id": "english_letters_ref",
+      "domain": "script",
+      "N": 1000000,
+      "H1": 4.7,
+      "H2": 3.2,
+      "IC": 0.065,
+      "z_vs_shuffle": null,
+      "status": "known_language_reference",
+      "source": "textbook Shannon / English letter stats (approx)",
+      "notes": "Reference only \u2014 not from this lab's corpus."
+    },
+    {
+      "id": "sars_cov2_symbols",
+      "domain": "bio",
+      "N": 4000,
+      "H1": 1.9709,
+      "H2": null,
+      "IC": null,
+      "z_vs_shuffle": 0.0,
+      "status": "biology_not_message",
+      "source": "outputs/bio/sars_run.json",
+      "notes": "ACGT symbol entropy; shuffle \u0394\u22480 by construction for whole-seq H1."
+    },
+    {
+      "id": "phaistos",
+      "domain": "script",
+      "N": 241,
+      "H1": 4.988,
+      "H2": 2.072,
+      "IC": 0.0361,
+      "z_vs_shuffle": -13.89,
+      "status": "structure_confirmed_message_unknown",
+      "source": "outputs/phaistos_analysis.json"
+    },
+    {
+      "id": "linear_a",
+      "domain": "script",
+      "N": 5104,
+      "H1": 6.006,
+      "H2": 4.128,
+      "IC": 0.024,
+      "z_vs_shuffle": -73.34,
+      "status": "structure_signal",
+      "source": "outputs/linear_a/run.json"
+    },
+    {
+      "id": "linear_b_ka",
+      "domain": "script",
+      "N": 1520,
+      "H1": 5.526,
+      "H2": 4.195,
+      "IC": 0.0264,
+      "z_vs_shuffle": -3.29,
+      "status": "known_language_reference",
+      "source": "outputs/linear_a/run.json (Linear B control)"
+    },
+    {
+      "id": "indus_mohenjodaro",
+      "domain": "script",
+      "N": 1003,
+      "H1": 6.286,
+      "H2": 2.758,
+      "IC": 0.0255,
+      "z_vs_shuffle": -22.94,
+      "status": "structure_signal",
+      "source": "outputs/indus/run.json"
+    },
+    {
+      "id": "voynich_char",
+      "domain": "script",
+      "N": 193858,
+      "H1": 3.899,
+      "H2": 2.362,
+      "IC": 0.0765,
+      "z_vs_shuffle": -8259.21,
+      "status": "structure_signal",
+      "source": "outputs/voynich/run.json (char stream)"
+    },
+    {
+      "id": "voynich_glyph",
+      "domain": "script",
+      "N": 163391,
+      "H1": 3.95,
+      "H2": 2.718,
+      "IC": 0.0829,
+      "z_vs_shuffle": -6448.69,
+      "status": "structure_signal",
+      "source": "outputs/voynich/run.json (glyph stream)"
+    },
+    {
+      "id": "voynich_word",
+      "domain": "script",
+      "N": 35498,
+      "H1": 10.873,
+      "H2": 3.95,
+      "IC": 0.0025,
+      "z_vs_shuffle": -55.83,
+      "status": "structure_signal",
+      "source": "outputs/voynich/run.json (word stream)"
+    },
+    {
+      "id": "rongorongo_af",
+      "domain": "script",
+      "N": 5279,
+      "H1": 8.094,
+      "H2": 3.546,
+      "IC": 0.0098,
+      "z_vs_shuffle": -42.92,
+      "status": "structure_signal",
+      "source": "outputs/rongorongo/run.json",
+      "notes": "Full H1/H2 in full_corpus_analysis; z from NOTES / interpretation."
+    },
+    {
+      "id": "meroitic_ramses",
+      "domain": "script",
+      "N": 755335,
+      "H1": 7.66,
+      "H2": 1.497,
+      "IC": 0.0168,
+      "z_vs_shuffle": -11336.3,
+      "status": "structure_signal",
+      "source": "outputs/meroitic/run.json"
+    },
+    {
+      "id": "cypro_minoan",
+      "domain": "script",
+      "N": 2848,
+      "H1": 5.656,
+      "H2": 4.032,
+      "IC": 0.0438,
+      "z_vs_shuffle": -28.95,
+      "status": "structure_signal",
+      "source": "outputs/cypro_minoan/run.json",
+      "notes": "Populate H1/H2 from groups[0] on next atlas refresh."
+    },
+    {
+      "id": "indus_west_claim_jlwest2026",
+      "domain": "script",
+      "N": 171,
+      "H1": 6.788,
+      "H2": 0.507,
+      "IC": 0.005,
+      "z_vs_shuffle": -11.86,
+      "status": "claim_under_test",
+      "source": "outputs/indus_west/run.json",
+      "notes": "JL West 2026 fair-use English gloss tokens (not Barbara West 2004). Verdict CLAIM_LOOKS_LANGUAGE_LIKE."
+    },
+    {
+      "id": "tamil_letters",
+      "domain": "script",
+      "N": 70,
+      "H1": 3.774,
+      "H2": 1.761,
+      "IC": 0.0737,
+      "z_vs_shuffle": -3.31,
+      "status": "known_language_reference",
+      "source": "outputs/indus_west/run.json",
+      "notes": "Short letter baseline for West negcontrol."
+    },
+    {
+      "id": "telugu_letters",
+      "domain": "script",
+      "N": 72,
+      "H1": 4.155,
+      "H2": 1.582,
+      "IC": 0.0559,
+      "z_vs_shuffle": -3.41,
+      "status": "known_language_reference",
+      "source": "outputs/indus_west/run.json",
+      "notes": "Short letter baseline for West negcontrol."
+    }
+  ]
+}

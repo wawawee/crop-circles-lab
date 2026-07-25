@@ -1,0 +1,19 @@
+{
+  "id": "job_20260725T200153_9311b260",
+  "backend": "freebuff",
+  "status": "dispatched",
+  "prompt": "# Mission G18 — EAMENA ley-line null (ASSIGNED to Freebuff / DeepSeek v4 flash)\n\nYou are **Freebuff** on crop-circles-lab (ANOMALISTIK). Model: DeepSeek v4 flash. Stance: **structure ≠ meaning**. Measure → control → report. Honest prior = **no-signal** (chance-alignment FPR calibration).\n\n**Context (leave alone):**\n- G15 Cretan → PR #15\n- G13 VASCO → PR #16 (Opencode)\n- G14 Chankillo → PR #17 (your previous — do NOT reopen)\n\nRepo: `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`\nBrief: `docs/research_leads_kimi_2026-07-25.md` (G18) + board row G18.\nReuse: `tools/ccat/spatial_report.py`, Amazon Mode A / Gorafe spatial null patterns if present. GeoJSON subsets first — **not** full 338k dump day-one.\n\n## Do NOT touch\nG13/G14/G15 branches & PRs, Voynich, radio, BLC1, Amazon reopen, Meroitic, Linear Elamite.\n\n## Git hygiene\n1. `git fetch origin && git checkout main && git pull && git checkout -b feat/g18-eamena-ley-null`\n2. Surgical board row for **G18 only**.\n3. Rebase on `main` before PR. Cursor merges.\n\n## Deliver\n1. Ingest a **small** EAMENA GeoJSON subset (document provenance + license in `data/geo/eamena/README.md`). If bulk dump blocked: synthetic site cloud with known CSR geometry + honest BLOCKED note for full corpus.\n2. Probe `tools/scripts/eamena_ley_null.py`: nearest-neighbor / alignment / “ley” line false-positive rate vs CSR / scrambled-coord nulls.\n3. **Mandatory:** report chance-alignment FPR; if “leys” do not beat null → **NO_SIGNAL**.\n4. Outputs: `outputs/eamena/{run.json,NOTES.md}`.\n   Verdict: NO_SIGNAL | UNDERDETERMINED | STRUCTURE_SIGNAL (rare; must survive nulls).\n5. Tests ≥12 under `tools/scripts/tests/test_eamena_ley_null.py`. Forbidden-phrase guard (no “ancient highways,” “ET corridors,” “proves ley network”).\n6. Branch `feat/g18-eamena-ley-null`. Open PR → Cursor.\n\n## Forbidden\nAliens, ley-line mysticism as truth, silent fabrication of EAMENA features, full 338k ingest without subset discipline.\n\nStart now. Work until PR ready or honest BLOCKED in NOTES.md.",
+  "cwd": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles",
+  "created_at": "2026-07-25T20:01:53Z",
+  "updated_at": "2026-07-25T20:01:54Z",
+  "freebuff_pid": 28576,
+  "result_path": null,
+  "log_path": null,
+  "notes": [],
+  "prompt_file": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/outputs/agent_dispatch/job_20260725T200153_9311b260.prompt.md",
+  "inject": {
+    "ok": true,
+    "clipboard": true,
+    "injected": true
+  }
+}

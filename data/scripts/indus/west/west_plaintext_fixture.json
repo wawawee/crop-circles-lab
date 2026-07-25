@@ -1,0 +1,696 @@
+{
+  "label": "west_plaintext_fixture",
+  "stance": "SYNTHETIC claim-shaped fixture — NOT authentic Barbara West OCR. recode_like is a 1:1 gloss remapping of real Indus sequences (structure-preserving) so the negcontrol known-answer is 'looks like recode'.",
+  "source": "lab fixture 2026-07-25 — remapped from mayig Indus corpus",
+  "sign_to_gloss_sample": {
+    "P324": "lord",
+    "P122": "of",
+    "P385": "animals",
+    "P086": "seal",
+    "P050": "mark",
+    "P145": "tribute",
+    "P230": "grain",
+    "P120": "city",
+    "P062": "copper",
+    "P060": "water",
+    "P316": "bull",
+    "P000": "fish"
+  },
+  "streams": {
+    "recode_like": {
+      "note": "Structure-preserving remapping of Indus seals → English gloss tokens. Entropy shape should track Indus, not open language.",
+      "sequences": {
+        "W000": [
+          "boat",
+          "wall",
+          "animals",
+          "priest",
+          "x"
+        ],
+        "W001": [
+          "x",
+          "tribute",
+          "x"
+        ],
+        "W002": [
+          "arrow",
+          "x",
+          "bird",
+          "bull",
+          "house",
+          "of",
+          "x",
+          "gate",
+          "gate",
+          "bird"
+        ],
+        "W003": [
+          "lord",
+          "x",
+          "copper",
+          "water",
+          "city",
+          "field"
+        ],
+        "W004": [
+          "man",
+          "x",
+          "x",
+          "x"
+        ],
+        "W005": [
+          "seal",
+          "x",
+          "spear",
+          "lord",
+          "star",
+          "x",
+          "star",
+          "goat",
+          "copper",
+          "of",
+          "animals"
+        ],
+        "W006": [
+          "bull",
+          "spear",
+          "x"
+        ],
+        "W007": [
+          "child",
+          "arrow",
+          "x"
+        ],
+        "W008": [
+          "seal",
+          "x",
+          "x",
+          "x",
+          "bull",
+          "water",
+          "woman",
+          "of",
+          "x",
+          "x"
+        ],
+        "W009": [
+          "lord",
+          "seal",
+          "barley",
+          "tree",
+          "of",
+          "wall",
+          "x",
+          "x",
+          "x"
+        ],
+        "W010": [
+          "wall",
+          "arrow",
+          "x"
+        ],
+        "W011": [
+          "lord",
+          "x",
+          "x",
+          "of",
+          "animals"
+        ],
+        "W012": [
+          "king",
+          "lord",
+          "ox",
+          "of",
+          "animals"
+        ],
+        "W013": [
+          "man",
+          "x",
+          "x",
+          "x"
+        ],
+        "W014": [
+          "seal",
+          "wheat",
+          "of",
+          "x",
+          "x"
+        ],
+        "W015": [
+          "x",
+          "lord",
+          "x"
+        ],
+        "W016": [
+          "fish",
+          "of",
+          "animals"
+        ],
+        "W017": [
+          "seal",
+          "x",
+          "of",
+          "animals",
+          "bird",
+          "bird",
+          "cloth",
+          "x"
+        ],
+        "W018": [
+          "x",
+          "boat",
+          "lord",
+          "x",
+          "field",
+          "tribute",
+          "of",
+          "animals"
+        ],
+        "W019": [
+          "lord",
+          "x",
+          "ox",
+          "mark",
+          "tribute",
+          "grain",
+          "fish"
+        ],
+        "W020": [
+          "lord",
+          "x",
+          "city",
+          "field",
+          "jar",
+          "mark",
+          "water",
+          "boat",
+          "bead",
+          "x",
+          "x",
+          "pot",
+          "wall"
+        ],
+        "W021": [
+          "king",
+          "lord",
+          "copper",
+          "water",
+          "of",
+          "x",
+          "spear"
+        ],
+        "W022": [
+          "gate",
+          "gate",
+          "mark",
+          "bull",
+          "barley"
+        ],
+        "W023": [
+          "king",
+          "lord",
+          "x",
+          "city",
+          "field"
+        ],
+        "W024": [
+          "x",
+          "water",
+          "woman",
+          "sun",
+          "x",
+          "star",
+          "moon"
+        ],
+        "W025": [
+          "fish",
+          "x",
+          "lord",
+          "road",
+          "fire",
+          "x",
+          "of",
+          "animals"
+        ],
+        "W026": [
+          "lord",
+          "x",
+          "copper",
+          "water",
+          "woman",
+          "of",
+          "mark",
+          "x",
+          "x"
+        ],
+        "W027": [
+          "lord",
+          "road",
+          "x",
+          "x",
+          "copper",
+          "water",
+          "woman"
+        ],
+        "W028": [
+          "lord",
+          "x",
+          "x",
+          "tree",
+          "city",
+          "man"
+        ],
+        "W029": [
+          "seal",
+          "moon",
+          "of",
+          "animals"
+        ],
+        "W030": [
+          "lord",
+          "tribute",
+          "goat",
+          "x",
+          "tree",
+          "of",
+          "x"
+        ],
+        "W031": [
+          "lord",
+          "x",
+          "ox",
+          "of",
+          "seal",
+          "x",
+          "x"
+        ],
+        "W032": [
+          "lord",
+          "seal",
+          "barley",
+          "tree",
+          "house",
+          "of",
+          "x"
+        ],
+        "W033": [
+          "lord",
+          "x",
+          "x",
+          "mark",
+          "tribute",
+          "of",
+          "wall",
+          "x",
+          "x"
+        ],
+        "W034": [
+          "jar",
+          "mark",
+          "sign"
+        ],
+        "W035": [
+          "lord",
+          "field",
+          "x",
+          "priest",
+          "mark",
+          "tribute",
+          "copper",
+          "water",
+          "of",
+          "seal",
+          "x",
+          "x",
+          "tribute"
+        ],
+        "W036": [
+          "fish",
+          "bull",
+          "copper",
+          "water",
+          "x",
+          "x",
+          "x"
+        ],
+        "W037": [
+          "x",
+          "of",
+          "x",
+          "x",
+          "x"
+        ],
+        "W038": [
+          "lord",
+          "x",
+          "copper",
+          "water",
+          "of",
+          "seal",
+          "x",
+          "man"
+        ],
+        "W039": [
+          "x",
+          "grain",
+          "copper",
+          "of",
+          "animals"
+        ],
+        "W040": [
+          "lord",
+          "grain",
+          "house",
+          "of",
+          "x",
+          "x"
+        ],
+        "W041": [
+          "lord",
+          "road",
+          "bird",
+          "bull",
+          "woman",
+          "of",
+          "star",
+          "x"
+        ],
+        "W042": [
+          "gate",
+          "gate",
+          "x",
+          "x",
+          "arrow",
+          "fire",
+          "tribute"
+        ],
+        "W043": [
+          "lord",
+          "grain",
+          "copper",
+          "water",
+          "of",
+          "mark",
+          "x",
+          "x"
+        ],
+        "W044": [
+          "lord",
+          "road",
+          "water",
+          "of",
+          "animals"
+        ],
+        "W045": [
+          "seal",
+          "man",
+          "cloth",
+          "city",
+          "wall",
+          "star"
+        ],
+        "W046": [
+          "fish",
+          "grain",
+          "copper",
+          "mark",
+          "tribute",
+          "of",
+          "arrow",
+          "x",
+          "tribute",
+          "pot"
+        ],
+        "W047": [
+          "lord",
+          "x",
+          "x",
+          "bird",
+          "bull",
+          "copper",
+          "grain",
+          "of",
+          "fish"
+        ],
+        "W048": [
+          "lord",
+          "grain",
+          "cloth",
+          "x",
+          "water",
+          "lord",
+          "seal",
+          "spear"
+        ],
+        "W049": [
+          "lord",
+          "x",
+          "tribute",
+          "mark",
+          "sign",
+          "water",
+          "woman",
+          "of",
+          "x",
+          "x"
+        ],
+        "W050": [
+          "king",
+          "lord",
+          "mark",
+          "wheat",
+          "of",
+          "arrow",
+          "pot",
+          "star",
+          "spear"
+        ],
+        "W051": [
+          "x",
+          "copper",
+          "bird",
+          "bull",
+          "grain",
+          "of",
+          "man"
+        ],
+        "W052": [
+          "fish",
+          "road",
+          "cloth",
+          "x",
+          "boat",
+          "field"
+        ],
+        "W053": [
+          "lord",
+          "x",
+          "tribute",
+          "water",
+          "city",
+          "grain",
+          "x",
+          "fire"
+        ],
+        "W054": [
+          "x",
+          "tribute",
+          "house",
+          "grain",
+          "of",
+          "x"
+        ],
+        "W055": [
+          "lord",
+          "cloth",
+          "x",
+          "of",
+          "animals"
+        ],
+        "W056": [
+          "wall",
+          "moon",
+          "x",
+          "city",
+          "bead"
+        ],
+        "W057": [
+          "x",
+          "fish"
+        ],
+        "W058": [
+          "lord",
+          "x",
+          "house",
+          "mark",
+          "x",
+          "gate",
+          "x"
+        ],
+        "W059": [
+          "x",
+          "of",
+          "sun",
+          "grain",
+          "x",
+          "x"
+        ],
+        "W060": [
+          "x",
+          "grain",
+          "city",
+          "grain"
+        ],
+        "W061": [
+          "jar",
+          "bird",
+          "bull",
+          "city",
+          "mark",
+          "x"
+        ],
+        "W062": [
+          "jar",
+          "mark",
+          "child",
+          "boat",
+          "bull",
+          "x"
+        ],
+        "W063": [
+          "seal",
+          "barley",
+          "water",
+          "of",
+          "x",
+          "x",
+          "x",
+          "lord"
+        ],
+        "W064": [
+          "lord",
+          "x",
+          "star",
+          "city",
+          "x",
+          "x",
+          "x"
+        ],
+        "W065": [
+          "king",
+          "lord",
+          "ox",
+          "x",
+          "city",
+          "bead",
+          "x",
+          "x"
+        ],
+        "W066": [
+          "lord",
+          "woman",
+          "house",
+          "city",
+          "field"
+        ],
+        "W067": [
+          "x",
+          "tribute",
+          "of",
+          "seal",
+          "field"
+        ],
+        "W068": [
+          "x",
+          "x",
+          "x",
+          "of",
+          "seal",
+          "x"
+        ],
+        "W069": [
+          "lord",
+          "priest",
+          "bull",
+          "spear",
+          "x",
+          "animals"
+        ],
+        "W070": [
+          "x",
+          "jar",
+          "x",
+          "fish"
+        ],
+        "W071": [
+          "x",
+          "x",
+          "bull",
+          "spear"
+        ],
+        "W072": [
+          "jar",
+          "mark",
+          "x",
+          "of",
+          "animals"
+        ],
+        "W073": [
+          "x",
+          "seal",
+          "woman",
+          "of",
+          "animals"
+        ],
+        "W074": [
+          "lord",
+          "x",
+          "tribute",
+          "x"
+        ],
+        "W075": [
+          "lord",
+          "x",
+          "copper",
+          "tree",
+          "of",
+          "animals",
+          "x"
+        ],
+        "W076": [
+          "x",
+          "moon",
+          "city",
+          "wall",
+          "animals"
+        ],
+        "W077": [
+          "x",
+          "grain",
+          "copper",
+          "of",
+          "gate",
+          "gate",
+          "jar"
+        ],
+        "W078": [
+          "lord",
+          "x",
+          "of",
+          "x",
+          "grain",
+          "seal"
+        ],
+        "W079": [
+          "seal",
+          "x",
+          "x"
+        ]
+      }
+    },
+    "english_like": {
+      "note": "Natural English letter stream — known-answer baseline for 'reads as language'.",
+      "text": "The quick brown fox jumps over the lazy dog near the riverbank while traders count grain and copper and seal their goods for the long road south. Merchants gather at the city gate with baskets of barley wheat and beads."
+    }
+  }
+}

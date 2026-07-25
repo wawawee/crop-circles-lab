@@ -1,0 +1,247 @@
+{
+  "label": "west_plaintext_real",
+  "stance": "BEST-EFFORT public claim sample — NOT Barbara West 2004 (unobtainable online). Fair-use excerpts of Jennifer Leigh West (2026) published seal→English gloss readings. Claim-under-test only. STRUCTURE != MESSAGE.",
+  "provenance": {
+    "barbara_west_2004": {
+      "status": "BLOCKED",
+      "reason": "No freely available digitized seal→gloss table attributable to 'Barbara West' (2004) found on Archive.org, OpenLibrary, Zenodo, or open web as of 2026-07-25. Do not invent fake West glosses."
+    },
+    "source_used": {
+      "author": "Jennifer Leigh West",
+      "title": "The Acoustic-Metallurgical Hypothesis for Indus Script Decipherment",
+      "year": 2026,
+      "doi": "10.5281/zenodo.19322139",
+      "url": "https://zenodo.org/records/19322139",
+      "license_note": "Fair-use academic excerpt of published seal readings / English gloss phrases only; not a bulk OCR dump of the PDF.",
+      "accessed": "2026-07-25"
+    }
+  },
+  "streams": {
+    "claim_plaintext": {
+      "note": "Tokenized English gloss phrases from JL West seal-by-seal readings (sections 3.1–3.5). Formulaic metallurgical claim language — entropy probe compares to Indus seals vs Tamil/Telugu.",
+      "sequences": {
+        "H97_T49E_unicorn": [
+          "two",
+          "parts",
+          "tin",
+          "cutting",
+          "grade",
+          "three",
+          "units",
+          "verified"
+        ],
+        "H_7fish_unicorn": [
+          "seven",
+          "to",
+          "one",
+          "ratio",
+          "one",
+          "unit",
+          "verified"
+        ],
+        "alloy_cu_sn_a": [
+          "copper",
+          "tin",
+          "alloy",
+          "eighty",
+          "seven",
+          "thirteen"
+        ],
+        "alloy_cu_sn_b": [
+          "copper",
+          "tin",
+          "alloy",
+          "eighty",
+          "seven",
+          "point",
+          "five",
+          "twelve",
+          "point",
+          "five"
+        ],
+        "signclass_strokes": [
+          "stroke",
+          "marks",
+          "numerical",
+          "ratio",
+          "parts",
+          "alloying",
+          "element"
+        ],
+        "signclass_arrow": [
+          "arrow",
+          "spearhead",
+          "functional",
+          "grade",
+          "cutting",
+          "piercing",
+          "tin",
+          "bronze"
+        ],
+        "signclass_fish": [
+          "fish",
+          "acoustic",
+          "verification",
+          "mark",
+          "unit",
+          "counter"
+        ],
+        "signclass_jar": [
+          "jar",
+          "vessel",
+          "standardized",
+          "container",
+          "trade",
+          "measure"
+        ],
+        "signclass_comb": [
+          "comb",
+          "overtone",
+          "harmonic",
+          "quality",
+          "marker"
+        ],
+        "signclass_bearer": [
+          "man",
+          "bearer",
+          "craftsman",
+          "workshop",
+          "identity"
+        ],
+        "signclass_stand": [
+          "offering",
+          "stand",
+          "smelted",
+          "refined",
+          "product",
+          "indicator"
+        ],
+        "protocol_rtl": [
+          "stroke",
+          "ratio",
+          "quantity",
+          "functional",
+          "grade",
+          "fish",
+          "jar",
+          "unit",
+          "count"
+        ],
+        "dup_tablets_batch": [
+          "mass",
+          "produced",
+          "identical",
+          "certifications",
+          "batch",
+          "production"
+        ],
+        "lothal_dual": [
+          "multiple",
+          "guild",
+          "stamps",
+          "same",
+          "goods",
+          "dual",
+          "certification"
+        ],
+        "same_text_diff_animals": [
+          "same",
+          "spec",
+          "different",
+          "issuers",
+          "not",
+          "personal",
+          "names"
+        ],
+        "same_animal_diff_texts": [
+          "one",
+          "guild",
+          "multiple",
+          "products",
+          "product",
+          "catalog"
+        ],
+        "dholavira_board": [
+          "public",
+          "display",
+          "city",
+          "gate",
+          "trade",
+          "standard",
+          "notice"
+        ],
+        "chanhudaro_copro": [
+          "seals",
+          "made",
+          "same",
+          "workshops",
+          "metalwork"
+        ],
+        "copper_tablet_fish": [
+          "metal",
+          "inscribed",
+          "itself",
+          "self",
+          "certification"
+        ],
+        "elephant_m1155": [
+          "same",
+          "text",
+          "unicorn",
+          "seals",
+          "animal",
+          "hypothesis"
+        ],
+        "pashupati_process": [
+          "elephant",
+          "bulk",
+          "raw",
+          "material",
+          "tiger",
+          "catalyst",
+          "fire",
+          "flux",
+          "buffalo",
+          "alloy",
+          "phase",
+          "transition",
+          "rhinoceros",
+          "finished",
+          "microstructure",
+          "deer",
+          "dendritic",
+          "crystal",
+          "growth"
+        ],
+        "ebla_ratio_range": [
+          "bronze",
+          "recipes",
+          "copper",
+          "tin",
+          "ratios",
+          "six",
+          "to",
+          "one",
+          "ten",
+          "to",
+          "one"
+        ],
+        "shu_ilishu": [
+          "interpreter",
+          "meluhhan",
+          "language",
+          "copper",
+          "merchant",
+          "tin",
+          "measure",
+          "armourer",
+          "crucible"
+        ]
+      }
+    },
+    "english_like": {
+      "note": "Known-answer natural English control (same role as fixture english_like).",
+      "text": "The quick brown fox jumps over the lazy dog near the river bank where merchants weigh copper and tin for trade."
+    }
+  }
+}

@@ -20,7 +20,7 @@ Pipeline:
   5. **CSR Monte-Carlo null** — draw N uniform points inside the bounding
      box; repeat detection pipeline. Report FPR.
   6. Verdict: if observed triple-collinearity rate does NOT exceed both
-     nulls at p < 0.05 (after Bonferroni correction) → NO_SIGNAL.
+     nulls at empirical FPR < 0.05 (nominal) → NO_SIGNAL.
 
 Honest prior: no-signal. EAMENA spatial distribution is expected to follow
 environmental/archaeological clustering (rivers, settlements, soils), NOT
@@ -124,8 +124,8 @@ def haversine_km(lat1, lon1, lat2, lon2):
 
 def perpendicular_distance_km(lat0, lon0, lat1, lon1, lat2, lon2):
     """Perpendicular distance from point (lat0,lon0) to the great-circle line
-    through (lat1,lon1)-(lat2,lon2). Approximated with Haversine-projected
-    local Cartesian coordinates for small distances."""
+    through (lat1,lon1)-(lat2,lon2). Approximated with equirectangular
+    projection (cos(lat) scaling) to local Cartesian km."""
     # Convert to local Cartesian (km)
     cm = math.cos(math.radians((lat0 + lat1 + lat2) / 3.0))
     x0, y0 = lon0 * cm * 111.320, lat0 * KM_PER_DEG_LAT
@@ -267,7 +267,11 @@ def count_collinear_triples(coords, tolerance_km=TOLERANCE_KM,
                               n_triple_samples=N_TRIPLES_DEFAULT, seed=0):
     """Count the number of point triples that are collinear within tolerance.
     For performance: sample pairs (i,j), count how many k produce collinear
-    triples. Returns dict with counts and prevalence."""
+    triples. Returns dict with counts and prevalence.
+
+    NOTE: each collinear triple (i,j,k) is counted 3x in the output
+    (once per constituent pair: (i,j), (i,k), (j,k)). This is consistent
+    between observed and null statistics, so it cancels in the FPR."""
     n = len(coords)
     if n < 3:
         return {"n_triples_evaluated": 0, "n_collinear": 0,

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://crop-circles-lab.local/schemas/anomaly_record.schema.json",
+  "title": "AnomalyRecord",
+  "description": "Unified anomaly record for Captain Dashboard (Hecklefish Kimi 2026-07-25). Structure ≠ message.",
+  "type": "object",
+  "required": [
+    "anomaly_id",
+    "domain",
+    "signal_type",
+    "metrics",
+    "status",
+    "negative_controls",
+    "tools_used",
+    "owner_block"
+  ],
+  "properties": {
+    "anomaly_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9_\\-]{2,63}$",
+      "description": "Stable ID, e.g. PHAISTOS_001, INDUS_G9, VOYNICH_G10."
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "script",
+        "crop_circle",
+        "bio",
+        "radio",
+        "astro",
+        "spatial",
+        "uap",
+        "constants",
+        "geo",
+        "image",
+        "other"
+      ]
+    },
+    "signal_type": {
+      "type": "string",
+      "description": "What was measured, e.g. entropy_deviation, spatial_clustering, morphology."
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Numeric / structured metrics (H1, IC, z_shuffle, etc.)."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "structure_confirmed_message_unknown",
+        "structure_signal",
+        "no_signal",
+        "underdetermined",
+        "claim_fails_null",
+        "claim_under_test",
+        "blocked_data",
+        "scaffold",
+        "weekend_backlog"
+      ]
+    },
+    "negative_controls": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Named controls that were (or must be) run."
+    },
+    "tools_used": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "owner_block": {
+      "type": "boolean",
+      "description": "If true, only the board owner may edit this row / mission."
+    },
+    "title": { "type": "string" },
+    "mission_id": { "type": "string" },
+    "href": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "notes": { "type": "string" },
+    "stance": { "type": "string" }
+  },
+  "additionalProperties": true
+}

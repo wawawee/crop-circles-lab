@@ -194,13 +194,14 @@ def test_count_collinear_triples_handles_n_lt_3() -> None:
 
 def test_ley_fpr_analysis_csr_rates_not_extreme() -> None:
     coords, _ = generate_synthetic_csr(n=100, seed=0)
-    fpr = ley_line_fpr_analysis(coords, n_sims=29, n_triple_samples=200,
+    fpr = ley_line_fpr_analysis(coords, n_sims=49, n_triple_samples=200,
                                  seed=0)
-    # On CSR data, null FPRs should be > 0.05 (no "signal")
+    # On CSR data, null FPRs should be well above 0.05 (no "signal")
     sc_fpr = fpr["null_scrambled_coord"]["fpr_empirical"]
     csr_fpr = fpr["null_csr"]["fpr_empirical"]
-    # These can vary with small N, but should be >> 0.01 typically
-    assert sc_fpr > 0.01 or csr_fpr > 0.01
+    # With 49 sims, both FPRs should comfortably exceed 0.01
+    assert sc_fpr > 0.05 or csr_fpr > 0.05,\
+        f"scrambled FPR={sc_fpr}, csr FPR={csr_fpr} — both too low for CSR data"
 
 
 def test_ley_fpr_analysis_underdetermined_n_lt_3() -> None:

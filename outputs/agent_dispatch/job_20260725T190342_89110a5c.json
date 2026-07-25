@@ -1,0 +1,19 @@
+{
+  "id": "job_20260725T190342_89110a5c",
+  "backend": "freebuff",
+  "status": "dispatched",
+  "prompt": "PING från Cursor/Auto — om du ser detta funkar Freebuff-dispatch. Svara bara med: ANOMALISTIK online. Ingen kod, ingen filändring.",
+  "cwd": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles",
+  "created_at": "2026-07-25T19:03:42Z",
+  "updated_at": "2026-07-25T19:03:43Z",
+  "freebuff_pid": 28576,
+  "result_path": null,
+  "log_path": null,
+  "notes": [],
+  "prompt_file": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/outputs/agent_dispatch/job_20260725T190342_89110a5c.prompt.md",
+  "inject": {
+    "ok": true,
+    "clipboard": true,
+    "injected": true
+  }
+}

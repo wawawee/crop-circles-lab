@@ -1,0 +1,200 @@
+{
+  "schema": "data/catalog/anomaly_schema.json",
+  "generated_note": "Example anomaly store for Captain Dashboard. STRUCTURE != MESSAGE.",
+  "anomalies": [
+    {
+      "anomaly_id": "PHAISTOS_001",
+      "mission_id": "N0",
+      "title": "Phaistos Disc sign sequence",
+      "domain": "script",
+      "signal_type": "entropy_deviation",
+      "metrics": {
+        "H1": 4.988,
+        "H2": 2.072,
+        "IC": 0.0361,
+        "z_shuffle": -13.89,
+        "N": 241
+      },
+      "status": "structure_confirmed_message_unknown",
+      "negative_controls": [
+        "shuffled",
+        "linear_b_sample"
+      ],
+      "tools_used": [
+        "symbolseq"
+      ],
+      "owner_block": false,
+      "href": "outputs/phaistos_analysis.json",
+      "stance": "Structure \u2260 message. Metre/refrain \u2260 reading."
+    },
+    {
+      "anomaly_id": "INDUS_G9",
+      "mission_id": "G9",
+      "title": "Indus seal sign-sequence structure",
+      "domain": "script",
+      "signal_type": "entropy_deviation",
+      "metrics": {
+        "H1": 6.286,
+        "H2": 2.758,
+        "IC": 0.0255,
+        "z_shuffle": -22.94,
+        "N": 1003
+      },
+      "status": "structure_signal",
+      "negative_controls": [
+        "shuffled",
+        "degree_preserving_graph"
+      ],
+      "tools_used": [
+        "symbolseq",
+        "indus_probe"
+      ],
+      "owner_block": false,
+      "href": "outputs/indus/run.json"
+    },
+    {
+      "anomaly_id": "INDUS_WEST_NEG",
+      "mission_id": "G9++",
+      "title": "Barbara West Indus claim negative control",
+      "domain": "script",
+      "signal_type": "claim_under_test_entropy",
+      "metrics": {
+        "distance_west_to_indus": 2.0211,
+        "distance_west_to_lang_mean": 0.3992,
+        "verdict": "CLAIM_LOOKS_LANGUAGE_LIKE",
+        "west_stream": "claim_plaintext",
+        "using_real_claim_file": true,
+        "H1_west": 6.788,
+        "H2_west": 0.507,
+        "N_west": 171
+      },
+      "status": "claim_under_test",
+      "negative_controls": [
+        "tamil_letters",
+        "telugu_letters",
+        "shuffled"
+      ],
+      "tools_used": [
+        "symbolseq",
+        "indus_west_negcontrol"
+      ],
+      "owner_block": false,
+      "href": "outputs/indus_west/run.json",
+      "notes": "West stream sits closer to Dravidian letter baselines than to Indus seals (normalized metrics) \u2014 escalate for human review of the real West tables. Still NOT an endorsement of the decipherment. Data: JL West 2026 fair-use sample (Barbara West 2004 blocked). d(West,Indus)=2.0211 d(West,lang)=0.3992."
+    },
+    {
+      "anomaly_id": "VOYNICH_G10",
+      "mission_id": "G10",
+      "title": "Voynich morphology (EVA)",
+      "domain": "script",
+      "signal_type": "entropy_deviation",
+      "metrics": {
+        "H1_char": 3.899,
+        "H2_char": 2.362,
+        "z_char": -8259.21,
+        "verdict": "SEQUENCE_STRUCTURE | CLAIM_FAILS_NULL"
+      },
+      "status": "claim_fails_null",
+      "negative_controls": [
+        "shuffled",
+        "dominik_rho_null"
+      ],
+      "tools_used": [
+        "symbolseq",
+        "voynich_probe"
+      ],
+      "owner_block": false,
+      "href": "outputs/voynich/run.json"
+    },
+    {
+      "anomaly_id": "VOYNICH_BOTANY",
+      "mission_id": "G10++",
+      "title": "Voynich plant pages \u00d7 CCAT shape",
+      "domain": "image",
+      "signal_type": "morphology",
+      "metrics": {
+        "mean_distance_to_nearest_control": 5.09789,
+        "mean_pairwise_plant_distance": 1.4759,
+        "n_pairs_within": 120,
+        "n_plants": 16,
+        "n_controls": 5,
+        "verdict": "SELF_SIMILAR_VS_CONTROLS"
+      },
+      "status": "structure_signal",
+      "negative_controls": [
+        "pd_thome_botanical_plates",
+        "synthetic_realish_plants"
+      ],
+      "tools_used": [
+        "ccat",
+        "voynich_botany_probe"
+      ],
+      "owner_block": false,
+      "href": "outputs/voynich_botany/run.json",
+      "notes": "Beinecke IIIF herbal sample (16 folios) vs PD Thom\u00e9 plates (5): SELF_SIMILAR_VS_CONTROLS. Not a species ID."
+    },
+    {
+      "anomaly_id": "MEROITIC_G16",
+      "mission_id": "G16",
+      "title": "Meroitic corpus structure",
+      "domain": "script",
+      "signal_type": "entropy_deviation",
+      "metrics": {
+        "H1": 7.66,
+        "H2": 1.497,
+        "IC": 0.0168,
+        "z_shuffle": -11336.3,
+        "N": 755335
+      },
+      "status": "structure_signal",
+      "negative_controls": [
+        "shuffled",
+        "late_egyptian"
+      ],
+      "tools_used": [
+        "symbolseq",
+        "meroitic_probe"
+      ],
+      "owner_block": false,
+      "href": "outputs/meroitic/run.json"
+    },
+    {
+      "anomaly_id": "VASCO_G13",
+      "mission_id": "G13",
+      "title": "VASCO missing stars / optical transients",
+      "domain": "astro",
+      "signal_type": "spatial_clustering",
+      "metrics": {},
+      "status": "weekend_backlog",
+      "negative_controls": [
+        "plate_artifact_null"
+      ],
+      "tools_used": [
+        "astro_probe",
+        "spatial_report"
+      ],
+      "owner_block": false,
+      "href": "tools/scripts/stubs/vasco_missing.py",
+      "notes": "Kimi #8 \u2014 do not deep-implement yet."
+    },
+    {
+      "anomaly_id": "ALPHA_VAR",
+      "mission_id": "WEEKEND",
+      "title": "Fine-structure constant \u03b1 directional variation",
+      "domain": "constants",
+      "signal_type": "spatial_dipole",
+      "metrics": {},
+      "status": "weekend_backlog",
+      "negative_controls": [
+        "instrument_systematics"
+      ],
+      "tools_used": [
+        "feature_table",
+        "spatial_report"
+      ],
+      "owner_block": false,
+      "href": "tools/scripts/stubs/alpha_variation_probe.py",
+      "notes": "Kimi #7 \u2014 weekend backlog."
+    }
+  ]
+}
