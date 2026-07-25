@@ -19,6 +19,7 @@ import json
 import math
 import sys
 import tempfile
+from collections import Counter
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -504,6 +505,67 @@ def test_main_runs_on_real_fasta_and_writes_notes():
     assert "window_entropy_bits_real" in d
     assert "negative_control" in d
     assert "Δ_window_mean_H" in out_md.read_text()
+
+
+# --- N1++ hardens -----------------------------------------------------------
+
+def test_classify_window_bin_skips_mismatched_chrom():
+    """chr1 BED + chr22 window must not inherit coding from wrong chrom."""
+    annots = [
+        {"chrom": "chr1", "start": 0, "end": 100, "type": "coding"},
+        {"chrom": "chr22", "start": 0, "end": 100, "type": "intronic"},
+    ]
+    # Without chrom filter (legacy): coding wins by being first equal-overlap
+    # With seq_chrom=chr22: only intronic row counts.
+    bin_t, ov, _ = BP._classify_window_bin(0, 50, annots, window_chrom="chr22")
+    assert bin_t == "intronic", f"expected intronic on chr22, got {bin_t}"
+    assert ov == 50
+    bin_wrong, ov_wrong, _ = BP._classify_window_bin(
+        0, 50, annots, window_chrom="chrX"
+    )
+    assert bin_wrong == "intergenic" and ov_wrong == 0
+
+
+def test_per_bin_skipped_seq_too_short_status():
+    """features_parsed>0 but seq shorter than window → skipped_seq_too_short."""
+    annots = [{"chrom": "S", "start": 0, "end": 100, "type": "coding"}]
+    short = "ACGT" * 5  # 20 bp
+    rep = BP.analyze_sequence(
+        short, window=64, step=16, label="short",
+        annotations=annots, annotation_file="<tiny>",
+        seq_chrom="S",
+    )
+    assert rep.get("bins_status") == "skipped_seq_too_short"
+    assert rep.get("bins") == {}
+    assert rep["annotation_summary"]["features_parsed"] == 1
+    md = BP.write_notes_markdown(rep)
+    assert "skipped_seq_too_short" in md
+
+
+def test_intronic_bin_populated_when_bed_has_introns():
+    """Synthetic gene model with exons + intron must populate intronic bin."""
+    # Exon [0,40) coding, intron [40,120), exon [120,200) coding
+    annots = [
+        {"chrom": "G", "start": 0, "end": 40, "type": "coding"},
+        {"chrom": "G", "start": 40, "end": 120, "type": "intronic"},
+        {"chrom": "G", "start": 120, "end": 200, "type": "coding"},
+    ]
+    seq = "ACGT" * 50  # 200 bp
+    rep = BP.analyze_sequence(
+        seq, window=20, step=10, label="gene-model",
+        annotations=annots, annotation_file="<intron-BED>",
+        seq_chrom="G", shuffle_seed=1,
+    )
+    assert "intronic" in rep["bins"], f"bins={list(rep['bins'])}"
+    assert rep["bins"]["intronic"]["n_windows"] >= 1
+    assert "coding" in rep["bins"]
+
+
+def test_shuffle_seq_numpy_backend_preserves_composition():
+    seq = "ACGT" * 100 + "AAAA" * 20
+    out = BP.shuffle_seq(seq, seed=99)
+    assert len(out) == len(seq)
+    assert Counter(out) == Counter(seq.upper())
 
 
 if __name__ == "__main__":
