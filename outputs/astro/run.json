@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T05:01:47.595067+00:00",
+  "generated_at": "2026-07-25T11:41:31.830532+00:00",
   "backend": "skyfield",
   "sites": {
     "gobekli_tepe": {
@@ -9,30 +9,41 @@
       "elevation_m": 760,
       "epoch_year": -9600,
       "note": "G\u00f6bekli Tepe, earliest known temple complex; Enclosure D",
+      "axis_bearing_deg": null,
+      "axis_citation": null,
       "solstice_eq": {
         "year": -9600,
         "backend": "skyfield",
         "mar_equinox": {
           "datetime_utc": "-9600-10-11T00:00:00Z",
           "jd": -1784984.4995,
-          "doy": 284
+          "doy": 284,
+          "civil_doy": 284,
+          "validated_solar_lon_deg": 0.3985
         },
         "jun_solstice": {
           "datetime_utc": "-9599-01-13T00:00:00Z",
           "jd": -1784890.4995,
-          "doy": 13
+          "doy": 13,
+          "civil_doy": 13,
+          "validated_solar_lon_deg": 90.0752
         },
         "sep_equinox": {
           "datetime_utc": "-9599-04-15T00:00:00Z",
           "jd": -1784797.4995,
-          "doy": 106
+          "doy": 106,
+          "civil_doy": 106,
+          "validated_solar_lon_deg": 179.5542
         },
         "dec_solstice": {
           "datetime_utc": "-9599-07-13T00:00:00Z",
           "jd": -1784708.4995,
-          "doy": 195
+          "doy": 195,
+          "civil_doy": 195,
+          "validated_solar_lon_deg": 270.1776
         },
-        "caveat": null
+        "caveat": null,
+        "calendar_label_unreliable": true
       },
       "jun_solstice_sunrise": {
         "date": "-9600-06-21",
@@ -52,22 +63,30 @@
         "mar_equinox": {
           "datetime_utc": "2026-03-21T00:00:00Z",
           "jd": 2461120.5008,
-          "doy": 80
+          "doy": 80,
+          "civil_doy": 80,
+          "validated_solar_lon_deg": 0.0144
         },
         "jun_solstice": {
           "datetime_utc": "2026-06-22T00:00:00Z",
           "jd": 2461213.5008,
-          "doy": 173
+          "doy": 173,
+          "civil_doy": 173,
+          "validated_solar_lon_deg": 90.248
         },
         "sep_equinox": {
           "datetime_utc": "2026-09-23T00:00:00Z",
           "jd": 2461306.5008,
-          "doy": 266
+          "doy": 266,
+          "civil_doy": 266,
+          "validated_solar_lon_deg": 179.6206
         },
         "dec_solstice": {
           "datetime_utc": "2026-12-22T00:00:00Z",
           "jd": 2461396.5008,
-          "doy": 356
+          "doy": 356,
+          "civil_doy": 356,
+          "validated_solar_lon_deg": 269.7547
         },
         "caveat": null
       },
@@ -145,30 +164,41 @@
       "elevation_m": 100,
       "epoch_year": -2500,
       "note": "Stonehenge phase 3; heel stone solstice alignment",
+      "axis_bearing_deg": 51.0,
+      "axis_citation": "Ruggles, 'Astronomy in Prehistoric Britain and Ireland' (1999): axis through heel stone ~51\u00b0 NE, aligned with summer solstice sunrise",
       "solstice_eq": {
         "year": -2500,
         "backend": "skyfield",
         "mar_equinox": {
           "datetime_utc": "-2500-01-17T00:00:00Z",
           "jd": 807969.5005,
-          "doy": 17
+          "doy": 17,
+          "civil_doy": 17,
+          "validated_solar_lon_deg": 359.5627
         },
         "jun_solstice": {
           "datetime_utc": "-2500-04-21T00:00:00Z",
           "jd": 808064.5005,
-          "doy": 112
+          "doy": 112,
+          "civil_doy": 112,
+          "validated_solar_lon_deg": 90.0546
         },
         "sep_equinox": {
           "datetime_utc": "-2500-07-23T00:00:00Z",
           "jd": 808157.5005,
-          "doy": 205
+          "doy": 205,
+          "civil_doy": 205,
+          "validated_solar_lon_deg": 179.6656
         },
         "dec_solstice": {
           "datetime_utc": "-2500-10-20T00:00:00Z",
           "jd": 808246.5005,
-          "doy": 294
+          "doy": 294,
+          "civil_doy": 294,
+          "validated_solar_lon_deg": 269.5143
         },
-        "caveat": null
+        "caveat": null,
+        "calendar_label_unreliable": true
       },
       "jun_solstice_sunrise": {
         "date": "-2500-06-21",
@@ -188,22 +218,30 @@
         "mar_equinox": {
           "datetime_utc": "2026-03-21T00:00:00Z",
           "jd": 2461120.5008,
-          "doy": 80
+          "doy": 80,
+          "civil_doy": 80,
+          "validated_solar_lon_deg": 0.0144
         },
         "jun_solstice": {
           "datetime_utc": "2026-06-22T00:00:00Z",
           "jd": 2461213.5008,
-          "doy": 173
+          "doy": 173,
+          "civil_doy": 173,
+          "validated_solar_lon_deg": 90.248
         },
         "sep_equinox": {
           "datetime_utc": "2026-09-23T00:00:00Z",
           "jd": 2461306.5008,
-          "doy": 266
+          "doy": 266,
+          "civil_doy": 266,
+          "validated_solar_lon_deg": 179.6206
         },
         "dec_solstice": {
           "datetime_utc": "2026-12-22T00:00:00Z",
           "jd": 2461396.5008,
-          "doy": 356
+          "doy": 356,
+          "civil_doy": 356,
+          "validated_solar_lon_deg": 269.7547
         },
         "caveat": null
       },
@@ -283,30 +321,41 @@
       "elevation_m": 60,
       "epoch_year": -2560,
       "note": "Great Pyramid of Khufu; shafts align with Orion/Thuban",
+      "axis_bearing_deg": null,
+      "axis_citation": null,
       "solstice_eq": {
         "year": -2560,
         "backend": "skyfield",
         "mar_equinox": {
           "datetime_utc": "-2560-01-17T00:00:00Z",
           "jd": 786054.5005,
-          "doy": 17
+          "doy": 17,
+          "civil_doy": 17,
+          "validated_solar_lon_deg": 359.9397
         },
         "jun_solstice": {
           "datetime_utc": "-2560-04-20T00:00:00Z",
           "jd": 786148.5005,
-          "doy": 111
+          "doy": 111,
+          "civil_doy": 111,
+          "validated_solar_lon_deg": 90.4127
         },
         "sep_equinox": {
           "datetime_utc": "-2560-07-22T00:00:00Z",
           "jd": 786241.5005,
-          "doy": 204
+          "doy": 204,
+          "civil_doy": 204,
+          "validated_solar_lon_deg": 180.0441
         },
         "dec_solstice": {
           "datetime_utc": "-2560-10-19T00:00:00Z",
           "jd": 786330.5005,
-          "doy": 293
+          "doy": 293,
+          "civil_doy": 293,
+          "validated_solar_lon_deg": 269.9157
         },
-        "caveat": null
+        "caveat": null,
+        "calendar_label_unreliable": true
       },
       "jun_solstice_sunrise": {
         "date": "-2560-06-21",
@@ -326,22 +375,30 @@
         "mar_equinox": {
           "datetime_utc": "2026-03-21T00:00:00Z",
           "jd": 2461120.5008,
-          "doy": 80
+          "doy": 80,
+          "civil_doy": 80,
+          "validated_solar_lon_deg": 0.0144
         },
         "jun_solstice": {
           "datetime_utc": "2026-06-22T00:00:00Z",
           "jd": 2461213.5008,
-          "doy": 173
+          "doy": 173,
+          "civil_doy": 173,
+          "validated_solar_lon_deg": 90.248
         },
         "sep_equinox": {
           "datetime_utc": "2026-09-23T00:00:00Z",
           "jd": 2461306.5008,
-          "doy": 266
+          "doy": 266,
+          "civil_doy": 266,
+          "validated_solar_lon_deg": 179.6206
         },
         "dec_solstice": {
           "datetime_utc": "2026-12-22T00:00:00Z",
           "jd": 2461396.5008,
-          "doy": 356
+          "doy": 356,
+          "civil_doy": 356,
+          "validated_solar_lon_deg": 269.7547
         },
         "caveat": null
       },
@@ -421,28 +478,38 @@
       "elevation_m": 30,
       "epoch_year": 800,
       "note": "El Castillo; equinox serpent shadow",
+      "axis_bearing_deg": 287.0,
+      "axis_citation": "\u0160prajc, 'Astronomy, Architecture, and Landscape in Prehispanic Mesoamerica' (2018): El Castillo NW staircase ~287\u00b0, equinox sunset serpent effect",
       "solstice_eq": {
         "year": 800,
         "backend": "skyfield",
         "mar_equinox": {
           "datetime_utc": "0800-03-04T00:00:00Z",
           "jd": 2013316.5005,
-          "doy": 64
+          "doy": 64,
+          "civil_doy": 64,
+          "validated_solar_lon_deg": 0.401
         },
         "jun_solstice": {
           "datetime_utc": "0800-06-05T00:00:00Z",
           "jd": 2013409.5005,
-          "doy": 157
+          "doy": 157,
+          "civil_doy": 157,
+          "validated_solar_lon_deg": 90.4239
         },
         "sep_equinox": {
           "datetime_utc": "0800-09-06T00:00:00Z",
           "jd": 2013502.5005,
-          "doy": 250
+          "doy": 250,
+          "civil_doy": 250,
+          "validated_solar_lon_deg": 179.833
         },
         "dec_solstice": {
           "datetime_utc": "0800-12-05T00:00:00Z",
           "jd": 2013592.5005,
-          "doy": 340
+          "doy": 340,
+          "civil_doy": 340,
+          "validated_solar_lon_deg": 270.1839
         },
         "caveat": null
       },
@@ -464,22 +531,30 @@
         "mar_equinox": {
           "datetime_utc": "2026-03-21T00:00:00Z",
           "jd": 2461120.5008,
-          "doy": 80
+          "doy": 80,
+          "civil_doy": 80,
+          "validated_solar_lon_deg": 0.0144
         },
         "jun_solstice": {
           "datetime_utc": "2026-06-22T00:00:00Z",
           "jd": 2461213.5008,
-          "doy": 173
+          "doy": 173,
+          "civil_doy": 173,
+          "validated_solar_lon_deg": 90.248
         },
         "sep_equinox": {
           "datetime_utc": "2026-09-23T00:00:00Z",
           "jd": 2461306.5008,
-          "doy": 266
+          "doy": 266,
+          "civil_doy": 266,
+          "validated_solar_lon_deg": 179.6206
         },
         "dec_solstice": {
           "datetime_utc": "2026-12-22T00:00:00Z",
           "jd": 2461396.5008,
-          "doy": 356
+          "doy": 356,
+          "civil_doy": 356,
+          "validated_solar_lon_deg": 269.7547
         },
         "caveat": null
       },
@@ -640,61 +715,94 @@
     "new_moon_ratio": 0.273,
     "note": "Small sample; do not claim lunar preference without larger catalog."
   },
+  "bearing_alignments": {
+    "method": "axis-bearing alignment (\u0394az vs documented monument axis)",
+    "n_real_with_axis": 2,
+    "n_real_unknown_axis": 2,
+    "real_axis_alignments": [
+      {
+        "axis_bearing_deg": 51.0,
+        "delta_az_deg": 17.13,
+        "name": "stonehenge"
+      },
+      {
+        "axis_bearing_deg": 287.0,
+        "delta_az_deg": 59.63,
+        "name": "chichen_itza"
+      }
+    ],
+    "real_unknown_axis_sites": [
+      {
+        "name": "gobekli_tepe",
+        "sunrise_az_deg": 120.65,
+        "note": "No known axis bearing"
+      },
+      {
+        "name": "giza_khufu",
+        "sunrise_az_deg": 272.04,
+        "note": "No known axis bearing"
+      }
+    ],
+    "real_mean_delta_deg": 38.38,
+    "n_random": 10,
+    "random_mean_delta_deg": 51.92,
+    "note": "Small-n descriptive only; no signal claim. \u0394az \u2264 5\u00b0 would indicate plausible alignment."
+  },
   "random_controls": {
     "n": 10,
-    "comparison": {
-      "n_real": 4,
-      "n_real_hits": 0,
-      "real_hit_rate": 0.0,
-      "n_random": 10,
-      "n_random_hits": 0,
-      "random_hit_rate": 0.0,
-      "note": "Hit: solstice sunrise azimuth within 1.5\u00b0 of 50\u00b0/60\u00b0/65\u00b0",
-      "verdict": "No separation from random \u2014 structure, not signal."
-    },
     "sample": [
       {
         "name": "random_control",
-        "lat": 45.8073,
-        "lon": -158.1442,
+        "lat": -40.3319,
+        "lon": 14.6482,
         "elevation_m": 50,
-        "epoch_year": -7586,
+        "epoch_year": 188,
         "note": "",
+        "axis_bearing_deg": null,
+        "axis_citation": null,
         "solstice_eq": {
-          "year": -7586,
+          "year": 188,
           "backend": "skyfield",
           "mar_equinox": {
-            "datetime_utc": "-7586-11-08T00:00:00Z",
-            "jd": -1049357.4995,
-            "doy": 312
+            "datetime_utc": "0188-02-24T00:00:00Z",
+            "jd": 1789779.5005,
+            "doy": 55,
+            "civil_doy": 55,
+            "validated_solar_lon_deg": 0.332
           },
           "jun_solstice": {
-            "datetime_utc": "-7585-02-10T00:00:00Z",
-            "jd": -1049263.4995,
-            "doy": 41
+            "datetime_utc": "0188-05-27T00:00:00Z",
+            "jd": 1789872.5005,
+            "doy": 148,
+            "civil_doy": 148,
+            "validated_solar_lon_deg": 90.2513
           },
           "sep_equinox": {
-            "datetime_utc": "-7585-05-14T00:00:00Z",
-            "jd": -1049170.4995,
-            "doy": 134
+            "datetime_utc": "0188-08-28T00:00:00Z",
+            "jd": 1789965.5005,
+            "doy": 241,
+            "civil_doy": 241,
+            "validated_solar_lon_deg": 179.69
           },
           "dec_solstice": {
-            "datetime_utc": "-7585-08-10T00:00:00Z",
-            "jd": -1049082.4995,
-            "doy": 222
+            "datetime_utc": "0188-11-26T00:00:00Z",
+            "jd": 1790055.5005,
+            "doy": 331,
+            "civil_doy": 331,
+            "validated_solar_lon_deg": 270.1382
           },
           "caveat": null
         },
         "jun_solstice_sunrise": {
-          "date": "-7586-06-21",
-          "sunrise_az_deg": 163.03,
-          "sun_alt_deg": 67.63,
+          "date": "0188-06-21",
+          "sunrise_az_deg": 83.24,
+          "sun_alt_deg": -30.01,
           "backend": "skyfield"
         },
         "dec_solstice_sunrise": {
-          "date": "-7586-12-21",
-          "sunrise_az_deg": 170.75,
-          "sun_alt_deg": 19.48,
+          "date": "0188-12-21",
+          "sunrise_az_deg": 121.55,
+          "sun_alt_deg": 0.23,
           "backend": "skyfield"
         },
         "current_solstice_eq": {
@@ -703,22 +811,30 @@
           "mar_equinox": {
             "datetime_utc": "2026-03-21T00:00:00Z",
             "jd": 2461120.5008,
-            "doy": 80
+            "doy": 80,
+            "civil_doy": 80,
+            "validated_solar_lon_deg": 0.0144
           },
           "jun_solstice": {
             "datetime_utc": "2026-06-22T00:00:00Z",
             "jd": 2461213.5008,
-            "doy": 173
+            "doy": 173,
+            "civil_doy": 173,
+            "validated_solar_lon_deg": 90.248
           },
           "sep_equinox": {
             "datetime_utc": "2026-09-23T00:00:00Z",
             "jd": 2461306.5008,
-            "doy": 266
+            "doy": 266,
+            "civil_doy": 266,
+            "validated_solar_lon_deg": 179.6206
           },
           "dec_solstice": {
             "datetime_utc": "2026-12-22T00:00:00Z",
             "jd": 2461396.5008,
-            "doy": 356
+            "doy": 356,
+            "civil_doy": 356,
+            "validated_solar_lon_deg": 269.7547
           },
           "caveat": null
         },
@@ -726,63 +842,65 @@
           "sirius": {
             "name": "Sirius (\u03b1 CMa)",
             "epoch_coords": {
-              "ra_h": 6.7517,
-              "dec_deg": -16.7185
+              "ra_h": 6.7524,
+              "dec_deg": -16.7179
             },
             "rise_info": {
-              "visible": false,
-              "note": "never rises",
+              "rise_approx_utc": "0188-06-21T06:00:00Z",
+              "altitude_deg": 1.65,
+              "azimuth_deg": 110.4,
               "backend": "skyfield"
             }
           },
           "pleiades": {
             "name": "Pleiades (Alcyone)",
             "epoch_coords": {
-              "ra_h": 3.7826,
-              "dec_deg": 24.1157
+              "ra_h": 3.7832,
+              "dec_deg": 24.1179
             },
             "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 4.8,
-              "azimuth_deg": 235.38,
+              "rise_approx_utc": "0188-06-21T05:00:00Z",
+              "altitude_deg": 5.49,
+              "azimuth_deg": 62.38,
               "backend": "skyfield"
             }
           },
           "orion_betelgeuse": {
             "name": "Betelgeuse (\u03b1 Ori)",
             "epoch_coords": {
-              "ra_h": 5.9187,
-              "dec_deg": 7.4059
+              "ra_h": 5.9193,
+              "dec_deg": 7.4061
             },
             "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 9.03,
-              "azimuth_deg": 200.44,
+              "rise_approx_utc": "0188-06-21T07:00:00Z",
+              "altitude_deg": 11.21,
+              "azimuth_deg": 73.34,
               "backend": "skyfield"
             }
           },
           "orion_rigel": {
             "name": "Rigel (\u03b2 Ori)",
             "epoch_coords": {
-              "ra_h": 5.2417,
-              "dec_deg": -8.2038
+              "ra_h": 5.2423,
+              "dec_deg": -8.2039
             },
             "rise_info": {
-              "visible": false,
-              "note": "never rises",
+              "rise_approx_utc": "0188-06-21T05:00:00Z",
+              "altitude_deg": 5.25,
+              "azimuth_deg": 101.29,
               "backend": "skyfield"
             }
           },
           "orion_belt": {
             "name": "Orion's Belt (Alnitak)",
             "epoch_coords": {
-              "ra_h": 5.6827,
-              "dec_deg": -1.9436
+              "ra_h": 5.6833,
+              "dec_deg": -1.9435
             },
             "rise_info": {
-              "rise_approx_utc": "-7586-06-21T21:00:00Z",
-              "altitude_deg": 0.25,
-              "azimuth_deg": 165.38,
+              "rise_approx_utc": "0188-06-21T06:00:00Z",
+              "altitude_deg": 7.8,
+              "azimuth_deg": 89.6,
               "backend": "skyfield"
             }
           }
@@ -791,46 +909,56 @@
       },
       {
         "name": "random_control",
-        "lat": 16.5977,
-        "lon": -14.222,
+        "lat": 15.8662,
+        "lon": -75.3094,
         "elevation_m": 50,
-        "epoch_year": -5890,
+        "epoch_year": 753,
         "note": "",
+        "axis_bearing_deg": null,
+        "axis_citation": null,
         "solstice_eq": {
-          "year": -5890,
+          "year": 753,
           "backend": "skyfield",
           "mar_equinox": {
-            "datetime_utc": "-5890-12-02T00:00:00Z",
-            "jd": -429882.4995,
-            "doy": 336
+            "datetime_utc": "0753-03-04T00:00:00Z",
+            "jd": 1996149.5005,
+            "doy": 63,
+            "civil_doy": 63,
+            "validated_solar_lon_deg": 0.454
           },
           "jun_solstice": {
-            "datetime_utc": "-5889-03-06T00:00:00Z",
-            "jd": -429788.4995,
-            "doy": 65
+            "datetime_utc": "0753-06-04T00:00:00Z",
+            "jd": 1996241.5005,
+            "doy": 155,
+            "civil_doy": 155,
+            "validated_solar_lon_deg": 89.5095
           },
           "sep_equinox": {
-            "datetime_utc": "-5889-06-07T00:00:00Z",
-            "jd": -429695.4995,
-            "doy": 158
+            "datetime_utc": "0753-09-06T00:00:00Z",
+            "jd": 1996335.5005,
+            "doy": 249,
+            "civil_doy": 249,
+            "validated_solar_lon_deg": 179.8749
           },
           "dec_solstice": {
-            "datetime_utc": "-5889-09-03T00:00:00Z",
-            "jd": -429607.4995,
-            "doy": 246
+            "datetime_utc": "0753-12-05T00:00:00Z",
+            "jd": 1996425.5005,
+            "doy": 339,
+            "civil_doy": 339,
+            "validated_solar_lon_deg": 270.2379
           },
           "caveat": null
         },
         "jun_solstice_sunrise": {
-          "date": "-5890-06-21",
-          "sunrise_az_deg": 348.88,
-          "sun_alt_deg": -48.5,
+          "date": "0753-06-21",
+          "sunrise_az_deg": 2.03,
+          "sun_alt_deg": -50.52,
           "backend": "skyfield"
         },
         "dec_solstice_sunrise": {
-          "date": "-5890-12-21",
-          "sunrise_az_deg": 234.4,
-          "sun_alt_deg": -76.28,
+          "date": "0753-12-21",
+          "sunrise_az_deg": 174.29,
+          "sun_alt_deg": -82.23,
           "backend": "skyfield"
         },
         "current_solstice_eq": {
@@ -839,22 +967,343 @@
           "mar_equinox": {
             "datetime_utc": "2026-03-21T00:00:00Z",
             "jd": 2461120.5008,
-            "doy": 80
+            "doy": 80,
+            "civil_doy": 80,
+            "validated_solar_lon_deg": 0.0144
           },
           "jun_solstice": {
             "datetime_utc": "2026-06-22T00:00:00Z",
             "jd": 2461213.5008,
-            "doy": 173
+            "doy": 173,
+            "civil_doy": 173,
+            "validated_solar_lon_deg": 90.248
           },
           "sep_equinox": {
             "datetime_utc": "2026-09-23T00:00:00Z",
             "jd": 2461306.5008,
-            "doy": 266
+            "doy": 266,
+            "civil_doy": 266,
+            "validated_solar_lon_deg": 179.6206
           },
           "dec_solstice": {
             "datetime_utc": "2026-12-22T00:00:00Z",
             "jd": 2461396.5008,
-            "doy": 356
+            "doy": 356,
+            "civil_doy": 356,
+            "validated_solar_lon_deg": 269.7547
+          },
+          "caveat": null
+        },
+        "stars": {
+          "sirius": {
+            "name": "Sirius (\u03b1 CMa)",
+            "epoch_coords": {
+              "ra_h": 6.7524,
+              "dec_deg": -16.7174
+            },
+            "rise_info": {
+              "rise_approx_utc": "0753-06-21T13:00:00Z",
+              "altitude_deg": 11.85,
+              "azimuth_deg": 110.85,
+              "backend": "skyfield"
+            }
+          },
+          "pleiades": {
+            "name": "Pleiades (Alcyone)",
+            "epoch_coords": {
+              "ra_h": 3.7832,
+              "dec_deg": 24.118
+            },
+            "rise_info": {
+              "rise_approx_utc": "0753-06-21T09:00:00Z",
+              "altitude_deg": 10.91,
+              "azimuth_deg": 72.68,
+              "backend": "skyfield"
+            }
+          },
+          "orion_betelgeuse": {
+            "name": "Betelgeuse (\u03b1 Ori)",
+            "epoch_coords": {
+              "ra_h": 5.9193,
+              "dec_deg": 7.4063
+            },
+            "rise_info": {
+              "rise_approx_utc": "0753-06-21T11:00:00Z",
+              "altitude_deg": 4.61,
+              "azimuth_deg": 84.8,
+              "backend": "skyfield"
+            }
+          },
+          "orion_rigel": {
+            "name": "Rigel (\u03b2 Ori)",
+            "epoch_coords": {
+              "ra_h": 5.2423,
+              "dec_deg": -8.2036
+            },
+            "rise_info": {
+              "rise_approx_utc": "0753-06-21T11:00:00Z",
+              "altitude_deg": 7.79,
+              "azimuth_deg": 103.24,
+              "backend": "skyfield"
+            }
+          },
+          "orion_belt": {
+            "name": "Orion's Belt (Alnitak)",
+            "epoch_coords": {
+              "ra_h": 5.6833,
+              "dec_deg": -1.9432
+            },
+            "rise_info": {
+              "rise_approx_utc": "0753-06-21T11:00:00Z",
+              "altitude_deg": 4.27,
+              "azimuth_deg": 94.82,
+              "backend": "skyfield"
+            }
+          }
+        },
+        "backend": "skyfield"
+      },
+      {
+        "name": "random_control",
+        "lat": 47.4518,
+        "lon": -24.2311,
+        "elevation_m": 50,
+        "epoch_year": 841,
+        "note": "",
+        "axis_bearing_deg": null,
+        "axis_citation": null,
+        "solstice_eq": {
+          "year": 841,
+          "backend": "skyfield",
+          "mar_equinox": {
+            "datetime_utc": "0841-03-04T00:00:00Z",
+            "jd": 2028291.5005,
+            "doy": 63,
+            "civil_doy": 63,
+            "validated_solar_lon_deg": 359.8936
+          },
+          "jun_solstice": {
+            "datetime_utc": "0841-06-05T00:00:00Z",
+            "jd": 2028384.5005,
+            "doy": 156,
+            "civil_doy": 156,
+            "validated_solar_lon_deg": 89.9354
+          },
+          "sep_equinox": {
+            "datetime_utc": "0841-09-07T00:00:00Z",
+            "jd": 2028478.5005,
+            "doy": 250,
+            "civil_doy": 250,
+            "validated_solar_lon_deg": 180.3135
+          },
+          "dec_solstice": {
+            "datetime_utc": "0841-12-05T00:00:00Z",
+            "jd": 2028567.5005,
+            "doy": 339,
+            "civil_doy": 339,
+            "validated_solar_lon_deg": 269.6606
+          },
+          "caveat": null
+        },
+        "jun_solstice_sunrise": {
+          "date": "0841-06-21",
+          "sunrise_az_deg": 48.96,
+          "sun_alt_deg": -3.36,
+          "backend": "skyfield"
+        },
+        "dec_solstice_sunrise": {
+          "date": "0841-12-21",
+          "sunrise_az_deg": 80.93,
+          "sun_alt_deg": -40.75,
+          "backend": "skyfield"
+        },
+        "current_solstice_eq": {
+          "year": 2026,
+          "backend": "skyfield",
+          "mar_equinox": {
+            "datetime_utc": "2026-03-21T00:00:00Z",
+            "jd": 2461120.5008,
+            "doy": 80,
+            "civil_doy": 80,
+            "validated_solar_lon_deg": 0.0144
+          },
+          "jun_solstice": {
+            "datetime_utc": "2026-06-22T00:00:00Z",
+            "jd": 2461213.5008,
+            "doy": 173,
+            "civil_doy": 173,
+            "validated_solar_lon_deg": 90.248
+          },
+          "sep_equinox": {
+            "datetime_utc": "2026-09-23T00:00:00Z",
+            "jd": 2461306.5008,
+            "doy": 266,
+            "civil_doy": 266,
+            "validated_solar_lon_deg": 179.6206
+          },
+          "dec_solstice": {
+            "datetime_utc": "2026-12-22T00:00:00Z",
+            "jd": 2461396.5008,
+            "doy": 356,
+            "civil_doy": 356,
+            "validated_solar_lon_deg": 269.7547
+          },
+          "caveat": null
+        },
+        "stars": {
+          "sirius": {
+            "name": "Sirius (\u03b1 CMa)",
+            "epoch_coords": {
+              "ra_h": 6.7524,
+              "dec_deg": -16.7174
+            },
+            "rise_info": {
+              "rise_approx_utc": "0841-06-21T10:00:00Z",
+              "altitude_deg": 4.7,
+              "azimuth_deg": 120.19,
+              "backend": "skyfield"
+            }
+          },
+          "pleiades": {
+            "name": "Pleiades (Alcyone)",
+            "epoch_coords": {
+              "ra_h": 3.7832,
+              "dec_deg": 24.118
+            },
+            "rise_info": {
+              "rise_approx_utc": "0841-06-21T04:00:00Z",
+              "altitude_deg": 4.5,
+              "azimuth_deg": 65.33,
+              "backend": "skyfield"
+            }
+          },
+          "orion_betelgeuse": {
+            "name": "Betelgeuse (\u03b1 Ori)",
+            "epoch_coords": {
+              "ra_h": 5.9193,
+              "dec_deg": 7.4063
+            },
+            "rise_info": {
+              "rise_approx_utc": "0841-06-21T07:00:00Z",
+              "altitude_deg": 2.2,
+              "azimuth_deg": 82.94,
+              "backend": "skyfield"
+            }
+          },
+          "orion_rigel": {
+            "name": "Rigel (\u03b2 Ori)",
+            "epoch_coords": {
+              "ra_h": 5.2423,
+              "dec_deg": -8.2035
+            },
+            "rise_info": {
+              "rise_approx_utc": "0841-06-21T08:00:00Z",
+              "altitude_deg": 5.37,
+              "azimuth_deg": 111.48,
+              "backend": "skyfield"
+            }
+          },
+          "orion_belt": {
+            "name": "Orion's Belt (Alnitak)",
+            "epoch_coords": {
+              "ra_h": 5.6833,
+              "dec_deg": -1.9432
+            },
+            "rise_info": {
+              "rise_approx_utc": "0841-06-21T08:00:00Z",
+              "altitude_deg": 6.82,
+              "azimuth_deg": 102.46,
+              "backend": "skyfield"
+            }
+          }
+        },
+        "backend": "skyfield"
+      },
+      {
+        "name": "random_control",
+        "lat": 27.2838,
+        "lon": 33.3914,
+        "elevation_m": 50,
+        "epoch_year": -6078,
+        "note": "",
+        "axis_bearing_deg": null,
+        "axis_citation": null,
+        "solstice_eq": {
+          "year": -6078,
+          "backend": "skyfield",
+          "mar_equinox": {
+            "datetime_utc": "-6078-11-29T00:00:00Z",
+            "jd": -498551.4995,
+            "doy": 333,
+            "civil_doy": 333,
+            "validated_solar_lon_deg": 359.6031
+          },
+          "jun_solstice": {
+            "datetime_utc": "-6077-03-03T00:00:00Z",
+            "jd": -498457.4995,
+            "doy": 62,
+            "civil_doy": 62,
+            "validated_solar_lon_deg": 89.6375
+          },
+          "sep_equinox": {
+            "datetime_utc": "-6077-06-04T00:00:00Z",
+            "jd": -498364.4995,
+            "doy": 155,
+            "civil_doy": 155,
+            "validated_solar_lon_deg": 179.6112
+          },
+          "dec_solstice": {
+            "datetime_utc": "-6077-09-01T00:00:00Z",
+            "jd": -498275.4995,
+            "doy": 244,
+            "civil_doy": 244,
+            "validated_solar_lon_deg": 269.9182
+          },
+          "caveat": null,
+          "calendar_label_unreliable": true
+        },
+        "jun_solstice_sunrise": {
+          "date": "-6078-06-21",
+          "sunrise_az_deg": 359.66,
+          "sun_alt_deg": -38.57,
+          "backend": "skyfield"
+        },
+        "dec_solstice_sunrise": {
+          "date": "-6078-12-21",
+          "sunrise_az_deg": 307.33,
+          "sun_alt_deg": -85.02,
+          "backend": "skyfield"
+        },
+        "current_solstice_eq": {
+          "year": 2026,
+          "backend": "skyfield",
+          "mar_equinox": {
+            "datetime_utc": "2026-03-21T00:00:00Z",
+            "jd": 2461120.5008,
+            "doy": 80,
+            "civil_doy": 80,
+            "validated_solar_lon_deg": 0.0144
+          },
+          "jun_solstice": {
+            "datetime_utc": "2026-06-22T00:00:00Z",
+            "jd": 2461213.5008,
+            "doy": 173,
+            "civil_doy": 173,
+            "validated_solar_lon_deg": 90.248
+          },
+          "sep_equinox": {
+            "datetime_utc": "2026-09-23T00:00:00Z",
+            "jd": 2461306.5008,
+            "doy": 266,
+            "civil_doy": 266,
+            "validated_solar_lon_deg": 179.6206
+          },
+          "dec_solstice": {
+            "datetime_utc": "2026-12-22T00:00:00Z",
+            "jd": 2461396.5008,
+            "doy": 356,
+            "civil_doy": 356,
+            "validated_solar_lon_deg": 269.7547
           },
           "caveat": null
         },
@@ -863,25 +1312,25 @@
             "name": "Sirius (\u03b1 CMa)",
             "epoch_coords": {
               "ra_h": 6.7519,
-              "dec_deg": -16.7194
+              "dec_deg": -16.7193
             },
             "rise_info": {
-              "rise_approx_utc": "-5890-06-21T09:00:00Z",
-              "altitude_deg": 2.82,
-              "azimuth_deg": 131.26,
+              "rise_approx_utc": "-6078-06-21T09:00:00Z",
+              "altitude_deg": 1.29,
+              "azimuth_deg": 136.21,
               "backend": "skyfield"
             }
           },
           "pleiades": {
             "name": "Pleiades (Alcyone)",
             "epoch_coords": {
-              "ra_h": 3.7827,
+              "ra_h": 3.7826,
               "dec_deg": 24.116
             },
             "rise_info": {
-              "rise_approx_utc": "-5890-06-21T04:00:00Z",
-              "altitude_deg": 0.36,
-              "azimuth_deg": 105.4,
+              "rise_approx_utc": "-6078-06-21T04:00:00Z",
+              "altitude_deg": 5.58,
+              "azimuth_deg": 110.46,
               "backend": "skyfield"
             }
           },
@@ -889,12 +1338,12 @@
             "name": "Betelgeuse (\u03b1 Ori)",
             "epoch_coords": {
               "ra_h": 5.9188,
-              "dec_deg": 7.4055
+              "dec_deg": 7.4056
             },
             "rise_info": {
-              "rise_approx_utc": "-5890-06-21T07:00:00Z",
-              "altitude_deg": 5.77,
-              "azimuth_deg": 116.65,
+              "rise_approx_utc": "-6078-06-21T07:00:00Z",
+              "altitude_deg": 7.9,
+              "azimuth_deg": 122.92,
               "backend": "skyfield"
             }
           },
@@ -902,12 +1351,12 @@
             "name": "Rigel (\u03b2 Ori)",
             "epoch_coords": {
               "ra_h": 5.2418,
-              "dec_deg": -8.2046
+              "dec_deg": -8.2045
             },
             "rise_info": {
-              "rise_approx_utc": "-5890-06-21T07:00:00Z",
-              "altitude_deg": 1.72,
-              "azimuth_deg": 134.85,
+              "rise_approx_utc": "-6078-06-21T08:00:00Z",
+              "altitude_deg": 7.62,
+              "azimuth_deg": 147.25,
               "backend": "skyfield"
             }
           },
@@ -918,9 +1367,9 @@
               "dec_deg": -1.9442
             },
             "rise_info": {
-              "rise_approx_utc": "-5890-06-21T07:00:00Z",
-              "altitude_deg": 1.62,
-              "azimuth_deg": 125.76,
+              "rise_approx_utc": "-6078-06-21T07:00:00Z",
+              "altitude_deg": 1.7,
+              "azimuth_deg": 130.79,
               "backend": "skyfield"
             }
           }
@@ -929,46 +1378,56 @@
       },
       {
         "name": "random_control",
-        "lat": 57.8313,
-        "lon": -34.9377,
+        "lat": -30.3007,
+        "lon": 149.872,
         "elevation_m": 50,
-        "epoch_year": 1276,
+        "epoch_year": 1393,
         "note": "",
+        "axis_bearing_deg": null,
+        "axis_citation": null,
         "solstice_eq": {
-          "year": 1276,
+          "year": 1393,
           "backend": "skyfield",
           "mar_equinox": {
-            "datetime_utc": "1276-03-10T00:00:00Z",
-            "jd": 2187178.5005,
-            "doy": 70
+            "datetime_utc": "1393-03-12T00:00:00Z",
+            "jd": 2229913.5005,
+            "doy": 71,
+            "civil_doy": 71,
+            "validated_solar_lon_deg": 0.3391
           },
           "jun_solstice": {
-            "datetime_utc": "1276-06-11T00:00:00Z",
-            "jd": 2187271.5005,
-            "doy": 163
+            "datetime_utc": "1393-06-12T00:00:00Z",
+            "jd": 2230005.5005,
+            "doy": 163,
+            "civil_doy": 163,
+            "validated_solar_lon_deg": 89.5049
           },
           "sep_equinox": {
-            "datetime_utc": "1276-09-12T00:00:00Z",
-            "jd": 2187364.5005,
-            "doy": 256
+            "datetime_utc": "1393-09-14T00:00:00Z",
+            "jd": 2230099.5005,
+            "doy": 257,
+            "civil_doy": 257,
+            "validated_solar_lon_deg": 179.8502
           },
           "dec_solstice": {
-            "datetime_utc": "1276-12-11T00:00:00Z",
-            "jd": 2187454.5005,
-            "doy": 346
+            "datetime_utc": "1393-12-13T00:00:00Z",
+            "jd": 2230189.5005,
+            "doy": 347,
+            "civil_doy": 347,
+            "validated_solar_lon_deg": 270.101
           },
           "caveat": null
         },
         "jun_solstice_sunrise": {
-          "date": "1276-06-21",
-          "sunrise_az_deg": 46.43,
-          "sun_alt_deg": 2.21,
+          "date": "1393-06-21",
+          "sunrise_az_deg": 307.24,
+          "sun_alt_deg": 12.67,
           "backend": "skyfield"
         },
         "dec_solstice_sunrise": {
-          "date": "1276-12-21",
-          "sunrise_az_deg": 69.99,
-          "sun_alt_deg": -39.61,
+          "date": "1393-12-21",
+          "sunrise_az_deg": 262.69,
+          "sun_alt_deg": 38.32,
           "backend": "skyfield"
         },
         "current_solstice_eq": {
@@ -977,22 +1436,30 @@
           "mar_equinox": {
             "datetime_utc": "2026-03-21T00:00:00Z",
             "jd": 2461120.5008,
-            "doy": 80
+            "doy": 80,
+            "civil_doy": 80,
+            "validated_solar_lon_deg": 0.0144
           },
           "jun_solstice": {
             "datetime_utc": "2026-06-22T00:00:00Z",
             "jd": 2461213.5008,
-            "doy": 173
+            "doy": 173,
+            "civil_doy": 173,
+            "validated_solar_lon_deg": 90.248
           },
           "sep_equinox": {
             "datetime_utc": "2026-09-23T00:00:00Z",
             "jd": 2461306.5008,
-            "doy": 266
+            "doy": 266,
+            "civil_doy": 266,
+            "validated_solar_lon_deg": 179.6206
           },
           "dec_solstice": {
             "datetime_utc": "2026-12-22T00:00:00Z",
             "jd": 2461396.5008,
-            "doy": 356
+            "doy": 356,
+            "civil_doy": 356,
+            "validated_solar_lon_deg": 269.7547
           },
           "caveat": null
         },
@@ -1001,12 +1468,12 @@
             "name": "Sirius (\u03b1 CMa)",
             "epoch_coords": {
               "ra_h": 6.7524,
-              "dec_deg": -16.717
+              "dec_deg": -16.7169
             },
             "rise_info": {
-              "rise_approx_utc": "1276-06-21T11:00:00Z",
-              "altitude_deg": 2.97,
-              "azimuth_deg": 127.4,
+              "visible_at_midnight": true,
+              "altitude_deg": 53.43,
+              "azimuth_deg": 75.89,
               "backend": "skyfield"
             }
           },
@@ -1017,9 +1484,9 @@
               "dec_deg": 24.1181
             },
             "rise_info": {
-              "rise_approx_utc": "1276-06-21T03:00:00Z",
-              "altitude_deg": 0.01,
-              "azimuth_deg": 46.27,
+              "visible_at_midnight": true,
+              "altitude_deg": 36.83,
+              "azimuth_deg": 348.8,
               "backend": "skyfield"
             }
           },
@@ -1027,12 +1494,12 @@
             "name": "Betelgeuse (\u03b1 Ori)",
             "epoch_coords": {
               "ra_h": 5.9194,
-              "dec_deg": 7.4064
+              "dec_deg": 7.4065
             },
             "rise_info": {
-              "rise_approx_utc": "1276-06-21T08:00:00Z",
-              "altitude_deg": 7.68,
-              "azimuth_deg": 89.1,
+              "visible_at_midnight": true,
+              "altitude_deg": 46.54,
+              "azimuth_deg": 34.45,
               "backend": "skyfield"
             }
           },
@@ -1043,298 +1510,22 @@
               "dec_deg": -8.2032
             },
             "rise_info": {
-              "rise_approx_utc": "1276-06-21T09:00:00Z",
-              "altitude_deg": 6.05,
-              "azimuth_deg": 118.27,
+              "visible_at_midnight": true,
+              "altitude_deg": 65.14,
+              "azimuth_deg": 34.24,
               "backend": "skyfield"
             }
           },
           "orion_belt": {
             "name": "Orion's Belt (Alnitak)",
             "epoch_coords": {
-              "ra_h": 5.6833,
+              "ra_h": 5.6834,
               "dec_deg": -1.9429
             },
             "rise_info": {
-              "rise_approx_utc": "1276-06-21T08:00:00Z",
-              "altitude_deg": 1.11,
-              "azimuth_deg": 96.65,
-              "backend": "skyfield"
-            }
-          }
-        },
-        "backend": "skyfield"
-      },
-      {
-        "name": "random_control",
-        "lat": 19.0409,
-        "lon": -119.7931,
-        "elevation_m": 50,
-        "epoch_year": -194,
-        "note": "",
-        "solstice_eq": {
-          "year": -194,
-          "backend": "skyfield",
-          "mar_equinox": {
-            "datetime_utc": "-194-02-19T00:00:00Z",
-            "jd": 1650251.5005,
-            "doy": 50
-          },
-          "jun_solstice": {
-            "datetime_utc": "-194-05-23T00:00:00Z",
-            "jd": 1650344.5005,
-            "doy": 143
-          },
-          "sep_equinox": {
-            "datetime_utc": "-194-08-24T00:00:00Z",
-            "jd": 1650437.5005,
-            "doy": 236
-          },
-          "dec_solstice": {
-            "datetime_utc": "-194-11-22T00:00:00Z",
-            "jd": 1650527.5005,
-            "doy": 326
-          },
-          "caveat": null
-        },
-        "jun_solstice_sunrise": {
-          "date": "-194-06-21",
-          "sunrise_az_deg": 295.06,
-          "sun_alt_deg": 0.27,
-          "backend": "skyfield"
-        },
-        "dec_solstice_sunrise": {
-          "date": "-194-12-21",
-          "sunrise_az_deg": 249.19,
-          "sun_alt_deg": -13.4,
-          "backend": "skyfield"
-        },
-        "current_solstice_eq": {
-          "year": 2026,
-          "backend": "skyfield",
-          "mar_equinox": {
-            "datetime_utc": "2026-03-21T00:00:00Z",
-            "jd": 2461120.5008,
-            "doy": 80
-          },
-          "jun_solstice": {
-            "datetime_utc": "2026-06-22T00:00:00Z",
-            "jd": 2461213.5008,
-            "doy": 173
-          },
-          "sep_equinox": {
-            "datetime_utc": "2026-09-23T00:00:00Z",
-            "jd": 2461306.5008,
-            "doy": 266
-          },
-          "dec_solstice": {
-            "datetime_utc": "2026-12-22T00:00:00Z",
-            "jd": 2461396.5008,
-            "doy": 356
-          },
-          "caveat": null
-        },
-        "stars": {
-          "sirius": {
-            "name": "Sirius (\u03b1 CMa)",
-            "epoch_coords": {
-              "ra_h": 6.7523,
-              "dec_deg": -16.7182
-            },
-            "rise_info": {
               "visible_at_midnight": true,
-              "altitude_deg": 49.71,
-              "azimuth_deg": 207.99,
-              "backend": "skyfield"
-            }
-          },
-          "pleiades": {
-            "name": "Pleiades (Alcyone)",
-            "epoch_coords": {
-              "ra_h": 3.7831,
-              "dec_deg": 24.1178
-            },
-            "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 23.77,
-              "azimuth_deg": 278.42,
-              "backend": "skyfield"
-            }
-          },
-          "orion_betelgeuse": {
-            "name": "Betelgeuse (\u03b1 Ori)",
-            "epoch_coords": {
-              "ra_h": 5.9193,
-              "dec_deg": 7.406
-            },
-            "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 51.95,
-              "azimuth_deg": 251.4,
-              "backend": "skyfield"
-            }
-          },
-          "orion_rigel": {
-            "name": "Rigel (\u03b2 Ori)",
-            "epoch_coords": {
-              "ra_h": 5.2422,
-              "dec_deg": -8.2041
-            },
-            "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 36.96,
-              "azimuth_deg": 235.75,
-              "backend": "skyfield"
-            }
-          },
-          "orion_belt": {
-            "name": "Orion's Belt (Alnitak)",
-            "epoch_coords": {
-              "ra_h": 5.6833,
-              "dec_deg": -1.9436
-            },
-            "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 45.55,
-              "azimuth_deg": 239.71,
-              "backend": "skyfield"
-            }
-          }
-        },
-        "backend": "skyfield"
-      },
-      {
-        "name": "random_control",
-        "lat": 13.1366,
-        "lon": -59.6188,
-        "elevation_m": 50,
-        "epoch_year": -1684,
-        "note": "",
-        "solstice_eq": {
-          "year": -1684,
-          "backend": "skyfield",
-          "mar_equinox": {
-            "datetime_utc": "-1684-01-30T00:00:00Z",
-            "jd": 1106019.5005,
-            "doy": 30
-          },
-          "jun_solstice": {
-            "datetime_utc": "-1684-05-02T00:00:00Z",
-            "jd": 1106112.5005,
-            "doy": 123
-          },
-          "sep_equinox": {
-            "datetime_utc": "-1684-08-03T00:00:00Z",
-            "jd": 1106205.5005,
-            "doy": 216
-          },
-          "dec_solstice": {
-            "datetime_utc": "-1684-11-01T00:00:00Z",
-            "jd": 1106295.5005,
-            "doy": 306
-          },
-          "caveat": null
-        },
-        "jun_solstice_sunrise": {
-          "date": "-1684-06-21",
-          "sunrise_az_deg": 290.68,
-          "sun_alt_deg": 44.67,
-          "backend": "skyfield"
-        },
-        "dec_solstice_sunrise": {
-          "date": "-1684-12-21",
-          "sunrise_az_deg": 228.97,
-          "sun_alt_deg": 33.78,
-          "backend": "skyfield"
-        },
-        "current_solstice_eq": {
-          "year": 2026,
-          "backend": "skyfield",
-          "mar_equinox": {
-            "datetime_utc": "2026-03-21T00:00:00Z",
-            "jd": 2461120.5008,
-            "doy": 80
-          },
-          "jun_solstice": {
-            "datetime_utc": "2026-06-22T00:00:00Z",
-            "jd": 2461213.5008,
-            "doy": 173
-          },
-          "sep_equinox": {
-            "datetime_utc": "2026-09-23T00:00:00Z",
-            "jd": 2461306.5008,
-            "doy": 266
-          },
-          "dec_solstice": {
-            "datetime_utc": "2026-12-22T00:00:00Z",
-            "jd": 2461396.5008,
-            "doy": 356
-          },
-          "caveat": null
-        },
-        "stars": {
-          "sirius": {
-            "name": "Sirius (\u03b1 CMa)",
-            "epoch_coords": {
-              "ra_h": 6.7523,
-              "dec_deg": -16.7191
-            },
-            "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 52.6,
-              "azimuth_deg": 151.87,
-              "backend": "skyfield"
-            }
-          },
-          "pleiades": {
-            "name": "Pleiades (Alcyone)",
-            "epoch_coords": {
-              "ra_h": 3.783,
-              "dec_deg": 24.1173
-            },
-            "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 53.67,
-              "azimuth_deg": 263.8,
-              "backend": "skyfield"
-            }
-          },
-          "orion_betelgeuse": {
-            "name": "Betelgeuse (\u03b1 Ori)",
-            "epoch_coords": {
-              "ra_h": 5.9192,
-              "dec_deg": 7.4056
-            },
-            "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 75.38,
-              "azimuth_deg": 189.46,
-              "backend": "skyfield"
-            }
-          },
-          "orion_rigel": {
-            "name": "Rigel (\u03b2 Ori)",
-            "epoch_coords": {
-              "ra_h": 5.2421,
-              "dec_deg": -8.2047
-            },
-            "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 56.82,
-              "azimuth_deg": 192.84,
-              "backend": "skyfield"
-            }
-          },
-          "orion_belt": {
-            "name": "Orion's Belt (Alnitak)",
-            "epoch_coords": {
-              "ra_h": 5.6832,
-              "dec_deg": -1.9442
-            },
-            "rise_info": {
-              "visible_at_midnight": true,
-              "altitude_deg": 65.42,
-              "azimuth_deg": 186.74,
+              "altitude_deg": 56.26,
+              "azimuth_deg": 38.19,
               "backend": "skyfield"
             }
           }
@@ -1343,5 +1534,5 @@
       }
     ]
   },
-  "verdict": "No separation from random \u2014 structure, not signal. No alien/divine claims. Report geometric facts."
+  "verdict": "N4++ axis-bearing alignment \u2014 see bearing_alignments for \u0394az values. No alien/divine claims. Geometry \u2260 intent."
 }
