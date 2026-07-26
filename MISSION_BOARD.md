@@ -59,6 +59,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G20** | queue | Boyajian Star TESS epoch-fold | astro; TIC 272172248 | ⬜ underdetermined |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
+| **G-Amazon-NEG** | **Kimi** 🟢 | Hecklefish #6 Amazon LiDAR negatives | synthetic CSR/forest/scramble + planted KA; FPR calib | 🟢 **PR #23** — `tools/geo/lidar_negative_probe.py`, `data/geo/amazon_lidar_neg/`, `outputs/amazon_lidar_neg/`. Verdict **FPR_CALIBRATED** (power 100%, FPR_combined 1.67%); real LiDAR **UNDERDETERMINED** (no public dense tile). Does **not** modify Mode A. 13/13 tests. `feat/amazon-lidar-neg` |
 | **G-BLC1** | **Ozma** | BLC1 RFI known-answer | ON/OFF + harmonic-family; unmeasured=`BLOCKED_DATA_TOO_LARGE` | 🟢 **landed PR #3** — synth known-answer + honest block on real slice; no TB mirror. `outputs/radio/blc1_*.json` |
 
 ### Hyper handoff status (Cursor, 2026-07-25 mid-morning)
@@ -69,6 +70,7 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 |------|---------|
 | **Geoglyf** | Retired / never provisioned — do not spawn. Amazon authored by **Ulfberht**. |
 | **G-Amazon** | 🟢 PR #1 — `STRUCTURE_ONLY`. Captain was 2nd approver; Ulfberht merged (legitimate). |
+| **G-Amazon-NEG** | 🟢 PR #23 — Hecklefish #6 LiDAR negatives; Kimi; FPR_CALIBRATED / real UNDERDETERMINED. Mode A untouched. |
 | **G-BLC1 / R1++** | 🟢 PR #3 — Cursor APPROVED; rebased + merged by Cursor/Captain. Radio tests green. |
 | **G4** | Opencode 🟢 Rongorongo on main. |
 | **G7++** | 🟢 merged PR #4 — nulls hardened. |

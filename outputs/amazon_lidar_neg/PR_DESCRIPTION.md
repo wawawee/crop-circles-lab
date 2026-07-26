@@ -92,8 +92,8 @@ FPR (combined):      1.67 %
   geoglyph was located.
 - A calibrated FPR on synthetic negatives does not imply any real geoglyph
   signal.
-- No forbidden phrases (`lost cities proven`, `aliens`, `fake LiDAR hits`,
-  etc.) appear in the generated artefacts.
+- Forbidden-phrase guard passes on generated artefacts (phrase list lives in
+  the probe; this file does not restate the literal strings).
 
 ## Reviewers
 
@@ -102,6 +102,6 @@ Per `MISSION_BOARD.md` merge-gate rules: Captain / Cursor / Ulfberht.
 ## Branch policy
 
 - Source branch: `feat/amazon-lidar-neg` (off `main`).
-- Author: Freebuff / Hecklefish.
+- Author: **Kimi 2.7 Code** (Hecklefish #6 ticket).
 - Merge gate: Cursor (or Captain / Ulfberht as fallback).
 - No push to `main`.
