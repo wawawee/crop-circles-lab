@@ -1,0 +1,226 @@
+{
+  "verdict": "FPR_CALIBRATED",
+  "reason": "Real collinearity exceeds null envelope at one or more primary tolerances ([1.0, 2.0]). FPR per tolerance is reported above. This warrants extension to a larger EAMENA sample.",
+  "domain": "eamena_ley_null",
+  "generated_utc": "2026-07-26T23:01:33.934572+00:00",
+  "dataset": {
+    "source": "EAMENA Sistan part 1 (CC BY 4.0)",
+    "doi": "10.5281/zenodo.10375902",
+    "n": 80,
+    "bbox_approx": {
+      "lon_min": 61.1812,
+      "lat_min": 30.3,
+      "lon_max": 62.1694,
+      "lat_max": 31.4946
+    }
+  },
+  "parameters": {
+    "n_sims": 199,
+    "seed": 42,
+    "tolerances_deg": [
+      0.1,
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "null_quantile": 0.99
+  },
+  "real_stats": {
+    "n": 80,
+    "triples_tol_0.1": 317,
+    "max_run_tol_0.1": 80,
+    "triples_tol_0.5": 1749,
+    "max_run_tol_0.5": 80,
+    "triples_tol_1.0": 3240,
+    "max_run_tol_1.0": 80,
+    "triples_tol_2.0": 5834,
+    "max_run_tol_2.0": 80,
+    "triples_tol_5.0": 11586,
+    "max_run_tol_5.0": 80,
+    "mean_alignment_error_deg": 27.4404
+  },
+  "per_tolerance": {
+    "tol_0.1": {
+      "triples": {
+        "real": 317,
+        "csr": {
+          "null_99%": 232.1,
+          "null_mean": 182.7688,
+          "null_sd": 18.7325,
+          "fpr": 0.0
+        },
+        "scramble": {
+          "null_99%": 282.12,
+          "null_mean": 208.1709,
+          "null_sd": 23.2989,
+          "fpr": 0.0
+        }
+      },
+      "max_run": {
+        "real": 80,
+        "csr": {
+          "null_99%": 80.0,
+          "null_mean": 79.794,
+          "null_sd": 0.4849,
+          "fpr": 0.8241
+        },
+        "scramble": {
+          "null_99%": 80.0,
+          "null_mean": 79.9095,
+          "null_sd": 0.3046,
+          "fpr": 0.9146
+        }
+      }
+    },
+    "tol_0.5": {
+      "triples": {
+        "real": 1749,
+        "csr": {
+          "null_99%": 1017.06,
+          "null_mean": 877.005,
+          "null_sd": 63.5176,
+          "fpr": 0.0
+        },
+        "scramble": {
+          "null_99%": 1184.02,
+          "null_mean": 995.7538,
+          "null_sd": 65.02,
+          "fpr": 0.0
+        }
+      },
+      "max_run": {
+        "real": 80,
+        "csr": {
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
+        },
+        "scramble": {
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
+        }
+      }
+    },
+    "tol_1.0": {
+      "triples": {
+        "real": 3240,
+        "csr": {
+          "null_99%": 2016.68,
+          "null_mean": 1752.9296,
+          "null_sd": 116.6149,
+          "fpr": 0.0
+        },
+        "scramble": {
+          "null_99%": 2300.8,
+          "null_mean": 1983.9648,
+          "null_sd": 111.1613,
+          "fpr": 0.0
+        }
+      },
+      "max_run": {
+        "real": 80,
+        "csr": {
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
+        },
+        "scramble": {
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
+        }
+      }
+    },
+    "tol_2.0": {
+      "triples": {
+        "real": 5834,
+        "csr": {
+          "null_99%": 3966.72,
+          "null_mean": 3502.809,
+          "null_sd": 205.3398,
+          "fpr": 0.0
+        },
+        "scramble": {
+          "null_99%": 4377.42,
+          "null_mean": 3922.397,
+          "null_sd": 174.6107,
+          "fpr": 0.0
+        }
+      },
+      "max_run": {
+        "real": 80,
+        "csr": {
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
+        },
+        "scramble": {
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
+        }
+      }
+    },
+    "tol_5.0": {
+      "triples": {
+        "real": 11586,
+        "csr": {
+          "null_99%": 9823.18,
+          "null_mean": 8748.2563,
+          "null_sd": 431.1456,
+          "fpr": 0.0
+        },
+        "scramble": {
+          "null_99%": 10189.0,
+          "null_mean": 9396.5678,
+          "null_sd": 305.8602,
+          "fpr": 0.0
+        }
+      },
+      "max_run": {
+        "real": 80,
+        "csr": {
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
+        },
+        "scramble": {
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
+        }
+      }
+    }
+  },
+  "mean_alignment_error": {
+    "real": 27.4404,
+    "csr_mean": 28.3727,
+    "csr_sd": 0.5325,
+    "scramble_mean": 27.8045,
+    "scramble_sd": 0.3875
+  },
+  "signal_by_tolerance": {
+    "tol_0.1": true,
+    "tol_0.5": true,
+    "tol_1.0": true,
+    "tol_2.0": true,
+    "tol_5.0": true
+  },
+  "n_tolerances_with_signal": 5,
+  "caveats": [
+    "Collinearity detection uses great-circle bearings on a random subsample of the full dataset (--max-points).",
+    "CSR null is uniform in bbox; does not model terrain or cultural settlement patterns that constrain site placement.",
+    "Structure detection is not a message or civilisation claim.",
+    "FPR_CALIBRATED means the real collinearity count exceeds the null envelope \u2014 it does NOT imply intentional alignment."
+  ]
+}
