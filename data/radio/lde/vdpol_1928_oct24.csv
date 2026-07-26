@@ -1,0 +1,21 @@
+index,delay_s,source,date,observer,location,frequency_mhz,notes
+1,3,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,"vd Pol 1928 Nature 122:878-879; simultaneous with Oslo"
+2,6,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,
+3,8,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,
+4,9,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,
+5,11,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,
+6,13,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,
+7,14,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,
+8,16,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,
+9,17,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,
+10,18,vdPol_1928_oct24,1928-10-24,Balthazar_van_der_Pol,Eindhoven_Netherlands,9.55,
+11,3,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,"Simultaneous Oslo observation"
+12,6,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,
+13,8,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,
+14,9,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,
+15,11,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,
+16,13,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,
+17,14,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,
+18,16,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,
+19,17,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,
+20,18,vdPol_1928_oct24,1928-10-24,Carl_Størmer,Oslo_Norway,9.55,

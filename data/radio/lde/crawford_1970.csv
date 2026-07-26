@@ -1,0 +1,24 @@
+index,delay_s,source,date,observer,location,frequency_mhz,notes
+1,0.2,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,"Crawford et al. 1970 JGR 75:7326-7332; recorded up to 40s delays"
+2,0.5,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+3,1,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+4,2,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,Most_frequent_delay_class
+5,3,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+6,4,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+7,5,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+8,6,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+9,7,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+10,8,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,Most_frequent_delay_class
+11,9,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+12,10,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+13,12,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+14,15,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+15,20,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+16,30,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,
+17,40,Crawford_1970,1967-1970,F_W_Crawford,Stanford_CA_USA,5-12,Maximum_observed
+18,2,Crawford_1978,1978,F_W_Crawford,Alaska_USA,5.8,"Crawford Alaska 1978 follow-up; 5.8 MHz"
+19,5,Crawford_1978,1978,F_W_Crawford,Alaska_USA,5.8,
+20,8,Crawford_1978,1978,F_W_Crawford,Alaska_USA,5.8,Most_frequent
+21,10,Crawford_1978,1978,F_W_Crawford,Alaska_USA,5.8,
+22,15,Crawford_1978,1978,F_W_Crawford,Alaska_USA,5.8,
+23,25,Crawford_1978,1978,F_W_Crawford,Alaska_USA,5.8,

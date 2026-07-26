@@ -1,0 +1,134 @@
+{
+  "label": "lde_probe",
+  "mission": "G19 \u2014 Long Delayed Echoes historic series",
+  "stance": "structure != message. Historic delay values, not IQ baseband. We analyse delay-value multiset structure only. Never validates Lunan/Filipenko/Bracewell.",
+  "data_source": "/Users/perbrinell/Documents/TIN-STUDY/crop-circles/data/radio/lde/lde_master.json",
+  "n_observations": 100,
+  "descriptive": {
+    "n_total": 100,
+    "n_unique": 34,
+    "delay_min_s": 0.2,
+    "delay_max_s": 40.0,
+    "delay_mean_s": 12.217,
+    "delay_median_s": 11.0,
+    "delay_std_s": 8.202168412478901,
+    "n_integer_delays": 96,
+    "fraction_integer": 0.96,
+    "n_repeated_values": 22,
+    "mode_delay_s": 8.0,
+    "mode_count": 13,
+    "entropy_bits": 4.721,
+    "per_source": {
+      "Stormer_1928": 14,
+      "vdPol_1928_oct24": 20,
+      "Hals_1934": 11,
+      "Appleton_1934": 32,
+      "Crawford_1970": 17,
+      "Crawford_1978": 6
+    }
+  },
+  "structure_tests": {
+    "integer_multiplicity": {
+      "test": "integer_multiplicity",
+      "statistic": "n_repeated_values",
+      "observed": 22,
+      "null_mean": 22.0,
+      "null_p95": 22.0,
+      "null_max": 22,
+      "p_value": 1.0,
+      "exceeds_null": false,
+      "n_shuffle": 200,
+      "note": "Tests whether integer-delay multiplicity exceeds a shuffle of the same multiset. NOT a time-series test. structure != message."
+    },
+    "mode_concentration_8s": {
+      "test": "mode_concentration",
+      "mode_value_s": 8.0,
+      "observed_count": 13,
+      "observed_fraction": 0.13,
+      "null_mean": 13.0,
+      "null_p95": 13.0,
+      "p_value": 1.0,
+      "exceeds_null": false,
+      "n_shuffle": 200,
+      "note": "Tests whether 8.0s concentration exceeds shuffle null. Crawford 1970: '2 and 8 seconds were the most frequent.' structure != message."
+    },
+    "entropy_vs_uniform": {
+      "test": "entropy_vs_uniform",
+      "observed_entropy_bits": 4.721,
+      "uniform_null_mean_entropy": 5.665,
+      "uniform_null_std_entropy": 0.0919,
+      "p_value_low_entropy": 0.0,
+      "n_unique_observed": 34,
+      "note": "Shannon entropy of delay distribution vs uniform null. Low entropy = concentrated distribution. structure != message; concentration can arise from rounding (1920s integer-second reporting) or from prosaic clustering."
+    },
+    "epoch_fold_values": {
+      "test": "delay_value_epoch_fold",
+      "best_period_s": 0.5,
+      "best_z2": 192.83629270227522,
+      "best_phase_rad": 0.005986071363889992,
+      "shuffled_z2_max": 24.3,
+      "exceeds_shuffle": true,
+      "note": "Epoch-fold on delay VALUES (not arrival times). A positive result means delay values repeat at a regular interval, NOT that echoes are periodic in real time. structure != message."
+    }
+  },
+  "corpus_verdict": {
+    "test": "corpus_shuffle",
+    "n_total": 100,
+    "entropy": {
+      "test": "entropy_vs_uniform",
+      "observed_entropy_bits": 4.721,
+      "uniform_null_mean_entropy": 5.665,
+      "uniform_null_std_entropy": 0.0919,
+      "p_value_low_entropy": 0.0,
+      "n_unique_observed": 34,
+      "note": "Shannon entropy of delay distribution vs uniform null. Low entropy = concentrated distribution. structure != message; concentration can arise from rounding (1920s integer-second reporting) or from prosaic clustering."
+    },
+    "chi2_uniformity": 57.7083,
+    "any_excess_structure": true,
+    "verdict": "UNDERDETERMINED",
+    "note": "Full corpus structure test. If the delay distribution is not more concentrated than a uniform random draw \u2192 NO_SIGNAL. structure != message."
+  },
+  "lunan_claim": {
+    "test": "lunan_claim_stormer_oct11",
+    "subset": "Stormer 1928 Oct 11 (n=14)",
+    "delays": [
+      8,
+      11,
+      15,
+      8,
+      13,
+      3,
+      8,
+      8,
+      8,
+      12,
+      15,
+      13,
+      8,
+      8
+    ],
+    "observed_score": 0.8,
+    "shuffle_null_mean": 0.8,
+    "shuffle_null_std": 0.0,
+    "shuffle_null_p95": 0.8,
+    "p_shuffle": 1.0,
+    "beats_shuffle_null": false,
+    "prosaic_null_mean": 0.7228,
+    "prosaic_null_std": 0.1399,
+    "prosaic_null_p95": 0.9429,
+    "p_prosaic": 0.403,
+    "beats_prosaic_null": false,
+    "verdict": "CLAIM_FAILS_NULL",
+    "verdict_reason": "Lunan-structure score does NOT exceed shuffle null. The delay-value multiset has no more 'Bootes-like' structure than a random permutation of the same values.",
+    "stance": "Lunan's 'Bootes constellation / moon-relay' hypothesis is UNDER-TEST here. Verdict is CLAIM_FAILS_NULL or UNDERDETERMINED. Never validates Lunan. Structure != message.",
+    "accuracy_caveat": "1920s timing: \u00b11\u20132 s uncertainty. St\u00f8rmer 1955: 'The times noted by me can lay no claim to great accuracy, because I was not adequately prepared.' Van der Pol 1928: timing with stopwatch + second hand of ordinary watch.",
+    "n_shuffle": 1000
+  },
+  "overall_verdict": "CLAIM_FAILS_NULL",
+  "accuracy_caveat": "1920s timing: \u00b11\u20132 s uncertainty. St\u00f8rmer 1955: 'The times noted by me can lay no claim to great accuracy, because I was not adequately prepared.' Van der Pol 1928: timing with stopwatch + second hand of ordinary watch.",
+  "forbidden": [
+    "No IQ/baseband fabricated",
+    "No Lunan/Filipenko/Bracewell confirmation",
+    "No Skinwalker crossover"
+  ]
+}
