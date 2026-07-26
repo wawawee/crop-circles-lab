@@ -1,21 +1,21 @@
 {
-  "verdict": "UNDERDETERMINED",
-  "reason": "n=14 is small; collinearity statistics are unreliable until tested on larger EAMENA subsets.",
+  "verdict": "FPR_CALIBRATED",
+  "reason": "Real collinearity exceeds null envelope at one or more primary tolerances ([1.0, 2.0]). FPR per tolerance is reported above. This warrants extension to a larger EAMENA sample.",
   "domain": "eamena_ley_null",
-  "generated_utc": "2026-07-26T22:02:42.950778+00:00",
+  "generated_utc": "2026-07-26T23:01:33.934572+00:00",
   "dataset": {
-    "source": "EAMENA Wadi Naqqat subset (14 sites, CC BY 4.0)",
-    "doi": "10.5281/zenodo.15554618",
-    "n": 14,
+    "source": "EAMENA Sistan part 1 (CC BY 4.0)",
+    "doi": "10.5281/zenodo.10375902",
+    "n": 80,
     "bbox_approx": {
-      "lon_min": 33.2825,
-      "lat_min": 27.0431,
-      "lon_max": 33.287,
-      "lat_max": 27.0502
+      "lon_min": 61.1812,
+      "lat_min": 30.3,
+      "lon_max": 62.1694,
+      "lat_max": 31.4946
     }
   },
   "parameters": {
-    "n_sims": 999,
+    "n_sims": 199,
     "seed": 42,
     "tolerances_deg": [
       0.1,
@@ -27,200 +27,200 @@
     "null_quantile": 0.99
   },
   "real_stats": {
-    "n": 14,
-    "triples_tol_0.1": 1,
-    "max_run_tol_0.1": 3,
-    "triples_tol_0.5": 5,
-    "max_run_tol_0.5": 7,
-    "triples_tol_1.0": 7,
-    "max_run_tol_1.0": 7,
-    "triples_tol_2.0": 17,
-    "max_run_tol_2.0": 14,
-    "triples_tol_5.0": 37,
-    "max_run_tol_5.0": 14,
-    "mean_alignment_error_deg": 29.2894
+    "n": 80,
+    "triples_tol_0.1": 317,
+    "max_run_tol_0.1": 80,
+    "triples_tol_0.5": 1749,
+    "max_run_tol_0.5": 80,
+    "triples_tol_1.0": 3240,
+    "max_run_tol_1.0": 80,
+    "triples_tol_2.0": 5834,
+    "max_run_tol_2.0": 80,
+    "triples_tol_5.0": 11586,
+    "max_run_tol_5.0": 80,
+    "mean_alignment_error_deg": 27.4404
   },
   "per_tolerance": {
     "tol_0.1": {
       "triples": {
-        "real": 1,
+        "real": 317,
         "csr": {
-          "null_99%": 4.0,
-          "null_mean": 0.9069,
-          "null_sd": 1.0141,
-          "fpr": 0.5806
+          "null_99%": 232.1,
+          "null_mean": 182.7688,
+          "null_sd": 18.7325,
+          "fpr": 0.0
         },
         "scramble": {
-          "null_99%": 3.02,
-          "null_mean": 0.7177,
-          "null_sd": 0.8809,
-          "fpr": 0.5035
+          "null_99%": 282.12,
+          "null_mean": 208.1709,
+          "null_sd": 23.2989,
+          "fpr": 0.0
         }
       },
       "max_run": {
-        "real": 3,
+        "real": 80,
         "csr": {
-          "null_99%": 7.0,
-          "null_mean": 2.0991,
-          "null_sd": 1.9988,
-          "fpr": 0.5806
+          "null_99%": 80.0,
+          "null_mean": 79.794,
+          "null_sd": 0.4849,
+          "fpr": 0.8241
         },
         "scramble": {
-          "null_99%": 7.0,
-          "null_mean": 1.7477,
-          "null_sd": 1.884,
-          "fpr": 0.5035
+          "null_99%": 80.0,
+          "null_mean": 79.9095,
+          "null_sd": 0.3046,
+          "fpr": 0.9146
         }
       }
     },
     "tol_0.5": {
       "triples": {
-        "real": 5,
+        "real": 1749,
         "csr": {
-          "null_99%": 12.0,
-          "null_mean": 4.3884,
-          "null_sd": 2.4903,
-          "fpr": 0.4114
+          "null_99%": 1017.06,
+          "null_mean": 877.005,
+          "null_sd": 63.5176,
+          "fpr": 0.0
         },
         "scramble": {
-          "null_99%": 10.0,
-          "null_mean": 3.4124,
-          "null_sd": 2.0974,
-          "fpr": 0.2402
+          "null_99%": 1184.02,
+          "null_mean": 995.7538,
+          "null_sd": 65.02,
+          "fpr": 0.0
         }
       },
       "max_run": {
-        "real": 7,
+        "real": 80,
         "csr": {
-          "null_99%": 13.0,
-          "null_mean": 7.045,
-          "null_sd": 2.9571,
-          "fpr": 0.5716
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
         },
         "scramble": {
-          "null_99%": 13.0,
-          "null_mean": 5.963,
-          "null_sd": 2.9266,
-          "fpr": 0.4284
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
         }
       }
     },
     "tol_1.0": {
       "triples": {
-        "real": 7,
+        "real": 3240,
         "csr": {
-          "null_99%": 21.0,
-          "null_mean": 8.7007,
-          "null_sd": 3.7661,
-          "fpr": 0.7027
+          "null_99%": 2016.68,
+          "null_mean": 1752.9296,
+          "null_sd": 116.6149,
+          "fpr": 0.0
         },
         "scramble": {
-          "null_99%": 17.0,
-          "null_mean": 6.971,
-          "null_sd": 3.2686,
-          "fpr": 0.4915
+          "null_99%": 2300.8,
+          "null_mean": 1983.9648,
+          "null_sd": 111.1613,
+          "fpr": 0.0
         }
       },
       "max_run": {
-        "real": 7,
+        "real": 80,
         "csr": {
-          "null_99%": 14.0,
-          "null_mean": 10.8338,
-          "null_sd": 2.4266,
-          "fpr": 0.9329
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
         },
         "scramble": {
-          "null_99%": 14.0,
-          "null_mean": 9.9009,
-          "null_sd": 2.7833,
-          "fpr": 0.8609
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
         }
       }
     },
     "tol_2.0": {
       "triples": {
-        "real": 17,
+        "real": 5834,
         "csr": {
-          "null_99%": 35.0,
-          "null_mean": 17.3944,
-          "null_sd": 6.1304,
-          "fpr": 0.5015
+          "null_99%": 3966.72,
+          "null_mean": 3502.809,
+          "null_sd": 205.3398,
+          "fpr": 0.0
         },
         "scramble": {
-          "null_99%": 31.02,
-          "null_mean": 14.1121,
-          "null_sd": 5.4266,
-          "fpr": 0.2833
+          "null_99%": 4377.42,
+          "null_mean": 3922.397,
+          "null_sd": 174.6107,
+          "fpr": 0.0
         }
       },
       "max_run": {
-        "real": 14,
+        "real": 80,
         "csr": {
-          "null_99%": 14.0,
-          "null_mean": 13.3684,
-          "null_sd": 0.89,
-          "fpr": 0.5676
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
         },
         "scramble": {
-          "null_99%": 14.0,
-          "null_mean": 12.972,
-          "null_sd": 1.3678,
-          "fpr": 0.4414
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
         }
       }
     },
     "tol_5.0": {
       "triples": {
-        "real": 37,
+        "real": 11586,
         "csr": {
-          "null_99%": 76.0,
-          "null_mean": 42.8659,
-          "null_sd": 11.1674,
-          "fpr": 0.6897
+          "null_99%": 9823.18,
+          "null_mean": 8748.2563,
+          "null_sd": 431.1456,
+          "fpr": 0.0
         },
         "scramble": {
-          "null_99%": 64.02,
-          "null_mean": 35.5155,
-          "null_sd": 9.3451,
-          "fpr": 0.3964
+          "null_99%": 10189.0,
+          "null_mean": 9396.5678,
+          "null_sd": 305.8602,
+          "fpr": 0.0
         }
       },
       "max_run": {
-        "real": 14,
+        "real": 80,
         "csr": {
-          "null_99%": 14.0,
-          "null_mean": 13.989,
-          "null_sd": 0.1044,
-          "fpr": 0.989
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
         },
         "scramble": {
-          "null_99%": 14.0,
-          "null_mean": 13.979,
-          "null_sd": 0.1435,
-          "fpr": 0.979
+          "null_99%": 80.0,
+          "null_mean": 80.0,
+          "null_sd": 0.0,
+          "fpr": 1.0
         }
       }
     }
   },
   "mean_alignment_error": {
-    "real": 29.2894,
-    "csr_mean": 27.0411,
-    "csr_sd": 2.3222,
-    "scramble_mean": 28.3218,
-    "scramble_sd": 1.968
+    "real": 27.4404,
+    "csr_mean": 28.3727,
+    "csr_sd": 0.5325,
+    "scramble_mean": 27.8045,
+    "scramble_sd": 0.3875
   },
   "signal_by_tolerance": {
-    "tol_0.1": false,
-    "tol_0.5": false,
-    "tol_1.0": false,
-    "tol_2.0": false,
-    "tol_5.0": false
+    "tol_0.1": true,
+    "tol_0.5": true,
+    "tol_1.0": true,
+    "tol_2.0": true,
+    "tol_5.0": true
   },
-  "n_tolerances_with_signal": 0,
+  "n_tolerances_with_signal": 5,
   "caveats": [
-    "Subset is only 14 sites in a ~500 m area \u2014 too few for reliable ley-line statistics. These results are a calibration exercise.",
-    "Collinearity detection uses great-circle bearings, not planar approximations, appropriate for the Wadi Naqqat extent.",
+    "Collinearity detection uses great-circle bearings on a random subsample of the full dataset (--max-points).",
     "CSR null is uniform in bbox; does not model terrain or cultural settlement patterns that constrain site placement.",
-    "Structure detection is not a message or civilisation claim."
+    "Structure detection is not a message or civilisation claim.",
+    "FPR_CALIBRATED means the real collinearity count exceeds the null envelope \u2014 it does NOT imply intentional alignment."
   ]
 }

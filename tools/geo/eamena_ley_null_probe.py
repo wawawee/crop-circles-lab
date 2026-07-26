@@ -25,6 +25,9 @@ Verdict vocabulary:
     NO_SIGNAL       -- real collinearity does not exceed CSR/scramble nulls
     FPR_CALIBRATED  -- real collinearity separates from nulls with known FPR
     UNDERDETERMINED -- ambiguous or insufficient data
+
+Note: Brute-force O(n³) triple enumeration limits N. For large datasets use
+--max-points (random subsample) or --n-sims to control runtime.
 """
 from __future__ import annotations
 
@@ -89,26 +92,52 @@ def _angular_deviation(
     return d if d <= 180 else 360 - d
 
 
+def _bearing_matrix(lats: np.ndarray, lons: np.ndarray) -> np.ndarray:
+    """Precompute all-pair bearings (n×n), 0 on diagonal."""
+    n = len(lats)
+    lat_r = np.radians(lats)
+    lon_r = np.radians(lons)
+    B = np.zeros((n, n))
+    for i in range(n):
+        dlon = lon_r - lon_r[i]
+        x = np.sin(dlon) * np.cos(lat_r)
+        y = (np.cos(lat_r[i]) * np.sin(lat_r)
+             - np.sin(lat_r[i]) * np.cos(lat_r) * np.cos(dlon))
+        B[i] = np.degrees(np.arctan2(x, y)) % 360
+        B[i, i] = 0.0
+    return B
+
+
+def _ang_dev_from_bearing(b_ij: float, b_ik: float) -> float:
+    d = abs(b_ik - b_ij)
+    return d if d <= 180 else 360 - d
+
+
 def collinear_triples(
     lats: np.ndarray,
     lons: np.ndarray,
     tol_deg: float = 1.0,
+    bearings: np.ndarray | None = None,
 ) -> list[tuple[int, int, int]]:
     """Find all triples (i,j,k) collinear within *tol_deg*.
     
-    A triple qualifies if the maximum angular deviation of any point
-    from the great circle defined by the other two is ≤ tol_deg.
-    Uses the mid-point as the reference line, checking deviation of
-    the third from arc(mid, each end).
+    Uses precomputed bearing matrix for O(1) per check. Pass
+    *bearings* to reuse across calls.
     """
     n = len(lats)
+    if bearings is None:
+        bearings = _bearing_matrix(lats, lons)
     triples: list[tuple[int, int, int]] = []
     for i in range(n):
+        Bi = bearings[i]
         for j in range(i + 1, n):
+            bij = Bi[j]
             for k in range(j + 1, n):
-                d1 = _angular_deviation(lats[i], lons[i], lats[j], lons[j], lats[k], lons[k])
-                d2 = _angular_deviation(lats[i], lons[i], lats[k], lons[k], lats[j], lons[j])
-                d3 = _angular_deviation(lats[j], lons[j], lats[k], lons[k], lats[i], lons[i])
+                bik = Bi[k]
+                bjk = bearings[j, k]
+                d1 = _ang_dev_from_bearing(bij, bik)
+                d2 = _ang_dev_from_bearing(bij, bjk)
+                d3 = _ang_dev_from_bearing(bik, bjk)
                 if min(d1, d2, d3) <= tol_deg:
                     triples.append((i, j, k))
     return triples
@@ -119,6 +148,7 @@ def max_collinear_run(
     lons: np.ndarray,
     tol_deg: float = 1.0,
     min_chain: int = 3,
+    bearings: np.ndarray | None = None,
 ) -> tuple[int, list[int]]:
     """Longest collinear chain (connected adjacency). 
     
@@ -126,7 +156,7 @@ def max_collinear_run(
     collinear triple. Returns (max_component_size, component_indices).
     """
     n = len(lats)
-    triples = collinear_triples(lats, lons, tol_deg)
+    triples = collinear_triples(lats, lons, tol_deg, bearings=bearings)
     adj: list[set[int]] = [set() for _ in range(n)]
     for i, j, k in triples:
         adj[i].add(j); adj[i].add(k)
@@ -154,18 +184,23 @@ def max_collinear_run(
     return (best_size if best_size >= min_chain else 0, best_component)
 
 
-def mean_alignment_error(lats: np.ndarray, lons: np.ndarray) -> float:
+def mean_alignment_error(lats: np.ndarray, lons: np.ndarray,
+                          bearings: np.ndarray | None = None) -> float:
     """Mean angular deviation (deg) over all triples (brute-force screening)."""
     n = len(lats)
     if n < 3:
         return float("nan")
+    if bearings is None:
+        bearings = _bearing_matrix(lats, lons)
     errors: list[float] = []
     for i in range(n):
+        Bi = bearings[i]
         for j in range(i + 1, n):
+            bij = Bi[j]
             for k in range(j + 1, n):
-                d1 = _angular_deviation(lats[i], lons[i], lats[j], lons[j], lats[k], lons[k])
-                d2 = _angular_deviation(lats[i], lons[i], lats[k], lons[k], lats[j], lons[j])
-                d3 = _angular_deviation(lats[j], lons[j], lats[k], lons[k], lats[i], lons[i])
+                d1 = _ang_dev_from_bearing(bij, Bi[k])
+                d2 = _ang_dev_from_bearing(bij, bearings[j, k])
+                d3 = _ang_dev_from_bearing(Bi[k], bearings[j, k])
                 errors.append(min(d1, d2, d3))
     return float(np.mean(errors)) if errors else float("nan")
 
@@ -227,19 +262,22 @@ def collinearity_stats(
     lats: np.ndarray,
     lons: np.ndarray,
     tolerances: list[float],
+    bearings: np.ndarray | None = None,
 ) -> dict:
     """Compute collinearity statistics at multiple tolerances."""
     n = len(lats)
+    if bearings is None and n >= 3:
+        bearings = _bearing_matrix(lats, lons)
     results: dict[str, Any] = {
         "n": int(n),
     }
     for tol in tolerances:
-        triples = collinear_triples(lats, lons, tol)
-        run_size, run_comp = max_collinear_run(lats, lons, tol)
+        triples = collinear_triples(lats, lons, tol, bearings=bearings)
+        run_size, run_comp = max_collinear_run(lats, lons, tol, bearings=bearings)
         results[f"triples_tol_{tol}"] = len(triples)
         results[f"max_run_tol_{tol}"] = run_size
     results["mean_alignment_error_deg"] = (
-        round(mean_alignment_error(lats, lons), 4) if n >= 3 else None
+        round(mean_alignment_error(lats, lons, bearings=bearings), 4) if n >= 3 else None
     )
     return results
 
@@ -251,10 +289,12 @@ def collinearity_stats(
 def run_calibration(
     lats: np.ndarray,
     lons: np.ndarray,
-    n_sims: int = 999,
+    n_sims: int = 199,
     seed: int = 42,
     tolerances: list[float] | None = None,
     null_quantile: float = 0.99,
+    dataset_source: str = "EAMENA database (CC BY 4.0)",
+    dataset_doi: str = "",
 ) -> dict[str, Any]:
     """Run collinearity detector on real data and nulls, compute FPR.
 
@@ -279,8 +319,9 @@ def run_calibration(
     lat_min, lat_max = float(lats.min()), float(lats.max())
     bbox = (lon_min, lat_min, lon_max, lat_max)
 
-    # real stats
-    real = collinearity_stats(lats, lons, tolerances)
+    # real stats (precompute bearings once)
+    real_bearings = _bearing_matrix(lats, lons)
+    real = collinearity_stats(lats, lons, tolerances, bearings=real_bearings)
 
     # CSR null
     csr_stats_list: list[dict] = []
@@ -399,8 +440,8 @@ def run_calibration(
         "domain": "eamena_ley_null",
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "dataset": {
-            "source": "EAMENA Wadi Naqqat subset (14 sites, CC BY 4.0)",
-            "doi": "10.5281/zenodo.15554618",
+            "source": dataset_source,
+            "doi": dataset_doi,
             "n": int(n),
             "bbox_approx": {
                 "lon_min": round(lon_min, 4),
@@ -423,13 +464,13 @@ def run_calibration(
         },
         "n_tolerances_with_signal": n_signal,
         "caveats": [
-            "Subset is only 14 sites in a ~500 m area — too few for reliable "
-            "ley-line statistics. These results are a calibration exercise.",
-            "Collinearity detection uses great-circle bearings, not "
-            "planar approximations, appropriate for the Wadi Naqqat extent.",
+            "Collinearity detection uses great-circle bearings on a "
+            "random subsample of the full dataset (--max-points).",
             "CSR null is uniform in bbox; does not model terrain or "
             "cultural settlement patterns that constrain site placement.",
             "Structure detection is not a message or civilisation claim.",
+            "FPR_CALIBRATED means the real collinearity count exceeds "
+            "the null envelope — it does NOT imply intentional alignment.",
         ],
     }
 
@@ -528,20 +569,35 @@ def write_notes(result: dict[str, Any], path: str | Path) -> None:
 def main() -> None:
     import argparse
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--geojson", default=str(DATA_DIR / "wadi_naqqat.geojson"),
+    ap.add_argument("--geojson", default=str(DATA_DIR / "sistan_part1.geojson"),
                     help="Input GeoJSON file")
     ap.add_argument("--out-dir", default=str(OUT_DIR))
-    ap.add_argument("--n-sims", type=int, default=999)
+    ap.add_argument("--n-sims", type=int, default=199)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--max-points", type=int, default=80,
+                    help="Subsample to at most N points for O(n³) feasibility")
+    ap.add_argument("--source", default="EAMENA Sistan part 1 (CC BY 4.0)",
+                    help="Dataset source label")
+    ap.add_argument("--doi", default="10.5281/zenodo.10375902",
+                    help="Dataset DOI")
     args = ap.parse_args()
 
     lats, lons, props = load_geojson(args.geojson)
     print(f"Loaded {len(lats)} point features from {args.geojson}")
 
+    if len(lats) > args.max_points:
+        rng = np.random.default_rng(args.seed)
+        idx = rng.choice(len(lats), args.max_points, replace=False)
+        lats = lats[idx]
+        lons = lons[idx]
+        print(f"Subsampled to {len(lats)} points (--max-points={args.max_points})")
+
     result = run_calibration(
         lats, lons,
         n_sims=args.n_sims,
         seed=args.seed,
+        dataset_source=args.source,
+        dataset_doi=args.doi,
     )
 
     out_dir = Path(args.out_dir)
