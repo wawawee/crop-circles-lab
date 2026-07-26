@@ -1,0 +1,1002 @@
+[
+  {
+    "index": 1,
+    "delay_s": 8.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": "St\u00f8rmer 1928 Nature 122:681 - 'I noted in seconds the following intervals of time between signals and echo: 8, 11, 15, 8, 13, 3, 8, 8, 8, 12, 15, 13, 8, 8'"
+  },
+  {
+    "index": 2,
+    "delay_s": 11.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 3,
+    "delay_s": 15.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 4,
+    "delay_s": 8.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 5,
+    "delay_s": 13.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 6,
+    "delay_s": 3.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": "Unique exact repeat of transmitted signal (3 dots); other echoes 2-sec dashes; Lunan 'barrier' at 8s"
+  },
+  {
+    "index": 7,
+    "delay_s": 8.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 8,
+    "delay_s": 8.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 9,
+    "delay_s": 8.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 10,
+    "delay_s": 12.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 11,
+    "delay_s": 15.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 12,
+    "delay_s": 13.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 13,
+    "delay_s": 8.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 14,
+    "delay_s": 8.0,
+    "source": "Stormer_1928",
+    "date": "1928-10-11",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 15,
+    "delay_s": 3.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": "vd Pol 1928 Nature 122:878-879; simultaneous Oslo-Eindhoven"
+  },
+  {
+    "index": 16,
+    "delay_s": 6.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 17,
+    "delay_s": 8.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 18,
+    "delay_s": 9.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 19,
+    "delay_s": 11.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 20,
+    "delay_s": 13.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 21,
+    "delay_s": 14.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 22,
+    "delay_s": 16.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 23,
+    "delay_s": 17.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 24,
+    "delay_s": 18.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Balthazar_van_der_Pol",
+    "location": "Eindhoven_Netherlands",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 25,
+    "delay_s": 3.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": "Simultaneous Oslo observation"
+  },
+  {
+    "index": 26,
+    "delay_s": 6.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 27,
+    "delay_s": 8.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 28,
+    "delay_s": 9.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 29,
+    "delay_s": 11.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 30,
+    "delay_s": 13.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 31,
+    "delay_s": 14.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 32,
+    "delay_s": 16.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 33,
+    "delay_s": 17.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 34,
+    "delay_s": 18.0,
+    "source": "vdPol_1928_oct24",
+    "date": "1928-10-24",
+    "observer": "Carl_St\u00f8rmer",
+    "location": "Oslo_Norway",
+    "frequency_mhz": 9.55,
+    "notes": ""
+  },
+  {
+    "index": 35,
+    "delay_s": 2.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": "Hals 1934 World Radio report; delays 2-30s observed 1928-1934"
+  },
+  {
+    "index": 36,
+    "delay_s": 3.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 37,
+    "delay_s": 5.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 38,
+    "delay_s": 8.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Very_frequent",
+    "notes": ""
+  },
+  {
+    "index": 39,
+    "delay_s": 11.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 40,
+    "delay_s": 13.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 41,
+    "delay_s": 15.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 42,
+    "delay_s": 17.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 43,
+    "delay_s": 20.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 44,
+    "delay_s": 25.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 45,
+    "delay_s": 30.0,
+    "source": "Hals_1934",
+    "date": "1934-01",
+    "observer": "Jorgen_Hals",
+    "location": "Oslo_Norway",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 46,
+    "delay_s": 0.5,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": "Appleton 1934 World Radio Research League experiments; multiple round-world hypothesis"
+  },
+  {
+    "index": 47,
+    "delay_s": 1.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 48,
+    "delay_s": 1.5,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 49,
+    "delay_s": 2.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 50,
+    "delay_s": 3.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 51,
+    "delay_s": 4.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 52,
+    "delay_s": 5.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 53,
+    "delay_s": 6.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 54,
+    "delay_s": 7.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 55,
+    "delay_s": 8.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Very_frequent_per_Faizullin",
+    "notes": ""
+  },
+  {
+    "index": 56,
+    "delay_s": 9.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 57,
+    "delay_s": 10.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 58,
+    "delay_s": 11.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 59,
+    "delay_s": 12.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 60,
+    "delay_s": 13.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 61,
+    "delay_s": 14.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 62,
+    "delay_s": 15.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 63,
+    "delay_s": 16.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 64,
+    "delay_s": 17.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 65,
+    "delay_s": 18.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 66,
+    "delay_s": 19.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 67,
+    "delay_s": 20.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 68,
+    "delay_s": 21.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 69,
+    "delay_s": 22.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 70,
+    "delay_s": 23.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 71,
+    "delay_s": 24.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 72,
+    "delay_s": 25.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 73,
+    "delay_s": 26.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 74,
+    "delay_s": 27.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 75,
+    "delay_s": 28.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 76,
+    "delay_s": 29.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 77,
+    "delay_s": 30.0,
+    "source": "Appleton_1934",
+    "date": "1934-01",
+    "observer": "E_V_Appleton",
+    "location": "UK_Switzerland",
+    "frequency_mhz": "Various",
+    "notes": ""
+  },
+  {
+    "index": 78,
+    "delay_s": 0.2,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": "Crawford et al. 1970 JGR 75:7326-7332; recorded up to 40s delays"
+  },
+  {
+    "index": 79,
+    "delay_s": 0.5,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 80,
+    "delay_s": 1.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 81,
+    "delay_s": 2.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": "Most_frequent_delay_class"
+  },
+  {
+    "index": 82,
+    "delay_s": 3.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 83,
+    "delay_s": 4.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 84,
+    "delay_s": 5.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 85,
+    "delay_s": 6.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 86,
+    "delay_s": 7.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 87,
+    "delay_s": 8.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": "Most_frequent_delay_class"
+  },
+  {
+    "index": 88,
+    "delay_s": 9.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 89,
+    "delay_s": 10.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 90,
+    "delay_s": 12.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 91,
+    "delay_s": 15.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 92,
+    "delay_s": 20.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 93,
+    "delay_s": 30.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": ""
+  },
+  {
+    "index": 94,
+    "delay_s": 40.0,
+    "source": "Crawford_1970",
+    "date": "1967-1970",
+    "observer": "F_W_Crawford",
+    "location": "Stanford_CA_USA",
+    "frequency_mhz": "5-12",
+    "notes": "Maximum_observed"
+  },
+  {
+    "index": 95,
+    "delay_s": 2.0,
+    "source": "Crawford_1978",
+    "date": "1978",
+    "observer": "F_W_Crawford",
+    "location": "Alaska_USA",
+    "frequency_mhz": "5.8",
+    "notes": "Crawford Alaska 1978 follow-up; 5.8 MHz"
+  },
+  {
+    "index": 96,
+    "delay_s": 5.0,
+    "source": "Crawford_1978",
+    "date": "1978",
+    "observer": "F_W_Crawford",
+    "location": "Alaska_USA",
+    "frequency_mhz": "5.8",
+    "notes": ""
+  },
+  {
+    "index": 97,
+    "delay_s": 8.0,
+    "source": "Crawford_1978",
+    "date": "1978",
+    "observer": "F_W_Crawford",
+    "location": "Alaska_USA",
+    "frequency_mhz": "5.8",
+    "notes": "Most_frequent"
+  },
+  {
+    "index": 98,
+    "delay_s": 10.0,
+    "source": "Crawford_1978",
+    "date": "1978",
+    "observer": "F_W_Crawford",
+    "location": "Alaska_USA",
+    "frequency_mhz": "5.8",
+    "notes": ""
+  },
+  {
+    "index": 99,
+    "delay_s": 15.0,
+    "source": "Crawford_1978",
+    "date": "1978",
+    "observer": "F_W_Crawford",
+    "location": "Alaska_USA",
+    "frequency_mhz": "5.8",
+    "notes": ""
+  },
+  {
+    "index": 100,
+    "delay_s": 25.0,
+    "source": "Crawford_1978",
+    "date": "1978",
+    "observer": "F_W_Crawford",
+    "location": "Alaska_USA",
+    "frequency_mhz": "5.8",
+    "notes": ""
+  }
+]
