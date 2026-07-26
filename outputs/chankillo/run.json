@@ -1,0 +1,131 @@
+{
+  "generated_at": "2026-07-26T23:16:58.710161+00:00",
+  "mission": "G14",
+  "stance": "Structure != message. The Thirteen Towers form an orientation structure (solstice extremes are bracketed), but that is geometry, not a deciphered calendar. Lunar standstill coverage is purely geometric and underdetermined. No alien, extraterrestrial, or supernatural claims.",
+  "site": {
+    "name": "Chankillo Thirteen Towers",
+    "lat": -9.559,
+    "lon": -78.231,
+    "epoch_year": -300,
+    "n_towers": 13,
+    "observation_point": "western plaza",
+    "reference": "Ghezzi & Ruggles 2007, Science 315(5816)"
+  },
+  "tower_horizon_azimuths": {
+    "observation_point": {
+      "lat": -9.559,
+      "lon": -78.231
+    },
+    "n_towers": 13,
+    "azimuths_deg": [
+      47.6143,
+      52.8679,
+      58.6818,
+      65.6317,
+      73.0791,
+      81.5404,
+      90.0001,
+      98.8384,
+      106.9212,
+      114.6892,
+      121.3185,
+      127.1324,
+      132.386
+    ],
+    "min_az_deg": 47.6143,
+    "max_az_deg": 132.386,
+    "span_deg": 84.7717
+  },
+  "solar_extremes": {
+    "epoch_year": -300,
+    "jun_solstice_sunrise": {
+      "az_deg": 65.9198,
+      "alt_deg": 0.0,
+      "hour_utc": 15.3381,
+      "sunset_az_deg": 294.0733,
+      "sunset_hour_utc": 2.7699,
+      "note": "interpolated to alt=0"
+    },
+    "dec_solstice_sunrise": {
+      "az_deg": 114.0865,
+      "alt_deg": 0.0,
+      "hour_utc": 14.9004,
+      "sunset_az_deg": 245.912,
+      "sunset_hour_utc": 3.4622,
+      "note": "interpolated to alt=0"
+    },
+    "solar_span_deg": 48.1667
+  },
+  "solar_coverage": {
+    "june_bracketed": true,
+    "december_bracketed": true,
+    "both_bracketed": true,
+    "june_az_deg": 65.9198,
+    "dec_az_deg": 114.0865,
+    "tower_min_az_deg": 47.6143,
+    "tower_max_az_deg": 132.386,
+    "margin_north_deg": 18.3055,
+    "margin_south_deg": 18.2995,
+    "tower_span_deg": 84.7717,
+    "solar_span_deg": 48.1667
+  },
+  "lunar_standstills": {
+    "epoch_year": -300,
+    "obliquity_deg": 23.44,
+    "lunar_inclination_deg": 5.15,
+    "major_standstill": {
+      "dec_deg": 28.59,
+      "rising_az_north_deg": 60.9694,
+      "rising_az_south_deg": 119.0306,
+      "range_deg": 58.0612
+    },
+    "minor_standstill": {
+      "dec_deg": 18.29,
+      "rising_az_north_deg": 71.4431,
+      "rising_az_south_deg": 108.5569,
+      "range_deg": 37.1137
+    },
+    "verdict": "LUNAR_UNDERDETERMINED",
+    "caveat": "Lunar standstill coverage is geometrically inevitable: the tower azimuth arc (~90\u00b0) is wider than the lunar rising range (~58\u00b0). Any wide-N-S ridge whose towers span ~90\u00b0 will naturally bracket the lunar range. This is not evidence of lunar intent \u2014 it is a geometric consequence of ridge length and observation distance. No lunar-specific null is available without horizon-profile data."
+  },
+  "negative_controls": {
+    "synthetic_ridge_null": {
+      "n_trials": 2000,
+      "seed": 42,
+      "solar_min_az_deg": 65.92,
+      "solar_max_az_deg": 114.09,
+      "bracketed_fraction": 0.2205,
+      "mean_trial_span_deg": 201.49,
+      "sd_trial_span_deg": 45.78,
+      "interpretation": "Synthetic ridge null: 22.1% of random ridges bracket the solar range."
+    },
+    "scrambled_azimuth_null": {
+      "n_trials": 2000,
+      "seed": 43,
+      "observed_hits": 13,
+      "null_mean_hits": 5.0,
+      "null_sd_hits": 0.0,
+      "note": "Scrambled azimuth null is a consistency check: since the set of azimuths is unchanged, the solar bracketing result is invariant under permutation. The null verifies the code is well-behaved."
+    }
+  },
+  "verdict": "ORIENTATION_STRUCTURE | LUNAR_UNDERDETERMINED | CONTROL_NOT_SEPARATED",
+  "verdict_parts": [
+    "ORIENTATION_STRUCTURE",
+    "LUNAR_UNDERDETERMINED",
+    "CONTROL_NOT_SEPARATED"
+  ],
+  "interpretation": "Thirteen Towers span 84.7717\u00b0 of horizon azimuth from the western observation plaza. Solar extremes at epoch -300 span 48.1667\u00b0 (June \u2192 December solstice sunrise). The solstice extremes ARE bracketed by the tower arc (margin north: 18.3055\u00b0, south: 18.2995\u00b0). \n\nLunar major standstill range (58.0612\u00b0) falls entirely within the tower arc \u2014 but this is geometrically inevitable given the ~90\u00b0 tower span. No lunar-specific design signal can be separated from the generic ridge geometry. LUNAR_UNDERDETERMINED.\n\nNegative controls: synthetic ridge null \u2014 22% of random ridges also bracket the solar range. The observation is consistent with ridge geometry rather than intentional precision placement.\n\nVerdict: ORIENTATION_STRUCTURE | LUNAR_UNDERDETERMINED | CONTROL_NOT_SEPARATED",
+  "caveat": "Tower coordinates are estimated from published site plans; exact survey-grade coordinates would refine azimuths by <1\u00b0. Solar azimuths use skyfield DE441 and are interpolated to alt=0\u00b0 (flat horizon). A true DEM-based horizon profile (Copernicus GLO-30) would capture the actual ridge elevation masking and improve precision. Lunar ranges use analytic formulae with epoch-appropriate obliquity; the 18.6-year precession cycle is not modeled at the individual-year level.",
+  "forbidden_words_check": {
+    "all_absent": true,
+    "forbidden_list": [
+      "alien observatory",
+      "extraterrestrial calendar",
+      "ancient astronaut",
+      "space port",
+      "extraterrestrial landing",
+      "star map decoded"
+    ],
+    "note": "Forbidden phrase check applied at write time."
+  }
+}

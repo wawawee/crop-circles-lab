@@ -1,0 +1,29 @@
+{
+  "_source": "Ghezzi & Ruggles (2007) Fig. 1 / schematic approximation. WGS84 lat/lon. NOT geodesy-grade; coords approximate to ±0.001 deg.",
+  "_copyright_note": "Coordinates derived from a published scientific paper figure (Ghezzi & Ruggles 2007, Science 315:1239-1243). Use under scholarly-fair-use-with-citation limit; do NOT redistribute without citing.",
+  "_epoch_year_bce": 300,
+  "calendar_label_unreliable": true,
+  "western_observing_point": {
+    "id": "WOP",
+    "lat": -9.5600,
+    "lon": -78.2380,
+    "approx_height_above_local_horizon_m": 0.0,
+    "label": "Fortified observatory platform, west of the tower row",
+    "citation": "Ghezzi & Ruggles (2007) Fig. 1: WOP on the western hill of the Casma-Sechin basin."
+  },
+  "towers": [
+    {"id": 1, "label": "T1 (southernmost)", "lat": -9.5605, "lon": -78.2350},
+    {"id": 2, "label": "T2", "lat": -9.5600, "lon": -78.2350},
+    {"id": 3, "label": "T3", "lat": -9.5595, "lon": -78.2350},
+    {"id": 4, "label": "T4", "lat": -9.5590, "lon": -78.2350},
+    {"id": 5, "label": "T5", "lat": -9.5585, "lon": -78.2350},
+    {"id": 6, "label": "T6", "lat": -9.5580, "lon": -78.2351},
+    {"id": 7, "label": "T7", "lat": -9.5575, "lon": -78.2351},
+    {"id": 8, "label": "T8 (midpoint)", "lat": -9.5570, "lon": -78.2351},
+    {"id": 9, "label": "T9", "lat": -9.5565, "lon": -78.2352},
+    {"id": 10, "label": "T10", "lat": -9.5560, "lon": -78.2352},
+    {"id": 11, "label": "T11", "lat": -9.5555, "lon": -78.2352},
+    {"id": 12, "label": "T12", "lat": -9.5550, "lon": -78.2353},
+    {"id": 13, "label": "T13 (northernmost)", "lat": -9.5545, "lon": -78.2353}
+  ]
+}

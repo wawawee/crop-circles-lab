@@ -47,15 +47,15 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟢 **merged PR #11** — STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY; z≈−28.95; tablet↔other J≈0.53 |
 | **G12** | **Minimax M3** | Linear Elamite entropy bounds | symbolseq; Desset CUT; LE↔PE↔Uruk comparator | 🟢 **merged PR #13** — SEQUENCE_STRUCTURE \| CLAIM_UNDERDETERMINED \| ACCOUNTING_FORMAT_STRUCTURED \| SCRIPT_INVARIANT_COMMON; monumental INVERSE_CONTROL_OK \| CLAIM_FAILS_NULL; language_family_claim_made=false; 31/31 tests |
 | **G13** | **Opencode** 🟡 | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | 🟡 **ASSIGNED** (CLI headless) — no-signal prior; plate-artifact nulls |
-| **G14** | queue | Chankillo Thirteen Towers | spatial+astro / DEM horizon | ⬜ after N4++ warm |
+| **G14** | **Opencode** | Chankillo Thirteen Towers | skyfield DE441; solar bracket + lunar UNDER + ridge null | 🟢 **merged PR #17** — ORIENTATION_STRUCTURE | LUNAR_UNDERDETERMINED | CONTROL_NOT_SEPARATED (ridge null 22%); 40/40 tests |
 | **G15** | **Freebuff** 🟢 | Cretan Hieroglyphic bipartite admin | network / symbolseq | 🟢 **landed (synthetic CHIC fallback; PR open)** — structure == bipartite admin isomorphism vs Linear A (SYNTH Evans-shaped CH corpus; NO real CHIC dump exists publicly per 2026-07-25 scout; verdict UNDERDETERMINED z=-2.7); forbidden-phrase guard at test layer (msg-deliberate-listing mask). PR `feat/g15-cretan-hieroglyphic`. 29 tests, 28 pass after STANCE rephrase. |
 | **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **merged PR #14** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
 | **G10++** | **Cursor** | Voynich plant pages × CCAT | ccat shape vs synthetic botany controls | 🟡 **landed scaffold** — `tools/scripts/voynich_botany_probe.py`; synthetic fixtures; Beinecke IIIF + POWO TODO |
 | **G9++** | **Cursor** | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | 🟡 **landed** — `tools/scripts/indus_west_negcontrol.py`; fixture West plaintext; real tables TODO |
 | **ATLAS** | **Cursor** | Language Entropy Atlas + anomaly schema | entropy_atlas + anomalies.json | 🟢 **seeded** — `data/catalog/entropy_atlas.json`, `anomaly_schema.json`, `atlas_query.py` |
 | **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
-| **G18** | queue | EAMENA ley-line null | spatial+network; GeoJSON subsets | ⬜ no-signal / FPR calib |
-| **G19** | queue | Long Delayed Echoes historic series | radio/FFT; digitized delays | ⬜ no-signal; Lunan CUT |
+| **G18** | **Freebuff** | EAMENA ley-line null | Sistan n=80 triples FPR=0 | 🟢 **merged PR #24** — FPR_CALIBRATED; structure ≠ ley message |
+| **G19** | **Opencode** | Long Delayed Echoes historic series | delay-value probe; Lunan CUT | 🟢 **merged PR #25** — CLAIM_FAILS_NULL (p_shuffle=1.0); corpus UNDERDETERMINED |
 | **G20** | queue | Boyajian Star TESS epoch-fold | astro; TIC 272172248 | ⬜ underdetermined |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
@@ -84,7 +84,7 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **Minimax M3** | 💤 idle. |
 | **Opencode** | 🟡 **G13 VASCO** (CLI headless dispatch). |
 | **Freebuff** | 🟡 **G15 Cretan Hieroglyphic** (Terminal inject). |
-| **Cursor** | 🟢 merge gate on `main` — G14 / G17–G20 still queue |
+| **Cursor** | 🟢 merge gate on `main` — G17 / G20 still queue (G14/G18/G19 landed) |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -99,7 +99,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G13 Opencode**, **G15 Freebuff**. Next queue: G14 / G17–G20. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G13 Opencode**. Next queue: G17 / G20. |
 | **External dispatch** | Cursor/Auto may push prompts to OpenCode / Freebuff without manual copy-paste — see below. |
 
 ### Dispatch prompts outside Cursor (OpenCode ↔ Freebuff)
@@ -403,12 +403,12 @@ Jobs land under `outputs/agent_dispatch/` (gitignored). Freebuff has no headless
 > 6. Tests ≥12. Branch `feat/g15-cretan-hieroglyphic`. PR → Cursor merge.
 > Forbidden: “deciphered,” phonetic claims, aliens, viral blogs as truth.
 
-### G14 / G17–G20 — remaining queue (do not start until Captain assigns)
-> **G14** Chankillo towers — DEM horizon + synthetic ridge null.  
+### G17 / G20 — remaining queue (do not start until Captain assigns)
+> ~~G14~~ merged PR #17 — Chankillo; skyfield DE441; ridge null 22%; lunar underdetermined.  
+
 > **G17** TESS SETI Ellipsoid (Cabrales 2024) — optical no-signal sharpen.  
-> **G18** EAMENA ley-line null — spatial FPR calibration (GeoJSON subsets).  
-> **G19** Long Delayed Echoes historic delays — no-signal; Lunan claim-under-test.  
 > **G20** Boyajian’s Star TESS — dip recurrence / quiet limits.  
+> ~~G18~~ merged PR #24 · ~~G19~~ merged PR #25.  
 > Full triage: docs/research_leads_kimi_2026-07-25.md + docs/research_leads_anomalistics_2026-07-25.md.
 
 ### N1++ — Cursor (🟢 MERGED PR #6 2026-07-25) — bio_probe hardens
