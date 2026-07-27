@@ -11,10 +11,6 @@ from pathlib import Path
 
 import numpy as np
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
-sys.path.insert(0, str(ROOT))
-
 from tools.astro.tess_ellipsoid_probe import (
     CATALOG_PATH, FORBIDDEN_PHRASES, N_TARGETS, OUT_DIR, SEED, STANCE,
     VERDICT_VOCAB,

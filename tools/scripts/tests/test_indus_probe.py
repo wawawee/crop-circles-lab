@@ -9,14 +9,9 @@ from __future__ import annotations
 import json
 import sys
 from collections import Counter
-from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
-sys.path.insert(0, str(ROOT))
-
-import tools.scripts.indus_probe as IND  # noqa: E402
-from tools.forensics.symbolseq import (  # noqa: E402
+import tools.scripts.indus_probe as IND
+from tools.forensics.symbolseq import (
     conditional_bigram_entropy,
     unigram_entropy,
 )

@@ -6,8 +6,7 @@ import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-import grid_analyze as G  # noqa: E402
+from tools.ccat import grid_analyze as G
 
 
 def _rng():

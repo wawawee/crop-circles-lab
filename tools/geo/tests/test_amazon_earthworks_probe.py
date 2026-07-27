@@ -5,13 +5,11 @@ Offline known-answer + negative-control tests for amazon_earthworks_probe.
 Run:  python3 tools/geo/tests/test_amazon_earthworks_probe.py
 No network, no scipy. Synthetic coordinates only.
 """
-import os
 import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-import amazon_earthworks_probe as p  # noqa: E402
+from tools.geo import amazon_earthworks_probe as p
 
 
 def test_known_answer_cluster_fires():

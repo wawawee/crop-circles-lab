@@ -1,11 +1,9 @@
 """Known-answer tests for tools/forensics/bitstream.py.
 Run: python tools/forensics/tests/test_bitstream.py
 """
-import os
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-import bitstream as B  # noqa: E402
+from tools.forensics import bitstream as B
 
 
 def test_text_bits_roundtrip_8():

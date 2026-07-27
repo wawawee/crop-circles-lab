@@ -16,13 +16,12 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-sys.path.insert(0, str(ROOT))
 
 # Ensure data file exists
 DATA_FILE = ROOT / "data" / "astro" / "vasco" / "vasco_candidates.csv"
 assert DATA_FILE.exists(), f"Missing VASCO data: {DATA_FILE}"
 
-import tools.scripts.vasco_probe as VASCO  # noqa: E402
+import tools.scripts.vasco_probe as VASCO
 
 
 # ---------------------------------------------------------------------------

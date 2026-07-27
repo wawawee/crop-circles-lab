@@ -20,12 +20,8 @@ import math
 import statistics
 from dataclasses import dataclass, field
 
-try:
-    from .bitstream import text_to_bits as _bs_text_to_bits, bits_to_text as _bs_bits_to_text
-    from .bitstream import semiprime_dims as _bs_semiprime_dims
-except ImportError:
-    from bitstream import text_to_bits as _bs_text_to_bits, bits_to_text as _bs_bits_to_text
-    from bitstream import semiprime_dims as _bs_semiprime_dims
+from .bitstream import text_to_bits as _bs_text_to_bits, bits_to_text as _bs_bits_to_text
+from .bitstream import semiprime_dims as _bs_semiprime_dims
 
 
 # =============================================================================

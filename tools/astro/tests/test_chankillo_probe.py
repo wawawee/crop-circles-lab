@@ -10,10 +10,6 @@ import math
 import sys
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
-sys.path.insert(0, str(ROOT))
-
 from tools.astro.chankillo_probe import (
     FORBIDDEN_PHRASES, N_TOWERS, OUT_DIR, SEED, STANCE, VERDICT_VOCAB,
     _angular_delta, _haversine_bearing, _rising_az_for_dec, _span_deg,

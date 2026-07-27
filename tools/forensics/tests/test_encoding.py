@@ -1,10 +1,8 @@
 """Validation for encoding.py -- run: python3 tools/forensics/tests/test_encoding.py"""
 import math
 import sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import encoding as E  # noqa: E402
+from tools.forensics import encoding as E
 
 
 # --- Barbury Pi ---------------------------------------------------------------
