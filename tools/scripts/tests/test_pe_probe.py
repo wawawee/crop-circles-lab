@@ -10,6 +10,7 @@ import json
 import shutil
 import sys
 import tempfile
+from pathlib import Path
 
 import tools.scripts.proto_elamite_probe as PE
 

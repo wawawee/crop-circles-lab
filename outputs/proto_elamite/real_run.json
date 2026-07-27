@@ -1,0 +1,226 @@
+{
+  "mission": "G2-REAL",
+  "generated_at": "2026-07-27T03:08:56.571666+00:00",
+  "source": "Open data via Cuneiform Digital Library Initiative (CDLI), https://cdli.mpiwg-berlin.mpg.de \u2014 ATF transcriptions released under the CDLI open-data terms. Per-tablet attribution by `cdli_id`.",
+  "verdict": "FETCH_BLOCKED",
+  "n_requested_ids": 1,
+  "n_tablets_fetched": 0,
+  "n_tablets_blocked": 1,
+  "per_tablet": [
+    {
+      "cdli_id": "P008001",
+      "fetch_status": "UNREACHABLE",
+      "n_tokens": 0,
+      "attempts": [
+        {
+          "url": "https://cdli.earth/artifacts/P008001/inscription/",
+          "verdict": "HTTP_500",
+          "error": "HTTP Error 500: Internal Server Error"
+        },
+        {
+          "url": "https://cdli.earth/artifacts/P008001/inscription/",
+          "verdict": "HTTP_500",
+          "error": "HTTP Error 500: Internal Server Error"
+        },
+        {
+          "url": "https://cdli.mpiwg-berlin.mpg.de/dl/lineart/P008001.atf",
+          "verdict": "HTTP_404",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://cdli.ucla.edu/dl/lineart/P008001.atf",
+          "verdict": "NETWORK_ERROR",
+          "error": "[Errno 8] nodename nor servname provided, or not known"
+        },
+        {
+          "url": "https://cdli.mpiwg-berlin.mpg.de/publications/P008001.atf",
+          "verdict": "HTTP_500",
+          "error": "HTTP Error 500: Internal Server Error"
+        },
+        {
+          "url": "https://cdli.ucla.edu/publications/P008001.atf",
+          "verdict": "NETWORK_ERROR",
+          "error": "[Errno 8] nodename nor servname provided, or not known"
+        },
+        {
+          "url": "https://cdli.mpiwg-berlin.mpg.de/P008001.atf",
+          "verdict": "HTTP_404",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ]
+    }
+  ],
+  "per_tablet_fetch_statuses": [
+    "UNREACHABLE"
+  ],
+  "probe": {
+    "label": "real_cdli_1_tablets",
+    "n_input_tokens": 0,
+    "header_stats": {
+      "n_tokens": 0,
+      "n_numerals": 0,
+      "unigram_entropy_bits": 0.0,
+      "index_of_coincidence": 0.0,
+      "lz78_ratio": 1.0
+    },
+    "line_stats": {
+      "n_tokens": 0,
+      "n_numeral_signs": 0,
+      "n_numeral_blocks": 0,
+      "unigram_entropy_bits": 0.0,
+      "conditional_bigram_entropy_bits": 0.0,
+      "cond_h_over_h1_ratio": 0.0,
+      "index_of_coincidence": 0.0,
+      "lz78_ratio": 1.0,
+      "shuffled_control": {
+        "observed": 0.0,
+        "shuffled_mean": 0.0,
+        "shuffled_sd": 0.0,
+        "z": 0.0
+      }
+    },
+    "invariants": {
+      "invariants": {
+        "header_numeral_void": true,
+        "header_fraction_bounded": false,
+        "numeral_block_predictable": true,
+        "z_lock_vs_shuffle": false
+      },
+      "all_pass": false,
+      "header_fraction": 0.0,
+      "supporting": {
+        "header_n_numerals": 0,
+        "line_cond_h_over_h1": 0.0,
+        "line_shuffled_z": 0.0
+      }
+    },
+    "stance": "Proto-Elamite is undeciphered (ca. 3100-2900 BCE, Susa). This probe measures *numerical-block structure* only \u2014 it does NOT translate, decipher, or place Proto-Elamite in a language family. STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py for all metrics.",
+    "forbidden_phrases": [
+      "translates to",
+      "represents",
+      "decodes as",
+      "shares roots with",
+      "is related to Sumerian",
+      "is related to Elamite",
+      "Proto-Elamite is a",
+      "Proto-Elamite =",
+      "Minoan =",
+      "PE related to Sumerian",
+      "Proto-Elamite is Sumerian",
+      "Proto-Elamite is cuneiform",
+      "Proto-Elamite derives from",
+      "Urukian origin",
+      "Sumerian-Elamite",
+      "Proto-Elamite is descended from Sumerian",
+      "Proto-Elamite script family",
+      "Sumerian ancestor"
+    ],
+    "caveat": "Structure != message. These invariants confirm accounting ledgers have predictable low-entropy numeral blocks. They do NOT confirm Proto-Elamite is a language, NOT identify the script's family, and NOT imply reading ability."
+  },
+  "numeric_split_analysis": {
+    "n_tokens": 0,
+    "note": "No tokens to split."
+  },
+  "synth_comparison": {
+    "synth_label": "synthetic_known_answer",
+    "real_label": "real_cdli_1_tablets",
+    "synth_all_pass": true,
+    "real_all_pass": false,
+    "invariant_comparison": [
+      {
+        "invariant": "header_numeral_void",
+        "synth": true,
+        "real": true,
+        "match": true
+      },
+      {
+        "invariant": "header_fraction_bounded",
+        "synth": true,
+        "real": false,
+        "match": false
+      },
+      {
+        "invariant": "numeral_block_predictable",
+        "synth": true,
+        "real": true,
+        "match": true
+      },
+      {
+        "invariant": "z_lock_vs_shuffle",
+        "synth": true,
+        "real": false,
+        "match": false
+      }
+    ],
+    "all_invariants_match": false,
+    "both_pass": false,
+    "numerical_diffs": {
+      "cond_h_bits_diff_real_minus_synth": -1.559,
+      "z_diff_real_minus_synth": 3.16,
+      "lz78_ratio_diff": 0.5169,
+      "header_h1_diff": -2.873
+    },
+    "caveat": "The synthetic fixture is a simplified model of the accounting-tablet structure. Real CDLI data may contain fragmentary tablets, damage markers, and additional metadata. Match/mismatch of invariants is a STRUCTURAL comparison only \u2014 not a test of authenticity or meaning."
+  },
+  "stance": "Proto-Elamite is undeciphered (ca. 3100-2900 BCE, Susa). This probe measures *numerical-block structure* only \u2014 it does NOT translate, decipher, or place Proto-Elamite in a language family. STRUCTURE != MESSAGE. Reused tools/forensics/symbolseq.py for all metrics.",
+  "forbidden_phrases": [
+    "translates to",
+    "represents",
+    "decodes as",
+    "shares roots with",
+    "is related to Sumerian",
+    "is related to Elamite",
+    "Proto-Elamite is a",
+    "Proto-Elamite =",
+    "Minoan =",
+    "PE related to Sumerian",
+    "Proto-Elamite is Sumerian",
+    "Proto-Elamite is cuneiform",
+    "Proto-Elamite derives from",
+    "Urukian origin",
+    "Sumerian-Elamite",
+    "Proto-Elamite is descended from Sumerian",
+    "Proto-Elamite script family",
+    "Sumerian ancestor"
+  ],
+  "caveat": "This analysis of real CDLI Proto-Elamite tablets measures STRUCTURE ONLY \u2014 whether the combined token stream from real tablets passes the same 4 ledger invariants as the synthetic known-answer fixture. It does NOT decipher, translate, or identify a language family. STRUCTURE != MESSAGE.",
+  "n_input_tokens": 0,
+  "header_stats": {
+    "n_tokens": 0,
+    "n_numerals": 0,
+    "unigram_entropy_bits": 0.0,
+    "index_of_coincidence": 0.0,
+    "lz78_ratio": 1.0
+  },
+  "line_stats": {
+    "n_tokens": 0,
+    "n_numeral_signs": 0,
+    "n_numeral_blocks": 0,
+    "unigram_entropy_bits": 0.0,
+    "conditional_bigram_entropy_bits": 0.0,
+    "cond_h_over_h1_ratio": 0.0,
+    "index_of_coincidence": 0.0,
+    "lz78_ratio": 1.0,
+    "shuffled_control": {
+      "observed": 0.0,
+      "shuffled_mean": 0.0,
+      "shuffled_sd": 0.0,
+      "z": 0.0
+    }
+  },
+  "invariants": {
+    "invariants": {
+      "header_numeral_void": true,
+      "header_fraction_bounded": false,
+      "numeral_block_predictable": true,
+      "z_lock_vs_shuffle": false
+    },
+    "all_pass": false,
+    "header_fraction": 0.0,
+    "supporting": {
+      "header_n_numerals": 0,
+      "line_cond_h_over_h1": 0.0,
+      "line_shuffled_z": 0.0
+    }
+  }
+}

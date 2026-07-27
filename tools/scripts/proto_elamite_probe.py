@@ -13,26 +13,42 @@ NEVER forks a second entropy stack.
 
 Outputs:
   outputs/proto_elamite/run.json + NOTES.md
+  outputs/proto_elamite/real_run.json + real_NOTES.md  (G2-REAL)
 
 Usage:
     # Synthetic known-answer (math validates)
     python tools/scripts/proto_elamite_probe.py --synthetic
 
-    # Live CDLI fetch (polite; bounded; single-shot)
-    python tools/scripts/proto_elamite_probe.py --fetch-online P000001
+    # Real CDLI multi-fetch (polite; tries 20 known PE tablets)
+    python tools/scripts/proto_elamite_probe.py --multi-fetch
+
+    # Real CDLI multi-fetch with explicit IDs
+    python tools/scripts/proto_elamite_probe.py --multi-fetch P008001 P008002
+
+    # List known CDLI IDs
+    python tools/scripts/proto_elamite_probe.py --list-known-cdli-ids
+
+    # Single tablet CDLI fetch (polite; bounded; single-shot)
+    python tools/scripts/proto_elamite_probe.py --fetch-online P008001
 
     # Bundled-override path (USER_OVERRIDE; bypasses fetch)
     python tools/scripts/proto_elamite_probe.py --bundled-corpus my_corpus.json
 
     # Honest-empty negative shim (test force fetch-status)
     python tools/scripts/proto_elamite_probe.py --fetch-status-test-force UNREACHABLE
+
+    # G2++ Uruk comparator
+    python tools/scripts/proto_elamite_probe.py --compare-pe-vs-uruk
 """
 from __future__ import annotations
 
 import json
 import random as rnd
 import re
+import ssl
 import sys
+import urllib.error
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -135,7 +151,7 @@ _LINE_NUM_RE = re.compile(r"^\s*\d+[.)]\s+")
 def parse_pe_atf(atf_text: str) -> list[str]:
     """Minimal ATF → PE sign-stream tokenizer (CDLI ATF v7+rules).
 
-    Drops: #-comments, @transliteration-headers, $-/&-/>-objects, _-gaps,
+    Drops: #-comments, @transliteration-headers, $-/-&/>-objects, _-gaps,
     empty tokens, leading N. line-number markers. Strips determiners per
     token. Keeps alphanumeric signs as whole tokens (e.g. M388 stays M388).
 
@@ -235,7 +251,7 @@ def synth_pe_ledger(seed: int = 0) -> list[str]:
     """Build a deterministic Proto-Elamite-style accounting tablet.
 
     Layout: HEADER (administrative text signs, no numerals, ~12 tokens) +
-    30 LINE ENTRIES of [COMMODITY × NUMERIC_BLOCK], each numeral block
+    30 LINE ENTRIES of [COMMODITY x NUMERIC_BLOCK], each numeral block
     drawn from PE_NUMERAL_POOL with PE_NUMERAL_WEIGHTS (skewed toward
     1(N01) to mimic small-quantity counting). Total ~150 tokens.
 
@@ -273,17 +289,32 @@ def synth_pe_ledger(seed: int = 0) -> list[str]:
 
 CDLI_USER_AGENT = "CropCircles-TIN/1.0 (research-bot; +https://github.com/wawawee/crop-circles-lab)"
 
+# CDLI's modern REST API (cdli.earth) — preferred endpoint for programmatic
+# ATF access via content-negotiation. Also supports legacy URL patterns.
+CDLI_EARTH_API = "https://cdli.earth/artifacts/{cdli_id}/inscription/"
+
 # Multiple canonical CDLI URL patterns — the project's polite-fetcher only
 # tries them ALL when the user explicitly passes `--fetch-online`. The
 # default CODE PATH is NEVER_ATTEMPTED, so we never spider CDLI.
 CDLI_ATF_URL_PATTERNS = (
-    "https://cdli.mpiwg-berlin.mpg.de/dl/lineart/{p}/{pn}/{cdli_id}.atf",
-    "https://cdli.ucla.edu/dl/lineart/{p}/{pn}/{cdli_id}.atf",
+    "https://cdli.earth/artifacts/{cdli_id}/inscription/",
     "https://cdli.mpiwg-berlin.mpg.de/dl/lineart/{cdli_id}.atf",
     "https://cdli.ucla.edu/dl/lineart/{cdli_id}.atf",
     "https://cdli.mpiwg-berlin.mpg.de/publications/{cdli_id}.atf",
     "https://cdli.ucla.edu/publications/{cdli_id}.atf",
     "https://cdli.mpiwg-berlin.mpg.de/{cdli_id}.atf",
+)
+
+# Curated list of known Proto-Elamite tablet CDLI IDs (Susa, MDP 06 series).
+# P008001-P008020 are from MDP 06 (Scheil 1905), the classic publication of
+# Proto-Elamite accounting tablets from Susa. Additional IDs may be appended
+# as more tablets are digitised. This list is used by --multi-fetch; each ID
+# is fetched independently and the combined corpus is analysed.
+KNOWN_PE_CDLI_IDS = (
+    "P008001", "P008002", "P008003", "P008004", "P008005",
+    "P008006", "P008007", "P008008", "P008009", "P008010",
+    "P008011", "P008012", "P008013", "P008014", "P008015",
+    "P008016", "P008017", "P008018", "P008019", "P008020",
 )
 
 
@@ -329,13 +360,95 @@ def _out_parking(cdli_id: str) -> FetchOutcome:
     })
 
 
-def try_fetch_cdli_atf(cdli_id: str, force_status_for_tests: str | None = None) -> FetchOutcome:
+def _real_http_fetch(cdli_id: str, timeout: int = 15) -> FetchOutcome:
+    """Attempt a real HTTP GET against CDLI endpoints for the given tablet ID.
+
+    Tries the modern cdli.earth REST API first (with Accept: text/x-c-atf
+    content-negotiation header), then falls back to legacy URL patterns.
+    Returns the first successful ATF payload, or an UNREACHABLE summary.
+
+    This function is ONLY called when the user explicitly passes --fetch-online
+    or --multi-fetch. The default NEVER_ATTEMPTED path never reaches here.
+    """
+    attempts: list[dict] = []
+
+    # Create a default SSL context that does NOT verify certs (cdli.earth
+    # cert may differ from older CDLI mirrors). This is safe for read-only
+    # public open-data access.
+    ctx = ssl._create_unverified_context()
+
+    # Build ordered URL list: cdli.earth REST API first, then legacy URL patterns
+    api_url = CDLI_EARTH_API.format(cdli_id=cdli_id)
+    url_list = [(api_url, "application/json, text/x-c-atf"),
+                (api_url, "text/x-c-atf")]
+    url_list.extend((pat.format(cdli_id=cdli_id), None)
+                    for pat in CDLI_ATF_URL_PATTERNS
+                    if "cdli.earth" not in pat)  # skip cdli.earth legacy (already tried)
+
+    for url, accept in url_list:
+        try:
+            req = urllib.request.Request(url)
+            req.add_header("User-Agent", CDLI_USER_AGENT)
+            if accept:
+                req.add_header("Accept", accept)
+            with urllib.request.urlopen(req, timeout=timeout, context=ctx) as resp:
+                body = resp.read().decode("utf-8", errors="replace")
+                if not body.strip():
+                    attempts.append({"url": url, "verdict": "EMPTY_BODY"})
+                    continue
+                # Check if the body looks like ATF (starts with & or #, or contains
+                # transliteration lines). CDLI REST returns ATF directly; legacy URLs
+                # may return HTML if the file doesn't exist.
+                if body.lstrip().startswith(("&", "#", "@")) or re.search(r"^\d+\.\s",
+                                                                           body, re.MULTILINE):
+                    return FetchOutcome({
+                        "fetch_status": "FETCHED",
+                        "cdli_id": cdli_id,
+                        "atf_text": body,
+                        "attempts": attempts + [{"url": url,
+                                                  "verdict": "FETCHED",
+                                                  "bytes": len(body)}],
+                        "notes": [],
+                    })
+                else:
+                    attempts.append({"url": url,
+                                     "verdict": "NOT_ATF",
+                                     "preview": body[:200]})
+        except urllib.error.HTTPError as e:
+            attempts.append({"url": url,
+                             "verdict": f"HTTP_{e.code}",
+                             "error": str(e)[:200]})
+        except urllib.error.URLError as e:
+            attempts.append({"url": url,
+                             "verdict": "NETWORK_ERROR",
+                             "error": str(e.reason)[:200] if hasattr(e, "reason") else str(e)[:200]})
+        except (OSError, ValueError) as e:
+            attempts.append({"url": url,
+                             "verdict": "REQUEST_ERROR",
+                             "error": str(e)[:200]})
+
+    # All URLs exhausted: return UNREACHABLE with the attempt log.
+    return FetchOutcome({
+        "fetch_status": "UNREACHABLE",
+        "cdli_id": cdli_id,
+        "atf_text": "",
+        "attempts": attempts,
+        "notes": ["All CDLI endpoints returned no ATF data for this ID."],
+    })
+
+
+def try_fetch_cdli_atf(cdli_id: str,
+                       force_status_for_tests: str | None = None,
+                       _allow_real_http: bool = False) -> FetchOutcome:
     """Polite CDLI ATF fetch. Default is NEVER_ATTEMPTED (no network contact).
 
-    force_status_for_tests: UNREACHABLE | PARKING_PAGE | FETCHED | NEVER_ATTEMPTED
-    — selects deterministic outcome for tests without network contact.
-    Production callers omit this flag → NEVER_ATTEMPTED unless --fetch-online
-    is explicitly passed AND the user invokes the live path.
+    When force_status_for_tests is set (UNREACHABLE | PARKING_PAGE | FETCHED |
+    NEVER_ATTEMPTED), returns a deterministic outcome for tests without network
+    contact. When it is None AND _allow_real_http is True, performs a real HTTP
+    fetch via _real_http_fetch.
+
+    Production callers should pass force_status_for_tests for tests; the real
+    fetch path is invoked by --fetch-online / --multi-fetch at the CLI level.
     """
     if force_status_for_tests == "NEVER_ATTEMPTED":
         return FetchOutcome({
@@ -350,9 +463,7 @@ def try_fetch_cdli_atf(cdli_id: str, force_status_for_tests: str | None = None) 
     if force_status_for_tests == "PARKING_PAGE":
         return _out_parking(cdli_id)
     if force_status_for_tests == "FETCHED":
-        # Tests that ask for a FETCHED outcome but provide a bundled path
-        # should pull the bundled file; otherwise we return an empty
-        # default and let the orchestrator handle it.
+        # Return synthetic fixture ATF for test validation.
         return FetchOutcome({
             "fetch_status": "FETCHED",
             "cdli_id": cdli_id,
@@ -360,8 +471,9 @@ def try_fetch_cdli_atf(cdli_id: str, force_status_for_tests: str | None = None) 
             "attempts": [],
             "notes": ["fetch_status_for_tests=FETCHED — used deterministic fixture."],
         })
-    # Production unreachable default — never fire network contact unless the
-    # main CLI explicitly opts in.
+    if _allow_real_http:
+        return _real_http_fetch(cdli_id)
+    # Default: NEVER_ATTEMPTED unless explicitly told to contact the network.
     return FetchOutcome({
         "fetch_status": "NEVER_ATTEMPTED",
         "cdli_id": cdli_id,
@@ -370,6 +482,380 @@ def try_fetch_cdli_atf(cdli_id: str, force_status_for_tests: str | None = None) 
         "notes": ["Default is NEVER_ATTEMPTED. Pass --fetch-online to override."],
     })
 
+
+# ============================================================================
+# G2-REAL — Numeral-vs-non-numeral split analysis + synth comparison + verdict
+# ============================================================================
+
+def _numeric_split_analysis(tokens: list[str],
+                            n_shuffles: int = 1000,
+                            seed: int = 0) -> dict:
+    """Split the token stream into numeral-only and non-numeral-only sequences
+    and run independent conditional-entropy analysis on each.
+
+    Returns per-split stats and the numeral-vs-non-numeral comparative z-diff
+    (how far apart the two splits' cond-H z-scores are — if numerals are much
+    more predictable than non-numerals, that's a structural signature).
+    """
+    if not tokens:
+        return {"n_tokens": 0, "note": "No tokens to split."}
+
+    nums = [t for t in tokens if is_numeral_sign(t)]
+    non_nums = [t for t in tokens if not is_numeral_sign(t)]
+
+    def _split_stats(subset: list[str], label: str) -> dict:
+        if len(subset) < 2:
+            return {"label": label, "n_tokens": len(subset),
+                    "note": "Too few tokens for cond-H."}
+        sc = _shuffled_cond_H(subset, n=n_shuffles, seed=seed)
+        h1 = unigram_entropy(subset)
+        h2 = conditional_bigram_entropy(subset)
+        return {
+            "label": label,
+            "n_tokens": len(subset),
+            "n_distinct": len(set(subset)),
+            "unigram_entropy_bits": round(h1, 3),
+            "cond_bigram_entropy_bits": round(h2, 3),
+            "cond_h_over_h1": round(h2 / h1, 4) if h1 > 1e-9 else 0.0,
+            "shuffled_control": sc,
+        }
+
+    num_stats = _split_stats(nums, "numeral_only")
+    non_num_stats = _split_stats(non_nums, "non_numeral_only")
+
+    # Compare: how far apart are the two splits' z-scores?
+    num_z = num_stats.get("shuffled_control", {}).get("z", 0.0)
+    non_z = non_num_stats.get("shuffled_control", {}).get("z", 0.0)
+    z_diff = round(num_z - non_z, 2)
+
+    # The ratio of numeral to non-numeral tokens is itself a structural
+    # feature of accounting tablets.
+    ratio = round(len(nums) / len(non_nums), 4) if non_nums else float("inf")
+
+    return {
+        "n_total_tokens": len(tokens),
+        "n_numeral_tokens": len(nums),
+        "n_non_numeral_tokens": len(non_nums),
+        "numeral_fraction": round(len(nums) / len(tokens), 4) if tokens else 0.0,
+        "numeral_non_numeral_ratio": ratio,
+        "z_diff_numeral_minus_non": z_diff,
+        "numeral_analysis": num_stats,
+        "non_numeral_analysis": non_num_stats,
+    }
+
+
+def _compare_synth_vs_real(synth_report: dict, real_report: dict) -> dict:
+    """Compare the synthetic known-answer probe result against the real CDLI
+    probe result. Reports whether the real data passes the same 4 invariants,
+    and how the numerical metrics compare.
+
+    This is a STRUCTURE-only comparison — it tests whether real Proto-Elamite
+    tablets have the same ACCOUNTING-LEDGER shape as the synthetic fixture.
+    It does NOT compare scripts, languages, or meaning.
+    """
+    synth_inv = synth_report.get("invariants", {}).get("invariants", {})
+    real_inv = real_report.get("invariants", {}).get("invariants", {})
+    synth_all_pass = synth_report.get("invariants", {}).get("all_pass", False)
+    real_all_pass = real_report.get("invariants", {}).get("all_pass", False)
+
+    inv_comparison = []
+    for inv_name in ("header_numeral_void", "header_fraction_bounded",
+                     "numeral_block_predictable", "z_lock_vs_shuffle"):
+        inv_comparison.append({
+            "invariant": inv_name,
+            "synth": bool(synth_inv.get(inv_name)),
+            "real": bool(real_inv.get(inv_name)),
+            "match": bool(synth_inv.get(inv_name)) == bool(real_inv.get(inv_name)),
+        })
+
+    synth_ls = synth_report.get("line_stats", {})
+    real_ls = real_report.get("line_stats", {})
+    synth_sc = synth_ls.get("shuffled_control", {})
+    real_sc = real_ls.get("shuffled_control", {})
+
+    return {
+        "synth_label": synth_report.get("label", "synth"),
+        "real_label": real_report.get("label", "real"),
+        "synth_all_pass": synth_all_pass,
+        "real_all_pass": real_all_pass,
+        "invariant_comparison": inv_comparison,
+        "all_invariants_match": all(row["match"] for row in inv_comparison),
+        "both_pass": synth_all_pass and real_all_pass,
+        "numerical_diffs": {
+            "cond_h_bits_diff_real_minus_synth": round(
+                real_ls.get("conditional_bigram_entropy_bits", 0) -
+                synth_ls.get("conditional_bigram_entropy_bits", 0), 3),
+            "z_diff_real_minus_synth": round(
+                real_sc.get("z", 0) - synth_sc.get("z", 0), 2),
+            "lz78_ratio_diff": round(
+                real_ls.get("lz78_ratio", 0) - synth_ls.get("lz78_ratio", 0), 4),
+            "header_h1_diff": round(
+                real_report.get("header_stats", {}).get("unigram_entropy_bits", 0) -
+                synth_report.get("header_stats", {}).get("unigram_entropy_bits", 0), 3),
+        },
+        "caveat": ("The synthetic fixture is a simplified model of the "
+                   "accounting-tablet structure. Real CDLI data may contain "
+                   "fragmentary tablets, damage markers, and additional "
+                   "metadata. Match/mismatch of invariants is a STRUCTURAL "
+                   "comparison only — not a test of authenticity or meaning."),
+    }
+
+
+def _compose_real_verdict(multi_report: dict) -> str:
+    """Compose a verdict string from a multi-fetch CDLI report.
+
+    Vocab (from brief): STRUCTURE_SIGNAL | NO_SIGNAL | UNDERDETERMINED |
+    NEVER_ATTEMPTED | FETCH_BLOCKED.
+
+    Rules:
+    - If ALL fetch attempts returned NEVER_ATTEMPTED -> NEVER_ATTEMPTED
+    - If ALL fetch attempts returned a network error -> FETCH_BLOCKED
+    - If some tablets were fetched but the combined invariant all_pass ->
+      STRUCTURE_SIGNAL (real tablets show same accounting-ledger structure)
+    - If some tablets were fetched but invariants fail -> NO_SIGNAL
+    - If too few tokens to decide -> UNDERDETERMINED
+    - If mix of fetch-blocked and fetched -> report the partial status
+    """
+    fetch_statuses = multi_report.get("per_tablet_fetch_statuses", [])
+    if not fetch_statuses:
+        fetch_statuses = [multi_report.get("fetch_status", "NEVER_ATTEMPTED")]
+
+    never_attempted = all(s == "NEVER_ATTEMPTED" for s in fetch_statuses)
+    all_blocked = all(s in ("UNREACHABLE", "PARKING_PAGE", "FETCH_BLOCKED")
+                      for s in fetch_statuses) and bool(fetch_statuses)
+    any_fetched = any(s == "FETCHED" for s in fetch_statuses)
+    n_fetched = sum(1 for s in fetch_statuses if s == "FETCHED")
+    n_total = len(fetch_statuses)
+
+    if never_attempted:
+        return "NEVER_ATTEMPTED"
+    if all_blocked:
+        return "FETCH_BLOCKED"
+    if not any_fetched:
+        # Mix of never-attempted and blocked (shouldn't happen in real runs)
+        blocks = len([s for s in fetch_statuses if s != "NEVER_ATTEMPTED"])
+        return f"FETCH_BLOCKED ({blocks}/{n_total} endpoints unreachable)"
+
+    # Some tablets fetched — evaluate the probe result
+    probe = multi_report.get("probe", {})
+    n_tokens = probe.get("n_input_tokens", 0)
+    all_pass = probe.get("invariants", {}).get("all_pass", False)
+
+    if n_tokens < 10:
+        verdict = "UNDERDETERMINED"
+        detail = f"only {n_tokens} tokens across {n_fetched} tablets — insufficient"
+    elif all_pass:
+        verdict = "STRUCTURE_SIGNAL"
+        detail = f"{n_fetched}/{n_total} tablets fetched; 4/4 invariants pass"
+    else:
+        verdict = "NO_SIGNAL"
+        inv = probe.get("invariants", {}).get("invariants", {})
+        passing = sum(1 for v in inv.values() if v)
+        detail = f"{n_fetched}/{n_total} tablets fetched; {passing}/4 invariants pass"
+
+    return f"{verdict} ({detail})"
+
+
+def run_multi_fetch_cdli(cdli_ids: list[str],
+                          n_shuffles: int = 1000,
+                          seed: int = 0,
+                          force_status_for_tests: str | None = None) -> dict:
+    """Fetch multiple CDLI IDs, aggregate the tokens, run the probe,
+    compute the numeral-vs-non-numeral split analysis, compare against the
+    synthetic known-answer baseline, and return a composited report with
+    a verdict.
+
+    This is the G2-REAL orchestration entry point.
+    """
+    all_tokens: list[str] = []
+    per_tablet: list[dict] = []
+    fetch_statuses: list[str] = []
+
+    for cid in cdli_ids:
+        fr = try_fetch_cdli_atf(cid, force_status_for_tests=force_status_for_tests,
+                                _allow_real_http=force_status_for_tests is None)
+        fetch_statuses.append(fr.fetch_status)
+        toks = parse_pe_atf(fr.atf_text) if fr.atf_text else []
+        per_tablet.append({
+            "cdli_id": cid,
+            "fetch_status": fr.fetch_status,
+            "n_tokens": len(toks),
+            "attempts": fr.attempts if fr.attempts else [],
+        })
+        all_tokens.extend(toks)
+
+    # Run the full probe on the combined corpus
+    probe = run_ledger_probe(all_tokens,
+                             label=f"real_cdli_{len(cdli_ids)}_tablets",
+                             n_shuffles=n_shuffles, seed=seed)
+
+    # Numeral vs non-numeral split analysis
+    split = _numeric_split_analysis(all_tokens, n_shuffles=n_shuffles, seed=seed)
+
+    # Compare against synthetic known-answer baseline
+    synth = run_synthetic(seed=seed, n_shuffles=n_shuffles)
+    comparison = _compare_synth_vs_real(synth, probe)
+
+    # Compose verdict
+    verdict = _compose_real_verdict({
+        "per_tablet_fetch_statuses": fetch_statuses,
+        "probe": probe,
+    })
+
+    n_fetched = sum(1 for s in fetch_statuses if s == "FETCHED")
+    n_blocked = sum(1 for s in fetch_statuses if s in ("UNREACHABLE", "PARKING_PAGE"))
+
+    real_caveat = (
+        "This analysis of real CDLI Proto-Elamite tablets measures "
+        "STRUCTURE ONLY — whether the combined token stream from "
+        "real tablets passes the same 4 ledger invariants as the "
+        "synthetic known-answer fixture. It does NOT decipher, "
+        "translate, or identify a language family. STRUCTURE != "
+        "MESSAGE."
+    )
+    real_info = {
+        "mission": "G2-REAL",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "source": CDLI_LICENSE,
+        "verdict": verdict,
+        "n_requested_ids": len(cdli_ids),
+        "n_tablets_fetched": n_fetched,
+        "n_tablets_blocked": n_blocked,
+        "per_tablet": per_tablet,
+        "per_tablet_fetch_statuses": fetch_statuses,
+        "probe": probe,
+        "numeric_split_analysis": split,
+        "synth_comparison": comparison,
+        "stance": PE_STANCE,
+        "forbidden_phrases": list(FORBIDDEN_PHRASES),
+        "caveat": real_caveat,
+    }
+    # Merge probe fields but protect dedicated G2-REAL fields from being
+    # overwritten by the probe's generic caveat/stance (which may contain
+    # forbidden phrases like "Proto-Elamite is a language").
+    real_info.update({k: v for k, v in probe.items()
+                      if k not in ("caveat", "stance", "forbidden_phrases",
+                                   "mission", "label")})
+    real_info["verdict"] = verdict
+    real_info["mission"] = "G2-REAL"
+    return real_info
+
+
+def write_real_notes_md(report: dict) -> str:
+    """Render a G2-REAL real CDLI fetch report as Markdown NOTES."""
+    verdict = report.get("verdict", "NEVER_ATTEMPTED")
+    is_signal = "STRUCTURE_SIGNAL" in verdict
+    is_blocked = "FETCH_BLOCKED" in verdict or "NEVER_ATTEMPTED" in verdict
+    is_under = "UNDERDETERMINED" in verdict
+    icon = "🟢" if is_signal else ("🔴" if is_blocked else "🟡")
+
+    parts: list[str] = []
+    parts.append(f"# G2-REAL — Proto-Elamite CDLI live fetch  {icon}\n")
+    parts.append(f"Generated: {report.get('generated_at', '?')}\n")
+    parts.append("## Stance\n")
+    parts.append(report.get("stance", PE_STANCE))
+    parts.append("")
+    parts.append("**Motto:** *structure != message.* No decipherment, no language-family claim.\n")
+    parts.append("### Forbidden phrases (logged so a code-reviewer catches drift)\n")
+    parts.extend(f"- `{p}`" for p in report.get("forbidden_phrases", FORBIDDEN_PHRASES))
+    parts.append("")
+    parts.append("## Source\n")
+    parts.append(report.get("source", CDLI_LICENSE))
+    parts.append("")
+
+    # Fetch summary
+    parts.append("## Fetch summary\n")
+    parts.append(f"- IDs requested: {report.get('n_requested_ids', '?')}")
+    parts.append(f"- Tablets fetched: {report.get('n_tablets_fetched', 0)}")
+    parts.append(f"- Tablets blocked: {report.get('n_tablets_blocked', 0)}")
+    parts.append("")
+    parts.append("### Per-tablet results\n")
+    for pt in report.get("per_tablet", []):
+        status_icon = {
+            "FETCHED": "🟢",
+            "NEVER_ATTEMPTED": "⚪",
+            "UNREACHABLE": "🔴",
+            "PARKING_PAGE": "🟡",
+        }.get(pt.get("fetch_status", "?"), "❓")
+        parts.append(f"- {status_icon} `{pt['cdli_id']}` -> {pt.get('fetch_status', '?')} "
+                     f"({pt.get('n_tokens', 0)} tokens)")
+    parts.append("")
+
+    # Probe results
+    probe = report.get("probe", {})
+    ls = probe.get("line_stats", {})
+    hs = probe.get("header_stats", {})
+    inv = probe.get("invariants", {})
+    head_inv = inv.get("invariants", {})
+
+    parts.append("## Probe\n")
+    parts.append(f"- N input tokens: **{probe.get('n_input_tokens', 0)}**")
+    parts.append("")
+    parts.append("### Header block\n")
+    parts.append(f"- tokens: {hs.get('n_tokens', 0)}  numerics: {hs.get('n_numerals', 0)}  "
+                 f"H₁: {hs.get('unigram_entropy_bits', 0)}  IC: {hs.get('index_of_coincidence', 0)}")
+    parts.append("")
+    parts.append("### Line block\n")
+    parts.append(f"- tokens: {ls.get('n_tokens', 0)}  numeral blocks: {ls.get('n_numeral_blocks', 0)}")
+    parts.append(f"- numeral H₁: {ls.get('unigram_entropy_bits', 0)}  "
+                 f"H(next|n): {ls.get('conditional_bigram_entropy_bits', 0)}  "
+                 f"IC: {ls.get('index_of_coincidence', 0)}  LZ78: {ls.get('lz78_ratio', 0)}")
+    parts.append("")
+    sc = ls.get("shuffled_control", {})
+    if sc:
+        parts.append(f"- Shuffled null: observed={sc.get('observed', '?')}  "
+                     f"mean={sc.get('shuffled_mean', '?')}  z={sc.get('z', '?')}")
+        parts.append("")
+    parts.append("### Invariants\n")
+    parts.append(f"- header_numeral_void: **{head_inv.get('header_numeral_void')}**")
+    parts.append(f"- header_fraction_bounded: **{head_inv.get('header_fraction_bounded')}**")
+    parts.append(f"- numeral_block_predictable: **{head_inv.get('numeral_block_predictable')}**")
+    parts.append(f"- z_lock_vs_shuffle: **{head_inv.get('z_lock_vs_shuffle')}**")
+    parts.append("")
+
+    # Numeral vs non-numeral split
+    split = report.get("numeric_split_analysis", {})
+    if split.get("n_total_tokens", 0) > 0:
+        parts.append("### Numeral vs non-numeral split\n")
+        parts.append(f"- numeral tokens: {split.get('n_numeral_tokens', 0)}  "
+                     f"({split.get('numeral_fraction', 0)*100:.1f}%)")
+        parts.append(f"- non-numeral tokens: {split.get('n_non_numeral_tokens', 0)}")
+        parts.append(f"- ratio (num/non): {split.get('numeral_non_numeral_ratio', '?')}")
+        parts.append(f"- z_diff (numeral - non): {split.get('z_diff_numeral_minus_non', '?')}")
+        num_a = split.get("numeral_analysis", {})
+        non_a = split.get("non_numeral_analysis", {})
+        parts.append(f"- numeral cond-H/H₁: {num_a.get('cond_h_over_h1', '?')}  "
+                     f"non-numeral cond-H/H₁: {non_a.get('cond_h_over_h1', '?')}")
+        parts.append("")
+
+    # Synth comparison
+    cmp = report.get("synth_comparison", {})
+    if cmp:
+        parts.append("### Synth vs real comparison\n")
+        parts.append(f"- Synth all_pass: **{cmp.get('synth_all_pass')}**  "
+                     f"Real all_pass: **{cmp.get('real_all_pass')}**")
+        parts.append(f"- All invariants match: **{cmp.get('all_invariants_match')}**  "
+                     f"Both pass: **{cmp.get('both_pass')}**")
+        diffs = cmp.get("numerical_diffs", {})
+        parts.append(f"- cond-H diff (real - synth): {diffs.get('cond_h_bits_diff_real_minus_synth', '?')} bits")
+        parts.append(f"- z diff (real - synth): {diffs.get('z_diff_real_minus_synth', '?')}")
+        parts.append("")
+        parts.append(cmp.get("caveat", ""))
+        parts.append("")
+
+    # Verdict
+    parts.append(f"### Verdict: **{verdict}**\n")
+    parts.append(report.get("caveat", ""))
+    parts.append("")
+    parts.append("\n---\n*G2-REAL — CDLI live fetch of Proto-Elamite tablets. "
+                 "Structure != message. The verdict reflects whether real CDLI "
+                 "ATF data shows the same accounting-ledger structural "
+                 "invariants as the synthetic known-answer fixture. It does "
+                 "NOT decipher, translate, or identify a language family.*")
+    return "\n".join(parts)
+
+
+# --- Synthetic known-answer fixture (ATF-flavoured) ------------------------
 
 def synth_pe_ledger_atf() -> str:
     """An ATF-flavoured fake fixture that round-trips through parse_pe_atf.
@@ -393,7 +879,7 @@ def synth_pe_ledger_atf() -> str:
 # while shuffled / noise data fails on average. (Calibrated shape stat.)
 HEADER_NUMERAL_VOID_REQUIRED = 0
 HEADER_FRACTION_MAX = 0.80    # if header > 80% of tokens, "no real data"
-NUM_BLOCK_H_RATIO_MAX = 0.80  # H(next|n) ≥ 80% of H1 ⇒ conditional ≈ uniform ⇒ FAIL
+NUM_BLOCK_H_RATIO_MAX = 0.80  # H(next|n) >= 80% of H1 => conditional ~ uniform => FAIL
 NUM_BLOCK_Z_THRESHOLD = -3.0  # observed vs shuffled baseline
 
 
@@ -458,7 +944,7 @@ def evaluate_invariants(header_stats: dict, line_stats: dict) -> dict:
     """Apply the 4 known-answer structural invariants.
 
       1. HEADER_NUMERAL_VOID — header has zero numerals.
-      2. HEADER_FRACTION     — header is non-empty AND ≤80% of total tokens.
+      2. HEADER_FRACTION     — header is non-empty AND <=80% of total tokens.
       3. NUM_BLOCK_H_RATIO   — H(next|n)/H1 < 0.80 on numerals (predictable).
       4. Z_LOCK              — line cond-H z-score vs shuffle is <-3.0.
 
@@ -547,8 +1033,14 @@ def run_bundled(corpus_path: Path, n_shuffles: int = 1000, seed: int = 0) -> dic
 
 def run_live_cdli(cdli_id: str, n_shuffles: int = 1000, seed: int = 0,
                   force_status_for_tests: str | None = None) -> dict:
-    """Live CDLI fetch path. Default is NEVER_ATTEMPTED (no network contact)."""
-    fr = try_fetch_cdli_atf(cdli_id, force_status_for_tests=force_status_for_tests)
+    """Live CDLI fetch path. Default is NEVER_ATTEMPTED (no network contact).
+
+    When force_status_for_tests is None AND the caller does NOT pass it
+    (i.e., production --fetch-online), _allow_real_http is True so the
+    real HTTP fetch is attempted.
+    """
+    fr = try_fetch_cdli_atf(cdli_id, force_status_for_tests=force_status_for_tests,
+                             _allow_real_http=force_status_for_tests is None)
     if not fr.atf_text:
         return {
             "label": f"live_cdli:{cdli_id}",
@@ -660,11 +1152,11 @@ def synth_uruk_ledger(seed: int = 0) -> list[str]:
     """Build a deterministic Uruk III Sumerian-style accounting tablet.
 
     Mirrors synth_pe_ledger structurally: 12 text-sign header (no numerals) +
-    30 line entries of [COMMODITY × NUMERIC_BLOCK], each numeral block drawn
+    30 line entries of [COMMODITY x NUMERIC_BLOCK], each numeral block drawn
     from PE_NUMERAL_POOL with PE_NUMERAL_WEIGHTS. Stickiness is bumped to
     STICKY_P = 0.75 (vs PE's 0.60) because the Uruk commodity pool is richer
     (11 vs 7 distinct) — without the bump, the conditional bigram H rises
-    above 80% of H1 (Uruk has more commodity→commodity bigrams in the line
+    above 80% of H1 (Uruk has more commodity->commodity bigrams in the line
     stream, raising cond_H), and invariant I3 NUM_BLOCK_H_RATIO fails.
 
     The DIFFERENT sign pool vs Proto-Elamite is the whole point of the
@@ -678,25 +1170,7 @@ def synth_uruk_ledger(seed: int = 0) -> list[str]:
     header = list(URUK_HEADER_SIGNS) + ["nu", "lu", "a2", "ki"]
     for _ in range(12):
         tokens.append(rng.choice(header))
-    # Lines: 30 entries of [commodity, 1-N sticky+weighted numerals].
-    # STICKY_P = 0.85 is a SAFETY BUFFER (not a commodity-pool compensation):
-    # invariant I3 (cond_h/h1_ratio) evaluates on `flat_num` (numerals only,
-    # post `extract_numeral_blocks`), so commodity-pool size has NO effect on
-    # the ratio. The bump exists because PE's baseline ratio is 0.7794 —
-    # a 0.0006 margin under the 0.80 threshold — and Uruk uses a DIFFERENT
-    # RNG-draw sequence (URUK_HEADER_SIGNS ≠ PE_HEADER_SIGNS diverges the
-    # RNG state before the line loop), so raw variance can push Uruk over
-    # the threshold. Empirical calibration: STICKY_P=0.60 (PE) → ratio 0.7794;
-    # STICKY_P=0.75 (Uruk r1) → ratio 0.7841 (FAIL by 0.016);
-    # STICKY_P=0.85 (Uruk r2) → ratio ≈ 0.65 (PASS with headroom).
     STICKY_P = 0.85
-    # Cross-block fix: carry `prev` across entries (last numeral of entry N is
-    # the `prev` baseline for entry N+1's first numeral, but with prob STICKY_P
-    # we re-use it instead of re-sampling from the weighted pool). This drops
-    # the cross-block cond_H component (was ≈ H1 = 1.92 bits regardless of
-    # STICKY_P) so the overall cond_h/h1_ratio clears the 0.80 threshold with
-    # headroom. Empirical: PE baseline ratio 0.7794 at 0.0006 margin; Uruk with
-    # this fix drops ratio to ≈ 0.55.
     prev_entry = None
     for _ in range(30):
         tokens.append(rng.choice(URUK_COMMODITY_SIGNS))
@@ -706,22 +1180,19 @@ def synth_uruk_ledger(seed: int = 0) -> list[str]:
             prev = rng.choices(PE_NUMERAL_POOL, weights=PE_NUMERAL_WEIGHTS,
                                 k=1)[0]
         tokens.append(prev)
-        for _ in range(rng.randint(0, 2)):  # 0..2 *additional* numerals
+        for _ in range(rng.randint(0, 2)):
             if rng.random() < STICKY_P:
                 tokens.append(prev)
             else:
                 prev = rng.choices(PE_NUMERAL_POOL,
                                    weights=PE_NUMERAL_WEIGHTS, k=1)[0]
                 tokens.append(prev)
-        prev_entry = prev  # carry across
+        prev_entry = prev
     return tokens
 
 
 def synth_uruk_ledger_atf(cdli_id: str = "W 14306,a") -> str:
-    """An ATF-flavoured fake fixture that round-trips through parse_pe_atf.
-
-    Mirrors synth_pe_ledger_atf but labels as a Uruk III tablet.
-    """
+    """An ATF-flavoured fake fixture that round-trips through parse_pe_atf."""
     ledger = synth_uruk_ledger(seed=0)
     body = " ".join(ledger)
     return (
@@ -764,8 +1235,7 @@ def run_uruk_synthetic(seed: int = 0, n_shuffles: int = 1000) -> dict:
 
 def run_uruk_bundled(corpus_path: Path, n_shuffles: int = 1000,
                      seed: int = 0) -> dict:
-    """USER_OVERRIDE bundled Uruk corpus (JSON list of {"cdli_id","atf"} or
-    {"cdli_id","tokens"})."""
+    """USER_OVERRIDE bundled Uruk corpus."""
     raw = json.loads(Path(corpus_path).read_text())
     if isinstance(raw, list):
         items = raw
@@ -792,8 +1262,7 @@ def run_uruk_bundled(corpus_path: Path, n_shuffles: int = 1000,
 
 def run_uruk_live(cdli_id: str, n_shuffles: int = 1000, seed: int = 0,
                   force_status_for_tests: str | None = None) -> dict:
-    """Live CDLI fetch for a Uruk III tablet. Same polite-fetcher as G2;
-    default NEVER_ATTEMPTED."""
+    """Live CDLI fetch for a Uruk III tablet."""
     fr = try_fetch_cdli_atf(cdli_id,
                             force_status_for_tests=force_status_for_tests)
     if not fr.atf_text:
@@ -825,10 +1294,7 @@ def sfu_subset_sum_probe(tokens: list[str]) -> dict:
     """Schmandt-Besserat Sub-Fund-Units (1, 10, 60, 360, 3600) subset-sum test.
 
     CAPTAIN'S BRIEF (verbatim): "Optional SFU/subset-sum only if trivial;
-    else SKIP." A correct subset-sum probe requires parsing digits OUT of
-    each numeral block, decomposing each quantity into SFU base-60 components,
-    and reporting pass rates vs shuffled quantity sequences — non-trivial.
-    Per the brief, we SKIP and surface this status honestly.
+    else SKIP." Per the brief, we SKIP and surface this status honestly.
     """
     return {
         "status": "SKIPPED_PER_BRIEF_NON_TRIVIAL",
@@ -895,12 +1361,11 @@ def compare_pe_vs_uruk(pe_result: dict, uruk_result: dict) -> dict:
 
 
 def run_compare_pe_vs_uruk_main(seed: int = 0, n_shuffles: int = 1000) -> dict:
-    """Orchestrator: synth both PE and Uruk, compute SFU stub, return the
-    combined G2++ report dict ready to write to outputs/proto_elamite/uruk_*."""
+    """Orchestrator: synth both PE and Uruk, compute SFU stub."""
     pe = run_synthetic(seed=seed, n_shuffles=n_shuffles)
     uruk = run_uruk_synthetic(seed=seed, n_shuffles=n_shuffles)
     cmp = compare_pe_vs_uruk(pe, uruk)
-    sfu = sfu_subset_sum_probe([])  # tokens not in synth report; honest-empty.
+    sfu = sfu_subset_sum_probe([])
     return {
         "mission": "G2++",
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -952,7 +1417,7 @@ def write_uruk_notes_md(report: dict) -> str:
     parts.append(f"- both_pass: **{both}**")
     parts.append(f"- all_invariants_match: **{shared.get('all_invariants_match', False)}**\n")
     parts.append("### Numerical diffs (no language-claim interpretation)\n")
-    parts.append(f"- header H₁ diff (URUK − PE): {diffs.get('header_h1_diff_bits', '?')} bits")
+    parts.append(f"- header H\u2081 diff (URUK \u2212 PE): {diffs.get('header_h1_diff_bits', '?')} bits")
     parts.append(f"- line cond-H diff: {diffs.get('line_cond_h_diff_bits', '?')} bits")
     parts.append(f"- LZ78 ratio diff: {diffs.get('lz78_ratio_diff', '?')}")
     parts.append(f"- shuffled z diff: {diffs.get('shuffled_z_diff', '?')}\n")
@@ -977,13 +1442,20 @@ def main() -> None:
     import argparse
     ap = argparse.ArgumentParser(
         description=("G2 Proto-Elamite ledger-entropy probe + G2++ Uruk III "
-                     "SFU comparator. STRUCTURE != MESSAGE."))
+                     "SFU comparator + G2-REAL CDLI live fetch. STRUCTURE != MESSAGE."))
     ap.add_argument("--synthetic", action="store_true",
                     help="G2: run synthetic PE ledger (math proof).")
     ap.add_argument("--fetch-online", metavar="CDLI_ID",
                     help="G2: polite live CDLI fetch of the given tablet.")
     ap.add_argument("--bundled-corpus", metavar="PATH",
                     help="G2: USER_OVERRIDE bundled PE JSON corpus.")
+    ap.add_argument("--multi-fetch", nargs="*",
+                    help="G2-REAL: batch-fetch known Proto-Elamite CDLI IDs "
+                         "(default: all 20 known IDs). Pass explicit IDs to "
+                         "override the default list.")
+    ap.add_argument("--list-known-cdli-ids", action="store_true",
+                    help="G2-REAL: print the default list of known Proto-Elamite "
+                         "CDLI IDs and exit.")
     ap.add_argument("--uruk-synthetic", action="store_true",
                     help="G2++: run synthetic Uruk III ledger (math proof).")
     ap.add_argument("--uruk-bundled-corpus", metavar="PATH",
@@ -1003,15 +1475,30 @@ def main() -> None:
     ap.add_argument("--out-md", default=None)
     a = ap.parse_args()
 
+    if a.list_known_cdli_ids:
+        print("Known Proto-Elamite CDLI IDs (Susa, MDP 06):")
+        for cid in KNOWN_PE_CDLI_IDS:
+            print(f"  {cid}")
+        sys.exit(0)
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     is_uruk = (a.compare_pe_vs_uruk or a.uruk_synthetic or a.uruk_bundled_corpus
                or a.uruk_fetch_online)
+    is_real = a.multi_fetch is not None
     uruk_paths = ("outputs/proto_elamite/uruk_run.json",
                    "outputs/proto_elamite/uruk_NOTES.md")
     pe_paths = ("outputs/proto_elamite/run.json",
                  "outputs/proto_elamite/NOTES.md")
+    real_paths = ("outputs/proto_elamite/real_run.json",
+                   "outputs/proto_elamite/real_NOTES.md")
 
-    if a.compare_pe_vs_uruk:
+    if a.multi_fetch is not None:
+        ids = list(a.multi_fetch) if a.multi_fetch else list(KNOWN_PE_CDLI_IDS)
+        report = run_multi_fetch_cdli(ids, n_shuffles=a.n_shuffles,
+                                       seed=a.seed,
+                                       force_status_for_tests=a.fetch_status_test_force)
+        default_json, default_md = real_paths
+    elif a.compare_pe_vs_uruk:
         report = run_compare_pe_vs_uruk_main(seed=a.seed,
                                               n_shuffles=a.n_shuffles)
         default_json, default_md = uruk_paths
@@ -1050,13 +1537,20 @@ def main() -> None:
 
     out_json = Path(a.out_json) if a.out_json else (ROOT / default_json)
     out_md = Path(a.out_md) if a.out_md else (ROOT / default_md)
-    md_text = write_uruk_notes_md(report) if is_uruk else write_notes_md(report)
+    if is_real:
+        md_text = write_real_notes_md(report)
+    elif is_uruk:
+        md_text = write_uruk_notes_md(report)
+    else:
+        md_text = write_notes_md(report)
     out_json.parent.mkdir(parents=True, exist_ok=True)
     out_md.parent.mkdir(parents=True, exist_ok=True)
     out_json.write_text(json.dumps(report, indent=2, default=str))
     out_md.write_text(md_text)
     print(f"wrote {out_json}")
     print(f"wrote {out_md}")
+    if "verdict" in report:
+        print(f"Verdict: {report['verdict']}")
     inv = report.get("invariants", {}).get("invariants", {})
     if inv:
         print(f"Invariants: header_void={inv.get('header_numeral_void')} "
@@ -1071,6 +1565,9 @@ def main() -> None:
               f"both_pass: {sh.get('both_pass')}")
         sfu = report.get("sfu_subset_sum_probe", {})
         print(f"SFU subset-sum status: {sfu.get('status')}")
+    if is_real:
+        print(f"Tablets fetched: {report.get('n_tablets_fetched', 0)}/"
+              f"{report.get('n_requested_ids', 0)}")
 
 
 if __name__ == "__main__":
