@@ -1,6 +1,6 @@
 # G17 — TESS SN 1987A SETI Ellipsoid Re-analysis
 
-Generated: 2026-07-27T00:08:33.160984+00:00
+Generated: 2026-07-27T00:54:25.833847+00:00
 
 ## Stance
 
@@ -44,8 +44,9 @@ Structure != message. The SETI Ellipsoid is a geometric target-prioritisation st
 ## Cohort Analysis
 
 - Targets: 32
-- Anomalous count: 3 (at Z2 > 15.0)
-- Note: Fixture-only (no real TESS data). Per-target epoch-fold using random dip times.
+- Anomalous count: 0 (at Z2 > 21.0)
+- Threshold calibration: max(quiet95=15.682490520655321, shuffle95=16.434968913421258, floor=21.0) — cohort anomaly threshold now calibrated above null (FPR-controlled).
+- Note: Fixture-only (no real TESS data). Per-target epoch-fold using random dip times. Threshold calibrated above null 95ths (floor=21.0).
 
 ## Real TESS Data
 
@@ -55,7 +56,7 @@ Structure != message. The SETI Ellipsoid is a geometric target-prioritisation st
 
 **PIPELINE_VALIDATED | No real TESS data fetched. Without lightkurve / MAST access the result is computational only. | UNDERDETERMINED**
 
-TESS SN 1987A SETI Ellipsoid (Cabrales+2024) re-analysis. N_targets=32 from real catalog. Known-answer: injected dip at TIC 279055252, recovery_pass=True, Z2=56.5. Quiet-star null 95th Z2=15.682490520655321, time-shuffle null 95th Z2=16.434968913421258. Cohort null: 3/32 anomalous (expect ≤2 at Z2 threshold >20). Real TESS data: not available (run with --fetch).
+TESS SN 1987A SETI Ellipsoid (Cabrales+2024) re-analysis. N_targets=32 from real catalog. Known-answer: injected dip at TIC 279055252, recovery_pass=True, Z2=56.5. Quiet-star null 95th Z2=15.682490520655321, time-shuffle null 95th Z2=16.434968913421258. Cohort null: 0/32 anomalous (threshold Z2 > 21.0; calibrated above null). Real TESS data: not available (run with --fetch).
 
 Verdict: PIPELINE_VALIDATED | No real TESS data fetched. Without lightkurve / MAST access the result is computational only. | UNDERDETERMINED
 

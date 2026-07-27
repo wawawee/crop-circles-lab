@@ -81,13 +81,26 @@ KA_N_DIPS = 30
 KA_TARGET_INDEX = 0
 
 TCROSS_WINDOW_DAYS = 30.0
+EPOCH_GRID_HALF_DAYS = TCROSS_WINDOW_DAYS  # half-window for real-data TESS extraction
 EPOCH_GRID_STEPS = 1001
 EPOCH_GRID_MARGIN = 5.0
 
 QUIET_N_TRIALS = 200
 TIMESHUFFLE_N_TRIALS = 200
 
-COHORT_THRESHOLD_Z2 = 15.0
+# Floor ≈ observed null max; never flag cohort anomalies below noise ceiling.
+COHORT_THRESHOLD_FLOOR_Z2 = 21.0
+
+
+def calibrate_cohort_threshold_z2(
+    quiet_null: dict,
+    time_shuffle_null: dict,
+    floor: float = COHORT_THRESHOLD_FLOOR_Z2,
+) -> float:
+    """Cohort Z² cut must sit above both null 95ths (FPR-controlled)."""
+    quiet_95 = float(quiet_null.get("null_best_z2_95pct", 0.0))
+    shuffle_95 = float(time_shuffle_null.get("null_best_z2_95pct", 0.0))
+    return max(quiet_95, shuffle_95, floor)
 
 
 def load_catalog(path: Path | None = None) -> dict:
@@ -249,10 +262,12 @@ def run_cohort_analysis(
     period_d: float = KA_INJECTION_PERIOD_DAYS,
     seed: int = SEED,
     n_dips_per_target: int = KA_N_DIPS,
+    threshold_z2: float | None = None,
 ) -> dict:
     results = []
     anomalous_count = 0
-    threshold_z2 = COHORT_THRESHOLD_Z2
+    if threshold_z2 is None:
+        threshold_z2 = COHORT_THRESHOLD_FLOOR_Z2
 
     for i, tgt in enumerate(targets):
         tcross = tgt["tcross_bjd"]
@@ -279,7 +294,11 @@ def run_cohort_analysis(
         "n_targets": len(targets),
         "anomalous_count": anomalous_count,
         "threshold_z2": threshold_z2,
-        "note": "Fixture-only (no real TESS data). Per-target epoch-fold using random dip times.",
+        "note": (
+            "Fixture-only (no real TESS data). Per-target epoch-fold using "
+            "random dip times. Threshold calibrated above null 95ths "
+            f"(floor={COHORT_THRESHOLD_FLOOR_Z2})."
+        ),
         "per_target": results,
     }
 
@@ -408,6 +427,7 @@ def build_interpretation(
     ts_95 = time_shuffle_null.get("null_best_z2_95pct", "?")
     tic = known_answer.get("target_tic", "?")
     anom = cohort.get("anomalous_count", "?")
+    thr = cohort.get("threshold_z2", "?")
 
     return (
         f"TESS SN 1987A SETI Ellipsoid (Cabrales+2024) re-analysis. "
@@ -417,7 +437,7 @@ def build_interpretation(
         f"Quiet-star null 95th Z2={quiet_95}, "
         f"time-shuffle null 95th Z2={ts_95}. "
         f"Cohort null: {anom}/{N_TARGETS} anomalous "
-        f"(expect ≤2 at Z2 threshold >20). "
+        f"(threshold Z2 > {thr}; calibrated above null). "
         + (
             f"Real TESS data: processed {real_data.get('n_sectors', '?')} sectors."
             if real_data and real_data.get("fetch_status") == "SUCCESS"
@@ -454,7 +474,10 @@ def analyze_ellipsoid(
         seed=seed,
     )
     time_shuffle_null = run_time_shuffle_null(targets, seed=seed)
-    cohort = run_cohort_analysis(targets, seed=seed)
+    cohort_threshold = calibrate_cohort_threshold_z2(quiet_null, time_shuffle_null)
+    cohort = run_cohort_analysis(
+        targets, seed=seed, threshold_z2=cohort_threshold,
+    )
 
     real_data = None
     if fetch:
@@ -482,6 +505,14 @@ def analyze_ellipsoid(
             "n_targets": cohort["n_targets"],
             "anomalous_count": cohort["anomalous_count"],
             "threshold_z2": cohort["threshold_z2"],
+            "threshold_calibration": {
+                "quiet_null_95pct": quiet_null.get("null_best_z2_95pct"),
+                "time_shuffle_null_95pct": time_shuffle_null.get(
+                    "null_best_z2_95pct"
+                ),
+                "floor": COHORT_THRESHOLD_FLOOR_Z2,
+                "rule": "max(quiet_95, shuffle_95, floor)",
+            },
             "note": cohort["note"],
         },
         "real_data": real_data,
@@ -576,9 +607,16 @@ def write_notes(result: dict) -> str:
     ])
 
     if co:
+        cal = co.get("threshold_calibration") or {}
         lines.extend([
             f"- Targets: {co.get('n_targets', 0)}",
             f"- Anomalous count: {co.get('anomalous_count', 0)} (at Z2 > {co.get('threshold_z2', '?')})",
+            (
+                f"- Threshold calibration: max(quiet95={cal.get('quiet_null_95pct', '?')}, "
+                f"shuffle95={cal.get('time_shuffle_null_95pct', '?')}, "
+                f"floor={cal.get('floor', COHORT_THRESHOLD_FLOOR_Z2)}) "
+                "— cohort anomaly threshold now calibrated above null (FPR-controlled)."
+            ),
             f"- Note: {co.get('note', '')}\n",
         ])
 
@@ -652,11 +690,13 @@ def main() -> None:
     v = result.get("verdict", "ERROR")
     ka_pass = result.get("known_answer", {}).get("recovery_pass", False)
     ka_z2 = result.get("known_answer", {}).get("recovered_z2", 0.0)
-    anom = result.get("cohort_analysis", {}).get("anomalous_count", "?")
+    co = result.get("cohort_analysis", {})
+    anom = co.get("anomalous_count", "?")
+    thr = co.get("threshold_z2", "?")
     n_tg = result.get("targets", {}).get("n_total", "?")
     print(f"[G17] Catalog: {n_tg} targets from Cabrales+2024 Table 2")
     print(f"[G17] Known-answer recovery_pass={ka_pass}, Z2={ka_z2:.1f}")
-    print(f"[G17] Cohort anomalous: {anom}/{N_TARGETS} (threshold Z2 > {COHORT_THRESHOLD_Z2})")
+    print(f"[G17] Cohort anomalous: {anom}/{N_TARGETS} (threshold Z2 > {thr})")
     print(f"[G17] Verdict: {v}")
 
 

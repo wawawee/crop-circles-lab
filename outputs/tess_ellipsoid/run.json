@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T00:08:33.160984+00:00",
+  "generated_at": "2026-07-27T00:54:25.833847+00:00",
   "mission": "G17",
   "stance": "Structure != message. The SETI Ellipsoid is a geometric target-prioritisation strategy, not a technosignature detection. Cabrales+2024 found no anomalous signatures in any TESS lightcurve (non-detection is the ground truth). This pipeline validates epoch-fold math and null calibration, not the presence of extraterrestrial signals. No periodicity or dip structure at an Ellipsoid crossing time constitutes evidence of artificial engineering without independent multi-wavelength confirmation.",
   "targets": {
@@ -50,9 +50,15 @@
   },
   "cohort_analysis": {
     "n_targets": 32,
-    "anomalous_count": 3,
-    "threshold_z2": 15.0,
-    "note": "Fixture-only (no real TESS data). Per-target epoch-fold using random dip times."
+    "anomalous_count": 0,
+    "threshold_z2": 21.0,
+    "threshold_calibration": {
+      "quiet_null_95pct": 15.682490520655321,
+      "time_shuffle_null_95pct": 16.434968913421258,
+      "floor": 21.0,
+      "rule": "max(quiet_95, shuffle_95, floor)"
+    },
+    "note": "Fixture-only (no real TESS data). Per-target epoch-fold using random dip times. Threshold calibrated above null 95ths (floor=21.0)."
   },
   "real_data": null,
   "verdict": "PIPELINE_VALIDATED | No real TESS data fetched. Without lightkurve / MAST access the result is computational only. | UNDERDETERMINED",
@@ -74,6 +80,6 @@
       "ET beacon"
     ]
   },
-  "interpretation": "TESS SN 1987A SETI Ellipsoid (Cabrales+2024) re-analysis. N_targets=32 from real catalog. Known-answer: injected dip at TIC 279055252, recovery_pass=True, Z2=56.5. Quiet-star null 95th Z2=15.682490520655321, time-shuffle null 95th Z2=16.434968913421258. Cohort null: 3/32 anomalous (expect \u22642 at Z2 threshold >20). Real TESS data: not available (run with --fetch).\n\nVerdict: PIPELINE_VALIDATED | No real TESS data fetched. Without lightkurve / MAST access the result is computational only. | UNDERDETERMINED\n\nStructure != message. The SETI Ellipsoid is a geometric target-prioritisation strategy, not a technosignature detection. Cabrales+2024 found no anomalous signatures in any TESS lightcurve (non-detection is the ground truth). This pipeline validates epoch-fold math and null calibration, not the presence of extraterrestrial signals. No periodicity or dip structure at an Ellipsoid crossing time constitutes evidence of artificial engineering without independent multi-wavelength confirmation.",
+  "interpretation": "TESS SN 1987A SETI Ellipsoid (Cabrales+2024) re-analysis. N_targets=32 from real catalog. Known-answer: injected dip at TIC 279055252, recovery_pass=True, Z2=56.5. Quiet-star null 95th Z2=15.682490520655321, time-shuffle null 95th Z2=16.434968913421258. Cohort null: 0/32 anomalous (threshold Z2 > 21.0; calibrated above null). Real TESS data: not available (run with --fetch).\n\nVerdict: PIPELINE_VALIDATED | No real TESS data fetched. Without lightkurve / MAST access the result is computational only. | UNDERDETERMINED\n\nStructure != message. The SETI Ellipsoid is a geometric target-prioritisation strategy, not a technosignature detection. Cabrales+2024 found no anomalous signatures in any TESS lightcurve (non-detection is the ground truth). This pipeline validates epoch-fold math and null calibration, not the presence of extraterrestrial signals. No periodicity or dip structure at an Ellipsoid crossing time constitutes evidence of artificial engineering without independent multi-wavelength confirmation.",
   "caveat": "This analysis validates the epoch-fold pipeline and null calibration. It uses the real Cabrales+2024 Table 2 catalog with 32 real TIC IDs. The known-answer injects a synthetic dip into one target; the cohort analysis verifies that a fixture-only path does not over-claim dips. For real results, run with --fetch (requires lightkurve + MAST access). The published ground truth is a non-detection (Cabrales+2024). Structure != message."
 }
