@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T02:09:27.430724+00:00",
+  "generated_at": "2026-07-27T02:37:31.270038+00:00",
   "missions": [
     {
       "id": "N0",
@@ -176,6 +176,16 @@
     }
   },
   "outputs": [
+    {
+      "path": "outputs/alpha_variation/run.json",
+      "name": "run.json",
+      "kb": 29.9
+    },
+    {
+      "path": "outputs/alpha_variation/telescope_split.json",
+      "name": "telescope_split.json",
+      "kb": 44.2
+    },
     {
       "path": "outputs/amazon/run.json",
       "name": "run.json",
@@ -577,6 +587,11 @@
       "kb": 10.3
     },
     {
+      "path": "outputs/voynich_botany/run.json",
+      "name": "run.json",
+      "kb": 41.5
+    },
+    {
       "path": "outputs/wheat_closeout/chilbolton_bitstream_scan.json",
       "name": "chilbolton_bitstream_scan.json",
       "kb": 3.7
@@ -597,5 +612,5 @@
       "kb": 2.7
     }
   ],
-  "n_outputs": 84
+  "n_outputs": 87
 }
