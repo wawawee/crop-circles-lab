@@ -16,11 +16,11 @@ ROOT = HERE.parents[2]
 sys.path.insert(0, str(ROOT))
 
 from tools.astro.tess_ellipsoid_probe import (
-    CATALOG_PATH, FORBIDDEN_PHRASES, N_TARGETS, OUT_DIR, SEED, STANCE,
-    VERDICT_VOCAB,
+    CATALOG_PATH, COHORT_THRESHOLD_FLOOR_Z2, FORBIDDEN_PHRASES, N_TARGETS,
+    OUT_DIR, SEED, STANCE, VERDICT_VOCAB,
     _generate_epoch_grid, _inject_synthetic_dips, _uniform_random_times, _z_score,
-    analyze_ellipsoid, build_interpretation, classify_verdict,
-    load_catalog, run_cohort_analysis, run_known_answer,
+    analyze_ellipsoid, build_interpretation, calibrate_cohort_threshold_z2,
+    classify_verdict, load_catalog, run_cohort_analysis, run_known_answer,
     run_quiet_star_null, run_time_shuffle_null,
     write_notes,
 )
@@ -225,11 +225,36 @@ def test_time_shuffle_null_z2_low() -> None:
 def test_cohort_not_overclaiming() -> None:
     catalog = load_catalog()
     targets = catalog["targets"]
-    cohort = run_cohort_analysis(targets, seed=42)
+    quiet = run_quiet_star_null(
+        n_dips=30,
+        range_bjd=(1330.75 - 27.0, 1330.75 + 27.0),
+        seed=42,
+    )
+    shuffle = run_time_shuffle_null(targets, seed=42)
+    thr = calibrate_cohort_threshold_z2(quiet, shuffle)
+    cohort = run_cohort_analysis(targets, seed=42, threshold_z2=thr)
     assert cohort["anomalous_count"] <= 5, \
         f"Cohort reports {cohort['anomalous_count']}/32 anomalous — fixture-only should be quiet"
     assert cohort["anomalous_count"] < len(targets), \
         "Cohort must not report all targets as anomalous"
+
+
+def test_cohort_threshold_above_null_95() -> None:
+    """Regression: cohort cut must not sit under the null 95th percentiles."""
+    quiet = {"null_best_z2_95pct": 15.68, "null_best_z2_max": 20.92}
+    shuffle = {"null_best_z2_95pct": 16.43, "null_best_z2_max": 21.70}
+    thr = calibrate_cohort_threshold_z2(quiet, shuffle)
+    assert thr >= quiet["null_best_z2_95pct"]
+    assert thr >= shuffle["null_best_z2_95pct"]
+    assert thr >= COHORT_THRESHOLD_FLOOR_Z2
+    assert thr == 21.0
+
+
+def test_cohort_threshold_tracks_higher_null() -> None:
+    quiet = {"null_best_z2_95pct": 22.5}
+    shuffle = {"null_best_z2_95pct": 18.0}
+    thr = calibrate_cohort_threshold_z2(quiet, shuffle)
+    assert thr == 22.5
 
 
 def test_cohort_all_targets_tested() -> None:
@@ -313,7 +338,14 @@ def test_analyze_ellipsoid_null_values_sane() -> None:
 
 def test_analyze_ellipsoid_cohort_not_overclaiming() -> None:
     report = analyze_ellipsoid(seed=42)
-    anom = report["cohort_analysis"]["anomalous_count"]
+    co = report["cohort_analysis"]
+    anom = co["anomalous_count"]
+    thr = co["threshold_z2"]
+    q95 = report["negative_controls"]["quiet_star_null"]["null_best_z2_95pct"]
+    s95 = report["negative_controls"]["time_shuffle_null"]["null_best_z2_95pct"]
+    assert thr >= q95
+    assert thr >= s95
+    assert thr >= COHORT_THRESHOLD_FLOOR_Z2
     assert anom <= 5, f"Cohort over-claims: {anom}/32 anomalous in fixture-only path"
     assert anom < 32, "Cohort must not report all targets as anomalous"
 
