@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T00:21:34.075241+00:00",
+  "generated_at": "2026-07-27T02:09:27.430724+00:00",
   "missions": [
     {
       "id": "N0",
@@ -277,11 +277,6 @@
       "kb": 5.6
     },
     {
-      "path": "outputs/constants_smoke/constants_analysis.json",
-      "name": "constants_analysis.json",
-      "kb": 17.3
-    },
-    {
       "path": "outputs/crabwood_bits.json",
       "name": "crabwood_bits.json",
       "kb": 1.4
@@ -325,31 +320,6 @@
       "path": "outputs/forensics/ela/SUMMARY.json",
       "name": "SUMMARY.json",
       "kb": 1.6
-    },
-    {
-      "path": "outputs/forensics/ela/_pytest_tmp/c/clean_single_pass_ela.json",
-      "name": "clean_single_pass_ela.json",
-      "kb": 0.9
-    },
-    {
-      "path": "outputs/forensics/ela/_pytest_tmp/s/spliced_hq_into_lq_ela.json",
-      "name": "spliced_hq_into_lq_ela.json",
-      "kb": 0.8
-    },
-    {
-      "path": "outputs/forensics/ela/_selftest/clean/clean_single_pass_ela.json",
-      "name": "clean_single_pass_ela.json",
-      "kb": 0.9
-    },
-    {
-      "path": "outputs/forensics/ela/_selftest/selftest_summary.json",
-      "name": "selftest_summary.json",
-      "kb": 0.4
-    },
-    {
-      "path": "outputs/forensics/ela/_selftest/spliced/spliced_hq_into_lq_ela.json",
-      "name": "spliced_hq_into_lq_ela.json",
-      "kb": 0.8
     },
     {
       "path": "outputs/forensics/ela/chilbolton_message_2001_tt/chilbolton_message_2001_tt_ela.json",
@@ -569,7 +539,7 @@
     {
       "path": "outputs/tess_ellipsoid/run.json",
       "name": "run.json",
-      "kb": 4.1
+      "kb": 4.3
     },
     {
       "path": "outputs/uap/demo.json",
@@ -627,5 +597,5 @@
       "kb": 2.7
     }
   ],
-  "n_outputs": 90
+  "n_outputs": 84
 }
