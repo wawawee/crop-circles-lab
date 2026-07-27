@@ -51,7 +51,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G15** | **Freebuff** | Cretan Hieroglyphic bipartite admin | network / symbolseq | 🟢 **merged PR #15** — SYNTH Evans-shaped CH corpus (no public CHIC dump); UNDERDETERMINED z≈−2.7; forbidden-phrase guard. |
 | **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **merged PR #14** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
 | **G10++** | **Freebuff** 🟢 | Voynich plant pages × CCAT | ccat shape vs synthetic botany controls | 🟢 **merged PR #34** — FIXTURE_ONLY | SHAPE_STRUCTURE; synthetic KA + 4 nulls; IIIF/POWO NEVER_ATTEMPTED; 25/25 tests. |
-| **G9++** | **Kimi** 🟢 | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | 🟢 **landing** — `tools/scripts/indus_west_negcontrol.py`, `data/indus_west/`, `outputs/indus_west/`. Verdict **FIXTURE_ONLY | NEGCONTROL_PASS** (d_ta/d_ref≈73, d_te/d_ref≈74). Real West/Tamil/Telugu NEVER_ATTEMPTED. 35/35 tests. `feat/g9pp-indus-west-neg` |
+| **G9++** | **Kimi** 🟢 | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | 🟢 **merged PR #35** — `tools/scripts/indus_west_negcontrol.py`, `data/indus_west/`, `outputs/indus_west/`. Verdict **FIXTURE_ONLY | NEGCONTROL_PASS** (d_ta/d_ref≈73, d_te/d_ref≈74). Real West/Tamil/Telugu NEVER_ATTEMPTED. 35/35 tests. `feat/g9pp-indus-west-neg` |
 | **ATLAS** | **Cursor** | Language Entropy Atlas + anomaly schema | entropy_atlas + anomalies.json | 🟢 **seeded** — `data/catalog/entropy_atlas.json`, `anomaly_schema.json`, `atlas_query.py` |
 | **G17** | **Cursor** 🟢 | TESS SETI Ellipsoid re-analysis | astro time-series; 32 real TICs from Cabrales Table 2; KA recover pass Z2≈56.5; cohort 3/32 anom; 37 tests | 🟢 **merged PR #27** — PIPELINE_VALIDATED | UNDERDETERMINED (no MAST fetch). Real Table 2 catalog + per-star tcross; Ulfberht gate PASS. Nit (non-blocking): cohort Z²>15 sits under null 95th — polish later. |
 | **G18** | **Freebuff** | EAMENA ley-line null | Sistan n=80 triples FPR=0 | 🟢 **merged PR #24** — FPR_CALIBRATED; structure ≠ ley message |
@@ -84,8 +84,8 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G16** | 🟢 merged PR #14 — Meroitic STRUCTURE_SIGNAL. |
 | **Minimax M3** | 💤 idle. |
 | **Opencode** | 💤 idle (frontier G13–G20 landed). |
-| **Freebuff / Kimi** | 💤 idle — G9++/G10++ landing. |
-| **Cursor** | 🟢 merge gate — G10++ #34 merged; landing G9++. |
+| **Freebuff / Kimi** | 💤 idle. |
+| **Cursor** | 🟢 merge gate — G9++ #35 + G10++ #34 landed; frontier idle. |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -100,7 +100,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Frontier idle unless Captain assigns **G9++ / G10++**. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Frontier idle unless Captain assigns next research leads. |
 | **External dispatch** | Cursor/Auto may push prompts to OpenCode / Freebuff / Kimi without manual copy-paste — see below. |
 
 ### SCOPE LOCK (paste into every Freebuff / OpenCode / Kimi mission)
