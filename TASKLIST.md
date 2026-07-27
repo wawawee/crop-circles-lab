@@ -7,6 +7,8 @@
 **Local root:** `/Users/perbrinell/Documents/TIN-STUDY/crop-circles`  
 **Stance:** Measure first. Do not claim aliens or “decoded messages” without BER / known-answer validation. Copyrighted aerials = personal research only (`data/images/ATTRIBUTION.txt`).
 
+**Authority split:** This file owns **wheat / crop-formation tasks (A–G below)**. Frontier anomalistics (**N\*/G\*/R\***) live in [`MISSION_BOARD.md`](MISSION_BOARD.md) — do not duplicate ticket rows here. Scope / branch / PR rules below apply to **both**.
+
 ---
 
 ## Status legend
@@ -22,12 +24,25 @@
 
 ## 0. Orientation (every agent)
 
-1. Read this file + `README.md` + `data/catalog/ACQUIRED_STATUS.md` + `data/catalog/TOOLS_EVAL.md`.
+1. Read this file + `README.md` + `data/catalog/ACQUIRED_STATUS.md` + `data/catalog/TOOLS_EVAL.md`. For G\*/N\*/R\* tickets also read **SCOPE LOCK** in `MISSION_BOARD.md`.
 2. Activate venv: `source .venv/bin/activate` (create via `pip install -r requirements.txt` if missing).
 3. Do **not** redistribute Temporary Temples / Lucy Pringle / Getty originals.
 4. Run known-answer tests after touching forensics:  
    `python tools/forensics/tests/test_ratios.py && python tools/forensics/tests/test_fractal.py && python tools/forensics/tests/test_encoding.py`
 5. Prefer writing outputs under `outputs/` and notes under `data/catalog/` or this file.
+
+### 0b. Scope & PR hygiene (all tickets)
+
+| Rule | Detail |
+|------|--------|
+| **One ticket → one branch → one PR** | `feat/<id>-…` only. Never mix two missions in one diff. |
+| **Allowlist paths** | `data/<domain>/`, ticket scripts/tests, `outputs/<domain>/`, surgical status row for this ID. |
+| **In-scope extras OK** | Extra nulls, splits, plots, tests, deeper NOTES — **go deep** while values are in front of you. Stay under the allowlist. Additive helpers (`*_split.py`, `*_plot.py`) preferred. |
+| **Out of scope** | Other probes, other tickets’ leftovers, drive-by refactors, marking other IDs done. |
+| **Optional SCOPE AUDIT** | After a wild session, run the tight hygiene-only follow-up in `MISSION_BOARD.md` § *Optional SCOPE AUDIT pass* before opening the PR. |
+| **Wheat vs frontier** | Update **this** file for B\*/A\* crop tasks; update **MISSION_BOARD** for G\*/N\*/R\*. |
+
+Canonical paste-blocks (SCOPE LOCK + SCOPE AUDIT): `MISSION_BOARD.md` → *Agent ops*.
 
 ---
 
@@ -211,4 +226,4 @@ See **`data/catalog/TOOLS_EVAL.md`** for the full honest triage of the proposed 
 
 ---
 
-*Last updated: 2026-07-25 — Night-shift bootstrap: `MISSION_BOARD.md` + Captain dashboard; scaffolds N1–N4 (`bio`/`uap`/`astro`). Hyper: Phaistos `symbolseq` DONE. See mission board for owners.*
+*Last updated: 2026-07-27 — §0b scope/PR hygiene + authority split. SCOPE LOCK / SCOPE AUDIT on MISSION_BOARD for agent paste.*

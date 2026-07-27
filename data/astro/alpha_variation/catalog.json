@@ -1,0 +1,54 @@
+{
+  "mission_id": "G21",
+  "dataset": "King et al. (2012) VLT+Keck quasar absorption Δα/α measurements",
+  "citation": "King, J. A., Webb, J. K., Murphy, M. T., et al. 2012, MNRAS, 422, 3370",
+  "arxiv": "arXiv:1202.4758",
+  "doi": "10.1111/j.1365-2966.2012.20805.x",
+  "url": "http://astronomy.swin.edu.au/~mmurphy/files/KingJ_12a_VLT+Keck.dat",
+  "provenance": "Transcribed from public data file. Full dataset (295 absorbers) in king_2012_vlt_keck.dat",
+  "n_absorbers": 295,
+  "n_keck": 141,
+  "n_vlt": 154,
+  "sigma_rand_weighted_mean": {
+    "VLT_flag3": 0.905,
+    "Keck_LC_flag1": 0.000,
+    "Keck_HC_flag2": 1.743
+  },
+  "known_dipole": {
+    "ra_deg": 262.5,
+    "dec_deg": -58.0,
+    "amplitude_x1e5": 0.97,
+    "amplitude_err_x1e5": 0.12
+  },
+  "columns": {
+    "ra_deg": "Right Ascension J2000 (degrees, from quasar name)",
+    "dec_deg": "Declination J2000 (degrees, from quasar name)",
+    "da_a": "Δα/α in units of 10⁻⁵",
+    "err": "Statistical error from Voigt fit (10⁻⁵)",
+    "source": "Telescope: Keck or VLT",
+    "sig_rand_flag": "Extra-error group: 1=Keck LC, 2=Keck HC, 3=VLT"
+  },
+  "sample_absorbers": [
+    {"id":1,"name":"J000520+052410","ra_deg":1.3333,"dec_deg":5.4028,"z_abs":0.85118,"da_a":-0.340,"err":1.284,"source":"Keck","sig_rand_flag":1},
+    {"id":12,"name":"J082601-223027","ra_deg":126.5042,"dec_deg":-22.5075,"z_abs":0.91059,"da_a":-0.391,"err":0.609,"source":"Keck","sig_rand_flag":1},
+    {"id":15,"name":"J121549-003432","ra_deg":183.9542,"dec_deg":-0.5756,"z_abs":1.3196,"da_a":-0.725,"err":0.761,"source":"Keck","sig_rand_flag":1},
+    {"id":30,"name":"J015234+335033","ra_deg":28.1417,"dec_deg":33.8425,"z_abs":2.1408,"da_a":-5.418,"err":2.160,"source":"Keck","sig_rand_flag":2},
+    {"id":45,"name":"J223235+024755","ra_deg":338.1458,"dec_deg":2.7986,"z_abs":1.8585,"da_a":-5.480,"err":1.174,"source":"Keck","sig_rand_flag":2},
+    {"id":67,"name":"J000322-260316","ra_deg":0.8417,"dec_deg":-26.0544,"z_abs":3.3897,"da_a":-7.843,"err":3.548,"source":"Keck","sig_rand_flag":1},
+    {"id":91,"name":"J084424+124548","ra_deg":131.1000,"dec_deg":12.7633,"z_abs":1.0981,"da_a":-3.570,"err":1.220,"source":"Keck","sig_rand_flag":1},
+    {"id":145,"name":"J000448-415728","ra_deg":1.2000,"dec_deg":-41.9578,"z_abs":1.5419,"da_a":-5.270,"err":0.906,"source":"VLT","sig_rand_flag":3},
+    {"id":156,"name":"J005758-264314","ra_deg":14.4917,"dec_deg":-26.7206,"z_abs":1.2679,"da_a":1.076,"err":1.931,"source":"VLT","sig_rand_flag":3},
+    {"id":189,"name":"J043037-485523","ra_deg":67.6542,"dec_deg":-48.9231,"z_abs":1.3556,"da_a":-0.405,"err":0.232,"source":"VLT","sig_rand_flag":3},
+    {"id":194,"name":"J053007-250329","ra_deg":82.5292,"dec_deg":-25.0581,"z_abs":2.1412,"da_a":0.676,"err":0.359,"source":"VLT","sig_rand_flag":3},
+    {"id":213,"name":"J111113-080401","ra_deg":167.8042,"dec_deg":-8.0670,"z_abs":3.6077,"da_a":22.962,"err":16.134,"source":"VLT","sig_rand_flag":3},
+    {"id":253,"name":"J200324-325144","ra_deg":300.8500,"dec_deg":-32.8622,"z_abs":3.1878,"da_a":3.411,"err":1.153,"source":"VLT","sig_rand_flag":3},
+    {"id":262,"name":"J214159-441325","ra_deg":325.4958,"dec_deg":-44.2236,"z_abs":2.8523,"da_a":2.089,"err":0.524,"source":"VLT","sig_rand_flag":3},
+    {"id":282,"name":"J222006-280323","ra_deg":335.0250,"dec_deg":-28.0564,"z_abs":1.6279,"da_a":2.300,"err":0.861,"source":"VLT","sig_rand_flag":3},
+    {"id":287,"name":"J233446-090812","ra_deg":353.6917,"dec_deg":-9.1367,"z_abs":2.1522,"da_a":0.525,"err":0.437,"source":"VLT","sig_rand_flag":3},
+    {"id":289,"name":"J233446-090812","ra_deg":353.6917,"dec_deg":-9.1367,"z_abs":2.2875,"da_a":0.758,"err":0.376,"source":"VLT","sig_rand_flag":3},
+    {"id":292,"name":"J234628+124858","ra_deg":356.6167,"dec_deg":12.8161,"z_abs":1.1084,"da_a":-1.536,"err":2.527,"source":"VLT","sig_rand_flag":3},
+    {"id":294,"name":"J234628+124858","ra_deg":356.6167,"dec_deg":12.8161,"z_abs":2.1713,"da_a":-0.794,"err":0.951,"source":"VLT","sig_rand_flag":3},
+    {"id":295,"name":"J235034-432559","ra_deg":357.6417,"dec_deg":-43.4331,"z_abs":1.7962,"da_a":0.942,"err":3.357,"source":"VLT","sig_rand_flag":3}
+  ],
+  "stance": "structure != meaning. no-signal prior. instrument-systematics null mandatory."
+}
