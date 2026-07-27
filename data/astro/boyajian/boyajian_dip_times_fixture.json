@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "target": "TIC 272172248 (KIC 8462852 / Boyajian's Star)",
+    "mission": "Kepler",
+    "epoch": "BJD-2454833 (Kepler BJD)",
+    "type": "synthetic fixture — dip arrival times",
+    "purpose": "known-answer path: epoch-fold recovers planted ~24.5 d period from these dip times",
+    "synthetic": true,
+    "planted_period_days": 24.5,
+    "description": "30 synthetic dip timestamps around a 24.5 d grid with noise. Used to validate epoch-fold math in boyajian_probe.py."
+  },
+  "dip_times_bjd": [
+    817.50,
+    841.80,
+    866.30,
+    891.10,
+    915.40,
+    939.80,
+    964.20,
+    988.70,
+    1013.10,
+    1037.40,
+    1061.90,
+    1086.30,
+    1110.80,
+    1135.10,
+    1159.50,
+    1183.90,
+    1208.30,
+    1232.70,
+    1257.10,
+    1281.50,
+    1305.90,
+    1330.30,
+    1354.80,
+    1379.20,
+    1403.60,
+    1428.00,
+    1452.40,
+    1476.80,
+    1501.30,
+    1525.70
+  ],
+  "controls": {
+    "quiet_star": {
+      "description": "Uniform random dip times, no planted period",
+      "n_dips": 30,
+      "range_bjd": [750, 1600],
+      "seed": 420
+    }
+  },
+  "caveat": "This fixture is synthetic. It validates the math pipeline only. It says nothing about the real star. Use --fetch for real TESS data."
+}
