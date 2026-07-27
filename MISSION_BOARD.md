@@ -57,7 +57,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G18** | **Freebuff** | EAMENA ley-line null | Sistan n=80 triples FPR=0 | 🟢 **merged PR #24** — FPR_CALIBRATED; structure ≠ ley message |
 | **G19** | **Opencode** | Long Delayed Echoes historic series | delay-value probe; Lunan CUT | 🟢 **merged PR #25** — CLAIM_FAILS_NULL (p_shuffle=1.0); corpus UNDERDETERMINED |
 | **G20** | **Cursor** 🟢 | Boyajian Star TESS epoch-fold | astro; TIC 272172248; DIP_STRUCTURE (KA 24.5 d, Z²≈60 vs null 95th≈13.3); 41 tests | 🟢 **merged PR #26** — PR merged, all tests green. Branch `feat/g20-boyajian-tess` → `main`. |
-| **G21** | **Freebuff** → **Cursor** 🟢 | Fine-structure α directional variation | King+2012 quasar Δα/α dipole + per-telescope split | 🟢 **landing** — `tools/scripts/alpha_variation_*.py`, `data/astro/alpha_variation/`, `outputs/alpha_variation/`. Independent recovery within 0.2σ of King+2012; **VLT-driven** (Keck z=−0.44, VLT z=+2.11, VLT bootstrap z=−0.27). Verdict: **INSTRUMENT_SYSTEMATICS_NULL_NOT_REJECTED | UNDERDETERMINED | BEST_FIT_NEAR_KNOWN_DIPOLE | STRONG_NULL_SEPARATION_2OF4**. 24/24 tests. `feat/g21-alpha-variation` |
+| **G21** | **Freebuff** → **Cursor** 🟢 | Fine-structure α directional variation | King+2012 quasar Δα/α dipole + per-telescope split | 🟢 **merged PR #32** — `tools/scripts/alpha_variation_*.py`, `data/astro/alpha_variation/`, `outputs/alpha_variation/`. Independent recovery within 0.2σ of King+2012; **VLT-driven** (Keck z=−0.44, VLT z=+2.11, VLT bootstrap z=−0.27). Verdict: **INSTRUMENT_SYSTEMATICS_NULL_NOT_REJECTED | UNDERDETERMINED | BEST_FIT_NEAR_KNOWN_DIPOLE | STRONG_NULL_SEPARATION_2OF4**. 24/24 tests. `feat/g21-alpha-variation` |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-Amazon-NEG** | **Kimi** 🟢 | Hecklefish #6 Amazon LiDAR negatives | synthetic CSR/forest/scramble + planted KA; FPR calib | 🟢 **PR #23** — `tools/geo/lidar_negative_probe.py`, `data/geo/amazon_lidar_neg/`, `outputs/amazon_lidar_neg/`. Verdict **FPR_CALIBRATED** (power 100%, FPR_combined 1.67%); real LiDAR **UNDERDETERMINED** (no public dense tile). Does **not** modify Mode A. 13/13 tests. `feat/amazon-lidar-neg` |
@@ -85,7 +85,7 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **Minimax M3** | 💤 idle. |
 | **Opencode** | 💤 idle (frontier G13–G20 landed). |
 | **Freebuff / Kimi** | 💤 idle — next: G9++ / G10++ if assigned. |
-| **Cursor** | 🟢 merge gate — landing G21 α; board hygiene. |
+| **Cursor** | 🟢 merge gate — G21 merged PR #32; frontier idle except G9++/G10++. |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
