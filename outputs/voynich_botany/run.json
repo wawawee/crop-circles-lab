@@ -1,0 +1,1506 @@
+{
+  "mission_id": "G10++",
+  "probe": "tools/scripts/voynich_botany_probe.py",
+  "generated_at": "2026-07-27T02:31:21.893321+00:00",
+  "data_source": {
+    "type": "synthetic",
+    "path": "data/voynich_botany/",
+    "note": "All images generated programmatically. No real Beinecke IIIF or POWO data. Synthetic controls only."
+  },
+  "synthetic_setup": {
+    "n_plants": 30,
+    "n_nulls_per_control": 30,
+    "image_size": 300,
+    "control_types": [
+      "noise",
+      "scramble",
+      "random_shapes",
+      "silhouette"
+    ],
+    "iiif_fetch_attempted": false,
+    "iiif_status": "NEVER_ATTEMPTED",
+    "powo_fetch_attempted": false,
+    "powo_status": "NEVER_ATTEMPTED",
+    "generator_seed": 0
+  },
+  "metrics_tested": [
+    "edge_pixel_ratio",
+    "fractal_dimension",
+    "lines_detected",
+    "circles_detected",
+    "mirror_symmetry",
+    "rotational_symmetry_2fold"
+  ],
+  "plant_samples": [
+    {
+      "edge_pixel_ratio": 0.01033,
+      "fractal_dimension": 1.1308,
+      "lines_detected": 3,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9977,
+      "rotational_symmetry_2fold": 0.9903
+    },
+    {
+      "edge_pixel_ratio": 0.01011,
+      "fractal_dimension": 1.1334,
+      "lines_detected": 2,
+      "circles_detected": 1,
+      "mirror_symmetry": 0.9975,
+      "rotational_symmetry_2fold": 0.9886
+    },
+    {
+      "edge_pixel_ratio": 0.01139,
+      "fractal_dimension": 1.1552,
+      "lines_detected": 3,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9967,
+      "rotational_symmetry_2fold": 0.9898
+    },
+    {
+      "edge_pixel_ratio": 0.01171,
+      "fractal_dimension": 1.1756,
+      "lines_detected": 3,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9965,
+      "rotational_symmetry_2fold": 0.9859
+    },
+    {
+      "edge_pixel_ratio": 0.01131,
+      "fractal_dimension": 1.1654,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9964,
+      "rotational_symmetry_2fold": 0.9863
+    },
+    {
+      "edge_pixel_ratio": 0.01082,
+      "fractal_dimension": 1.1531,
+      "lines_detected": 3,
+      "circles_detected": 1,
+      "mirror_symmetry": 0.997,
+      "rotational_symmetry_2fold": 0.9884
+    },
+    {
+      "edge_pixel_ratio": 0.0117,
+      "fractal_dimension": 1.1797,
+      "lines_detected": 4,
+      "circles_detected": 1,
+      "mirror_symmetry": 0.9963,
+      "rotational_symmetry_2fold": 0.9854
+    },
+    {
+      "edge_pixel_ratio": 0.01006,
+      "fractal_dimension": 1.1287,
+      "lines_detected": 3,
+      "circles_detected": 1,
+      "mirror_symmetry": 0.9978,
+      "rotational_symmetry_2fold": 0.9906
+    },
+    {
+      "edge_pixel_ratio": 0.00937,
+      "fractal_dimension": 1.1023,
+      "lines_detected": 3,
+      "circles_detected": 1,
+      "mirror_symmetry": 0.9978,
+      "rotational_symmetry_2fold": 0.9902
+    },
+    {
+      "edge_pixel_ratio": 0.01257,
+      "fractal_dimension": 1.1918,
+      "lines_detected": 3,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9963,
+      "rotational_symmetry_2fold": 0.987
+    },
+    {
+      "edge_pixel_ratio": 0.01038,
+      "fractal_dimension": 1.1372,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9975,
+      "rotational_symmetry_2fold": 0.9893
+    },
+    {
+      "edge_pixel_ratio": 0.01006,
+      "fractal_dimension": 1.1337,
+      "lines_detected": 6,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9965,
+      "rotational_symmetry_2fold": 0.988
+    },
+    {
+      "edge_pixel_ratio": 0.01146,
+      "fractal_dimension": 1.1676,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.996,
+      "rotational_symmetry_2fold": 0.9866
+    },
+    {
+      "edge_pixel_ratio": 0.01124,
+      "fractal_dimension": 1.1676,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9964,
+      "rotational_symmetry_2fold": 0.9863
+    },
+    {
+      "edge_pixel_ratio": 0.01023,
+      "fractal_dimension": 1.1259,
+      "lines_detected": 3,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9973,
+      "rotational_symmetry_2fold": 0.9897
+    },
+    {
+      "edge_pixel_ratio": 0.01051,
+      "fractal_dimension": 1.1279,
+      "lines_detected": 4,
+      "circles_detected": 1,
+      "mirror_symmetry": 0.9978,
+      "rotational_symmetry_2fold": 0.9899
+    },
+    {
+      "edge_pixel_ratio": 0.00997,
+      "fractal_dimension": 1.1248,
+      "lines_detected": 2,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9964,
+      "rotational_symmetry_2fold": 0.9878
+    },
+    {
+      "edge_pixel_ratio": 0.00979,
+      "fractal_dimension": 1.1255,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9976,
+      "rotational_symmetry_2fold": 0.9891
+    },
+    {
+      "edge_pixel_ratio": 0.01089,
+      "fractal_dimension": 1.1556,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9972,
+      "rotational_symmetry_2fold": 0.9878
+    },
+    {
+      "edge_pixel_ratio": 0.01029,
+      "fractal_dimension": 1.1446,
+      "lines_detected": 2,
+      "circles_detected": 1,
+      "mirror_symmetry": 0.9976,
+      "rotational_symmetry_2fold": 0.9891
+    },
+    {
+      "edge_pixel_ratio": 0.01176,
+      "fractal_dimension": 1.1783,
+      "lines_detected": 5,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9951,
+      "rotational_symmetry_2fold": 0.9847
+    },
+    {
+      "edge_pixel_ratio": 0.01153,
+      "fractal_dimension": 1.1662,
+      "lines_detected": 2,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9966,
+      "rotational_symmetry_2fold": 0.9899
+    },
+    {
+      "edge_pixel_ratio": 0.01071,
+      "fractal_dimension": 1.1411,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9963,
+      "rotational_symmetry_2fold": 0.9879
+    },
+    {
+      "edge_pixel_ratio": 0.01111,
+      "fractal_dimension": 1.1628,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9959,
+      "rotational_symmetry_2fold": 0.9854
+    },
+    {
+      "edge_pixel_ratio": 0.01123,
+      "fractal_dimension": 1.1645,
+      "lines_detected": 3,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.997,
+      "rotational_symmetry_2fold": 0.9888
+    },
+    {
+      "edge_pixel_ratio": 0.0108,
+      "fractal_dimension": 1.1394,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9968,
+      "rotational_symmetry_2fold": 0.9889
+    },
+    {
+      "edge_pixel_ratio": 0.01016,
+      "fractal_dimension": 1.1389,
+      "lines_detected": 5,
+      "circles_detected": 1,
+      "mirror_symmetry": 0.9976,
+      "rotational_symmetry_2fold": 0.9877
+    },
+    {
+      "edge_pixel_ratio": 0.01028,
+      "fractal_dimension": 1.1301,
+      "lines_detected": 4,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9969,
+      "rotational_symmetry_2fold": 0.9903
+    },
+    {
+      "edge_pixel_ratio": 0.01038,
+      "fractal_dimension": 1.1395,
+      "lines_detected": 3,
+      "circles_detected": 0,
+      "mirror_symmetry": 0.9966,
+      "rotational_symmetry_2fold": 0.9885
+    },
+    {
+      "edge_pixel_ratio": 0.01083,
+      "fractal_dimension": 1.153,
+      "lines_detected": 3,
+      "circles_detected": 1,
+      "mirror_symmetry": 0.997,
+      "rotational_symmetry_2fold": 0.9882
+    }
+  ],
+  "nulls": {
+    "noise": [
+      {
+        "edge_pixel_ratio": 0.36999,
+        "fractal_dimension": 1.979,
+        "lines_detected": 397,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9436,
+        "rotational_symmetry_2fold": 0.9445
+      },
+      {
+        "edge_pixel_ratio": 0.37024,
+        "fractal_dimension": 1.9795,
+        "lines_detected": 388,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9441,
+        "rotational_symmetry_2fold": 0.9445
+      },
+      {
+        "edge_pixel_ratio": 0.36996,
+        "fractal_dimension": 1.9793,
+        "lines_detected": 370,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9439,
+        "rotational_symmetry_2fold": 0.9437
+      },
+      {
+        "edge_pixel_ratio": 0.37197,
+        "fractal_dimension": 1.9792,
+        "lines_detected": 404,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9444,
+        "rotational_symmetry_2fold": 0.9443
+      },
+      {
+        "edge_pixel_ratio": 0.3699,
+        "fractal_dimension": 1.9792,
+        "lines_detected": 388,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.944,
+        "rotational_symmetry_2fold": 0.9442
+      },
+      {
+        "edge_pixel_ratio": 0.3734,
+        "fractal_dimension": 1.9801,
+        "lines_detected": 396,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9435,
+        "rotational_symmetry_2fold": 0.944
+      },
+      {
+        "edge_pixel_ratio": 0.36949,
+        "fractal_dimension": 1.9788,
+        "lines_detected": 379,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9444,
+        "rotational_symmetry_2fold": 0.9443
+      },
+      {
+        "edge_pixel_ratio": 0.36988,
+        "fractal_dimension": 1.9788,
+        "lines_detected": 388,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9442,
+        "rotational_symmetry_2fold": 0.9444
+      },
+      {
+        "edge_pixel_ratio": 0.37139,
+        "fractal_dimension": 1.9792,
+        "lines_detected": 391,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9445,
+        "rotational_symmetry_2fold": 0.9451
+      },
+      {
+        "edge_pixel_ratio": 0.36858,
+        "fractal_dimension": 1.9789,
+        "lines_detected": 403,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9443,
+        "rotational_symmetry_2fold": 0.9441
+      },
+      {
+        "edge_pixel_ratio": 0.3699,
+        "fractal_dimension": 1.9789,
+        "lines_detected": 392,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9436,
+        "rotational_symmetry_2fold": 0.9439
+      },
+      {
+        "edge_pixel_ratio": 0.36999,
+        "fractal_dimension": 1.9797,
+        "lines_detected": 404,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9451,
+        "rotational_symmetry_2fold": 0.945
+      },
+      {
+        "edge_pixel_ratio": 0.3701,
+        "fractal_dimension": 1.9788,
+        "lines_detected": 386,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9446,
+        "rotational_symmetry_2fold": 0.9444
+      },
+      {
+        "edge_pixel_ratio": 0.36942,
+        "fractal_dimension": 1.979,
+        "lines_detected": 406,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9444,
+        "rotational_symmetry_2fold": 0.9452
+      },
+      {
+        "edge_pixel_ratio": 0.368,
+        "fractal_dimension": 1.9784,
+        "lines_detected": 391,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9451,
+        "rotational_symmetry_2fold": 0.9443
+      },
+      {
+        "edge_pixel_ratio": 0.37149,
+        "fractal_dimension": 1.9797,
+        "lines_detected": 402,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9438,
+        "rotational_symmetry_2fold": 0.944
+      },
+      {
+        "edge_pixel_ratio": 0.36878,
+        "fractal_dimension": 1.9787,
+        "lines_detected": 400,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9451,
+        "rotational_symmetry_2fold": 0.9449
+      },
+      {
+        "edge_pixel_ratio": 0.37004,
+        "fractal_dimension": 1.9793,
+        "lines_detected": 405,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9442,
+        "rotational_symmetry_2fold": 0.9447
+      },
+      {
+        "edge_pixel_ratio": 0.36827,
+        "fractal_dimension": 1.9784,
+        "lines_detected": 419,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9445,
+        "rotational_symmetry_2fold": 0.9446
+      },
+      {
+        "edge_pixel_ratio": 0.36957,
+        "fractal_dimension": 1.9797,
+        "lines_detected": 389,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9448,
+        "rotational_symmetry_2fold": 0.9448
+      },
+      {
+        "edge_pixel_ratio": 0.37037,
+        "fractal_dimension": 1.9793,
+        "lines_detected": 414,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9445,
+        "rotational_symmetry_2fold": 0.9451
+      },
+      {
+        "edge_pixel_ratio": 0.37034,
+        "fractal_dimension": 1.9792,
+        "lines_detected": 403,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9444,
+        "rotational_symmetry_2fold": 0.9445
+      },
+      {
+        "edge_pixel_ratio": 0.37056,
+        "fractal_dimension": 1.9794,
+        "lines_detected": 402,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9445,
+        "rotational_symmetry_2fold": 0.9444
+      },
+      {
+        "edge_pixel_ratio": 0.3701,
+        "fractal_dimension": 1.9794,
+        "lines_detected": 370,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9441,
+        "rotational_symmetry_2fold": 0.9443
+      },
+      {
+        "edge_pixel_ratio": 0.36977,
+        "fractal_dimension": 1.9793,
+        "lines_detected": 396,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9443,
+        "rotational_symmetry_2fold": 0.9443
+      },
+      {
+        "edge_pixel_ratio": 0.37086,
+        "fractal_dimension": 1.9795,
+        "lines_detected": 397,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9438,
+        "rotational_symmetry_2fold": 0.944
+      },
+      {
+        "edge_pixel_ratio": 0.36877,
+        "fractal_dimension": 1.9787,
+        "lines_detected": 400,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9432,
+        "rotational_symmetry_2fold": 0.9441
+      },
+      {
+        "edge_pixel_ratio": 0.37279,
+        "fractal_dimension": 1.9798,
+        "lines_detected": 374,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9436,
+        "rotational_symmetry_2fold": 0.9439
+      },
+      {
+        "edge_pixel_ratio": 0.37021,
+        "fractal_dimension": 1.979,
+        "lines_detected": 398,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9441,
+        "rotational_symmetry_2fold": 0.9447
+      },
+      {
+        "edge_pixel_ratio": 0.36946,
+        "fractal_dimension": 1.979,
+        "lines_detected": 403,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9444,
+        "rotational_symmetry_2fold": 0.944
+      }
+    ],
+    "scramble": [
+      {
+        "edge_pixel_ratio": 0.20714,
+        "fractal_dimension": 1.8602,
+        "lines_detected": 437,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9915,
+        "rotational_symmetry_2fold": 0.9916
+      },
+      {
+        "edge_pixel_ratio": 0.17438,
+        "fractal_dimension": 1.818,
+        "lines_detected": 320,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9935,
+        "rotational_symmetry_2fold": 0.9935
+      },
+      {
+        "edge_pixel_ratio": 0.1831,
+        "fractal_dimension": 1.8278,
+        "lines_detected": 353,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9934,
+        "rotational_symmetry_2fold": 0.9933
+      },
+      {
+        "edge_pixel_ratio": 0.18123,
+        "fractal_dimension": 1.8265,
+        "lines_detected": 344,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9933,
+        "rotational_symmetry_2fold": 0.9934
+      },
+      {
+        "edge_pixel_ratio": 0.19508,
+        "fractal_dimension": 1.8451,
+        "lines_detected": 393,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9924,
+        "rotational_symmetry_2fold": 0.9924
+      },
+      {
+        "edge_pixel_ratio": 0.19999,
+        "fractal_dimension": 1.8524,
+        "lines_detected": 423,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9918,
+        "rotational_symmetry_2fold": 0.9919
+      },
+      {
+        "edge_pixel_ratio": 0.1926,
+        "fractal_dimension": 1.841,
+        "lines_detected": 397,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9925,
+        "rotational_symmetry_2fold": 0.9925
+      },
+      {
+        "edge_pixel_ratio": 0.19782,
+        "fractal_dimension": 1.85,
+        "lines_detected": 400,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9922,
+        "rotational_symmetry_2fold": 0.9921
+      },
+      {
+        "edge_pixel_ratio": 0.20078,
+        "fractal_dimension": 1.8546,
+        "lines_detected": 414,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9918,
+        "rotational_symmetry_2fold": 0.9918
+      },
+      {
+        "edge_pixel_ratio": 0.21109,
+        "fractal_dimension": 1.8643,
+        "lines_detected": 457,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9914,
+        "rotational_symmetry_2fold": 0.9913
+      },
+      {
+        "edge_pixel_ratio": 0.2081,
+        "fractal_dimension": 1.8617,
+        "lines_detected": 434,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9916,
+        "rotational_symmetry_2fold": 0.9917
+      },
+      {
+        "edge_pixel_ratio": 0.20404,
+        "fractal_dimension": 1.8562,
+        "lines_detected": 440,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9918,
+        "rotational_symmetry_2fold": 0.9918
+      },
+      {
+        "edge_pixel_ratio": 0.18173,
+        "fractal_dimension": 1.8269,
+        "lines_detected": 339,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9932,
+        "rotational_symmetry_2fold": 0.9932
+      },
+      {
+        "edge_pixel_ratio": 0.18411,
+        "fractal_dimension": 1.8291,
+        "lines_detected": 346,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9933,
+        "rotational_symmetry_2fold": 0.9933
+      },
+      {
+        "edge_pixel_ratio": 0.1877,
+        "fractal_dimension": 1.8362,
+        "lines_detected": 378,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9929,
+        "rotational_symmetry_2fold": 0.9928
+      },
+      {
+        "edge_pixel_ratio": 0.1957,
+        "fractal_dimension": 1.8463,
+        "lines_detected": 389,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9922,
+        "rotational_symmetry_2fold": 0.9923
+      },
+      {
+        "edge_pixel_ratio": 0.17934,
+        "fractal_dimension": 1.824,
+        "lines_detected": 342,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9934,
+        "rotational_symmetry_2fold": 0.9934
+      },
+      {
+        "edge_pixel_ratio": 0.20039,
+        "fractal_dimension": 1.8519,
+        "lines_detected": 411,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9919,
+        "rotational_symmetry_2fold": 0.9919
+      },
+      {
+        "edge_pixel_ratio": 0.19192,
+        "fractal_dimension": 1.8419,
+        "lines_detected": 366,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9924,
+        "rotational_symmetry_2fold": 0.9924
+      },
+      {
+        "edge_pixel_ratio": 0.2011,
+        "fractal_dimension": 1.852,
+        "lines_detected": 446,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9921,
+        "rotational_symmetry_2fold": 0.9922
+      },
+      {
+        "edge_pixel_ratio": 0.17869,
+        "fractal_dimension": 1.8219,
+        "lines_detected": 332,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9936,
+        "rotational_symmetry_2fold": 0.9936
+      },
+      {
+        "edge_pixel_ratio": 0.18613,
+        "fractal_dimension": 1.8305,
+        "lines_detected": 362,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9933,
+        "rotational_symmetry_2fold": 0.9934
+      },
+      {
+        "edge_pixel_ratio": 0.20563,
+        "fractal_dimension": 1.859,
+        "lines_detected": 432,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9917,
+        "rotational_symmetry_2fold": 0.9916
+      },
+      {
+        "edge_pixel_ratio": 0.20003,
+        "fractal_dimension": 1.8495,
+        "lines_detected": 421,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9921,
+        "rotational_symmetry_2fold": 0.992
+      },
+      {
+        "edge_pixel_ratio": 0.17986,
+        "fractal_dimension": 1.825,
+        "lines_detected": 345,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9932,
+        "rotational_symmetry_2fold": 0.9932
+      },
+      {
+        "edge_pixel_ratio": 0.17919,
+        "fractal_dimension": 1.8231,
+        "lines_detected": 337,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9937,
+        "rotational_symmetry_2fold": 0.9937
+      },
+      {
+        "edge_pixel_ratio": 0.17572,
+        "fractal_dimension": 1.8194,
+        "lines_detected": 332,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9936,
+        "rotational_symmetry_2fold": 0.9936
+      },
+      {
+        "edge_pixel_ratio": 0.1859,
+        "fractal_dimension": 1.8322,
+        "lines_detected": 372,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.993,
+        "rotational_symmetry_2fold": 0.993
+      },
+      {
+        "edge_pixel_ratio": 0.19399,
+        "fractal_dimension": 1.8428,
+        "lines_detected": 387,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9926,
+        "rotational_symmetry_2fold": 0.9927
+      },
+      {
+        "edge_pixel_ratio": 0.18568,
+        "fractal_dimension": 1.8323,
+        "lines_detected": 358,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9931,
+        "rotational_symmetry_2fold": 0.9932
+      }
+    ],
+    "random_shapes": [
+      {
+        "edge_pixel_ratio": 0.0164,
+        "fractal_dimension": 1.2077,
+        "lines_detected": 9,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9699,
+        "rotational_symmetry_2fold": 0.9659
+      },
+      {
+        "edge_pixel_ratio": 0.01674,
+        "fractal_dimension": 1.2126,
+        "lines_detected": 3,
+        "circles_detected": 4,
+        "mirror_symmetry": 0.9415,
+        "rotational_symmetry_2fold": 0.9395
+      },
+      {
+        "edge_pixel_ratio": 0.01676,
+        "fractal_dimension": 1.1899,
+        "lines_detected": 7,
+        "circles_detected": 2,
+        "mirror_symmetry": 0.9558,
+        "rotational_symmetry_2fold": 0.9551
+      },
+      {
+        "edge_pixel_ratio": 0.03008,
+        "fractal_dimension": 1.3365,
+        "lines_detected": 17,
+        "circles_detected": 3,
+        "mirror_symmetry": 0.9442,
+        "rotational_symmetry_2fold": 0.9342
+      },
+      {
+        "edge_pixel_ratio": 0.02329,
+        "fractal_dimension": 1.298,
+        "lines_detected": 2,
+        "circles_detected": 4,
+        "mirror_symmetry": 0.8946,
+        "rotational_symmetry_2fold": 0.8669
+      },
+      {
+        "edge_pixel_ratio": 0.02401,
+        "fractal_dimension": 1.2943,
+        "lines_detected": 8,
+        "circles_detected": 2,
+        "mirror_symmetry": 0.9226,
+        "rotational_symmetry_2fold": 0.9246
+      },
+      {
+        "edge_pixel_ratio": 0.01678,
+        "fractal_dimension": 1.2022,
+        "lines_detected": 3,
+        "circles_detected": 1,
+        "mirror_symmetry": 0.9451,
+        "rotational_symmetry_2fold": 0.9407
+      },
+      {
+        "edge_pixel_ratio": 0.02633,
+        "fractal_dimension": 1.299,
+        "lines_detected": 11,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9443,
+        "rotational_symmetry_2fold": 0.9336
+      },
+      {
+        "edge_pixel_ratio": 0.03212,
+        "fractal_dimension": 1.3608,
+        "lines_detected": 17,
+        "circles_detected": 3,
+        "mirror_symmetry": 0.9405,
+        "rotational_symmetry_2fold": 0.9385
+      },
+      {
+        "edge_pixel_ratio": 0.01454,
+        "fractal_dimension": 1.1722,
+        "lines_detected": 3,
+        "circles_detected": 3,
+        "mirror_symmetry": 0.939,
+        "rotational_symmetry_2fold": 0.9443
+      },
+      {
+        "edge_pixel_ratio": 0.02819,
+        "fractal_dimension": 1.3296,
+        "lines_detected": 8,
+        "circles_detected": 3,
+        "mirror_symmetry": 0.93,
+        "rotational_symmetry_2fold": 0.9354
+      },
+      {
+        "edge_pixel_ratio": 0.01632,
+        "fractal_dimension": 1.2204,
+        "lines_detected": 4,
+        "circles_detected": 4,
+        "mirror_symmetry": 0.9725,
+        "rotational_symmetry_2fold": 0.9555
+      },
+      {
+        "edge_pixel_ratio": 0.01444,
+        "fractal_dimension": 1.1795,
+        "lines_detected": 7,
+        "circles_detected": 3,
+        "mirror_symmetry": 0.9772,
+        "rotational_symmetry_2fold": 0.9764
+      },
+      {
+        "edge_pixel_ratio": 0.02193,
+        "fractal_dimension": 1.2517,
+        "lines_detected": 7,
+        "circles_detected": 2,
+        "mirror_symmetry": 0.9385,
+        "rotational_symmetry_2fold": 0.9257
+      },
+      {
+        "edge_pixel_ratio": 0.02752,
+        "fractal_dimension": 1.3515,
+        "lines_detected": 13,
+        "circles_detected": 1,
+        "mirror_symmetry": 0.947,
+        "rotational_symmetry_2fold": 0.9517
+      },
+      {
+        "edge_pixel_ratio": 0.02571,
+        "fractal_dimension": 1.3017,
+        "lines_detected": 7,
+        "circles_detected": 2,
+        "mirror_symmetry": 0.8981,
+        "rotational_symmetry_2fold": 0.8801
+      },
+      {
+        "edge_pixel_ratio": 0.02263,
+        "fractal_dimension": 1.2733,
+        "lines_detected": 11,
+        "circles_detected": 4,
+        "mirror_symmetry": 0.9431,
+        "rotational_symmetry_2fold": 0.9579
+      },
+      {
+        "edge_pixel_ratio": 0.02761,
+        "fractal_dimension": 1.3184,
+        "lines_detected": 10,
+        "circles_detected": 2,
+        "mirror_symmetry": 0.9413,
+        "rotational_symmetry_2fold": 0.9396
+      },
+      {
+        "edge_pixel_ratio": 0.02328,
+        "fractal_dimension": 1.2937,
+        "lines_detected": 11,
+        "circles_detected": 1,
+        "mirror_symmetry": 0.9499,
+        "rotational_symmetry_2fold": 0.9447
+      },
+      {
+        "edge_pixel_ratio": 0.0139,
+        "fractal_dimension": 1.2043,
+        "lines_detected": 3,
+        "circles_detected": 1,
+        "mirror_symmetry": 0.9597,
+        "rotational_symmetry_2fold": 0.956
+      },
+      {
+        "edge_pixel_ratio": 0.02596,
+        "fractal_dimension": 1.3121,
+        "lines_detected": 8,
+        "circles_detected": 3,
+        "mirror_symmetry": 0.9488,
+        "rotational_symmetry_2fold": 0.9478
+      },
+      {
+        "edge_pixel_ratio": 0.01869,
+        "fractal_dimension": 1.224,
+        "lines_detected": 10,
+        "circles_detected": 1,
+        "mirror_symmetry": 0.9711,
+        "rotational_symmetry_2fold": 0.9798
+      },
+      {
+        "edge_pixel_ratio": 0.01444,
+        "fractal_dimension": 1.1869,
+        "lines_detected": 3,
+        "circles_detected": 2,
+        "mirror_symmetry": 0.9688,
+        "rotational_symmetry_2fold": 0.954
+      },
+      {
+        "edge_pixel_ratio": 0.02227,
+        "fractal_dimension": 1.2692,
+        "lines_detected": 3,
+        "circles_detected": 5,
+        "mirror_symmetry": 0.9267,
+        "rotational_symmetry_2fold": 0.9095
+      },
+      {
+        "edge_pixel_ratio": 0.0258,
+        "fractal_dimension": 1.2979,
+        "lines_detected": 7,
+        "circles_detected": 4,
+        "mirror_symmetry": 0.925,
+        "rotational_symmetry_2fold": 0.9133
+      },
+      {
+        "edge_pixel_ratio": 0.0251,
+        "fractal_dimension": 1.2958,
+        "lines_detected": 8,
+        "circles_detected": 4,
+        "mirror_symmetry": 0.9509,
+        "rotational_symmetry_2fold": 0.922
+      },
+      {
+        "edge_pixel_ratio": 0.03327,
+        "fractal_dimension": 1.3682,
+        "lines_detected": 13,
+        "circles_detected": 5,
+        "mirror_symmetry": 0.9432,
+        "rotational_symmetry_2fold": 0.9298
+      },
+      {
+        "edge_pixel_ratio": 0.02398,
+        "fractal_dimension": 1.3005,
+        "lines_detected": 6,
+        "circles_detected": 1,
+        "mirror_symmetry": 0.9413,
+        "rotational_symmetry_2fold": 0.9218
+      },
+      {
+        "edge_pixel_ratio": 0.0168,
+        "fractal_dimension": 1.2326,
+        "lines_detected": 6,
+        "circles_detected": 3,
+        "mirror_symmetry": 0.9472,
+        "rotational_symmetry_2fold": 0.9527
+      },
+      {
+        "edge_pixel_ratio": 0.03134,
+        "fractal_dimension": 1.3542,
+        "lines_detected": 16,
+        "circles_detected": 3,
+        "mirror_symmetry": 0.9485,
+        "rotational_symmetry_2fold": 0.9341
+      }
+    ],
+    "silhouette": [
+      {
+        "edge_pixel_ratio": 0.00728,
+        "fractal_dimension": 1.0364,
+        "lines_detected": 2,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.986,
+        "rotational_symmetry_2fold": 0.9676
+      },
+      {
+        "edge_pixel_ratio": 0.00718,
+        "fractal_dimension": 1.0349,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9961,
+        "rotational_symmetry_2fold": 0.9815
+      },
+      {
+        "edge_pixel_ratio": 0.00657,
+        "fractal_dimension": 1.0146,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9924,
+        "rotational_symmetry_2fold": 0.9659
+      },
+      {
+        "edge_pixel_ratio": 0.00698,
+        "fractal_dimension": 1.0322,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.967,
+        "rotational_symmetry_2fold": 0.9649
+      },
+      {
+        "edge_pixel_ratio": 0.0073,
+        "fractal_dimension": 1.0356,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9904,
+        "rotational_symmetry_2fold": 0.9731
+      },
+      {
+        "edge_pixel_ratio": 0.00697,
+        "fractal_dimension": 1.0308,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9661,
+        "rotational_symmetry_2fold": 0.9644
+      },
+      {
+        "edge_pixel_ratio": 0.00684,
+        "fractal_dimension": 1.0266,
+        "lines_detected": 2,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9814,
+        "rotational_symmetry_2fold": 0.9617
+      },
+      {
+        "edge_pixel_ratio": 0.00751,
+        "fractal_dimension": 1.0443,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9654,
+        "rotational_symmetry_2fold": 0.9589
+      },
+      {
+        "edge_pixel_ratio": 0.00742,
+        "fractal_dimension": 1.0409,
+        "lines_detected": 2,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9818,
+        "rotational_symmetry_2fold": 0.9684
+      },
+      {
+        "edge_pixel_ratio": 0.00702,
+        "fractal_dimension": 1.0293,
+        "lines_detected": 2,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9651,
+        "rotational_symmetry_2fold": 0.9632
+      },
+      {
+        "edge_pixel_ratio": 0.00744,
+        "fractal_dimension": 1.0511,
+        "lines_detected": 2,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9923,
+        "rotational_symmetry_2fold": 0.95
+      },
+      {
+        "edge_pixel_ratio": 0.00714,
+        "fractal_dimension": 1.0288,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9886,
+        "rotational_symmetry_2fold": 0.9765
+      },
+      {
+        "edge_pixel_ratio": 0.00739,
+        "fractal_dimension": 1.0341,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9977,
+        "rotational_symmetry_2fold": 0.971
+      },
+      {
+        "edge_pixel_ratio": 0.00738,
+        "fractal_dimension": 1.0397,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9974,
+        "rotational_symmetry_2fold": 0.9695
+      },
+      {
+        "edge_pixel_ratio": 0.00738,
+        "fractal_dimension": 1.0502,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9786,
+        "rotational_symmetry_2fold": 0.9555
+      },
+      {
+        "edge_pixel_ratio": 0.00722,
+        "fractal_dimension": 1.0329,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9817,
+        "rotational_symmetry_2fold": 0.974
+      },
+      {
+        "edge_pixel_ratio": 0.00762,
+        "fractal_dimension": 1.0503,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9978,
+        "rotational_symmetry_2fold": 0.9604
+      },
+      {
+        "edge_pixel_ratio": 0.00658,
+        "fractal_dimension": 1.0105,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9959,
+        "rotational_symmetry_2fold": 0.964
+      },
+      {
+        "edge_pixel_ratio": 0.00727,
+        "fractal_dimension": 1.0368,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9917,
+        "rotational_symmetry_2fold": 0.9664
+      },
+      {
+        "edge_pixel_ratio": 0.00754,
+        "fractal_dimension": 1.0462,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9962,
+        "rotational_symmetry_2fold": 0.9599
+      },
+      {
+        "edge_pixel_ratio": 0.00748,
+        "fractal_dimension": 1.0446,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9932,
+        "rotational_symmetry_2fold": 0.9646
+      },
+      {
+        "edge_pixel_ratio": 0.00766,
+        "fractal_dimension": 1.0578,
+        "lines_detected": 5,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9958,
+        "rotational_symmetry_2fold": 0.9593
+      },
+      {
+        "edge_pixel_ratio": 0.00711,
+        "fractal_dimension": 1.0373,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.986,
+        "rotational_symmetry_2fold": 0.9539
+      },
+      {
+        "edge_pixel_ratio": 0.00657,
+        "fractal_dimension": 1.0098,
+        "lines_detected": 2,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9958,
+        "rotational_symmetry_2fold": 0.9721
+      },
+      {
+        "edge_pixel_ratio": 0.00722,
+        "fractal_dimension": 1.0317,
+        "lines_detected": 4,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9971,
+        "rotational_symmetry_2fold": 0.9745
+      },
+      {
+        "edge_pixel_ratio": 0.00694,
+        "fractal_dimension": 1.0251,
+        "lines_detected": 2,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9658,
+        "rotational_symmetry_2fold": 0.9674
+      },
+      {
+        "edge_pixel_ratio": 0.00701,
+        "fractal_dimension": 1.0375,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9534,
+        "rotational_symmetry_2fold": 0.951
+      },
+      {
+        "edge_pixel_ratio": 0.00734,
+        "fractal_dimension": 1.0486,
+        "lines_detected": 2,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9907,
+        "rotational_symmetry_2fold": 0.9618
+      },
+      {
+        "edge_pixel_ratio": 0.00688,
+        "fractal_dimension": 1.0261,
+        "lines_detected": 5,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9695,
+        "rotational_symmetry_2fold": 0.9674
+      },
+      {
+        "edge_pixel_ratio": 0.0069,
+        "fractal_dimension": 1.0312,
+        "lines_detected": 3,
+        "circles_detected": 0,
+        "mirror_symmetry": 0.9826,
+        "rotational_symmetry_2fold": 0.9504
+      }
+    ]
+  },
+  "comparisons": {
+    "vs_noise": {
+      "edge_pixel_ratio": {
+        "ka_mean": 0.0108,
+        "null_mean": 0.3701,
+        "ka_std": 0.0007,
+        "null_std": 0.0012,
+        "cohens_d": -364.0152,
+        "z_score": -1409.82,
+        "separates": true
+      },
+      "fractal_dimension": {
+        "ka_mean": 1.148,
+        "null_mean": 1.9792,
+        "ka_std": 0.0208,
+        "null_std": 0.0004,
+        "cohens_d": -56.6197,
+        "z_score": -219.29,
+        "separates": true
+      },
+      "lines_detected": {
+        "ka_mean": 3.5,
+        "null_mean": 395.1667,
+        "ka_std": 0.9377,
+        "null_std": 11.6414,
+        "cohens_d": -47.4265,
+        "z_score": -183.68,
+        "separates": true
+      },
+      "circles_detected": {
+        "ka_mean": 0.3,
+        "null_mean": 0.0,
+        "ka_std": 0.4661,
+        "null_std": 0.0,
+        "cohens_d": 0.9103,
+        "z_score": 3.53,
+        "separates": true
+      },
+      "mirror_symmetry": {
+        "ka_mean": 0.9969,
+        "null_mean": 0.9442,
+        "ka_std": 0.0007,
+        "null_std": 0.0005,
+        "cohens_d": 90.803,
+        "z_score": 351.68,
+        "separates": true
+      },
+      "rotational_symmetry_2fold": {
+        "ka_mean": 0.9882,
+        "null_mean": 0.9444,
+        "ka_std": 0.0016,
+        "null_std": 0.0004,
+        "cohens_d": 36.661,
+        "z_score": 141.99,
+        "separates": true
+      }
+    },
+    "vs_scramble": {
+      "edge_pixel_ratio": {
+        "ka_mean": 0.0108,
+        "null_mean": 0.1916,
+        "ka_std": 0.0007,
+        "null_std": 0.0107,
+        "cohens_d": -23.8615,
+        "z_score": -92.42,
+        "separates": true
+      },
+      "fractal_dimension": {
+        "ka_mean": 1.148,
+        "null_mean": 1.8401,
+        "ka_std": 0.0208,
+        "null_std": 0.0142,
+        "cohens_d": -38.9007,
+        "z_score": -150.66,
+        "separates": true
+      },
+      "lines_detected": {
+        "ka_mean": 3.5,
+        "null_mean": 383.5667,
+        "ka_std": 0.9377,
+        "null_std": 40.5426,
+        "cohens_d": -13.254,
+        "z_score": -51.33,
+        "separates": true
+      },
+      "circles_detected": {
+        "ka_mean": 0.3,
+        "null_mean": 0.0,
+        "ka_std": 0.4661,
+        "null_std": 0.0,
+        "cohens_d": 0.9103,
+        "z_score": 3.53,
+        "separates": true
+      },
+      "mirror_symmetry": {
+        "ka_mean": 0.9969,
+        "null_mean": 0.9926,
+        "ka_std": 0.0007,
+        "null_std": 0.0007,
+        "cohens_d": 6.046,
+        "z_score": 23.42,
+        "separates": true
+      },
+      "rotational_symmetry_2fold": {
+        "ka_mean": 0.9882,
+        "null_mean": 0.9926,
+        "ka_std": 0.0016,
+        "null_std": 0.0007,
+        "cohens_d": -3.4635,
+        "z_score": -13.41,
+        "separates": true
+      }
+    },
+    "vs_random_shapes": {
+      "edge_pixel_ratio": {
+        "ka_mean": 0.0108,
+        "null_mean": 0.0225,
+        "ka_std": 0.0007,
+        "null_std": 0.0058,
+        "cohens_d": -2.8473,
+        "z_score": -11.03,
+        "separates": true
+      },
+      "fractal_dimension": {
+        "ka_mean": 1.148,
+        "null_mean": 1.2713,
+        "ka_std": 0.0208,
+        "null_std": 0.0597,
+        "cohens_d": -2.7591,
+        "z_score": -10.69,
+        "separates": true
+      },
+      "lines_detected": {
+        "ka_mean": 3.5,
+        "null_mean": 8.0333,
+        "ka_std": 0.9377,
+        "null_std": 4.2628,
+        "cohens_d": -1.4689,
+        "z_score": -5.69,
+        "separates": true
+      },
+      "circles_detected": {
+        "ka_mean": 0.3,
+        "null_mean": 2.5333,
+        "ka_std": 0.4661,
+        "null_std": 1.383,
+        "cohens_d": -2.1642,
+        "z_score": -8.38,
+        "separates": true
+      },
+      "mirror_symmetry": {
+        "ka_mean": 0.9969,
+        "null_mean": 0.9442,
+        "ka_std": 0.0007,
+        "null_std": 0.019,
+        "cohens_d": 3.927,
+        "z_score": 15.21,
+        "separates": true
+      },
+      "rotational_symmetry_2fold": {
+        "ka_mean": 0.9882,
+        "null_mean": 0.9377,
+        "ka_std": 0.0016,
+        "null_std": 0.0242,
+        "cohens_d": 2.946,
+        "z_score": 11.41,
+        "separates": true
+      }
+    },
+    "vs_silhouette": {
+      "edge_pixel_ratio": {
+        "ka_mean": 0.0108,
+        "null_mean": 0.0072,
+        "ka_std": 0.0007,
+        "null_std": 0.0003,
+        "cohens_d": 6.5206,
+        "z_score": 25.25,
+        "separates": true
+      },
+      "fractal_dimension": {
+        "ka_mean": 1.148,
+        "null_mean": 1.0352,
+        "ka_std": 0.0208,
+        "null_std": 0.0115,
+        "cohens_d": 6.7238,
+        "z_score": 26.04,
+        "separates": true
+      },
+      "lines_detected": {
+        "ka_mean": 3.5,
+        "null_mean": 3.2,
+        "ka_std": 0.9377,
+        "null_std": 0.9248,
+        "cohens_d": 0.3221,
+        "z_score": 1.25,
+        "separates": false
+      },
+      "circles_detected": {
+        "ka_mean": 0.3,
+        "null_mean": 0.0,
+        "ka_std": 0.4661,
+        "null_std": 0.0,
+        "cohens_d": 0.9103,
+        "z_score": 3.53,
+        "separates": true
+      },
+      "mirror_symmetry": {
+        "ka_mean": 0.9969,
+        "null_mean": 0.9847,
+        "ka_std": 0.0007,
+        "null_std": 0.0127,
+        "cohens_d": 1.3601,
+        "z_score": 5.27,
+        "separates": true
+      },
+      "rotational_symmetry_2fold": {
+        "ka_mean": 0.9882,
+        "null_mean": 0.9646,
+        "ka_std": 0.0016,
+        "null_std": 0.0078,
+        "cohens_d": 4.1792,
+        "z_score": 16.19,
+        "separates": true
+      }
+    }
+  },
+  "verdict_block": {
+    "verdict": "FIXTURE_ONLY | SHAPE_STRUCTURE",
+    "separation_counts": {
+      "noise": 6,
+      "scramble": 6,
+      "random_shapes": 6,
+      "silhouette": 5
+    },
+    "total_metrics": 6,
+    "threshold": 2,
+    "notes": "All data is synthetic \u2014 no real IIIF or POWO images processed. Plants separate from controls on 23/24 metric\u00d7control pairs. Strong shape structure signal. noise: 6/6 metrics separate (|z|>2). scramble: 6/6 metrics separate (|z|>2). random_shapes: 6/6 metrics separate (|z|>2). silhouette: 5/6 metrics separate (|z|>2)."
+  },
+  "stance": "G10++ probes SHAPE STRUCTURE of synthetic botanical drawings against synthetic null controls. It does NOT identify plant species, decipher herbarium labels, make pharma claims, or map Voynich plant pages to real-world flora. All images are synthetic (generated programmatically). No Beinecke IIIF or POWO data is processed. STRUCTURE != HERBAL ID / DECIPHERMENT.",
+  "forbidden_phrases": [
+    "identifies as",
+    "is a known plant",
+    "herbal identification",
+    "species identified",
+    "botanical match",
+    "corresponds to",
+    "this plant is",
+    "use as medicine",
+    "Voynich decoded",
+    "translates to",
+    "deciphered",
+    "herbal remedy",
+    "ethnobotanical",
+    "plant species found",
+    "aliens",
+    "extraterrestrial botany",
+    "healing property",
+    "pharma application"
+  ],
+  "caveat": "All results are on SYNTHETIC botanical images. Shape structure in synthetic plants vs null controls does NOT imply real plant pages contain similar structure. CCAT metrics may not transfer to ink-on-parchment botanical drawings. STRUCTURE != HERBAL ID / DECIPHERMENT. No real Beinecke IIIF or POWO data was processed (NEVER_ATTEMPTED)."
+}
