@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T02:37:31.270038+00:00",
+  "generated_at": "2026-07-27T03:21:54.440941+00:00",
   "missions": [
     {
       "id": "N0",
@@ -372,6 +372,11 @@
       "kb": 3.3
     },
     {
+      "path": "outputs/indus_west/run.json",
+      "name": "run.json",
+      "kb": 9.6
+    },
+    {
       "path": "outputs/info_chualar.json",
       "name": "info_chualar.json",
       "kb": 1.1
@@ -435,6 +440,11 @@
       "path": "outputs/meroitic/run.json",
       "name": "run.json",
       "kb": 11.7
+    },
+    {
+      "path": "outputs/nazca/run.json",
+      "name": "run.json",
+      "kb": 4.2
     },
     {
       "path": "outputs/phaistos_analysis.json",
@@ -612,5 +622,5 @@
       "kb": 2.7
     }
   ],
-  "n_outputs": 87
+  "n_outputs": 89
 }
