@@ -1,0 +1,33 @@
+{
+  "schema": "anomaly_schema/v0.1",
+  "description": "Shared vocabulary for probe verdicts and honesty flags.",
+  "verdict_tokens_common": [
+    "NO_SIGNAL",
+    "UNDERDETERMINED",
+    "STRUCTURE_SIGNAL",
+    "STRUCTURE_ONLY",
+    "SEQUENCE_STRUCTURE",
+    "FPR_CALIBRATED",
+    "FIXTURE_ONLY",
+    "CLAIM_FAILS_NULL",
+    "NEGCONTROL_PASS",
+    "NEGCONTROL_FAIL",
+    "PIPELINE_VALIDATED",
+    "BLOCKED",
+    "NEVER_ATTEMPTED",
+    "SHAPE_STRUCTURE"
+  ],
+  "honesty_flags": [
+    "FIXTURE_ONLY",
+    "NEVER_ATTEMPTED",
+    "BLOCKED_DATA_TOO_LARGE",
+    "BLOCKED_IIIF",
+    "SYNTHETIC_DATA_ONLY"
+  ],
+  "forbidden_claim_classes": [
+    "decipherment",
+    "aliens",
+    "new_physics_proven",
+    "language_family_confirmed"
+  ]
+}
