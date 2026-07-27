@@ -46,17 +46,18 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G10** | **Minimax M3** | Voynich morphology (structure-only) | greedy EVA + Dominik ρ CUT | 🟢 **merged PR #12** — SEQUENCE_STRUCTURE \| CLAIM_FAILS_NULL; glyph z≪0; 32/32 tests |
 | **G11** | **Opencode** | Cypro-Minoan allography / media | symbolseq (± glyph vectors) | 🟢 **merged PR #11** — STRUCTURE_SIGNAL \| MEDIA_DRIVEN_ALLOGRAPHY; z≈−28.95; tablet↔other J≈0.53 |
 | **G12** | **Minimax M3** | Linear Elamite entropy bounds | symbolseq; Desset CUT; LE↔PE↔Uruk comparator | 🟢 **merged PR #13** — SEQUENCE_STRUCTURE \| CLAIM_UNDERDETERMINED \| ACCOUNTING_FORMAT_STRUCTURED \| SCRIPT_INVARIANT_COMMON; monumental INVERSE_CONTROL_OK \| CLAIM_FAILS_NULL; language_family_claim_made=false; 31/31 tests |
-| **G13** | **Opencode** 🟡 | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | 🟡 **ASSIGNED** (CLI headless) — no-signal prior; plate-artifact nulls |
+| **G13** | **Opencode** | VASCO optical transient clustering | spatial+astro; Zenodo 2024 | 🟢 **merged PR #16** — no-signal prior; plate-artifact nulls |
 | **G14** | **Opencode** | Chankillo Thirteen Towers | skyfield DE441; solar bracket + lunar UNDER + ridge null | 🟢 **merged PR #17** — ORIENTATION_STRUCTURE | LUNAR_UNDERDETERMINED | CONTROL_NOT_SEPARATED (ridge null 22%); 40/40 tests |
-| **G15** | **Freebuff** 🟢 | Cretan Hieroglyphic bipartite admin | network / symbolseq | 🟢 **landed (synthetic CHIC fallback; PR open)** — structure == bipartite admin isomorphism vs Linear A (SYNTH Evans-shaped CH corpus; NO real CHIC dump exists publicly per 2026-07-25 scout; verdict UNDERDETERMINED z=-2.7); forbidden-phrase guard at test layer (msg-deliberate-listing mask). PR `feat/g15-cretan-hieroglyphic`. 29 tests, 28 pass after STANCE rephrase. |
+| **G15** | **Freebuff** | Cretan Hieroglyphic bipartite admin | network / symbolseq | 🟢 **merged PR #15** — SYNTH Evans-shaped CH corpus (no public CHIC dump); UNDERDETERMINED z≈−2.7; forbidden-phrase guard. |
 | **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **merged PR #14** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
-| **G10++** | **Cursor** | Voynich plant pages × CCAT | ccat shape vs synthetic botany controls | 🟡 **landed scaffold** — `tools/scripts/voynich_botany_probe.py`; synthetic fixtures; Beinecke IIIF + POWO TODO |
-| **G9++** | **Cursor** | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | 🟡 **landed** — `tools/scripts/indus_west_negcontrol.py`; fixture West plaintext; real tables TODO |
+| **G10++** | queue | Voynich plant pages × CCAT | ccat shape vs synthetic botany controls | ⬜ **READY** — scaffold claimed earlier but files **absent on main**; Beinecke IIIF + POWO TODO |
+| **G9++** | queue | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | ⬜ **READY** — scaffold claimed earlier but files **absent on main**; real West/Tamil/Telugu tables TODO |
 | **ATLAS** | **Cursor** | Language Entropy Atlas + anomaly schema | entropy_atlas + anomalies.json | 🟢 **seeded** — `data/catalog/entropy_atlas.json`, `anomaly_schema.json`, `atlas_query.py` |
-| **G17** | **Cursor** 🟢 | TESS SETI Ellipsoid re-analysis | astro time-series; 32 real TICs from Cabrales Table 2; KA recover pass Z2≈56.5; cohort 3/32 anom; 37 tests | 🟢 **merged PR #27** — PIPELINE_VALIDATED \| UNDERDETERMINED (no MAST fetch). Real Table 2 catalog + per-star tcross; Ulfberht gate PASS. Nit (non-blocking): cohort Z²>15 sits under null 95th — polish later. |
+| **G17** | **Cursor** 🟢 | TESS SETI Ellipsoid re-analysis | astro time-series; 32 real TICs from Cabrales Table 2; KA recover pass Z2≈56.5; cohort 3/32 anom; 37 tests | 🟢 **merged PR #27** — PIPELINE_VALIDATED | UNDERDETERMINED (no MAST fetch). Real Table 2 catalog + per-star tcross; Ulfberht gate PASS. Nit (non-blocking): cohort Z²>15 sits under null 95th — polish later. |
 | **G18** | **Freebuff** | EAMENA ley-line null | Sistan n=80 triples FPR=0 | 🟢 **merged PR #24** — FPR_CALIBRATED; structure ≠ ley message |
 | **G19** | **Opencode** | Long Delayed Echoes historic series | delay-value probe; Lunan CUT | 🟢 **merged PR #25** — CLAIM_FAILS_NULL (p_shuffle=1.0); corpus UNDERDETERMINED |
-| **G20** | **Cursor** 🟢 | Boyajian Star TESS epoch-fold | astro; TIC 272172248; DIP_STRUCTURE (KA 24.5 d, Z²≈60 vs null 95th≈13.3); 41 tests | 🟢 **merged PR #26** — PR merged, all tests green. Branch `feat/g20-boyajian-tess` → `main`.
+| **G20** | **Cursor** 🟢 | Boyajian Star TESS epoch-fold | astro; TIC 272172248; DIP_STRUCTURE (KA 24.5 d, Z²≈60 vs null 95th≈13.3); 41 tests | 🟢 **merged PR #26** — PR merged, all tests green. Branch `feat/g20-boyajian-tess` → `main`. |
+| **G21** | **Freebuff** → **Cursor** 🟢 | Fine-structure α directional variation | King+2012 quasar Δα/α dipole + per-telescope split | 🟢 **landing** — `tools/scripts/alpha_variation_*.py`, `data/astro/alpha_variation/`, `outputs/alpha_variation/`. Independent recovery within 0.2σ of King+2012; **VLT-driven** (Keck z=−0.44, VLT z=+2.11, VLT bootstrap z=−0.27). Verdict: **INSTRUMENT_SYSTEMATICS_NULL_NOT_REJECTED | UNDERDETERMINED | BEST_FIT_NEAR_KNOWN_DIPOLE | STRONG_NULL_SEPARATION_2OF4**. 24/24 tests. `feat/g21-alpha-variation` |
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-Amazon-NEG** | **Kimi** 🟢 | Hecklefish #6 Amazon LiDAR negatives | synthetic CSR/forest/scramble + planted KA; FPR calib | 🟢 **PR #23** — `tools/geo/lidar_negative_probe.py`, `data/geo/amazon_lidar_neg/`, `outputs/amazon_lidar_neg/`. Verdict **FPR_CALIBRATED** (power 100%, FPR_combined 1.67%); real LiDAR **UNDERDETERMINED** (no public dense tile). Does **not** modify Mode A. 13/13 tests. `feat/amazon-lidar-neg` |
@@ -82,9 +83,9 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G12** | 🟢 merged PR #13 — LE SEQUENCE_STRUCTURE \| CLAIM_UNDERDETERMINED (+ format comparators). |
 | **G16** | 🟢 merged PR #14 — Meroitic STRUCTURE_SIGNAL. |
 | **Minimax M3** | 💤 idle. |
-| **Opencode** | 🟡 **G13 VASCO** (CLI headless dispatch). |
-| **Freebuff** | 🟡 **G15 Cretan Hieroglyphic** (Terminal inject). |
-| **Cursor** | 🟢 merge gate on `main` — G17 merged PR #27; G20 merged PR #26 (G14/G18/G19 landed) |
+| **Opencode** | 💤 idle (frontier G13–G20 landed). |
+| **Freebuff / Kimi** | 💤 idle — next: G9++ / G10++ if assigned. |
+| **Cursor** | 🟢 merge gate — landing G21 α; board hygiene. |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -99,8 +100,51 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G13 Opencode**. G17/G20 landed; frontier idle unless Captain assigns. |
-| **External dispatch** | Cursor/Auto may push prompts to OpenCode / Freebuff without manual copy-paste — see below. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Frontier idle unless Captain assigns **G9++ / G10++**. |
+| **External dispatch** | Cursor/Auto may push prompts to OpenCode / Freebuff / Kimi without manual copy-paste — see below. |
+
+### SCOPE LOCK (paste into every Freebuff / OpenCode / Kimi mission)
+
+**One ticket → one branch → one PR.** Kitchen-sink diffs are merge-blockers.
+
+**Allowed paths (fill per ticket):**
+- `data/<domain>/…`
+- `tools/scripts/<ticket>*` and/or `tools/<domain>/<ticket>*`
+- `tools/scripts/tests/test_<ticket>*` (or matching domain tests)
+- `outputs/<domain>/…`
+- **Surgical** board row for this ID only in `MISSION_BOARD.md`
+
+**Do NOT touch:** other probes, other tickets’ data/outputs, shared infra unless the ticket *is* a shared-module refactor, unrelated board rows, `outputs/agent_dispatch/`, or anything outside the allowlist.
+
+**In-scope extras — encouraged (go deep):**
+While looking at real values you may invent better science **inside the ticket**:
+- extra nulls / splits / bootstraps / known-answer checks
+- diagnostic plots / tables under `outputs/<domain>/`
+- more dedicated tests for what *you* built
+- deeper NOTES caveats and honest verdict refinement
+
+Extras must stay under the allowlist. Prefer **additive** new `*_split.py` / `*_plot.py` / test cases over rewriting shared modules. Example: G21 α dipole + per-telescope split + bootstrap null — all under `alpha_variation*` paths.
+
+**Forbidden “improvements”:** editing another ticket “while you’re here,” drive-by refactors, marking other IDs landed, committing untracked junk from a previous session.
+
+### Optional SCOPE AUDIT pass (after deliverables — tight follow-up)
+
+Use when the session went wide, or before opening the PR. Paste as a **second** prompt only:
+
+```
+SCOPE AUDIT — no new features.
+
+Ticket: <ID>
+Branch: feat/<id>-…
+Allowlist: data/<domain>/, tools/**/<ticket>*, outputs/<domain>/, surgical MISSION_BOARD row for <ID> only.
+
+1. Diff vs origin/main. List every changed/untracked path.
+2. Revert or unstage anything outside the allowlist (including other tickets’ leftovers).
+3. Confirm tests for THIS ticket still pass.
+4. Confirm NOTES.md + run.json exist; forbidden-phrase guard still enforced.
+5. Do NOT add science, plots, or refactors — hygiene only.
+6. Stop. Report: PASS (clean) or FIXED (what you removed).
+```
 
 ### Dispatch prompts outside Cursor (OpenCode ↔ Freebuff)
 
