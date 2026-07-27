@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T03:21:54.440941+00:00",
+  "generated_at": "2026-07-27T03:23:10.496599+00:00",
   "missions": [
     {
       "id": "N0",
@@ -462,6 +462,11 @@
       "kb": 2.8
     },
     {
+      "path": "outputs/proto_elamite/real_run.json",
+      "name": "real_run.json",
+      "kb": 7.3
+    },
+    {
       "path": "outputs/proto_elamite/run.json",
       "name": "run.json",
       "kb": 2.3
@@ -622,5 +627,5 @@
       "kb": 2.7
     }
   ],
-  "n_outputs": 89
+  "n_outputs": 90
 }
