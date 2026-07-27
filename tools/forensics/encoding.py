@@ -1,5 +1,6 @@
 """
 encoding.py -- decoders / verifiers for the "message" crop formations.
+Thin wrapper over bitstream.py for shared bit primitives.
 
 Ground-truth compiled from primary sources (Wikipedia Arecibo message; Paul Vigay's
 Chilbolton analysis; plus.maths.org and the Gazette & Herald on Barbury pi;
@@ -11,7 +12,7 @@ image + preprocess/geometry). Instead we implement the *decoding logic* and the
 *arithmetic verifiers*, and reproduce the published decodes so each is runnable and
 self-checking. Every disputed reading is surfaced explicitly, not smoothed over.
 
-Pure standard library. Validated in tests/test_encoding.py.
+Validated in tests/test_encoding.py.
 """
 from __future__ import annotations
 
@@ -19,19 +20,12 @@ import math
 import statistics
 from dataclasses import dataclass, field
 
-
-# =============================================================================
-# helpers
-# =============================================================================
-def _isprime(n: int) -> bool:
-    if n < 2:
-        return False
-    i = 2
-    while i * i <= n:
-        if n % i == 0:
-            return False
-        i += 1
-    return True
+try:
+    from .bitstream import text_to_bits as _bs_text_to_bits, bits_to_text as _bs_bits_to_text
+    from .bitstream import semiprime_dims as _bs_semiprime_dims
+except ImportError:
+    from bitstream import text_to_bits as _bs_text_to_bits, bits_to_text as _bs_bits_to_text
+    from bitstream import semiprime_dims as _bs_semiprime_dims
 
 
 # =============================================================================
@@ -96,22 +90,11 @@ CRABWOOD_AMBIGUITIES = {
 
 
 def text_to_bits(text: str, msb_first: bool = True) -> str:
-    out = []
-    for ch in text:
-        b = format(ord(ch), "08b")
-        out.append(b if msb_first else b[::-1])
-    return "".join(out)
+    return _bs_text_to_bits(text, nbits=8, msb_first=msb_first)
 
 
 def bits_to_text(bits: str, msb_first: bool = True) -> str:
-    bits = "".join(bits.split())
-    chars = []
-    for i in range(0, (len(bits) // 8) * 8, 8):
-        byte = bits[i:i + 8]
-        if not msb_first:
-            byte = byte[::-1]
-        chars.append(chr(int(byte, 2)))
-    return "".join(chars)
+    return _bs_bits_to_text(bits, nbits=8, msb_first=msb_first)
 
 
 def decode_crabwood(variant: str = "red_collie") -> dict:
@@ -153,11 +136,13 @@ def decode_length_units(units: int) -> dict:
 
 
 def verify_arecibo_semiprime() -> dict:
+    dims = _bs_semiprime_dims(ARECIBO_BITS)
+    both_prime = any(r == ARECIBO_COLS and c == ARECIBO_ROWS and p for r, c, p in dims)
     return {
         "bits": ARECIBO_BITS,
         "factors": (ARECIBO_COLS, ARECIBO_ROWS),
         "product_ok": ARECIBO_COLS * ARECIBO_ROWS == ARECIBO_BITS,
-        "both_prime": _isprime(ARECIBO_COLS) and _isprime(ARECIBO_ROWS),
+        "both_prime": both_prime,
     }
 
 
