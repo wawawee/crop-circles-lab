@@ -12,10 +12,6 @@ from pathlib import Path
 
 import numpy as np
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
-sys.path.insert(0, str(ROOT))
-
 from tools.astro.boyajian_probe import (
     FIXTURE, FORBIDDEN_PHRASES, OUT_DIR, PLANTED_PERIOD_DAYS, SEED, STANCE,
     TARGET, VERDICT_VOCAB,

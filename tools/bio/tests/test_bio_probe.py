@@ -25,9 +25,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 TOOLS_BIO = HERE.parent
 ROOT = TOOLS_BIO.parent.parent
-sys.path.insert(0, str(TOOLS_BIO))
 
-import bio_probe as BP  # noqa: E402
+from tools.bio import bio_probe as BP
 
 
 # --- alphabet mapping -----------------------------------------------------

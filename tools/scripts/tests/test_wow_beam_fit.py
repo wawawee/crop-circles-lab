@@ -9,11 +9,6 @@ about the real Wow! signal.
 from __future__ import annotations
 
 import sys
-from pathlib import Path
-
-HERE = Path(__file__).resolve().parent
-PROJECT_ROOT = HERE.parents[2]
-sys.path.insert(0, str(PROJECT_ROOT))
 
 import numpy as np
 

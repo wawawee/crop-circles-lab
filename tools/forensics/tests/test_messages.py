@@ -7,8 +7,7 @@ decode to these strings (they don't, at web resolution — see crabwood_b1_notes
 import os
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-import messages as M  # noqa: E402
+from tools.forensics import messages as M
 
 
 def test_pi_from_sectors():

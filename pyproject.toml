@@ -22,7 +22,7 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["tools"]
+include = ["tools*"]
 
 [tool.setuptools.package-data]
 "*" = ["*.json", "*.csv", "*.txt", "*.yaml"]

@@ -23,11 +23,9 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 ASTRO = HERE.parent
-ROOT = ASTRO.parent.parent
-sys.path.insert(0, str(ASTRO))
 
-import constants_probe as CP  # noqa: E402
-import constants_stress as CS  # noqa: E402
+from tools.astro import constants_probe as CP
+from tools.astro import constants_stress as CS
 
 
 def test_sweep_tols_includes_10c_reference():

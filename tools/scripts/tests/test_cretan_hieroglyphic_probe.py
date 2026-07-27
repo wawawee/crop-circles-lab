@@ -16,7 +16,6 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-sys.path.insert(0, str(ROOT))
 
 import tools.scripts.cretan_hieroglyphic_probe as CH
 

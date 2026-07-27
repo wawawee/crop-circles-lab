@@ -15,12 +15,8 @@ from pathlib import Path
 
 import numpy as np
 
-HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent))
-sys.path.insert(0, str(HERE.parent.parent.parent / "tools" / "forensics"))
-
-import constants_probe as CP  # noqa: E402
-import ratios as R  # noqa: E402
+from tools.astro import constants_probe as CP
+from tools.forensics import ratios as R
 
 EPS_RATIO = 1e-4
 

@@ -1,12 +1,11 @@
 """Known-answer tests for tools/forensics/symbolseq.py.
 Run: python tools/forensics/tests/test_symbolseq.py
 """
-import math
 import os
+import math
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-import symbolseq as S  # noqa: E402
+from tools.forensics import symbolseq as S
 
 
 def test_uniform_entropy():

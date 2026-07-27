@@ -1,10 +1,8 @@
 """Validation for ratios.py -- run: python3 tools/forensics/tests/test_ratios.py"""
 import sys
 from fractions import Fraction
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import ratios as R  # noqa: E402
+from tools.forensics import ratios as R
 
 
 def test_perfect_fourth_exact():

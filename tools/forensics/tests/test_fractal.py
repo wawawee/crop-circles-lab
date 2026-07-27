@@ -1,11 +1,9 @@
 """Validation for fractal.py -- run: python3 tools/forensics/tests/test_fractal.py"""
 import sys
-from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import fractal as F  # noqa: E402
+from tools.forensics import fractal as F
 
 
 def test_solid_square_dim_near_2():

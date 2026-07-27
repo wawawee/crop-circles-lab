@@ -12,8 +12,7 @@ import tempfile
 
 import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-import eamena_ley_null_probe as p  # noqa: E402
+from tools.geo import eamena_ley_null_probe as p
 
 
 # ---------------------------------------------------------------------------

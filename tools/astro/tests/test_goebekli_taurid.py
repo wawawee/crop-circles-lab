@@ -10,10 +10,6 @@ import math
 import sys
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
-sys.path.insert(0, str(ROOT))
-
 from tools.astro.goebekli_taurid import (
     CANONICAL_AZIMUTHS, EPOCH_YEAR, FORBIDDEN_PHRASES,
     HIT_THRESHOLD_DEG, MONTE_CARLO_TRIALS, OUT, STANCE,

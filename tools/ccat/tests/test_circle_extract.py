@@ -6,8 +6,7 @@ import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-import circle_extract as C  # noqa: E402
+from tools.ccat import circle_extract as C
 
 
 def test_synthetic_log_spiral_count():

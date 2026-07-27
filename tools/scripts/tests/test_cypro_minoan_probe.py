@@ -9,14 +9,9 @@ from __future__ import annotations
 import json
 import random as rnd
 import sys
-from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
-sys.path.insert(0, str(ROOT))
-
-import tools.scripts.cypro_minoan_probe as CM  # noqa: E402
-from tools.forensics.symbolseq import (  # noqa: E402
+import tools.scripts.cypro_minoan_probe as CM
+from tools.forensics.symbolseq import (
     conditional_bigram_entropy,
     flatten,
 )

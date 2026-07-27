@@ -10,13 +10,8 @@ import json
 import shutil
 import sys
 import tempfile
-from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[2]
-sys.path.insert(0, str(ROOT))
-
-import tools.scripts.proto_elamite_probe as PE  # noqa: E402
+import tools.scripts.proto_elamite_probe as PE
 
 
 # --- Syntactic & digit-handling primitives --------------------------------

@@ -8,8 +8,7 @@ import tempfile
 
 import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-import preprocess as P  # noqa: E402
+from tools.ccat import preprocess as P
 
 
 def test_perspective_correct_fills_frame():

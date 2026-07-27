@@ -11,9 +11,7 @@ import tempfile
 
 import numpy as np
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "ccat"))
-import lidar_negative_probe as p  # noqa: E402
+from tools.geo import lidar_negative_probe as p
 
 
 def test_csr_density_matches_target():

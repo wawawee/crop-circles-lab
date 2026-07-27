@@ -1,13 +1,11 @@
 """Tests for ela_screen known-answer splice separation."""
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT / "tools" / "ccat"))
 
-import ela_screen as E  # noqa: E402
+from tools.ccat import ela_screen as E
 
 
 def test_splice_raises_block_std(tmp_path: Path | None = None):
