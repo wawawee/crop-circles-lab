@@ -53,10 +53,10 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G10++** | **Cursor** | Voynich plant pages × CCAT | ccat shape vs synthetic botany controls | 🟡 **landed scaffold** — `tools/scripts/voynich_botany_probe.py`; synthetic fixtures; Beinecke IIIF + POWO TODO |
 | **G9++** | **Cursor** | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | 🟡 **landed** — `tools/scripts/indus_west_negcontrol.py`; fixture West plaintext; real tables TODO |
 | **ATLAS** | **Cursor** | Language Entropy Atlas + anomaly schema | entropy_atlas + anomalies.json | 🟢 **seeded** — `data/catalog/entropy_atlas.json`, `anomaly_schema.json`, `atlas_query.py` |
-| **G17** | queue | TESS SETI Ellipsoid re-analysis | astro time-series; 32 targets | ⬜ no-signal prior |
+| **G17** | **Cursor** 🟢 | TESS SETI Ellipsoid re-analysis | astro time-series; 32 real TICs from Cabrales Table 2; KA recover pass Z2≈56.5; cohort 3/32 anom; 37 tests | 🟡 **PR #27 open** — PIPELINE_VALIDATED | UNDERDETERMINED (no MAST fetch). Branch `feat/g17-tess-ellipsoid-v2`. Clean scaffold: real catalog, no fake epoch, no cohort theatre. |
 | **G18** | **Freebuff** | EAMENA ley-line null | Sistan n=80 triples FPR=0 | 🟢 **merged PR #24** — FPR_CALIBRATED; structure ≠ ley message |
 | **G19** | **Opencode** | Long Delayed Echoes historic series | delay-value probe; Lunan CUT | 🟢 **merged PR #25** — CLAIM_FAILS_NULL (p_shuffle=1.0); corpus UNDERDETERMINED |
-| **G20** | queue | Boyajian Star TESS epoch-fold | astro; TIC 272172248 | ⬜ underdetermined |
+| **G20** | **Cursor** 🟢 | Boyajian Star TESS epoch-fold | astro; TIC 272172248; DIP_STRUCTURE (KA 24.5 d, Z²≈60 vs null 95th≈13.3); 41 tests | 🟢 **merged PR #26** — PR merged, all tests green. Branch `feat/g20-boyajian-tess` → `main`.
 | **N1++** | **Cursor** | bio_probe hardens | chrom match + short-seq status + intronic + numpy shuffle | 🟢 **merged PR #6** |
 | **G-Amazon** | **Ulfberht** (Geoglyf retired) | Amazon Mode A | Zenodo 961 + jqjacobs cross-check; NN/Ripley vs CSR | 🟢 merged PR #1 — STRUCTURE_ONLY; Captain approved, Ulfberht merged |
 | **G-Amazon-NEG** | **Kimi** 🟢 | Hecklefish #6 Amazon LiDAR negatives | synthetic CSR/forest/scramble + planted KA; FPR calib | 🟢 **PR #23** — `tools/geo/lidar_negative_probe.py`, `data/geo/amazon_lidar_neg/`, `outputs/amazon_lidar_neg/`. Verdict **FPR_CALIBRATED** (power 100%, FPR_combined 1.67%); real LiDAR **UNDERDETERMINED** (no public dense tile). Does **not** modify Mode A. 13/13 tests. `feat/amazon-lidar-neg` |
@@ -403,11 +403,10 @@ Jobs land under `outputs/agent_dispatch/` (gitignored). Freebuff has no headless
 > 6. Tests ≥12. Branch `feat/g15-cretan-hieroglyphic`. PR → Cursor merge.
 > Forbidden: “deciphered,” phonetic claims, aliens, viral blogs as truth.
 
-### G17 / G20 — remaining queue (do not start until Captain assigns)
+### G17 — remaining queue
 > ~~G14~~ merged PR #17 — Chankillo; skyfield DE441; ridge null 22%; lunar underdetermined.  
-
+> ~~G20~~ merged PR #26 — Boyajian's Star DIP_STRUCTURE.  
 > **G17** TESS SETI Ellipsoid (Cabrales 2024) — optical no-signal sharpen.  
-> **G20** Boyajian’s Star TESS — dip recurrence / quiet limits.  
 > ~~G18~~ merged PR #24 · ~~G19~~ merged PR #25.  
 > Full triage: docs/research_leads_kimi_2026-07-25.md + docs/research_leads_anomalistics_2026-07-25.md.
 
