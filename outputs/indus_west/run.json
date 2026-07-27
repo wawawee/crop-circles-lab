@@ -1,0 +1,396 @@
+{
+  "generated_at": "2026-07-27T02:34:01.022999+00:00",
+  "mission": "G9++ \u2014 Barbara West Indus negative control",
+  "stance": "G9++ Barbara West Indus negative control \u2014 STRUCTURE != MESSAGE. This probe does NOT translate, decipher, or place Indus in a language family (Dravidian, Indo-European, or otherwise). It measures whether Indus sign-sequence structure is distinguishable from Dravidian script (Tamil, Telugu) structure using the same symbolseq pipeline as G9.",
+  "data_source": "West-style fixture: synthetic site-organized corpus modeled on Barbara West Moritz / Wells 2015 Appendix II positional sign-frequency tables. Real West tables = NEVER_ATTEMPTED. Real Tamil/Telugu inscription corpora = NEVER_ATTEMPTED. Data is FIXTURE_ONLY \u2014 synthetic for pipeline validation.",
+  "forbidden_phrases": [
+    "translates to",
+    "represents",
+    "decodes as",
+    "shares roots with",
+    "is related to Dravidian",
+    "is related to Tamil",
+    "is related to Telugu",
+    "Indus script is a",
+    "Indus script =",
+    "Dravidian =",
+    "Indus is Dravidian",
+    "aliens wrote",
+    "language family confirmed",
+    "decoded as Dravidian"
+  ],
+  "pipeline": {
+    "tool": "tools/scripts/indus_west_negcontrol.py",
+    "core_module": "tools/forensics/symbolseq.py",
+    "parameters": {
+      "n_shuffles": 500,
+      "seed": 0
+    }
+  },
+  "west_indus_fixture": {
+    "label": "west_indus_fixture",
+    "n_sequences": 176,
+    "n_tokens": 1089,
+    "n_distinct": 140,
+    "unigram_entropy_bits": 5.908,
+    "index_of_coincidence": 0.0313,
+    "ioc_over_uniform": 4.388,
+    "conditional_bigram_entropy_bits": 2.31,
+    "lz78_ratio": 0.4646,
+    "shuffled_control": {
+      "observed": 2.3099,
+      "shuffled_mean": 3.5588,
+      "shuffled_sd": 0.022,
+      "z": -56.81
+    },
+    "transition_graph": {
+      "n_nodes": 140,
+      "n_edges": 335,
+      "density": 0.03443,
+      "avg_out_degree": 2.3929,
+      "reciprocity": 0.0537,
+      "clustering_coefficient": 0.2004
+    },
+    "formulaic_segments": [
+      {
+        "ngram": [
+          "P122",
+          "P385"
+        ],
+        "total_occurrences": 34,
+        "n_sequences": 34
+      },
+      {
+        "ngram": [
+          "P062",
+          "P060"
+        ],
+        "total_occurrences": 26,
+        "n_sequences": 26
+      },
+      {
+        "ngram": [
+          "P060",
+          "P122"
+        ],
+        "total_occurrences": 18,
+        "n_sequences": 18
+      },
+      {
+        "ngram": [
+          "P050",
+          "P145"
+        ],
+        "total_occurrences": 15,
+        "n_sequences": 15
+      },
+      {
+        "ngram": [
+          "P013",
+          "P324"
+        ],
+        "total_occurrences": 13,
+        "n_sequences": 13
+      },
+      {
+        "ngram": [
+          "P060",
+          "P364"
+        ],
+        "total_occurrences": 12,
+        "n_sequences": 12
+      },
+      {
+        "ngram": [
+          "P324",
+          "P332"
+        ],
+        "total_occurrences": 12,
+        "n_sequences": 12
+      },
+      {
+        "ngram": [
+          "P364",
+          "P122"
+        ],
+        "total_occurrences": 11,
+        "n_sequences": 11
+      },
+      {
+        "ngram": [
+          "P324",
+          "P086"
+        ],
+        "total_occurrences": 11,
+        "n_sequences": 11
+      },
+      {
+        "ngram": [
+          "P230",
+          "P062"
+        ],
+        "total_occurrences": 11,
+        "n_sequences": 11
+      }
+    ],
+    "has_formulaic_repeated_ngrams": true,
+    "invariants": {
+      "conditional_structure_vs_shuffle": true
+    }
+  },
+  "tamil_control": {
+    "label": "tamil_control",
+    "n_sequences": 100,
+    "n_tokens": 591,
+    "n_distinct": 10,
+    "unigram_entropy_bits": 3.106,
+    "index_of_coincidence": 0.1211,
+    "ioc_over_uniform": 1.211,
+    "conditional_bigram_entropy_bits": 2.091,
+    "lz78_ratio": 0.3113,
+    "shuffled_control": {
+      "observed": 2.0911,
+      "shuffled_mean": 3.012,
+      "shuffled_sd": 0.0151,
+      "z": -61.17
+    },
+    "transition_graph": {
+      "n_nodes": 10,
+      "n_edges": 45,
+      "density": 1.0,
+      "avg_out_degree": 4.5,
+      "reciprocity": 0.5778,
+      "clustering_coefficient": 0.8884
+    },
+    "formulaic_segments": [
+      {
+        "ngram": [
+          "TA_pa",
+          "TA_ti"
+        ],
+        "total_occurrences": 60,
+        "n_sequences": 60
+      },
+      {
+        "ngram": [
+          "TA_ra",
+          "TA_la"
+        ],
+        "total_occurrences": 28,
+        "n_sequences": 28
+      },
+      {
+        "ngram": [
+          "TA_la",
+          "TA_na"
+        ],
+        "total_occurrences": 28,
+        "n_sequences": 28
+      },
+      {
+        "ngram": [
+          "TA_na",
+          "TA_mu"
+        ],
+        "total_occurrences": 27,
+        "n_sequences": 27
+      },
+      {
+        "ngram": [
+          "TA_mu",
+          "TA_pa"
+        ],
+        "total_occurrences": 27,
+        "n_sequences": 27
+      },
+      {
+        "ngram": [
+          "TA_na",
+          "TA_ma"
+        ],
+        "total_occurrences": 24,
+        "n_sequences": 24
+      },
+      {
+        "ngram": [
+          "TA_ma",
+          "TA_ku"
+        ],
+        "total_occurrences": 24,
+        "n_sequences": 24
+      },
+      {
+        "ngram": [
+          "TA_ka",
+          "TA_ra"
+        ],
+        "total_occurrences": 22,
+        "n_sequences": 22
+      },
+      {
+        "ngram": [
+          "TA_ku",
+          "TA_ra"
+        ],
+        "total_occurrences": 22,
+        "n_sequences": 22
+      },
+      {
+        "ngram": [
+          "TA_ra",
+          "TA_na"
+        ],
+        "total_occurrences": 21,
+        "n_sequences": 21
+      }
+    ],
+    "has_formulaic_repeated_ngrams": true,
+    "invariants": {
+      "conditional_structure_vs_shuffle": true
+    }
+  },
+  "telugu_control": {
+    "label": "telugu_control",
+    "n_sequences": 100,
+    "n_tokens": 557,
+    "n_distinct": 9,
+    "unigram_entropy_bits": 3.078,
+    "index_of_coincidence": 0.1243,
+    "ioc_over_uniform": 1.118,
+    "conditional_bigram_entropy_bits": 2.065,
+    "lz78_ratio": 0.3124,
+    "shuffled_control": {
+      "observed": 2.0654,
+      "shuffled_mean": 2.9901,
+      "shuffled_sd": 0.0161,
+      "z": -57.42
+    },
+    "transition_graph": {
+      "n_nodes": 9,
+      "n_edges": 42,
+      "density": 1.166667,
+      "avg_out_degree": 4.6667,
+      "reciprocity": 0.619,
+      "clustering_coefficient": 0.8894
+    },
+    "formulaic_segments": [
+      {
+        "ngram": [
+          "TE_pa",
+          "TE_ti"
+        ],
+        "total_occurrences": 50,
+        "n_sequences": 50
+      },
+      {
+        "ngram": [
+          "TE_la",
+          "TE_na"
+        ],
+        "total_occurrences": 28,
+        "n_sequences": 28
+      },
+      {
+        "ngram": [
+          "TE_mu",
+          "TE_pa"
+        ],
+        "total_occurrences": 27,
+        "n_sequences": 27
+      },
+      {
+        "ngram": [
+          "TE_na",
+          "TE_mu"
+        ],
+        "total_occurrences": 26,
+        "n_sequences": 26
+      },
+      {
+        "ngram": [
+          "TE_na",
+          "TE_ma"
+        ],
+        "total_occurrences": 26,
+        "n_sequences": 26
+      },
+      {
+        "ngram": [
+          "TE_ra",
+          "TE_la"
+        ],
+        "total_occurrences": 26,
+        "n_sequences": 26
+      },
+      {
+        "ngram": [
+          "TE_ma",
+          "TE_ku"
+        ],
+        "total_occurrences": 25,
+        "n_sequences": 25
+      },
+      {
+        "ngram": [
+          "TE_ka",
+          "TE_ra"
+        ],
+        "total_occurrences": 22,
+        "n_sequences": 22
+      },
+      {
+        "ngram": [
+          "TE_ku",
+          "TE_ra"
+        ],
+        "total_occurrences": 22,
+        "n_sequences": 22
+      },
+      {
+        "ngram": [
+          "TE_ra",
+          "TE_na"
+        ],
+        "total_occurrences": 21,
+        "n_sequences": 21
+      }
+    ],
+    "has_formulaic_repeated_ngrams": true,
+    "invariants": {
+      "conditional_structure_vs_shuffle": true
+    }
+  },
+  "cross_comparison": {
+    "entropy_profile_distance": {
+      "indus_vs_tamil": 2.8162,
+      "indus_vs_telugu": 2.8462,
+      "tamil_vs_telugu": 0.0384
+    },
+    "bigram_jaccard_top100": {
+      "indus_vs_tamil": 0.0,
+      "indus_vs_telugu": 0.0,
+      "tamil_vs_telugu": 0.0
+    }
+  },
+  "known_answer": {
+    "status": "PASS",
+    "description": "Synthetic West-style Indus fixture MUST show sign-sequence structure vs its own shuffle."
+  },
+  "negative_controls": {
+    "tamil_control_invariant": "PASS",
+    "telugu_control_invariant": "PASS",
+    "tamil_telugu_similarity": {
+      "profile_distance": 0.0384,
+      "bigram_jaccard": 0.0,
+      "note": "Tamil and Telugu are both Dravidian scripts; their profile distance provides a baseline for 'same language family' similarity."
+    }
+  },
+  "real_data_status": {
+    "barbara_west_tables": "NEVER_ATTEMPTED",
+    "tamil_inscription_corpus": "NEVER_ATTEMPTED",
+    "telugu_inscription_corpus": "NEVER_ATTEMPTED",
+    "note": "Real Barbara West positional sign-frequency tables (Wells 2015 Appendix II) and real Tamil/Telugu character-sequence corpora were not publicly available in a machine-readable format at time of analysis. All data is synthetic FIXTURE_ONLY."
+  },
+  "verdict": "FIXTURE_ONLY | NEGCONTROL_PASS (indus_separates_from_dravidian (d_ta/d_ref=73.34, d_te/d_ref=74.12))",
+  "caveat": "STRUCTURE != MESSAGE. This negative control tests whether Indus sign-sequence structure is *distinguishable* from Dravidian script structure using the same symbolseq pipeline applied in G9. It does NOT: (1) decipher Indus, (2) identify a language family, (3) claim Indus is or is not Dravidian, or (4) endorse any decipherment claim. Results are based on synthetic fixtures and do NOT reflect real epigraphic data. FIXTURE_ONLY \u2014 no real Barbara West comparative tables or Tamil/Telugu corpora were used."
+}

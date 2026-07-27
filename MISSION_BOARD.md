@@ -50,8 +50,8 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G14** | **Opencode** | Chankillo Thirteen Towers | skyfield DE441; solar bracket + lunar UNDER + ridge null | 🟢 **merged PR #17** — ORIENTATION_STRUCTURE | LUNAR_UNDERDETERMINED | CONTROL_NOT_SEPARATED (ridge null 22%); 40/40 tests |
 | **G15** | **Freebuff** | Cretan Hieroglyphic bipartite admin | network / symbolseq | 🟢 **merged PR #15** — SYNTH Evans-shaped CH corpus (no public CHIC dump); UNDERDETERMINED z≈−2.7; forbidden-phrase guard. |
 | **G16** | **Opencode** | Meroitic corpus (Otten 2025) | symbolseq; Late-Eg control; royal KA | 🟢 **merged PR #14** — STRUCTURE_SIGNAL; z≈−11336; royal KA z≈−9467; neg PASS z≈−1.41; 20/20 tests |
-| **G10++** | **Freebuff** | Voynich plant pages × CCAT | ccat shape vs synthetic botany controls | 🟢 **built on feat/g10pp-voynich-botany** — FIXTURE_ONLY | SHAPE_STRUCTURE; synthetic KA + 4 null controls (noise/scramble/random_shapes/silhouette); 23/24 metric×control pairs separate (|z|>2); IIIF/POWO NEVER_ATTEMPTED; 25/25 tests; forbidden-phrase guard. |
-| **G9++** | queue | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | ⬜ **READY** — scaffold claimed earlier but files **absent on main**; real West/Tamil/Telugu tables TODO |
+| **G10++** | **Freebuff** 🟢 | Voynich plant pages × CCAT | ccat shape vs synthetic botany controls | 🟢 **merged PR #34** — FIXTURE_ONLY | SHAPE_STRUCTURE; synthetic KA + 4 nulls; IIIF/POWO NEVER_ATTEMPTED; 25/25 tests. |
+| **G9++** | **Kimi** 🟢 | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | 🟢 **landing** — `tools/scripts/indus_west_negcontrol.py`, `data/indus_west/`, `outputs/indus_west/`. Verdict **FIXTURE_ONLY | NEGCONTROL_PASS** (d_ta/d_ref≈73, d_te/d_ref≈74). Real West/Tamil/Telugu NEVER_ATTEMPTED. 35/35 tests. `feat/g9pp-indus-west-neg` |
 | **ATLAS** | **Cursor** | Language Entropy Atlas + anomaly schema | entropy_atlas + anomalies.json | 🟢 **seeded** — `data/catalog/entropy_atlas.json`, `anomaly_schema.json`, `atlas_query.py` |
 | **G17** | **Cursor** 🟢 | TESS SETI Ellipsoid re-analysis | astro time-series; 32 real TICs from Cabrales Table 2; KA recover pass Z2≈56.5; cohort 3/32 anom; 37 tests | 🟢 **merged PR #27** — PIPELINE_VALIDATED | UNDERDETERMINED (no MAST fetch). Real Table 2 catalog + per-star tcross; Ulfberht gate PASS. Nit (non-blocking): cohort Z²>15 sits under null 95th — polish later. |
 | **G18** | **Freebuff** | EAMENA ley-line null | Sistan n=80 triples FPR=0 | 🟢 **merged PR #24** — FPR_CALIBRATED; structure ≠ ley message |
@@ -84,8 +84,8 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **G16** | 🟢 merged PR #14 — Meroitic STRUCTURE_SIGNAL. |
 | **Minimax M3** | 💤 idle. |
 | **Opencode** | 💤 idle (frontier G13–G20 landed). |
-| **Freebuff / Kimi** | 💤 idle — next: G9++ / G10++ if assigned. |
-| **Cursor** | 🟢 merge gate — G21 merged PR #32; frontier idle except G9++/G10++. |
+| **Freebuff / Kimi** | 💤 idle — G9++/G10++ landing. |
+| **Cursor** | 🟢 merge gate — G10++ #34 merged; landing G9++. |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
