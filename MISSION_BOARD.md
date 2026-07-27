@@ -53,7 +53,7 @@ If the “signal” does not separate from controls → **🔇 no signal**.
 | **G10++** | **Cursor** | Voynich plant pages × CCAT | ccat shape vs synthetic botany controls | 🟡 **landed scaffold** — `tools/scripts/voynich_botany_probe.py`; synthetic fixtures; Beinecke IIIF + POWO TODO |
 | **G9++** | **Cursor** | Barbara West Indus negcontrol | symbolseq entropy vs Tamil/Telugu | 🟡 **landed** — `tools/scripts/indus_west_negcontrol.py`; fixture West plaintext; real tables TODO |
 | **ATLAS** | **Cursor** | Language Entropy Atlas + anomaly schema | entropy_atlas + anomalies.json | 🟢 **seeded** — `data/catalog/entropy_atlas.json`, `anomaly_schema.json`, `atlas_query.py` |
-| **G17** | **Cursor** 🟢 | TESS SETI Ellipsoid re-analysis | astro time-series; 32 real TICs from Cabrales Table 2; KA recover pass Z2≈56.5; cohort 3/32 anom; 37 tests | 🟡 **PR #27 open** — PIPELINE_VALIDATED | UNDERDETERMINED (no MAST fetch). Branch `feat/g17-tess-ellipsoid-v2`. Clean scaffold: real catalog, no fake epoch, no cohort theatre. |
+| **G17** | **Cursor** 🟢 | TESS SETI Ellipsoid re-analysis | astro time-series; 32 real TICs from Cabrales Table 2; KA recover pass Z2≈56.5; cohort 3/32 anom; 37 tests | 🟢 **merged PR #27** — PIPELINE_VALIDATED \| UNDERDETERMINED (no MAST fetch). Real Table 2 catalog + per-star tcross; Ulfberht gate PASS. Nit (non-blocking): cohort Z²>15 sits under null 95th — polish later. |
 | **G18** | **Freebuff** | EAMENA ley-line null | Sistan n=80 triples FPR=0 | 🟢 **merged PR #24** — FPR_CALIBRATED; structure ≠ ley message |
 | **G19** | **Opencode** | Long Delayed Echoes historic series | delay-value probe; Lunan CUT | 🟢 **merged PR #25** — CLAIM_FAILS_NULL (p_shuffle=1.0); corpus UNDERDETERMINED |
 | **G20** | **Cursor** 🟢 | Boyajian Star TESS epoch-fold | astro; TIC 272172248; DIP_STRUCTURE (KA 24.5 d, Z²≈60 vs null 95th≈13.3); 41 tests | 🟢 **merged PR #26** — PR merged, all tests green. Branch `feat/g20-boyajian-tess` → `main`.
@@ -84,7 +84,7 @@ Cleanup gate **cleared**; frontier work proceeded. Updates:
 | **Minimax M3** | 💤 idle. |
 | **Opencode** | 🟡 **G13 VASCO** (CLI headless dispatch). |
 | **Freebuff** | 🟡 **G15 Cretan Hieroglyphic** (Terminal inject). |
-| **Cursor** | 🟢 merge gate on `main` — G17 / G20 still queue (G14/G18/G19 landed) |
+| **Cursor** | 🟢 merge gate on `main` — G17 merged PR #27; G20 merged PR #26 (G14/G18/G19 landed) |
 
 **Inherited KEEP base:** `blc1_fetcher` NEVER_ATTEMPTED default; synth comb; Wow beam-fit; no TB mirror; no silent fabrication.
 
@@ -99,7 +99,7 @@ Agents do **not** need to talk to each other. Handoff surface = GitHub PR + own 
 | **Branch = ticket** | `feat/<id>-…` or `ozma/…`. No frontier pushes straight to `main`. |
 | **Merge gate** | Author ≠ sole merger. Approver = Captain **or** Cursor **or** Ulfberht-if-not-author. |
 | **Hot files** | `MISSION_BOARD.md`, `tools/mission_status.py`, embeds — surgical diffs; on conflict **rebase**, never overwrite. |
-| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G13 Opencode**. Next queue: G17 / G20. |
+| **Idle default** | Prefer PRs → Cursor merges to `main` when green. Active: **G13 Opencode**. G17/G20 landed; frontier idle unless Captain assigns. |
 | **External dispatch** | Cursor/Auto may push prompts to OpenCode / Freebuff without manual copy-paste — see below. |
 
 ### Dispatch prompts outside Cursor (OpenCode ↔ Freebuff)
@@ -403,12 +403,12 @@ Jobs land under `outputs/agent_dispatch/` (gitignored). Freebuff has no headless
 > 6. Tests ≥12. Branch `feat/g15-cretan-hieroglyphic`. PR → Cursor merge.
 > Forbidden: “deciphered,” phonetic claims, aliens, viral blogs as truth.
 
-### G17 — remaining queue
-> ~~G14~~ merged PR #17 — Chankillo; skyfield DE441; ridge null 22%; lunar underdetermined.  
-> ~~G20~~ merged PR #26 — Boyajian's Star DIP_STRUCTURE.  
-> **G17** TESS SETI Ellipsoid (Cabrales 2024) — optical no-signal sharpen.  
-> ~~G18~~ merged PR #24 · ~~G19~~ merged PR #25.  
-> Full triage: docs/research_leads_kimi_2026-07-25.md + docs/research_leads_anomalistics_2026-07-25.md.
+### G17 — Cursor (🟢 MERGED PR #27 2026-07-27) — TESS SN 1987A SETI Ellipsoid
+> Landed: `tools/astro/tess_ellipsoid_probe.py` + 37/37 tests; real Cabrales Table 2
+> catalog (32 TIC + per-star tcross); KA Z²≈56.5; verdict PIPELINE_VALIDATED |
+> UNDERDETERMINED (no MAST). Ulfberht gate PASS. Follow-up polish: raise cohort
+> threshold above null 95th (or annotate FPR). ~~G14~~ #17 · ~~G18~~ #24 · ~~G19~~ #25 ·
+> ~~G20~~ #26 also landed.
 
 ### N1++ — Cursor (🟢 MERGED PR #6 2026-07-25) — bio_probe hardens
 > Landed: chrom-aware classify + `--seq-chrom`; `bins_status=skipped_seq_too_short`;

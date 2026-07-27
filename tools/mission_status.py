@@ -35,8 +35,10 @@ def main() -> None:
         {"id": "G7", "owner": "Opencode", "title": "Gorafe megaliths orientation", "status": "done", "href": "outputs/gorafe/run.json"},
         {"id": "G4", "owner": "Opencode", "title": "Rongorongo 2D parallel passages", "status": "done", "href": "outputs/rongorongo/run.json"},
         {"id": "G-Amazon", "owner": "Ulfberht", "title": "Amazon earthworks Mode A", "status": "done", "href": "outputs/amazon/run.json"},
-        {"id": "G-BLC1", "owner": "Ozma", "title": "BLC1 RFI known-answer", "status": "in_progress", "href": "tools/radio/blc1_fetcher.py"},
-        {"id": "R1++", "owner": "Ozma", "title": "CHIME Cat 2 periods (16.35 d)", "status": "in_progress", "href": "tools/radio/cat2_fetcher.py"},
+        {"id": "G-BLC1", "owner": "Ozma", "title": "BLC1 RFI known-answer", "status": "done", "href": "outputs/radio/blc1_run.json"},
+        {"id": "R1++", "owner": "Ozma", "title": "CHIME Cat 2 periods (16.35 d)", "status": "done", "href": "outputs/radio/"},
+        {"id": "G17", "owner": "Cursor", "title": "TESS SETI Ellipsoid (Cabrales)", "status": "done", "href": "outputs/tess_ellipsoid/run.json"},
+        {"id": "G20", "owner": "Cursor", "title": "Boyajian Star TESS epoch-fold", "status": "done", "href": "outputs/boyajian/run.json"},
     ]
     domains = {
         "crop_circles": {"covered": True, "notes": "B1–B11 + signal + wheat closeout"},
@@ -50,6 +52,8 @@ def main() -> None:
         "amazon": {"covered": True, "notes": "Mode A spatial point-process (PR #1 merged): STRUCTURE_ONLY clustering vs CSR, NN R=0.175 z=−46.7, Ripley L>CSR all radii; Mode B BLOCKED; not lost-civilisation"},
         "nazca": {"covered": False, "notes": "scout brief only"},
         "wow_frb": {"covered": True, "notes": "radio scaffold + honest CHIME/Vela fetchers (park when unreachable); G3 Wow beam-fit UNDERDETERMINED"},
+        "tess_ellipsoid": {"covered": True, "notes": "G17 PR #27: PIPELINE_VALIDATED | UNDERDETERMINED; KA Z²≈56.5; Cabrales non-detection ground truth"},
+        "boyajian": {"covered": True, "notes": "G20 PR #26: DIP_STRUCTURE; KA 24.5 d Z²≈60 vs quiet null 95th≈13.3; dips ≠ megastructure"},
     }
     status = {
         "generated_at": datetime.now(timezone.utc).isoformat(),

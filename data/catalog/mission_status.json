@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T05:47:38.627385+00:00",
+  "generated_at": "2026-07-27T00:21:34.075241+00:00",
   "missions": [
     {
       "id": "N0",
@@ -63,6 +63,62 @@
       "title": "Wheat closeout scans",
       "status": "done",
       "href": "outputs/wheat_closeout/SUMMARY.md"
+    },
+    {
+      "id": "G3",
+      "owner": "Minimax\u2192Ozma",
+      "title": "Wow! 1977 sidereal beam-fit",
+      "status": "done",
+      "href": "outputs/radio/"
+    },
+    {
+      "id": "G7",
+      "owner": "Opencode",
+      "title": "Gorafe megaliths orientation",
+      "status": "done",
+      "href": "outputs/gorafe/run.json"
+    },
+    {
+      "id": "G4",
+      "owner": "Opencode",
+      "title": "Rongorongo 2D parallel passages",
+      "status": "done",
+      "href": "outputs/rongorongo/run.json"
+    },
+    {
+      "id": "G-Amazon",
+      "owner": "Ulfberht",
+      "title": "Amazon earthworks Mode A",
+      "status": "done",
+      "href": "outputs/amazon/run.json"
+    },
+    {
+      "id": "G-BLC1",
+      "owner": "Ozma",
+      "title": "BLC1 RFI known-answer",
+      "status": "done",
+      "href": "outputs/radio/blc1_run.json"
+    },
+    {
+      "id": "R1++",
+      "owner": "Ozma",
+      "title": "CHIME Cat 2 periods (16.35 d)",
+      "status": "done",
+      "href": "outputs/radio/"
+    },
+    {
+      "id": "G17",
+      "owner": "Cursor",
+      "title": "TESS SETI Ellipsoid (Cabrales)",
+      "status": "done",
+      "href": "outputs/tess_ellipsoid/run.json"
+    },
+    {
+      "id": "G20",
+      "owner": "Cursor",
+      "title": "Boyajian Star TESS epoch-fold",
+      "status": "done",
+      "href": "outputs/boyajian/run.json"
     }
   ],
   "domains": {
@@ -78,6 +134,10 @@
       "covered": true,
       "notes": "z\u2248\u221273 formulaic STRUCTURE; null validates; not decipherment"
     },
+    "rongorongo": {
+      "covered": true,
+      "notes": "cond-entropy z\u2248\u221242.9 vs per-tablet shuffle; 33 cross-tablet parallels z\u2248+40.9; SEQUENCE_STRUCTURE, no decipherment"
+    },
     "dna_epigenetics": {
       "covered": true,
       "notes": "bio_probe SARS + chr22 slice; biology \u2260 message"
@@ -92,7 +152,11 @@
     },
     "archaeoastronomy": {
       "covered": true,
-      "notes": "lunar-phase probe vs uniform null \u2014 NO SIGNAL"
+      "notes": "lunar-phase probe vs uniform null \u2014 NO SIGNAL; Gorafe orientation STRUCTURE, astro UNDERDETERMINED"
+    },
+    "amazon": {
+      "covered": true,
+      "notes": "Mode A spatial point-process (PR #1 merged): STRUCTURE_ONLY clustering vs CSR, NN R=0.175 z=\u221246.7, Ripley L>CSR all radii; Mode B BLOCKED; not lost-civilisation"
     },
     "nazca": {
       "covered": false,
@@ -100,10 +164,28 @@
     },
     "wow_frb": {
       "covered": true,
-      "notes": "radio scaffold + honest CHIME/Vela fetchers (park when unreachable)"
+      "notes": "radio scaffold + honest CHIME/Vela fetchers (park when unreachable); G3 Wow beam-fit UNDERDETERMINED"
+    },
+    "tess_ellipsoid": {
+      "covered": true,
+      "notes": "G17 PR #27: PIPELINE_VALIDATED | UNDERDETERMINED; KA Z\u00b2\u224856.5; Cabrales non-detection ground truth"
+    },
+    "boyajian": {
+      "covered": true,
+      "notes": "G20 PR #26: DIP_STRUCTURE; KA 24.5 d Z\u00b2\u224860 vs quiet null 95th\u224813.3; dips \u2260 megastructure"
     }
   },
   "outputs": [
+    {
+      "path": "outputs/amazon/run.json",
+      "name": "run.json",
+      "kb": 2.8
+    },
+    {
+      "path": "outputs/amazon_lidar_neg/run.json",
+      "name": "run.json",
+      "kb": 3.9
+    },
     {
       "path": "outputs/astro/archaeo_probe.json",
       "name": "archaeo_probe.json",
@@ -112,12 +194,17 @@
     {
       "path": "outputs/astro/run.json",
       "name": "run.json",
-      "kb": 36.5
+      "kb": 43.6
     },
     {
       "path": "outputs/batch_table.json",
       "name": "batch_table.json",
       "kb": 2.6
+    },
+    {
+      "path": "outputs/betty_hill/run.json",
+      "name": "run.json",
+      "kb": 6.1
     },
     {
       "path": "outputs/bio/demo.json",
@@ -143,6 +230,16 @@
       "path": "outputs/bio/sars_run.json",
       "name": "sars_run.json",
       "kb": 12.2
+    },
+    {
+      "path": "outputs/boyajian/run.json",
+      "name": "run.json",
+      "kb": 10.5
+    },
+    {
+      "path": "outputs/chankillo/run.json",
+      "name": "run.json",
+      "kb": 5.3
     },
     {
       "path": "outputs/chilbolton_bits_73x23.json",
@@ -205,6 +302,21 @@
       "kb": 9.5
     },
     {
+      "path": "outputs/cretan_hieroglyphic/run.json",
+      "name": "run.json",
+      "kb": 7.8
+    },
+    {
+      "path": "outputs/cypro_minoan/run.json",
+      "name": "run.json",
+      "kb": 287.1
+    },
+    {
+      "path": "outputs/eamena/run.json",
+      "name": "run.json",
+      "kb": 5.2
+    },
+    {
       "path": "outputs/feature_table.json",
       "name": "feature_table.json",
       "kb": 5.7
@@ -265,6 +377,21 @@
       "kb": 0.8
     },
     {
+      "path": "outputs/goebekli/run.json",
+      "name": "run.json",
+      "kb": 2.3
+    },
+    {
+      "path": "outputs/gorafe/run.json",
+      "name": "run.json",
+      "kb": 8.2
+    },
+    {
+      "path": "outputs/indus/run.json",
+      "name": "run.json",
+      "kb": 3.3
+    },
+    {
       "path": "outputs/info_chualar.json",
       "name": "info_chualar.json",
       "kb": 1.1
@@ -310,6 +437,26 @@
       "kb": 80.2
     },
     {
+      "path": "outputs/linear_elamite/compare_run.json",
+      "name": "compare_run.json",
+      "kb": 12.7
+    },
+    {
+      "path": "outputs/linear_elamite/run.json",
+      "name": "run.json",
+      "kb": 7.3
+    },
+    {
+      "path": "outputs/linear_elamite/run_inverse_monumental.json",
+      "name": "run_inverse_monumental.json",
+      "kb": 7.3
+    },
+    {
+      "path": "outputs/meroitic/run.json",
+      "name": "run.json",
+      "kb": 11.7
+    },
+    {
       "path": "outputs/phaistos_analysis.json",
       "name": "phaistos_analysis.json",
       "kb": 3.4
@@ -325,9 +472,49 @@
       "kb": 2.8
     },
     {
+      "path": "outputs/proto_elamite/run.json",
+      "name": "run.json",
+      "kb": 2.3
+    },
+    {
+      "path": "outputs/proto_elamite/run_unreachable.json",
+      "name": "run_unreachable.json",
+      "kb": 2.4
+    },
+    {
+      "path": "outputs/proto_elamite/uruk_run.json",
+      "name": "uruk_run.json",
+      "kb": 9.4
+    },
+    {
       "path": "outputs/radio/all_stub.json",
       "name": "all_stub.json",
       "kb": 42.9
+    },
+    {
+      "path": "outputs/radio/blc1_real_run.json",
+      "name": "blc1_real_run.json",
+      "kb": 4.2
+    },
+    {
+      "path": "outputs/radio/blc1_run.json",
+      "name": "blc1_run.json",
+      "kb": 3.4
+    },
+    {
+      "path": "outputs/radio/cat2_real_run.json",
+      "name": "cat2_real_run.json",
+      "kb": 3.9
+    },
+    {
+      "path": "outputs/radio/cat2_run.json",
+      "name": "cat2_run.json",
+      "kb": 2.5
+    },
+    {
+      "path": "outputs/radio/lde_run.json",
+      "name": "lde_run.json",
+      "kb": 5.2
     },
     {
       "path": "outputs/radio/vela_real_stub.json",
@@ -338,6 +525,31 @@
       "path": "outputs/radio/vela_syn_stub.json",
       "name": "vela_syn_stub.json",
       "kb": 93.3
+    },
+    {
+      "path": "outputs/radio/wow_beam_default.json",
+      "name": "wow_beam_default.json",
+      "kb": 3.6
+    },
+    {
+      "path": "outputs/radio/wow_beam_fit.json",
+      "name": "wow_beam_fit.json",
+      "kb": 3.5
+    },
+    {
+      "path": "outputs/radio/wow_beam_real.json",
+      "name": "wow_beam_real.json",
+      "kb": 3.7
+    },
+    {
+      "path": "outputs/radio/wow_beam_synth.json",
+      "name": "wow_beam_synth.json",
+      "kb": 3.6
+    },
+    {
+      "path": "outputs/rongorongo/run.json",
+      "name": "run.json",
+      "kb": 25.9
     },
     {
       "path": "outputs/signal/chilbolton_window_entropy.json",
@@ -355,6 +567,11 @@
       "kb": 1.7
     },
     {
+      "path": "outputs/tess_ellipsoid/run.json",
+      "name": "run.json",
+      "kb": 4.1
+    },
+    {
       "path": "outputs/uap/demo.json",
       "name": "demo.json",
       "kb": 1.1
@@ -363,6 +580,11 @@
       "path": "outputs/uap/run.json",
       "name": "run.json",
       "kb": 4.4
+    },
+    {
+      "path": "outputs/vasco/run.json",
+      "name": "run.json",
+      "kb": 3.6
     },
     {
       "path": "outputs/vision/chilbolton_message_2001_tt_qwen.json",
@@ -378,6 +600,11 @@
       "path": "outputs/vision/crabwood_2002_disc_crop_qwen.json",
       "name": "crabwood_2002_disc_crop_qwen.json",
       "kb": 0.6
+    },
+    {
+      "path": "outputs/voynich/run.json",
+      "name": "run.json",
+      "kb": 10.3
     },
     {
       "path": "outputs/wheat_closeout/chilbolton_bitstream_scan.json",
@@ -400,5 +627,5 @@
       "kb": 2.7
     }
   ],
-  "n_outputs": 59
+  "n_outputs": 90
 }
